@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_citation_spivak2014categorytheorysciences a owl:NamedIndividual ;
+    rdfs:label "P07CitationSpivak2014categorytheorysciences" .

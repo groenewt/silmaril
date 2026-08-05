@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_09_bridges_gov_mereology_presheaf_sections_03_cross_paper_bridge_presheaf_decomposition_step_5__step_yoneda_profile_of_mittens a owl:NamedIndividual ;
+    rdfs:label "the representable presheaf O_11(-, Mittens) recovers Mittens up to natural iso from its admissible-arrow profile" .

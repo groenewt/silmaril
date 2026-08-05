@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_12_cocone_compatibility_concrete_anchor_1#mittensapex a owl:NamedIndividual ;
+    rdfs:label "12CoconeCompatibilityConcreteAnchor1AddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_12_cocone_compatibility_concrete_anchor_1#mittensapex silm:hasAdditionalAttribute "dunbar_layer:0" .

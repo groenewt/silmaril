@@ -1,0 +1,8 @@
+silm:instances_papers_02_music_sections_05_generated_as_evidence_face_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| evidence\\\\ |[schemanode]| generatedWitness [u,equal] [r," .
+silm:instances_papers_02_music_sections_05_generated_as_evidence_face_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "notEvidence" .
+silm:instances_papers_02_music_sections_05_generated_as_evidence_face_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_3" .
+silm:instances_papers_02_music_sections_05_generated_as_evidence_face_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_4" .

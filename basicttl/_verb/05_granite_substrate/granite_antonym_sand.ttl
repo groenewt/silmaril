@@ -1,0 +1,5 @@
+silm:instances_papers_05_granite_substrate_terms_granite a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.05_granite_substrate.terms.granite" .
+silm:instances_papers_05_granite_substrate_terms_granite silm:hasAntonym silm:instances_papers_05_granite_substrate_terms_sand .
+silm:instances_papers_05_granite_substrate_terms_granite silm:sourceNode silm:instances_papers_05_granite_substrate_terms_granite .
+silm:instances_papers_05_granite_substrate_terms_granite silm:targetNode silm:instances_papers_05_granite_substrate_terms_sand .

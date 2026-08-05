@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_02_manifest_field_arrows_decomposition_step_3__step_forge_morphism_for_02_manifest_field_arrows a owl:NamedIndividual ;
+    rdfs:label "From Spivak and Kent 2012: every arrow carries a verb-phrase sentence checkable against its domain and codomain. Manifest fields inherit this discipline." .

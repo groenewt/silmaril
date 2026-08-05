@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_09_diagram_atlas_sections_01_cocone_diagrams_concrete_anchor_1 a owl:NamedIndividual ;
+    rdfs:label "01CoconeDiagramsConcreteAnchor1" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_02_typed_source_signature_sections_05_signature_extension_pattern_yoneda_hom_leg_3 a owl:NamedIndividual ;
+    rdfs:label "05SignatureExtensionPatternYonedaHomLeg3" .

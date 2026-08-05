@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_01_source_witness_ingestion_decomposition_step_3__step_forge_morphism_for_01_source_witness_ingestion a owl:NamedIndividual ;
+    rdfs:label "Functoriality licenses step composition: if cite preserves the source boundary, and interpret preserves local meaning, then their composite preserves both." .

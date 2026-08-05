@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_12_cross_paper_bridges_b_sections_02_cross_paper_bridge_adjunctions_olog_box__crosspaperbridgeadjunctions a owl:NamedIndividual ;
+    rdfs:label "CrossPaperBridgeAdjunctions" .

@@ -1,0 +1,12 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_householdkg_~_colim_d^flat a owl:NamedIndividual ;
+    rdfs:label "the integrated apex is canonically isomorphic to the flat colimit of the combined source data" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_~_canonical_iso_kappa a owl:NamedIndividual ;
+    rdfs:label "a uniquely determined invertible arrow kappa : colim D^flat -> HouseholdKG" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_joy_of_cats_section_11_13 a owl:NamedIndividual ;
+    rdfs:label "Fubini-style commutation of colimits: lower-then-upper = flat" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_vet_bill_query_example_16_1 a owl:NamedIndividual ;
+    rdfs:label "computing the household vet bill from the combined pool yields the same number as computing it per-entity first then integrating" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_typed_audit_trail_vs_flat_audit_trail a owl:NamedIndividual ;
+    rdfs:label "the typed two-level audit trail preserves cross-entity arrows (sees_as_patient, cross_refers) that the flat audit trail discards" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_theorem_16_3 a owl:NamedIndividual ;
+    rdfs:label "apex objects are canonically iso; typed arrow inventories are not" .

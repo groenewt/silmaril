@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_diagram_fig_mct_colim_topological__diagram_fig_mct_colim_topological a owl:NamedIndividual ;
+    rdfs:label "fig:mct-colim-topological" .

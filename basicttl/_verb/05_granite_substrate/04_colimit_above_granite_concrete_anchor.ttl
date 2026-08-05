@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual — the colimit assembled from all typed legs: type (Cat), domestic-cat refinement, taxonomy (Felis catus/TSN 183798), evidence (vet record), quality (4.3 kg), process (annual exam), role (clinic patient), storage (Icechunk chunk)" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_concrete_anchor__granitestoragemanifestsubcategory a owl:NamedIndividual ;
+    rdfs:label "the manifest/storage subcategory: chunk manifests (c-0x7f4a, c-0x3b1c, c-0x8e2d), versioned snapshots, content-addressed records — all storage-layer Icechunk artifacts" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_concrete_anchor__nonstorageologobjects a owl:NamedIndividual ;
+    rdfs:label "nodes in the full Granite olog that are not storage nodes: Mittens (apex), Cat, DomesticCat, VetCarePlan_77, taxonomy nodes, evidence nodes, quality/measurement nodes" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_concrete_anchor__coconelegstomittensapex a owl:NamedIndividual ;
+    rdfs:label "the cocone legs from each source-diagram object to the Mittens apex: type leg from Cat node, taxonomy leg from Felis catus/TSN 183798 node, evidence leg from vet-record node, quality leg from body-mass node, storage leg from ChunkManifest node" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_concrete_anchor__universalmediatortovetcareplan77 a owl:NamedIndividual ;
+    rdfs:label "the universal-mediator arrow from VetCarePlan_77 (clinical care plan record 77 at Tartu clinic) to the colimit apex — the competing cocone that proves the apex cannot be a storage node" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_concrete_anchor__materializationfunctorgtom a owl:NamedIndividual ;
+    rdfs:label "the materialization functor F: G_Granite -> M_Granite that maps governed objects to their Icechunk chunk manifests and governed arrows to manifest-level arrows" .

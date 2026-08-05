@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_mittens_anchor_olog_box__p18section02_mittens_anchorologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section02_mittens_anchorOlogBox" .

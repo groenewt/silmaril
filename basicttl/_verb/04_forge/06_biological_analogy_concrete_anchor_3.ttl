@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_06_biological_analogy_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 06_biological_analogy #3" .

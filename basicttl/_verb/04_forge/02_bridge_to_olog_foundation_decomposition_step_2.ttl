@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_08_cross_paper_bridges_sections_02_bridge_to_olog_foundation_decomposition_step_2__step_forge_morphism_for_02_bridge_to_olog_foundation a owl:NamedIndividual ;
+    rdfs:label "Operation: typed morphism applying OlogBridge. — concrete forge-domain reading in section 'Bridge to Olog Node-Arrow Foundation'." .

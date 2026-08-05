@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_chapters_02_identity_and_composition_sections_03_unit_and_associativity_laws_concrete_anchor_1_DomesticCat a owl:NamedIndividual ;
+    rdfs:label "S03UnitAndAssociativityLawsConcreteAnchor1Example" .
+silm:instances_papers_09_minimal_category_theory_chapters_02_identity_and_composition_sections_03_unit_and_associativity_laws_concrete_anchor_1_DomesticCat silm:hasExample "In 'S03UnitAndAssociativityLawsConcreteAnchor1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the classification leg label; a typed class object distinct from Mittens; receives only the type leg, not the body-mass/microchip/care-process legs." .

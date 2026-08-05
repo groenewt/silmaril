@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_03_validate_step_decomposition_step_6__step_forge_morphism_for_03_validate_step a owl:NamedIndividual ;
+    rdfs:label "The validate step is the Forge's gate between rendering and installation: a template output that has not passed a shape gate is a candidate, not a checked artifact." .

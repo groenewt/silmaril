@@ -1,0 +1,3 @@
+silm:instances_papers_03_silmaril_federation_acronym_ecdsa a owl:NamedIndividual ;
+    rdfs:label "Elliptic Curve Digital Signature Algorithm" .
+silm:instances_papers_03_silmaril_federation_acronym_ecdsa silm:hasAbbreviation "ECDSA" .

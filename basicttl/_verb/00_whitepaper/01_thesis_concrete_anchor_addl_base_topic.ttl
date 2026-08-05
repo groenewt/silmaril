@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor#vetrecord_77 a owl:NamedIndividual ;
+    rdfs:label "ThesisConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor#vetrecord_77 silm:hasAdditionalAttribute "base_topic:category theory" .

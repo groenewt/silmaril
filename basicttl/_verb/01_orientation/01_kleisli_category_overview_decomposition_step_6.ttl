@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_01_kleisli_category_overview_decomposition_step_6__step_the_publication_pipeline_is_kleisli_composition_in_klfreesigma a owl:NamedIndividual ;
+    rdfs:label "Each bind step in the pipeline is one Kleisli arrow; the whole chain is associative by the monad axioms; the encyclopedia is precisely this Kleisli category with Mittens as its canonical apex." .

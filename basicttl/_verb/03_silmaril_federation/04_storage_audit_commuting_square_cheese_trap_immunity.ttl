@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_04_storage_audit_commuting_square_cheese_trap_immunity__trap_audit_record_as_apex_instead_of_storage_object a owl:NamedIndividual ;
+    rdfs:label "audit_record_as_apex_instead_of_storage_object" .

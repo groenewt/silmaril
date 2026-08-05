@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_kan_restriction_adjunction_decomposition_step_5__step_y_embedding a owl:NamedIndividual ;
+    rdfs:label "the Yoneda-traversal reading verifying that the Kan Extension Adjoint to Restriction claim holds at every representable" .

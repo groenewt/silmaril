@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_mittens_anchor_yoneda_hom_leg_1_iota_cat a owl:NamedIndividual ;
+    rdfs:label "P1802_mittens_anchorYonedaHomLeg1" .

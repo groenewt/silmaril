@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_03_ledger_row_anatomy_decomposition_step_3__step_joc_§3_1_morphism__named_source_object_+_named_target_object a owl:NamedIndividual ;
+    rdfs:label "Joy of Cats §3.1 requires that a morphism have a named source object and a named target object. In the ledger, the source is the witness at the named path and line range; the target is the edited paper section at the named edit_target. The ledger row is a typed morphism: source = witness on disk, target = claim in paper section." .

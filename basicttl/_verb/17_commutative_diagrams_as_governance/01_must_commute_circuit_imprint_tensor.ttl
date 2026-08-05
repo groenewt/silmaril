@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_02_audit_topology_sections_01_must_commute_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "MustCommuteSquaresCircuitImprintTensor" .

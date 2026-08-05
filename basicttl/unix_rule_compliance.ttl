@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:checkunixrulecompliance a owl:Class ;
+    rdfs:label "CheckUnixRuleCompliance" ;
+    rdfs:comment "The 17 sandbox UnixRule instances at\n${SIL_SANDBOX_SPECS_DIR}/ontology/unix-rules.ttl declare the canonical\nUnix-philosophy disciplines (one-job-per-script, set-Eeuo-pipefail\nheaders, env-var validation, exit-code uniformity, etc.). Every script\nin this repo must comply.\n" .

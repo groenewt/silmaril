@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_06_visible_atoms_concrete_anchor#00__content a owl:NamedIndividual ;
+    rdfs:label "06VisibleatomsConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_06_visible_atoms_concrete_anchor#00__content silm:hasAdditionalAttribute "dunbar_layer:0" .

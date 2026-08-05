@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_concrete_anchor__evidencelegtypelabel a owl:NamedIndividual ;
+    rdfs:label "the leg-type label \"evidence\" assigned to the Tartu vet-record chunk — it is an information artifact about Mittens, not a classification or quality measurement" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_concrete_anchor__sourcebodysection02mittensanchor a owl:NamedIndividual ;
+    rdfs:label "the source-body domain section: src/papers/05_granite_substrate/sections/02_mittens_anchor.tex — the governance section that produced the vet-record chunk" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the codomain: Mittens — the governed individual this evidence chunk contributes a leg about" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_concrete_anchor__contenthashsha256_7f4a a owl:NamedIndividual ;
+    rdfs:label "the content-addressed hash sha256:7f4a... uniquely identifying the Tartu vet-record payload (patient: Mittens, date: 2026-05-18, vet: Dr. Tamm, body mass: 4.3 kg, vaccinations: up to date)" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_concrete_anchor__vetrecordshapepredicate a owl:NamedIndividual ;
+    rdfs:label "the SHACL-compatible shape predicate VetRecordShape requiring fields: patient name, date, attending veterinarian, body-mass measurement, vaccination status" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_concrete_anchor__granitelegtypetaxonomy8elements a owl:NamedIndividual ;
+    rdfs:label "the 8-element leg-type taxonomy: {storage, evidence, classification, taxonomy-source, quality, process, role, validation} — the partition set for all Mittens chunks" .

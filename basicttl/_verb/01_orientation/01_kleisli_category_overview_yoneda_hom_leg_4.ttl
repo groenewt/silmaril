@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_01_kleisli_category_overview_yoneda_hom_leg_4 a owl:NamedIndividual ;
+    rdfs:label "KleisliOverviewLegProfileKl" .

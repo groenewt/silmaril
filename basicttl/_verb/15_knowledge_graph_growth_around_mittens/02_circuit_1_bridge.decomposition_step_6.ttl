@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_02_decomposition_step_6__step_theorem_t6_g2 a owl:NamedIndividual ;
+    rdfs:label "Circuit-1 mark-imprinting characterisation" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chl_orient_subset__diagram_fig_orientation_chl_orient_subset a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chL-orient-subset" .

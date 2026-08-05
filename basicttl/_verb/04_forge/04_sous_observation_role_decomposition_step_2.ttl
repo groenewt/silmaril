@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_04_sous_observation_role_decomposition_step_2__step_forge_morphism_for_04_sous_observation_role a owl:NamedIndividual ;
+    rdfs:label "The pair (Y^in, Y^out) is the Yoneda embedding of Mittens into the functor category. Evaluating at an object X gives the set of Forge morphisms from X to Mittens (or from Mittens to X)." .

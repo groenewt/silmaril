@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_decomposition_step_3__step_music_olog_manifest_discipline a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic licensing the 09_manifest_yoneda_profile law" .

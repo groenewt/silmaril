@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_02_now_temporal_window_concrete_anchor#timewindow a owl:NamedIndividual ;
+    rdfs:label "02NowtemporalwindowConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_02_music_sections_02_now_temporal_window_concrete_anchor#timewindow silm:hasAdditionalAttribute "circuit_corner:1" .

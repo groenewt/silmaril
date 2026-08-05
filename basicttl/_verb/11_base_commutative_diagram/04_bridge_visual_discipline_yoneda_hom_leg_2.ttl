@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_21_bridges_avogadro_disint_canonq_visual_sections_04_bridge_visual_discipline_yoneda_hom_leg_2_classchainf a owl:NamedIndividual ;
+    rdfs:label "S04BridgeVisualDisciplineYonedaHomLeg2" .

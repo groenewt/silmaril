@@ -1,0 +1,18 @@
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| TypedVocabulary [r," .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[schemanode]| GeneratedWitness [r," .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[schemanode]| OlogArrow tikzcd% Cannon and generated-source absorption: both cannon files and generated witnesses enter through an interpretation step, are placed as typed olog nodes or arrows, and are then governed by the Music Node-or-Arrow law. Neither source bypasses the olog.fig:music-absorption-functor Diagram law (Figure~fig:music-absorption-functor): cannon vocabulary and generated language must be retyped before they reach an olog node or arrow; direct import from fluent generated prose to a published claim is blocked. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[classnode]| Category [r," .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[classnode]| Category [r,dashed," .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "=" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_6" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_7" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_8" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_9" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_04_three_substrates_olog_box__04threesubstratesologbox a owl:NamedIndividual ;
+    rdfs:label "04ThreeSubstratesOlogBox" .

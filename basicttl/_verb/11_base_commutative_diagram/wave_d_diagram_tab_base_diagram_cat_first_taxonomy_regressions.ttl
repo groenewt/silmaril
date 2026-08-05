@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_diagram_tab_base_diagram_cat_first_taxonomy_regressions__diagram_tab_base_diagram_cat_first_taxonomy_regressions a owl:NamedIndividual ;
+    rdfs:label "tab:base-diagram-cat-first-taxonomy-regressions" .

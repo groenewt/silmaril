@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_09_classification_leg_olog_box__09classificationlegologbox a owl:NamedIndividual ;
+    rdfs:label "09ClassificationLegOlogBox" .

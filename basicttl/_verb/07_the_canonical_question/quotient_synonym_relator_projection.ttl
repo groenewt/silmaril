@@ -1,0 +1,4 @@
+silm:instances_papers_07_the_canonical_question_terms_quotient a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.07_the_canonical_question.terms.quotient" .
+silm:instances_papers_07_the_canonical_question_terms_quotient silm:hasSynonym "relator projection" .
+silm:instances_papers_07_the_canonical_question_terms_quotient silm:sourceNode silm:instances_papers_07_the_canonical_question_terms_quotient .

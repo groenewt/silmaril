@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 02_node_typing_contract #3" .

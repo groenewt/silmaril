@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_concrete_anchor#mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "SelfAuthoringTestConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_concrete_anchor#mittensgovernedindividual silm:hasAdditionalAttribute "circuit_corner:7" .

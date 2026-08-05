@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_15_diagram_audit_rollup_sections_03_residual_overlap_inventory_olog_box__musicolog03residualoverlapinvbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03ResidualOverlapInvBox" .

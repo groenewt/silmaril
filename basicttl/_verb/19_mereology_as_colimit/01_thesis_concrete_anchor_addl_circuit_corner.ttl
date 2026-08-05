@@ -1,0 +1,3 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_flat_sections_01_thesis_concrete_anchor#mereologydiagram a owl:NamedIndividual ;
+    rdfs:label "ThesisConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_19_mereology_as_colimit_chapters_flat_sections_01_thesis_concrete_anchor#mereologydiagram silm:hasAdditionalAttribute "circuit_corner:7" .

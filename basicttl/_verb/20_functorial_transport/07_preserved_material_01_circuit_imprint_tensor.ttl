@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

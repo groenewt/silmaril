@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_05_yoneda_for_typed_english_sections_02_yoneda_for_mittens_yoneda_hom_leg_in_taxon a owl:NamedIndividual ;
+    rdfs:label "YonedaForMittensInLegTaxon" .

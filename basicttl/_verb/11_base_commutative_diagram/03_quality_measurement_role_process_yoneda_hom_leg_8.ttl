@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_13_evidence_grammar_quality_sections_03_quality_measurement_role_process_yoneda_hom_leg_8_yonedaprofileleg a owl:NamedIndividual ;
+    rdfs:label "S03QualityMeasurementRoleProcessYonedaHomLeg8" .

@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_07_contrastive_negative_regression_sections_02_jepa_vs_contrastive_diagram_circuit_imprint_tensor__corner_1 a owl:NamedIndividual ;
+    rdfs:label "1" .

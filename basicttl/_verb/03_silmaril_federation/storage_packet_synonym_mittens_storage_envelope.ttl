@@ -1,0 +1,4 @@
+silm:instances_papers_03_silmaril_federation_terms_storage_packet a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.storage_packet" .
+silm:instances_papers_03_silmaril_federation_terms_storage_packet silm:hasSynonym "Mittens storage envelope" .
+silm:instances_papers_03_silmaril_federation_terms_storage_packet silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_storage_packet .

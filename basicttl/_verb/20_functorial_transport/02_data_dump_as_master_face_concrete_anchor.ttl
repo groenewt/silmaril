@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_concrete_anchor__householdcsvdump a owl:NamedIndividual ;
+    rdfs:label "the flattened household row-set, without typed arrows" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_concrete_anchor__cliniccsvdump a owl:NamedIndividual ;
+    rdfs:label "the flattened clinic row-set, without typed arrows" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_concrete_anchor__rowleveltransport a owl:NamedIndividual ;
+    rdfs:label "the row-level transport that replaces functorial transport" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_concrete_anchor__derivedanchor_02_dat_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

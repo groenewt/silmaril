@@ -1,0 +1,3 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_02_domestic_cat_anchor_typed_yoneda_hom_leg_2_instance_to_box a owl:NamedIndividual ;
+    rdfs:label "DomesticCatAnchorTypedYonedaHomLeg2Example" .
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_02_domestic_cat_anchor_typed_yoneda_hom_leg_2_instance_to_box silm:hasExample "In 'DomesticCatAnchorTypedYonedaHomLeg2', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, Mittens is a row of the DomesticCatBox instance table; the leg is monic on rows." .

@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_01_thesis_circuit_imprint_tensor__corner_5 a owl:NamedIndividual ;
+    rdfs:label "5" .

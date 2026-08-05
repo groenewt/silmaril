@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_24_rosetta_stone_cross_domain_sections_05_biologist_entry_point_concrete_anchor_1 a owl:NamedIndividual ;
+    rdfs:label "S05BiologistEntryPointConcreteAnchor1Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_24_rosetta_stone_cross_domain_sections_05_biologist_entry_point_concrete_anchor_1 silm:hasExample "In 'S05BiologistEntryPointConcreteAnchor1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the physical specimen: microchip 985112345678901, body mass 4.2 kg, observed at vet clinic F11 on 2026-04-12." .

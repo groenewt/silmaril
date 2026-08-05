@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_03_kg_colimit_leg_olog_box__kgcolimitleg a owl:NamedIndividual ;
+    rdfs:label "KGColimitLeg" .

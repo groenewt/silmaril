@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_citation_spivakkent2012ologs a owl:NamedIndividual ;
+    rdfs:label "P09CitationSpivakkent2012ologs" .

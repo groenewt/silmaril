@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_contravariance_violation_decomposition_step_1__step_p_mittens a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the Cheese-Trap: Contravariance Violated claim" .

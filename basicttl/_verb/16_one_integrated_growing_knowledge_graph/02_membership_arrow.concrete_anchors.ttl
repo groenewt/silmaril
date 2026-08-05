@@ -1,0 +1,8 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors__householdenrolmentarrow a owl:NamedIndividual ;
+    rdfs:label "the typed enrolment arrow colim D_e -> colim D_Household; concretely the residency-classification of Mittens or Pumpkin as a resident of 77 Maple Street" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors__mittensresident a owl:NamedIndividual ;
+    rdfs:label "the Mittens sub-apex enrolled as a resident; Mittens the individual cat at 77 Maple Street" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors__pumpkinresident a owl:NamedIndividual ;
+    rdfs:label "the Pumpkin sub-apex enrolled as a resident; the sibling cat" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors__householddwellingapex a owl:NamedIndividual ;
+    rdfs:label "the dwelling at 77 Maple Street as a sub-apex; receives both enrolment arrows" .

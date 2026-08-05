@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_cross_paper_bridges_decomposition_step_3__step_presheaf_semantics_cross_paper_bridges a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Cross-Paper Bridges from the Cube claim, grounded in the cited literature" .

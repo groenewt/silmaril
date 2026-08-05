@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_flat_sections_01_thesis_cheese_trap_immunity__trap_storage_identity_collapse_or_training_identity_collapse a owl:NamedIndividual ;
+    rdfs:label "storage_identity_collapse_or_training_identity_collapse" .

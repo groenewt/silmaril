@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_04_validation_report_as_olog_object_cheese_trap_immunity__trap_report=log_entry a owl:NamedIndividual ;
+    rdfs:label "report=log_entry" .

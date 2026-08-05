@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_cheese_trap_immunity__trap_01_label_copying_collapse__the_adapter_output_exhibits_the_0 a owl:NamedIndividual ;
+    rdfs:label "01_label_copying collapse: the adapter output exhibits the 01LabelCopying failure by treating a partial storage view as the complete governed individual" .

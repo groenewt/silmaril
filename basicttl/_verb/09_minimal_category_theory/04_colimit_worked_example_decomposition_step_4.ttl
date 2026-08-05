@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_04_colimit_worked_example_decomposition_step_4__step_mittens_4p2kg a owl:NamedIndividual ;
+    rdfs:label "anchor concretely" .

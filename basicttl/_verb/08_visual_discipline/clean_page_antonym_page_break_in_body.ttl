@@ -1,0 +1,5 @@
+silm:instances_papers_08_visual_discipline_terms_clean_page a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.clean_page" .
+silm:instances_papers_08_visual_discipline_terms_clean_page silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_page_break_in_body .
+silm:instances_papers_08_visual_discipline_terms_clean_page silm:sourceNode silm:instances_papers_08_visual_discipline_terms_clean_page .
+silm:instances_papers_08_visual_discipline_terms_clean_page silm:targetNode silm:instances_papers_08_visual_discipline_terms_page_break_in_body .

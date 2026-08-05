@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_02_namespace_placement_separation_cheese_trap_immunity__trap_namespace_key_as_apex_identity a owl:NamedIndividual ;
+    rdfs:label "namespace_key_as_apex_identity" .

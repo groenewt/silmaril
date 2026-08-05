@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_cross_paper_bridges_circuit_imprint_tensor__corner_7 a owl:NamedIndividual ;
+    rdfs:label "7" .

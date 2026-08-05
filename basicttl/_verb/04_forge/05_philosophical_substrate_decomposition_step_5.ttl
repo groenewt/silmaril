@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_05_philosophical_substrate_decomposition_step_5__step_forge_morphism_for_05_philosophical_substrate a owl:NamedIndividual ;
+    rdfs:label "Yoneda profile for PhilosophicalSubstrate. — concrete forge-domain reading in section 'Philosophical Substrate of the Forge'." .

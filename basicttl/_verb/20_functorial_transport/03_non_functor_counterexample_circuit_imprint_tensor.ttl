@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "NonFunctorCounterexampleCircuitImprintTensor" .

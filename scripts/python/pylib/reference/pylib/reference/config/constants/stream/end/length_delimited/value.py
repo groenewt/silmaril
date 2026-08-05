@@ -1,0 +1,1 @@
+VALUE = 'length-delimited'

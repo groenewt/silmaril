@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_06_domain_entry_points_sections_03_granite_entry_decomposition_step_1__step_q_07 a owl:NamedIndividual ;
+    rdfs:label "reading position 1: name the canonical question Q_07 posed of the Mittens cocone" .

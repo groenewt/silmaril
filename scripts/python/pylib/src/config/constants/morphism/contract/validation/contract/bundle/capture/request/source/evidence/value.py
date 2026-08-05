@@ -1,0 +1,1 @@
+VALUE = b"urn:silmaril:evidence:sha256:6aa9759351898c181875e365fc0f2e36e632e738179b64e0100f6077e4cec070#contract-bundle/capture"

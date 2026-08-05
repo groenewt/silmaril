@@ -1,0 +1,4 @@
+silm:instances_papers_00_whitepaper_terms_publish a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.00_whitepaper.terms.publish" .
+silm:instances_papers_00_whitepaper_terms_publish silm:hasSynonym "render-and-validate gate" .
+silm:instances_papers_00_whitepaper_terms_publish silm:sourceNode silm:instances_papers_00_whitepaper_terms_publish .

@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_cheese_trap_immunity__trap_information_pushed_without_validation a owl:NamedIndividual ;
+    rdfs:label "information_pushed_without_validation" .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_1 a owl:NamedIndividual ;
+    rdfs:label "FullGrowthCoconeDiagramConcreteAnchor1" .

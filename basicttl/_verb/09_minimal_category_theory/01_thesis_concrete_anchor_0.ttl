@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_01_thesis_concrete_anchor_0_Mittens a owl:NamedIndividual ;
+    rdfs:label "S01ThesisConcreteAnchor0" .

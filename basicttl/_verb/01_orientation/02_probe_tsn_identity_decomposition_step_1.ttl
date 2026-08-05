@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_02_probe_tsn_identity_decomposition_step_1__step_tsn_183798 a owl:NamedIndividual ;
+    rdfs:label "TSN 183798 is the primary key for Felis catus in the ITIS relational database; it is a numeric identifier, not the cat itself." .

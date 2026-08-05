@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_02_typed_legs_of_the_question_sections_04_validation_and_trace_legs_decomposition_step_6__step_q_07_ap a owl:NamedIndividual ;
+    rdfs:label "reading position 6 (recap): the canonical-question Q_07 is read by its answerability profile AP(Q_07) = Hom_O(Q_07,-), determined up to isomorphism by Yoneda" .

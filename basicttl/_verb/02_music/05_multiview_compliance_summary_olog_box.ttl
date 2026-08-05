@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_15_diagram_audit_rollup_sections_05_multiview_compliance_summary_olog_box__musicolog05multiviewcompliancbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog05MultiviewCompliancBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_cheese_trap__trap_integratedrepresentable_collapse a owl:NamedIndividual ;
+    rdfs:label "IntegratedRepresentable_collapse" .

@@ -1,0 +1,14 @@
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic, annual vet exam 2026-05-18" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor__profilecomparisonsymbol a owl:NamedIndividual ;
+    rdfs:label "Profile comparison for Mittens: the incoming arrows to Mittens include type/evidence/quality/process/role/taxonomy/validation probes; the incoming arrows to the Icechunk chunk include only hash-verification/manifest-entry/return-path probes. The comparison proves the two Hom-sets are different." .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record, sha256:7f4a...bf2c, evidence leg" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor__probeprofilea a owl:NamedIndividual ;
+    rdfs:label "Π_A the probe Hom-profile of object A — typed arrows in/out of A, the left side of the profile comparison" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor__probeprofileb a owl:NamedIndividual ;
+    rdfs:label "Π_B the probe Hom-profile of object B — typed arrows in/out of B, the right side of the profile comparison" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor__probeobjectset a owl:NamedIndividual ;
+    rdfs:label "Probe the probe object set — finite typed witnesses across which the profile equality predicate is checked" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor__yonedacharacterizationlaw a owl:NamedIndividual ;
+    rdfs:label "Yoneda_lemma the characterization law — Π_A ≃ Π_B iff A ≅ B on the probe set" .

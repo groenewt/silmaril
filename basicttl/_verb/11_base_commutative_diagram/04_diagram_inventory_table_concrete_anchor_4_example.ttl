@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_02_typed_legs_and_atlas_sections_04_diagram_inventory_table_concrete_anchor_4 a owl:NamedIndividual ;
+    rdfs:label "S04DiagramInventoryTableConcreteAnchor4Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_02_typed_legs_and_atlas_sections_04_diagram_inventory_table_concrete_anchor_4 silm:hasExample "In 'S04DiagramInventoryTableConcreteAnchor4', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the cross-domain reader: a quality-control engineer at a vet clinic who reads the pullback as the conjunction \"the quality holds AND the procedure was followed\"." .

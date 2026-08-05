@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_01_source_witness_ingestion_decomposition_step_5__step_forge_morphism_for_01_source_witness_ingestion a owl:NamedIndividual ;
+    rdfs:label "By Yoneda naturality, the profile of the ingested witness inherits from the profile of Mittens: the incoming arrows that enter the measurement leg are exactly the subset of Hom(-, Mittens) that factor through the measurement subsystem." .

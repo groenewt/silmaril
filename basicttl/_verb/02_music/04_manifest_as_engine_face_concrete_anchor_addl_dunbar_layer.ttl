@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_04_manifest_as_engine_face_concrete_anchor#manifest a owl:NamedIndividual ;
+    rdfs:label "04ManifestasenginefaceConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_04_manifest_as_engine_face_concrete_anchor#manifest silm:hasAdditionalAttribute "dunbar_layer:0" .

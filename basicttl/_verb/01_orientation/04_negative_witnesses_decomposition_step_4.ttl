@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_04_negative_witnesses_decomposition_step_4__step_gippidy00_r1_negative_witness__path=rebuttal_round00_gippidy a owl:NamedIndividual ;
+    rdfs:label "The negative witness for probe R1 is: path=rebuttal/round00/gippidy00.md, witness_line_range=97-105, interpretation_kind=negative-regression. The verbatim quote at those lines lists the collision candidates (multiple catus rows) and argues no single catus row identifies Mittens. This ledger row records that Hom_{O_01}(catus, Mittens) = empty." .

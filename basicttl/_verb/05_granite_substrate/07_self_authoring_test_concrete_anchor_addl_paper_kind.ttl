@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_concrete_anchor#mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "SelfAuthoringTestConcreteAnchorAddlPaperKind" .
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_concrete_anchor#mittensgovernedindividual silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.05_granite_substrate" .

@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_olog_box__transportpathologyinventory a owl:NamedIndividual ;
+    rdfs:label "TransportPathologyInventory" .

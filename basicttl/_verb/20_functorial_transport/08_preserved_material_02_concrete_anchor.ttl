@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_08_preserved_material_02_concrete_anchor__mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "the concrete household cat Mittens, treated as the colimit apex of the household-side diagram D_Mittens whose typed legs the transport functor F must preserve." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_08_preserved_material_02_concrete_anchor__functorialtransportnamed a owl:NamedIndividual ;
+    rdfs:label "the named transport functor F from the household category C to the schema category D, sending each ontology arrow to a typed schema arrow." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_08_preserved_material_02_concrete_anchor__transportedmittensapex a owl:NamedIndividual ;
+    rdfs:label "the schema-side image of Mittens under F, the cocone apex through which every transported household-side leg must factor." .

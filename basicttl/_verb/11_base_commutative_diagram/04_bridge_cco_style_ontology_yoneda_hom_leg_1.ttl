@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_20_bridges_graph_kg_integrated_cco_sections_04_bridge_cco_style_ontology_yoneda_hom_leg_1_domesticcatrefinementlega a owl:NamedIndividual ;
+    rdfs:label "S04BridgeCcoStyleOntologyYonedaHomLeg1" .

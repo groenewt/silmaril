@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:checkpaperencapsulation a owl:Class ;
+    rdfs:label "CheckPaperEncapsulation" ;
+    rdfs:comment "Each paper P_i is a Kleisli arrow P_i : () -> Free F (paper-content).\nNo inbound cross-paper \\cite/\\parencite/\\textcite/\\cref/\\Cref/\\ref\noutside chapters/11_*/; every outbound paper-NN reference inside\nchapters/11_*/ resolves to a valid sibling slug (Kleisli composition\ntyping).  Self-references (own paper NN) and \\input/\\include\nfile-path mechanisms are exempt.\n" .

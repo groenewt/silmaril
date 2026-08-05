@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chb_kleisli_chain__diagram_fig_orientation_chb_kleisli_chain a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chB-kleisli-chain" .

@@ -1,0 +1,2 @@
+VALUE = ("\\newcommand","\\providecommand","\\DeclareRobustCommand",)
+

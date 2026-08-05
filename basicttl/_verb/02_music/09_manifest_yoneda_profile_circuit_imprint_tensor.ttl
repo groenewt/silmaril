@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

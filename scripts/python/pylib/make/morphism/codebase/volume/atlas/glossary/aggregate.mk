@@ -1,0 +1,76 @@
+.DELETE_ON_ERROR:
+
+ATLAS_GLOSSARY_PYTHON ?= python3
+ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../../../../../../src)
+ATLAS_GLOSSARY_ROW_SOURCE_DIRECTORY ?=
+ATLAS_GLOSSARY_HEADER_TEMPLATE ?=
+ATLAS_GLOSSARY_OUTPUT ?=
+ATLAS_GLOSSARY_STAGE_ROOT ?= $(dir $(ATLAS_GLOSSARY_OUTPUT))/.atlas-glossary-byte-frame/$(notdir $(ATLAS_GLOSSARY_OUTPUT))
+ATLAS_GLOSSARY_DATABASE := $(ATLAS_GLOSSARY_STAGE_ROOT)/relation-carrier.duckdb
+ATLAS_GLOSSARY_ROW_SOURCE_PRESENCE := $(ATLAS_GLOSSARY_STAGE_ROOT)/00-row-source-presence.frame
+ATLAS_GLOSSARY_HEADER_SOURCE := $(ATLAS_GLOSSARY_STAGE_ROOT)/01-header-line.frame
+ATLAS_GLOSSARY_ROW_SOURCE_PARSE := $(ATLAS_GLOSSARY_STAGE_ROOT)/02-row-source-parse.frame
+ATLAS_GLOSSARY_HEADER_SOURCE_PARSE := $(ATLAS_GLOSSARY_STAGE_ROOT)/03-header-source-parse.frame
+ATLAS_GLOSSARY_HEADER_CARDINALITY := $(ATLAS_GLOSSARY_STAGE_ROOT)/04-header-cardinality.frame
+ATLAS_GLOSSARY_ROW_PRESENCE_FILTER := $(ATLAS_GLOSSARY_STAGE_ROOT)/05-row-presence-filter.frame
+ATLAS_GLOSSARY_CELL_EXPANSION := $(ATLAS_GLOSSARY_STAGE_ROOT)/06-cell-expansion.frame
+ATLAS_GLOSSARY_CELL_AGGREGATION := $(ATLAS_GLOSSARY_STAGE_ROOT)/07-cell-aggregation.frame
+ATLAS_GLOSSARY_INVERSE_PROJECTION := $(ATLAS_GLOSSARY_STAGE_ROOT)/08-inverse-cell-projection.frame
+ATLAS_GLOSSARY_INVERSE_AGGREGATION := $(ATLAS_GLOSSARY_STAGE_ROOT)/09-inverse-cell-aggregation.frame
+ATLAS_GLOSSARY_IDENTITY_COMPLETION := $(ATLAS_GLOSSARY_STAGE_ROOT)/10-identity-completion.frame
+ATLAS_GLOSSARY_ROW_RECONSTRUCTION := $(ATLAS_GLOSSARY_STAGE_ROOT)/11-row-reconstruction.frame
+ATLAS_GLOSSARY_ROW_CANONICAL_ORDER := $(ATLAS_GLOSSARY_STAGE_ROOT)/12-row-canonical-order.frame
+ATLAS_GLOSSARY_BODY := $(ATLAS_GLOSSARY_STAGE_ROOT)/13-body.frame
+
+.PHONY: atlas-glossary-aggregate atlas-glossary-force
+atlas-glossary-aggregate: $(ATLAS_GLOSSARY_OUTPUT)
+
+atlas-glossary-force:
+
+$(ATLAS_GLOSSARY_STAGE_ROOT):
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.stage.directory.construction.process "$@"
+
+$(ATLAS_GLOSSARY_ROW_SOURCE_PRESENCE): atlas-glossary-force | $(ATLAS_GLOSSARY_STAGE_ROOT)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.row.source.presence.validation.process "$(ATLAS_GLOSSARY_ROW_SOURCE_DIRECTORY)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_HEADER_SOURCE): atlas-glossary-force $(ATLAS_GLOSSARY_HEADER_TEMPLATE) | $(ATLAS_GLOSSARY_STAGE_ROOT)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.header.line.projection.process "$(ATLAS_GLOSSARY_HEADER_TEMPLATE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_ROW_SOURCE_PARSE): $(ATLAS_GLOSSARY_ROW_SOURCE_PRESENCE)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.row.source.parse.process "$(ATLAS_GLOSSARY_DATABASE)" "$(ATLAS_GLOSSARY_ROW_SOURCE_DIRECTORY)/*.row.csv" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_HEADER_SOURCE_PARSE): $(ATLAS_GLOSSARY_ROW_SOURCE_PARSE) $(ATLAS_GLOSSARY_HEADER_SOURCE)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.header.source.parse.process "$(ATLAS_GLOSSARY_DATABASE)" "$(ATLAS_GLOSSARY_HEADER_SOURCE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_HEADER_CARDINALITY): $(ATLAS_GLOSSARY_HEADER_SOURCE_PARSE)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.header.cardinality.validation.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_ROW_PRESENCE_FILTER): $(ATLAS_GLOSSARY_HEADER_CARDINALITY)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.row.presence.filter.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_CELL_EXPANSION): $(ATLAS_GLOSSARY_ROW_PRESENCE_FILTER)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.cell.expansion.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_CELL_AGGREGATION): $(ATLAS_GLOSSARY_CELL_EXPANSION)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.cell.aggregation.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_INVERSE_PROJECTION): $(ATLAS_GLOSSARY_CELL_AGGREGATION)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.inverse.cell.projection.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_INVERSE_AGGREGATION): $(ATLAS_GLOSSARY_INVERSE_PROJECTION)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.inverse.cell.aggregation.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_IDENTITY_COMPLETION): $(ATLAS_GLOSSARY_INVERSE_AGGREGATION)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.identity.completion.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_ROW_RECONSTRUCTION): $(ATLAS_GLOSSARY_IDENTITY_COMPLETION)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.row.reconstruction.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_ROW_CANONICAL_ORDER): $(ATLAS_GLOSSARY_ROW_RECONSTRUCTION)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.row.canonical_order.projection.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_BODY): $(ATLAS_GLOSSARY_ROW_CANONICAL_ORDER)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.body.comma_separated_values.encode.process "$(ATLAS_GLOSSARY_DATABASE)" >"$@" 2>"$@.stderr"
+
+$(ATLAS_GLOSSARY_OUTPUT): $(ATLAS_GLOSSARY_HEADER_SOURCE) $(ATLAS_GLOSSARY_BODY)
+	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(ATLAS_GLOSSARY_PYLIB_SOURCE_ROOT)" "$(ATLAS_GLOSSARY_PYTHON)" -m silmaril.sparky.morphism.codebase.volume.atlas.glossary.aggregate.document.construction.process "$(ATLAS_GLOSSARY_HEADER_SOURCE)" "$(ATLAS_GLOSSARY_BODY)" >"$@" 2>"$@.stderr"

@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "CannonOrGptAbsorptionYonedaHomLegExample" .
+silm:instances_papers_00_whitepaper_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg silm:hasExample "In 'CannonOrGptAbsorptionYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, In 'Cannon or GPT Absorption', the incoming_profile_vetrecord arrow is Y_in(VetRecord_77): the evidence-attachment arrow, the record leg of the twelve-leg cocone.; also, In 'Cannon or GPT Absorption', the incoming_profile_classification arrow is Y_in(DomesticCat): the classification leg, which the sous position must name separately from the taxonomy leg." .

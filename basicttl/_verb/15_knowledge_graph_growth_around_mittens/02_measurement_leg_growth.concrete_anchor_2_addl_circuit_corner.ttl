@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_2#bodymassvalue4_3kg a owl:NamedIndividual ;
+    rdfs:label "MeasurementLegEpisodicConcreteAnchor2AddlCircuitCorner" .
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_2#bodymassvalue4_3kg silm:hasAdditionalAttribute "circuit_corner:3" .

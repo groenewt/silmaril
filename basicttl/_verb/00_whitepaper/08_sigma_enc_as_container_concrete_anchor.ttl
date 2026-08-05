@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_08_sigma_enc_as_container_concrete_anchor__shapeset_s a owl:NamedIndividual ;
+    rdfs:label "ShapeSet_S: the concrete shape set S = {ingest, type, validate, render} of the Tartu Animal Clinic encyclopedia publication pipeline; each element is a named publish operation; the four shapes that label the nodes of a PublishTreeType tree" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_08_sigma_enc_as_container_concrete_anchor__positionfamily_p a owl:NamedIndividual ;
+    rdfs:label "PositionFamily_P: the uniform position family P: S -> Set with P(s) = {*} for all s; every publish operation takes exactly one argument (arity 1); this makes the container linear and Sigma(X) = S x X rather than an exponential" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_08_sigma_enc_as_container_concrete_anchor__containerfunctor_sigma a owl:NamedIndividual ;
+    rdfs:label "ContainerFunctor_Sigma: the publish-signature functor as container T(S lhd P)(X) = Sum_{s in S} X^{P(s)} = S x X; isomorphic to the polynomial Sigma(X) = ingest(X) + type(X) + validate(X) + render(X); applied to VetRecord_77 yields four publish-tagged copies" .

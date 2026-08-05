@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_02_limits_decomposition_step_1__step_object a owl:NamedIndividual ;
+    rdfs:label "name the symbol" .

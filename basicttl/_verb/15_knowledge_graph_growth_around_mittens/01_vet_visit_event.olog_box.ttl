@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_01_olog_box__vetvisitstructuredbatch a owl:NamedIndividual ;
+    rdfs:label "VetVisitStructuredBatch" .

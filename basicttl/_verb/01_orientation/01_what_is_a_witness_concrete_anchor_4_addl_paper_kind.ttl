@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_concrete_anchor_4#verbatimquoteforjoc620 a owl:NamedIndividual ;
+    rdfs:label "WhatIsWitnessAnchorVerbatimQuoteAddlPaperKind" .
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_concrete_anchor_4#verbatimquoteforjoc620 silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.01_orientation" .

@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_citation_localrebuttalround00witnesses2026 a owl:NamedIndividual ;
+    rdfs:label "P06CitationLocalRebuttalRound00Witnesses2026" .

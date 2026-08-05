@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_02_substrate_olog_box__02substrate a owl:NamedIndividual ;
+    rdfs:label "02Substrate" .

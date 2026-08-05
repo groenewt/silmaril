@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_source_diagram_decomposition_step_5__step_y_embedding a owl:NamedIndividual ;
+    rdfs:label "the Yoneda-traversal reading verifying that the The Mittens Source Diagram of Typed Vet-Record Legs claim holds at every representable" .

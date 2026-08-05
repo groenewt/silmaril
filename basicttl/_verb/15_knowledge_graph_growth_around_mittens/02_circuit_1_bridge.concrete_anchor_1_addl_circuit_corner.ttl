@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_06_sections_02_concrete_anchor_1#bodymarknodetype a owl:NamedIndividual ;
+    rdfs:label "Circuit1MarkImprintingConcreteAnchor1AddlCircuitCorner" .
+silm:instances_papers_15_chapters_06_sections_02_concrete_anchor_1#bodymarknodetype silm:hasAdditionalAttribute "circuit_corner:5" .

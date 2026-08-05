@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_03_manifest_verification_decomposition_step_2__step_forge_morphism_for_03_manifest_verification a owl:NamedIndividual ;
+    rdfs:label "The verification morphism compares Pi and Y and produces one of four outcomes: COMMUTES (Pi=Y exactly, admit), PARTIAL (agree on core, diverge on some legs, admit with LEAK tag), DIVERGES (disagree on core legs, block), UNVERIFIABLE (Pi not declared before install, block)." .

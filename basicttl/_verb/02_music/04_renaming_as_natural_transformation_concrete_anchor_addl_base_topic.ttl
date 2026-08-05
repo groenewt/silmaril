@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_04_renaming_as_natural_transformation_concrete_anchor#n_1x a owl:NamedIndividual ;
+    rdfs:label "04RenamingasnaturaltransformationConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_02_music_sections_04_renaming_as_natural_transformation_concrete_anchor#n_1x silm:hasAdditionalAttribute "base_topic:graph engine" .

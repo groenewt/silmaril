@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_01_core_theorems_sections_03_yoneda_readable_profile_theorem_decomposition_step_8__step_compose_relator a owl:NamedIndividual ;
+    rdfs:label "compose typed arrows in the free path category Free(G_11) modulo the relator R_11" .

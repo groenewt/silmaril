@@ -1,0 +1,4 @@
+silm:instances_papers_00_whitepaper_terms_morphism a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.00_whitepaper.terms.morphism" .
+silm:instances_papers_00_whitepaper_terms_morphism silm:hasSynonym "arrow" .
+silm:instances_papers_00_whitepaper_terms_morphism silm:sourceNode silm:instances_papers_00_whitepaper_terms_morphism .

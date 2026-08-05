@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_concrete_anchor__pathologicalfunctorgovernance a owl:NamedIndividual ;
+    rdfs:label "the cheese-trap pathological direction where the functor governs each side" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_concrete_anchor__householddeferringtofunctor a owl:NamedIndividual ;
+    rdfs:label "the household stopping its independent categorical authority" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_concrete_anchor__clinicdeferringtofunctor a owl:NamedIndividual ;
+    rdfs:label "the clinic stopping its independent categorical authority" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_11_failure_modes_inventory_sections_05_missing_rebuttal_mode_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

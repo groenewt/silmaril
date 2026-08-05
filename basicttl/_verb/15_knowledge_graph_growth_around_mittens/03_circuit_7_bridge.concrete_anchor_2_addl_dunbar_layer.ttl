@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_06_sections_03_concrete_anchor_2#recordedgrowthstep a owl:NamedIndividual ;
+    rdfs:label "Circuit7CorpusBridgeConcreteAnchor2AddlDunbarLayer" .
+silm:instances_papers_15_chapters_06_sections_03_concrete_anchor_2#recordedgrowthstep silm:hasAdditionalAttribute "dunbar_layer:0" .

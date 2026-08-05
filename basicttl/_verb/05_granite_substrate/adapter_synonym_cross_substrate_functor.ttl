@@ -1,0 +1,4 @@
+silm:instances_papers_05_granite_substrate_terms_adapter a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.05_granite_substrate.terms.adapter" .
+silm:instances_papers_05_granite_substrate_terms_adapter silm:hasSynonym "cross-substrate functor" .
+silm:instances_papers_05_granite_substrate_terms_adapter silm:sourceNode silm:instances_papers_05_granite_substrate_terms_adapter .

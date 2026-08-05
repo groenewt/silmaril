@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_5#emptybatchidentity a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.02.concrete_anchor.5#emptybatchidentity" .
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_5#emptybatchidentity silm:hasLongDescription "The EmptyBatchIdentity is the identity arrow at every stage; concretely a day on which no event was recorded. In the paper's apparatus it appears as the symbol '(F_emptyset,L_emptyset)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

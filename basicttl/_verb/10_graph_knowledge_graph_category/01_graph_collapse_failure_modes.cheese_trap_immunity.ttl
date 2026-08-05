@@ -1,0 +1,2 @@
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_08_cheese_trap_and_identity_collapse_sections_01_graph_collapse_failure_modes_cheese_trap_immunity a owl:NamedIndividual ;
+    rdfs:label "GraphDomainCheeseTrapImmunityCatalog" .

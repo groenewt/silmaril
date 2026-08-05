@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_decomposition_step__step_01_label_copying_failure a owl:NamedIndividual ;
+    rdfs:label "the 01LabelCopying failure mode in the Granite adapter output" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_decomposition_step__step_collapse_arrow a owl:NamedIndividual ;
+    rdfs:label "the forbidden shortcut that treats a partial view as the whole" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_decomposition_step__step_typed_morphisms_in_olog a owl:NamedIndividual ;
+    rdfs:label "base topic grounding the detection of this failure mode" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_decomposition_step__step_mittens_at_tartu_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "the Mittens individual whose vet-record grounds this failure-mode example" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_decomposition_step__step_hom__mittens_≠_hom__graniterow a owl:NamedIndividual ;
+    rdfs:label "different profiles confirm the collapse is detectable" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_decomposition_step__step_01labelcopying_is_a_detectable_failure_mode a owl:NamedIndividual ;
+    rdfs:label "the 01LabelCopying failure collapses typed-leg separation and is detected by the Yoneda profile check" .

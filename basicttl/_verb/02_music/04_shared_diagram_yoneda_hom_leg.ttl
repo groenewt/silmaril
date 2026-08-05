@@ -1,0 +1,18 @@
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| LocalOlogNode [d," .
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "'] [u," .
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| LawView [r," .
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "] \\& tab:music-diagram-audit [u," .
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "provides" .
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_6" .
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_7" .
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_8" .
+silm:instances_papers_02_music_sections_04_shared_diagram_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_9" .

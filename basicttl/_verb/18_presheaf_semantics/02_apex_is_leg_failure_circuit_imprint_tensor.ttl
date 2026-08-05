@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_apex_is_leg_failure_circuit_imprint_tensor__corner_6 a owl:NamedIndividual ;
+    rdfs:label "6" .

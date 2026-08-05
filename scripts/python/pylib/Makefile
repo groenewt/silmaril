@@ -1,0 +1,35 @@
+include make/lambda_blotto/file.mk
+include make/lambda_blotto/directory.mk
+include make/morphism/codebase/volume/40/bindings.mk
+include make/morphism/codebase/volume/artifact_manifest.mk
+include make/morphism/codebase/volume/provenance_source_to_fragment.mk
+include make/morphism/codebase/volume/verification_process_coverage.mk
+include make/morphism/codebase/volume/verification_table_header.mk
+include make/morphism/codebase/volume/inventory_catalogs.mk
+include make/morphism/codebase/volume/projection.mk
+include make/morphism/codebase/volume/base.mk
+include make/morphism/codebase/volume/operation/directory.mk
+include make/morphism/codebase/volume/table/evidence_rows_order.mk
+include make/morphism/codebase/volume/table/source_files_locus.mk
+include make/morphism/codebase/volume/40/typed_rows.mk
+include make/morphism/codebase/volume/phase14.mk
+include make/morphism/codebase/volume/40/phase14_l1.mk
+include make/morphism/codebase/volume/table/phase14.mk
+include make/morphism/codebase/volume/table/aggregate/directory.mk
+include make/morphism/codebase/volume/40/directory.mk
+include make/morphism/contract/validation/directory.mk
+include make/quality/python.mk
+
+.PHONY: morphism-codebase-volume
+morphism-codebase-volume: \
+	morphism-codebase-volume-base \
+	morphism-codebase-volume-base-total-applications \
+	volume-artifact-manifest \
+	volume-source-to-fragment \
+	volume-process-coverage \
+	volume-table-header \
+	volume-inventory-catalogs \
+	volume-projection \
+	volume-phase14-evidence \
+	volume-phase14-table \
+	morphism-codebase-volume-table-aggregates

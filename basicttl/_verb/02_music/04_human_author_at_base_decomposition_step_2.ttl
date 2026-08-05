@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_03_authorship_context_sections_04_human_author_at_base_decomposition_step_2__step_compose a owl:NamedIndividual ;
+    rdfs:label "the typed-arrow composition operation" .

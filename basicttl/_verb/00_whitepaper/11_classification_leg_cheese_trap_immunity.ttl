@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_11_classification_leg_cheese_trap_immunity__trap_species_individual_confusion a owl:NamedIndividual ;
+    rdfs:label "species_individual_confusion" .

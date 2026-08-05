@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_olog_box__sharedarrowdiscipline a owl:NamedIndividual ;
+    rdfs:label "SharedArrowDiscipline" .

@@ -1,0 +1,18 @@
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__tartucliniccompletesystem a owl:NamedIndividual ;
+    rdfs:label "TartuClinicCompleteSystem: the complete Tartu Animal Clinic record and publication system that simultaneously enforces the five spine theorems (monad algebra, twelve-leg cocone, four-gate publish law, multi-view rendering contract, sous observation boundary)" .
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__monadalgebracontract a owl:NamedIndividual ;
+    rdfs:label "MonadAlgebraContract: the Tartu Clinic's monad algebra structure (ingest unit, publish multiplication, bind associativity) that makes the EncyclopediaEntry type a free-monad algebra" .
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__twelvelegmittenssystem a owl:NamedIndividual ;
+    rdfs:label "TwelveLegMittensSystem: the Tartu Clinic's twelve-typed-observation system for Mittens (VetRecord_77, MicrochipID_44, BodyMassQuality, WeightMeas_3450g, Value_3450, Unit_grams, PetRole, SleepProcess_7h, SHACLPassReport_77, AuditTrail_77, DomesticCat, FelisCatusTSN183798)" .
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__clinicfourgatepublicationpipeline a owl:NamedIndividual ;
+    rdfs:label "ClinicFourGatePublicationPipeline: the Tartu Clinic's publication pipeline enforcing ingest, type, validate, render in order for every claim" .
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__clinicmultiviewrenderingcontract a owl:NamedIndividual ;
+    rdfs:label "ClinicMultiViewRenderingContract: the Tartu Clinic's requirement that every published patient record appear in at least formal (HL7 data), diagram (PDF table), and reader (patient summary) views" .
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__clinicsousobservationboundary a owl:NamedIndividual ;
+    rdfs:label "ClinicSousObservationBoundary: the Tartu Clinic's audit role that reads both the incoming profile (all observations that attach to Mittens's record) and the outgoing profile (all downstream documents that reference Mittens's record) without replacing any of them" .
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__cheeseviolation_mittensequalscatus a owl:NamedIndividual ;
+    rdfs:label "CheeseViolation_MittensEqualsCatus: the forbidden collapse where the species type DomesticCat (or its ITIS name Felis catus) is used as if it were the identity of the individual Mittens-the-cat; closed by T2" .
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__cheeseviolation_renderequalsvalidation a owl:NamedIndividual ;
+    rdfs:label "CheeseViolation_RenderEqualsValidation: the forbidden collapse where the rendered PDF VetCarePlanPDF_77 is cited as the validation receipt SHACLPassReport_77; closed by T3" .
+silm:instances_papers_00_whitepaper_sections_06_closure_concrete_anchor__spinetokggrowth_15 a owl:NamedIndividual ;
+    rdfs:label "SpineToKGGrowth_15: the spine-inheritance arrow from SpineColimit to paper 15 (knowledge graph growth around Mittens), transporting the closure guarantee for all ten cheese-trap faces" .

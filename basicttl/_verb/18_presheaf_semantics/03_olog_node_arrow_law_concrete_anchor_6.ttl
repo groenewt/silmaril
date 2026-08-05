@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_olog_node_arrow_law_concrete_anchor_6_g_arrow a owl:NamedIndividual ;
+    rdfs:label "P1803_olog_node_arrow_lawConcreteAnchor6" .

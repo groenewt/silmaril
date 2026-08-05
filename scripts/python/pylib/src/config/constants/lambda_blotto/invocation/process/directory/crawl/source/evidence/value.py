@@ -1,0 +1,1 @@
+VALUE = b"direct:lambda-blotto-theory:fd58e12e13062bc174bcd163bf94dbd27184e223f8eb69ca1cf348c58a9cdaf1;direct:predecessor-capture:c288f32d9605965ed5f9cf455d14c3dcb67fdb2404954b3b2fe08817c6e4d614"

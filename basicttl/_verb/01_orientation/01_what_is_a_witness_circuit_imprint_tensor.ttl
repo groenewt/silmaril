@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

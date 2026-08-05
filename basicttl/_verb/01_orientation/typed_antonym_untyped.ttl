@@ -1,0 +1,5 @@
+silm:instances_papers_01_orientation_terms_typed a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.01_orientation.terms.typed" .
+silm:instances_papers_01_orientation_terms_typed silm:hasAntonym silm:instances_papers_01_orientation_terms_untyped .
+silm:instances_papers_01_orientation_terms_typed silm:sourceNode silm:instances_papers_01_orientation_terms_typed .
+silm:instances_papers_01_orientation_terms_typed silm:targetNode silm:instances_papers_01_orientation_terms_untyped .

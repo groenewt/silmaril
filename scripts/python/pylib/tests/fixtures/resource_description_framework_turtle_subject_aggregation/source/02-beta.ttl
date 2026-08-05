@@ -1,0 +1,6 @@
+# A repeated type is intentionally deduplicated across files.
+silm:alpha a owl:NamedIndividual .
+silm:alpha silm:participatesIn cceo:Transformation .
+silm:beta a owl:NamedIndividual ;
+    silm:hasShortDescription "Beta subject" .
+

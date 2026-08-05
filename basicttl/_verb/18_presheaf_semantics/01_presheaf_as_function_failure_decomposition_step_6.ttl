@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_presheaf_as_function_failure_decomposition_step_6__step_cheese_trap__presheaf_as_static_function a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Cheese-Trap: Presheaf as Static Function on the Mittens presheaf is exactly the lawful construction it names" .

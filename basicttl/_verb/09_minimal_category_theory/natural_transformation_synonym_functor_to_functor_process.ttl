@@ -1,0 +1,4 @@
+silm:instances_papers_09_minimal_category_theory_terms_natural_transformation a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.09_minimal_category_theory.terms.natural_transformation" .
+silm:instances_papers_09_minimal_category_theory_terms_natural_transformation silm:hasSynonym "functor-to-functor process" .
+silm:instances_papers_09_minimal_category_theory_terms_natural_transformation silm:sourceNode silm:instances_papers_09_minimal_category_theory_terms_natural_transformation .

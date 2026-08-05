@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_07_density_argument_cheese_trap_immunity__trap_density_colimit_identity_collapse_or_gluing_data_discarded a owl:NamedIndividual ;
+    rdfs:label "density_colimit_identity_collapse_or_gluing_data_discarded" .

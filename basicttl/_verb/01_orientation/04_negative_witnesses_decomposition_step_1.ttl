@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_04_negative_witnesses_decomposition_step_1__step_hom_o_01a__b_=_empty_negative_regression_claim a owl:NamedIndividual ;
+    rdfs:label "The symbol Hom-subscript-O_01 of A comma B equals the empty set. This is a statement about the page olog: there is no arrow from object A to object B in O_01. This is a typed claim, just as a positive claim says Hom(A,B) is non-empty. A negative witness provides the source evidence for this empty-hom-set claim." .

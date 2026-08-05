@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_cheese_trap_immunity__trap_single_view_presentation_or_render_equals_claim a owl:NamedIndividual ;
+    rdfs:label "single_view_presentation_or_render_equals_claim" .

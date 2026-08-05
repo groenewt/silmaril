@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_7#mediatingarrow a owl:NamedIndividual ;
+    rdfs:label "FullGrowthCoconeDiagramConcreteAnchor7AddlPaperKind" .
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_7#mediatingarrow silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.15_knowledge_graph_growth_around_mittens" .

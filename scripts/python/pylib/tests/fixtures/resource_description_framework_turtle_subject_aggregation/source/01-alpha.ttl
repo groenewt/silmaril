@@ -1,0 +1,7 @@
+@prefix silm: <urn:silmaril:entity#> .
+silm:alpha a owl:NamedIndividual ;
+    rdfs:label "Alpha." .
+silm:alpha silm:groundsIn cco:ont00000001 .
+silm:zeta a owl:NamedIndividual ;
+    rdfs:label "Zeta" .
+

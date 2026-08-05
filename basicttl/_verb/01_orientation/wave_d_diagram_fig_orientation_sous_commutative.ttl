@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_sous_commutative__diagram_fig_orientation_sous_commutative a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-sous-commutative" .

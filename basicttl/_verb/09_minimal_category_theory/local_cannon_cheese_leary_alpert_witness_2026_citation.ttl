@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_citation_localcannoncheeselearyalpertwitness2026 a owl:NamedIndividual ;
+    rdfs:label "P09CitationLocalCannonCheeseLearyAlpertWitness2026" .

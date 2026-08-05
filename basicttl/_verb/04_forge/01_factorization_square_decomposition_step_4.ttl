@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_01_factorization_square_decomposition_step_4__step_forge_morphism_for_01_factorization_square a owl:NamedIndividual ;
+    rdfs:label "The Mittens taxonomy snapshot declares manifest Π_tax with incoming leg 'ITIS database' and outgoing 'Felis catus species node.' After Forge materialization, the traced profile Y_tax shows incoming legs: ITIS database, parent Felis node, kingdom Animalia node. Manifest declared one; trace shows three." .

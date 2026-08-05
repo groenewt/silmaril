@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_3#stagetwomicrochip a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.04.concrete_anchor.3#stagetwomicrochip" .
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_3#stagetwomicrochip silm:hasLongDescription "The StageTwoMicrochip is stage 2 after the 2026-04-19 microchip read. In the paper's apparatus it appears as the symbol 'D_Mittens^2', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

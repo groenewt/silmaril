@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_01_storage_not_identity_decomposition_step__step_sigma___graniterow_mittens__>_mittens a owl:NamedIndividual ;
+    rdfs:label "sigma is the storage-leg arrow from the Icechunk chunk row for Mittens to the Mittens apex object" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_01_storage_not_identity_decomposition_step__step_simeq_vs__> a owl:NamedIndividual ;
+    rdfs:label "simeq is a colimit isomorphism (two objects the same in both directions); -> is a typed one-way morphism (a lane on a one-way road)" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_01_storage_not_identity_decomposition_step__step_colim_d_mittens a owl:NamedIndividual ;
+    rdfs:label "the colimit of the source diagram D_Mittens — the governed Mittens individual assembled from all typed source legs simultaneously" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_01_storage_not_identity_decomposition_step__step_mittens_at_tartu_vet_clinic a owl:NamedIndividual ;
+    rdfs:label "the concrete Mittens individual at the Tartu Animal Clinic on 2026-05-18" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_01_storage_not_identity_decomposition_step__step_hom___graniterow_mittens_subsetneq_hom___mittens a owl:NamedIndividual ;
+    rdfs:label "the set of arrows pointing into the chunk is a strict subset of the arrows pointing into Mittens — the chunk is a narrower object" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_01_storage_not_identity_decomposition_step__step_graniterow_mittens_!=_mittens a owl:NamedIndividual ;
+    rdfs:label "the storage row records a typed evidence-leg slice; the colimit apex Mittens is the whole governed individual at Tartu Animal Clinic with all eight typed legs (type, evidence, quality, process, role, taxonomy, validation, storage)" .

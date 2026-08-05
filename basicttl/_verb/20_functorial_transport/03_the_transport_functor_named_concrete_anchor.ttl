@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_concrete_anchor__transportf a owl:NamedIndividual ;
+    rdfs:label "the Vet-Imports-Household-Records functor, the named cross-KG mapping" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_concrete_anchor__clinicpatientformittens a owl:NamedIndividual ;
+    rdfs:label "the clinic-side image of Mittens, equal to ClinicPatient instance for this Mittens (the slot the clinic opened)" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_concrete_anchor__clinicvetrecord4419 a owl:NamedIndividual ;
+    rdfs:label "the clinic chart record numbered 4419, image of the household's record 77 under transport" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_concrete_anchor__derivedanchor_03_the_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_concrete_anchor__householdhomset_03_the_4 a owl:NamedIndividual ;
+    rdfs:label "the household hom-set of typed arrows between two nodes; finite, enumerable, and preserved under transport F." .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_concrete_anchor__coconeapex_03_the_5 a owl:NamedIndividual ;
+    rdfs:label "the cocone apex into which Mittens' typed household-side legs collect; the transport must preserve this colimit cocone." .

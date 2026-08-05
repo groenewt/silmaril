@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_01_factorization_square_decomposition_step_3__step_forge_morphism_for_01_factorization_square a owl:NamedIndividual ;
+    rdfs:label "A functor preserves the profile up to natural isomorphism." .

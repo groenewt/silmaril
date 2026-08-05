@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_decomposition_step_4__step_forge_morphism_for_09_manifest_hom_profile a owl:NamedIndividual ;
+    rdfs:label "Concrete Mittens anchor for ManifestHomProfileFlat. — concrete forge-domain reading in section 'Manifest as Written Hom-Profile'." .

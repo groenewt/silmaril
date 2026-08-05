@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_olog_box__revisedfunctorialtransport a owl:NamedIndividual ;
+    rdfs:label "RevisedFunctorialTransport" .

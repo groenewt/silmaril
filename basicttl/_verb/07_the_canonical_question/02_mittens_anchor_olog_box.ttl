@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_02_mittens_anchor_olog_box__p07mittensanchorologbox a owl:NamedIndividual ;
+    rdfs:label "P07MittensAnchorOlogBox" .

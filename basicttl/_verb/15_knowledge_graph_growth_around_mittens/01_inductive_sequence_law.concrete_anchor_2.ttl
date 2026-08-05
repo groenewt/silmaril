@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_leg_l a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchorLegL" .

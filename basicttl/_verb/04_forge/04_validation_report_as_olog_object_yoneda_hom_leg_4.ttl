@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_04_validation_report_as_olog_object_yoneda_hom_leg_4 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 04_validation_report_as_olog_object #4" .

@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_olog_box__mittensanchorp03 a owl:NamedIndividual ;
+    rdfs:label "MittensAnchorP03" .

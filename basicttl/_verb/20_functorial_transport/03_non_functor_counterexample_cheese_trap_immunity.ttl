@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_cheese_trap_immunity__trap_real_csv_import_fails_f2 a owl:NamedIndividual ;
+    rdfs:label "real_csv_import_fails_F2" .

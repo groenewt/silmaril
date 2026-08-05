@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_diagram_n#stagensourcefunctor a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchorDiagramNAddlCircuitCorner" .
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_diagram_n#stagensourcefunctor silm:hasAdditionalAttribute "circuit_corner:4" .

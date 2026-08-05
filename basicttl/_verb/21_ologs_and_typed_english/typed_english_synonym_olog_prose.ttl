@@ -1,0 +1,4 @@
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_english a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.21_ologs_and_typed_english.terms.typed_english" .
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_english silm:hasSynonym "olog prose" .
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_english silm:sourceNode silm:instances_papers_21_ologs_and_typed_english_terms_typed_english .

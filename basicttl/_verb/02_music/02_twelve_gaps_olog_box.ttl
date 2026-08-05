@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_02_twelve_gaps_olog_box__musicolog02twelvegapsbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog02TwelveGapsBox" .

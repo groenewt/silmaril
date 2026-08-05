@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_concrete_anchor__semanticdexteritycorner a owl:NamedIndividual ;
+    rdfs:label "the cognition cube corner at (substrate=0, scope=0, layer=1)" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_concrete_anchor__householdtypedarrowvocab a owl:NamedIndividual ;
+    rdfs:label "the household's named typed-arrow set. The bare math anchor-node name is resolved to a concrete household-or-clinic node of the Mittens vet-clinic transport scenario so a zero-math reader can ground the reading; the transport functor F preserves the typed arrows that bind this node into the larger commutative diagram." .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_concrete_anchor__clinictypedarrowvocab a owl:NamedIndividual ;
+    rdfs:label "the clinic's named typed-arrow set. The bare math anchor-node name is resolved to a concrete household-or-clinic node of the Mittens vet-clinic transport scenario so a zero-math reader can ground the reading; the transport functor F preserves the typed arrows that bind this node into the larger commutative diagram." .

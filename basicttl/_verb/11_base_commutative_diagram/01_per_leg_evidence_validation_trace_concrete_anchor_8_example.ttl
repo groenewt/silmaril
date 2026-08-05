@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_13_evidence_grammar_quality_sections_01_per_leg_evidence_validation_trace_concrete_anchor_8_vetclassifies a owl:NamedIndividual ;
+    rdfs:label "S01PerLegEvidenceValidationTraceConcreteAnchor8Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_13_evidence_grammar_quality_sections_01_per_leg_evidence_validation_trace_concrete_anchor_8_vetclassifies silm:hasExample "In 'S01PerLegEvidenceValidationTraceConcreteAnchor8', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the vet typed verb-arrow taking Mittens to Cat (classification leg c)." .

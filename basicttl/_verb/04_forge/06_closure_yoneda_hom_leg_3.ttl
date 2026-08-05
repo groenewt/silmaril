@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_06_closure_yoneda_hom_leg_3 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 06_closure #3" .

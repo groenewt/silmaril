@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_01_manifest_as_hom_profile_decomposition_step_1__step_forge_morphism_for_01_manifest_as_hom_profile a owl:NamedIndividual ;
+    rdfs:label "Manifest_X is the manifest object for Forge node X. Hom(-, X) is the incoming profile: all morphisms into X. Hom(X, -) is the outgoing profile: all morphisms from X." .

@@ -1,0 +1,4 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_01_representability_proposition_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "natural_iso_arrow" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_01_representability_proposition_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "non_representable_block" .

@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_decomposition_step__step_alpha_stored__alpha_then_mu a owl:NamedIndividual ;
+    rdfs:label "primary symbol: functors_and_natural_transformations in G_Granite" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_decomposition_step__step_circ_typed_composition a owl:NamedIndividual ;
+    rdfs:label "composing typed arrows in the Granite olog category G_Granite — typed source-to-target morphisms where each composition preserves source-body provenance, manifest-entry typing, and validation-leg accountability" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_decomposition_step__step_functors_and_natural_transformations a owl:NamedIndividual ;
+    rdfs:label "category-theoretic base topic grounding AbsorptionAndStorage" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_decomposition_step__step_mittens_at_tartu_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "Mittens individual whose vet-record grounds this section" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_decomposition_step__step_hom__mittens_≠_hom__graniterow a owl:NamedIndividual ;
+    rdfs:label "different Hom-profiles, different objects" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_decomposition_step__step_absorptionandstorage_law a owl:NamedIndividual ;
+    rdfs:label "AbsorptionAndStorage preserves typed leg separation without identity collapse" .

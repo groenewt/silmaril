@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_04_shared_diagram_cheese_trap_immunity__trap_shared_diagram=cargo_culted_copy a owl:NamedIndividual ;
+    rdfs:label "shared_diagram=cargo_culted_copy" .

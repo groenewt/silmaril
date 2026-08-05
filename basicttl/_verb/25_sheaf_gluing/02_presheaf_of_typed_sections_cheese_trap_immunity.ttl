@@ -1,0 +1,2 @@
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_cheese_trap_immunity__trap_section_confused_with_global_object a owl:NamedIndividual ;
+    rdfs:label "section_confused_with_global_object" .

@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_decomposition_step__step_f^*__f_*_adjoint_pair a owl:NamedIndividual ;
+    rdfs:label "pullback left-adjoint and pushforward right-adjoint (in the standard presheaf adjunction)" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_decomposition_step__step_validation_gate a owl:NamedIndividual ;
+    rdfs:label "the clinic intake gate that combines pushed data with pulled checks" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_decomposition_step__step_pushforward_pullback_adjunction a owl:NamedIndividual ;
+    rdfs:label "the standard adjunction in presheaf categories" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_decomposition_step__step_mittens_body_mass_transport_pipeline a owl:NamedIndividual ;
+    rdfs:label "household ships data forward, clinic ships constraints back, gate decides admissibility" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_decomposition_step__step_yoneda_profile_after_both_directions a owl:NamedIndividual ;
+    rdfs:label "the patient image inherits a typed clinic profile that has been both pushed and pre-validated" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_decomposition_step__step_lawful_transport_runs_both_directions a owl:NamedIndividual ;
+    rdfs:label "information forward via F_*, constraints backward via F^*" .

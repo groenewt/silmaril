@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_12_orientation_closure_album_sections_04_audit_summary_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

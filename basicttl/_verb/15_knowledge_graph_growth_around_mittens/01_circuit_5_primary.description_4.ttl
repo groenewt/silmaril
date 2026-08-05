@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_06_sections_01_concrete_anchor_4#circuitfivecorner a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.06.sections.01.concrete_anchor.4#circuitfivecorner" .
+silm:instances_papers_15_chapters_06_sections_01_concrete_anchor_4#circuitfivecorner silm:hasLongDescription "The CircuitFiveCorner is Circuit 5: neurosomatic-individual-terrestrial. In the paper's apparatus it appears as the symbol 'corner_5', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_07_sections_02_concrete_anchor_1#finitelypresentabletestobject a owl:NamedIndividual ;
+    rdfs:label "BridgeTo14YonedaConcreteAnchor1AddlBaseTopic" .
+silm:instances_papers_15_chapters_07_sections_02_concrete_anchor_1#finitelypresentabletestobject silm:hasAdditionalAttribute "base_topic:knowledge graph growth" .

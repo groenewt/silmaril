@@ -1,0 +1,36 @@
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[processnode]| MusicEngine [r," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "description] [r," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "description] [r," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "description] tikzcd% The sous position for the Music engine: the sous position observes the source witness, checks the path law, and enforces the Node-or-Arrow gate. The top row is the Music engine's admitted flow; the bottom row is the sous observation layer. The vertical arrows say what each observation role controls.fig:music-sous-diagram theorem[Sous observation law] thm:music-sous-law The Music engine sous position satisfies: \\[ profile=test, \\] where \\(govern:PathLaw\\), \\(profile:MusicEngine\\), \\(admit:SourceWitness\\), and \\(test:SourceWitness\\). theorem proof Step 1. The sous position reads the path law first and checks whether incoming arrows satisfy it. Step 2. The profile arrow collects which laws the engine respects for any given incoming source. Step 3. The test arrow performs the same collection from the source-witness side. Step 4 (anchor). For the Mittens taxonomy contract: the sous position observes the incoming \\(TaxonomyWitness\\) arrow and checks it against the path law \\(selects\\). The profile confirms the Cat-first anchor; the test confirms the witness does not shortcut to bare catus. Step 5 (Yoneda). The Yoneda lemma says that the sous profile is fully determined by the incoming and outgoing Hom-sets. Step 6. The sous observation law commutes at \\(SousProfile\\). proof Diagram law (Figure~fig:music-sous-diagram): the sous position governs through path laws, not by replacing the Music engine; it reports what it observes, not what it decides. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[schemanode]| $(-,MusicEngine)$ [r," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[schemanode]| $(MusicEngine,-)$ [r," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[rolenode]| SousReport tikzcd% The sous profile report: the incoming and outgoing Hom-profiles are collected by the sous position and paired into a sous report. The report names which arrows are present and which path laws they satisfy.fig:music-sous-profile-report Diagram law (Figure~fig:music-sous-profile-report): the sous report is valid only when both incoming and outgoing profiles are populated; a sous report with only one side is an incomplete observation. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[schemanode]| MissingArrow [r," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| ObstructionReport\\\\ \\& |[rolenode]| SousPosition [r,dashed," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "'] [r," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[constraintnode]| NodeOrArrowLaw [u," .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_10 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_10" .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_11 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_11" .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_12 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_12" .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_13 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_13" .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_14 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_14" .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_15 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_15" .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_16 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_16" .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_17 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_17" .
+silm:instances_papers_02_music_sections_12_sous_position_for_music_yoneda_hom_leg__leg_18 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_18" .

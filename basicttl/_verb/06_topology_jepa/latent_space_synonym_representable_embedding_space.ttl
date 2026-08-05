@@ -1,0 +1,4 @@
+silm:instances_papers_06_topology_jepa_terms_latent_space a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.06_topology_jepa.terms.latent_space" .
+silm:instances_papers_06_topology_jepa_terms_latent_space silm:hasSynonym "representable embedding space" .
+silm:instances_papers_06_topology_jepa_terms_latent_space silm:sourceNode silm:instances_papers_06_topology_jepa_terms_latent_space .

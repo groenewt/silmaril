@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_05_cannon_or_gpt_absorption_yoneda_hom_leg_11 a owl:NamedIndividual ;
+    rdfs:label "05CannonOrGptAbsorptionYonedaHomLeg11" .

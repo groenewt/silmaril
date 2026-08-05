@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_citation_localcannoncheeselearyalpertwitness2026 a owl:NamedIndividual ;
+    rdfs:label "P18CitationLocalCannonCheeseLearyAlpertWitness2026" .

@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_02_encoder_predictor_functor_sections_02_encoder_functor_olog_box__02encoderfunctor a owl:NamedIndividual ;
+    rdfs:label "02EncoderFunctor" .

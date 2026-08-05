@@ -1,0 +1,2 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_diagram_fig_mittens_growth_path_law_closure__diagram_fig_mittens_growth_path_law_closure a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-growth-path-law-closure" .

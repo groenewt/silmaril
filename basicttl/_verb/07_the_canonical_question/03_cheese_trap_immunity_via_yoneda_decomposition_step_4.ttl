@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_03_yoneda_as_tunnel_sections_03_cheese_trap_immunity_via_yoneda_decomposition_step_4__step__mittens a owl:NamedIndividual ;
+    rdfs:label "reading position 4: anchor the abstract apex Mittens in the concrete domestic cat" .

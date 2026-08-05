@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_diagram_tab_topology_jepa_node_arrow_law__diagram_tab_topology_jepa_node_arrow_law a owl:NamedIndividual ;
+    rdfs:label "tab:topology-jepa-node-arrow-law" .

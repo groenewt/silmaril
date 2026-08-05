@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_citation_fongspivak2018sevensketches a owl:NamedIndividual ;
+    rdfs:label "P18CitationFongspivak2018sevensketches" .

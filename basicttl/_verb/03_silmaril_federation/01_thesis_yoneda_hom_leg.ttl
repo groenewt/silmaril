@@ -1,0 +1,3 @@
+silm:LambdaVetArrow a owl:Class ;
+    rdfs:label "LambdaVetArrow" ;
+    rdfs:comment "The cocone projection lambda_vet: VetRecord_Mittens -> Mittens. This is the typed arrow that admits the veterinary evidence record as a source leg into the Mittens colimit. It is not an identity arrow; it is a cocone projection from an evidence object to the governed individual." .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_06_cocone_compatibility_for_pages_sections_05_per_paper_agent_verification_decomposition_step_1__step_x_05_per_paper_agent_verification a owl:NamedIndividual ;
+    rdfs:label "the primary typed object of the 05_per_paper_agent_verification claim" .

@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_citation_localcannontaxonomywitnesses2026 a owl:NamedIndividual ;
+    rdfs:label "P19CitationLocalCannonTaxonomyWitnesses2026" .

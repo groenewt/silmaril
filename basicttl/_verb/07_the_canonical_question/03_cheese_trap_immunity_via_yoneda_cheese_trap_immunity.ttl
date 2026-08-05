@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_03_yoneda_as_tunnel_sections_03_cheese_trap_immunity_via_yoneda_cheese_trap_immunity__trap_tunnel_functor_drops_a_leg a owl:NamedIndividual ;
+    rdfs:label "tunnel_functor_drops_a_leg" .

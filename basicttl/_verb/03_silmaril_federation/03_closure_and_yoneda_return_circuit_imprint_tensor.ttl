@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_03_closure_and_yoneda_return_circuit_imprint_tensor__corner_4 a owl:NamedIndividual ;
+    rdfs:label "4" .

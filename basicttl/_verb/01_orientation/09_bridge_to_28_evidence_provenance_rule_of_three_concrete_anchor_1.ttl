@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_08_cross_paper_bridges_sections_09_bridge_to_28_evidence_provenance_rule_of_three_concrete_anchor_1 a owl:NamedIndividual ;
+    rdfs:label "09BridgeTo28EvidenceProvenanceRuleOfThreeConcreteAnchor1" .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_2#vetagent5 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.02.sections.01.concrete_anchor.2#vetagent5" .
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_2#vetagent5 silm:hasLongDescription "The VetAgent5 is Dr. Mendez (the agent who conducts the visit). In the paper's apparatus it appears as the symbol 'VetAgent5', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

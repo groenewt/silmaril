@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_06_leg_deep_dives_class_refine_sections_02_refinement_leg_deep_dive_concrete_anchor_12_hdirectanimalinference a owl:NamedIndividual ;
+    rdfs:label "S02RefinementLegDeepDiveConcreteAnchor12" .

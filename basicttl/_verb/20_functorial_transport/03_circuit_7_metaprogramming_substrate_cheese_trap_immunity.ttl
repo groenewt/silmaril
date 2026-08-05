@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_03_circuit_7_metaprogramming_substrate_cheese_trap_immunity__trap_transport_value_unrealized a owl:NamedIndividual ;
+    rdfs:label "transport_value_unrealized" .

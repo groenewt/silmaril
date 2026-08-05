@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_06_cheese_face_atlas_sections_06_face_citation_as_proof_decomposition_step_5__step_y^in_mittens a owl:NamedIndividual ;
+    rdfs:label "reading position 5: the incoming Yoneda profile of Mittens (probes by source legs)" .

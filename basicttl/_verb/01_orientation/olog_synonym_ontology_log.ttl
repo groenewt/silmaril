@@ -1,0 +1,4 @@
+silm:instances_papers_01_orientation_terms_olog a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.01_orientation.terms.olog" .
+silm:instances_papers_01_orientation_terms_olog silm:hasSynonym "ontology log" .
+silm:instances_papers_01_orientation_terms_olog silm:sourceNode silm:instances_papers_01_orientation_terms_olog .

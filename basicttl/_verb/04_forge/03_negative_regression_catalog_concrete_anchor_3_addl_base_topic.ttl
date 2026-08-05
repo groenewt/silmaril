@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_03_negative_regression_catalog_concrete_anchor_3#tsn183798node a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 03_negative_regression_catalog" .
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_03_negative_regression_catalog_concrete_anchor_3#tsn183798node silm:hasAdditionalAttribute "base_topic:render pipeline" .

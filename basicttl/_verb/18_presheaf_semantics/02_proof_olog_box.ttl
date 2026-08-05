@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_proof_olog_box__p18section02_proofologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section02_proofOlogBox" .

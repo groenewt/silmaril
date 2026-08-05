@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_cheese_trap_immunity__trap_tier1_extension_accepted_without_factoring_through_core_engi a owl:NamedIndividual ;
+    rdfs:label "tier1_extension_accepted_without_factoring_through_core_engine_law" .

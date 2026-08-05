@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_20_bridges_graph_kg_integrated_cco_sections_04_bridge_cco_style_ontology_decomposition_step_6__step_recap_04_bridge_cco_style_ontology a owl:NamedIndividual ;
+    rdfs:label "recap of the {sec} commuting law assembled across steps 1-5" .

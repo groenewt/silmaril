@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_concrete_anchor_1#cannon_cat_joy_of_cats_md a owl:NamedIndividual ;
+    rdfs:label "WitnessAnchorSourceFileAddlBaseTopic" .
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_concrete_anchor_1#cannon_cat_joy_of_cats_md silm:hasAdditionalAttribute "base_topic:free monad" .

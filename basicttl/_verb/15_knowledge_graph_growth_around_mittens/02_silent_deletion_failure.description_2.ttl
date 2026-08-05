@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_08_sections_02_concrete_anchor_2#stageinclusionnaturaltransformation a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.08.sections.02.concrete_anchor.2#stageinclusionnaturaltransformation" .
+silm:instances_papers_15_chapters_08_sections_02_concrete_anchor_2#stageinclusionnaturaltransformation silm:hasLongDescription "The StageInclusionNaturalTransformation is the stage-inclusion natural transformation. In the paper's apparatus it appears as the symbol 'i_{n,n+1}', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

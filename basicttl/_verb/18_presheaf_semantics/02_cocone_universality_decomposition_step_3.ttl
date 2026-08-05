@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_cocone_universality_decomposition_step_3__step_presheaf_semantics_cocone_universality a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Universal Property of the Mittens Cocone claim, grounded in the cited literature" .

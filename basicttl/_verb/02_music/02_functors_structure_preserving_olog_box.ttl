@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_09_joy_of_cats_anchor_for_pages_sections_02_functors_structure_preserving_olog_box__musicolog02functorsstructurepbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog02FunctorsStructurePBox" .

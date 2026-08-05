@@ -1,0 +1,1 @@
+VALUE = r"\A[ \t]*([A-Za-z_][A-Za-z0-9_:<>,~&*\[\] \t]*[ \t*&])((?:[A-Za-z_][A-Za-z0-9_]*::)*~?[A-Za-z_][A-Za-z0-9_]*)[ \t]*\([^()]*\)(?:[ \t]*(?:const|noexcept|override|final|volatile|mutable|&&|&))*(?:[ \t]*->[ \t]*[A-Za-z_][A-Za-z0-9_:<>,&*\[\] \t]*)?[ \t]*\{[ \t]*\}?\Z"

@@ -1,0 +1,3 @@
+silm:urn_silmaril_universal_anchor_node_enum_milestone a owl:NamedIndividual ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryEnumMembershipMilestoneE2eBuildOk" .
+silm:urn_silmaril_universal_anchor_node_enum_milestone silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_milestone .

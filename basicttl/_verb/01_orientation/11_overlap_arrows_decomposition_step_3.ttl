@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_11_overlap_arrows_decomposition_step_3__step_mittens a owl:NamedIndividual ;
+    rdfs:label "reading position 3: the running named anchor cat Mittens" .

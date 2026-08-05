@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_14_concept_card_index_sections_01_project_position_cards_decomposition_step_3__step_spivak_olog_definition a owl:NamedIndividual ;
+    rdfs:label "the olog typed-English definition Spivak & Kent 2012" .

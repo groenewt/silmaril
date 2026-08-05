@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_decomposition_step_2__step_forge_morphism_for_01_interpret_step a owl:NamedIndividual ;
+    rdfs:label "The morphism interpret is an olog functor: it maps the CitedSource object to a Spec object while preserving the source-boundary declaration as a constraint. Functoriality: if S1 is a sub-witness of S2, the interpretation of S1 must factor through the interpretation of S2." .

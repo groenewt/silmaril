@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_08_cheese_face_closure_for_music_sections_04_manifest_as_engine_face_decomposition_step_3__step_spivak_olog_definition a owl:NamedIndividual ;
+    rdfs:label "the olog typed-English definition Spivak & Kent 2012" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_01_why_music_now_sections_03_authorship_responsibility_olog_box__musicolog03authorshipresponsibox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03AuthorshipResponsiBox" .

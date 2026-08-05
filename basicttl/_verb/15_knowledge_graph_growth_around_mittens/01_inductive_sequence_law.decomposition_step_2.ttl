@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_01_decomposition_step_2__step_legcocone_l^n+1_o_i_n_n+1l a owl:NamedIndividual ;
+    rdfs:label "first walk leg l forward from stage n to stage n+1 using i_{n,n+1}, then walk the result up the new cocone leg LegCocone_l^{(n+1)} into the apex Mittens" .

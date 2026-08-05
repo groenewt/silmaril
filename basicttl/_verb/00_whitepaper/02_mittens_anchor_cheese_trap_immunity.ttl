@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_cheese_trap_immunity__trap_single_leg_identity_collapse_mittens_equals_catus_or_tsn_or_ a owl:NamedIndividual ;
+    rdfs:label "single_leg_identity_collapse_mittens_equals_catus_or_tsn_or_domesticcat" .

@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_03_hom_sets_and_disjointness_yoneda_hom_leg_3_measurement_leg a owl:NamedIndividual ;
+    rdfs:label "S03HomSetsAndDisjointnessYonedaHomLeg3" .

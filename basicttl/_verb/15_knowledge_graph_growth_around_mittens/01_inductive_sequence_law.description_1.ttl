@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_stage_n#vetvisit2026_04_12_stageindex a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.01.concrete_anchor.stage_n#vetvisit2026_04_12_stageindex" .
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_stage_n#vetvisit2026_04_12_stageindex silm:hasLongDescription "The VetVisit2026_04_12_StageIndex is A nonnegative integer indexing recorded events; n=0 is the day the Cat anchor was first asserted, n=1 is the 2026-04-12 vet visit, n=2 is the 2026-04-19 microchip read, n=3 is the 2026-04-26 dietary card admission. Stages are not minutes; they are admitted-event indices." .

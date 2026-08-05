@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_06_leg_deep_dives_class_refine_sections_02_refinement_leg_deep_dive_yoneda_hom_leg_1_domesticcatrefinementlega a owl:NamedIndividual ;
+    rdfs:label "S02RefinementLegDeepDiveYonedaHomLeg1Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_06_leg_deep_dives_class_refine_sections_02_refinement_leg_deep_dive_yoneda_hom_leg_1_domesticcatrefinementlega silm:hasExample "In 'S02RefinementLegDeepDiveYonedaHomLeg1', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, a:Mittens->DomesticCat — the domestic-cat refinement leg; admissible iff r.a equals c" .

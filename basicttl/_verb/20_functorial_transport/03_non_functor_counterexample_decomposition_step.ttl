@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_decomposition_step__step_measurement_summary a owl:NamedIndividual ;
+    rdfs:label "the import-script-derived shortcut arrow on the clinic side" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_decomposition_step__step_transportf_assignment_by_script a owl:NamedIndividual ;
+    rdfs:label "the script applies TransportF row-by-row, then separately creates the summary" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_decomposition_step__step_f2_failure a owl:NamedIndividual ;
+    rdfs:label "the script fails the composition-preservation law" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_decomposition_step__step_doubled_arrow_chart a owl:NamedIndividual ;
+    rdfs:label "the clinic chart with both composite and summary as primitives" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_decomposition_step__step_degraded_yoneda_profile a owl:NamedIndividual ;
+    rdfs:label "the clinic patient image inherits two arrows where the household had one composite path" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_decomposition_step__step_non_functor_counterexample a owl:NamedIndividual ;
+    rdfs:label "real CSV imports can fail F2; the pathology is the doubled-arrow chart" .

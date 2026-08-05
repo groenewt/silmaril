@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_09_proofs_and_uniqueness_sections_02_cocone_uniqueness_proofs_olog_box__coconeuniquenessproofs a owl:NamedIndividual ;
+    rdfs:label "CoconeUniquenessProofs" .

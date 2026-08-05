@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_04_sections_01_olog_box__yonedaprofileinheritanceacrossstages a owl:NamedIndividual ;
+    rdfs:label "YonedaProfileInheritanceAcrossStages" .

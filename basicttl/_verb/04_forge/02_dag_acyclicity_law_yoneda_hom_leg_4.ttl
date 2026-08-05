@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_02_dag_acyclicity_law_yoneda_hom_leg_4 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 02_dag_acyclicity_law #4" .

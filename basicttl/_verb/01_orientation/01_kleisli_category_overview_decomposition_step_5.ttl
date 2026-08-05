@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_01_kleisli_category_overview_decomposition_step_5__step_kl_embedding_is_full_and_faithful_joc_§20_1;_profile_of_mitt a owl:NamedIndividual ;
+    rdfs:label "By Yoneda, the profile of the final term in Kl(Free(Sigma)) determines which claims the term supports. The profile of Mittens in Kl(Free(Sigma)) is the same as the profile in O_01 because the Kleisli embedding is full and faithful (JoC §20.1). Every incoming arrow in O_01 corresponds to a Kleisli arrow in Kl(Free(Sigma))." .

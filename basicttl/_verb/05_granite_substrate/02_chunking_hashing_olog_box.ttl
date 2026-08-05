@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_02_chunking_hashing_olog_box__chunkinghashingbox a owl:NamedIndividual ;
+    rdfs:label "ChunkingHashingBox" .

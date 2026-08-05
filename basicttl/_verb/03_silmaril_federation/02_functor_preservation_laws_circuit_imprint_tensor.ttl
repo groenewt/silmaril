@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_02_functor_preservation_laws_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_03_quality_leg_concrete_anchor_2#orientationfreemonad a owl:NamedIndividual ;
+    rdfs:label "03QualityLegConcreteAnchor2AddlCircuitCorner" .
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_03_quality_leg_concrete_anchor_2#orientationfreemonad silm:hasAdditionalAttribute "circuit_corner:5" .

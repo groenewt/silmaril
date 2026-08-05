@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_11_overlap_arrows_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "11OverlapArrowsYonedaHomLeg2" .

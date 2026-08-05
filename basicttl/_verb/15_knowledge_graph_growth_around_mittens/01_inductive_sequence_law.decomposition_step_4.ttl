@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_01_decomposition_step_4__step_l_=_bodymassquality77__n_=_1__n+1_=_2 a owl:NamedIndividual ;
+    rdfs:label "the body-mass quality of Mittens admitted at the 2026-04-12 vet visit is the same body-mass quality after the 2026-04-19 microchip read" .

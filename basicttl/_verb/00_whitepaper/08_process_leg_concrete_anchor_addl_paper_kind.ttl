@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_08_process_leg_concrete_anchor#sleepprocess_7h a owl:NamedIndividual ;
+    rdfs:label "ProcessLegConcreteAnchorAddlPaperKind" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_08_process_leg_concrete_anchor#sleepprocess_7h silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.00_whitepaper" .

@@ -1,0 +1,4 @@
+silm:instances_papers_00_whitepaper_terms_encyclopedia a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.00_whitepaper.terms.encyclopedia" .
+silm:instances_papers_00_whitepaper_terms_encyclopedia silm:hasSynonym "atlas" .
+silm:instances_papers_00_whitepaper_terms_encyclopedia silm:sourceNode silm:instances_papers_00_whitepaper_terms_encyclopedia .

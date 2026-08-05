@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_11_concept_card_index_sections_01_index_categorical_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "01IndexCategoricalYonedaHomLeg1" .

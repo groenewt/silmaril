@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_diagram_tab_forge_shacl_map__diagram_tab_forge_shacl_map a owl:NamedIndividual ;
+    rdfs:label "tab:forge-shacl-map" .

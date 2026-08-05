@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_05_cannon_or_gpt_absorption_decomposition_step_4__step_forge_morphism_for_05_cannon_or_gpt_absorption a owl:NamedIndividual ;
+    rdfs:label "Anchor every symbol and operation to a Mittens-domain object: VetRecordAboutMittens (raw), CitedInfoObject (cited), MittensBodyMassLocalInfo (interpreted), MeasurementLeg (typed), MeasurementSourceLeg (placed)." .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_citation_localgptyonedamanifestv902026 a owl:NamedIndividual ;
+    rdfs:label "P02CitationLocalGptYonedaManifestV902026" .

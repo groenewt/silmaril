@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_01_source_witness_ingestion_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 01_source_witness_ingestion" .

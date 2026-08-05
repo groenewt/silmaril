@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_07_sections_01_concrete_anchor_5#mittens a owl:NamedIndividual ;
+    rdfs:label "BridgeTo19MereologyConcreteAnchor5AddlCircuitCorner" .
+silm:instances_papers_15_chapters_07_sections_01_concrete_anchor_5#mittens silm:hasAdditionalAttribute "circuit_corner:1" .

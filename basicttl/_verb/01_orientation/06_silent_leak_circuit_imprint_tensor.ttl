@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_10_failure_modes_inventory_sections_06_silent_leak_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

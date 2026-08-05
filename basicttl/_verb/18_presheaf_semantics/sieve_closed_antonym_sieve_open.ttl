@@ -1,0 +1,5 @@
+silm:instances_papers_18_presheaf_semantics_terms_sieve_closed a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.sieve_closed" .
+silm:instances_papers_18_presheaf_semantics_terms_sieve_closed silm:hasAntonym silm:instances_papers_18_presheaf_semantics_terms_sieve_open .
+silm:instances_papers_18_presheaf_semantics_terms_sieve_closed silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_sieve_closed .
+silm:instances_papers_18_presheaf_semantics_terms_sieve_closed silm:targetNode silm:instances_papers_18_presheaf_semantics_terms_sieve_open .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_02_naming_provenance_sections_02_directory_to_slug_chain_olog_box__musicolog02directorytoslugchabox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog02DirectoryToSlugChaBox" .

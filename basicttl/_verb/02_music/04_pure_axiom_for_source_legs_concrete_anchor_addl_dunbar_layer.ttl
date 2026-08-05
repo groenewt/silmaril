@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_04_pure_axiom_for_source_legs_concrete_anchor#sourcevalue a owl:NamedIndividual ;
+    rdfs:label "04PureaxiomforsourcelegsConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_04_pure_axiom_for_source_legs_concrete_anchor#sourcevalue silm:hasAdditionalAttribute "dunbar_layer:0" .

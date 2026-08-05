@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_01_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "VetVisitStageStepYonedaHomLeg2Example" .
+silm:instances_papers_15_chapters_02_sections_01_yoneda_hom_leg_2 silm:hasExample "In 'VetVisitStageStepYonedaHomLeg2', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, VetRecord77 -> Mittens; the record is ABOUT the cat; multiple records can be about the same cat" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_03_olog_node_arrow_law_cheese_trap_immunity__trap_node=arrow a owl:NamedIndividual ;
+    rdfs:label "node=arrow" .

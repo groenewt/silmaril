@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_06_domain_entry_points_sections_03_granite_entry_olog_box__p07domainentrypointsgraniteentryologbox a owl:NamedIndividual ;
+    rdfs:label "P07DomainEntryPointsGraniteEntryOlogBox" .

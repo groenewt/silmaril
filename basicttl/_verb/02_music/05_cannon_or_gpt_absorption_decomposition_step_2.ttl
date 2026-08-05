@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_decomposition_step_2__step_absorptiongate a owl:NamedIndividual ;
+    rdfs:label "the primary typed arrow connecting objects in the 05_cannon_or_gpt_absorption claim" .

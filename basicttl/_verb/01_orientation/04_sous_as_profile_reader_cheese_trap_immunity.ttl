@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_04_yoneda_position_deepening_sections_04_sous_as_profile_reader_cheese_trap_immunity__trap_mittens_collapsed_to_catus_string a owl:NamedIndividual ;
+    rdfs:label "mittens_collapsed_to_catus_string" .

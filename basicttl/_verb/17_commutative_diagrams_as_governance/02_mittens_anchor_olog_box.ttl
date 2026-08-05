@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_olog_box__the a owl:NamedIndividual ;
+    rdfs:label "The" .

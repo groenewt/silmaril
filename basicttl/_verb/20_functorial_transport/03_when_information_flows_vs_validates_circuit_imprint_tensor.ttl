@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "WhenInformationFlowsVsValidatesCircuitImprintTensor" .

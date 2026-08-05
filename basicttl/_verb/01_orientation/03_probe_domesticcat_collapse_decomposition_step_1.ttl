@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_03_probe_domesticcat_collapse_decomposition_step_1__step_domesticcat a owl:NamedIndividual ;
+    rdfs:label "DomesticCat is the classification sort in O_01: the target of the outgoing arrow lambda_cls from Mittens. It carries the \"is a domestic cat\" predicate." .

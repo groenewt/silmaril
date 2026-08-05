@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_01_manifest_as_hom_profile_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 01_manifest_as_hom_profile [HLL]" .

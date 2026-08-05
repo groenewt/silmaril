@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_04_install_and_observe_decomposition_step_4__step_forge_morphism_for_04_install_and_observe a owl:NamedIndividual ;
+    rdfs:label "The validated body-mass atom is installed in the profile: InstalledBodyMassAtom placed as MeasurementLeg. The trace emitted: BodyMassForgeTrace carrying (install timestamp, shape-gate key, spec key, template version, citation key)." .

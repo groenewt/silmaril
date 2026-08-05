@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_concrete_anchor_4 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 09_manifest_hom_profile #4" .

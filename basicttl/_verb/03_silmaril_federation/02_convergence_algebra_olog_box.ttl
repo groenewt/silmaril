@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_02_convergence_algebra_olog_box__convergencealgebra_cai a owl:NamedIndividual ;
+    rdfs:label "ConvergenceAlgebra_CAI" .

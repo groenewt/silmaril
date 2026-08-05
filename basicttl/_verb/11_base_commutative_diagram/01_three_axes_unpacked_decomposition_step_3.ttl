@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_26_circuit_imprint_tensor_sections_01_three_axes_unpacked_decomposition_step_3__step_see_section_01_three_axes_unpacked_body a owl:NamedIndividual ;
+    rdfs:label "see section 01_three_axes_unpacked body" .

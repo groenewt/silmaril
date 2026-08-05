@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:diagramatom a owl:Class ;
+    rdfs:label "DiagramAtom" ;
+    rdfs:comment "A named diagram in a paper, recording node and arrow counts, concept-card and diagram-law presence, and the shared color/shape palettes used." .

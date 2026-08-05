@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_17_evidence_composition_identity_sections_02_composition_associativity_walkthrough_concrete_anchor_14_R11relator a owl:NamedIndividual ;
+    rdfs:label "S02CompositionAssociativityWalkthroughConcreteAnchor14" .

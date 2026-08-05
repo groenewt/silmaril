@@ -1,0 +1,4 @@
+entity:
+  fields:
+    name: Alpha grounded entity
+    cco_grounding_iri: "https://www.commoncoreontologies.org/ont00000001"

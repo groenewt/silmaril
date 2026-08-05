@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_07_sections_02_concrete_anchor_2#representablefunctoratx a owl:NamedIndividual ;
+    rdfs:label "BridgeTo14YonedaConcreteAnchor2AddlCircuitCorner" .
+silm:instances_papers_15_chapters_07_sections_02_concrete_anchor_2#representablefunctoratx silm:hasAdditionalAttribute "circuit_corner:2" .

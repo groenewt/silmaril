@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_04_yoneda_position_deepening_sections_04_sous_as_profile_reader_yoneda_hom_leg_3 a owl:NamedIndividual ;
+    rdfs:label "04SousAsProfileReaderYonedaHomLeg3" .

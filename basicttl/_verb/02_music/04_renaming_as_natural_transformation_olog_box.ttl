@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_02_naming_provenance_sections_04_renaming_as_natural_transformation_olog_box__musicolog04renamingasnaturaltbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog04RenamingAsNaturalTBox" .

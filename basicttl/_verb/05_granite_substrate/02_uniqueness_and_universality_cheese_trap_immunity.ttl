@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_02_uniqueness_and_universality_cheese_trap_immunity__trap_universality_as_completeness_collapse__treating_the_universa a owl:NamedIndividual ;
+    rdfs:label "universality-as-completeness collapse: treating the universal-mediator existence as proof that A_ast answers all possible queries about Mittens, rather than as proof that A_ast is the unique canonical fusion of the specialized adapter family" .

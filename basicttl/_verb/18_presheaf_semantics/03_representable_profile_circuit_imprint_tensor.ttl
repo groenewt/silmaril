@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_representable_profile_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

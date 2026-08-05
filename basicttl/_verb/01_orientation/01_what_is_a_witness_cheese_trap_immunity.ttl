@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_cheese_trap_immunity__trap_untracked_claim_presented_as_traceable_witness a owl:NamedIndividual ;
+    rdfs:label "untracked_claim_presented_as_traceable_witness" .

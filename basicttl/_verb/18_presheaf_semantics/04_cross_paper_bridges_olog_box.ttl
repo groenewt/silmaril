@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_cross_paper_bridges_olog_box__p18section04_cross_paper_bridgesologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section04_cross_paper_bridgesOlogBox" .

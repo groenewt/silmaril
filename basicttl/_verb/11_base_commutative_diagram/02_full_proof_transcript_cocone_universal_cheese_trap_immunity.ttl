@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_11_proof_transcripts_sections_02_full_proof_transcript_cocone_universal_cheese_trap_immunity__trap_fluent_prose_admitted_without_typed_path_check a owl:NamedIndividual ;
+    rdfs:label "fluent_prose_admitted_without_typed_path_check" .

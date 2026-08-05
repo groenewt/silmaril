@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_06_cheese_trap_typed_vs_unrestricted_sections_01_typed_vs_unrestricted_distinction_cheese_trap_immunity__trap_typed_english_confused_with_unrestricted a owl:NamedIndividual ;
+    rdfs:label "typed_english_confused_with_unrestricted" .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_diagram_fig_mittens_growth_agents_roles_measurements__diagram_fig_mittens_growth_agents_roles_measurements a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-growth-agents-roles-measurements" .

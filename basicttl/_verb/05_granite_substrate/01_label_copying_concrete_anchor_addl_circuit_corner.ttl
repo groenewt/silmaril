@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_concrete_anchor#mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "01LabelCopyingConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_concrete_anchor#mittensgovernedindividual silm:hasAdditionalAttribute "circuit_corner:2" .

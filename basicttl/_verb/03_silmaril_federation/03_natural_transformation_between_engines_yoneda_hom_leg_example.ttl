@@ -1,0 +1,3 @@
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_yoneda_hom_leg_functor_on_objects a owl:NamedIndividual ;
+    rdfs:label "FunctorOnObjectsArrowExample" .
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_yoneda_hom_leg_functor_on_objects silm:hasExample "In 'FunctorOnObjectsArrow', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, F: X |-> F(X) — functor maps VetRecord_Mittens to its engine representation" .

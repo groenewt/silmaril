@@ -1,0 +1,4 @@
+silm:instances_papers_18_presheaf_semantics_terms_sieve a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.sieve" .
+silm:instances_papers_18_presheaf_semantics_terms_sieve silm:hasSynonym "Kan restriction-set" .
+silm:instances_papers_18_presheaf_semantics_terms_sieve silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_sieve .

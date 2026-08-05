@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_decomposition_step_6__step_forge_morphism_for_01_shape_gate_olog_node a owl:NamedIndividual ;
+    rdfs:label "One-line recap: the section's central law stated in plain English for the zero-math reader." .

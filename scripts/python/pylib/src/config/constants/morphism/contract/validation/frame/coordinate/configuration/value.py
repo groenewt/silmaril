@@ -1,0 +1,1 @@
+VALUE = b"configuration"

@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_preferred_term_renderer_leg a owl:NamedIndividual ;
+    rdfs:label "P04ForgePreferredTermRendererLeg" .
+silm:instances_papers_04_forge_preferred_term_renderer_leg silm:sourceNode silm:instances_papers_04_forge_preferred_term_renderer_leg .

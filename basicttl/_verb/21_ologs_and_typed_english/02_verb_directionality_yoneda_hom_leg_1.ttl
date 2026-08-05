@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_03_typed_verb_discipline_sections_02_verb_directionality_yoneda_hom_leg_1_forward_arrow a owl:NamedIndividual ;
+    rdfs:label "VerbDirectionalityYonedaHomLeg1" .

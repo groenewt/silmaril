@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_01_reader_onboarding_sections_06_what_an_entry_will_not_do_concrete_anchor_1#mittensapex a owl:NamedIndividual ;
+    rdfs:label "06WhatAnEntryWillNotDoConcreteAnchor1AddlCircuitCorner" .
+silm:instances_papers_01_orientation_chapters_01_reader_onboarding_sections_06_what_an_entry_will_not_do_concrete_anchor_1#mittensapex silm:hasAdditionalAttribute "circuit_corner:5" .

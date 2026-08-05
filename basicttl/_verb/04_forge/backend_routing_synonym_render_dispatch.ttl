@@ -1,0 +1,4 @@
+silm:instances_papers_04_forge_terms_backend_routing a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.backend_routing" .
+silm:instances_papers_04_forge_terms_backend_routing silm:hasSynonym "render dispatch" .
+silm:instances_papers_04_forge_terms_backend_routing silm:sourceNode silm:instances_papers_04_forge_terms_backend_routing .

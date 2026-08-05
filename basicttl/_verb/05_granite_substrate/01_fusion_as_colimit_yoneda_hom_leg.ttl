@@ -1,0 +1,6 @@
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_01_fusion_as_colimit_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "01_fusion_as_colimit_primary_leg" .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_01_fusion_as_colimit_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "01_fusion_as_colimit_storage_leg_sigma" .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_01_fusion_as_colimit_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "fusion_universal_mediator_leg" .

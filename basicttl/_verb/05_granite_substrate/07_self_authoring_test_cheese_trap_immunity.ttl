@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_cheese_trap_immunity__trap_storage_identity_collapse_in_07_self_authoring_test__granite a owl:NamedIndividual ;
+    rdfs:label "storage-identity collapse in 07_self_authoring_test: GraniteRow_Mittens treated as if it has the same Hom-profile as the governed Mittens apex — i.e., the SelfAuthoringTest artifact is mistaken for the whole governed individual" .

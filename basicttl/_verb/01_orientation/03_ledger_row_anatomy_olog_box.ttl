@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_03_ledger_row_anatomy_olog_box__ledgerrow__8_column_typed_morphism_source=witness_on_disk__t a owl:NamedIndividual ;
+    rdfs:label "LedgerRow: 8-column typed morphism (source=witness on disk, target=claim in paper section)" .

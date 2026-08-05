@@ -1,0 +1,786 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_01_adjunction_free_forgetful_olog_box__freeforgetfuladjunction
+    a owl:NamedIndividual ;
+    rdfs:label "FreeForgetfulAdjunction" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_08_cheese_trap_and_identity_collapse_sections_01_graph_collapse_failure_modes_cheese_trap_immunity
+    a owl:NamedIndividual ;
+    rdfs:label "GraphDomainCheeseTrapImmunityCatalog" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_cheese_trap_immunity
+    a owl:NamedIndividual ;
+    rdfs:label "GraphToCategoryGateCheeseTrapImmunity" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_circuit_imprint_tensor
+    a owl:NamedIndividual ;
+    rdfs:label "GraphToCategoryGateCircuitImprintTensor" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors__anchor_g_the_source_directed_graph
+    a owl:NamedIndividual ;
+    rdfs:label "The substrate graph for the running Mittens domain. G_0 contains the individual cat Mittens, the class DomesticCat, the veterinary record VetRecord77, the body-mass quality BodyMassQuality77, the body-mass measurement BodyMassMeasurement99, the microchip identifier MicrochipIdentifier9, the nap-event NapEvent42, and the taxonomy row \"Felis catus / TSN 183798\". G_1 contains the typed edges rdf:type, is_about, bearer_of, measured_by, participates_in, has_microchip. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors__anchor_a__b_arbitrary_nodes_%E2%80%94_abstract_math_notation
+    a owl:NamedIndividual ;
+    rdfs:label "A is the source object VetRecord77; B is the target object Mittens. The arrow s, t : G_1 -> G_0 reads: the source of the edge (v_record_77_is_about_mittens) is VetRecord77 and the target is Mittens. The reader entering with arbitrary \"A\" sees a concrete record-individual pair. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors__anchor_p__q_paths_in_freeg
+    a owl:NamedIndividual ;
+    rdfs:label "p is the path \"VetRecord77 -[is_about]-> Mittens -[rdf:type]-> DomesticCat\" (length 2). q is the direct edge \"VetRecord77 -> DomesticCat\" with label class_of_subject (if admitted). The shortcut q is admissible to C_G only as a NAMED composite, i.e. only when the equation q = (rdf:type) o (is_about) is defended. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors__anchor_h__f__g_intermediate_functor___morphism
+    a owl:NamedIndividual ;
+    rdfs:label "f is the typed arrow rdf:type : Mittens -> DomesticCat. g is the aboutness arrow is_about : VetRecord77 -> Mittens. The composite g; f is the typed path from VetRecord77 to DomesticCat that the shortcut may abbreviate, subject to a defended equation. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors__anchor_d_mittensj_source_diagram_object_at_index_j
+    a owl:NamedIndividual ;
+    rdfs:label "The j-th source leg of the Mittens cocone. Examples: j=type yields DomesticCat (with arrow rdf:type); j=evidence yields VetRecord77 (with arrow is_about); j=taxonomy yields the taxonomy row \"Felis catus / TSN 183798\" (with the taxonomy arrow into D_Mittens); j=quality yields BodyMassQuality77 (with bearer_of); j=measurement yields BodyMassMeasurement99 (with measured_by); j=microchip yields MicrochipIdentifier9 (with has_microchip); j=process yields NapEvent42 (with participates_in). " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors__anchor_y_any_other_competing_cocone_target_%E2%80%94_abstract
+    a owl:NamedIndividual ;
+    rdfs:label "Y is the concrete competing cocone \"VetCarePlan22\" — the clinical summary that also receives the head-record and the torso-record legs along compatible arrows. The universal property gives a unique mediator u : Mittens -> VetCarePlan22 that names the clinical summary as a downstream profile target rather than as Mittens itself. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors%23anchor_g_the_source_directed_graph
+    a owl:NamedIndividual ;
+    rdfs:label "GraphToCategoryGateConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "GraphToCategoryGateConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "GraphToCategoryGateConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "GraphToCategoryGateConcreteAnchorsAddlPaperKind" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph" ;
+    silm:hasAdditionalAttribute "circuit_corner:1" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.10_graph_knowledge_graph_category" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors
+    a owl:NamedIndividual ;
+    rdfs:label "GraphToCategoryGateConcreteAnchorsExample" ;
+    silm:hasExample "In 'GraphToCategoryGateConcreteAnchors', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The substrate graph for the running Mittens domain. G_0 contains the individual cat Mittens, the class DomesticCat, the veterinary record VetRecord77, the body-mass quality BodyMassQuality77, the body-mass measurement BodyMassMeasurement99, the microchip identifier MicrochipIdentifier9, the nap-event NapEvent42, and the taxonomy row \"Felis catus / TSN 183798\". G_1 contains the typed edges rdf:type, is_about, bearer_of, measured_by, participates_in, has_microchip. ; also, A is the source object VetRecord77; B is the target object Mittens. The arrow s, t : G_1 -> G_0 reads: the source of the edge (v_record_77_is_about_mittens) is VetRecord77 and the target is Mittens. The reader entering with arbitrary \"A\" sees a concrete record-individual pair. ; also, p is the path \"VetRecord77 -[is_about]-> Mittens -[rdf:type]-> DomesticCat\" (length 2). q is the direct edge \"VetRecord77 -> DomesticCat\" with label class_of_subject (if admitted). The shortcut q is admissible to C_G only as a NAMED composite, i.e. only when the equation q = (rdf:type) o (is_about) is defended. ." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_decomposition_steps
+    a owl:NamedIndividual ;
+    rdfs:label "GraphToCategoryGateSixStepDecomposition" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors%23the_substrate_graph_for_the_running_mittens_domain__g_0_cont
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.01_foundational_thesis_and_anchors.sections.01_thesis.concrete_anchors#the_substrate_graph_for_the_running_mittens_domain._g_0_cont" ;
+    silm:hasLongDescription "The The substrate graph for the running Mittens domain. G_0 contains the individual cat Mittens, the class DomesticCat, the veterinary record VetRecord77, the body-mass quality BodyMassQuality77, the body-mass measurement BodyMassMeasurement99, the microchip identifier MicrochipIdentifier9, the nap-event NapEvent42, and the taxonomy row \"Felis catus / TSN 183798\". G_1 contains the typed edges rdf:type, is_about, bearer_of, measured_by, participates_in, has_microchip.  is The substrate graph for the running Mittens domain. G_0 contains the individual cat Mittens, the class DomesticCat, the veterinary record VetRecord77, the body-mass quality BodyMassQuality77, the body-mass measurement BodyMassMeasurement99, the microchip identifier MicrochipIdentifier9, the nap-event NapEvent42, and the taxonomy row \"Felis catus / TSN 183798\". G_1 contains the typed edges rdf:type, is_about, bearer_of, measured_by, participates_in, has_microchip." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors%23a_is_the_source_object_vetrecord77%3B_b_is_the_target_object_m
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.01_foundational_thesis_and_anchors.sections.01_thesis.concrete_anchors#a_is_the_source_object_vetrecord77;_b_is_the_target_object_m" ;
+    silm:hasLongDescription "The A is the source object VetRecord77; B is the target object Mittens. The arrow s, t : G_1 -> G_0 reads: the source of the edge (v_record_77_is_about_mittens) is VetRecord77 and the target is Mittens. The reader entering with arbitrary \"A\" sees a concrete record-individual pair.  is A is the source object VetRecord77; B is the target object Mittens. The arrow s, t : G_1 -> G_0 reads: the source of the edge (v_record_77_is_about_mittens) is VetRecord77 and the target is Mittens. The reader entering with arbitrary \"A\" sees a concrete record-individual pair." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors%23p_is_the_path_%22vetrecord77__%5Bis_about%5D_%3E_mittens__%5Brdf_type%5D
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.01_foundational_thesis_and_anchors.sections.01_thesis.concrete_anchors#p_is_the_path_\"vetrecord77_-[is_about]->_mittens_-[rdf_type]" ;
+    silm:hasLongDescription "The p is the path \"VetRecord77 -[is_about]-> Mittens -[rdf:type]-> DomesticCat\" (length 2). q is the direct edge \"VetRecord77 -> DomesticCat\" with label class_of_subject (if admitted). The shortcut q is admissible to C_G only as a NAMED composite, i.e. only when the equation q = (rdf:type) o (is_about) is defended.  is p is the path \"VetRecord77 -[is_about]-> Mittens -[rdf:type]-> DomesticCat\" (length 2). q is the direct edge \"VetRecord77 -> DomesticCat\" with label class_of_subject (if admitted). The shortcut q is admissible to C_G only as a NAMED composite, i.e. only when the equation q = (rdf:type) o (is_about) is defended." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors%23f_is_the_typed_arrow_rdf_type___mittens__%3E_domesticcat__g_is
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.01_foundational_thesis_and_anchors.sections.01_thesis.concrete_anchors#f_is_the_typed_arrow_rdf_type___mittens_->_domesticcat._g_is" ;
+    silm:hasLongDescription "The f is the typed arrow rdf:type : Mittens -> DomesticCat. g is the aboutness arrow is_about : VetRecord77 -> Mittens. The composite g; f is the typed path from VetRecord77 to DomesticCat that the shortcut may abbreviate, subject to a defended equation.  is f is the typed arrow rdf:type : Mittens -> DomesticCat. g is the aboutness arrow is_about : VetRecord77 -> Mittens. The composite g; f is the typed path from VetRecord77 to DomesticCat that the shortcut may abbreviate, subject to a defended equation." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors%23the_j_th_source_leg_of_the_mittens_cocone__examples__j%3Dtype_
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.01_foundational_thesis_and_anchors.sections.01_thesis.concrete_anchors#the_j-th_source_leg_of_the_mittens_cocone._examples__j=type_" ;
+    silm:hasLongDescription "The The j-th source leg of the Mittens cocone. Examples: j=type yields DomesticCat (with arrow rdf:type); j=evidence yields VetRecord77 (with arrow is_about); j=taxonomy yields the taxonomy row \"Felis catus / TSN 183798\" (with the taxonomy arrow into D_Mittens); j=quality yields BodyMassQuality77 (with bearer_of); j=measurement yields BodyMassMeasurement99 (with measured_by); j=microchip yields MicrochipIdentifier9 (with has_microchip); j=process yields NapEvent42 (with participates_in).  is The j-th source leg of the Mittens cocone. Examples: j=type yields DomesticCat (with arrow rdf:type); j=evidence yields VetRecord77 (with arrow is_about); j=taxonomy yields the taxonomy row \"Felis catus / TSN 183798\" (with the taxonomy arrow into D_Mittens); j=quality yields BodyMassQuality77 (with bearer_of); j=measurement yields BodyMassMeasurement99 (with measured_by); j=microchip yields MicrochipIdentifier9 (with has_microchip); j=process yields NapEvent42 (with participates_in)." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_concrete_anchors%23y_is_the_concrete_competing_cocone_%22vetcareplan22%22_%E2%80%94_the_cli
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.01_foundational_thesis_and_anchors.sections.01_thesis.concrete_anchors#y_is_the_concrete_competing_cocone_\"vetcareplan22\"_—_the_cli" ;
+    silm:hasLongDescription "The Y is the concrete competing cocone \"VetCarePlan22\" — the clinical summary that also receives the head-record and the torso-record legs along compatible arrows. The universal property gives a unique mediator u : Mittens -> VetCarePlan22 that names the clinical summary as a downstream profile target rather than as Mittens itself.  is Y is the concrete competing cocone \"VetCarePlan22\" — the clinical summary that also receives the head-record and the torso-record legs along compatible arrows. The universal property gives a unique mediator u : Mittens -> VetCarePlan22 that names the clinical summary as a downstream profile target rather than as Mittens itself." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_olog_box__graphtocategorypathpresentationgate
+    a owl:NamedIndividual ;
+    rdfs:label "GraphToCategoryPathPresentationGate" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_cheese_trap_immunity
+    a owl:NamedIndividual ;
+    rdfs:label "MittensColimitInMonadAlgebraCheeseTrapImmunity" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_circuit_imprint_tensor
+    a owl:NamedIndividual ;
+    rdfs:label "MittensColimitInMonadAlgebraCircuitImprint" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors__anchor_j_mittens_index_category
+    a owl:NamedIndividual ;
+    rdfs:label "The shape of the Mittens cocone. Objects: type, evidence, taxonomy, quality, measurement, microchip, process. Arrows include any compatibility-condition arrows between legs (e.g., the taxonomy leg and the type leg both target into D_Mittens but at distinct source vertices). " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors__anchor_d_mittensj_source_diagram_object_at_index_j
+    a owl:NamedIndividual ;
+    rdfs:label "j=type yields DomesticCat with arrow rdf:type; j=evidence yields VetRecord77 with arrow is_about; j=taxonomy yields the row Felis catus / TSN 183798 with the taxonomy source arrow; j=quality yields BodyMassQuality77 with arrow bearer_of; j=microchip yields MicrochipIdentifier9 with arrow has_microchip. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors__anchor_lambda_j_cocone_leg_j
+    a owl:NamedIndividual ;
+    rdfs:label "lambda_type : DomesticCat -> Mittens is the rdf:type arrow read backwards (Mittens is_a DomesticCat). lambda_evidence : VetRecord77 -> Mittens is the is_about arrow. Each lambda_j is an equivalence class of paths in C_G (after equiv_E quotient). " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors__anchor_x_competing_cocone_target
+    a owl:NamedIndividual ;
+    rdfs:label "X = VetCarePlan22, the clinical-summary node Dr Osei created after the examination visit. The cocone (mu_j) maps each leg object to its contribution to the care plan: mu_type collects species-level care; mu_evidence pulls the recent record; etc. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors__anchor_u_unique_mediator
+    a owl:NamedIndividual ;
+    rdfs:label "u : Mittens -> VetCarePlan22 is the unique morphism that factors the care-plan cocone through Mittens. Its uniqueness says: the care plan derives FROM Mittens, and no other cat could play the role. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors__anchor_tg__g_where_the_colimit_does_not_live
+    a owl:NamedIndividual ;
+    rdfs:label "T(G) is the underlying graph of Free(G); it has no composition, so colimits don't exist there. G itself has no equation structure, so two paths to the same node need not be identifiable. Only after q : Free(G) -> C_G quotients by equiv_E does the colimit acquire universal force. " .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors%23anchor_j_mittens_index_category
+    a owl:NamedIndividual ;
+    rdfs:label "MittensColimitInMonadAlgebraConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "MittensColimitInMonadAlgebraConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "MittensColimitInMonadAlgebraConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "MittensColimitInMonadAlgebraConcreteAnchorsAddlPaperKind" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph" ;
+    silm:hasAdditionalAttribute "circuit_corner:0" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.10_graph_knowledge_graph_category" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors
+    a owl:NamedIndividual ;
+    rdfs:label "MittensColimitInMonadAlgebraConcreteAnchorsExample" ;
+    silm:hasExample "In 'MittensColimitInMonadAlgebraConcreteAnchors', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The shape of the Mittens cocone. Objects: type, evidence, taxonomy, quality, measurement, microchip, process. Arrows include any compatibility-condition arrows between legs (e.g., the taxonomy leg and the type leg both target into D_Mittens but at distinct source vertices). ; also, j=type yields DomesticCat with arrow rdf:type; j=evidence yields VetRecord77 with arrow is_about; j=taxonomy yields the row Felis catus / TSN 183798 with the taxonomy source arrow; j=quality yields BodyMassQuality77 with arrow bearer_of; j=microchip yields MicrochipIdentifier9 with arrow has_microchip. ; also, lambda_type : DomesticCat -> Mittens is the rdf:type arrow read backwards (Mittens is_a DomesticCat). lambda_evidence : VetRecord77 -> Mittens is the is_about arrow. Each lambda_j is an equivalence class of paths in C_G (after equiv_E quotient). ." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_decomposition_steps
+    a owl:NamedIndividual ;
+    rdfs:label "MittensColimitInMonadAlgebraSixStep" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors%23the_shape_of_the_mittens_cocone__objects__type__evidence__ta
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.02_free_category_monad.sections.04_mittens_in_the_monad.concrete_anchors#the_shape_of_the_mittens_cocone._objects__type__evidence__ta" ;
+    silm:hasLongDescription "The The shape of the Mittens cocone. Objects: type, evidence, taxonomy, quality, measurement, microchip, process. Arrows include any compatibility-condition arrows between legs (e.g., the taxonomy leg and the type leg both target into D_Mittens but at distinct source vertices).  is The shape of the Mittens cocone. Objects: type, evidence, taxonomy, quality, measurement, microchip, process. Arrows include any compatibility-condition arrows between legs (e.g., the taxonomy leg and the type leg both target into D_Mittens but at distinct source vertices)." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors%23j%3Dtype_yields_domesticcat_with_arrow_rdf_type%3B_j%3Devidence_yi
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.02_free_category_monad.sections.04_mittens_in_the_monad.concrete_anchors#j=type_yields_domesticcat_with_arrow_rdf_type;_j=evidence_yi" ;
+    silm:hasLongDescription "The j=type yields DomesticCat with arrow rdf:type; j=evidence yields VetRecord77 with arrow is_about; j=taxonomy yields the row Felis catus / TSN 183798 with the taxonomy source arrow; j=quality yields BodyMassQuality77 with arrow bearer_of; j=microchip yields MicrochipIdentifier9 with arrow has_microchip.  is j=type yields DomesticCat with arrow rdf:type; j=evidence yields VetRecord77 with arrow is_about; j=taxonomy yields the row Felis catus / TSN 183798 with the taxonomy source arrow; j=quality yields BodyMassQuality77 with arrow bearer_of; j=microchip yields MicrochipIdentifier9 with arrow has_microchip." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors%23lambda_type___domesticcat__%3E_mittens_is_the_rdf_type_arrow_r
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.02_free_category_monad.sections.04_mittens_in_the_monad.concrete_anchors#lambda_type___domesticcat_->_mittens_is_the_rdf_type_arrow_r" ;
+    silm:hasLongDescription "The lambda_type : DomesticCat -> Mittens is the rdf:type arrow read backwards (Mittens is_a DomesticCat). lambda_evidence : VetRecord77 -> Mittens is the is_about arrow. Each lambda_j is an equivalence class of paths in C_G (after equiv_E quotient).  is lambda_type : DomesticCat -> Mittens is the rdf:type arrow read backwards (Mittens is_a DomesticCat). lambda_evidence : VetRecord77 -> Mittens is the is_about arrow. Each lambda_j is an equivalence class of paths in C_G (after equiv_E quotient)." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors%23x_%3D_vetcareplan22__the_clinical_summary_node_dr_osei_created
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.02_free_category_monad.sections.04_mittens_in_the_monad.concrete_anchors#x_=_vetcareplan22__the_clinical-summary_node_dr_osei_created" ;
+    silm:hasLongDescription "The X = VetCarePlan22, the clinical-summary node Dr Osei created after the examination visit. The cocone (mu_j) maps each leg object to its contribution to the care plan: mu_type collects species-level care; mu_evidence pulls the recent record; etc.  is X = VetCarePlan22, the clinical-summary node Dr Osei created after the examination visit. The cocone (mu_j) maps each leg object to its contribution to the care plan: mu_type collects species-level care; mu_evidence pulls the recent record; etc." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors%23u___mittens__%3E_vetcareplan22_is_the_unique_morphism_that_fac
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.02_free_category_monad.sections.04_mittens_in_the_monad.concrete_anchors#u___mittens_->_vetcareplan22_is_the_unique_morphism_that_fac" ;
+    silm:hasLongDescription "The u : Mittens -> VetCarePlan22 is the unique morphism that factors the care-plan cocone through Mittens. Its uniqueness says: the care plan derives FROM Mittens, and no other cat could play the role.  is u : Mittens -> VetCarePlan22 is the unique morphism that factors the care-plan cocone through Mittens. Its uniqueness says: the care plan derives FROM Mittens, and no other cat could play the role. In the paper's apparatus it appears as the symbol 'u (unique mediator)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_concrete_anchors%23tg_is_the_underlying_graph_of_freeg%3B_it_has_no_composition__
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.chapters.02_free_category_monad.sections.04_mittens_in_the_monad.concrete_anchors#tg_is_the_underlying_graph_of_freeg;_it_has_no_composition__" ;
+    silm:hasLongDescription "The T(G) is the underlying graph of Free(G); it has no composition, so colimits don't exist there. G itself has no equation structure, so two paths to the same node need not be identifiable. Only after q : Free(G) -> C_G quotients by equiv_E does the colimit acquire universal force.  is T(G) is the underlying graph of Free(G); it has no composition, so colimits don't exist there. G itself has no equation structure, so two paths to the same node need not be identifiable. Only after q : Free(G) -> C_G quotients by equiv_E does the colimit acquire universal force." .
+
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_olog_box__mittenscolimitinsidemonadalgebra
+    a owl:NamedIndividual ;
+    rdfs:label "MittensColimitInsideMonadAlgebra" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_adamekherrlichstrecker1990joyofcats
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationAdamekherrlichstrecker1990joyofcats" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_atom
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.atom" ;
+    silm:hasSynonym "Node-or-Arrow" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_atom .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "CategoryLiftTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_category_lift ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_category_theory_to_olog__xlate_target_olog_categoryliftarrow .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "CategoryLiftTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_category_lift ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_category_theory_to_rdf__xlate_target_rdf_silm_categoryliftarrow .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "CategoryLiftTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_category_lift ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_category_theory_to_tikzcd__xlate_target_tikzcd_f_free .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "CategoryLiftTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_category_lift ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_everyday_prose_to_category_theory__xlate_target_category_theory_free_category_functor_graph__%3E_cat .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "CategoryLiftTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_category_lift ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_everyday_prose_to_latex__xlate_target_latex_f___mathrmfree .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "CategoryLiftTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_category_lift ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_everyday_prose_to_olog__xlate_target_olog_categoryliftarrow .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "CategoryLiftTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_category_lift ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_olog_to_everyday_prose__xlate_target_everyday_prose_the_lift_from_kg_to_category .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "CategoryLiftTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_category_lift ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_category_lift_olog_to_rdf__xlate_target_rdf_silm_categoryliftarrow .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_category
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.category" ;
+    silm:hasSynonym "phylum" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_category .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_cco
+    a owl:NamedIndividual ;
+    rdfs:label "Common Core Ontologies" ;
+    silm:hasAbbreviation "CCO" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_cheese_trap
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.cheese_trap" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_cheese_trap_immunity ;
+    silm:hasSynonym "category-theory pitfall" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_cheese_trap ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_cheese_trap_immunity .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_cocone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.cocone" ;
+    silm:hasSynonym "compatible family" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_cocone .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_colimit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.colimit" ;
+    silm:hasSynonym "universal cocone apex" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_colimit .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_commutative
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.commutative" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_non_commutative ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_commutative ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_non_commutative .
+
+silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_concrete_anchor
+    a owl:NamedIndividual ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryPreferredTermConcreteAnchor" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_concrete_anchor .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_cone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.cone" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_cocone ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_cone ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_cocone .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_cpo
+    a owl:NamedIndividual ;
+    rdfs:label "Common Process Ontology" ;
+    silm:hasAbbreviation "CPO" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_csv
+    a owl:NamedIndividual ;
+    rdfs:label "Comma-Separated Values" ;
+    silm:hasAbbreviation "CSV" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_diagram
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.diagram" ;
+    silm:hasSynonym "commutative diagram" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_diagram .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_domain
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.domain" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_codomain ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_domain ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_codomain .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_encyclopedia
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.encyclopedia" ;
+    silm:hasSynonym "atlas" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_encyclopedia .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_equalizer
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.equalizer" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_coequalizer ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_equalizer ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_coequalizer .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_fcc
+    a owl:NamedIndividual ;
+    rdfs:label "Face-Centered Cubic" ;
+    silm:hasAbbreviation "FCC" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_fongspivak2018sevensketches
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationFongspivak2018sevensketches" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_free_category
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.free_category" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_presented_category ;
+    silm:hasSynonym "free term-arrow monoid" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_free_category ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_presented_category .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_free_monad
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.free_monad" ;
+    silm:hasSynonym "free-category endofunctor monad" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_free_monad .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_functor
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.functor" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_contravariant_functor ;
+    silm:hasSynonym "structure-preserving map" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_functor ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_contravariant_functor .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_graph
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.graph" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_schema_less_blob ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_graph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_schema_less_blob .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "GraphNodeTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_graph_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_category_theory_to_olog__xlate_target_olog_graphnode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "GraphNodeTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_graph_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_category_theory_to_rdf__xlate_target_rdf_silm_graphnode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "GraphNodeTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_graph_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_category_theory_to_tikzcd__xlate_target_tikzcd_v .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "GraphNodeTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_graph_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_everyday_prose_to_category_theory__xlate_target_category_theory_object_in_graphv_e .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "GraphNodeTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_graph_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_everyday_prose_to_latex__xlate_target_latex_v .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "GraphNodeTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_graph_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_everyday_prose_to_olog__xlate_target_olog_graphnode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "GraphNodeTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_graph_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_olog_to_everyday_prose__xlate_target_everyday_prose_a_graph_node .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "GraphNodeTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_graph_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_graph_node_olog_to_rdf__xlate_target_rdf_silm_graphnode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_homset
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.homset" ;
+    silm:hasSynonym "Hom" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_homset .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.identity_collapse" ;
+    silm:hasSynonym "cheese-trap loop" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_collapse .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_loop_preserved
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.identity_loop_preserved" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_collapse ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_loop_preserved ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_collapse .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_incoming
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.incoming" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_outgoing ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_incoming ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_outgoing .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_kg
+    a owl:NamedIndividual ;
+    rdfs:label "Knowledge Graph" ;
+    silm:hasAbbreviation "KG" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "KgEdgeTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_kg_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_category_theory_to_olog__xlate_target_olog_kgedgenode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "KgEdgeTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_kg_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_category_theory_to_rdf__xlate_target_rdf_silm_kgedgenode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "KgEdgeTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_kg_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_category_theory_to_tikzcd__xlate_target_tikzcd_e .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "KgEdgeTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_kg_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_everyday_prose_to_category_theory__xlate_target_category_theory_labeled_arrow_in_kg .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "KgEdgeTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_kg_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_everyday_prose_to_latex__xlate_target_latex_e .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "KgEdgeTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_kg_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_everyday_prose_to_olog__xlate_target_olog_kgedgenode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "KgEdgeTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_kg_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_olog_to_everyday_prose__xlate_target_everyday_prose_a_knowledge_graph_edge .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "KgEdgeTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_kg_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_kg_edge_olog_to_rdf__xlate_target_rdf_silm_kgedgenode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_knowledge_graph
+    a owl:NamedIndividual ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryPreferredTermKnowledgeGraph" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_knowledge_graph .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_knowledge_graph
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.knowledge_graph" ;
+    silm:hasSynonym "typed-edge graph" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_knowledge_graph .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_known
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.known" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_unknown ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_known ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_unknown .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_limit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.limit" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_colimit ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_limit ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_colimit .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_localcannoncheeselearyalpertwitness2026
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationLocalCannonCheeseLearyAlpertWitness2026" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_localcannonsoulwitnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationLocalCannonSoulWitnesses2026" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_localcannontaxonomywitnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationLocalCannonTaxonomyWitnesses2026" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_localgptyonedamanifestv902026
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationLocalGptYonedaManifestV902026" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_localmittensexampleanchor2026
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationLocalMittensExampleAnchor2026" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_localnodeorarrowdiscipline2026
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationLocalNodeOrArrowDiscipline2026" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_localrebuttalround00witnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationLocalRebuttalRound00Witnesses2026" .
+
+silm:urn_silmaril_universal_anchor_node_enum_milestone
+    a owl:NamedIndividual ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryEnumMembershipMilestoneAtomPass" ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryEnumMembershipMilestoneChapterSkeleton" ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryEnumMembershipMilestoneE2eBuildOk" ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryEnumMembershipMilestoneRenderAllLegsOk" ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryEnumMembershipMilestoneVisionPass" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_milestone .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensSubgraphTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_mittens_subgraph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_category_theory_to_olog__xlate_target_olog_mittenssubgraphnode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensSubgraphTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_mittens_subgraph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_category_theory_to_rdf__xlate_target_rdf_silm_mittenssubgraphnode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "MittensSubgraphTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_mittens_subgraph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_category_theory_to_tikzcd__xlate_target_tikzcd_g_m .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "MittensSubgraphTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_mittens_subgraph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_everyday_prose_to_category_theory__xlate_target_category_theory_induced_subgraph_at_mittens .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "MittensSubgraphTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_mittens_subgraph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_everyday_prose_to_latex__xlate_target_latex_g_m .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensSubgraphTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_mittens_subgraph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_everyday_prose_to_olog__xlate_target_olog_mittenssubgraphnode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "MittensSubgraphTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_mittens_subgraph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_olog_to_everyday_prose__xlate_target_everyday_prose_the_subgraph_around_mittens .
+
+silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensSubgraphTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_10_graph_knowledge_graph_category_term_mittens_subgraph ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_translation_mittens_subgraph_olog_to_rdf__xlate_target_rdf_silm_mittenssubgraphnode .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.mittens" ;
+    silm:hasSynonym "cat anchor" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_mittens .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_monad
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.monad" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_comonad ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_monad ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_comonad .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_morphism
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.morphism" ;
+    silm:hasSynonym "arrow" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_morphism .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.node" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_arrow ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_node ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_arrow .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_object
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.object" ;
+    silm:hasSynonym "node" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_object .
+
+silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_olog
+    a owl:NamedIndividual ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryPreferredTermOlog" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_olog .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_olog
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.olog" ;
+    silm:hasSynonym "ontology log" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_olog .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_owl
+    a owl:NamedIndividual ;
+    rdfs:label "Web Ontology Language" ;
+    silm:hasAbbreviation "OWL" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_paper
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.paper" ;
+    silm:hasSynonym "paper-monad" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_paper .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_pullback
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.pullback" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_pushout ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_pullback ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_pushout .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "Resource Description Framework" ;
+    silm:hasAbbreviation "RDF" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_shacl
+    a owl:NamedIndividual ;
+    rdfs:label "Shapes Constraint Language" ;
+    silm:hasAbbreviation "SHACL" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_source
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.source" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_target ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_source ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_target .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_sparql
+    a owl:NamedIndividual ;
+    rdfs:label "SPARQL Protocol And RDF Query Language" ;
+    silm:hasAbbreviation "SPARQL" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_spivak2014categorytheorysciences
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationSpivak2014categorytheorysciences" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_spivakkent2012ologs
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationSpivakkent2012ologs" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_synthesis
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.synthesis" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_decomposition ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_synthesis ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_decomposition .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_tsn
+    a owl:NamedIndividual ;
+    rdfs:label "Taxonomic Serial Number" ;
+    silm:hasAbbreviation "TSN" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_typed
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.typed" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_untyped ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_typed ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_untyped .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_typed_edge
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.typed_edge" ;
+    silm:hasAntonym silm:instances_papers_10_graph_knowledge_graph_category_terms_untyped_edge ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_typed_edge ;
+    silm:targetNode silm:instances_papers_10_graph_knowledge_graph_category_terms_untyped_edge .
+
+silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_typed_edge
+    a owl:NamedIndividual ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryPreferredTermTypedEdge" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_typed_edge .
+
+silm:instances_papers_10_graph_knowledge_graph_category_acronym_uri
+    a owl:NamedIndividual ;
+    rdfs:label "Uniform Resource Identifier" ;
+    silm:hasAbbreviation "URI" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_w3cowl2overview
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationW3cowl2overview" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_w3crdf11concepts
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationW3crdf11concepts" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_citation_w3cshacl
+    a owl:NamedIndividual ;
+    rdfs:label "P10CitationW3cshacl" .
+
+silm:instances_papers_10_graph_knowledge_graph_category_replacement_agents_rebuttals
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "AgentsRebuttalsReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:_agents_rebuttals_ ;
+    silm:targetNode silm:anchors_repo_rebuttal_dir .
+
+silm:instances_papers_10_graph_knowledge_graph_category_replacement_silmaril_wave8_replacement_atom
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8ReplacementAtomReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_replacement_atom ;
+    silm:targetNode silm:types_papers_relational_replacement .
+
+silm:instances_papers_10_graph_knowledge_graph_category_replacement_silmaril_wave8_theorem_unit
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8TheoremUnitReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_theorem_unit ;
+    silm:targetNode silm:types_papers_claim_atom_theorem_unit .
+
+silm:urn_silmaril_universal_anchor_node_enum_wave_role
+    a owl:NamedIndividual ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryEnumMembershipWaveRoleBuilder" ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryEnumMembershipWaveRolePolisher" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_wave_role .
+
+silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_yoneda_hom_leg
+    a owl:NamedIndividual ;
+    rdfs:label "P10GraphKnowledgeGraphCategoryPreferredTermYonedaHomLeg" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_preferred_term_yoneda_hom_leg .
+
+silm:instances_papers_10_graph_knowledge_graph_category_terms_yoneda_traversal
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.yoneda_traversal" ;
+    silm:hasSynonym "representable walk" ;
+    silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_yoneda_traversal .
+

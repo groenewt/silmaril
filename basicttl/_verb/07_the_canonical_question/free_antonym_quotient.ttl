@@ -1,0 +1,5 @@
+silm:instances_papers_07_the_canonical_question_terms_free a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.07_the_canonical_question.terms.free" .
+silm:instances_papers_07_the_canonical_question_terms_free silm:hasAntonym silm:instances_papers_07_the_canonical_question_terms_quotient .
+silm:instances_papers_07_the_canonical_question_terms_free silm:sourceNode silm:instances_papers_07_the_canonical_question_terms_free .
+silm:instances_papers_07_the_canonical_question_terms_free silm:targetNode silm:instances_papers_07_the_canonical_question_terms_quotient .

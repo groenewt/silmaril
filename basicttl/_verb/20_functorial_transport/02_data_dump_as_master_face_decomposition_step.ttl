@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_decomposition_step__step_flattened_row_set a owl:NamedIndividual ;
+    rdfs:label "the operational data without categorical structure" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_decomposition_step__step_flatten a owl:NamedIndividual ;
+    rdfs:label "drop typed arrows and identity arrows from each category" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_decomposition_step__step_cheese_flattening a owl:NamedIndividual ;
+    rdfs:label "operational artifact as master. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_decomposition_step__step_row_set_transport a owl:NamedIndividual ;
+    rdfs:label "the transport is row-level copying with no categorical respect" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_decomposition_step__step_no_yoneda_profile a owl:NamedIndividual ;
+    rdfs:label "the Yoneda profile is undefined because there is no category" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_decomposition_step__step_data_dump_as_master a owl:NamedIndividual ;
+    rdfs:label "the operational artifact replaces both categories" .

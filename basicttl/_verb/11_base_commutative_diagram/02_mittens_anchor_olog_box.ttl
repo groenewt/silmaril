@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_sections_02_mittens_anchor_olog_box__basecommutativediagram_s02mittensanchor a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S02mittensanchor" .

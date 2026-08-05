@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_diagram_fig_mct_assoc_commutative__diagram_fig_mct_assoc_commutative a owl:NamedIndividual ;
+    rdfs:label "fig:mct-assoc-commutative" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_sieves_as_subfunctors_olog_box__p18section01_sieves_as_subfunctorsologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section01_sieves_as_subfunctorsOlogBox" .

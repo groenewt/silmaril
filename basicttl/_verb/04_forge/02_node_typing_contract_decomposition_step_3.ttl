@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_decomposition_step_3__step_forge_morphism_for_02_node_typing_contract a owl:NamedIndividual ;
+    rdfs:label "The base topic is functoriality of olog interpretation from Spivak and Kent 2012." .

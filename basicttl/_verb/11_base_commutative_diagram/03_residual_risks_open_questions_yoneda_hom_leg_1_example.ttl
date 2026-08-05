@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_23_summary_audit_residual_sections_03_residual_risks_open_questions_yoneda_hom_leg_1_domesticcatrefinementlega a owl:NamedIndividual ;
+    rdfs:label "S03ResidualRisksOpenQuestionsYonedaHomLeg1Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_23_summary_audit_residual_sections_03_residual_risks_open_questions_yoneda_hom_leg_1_domesticcatrefinementlega silm:hasExample "In 'S03ResidualRisksOpenQuestionsYonedaHomLeg1', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, a:Mittens->DomesticCat — the domestic-cat refinement leg; admissible iff r.a equals c" .

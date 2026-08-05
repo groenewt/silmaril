@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_09_diagram_atlas_sections_03_factorization_triangles_olog_box__03factorizationtrianglesologbox a owl:NamedIndividual ;
+    rdfs:label "03FactorizationTrianglesOlogBox" .

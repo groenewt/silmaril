@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_03_cite_as_kleisli_arrow_decomposition_step_6__step_cite_=_unit_embedding;_records_provenance;_defers_interpretation a owl:NamedIndividual ;
+    rdfs:label "The cite Kleisli arrow is the unit embedding; it adds no interpretation; it tracks the source key as a free-monad term; downstream Kleisli steps (type, glue) produce claims." .

@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_02_typed_message_boundary_olog_box__typedmessageboundary a owl:NamedIndividual ;
+    rdfs:label "TypedMessageBoundary" .

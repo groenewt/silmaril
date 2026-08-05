@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_05_glue_as_kleisli_arrow_decomposition_step_2__step_cocone_compatibility__lambda_k_o_d_mittensalpha_=_lambda_j a owl:NamedIndividual ;
+    rdfs:label "The cocone compatibility law says: for every overlap arrow alpha from index object j to index object k in the diagram D_Mittens, the leg lambda_j equals lambda_k composed with D_Mittens(alpha). This law ensures all legs agree at overlaps. Glue checks this law before producing the colimit apex." .

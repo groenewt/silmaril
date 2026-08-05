@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_04_shared_diagram_decomposition_step_3__step_music_olog_shared_diagram_grammar a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic licensing the 04_shared_diagram law" .

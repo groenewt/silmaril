@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_01_cheese_trap_immunity__trap_string_token_is_the_somatic_referent a owl:NamedIndividual ;
+    rdfs:label "string_token_is_the_somatic_referent" .

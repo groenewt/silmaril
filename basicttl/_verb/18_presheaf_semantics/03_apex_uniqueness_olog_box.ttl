@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_apex_uniqueness_olog_box__p18section03_apex_uniquenessologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section03_apex_uniquenessOlogBox" .

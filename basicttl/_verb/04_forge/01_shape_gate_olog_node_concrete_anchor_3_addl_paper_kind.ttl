@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_concrete_anchor_3#mittensbodymasslocalinfo a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 01_shape_gate_olog_node" .
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_concrete_anchor_3#mittensbodymasslocalinfo silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.04_forge" .

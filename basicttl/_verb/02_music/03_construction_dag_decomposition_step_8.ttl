@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_construction_dag_decomposition_step_8__step_dagcompose a owl:NamedIndividual ;
+    rdfs:label "DAG composition: ordering admitted task nodes into an associative chain" .

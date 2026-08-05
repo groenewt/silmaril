@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_13_evidence_grammar_quality_sections_01_per_leg_evidence_validation_trace_olog_box__basecommutativediagram_s01perlegevidencevalidationtrace a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S01perlegevidencevalidationtrace" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_11_contract_verification_surface_olog_box__musicolog11contractverificationbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog11ContractVerificationBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_12_sous_position_for_music_decomposition_step_4__step_sousposition_checks_pathlaw_governs_musicengine a owl:NamedIndividual ;
+    rdfs:label "the sous position reads the path law that governs the engine: the path selects->refines->subclassOf->lambda_type->Mittens must be satisfied before admission" .

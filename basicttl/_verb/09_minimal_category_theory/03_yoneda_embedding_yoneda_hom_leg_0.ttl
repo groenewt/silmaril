@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_05_yoneda_lemma_and_representables_sections_03_yoneda_embedding_yoneda_hom_leg_0_classification_leg a owl:NamedIndividual ;
+    rdfs:label "S03YonedaEmbeddingYonedaHomLeg0" .

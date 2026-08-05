@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_04_shared_diagram_cheese_trap_immunity__trap_category_theory_pedagogy_collapse a owl:NamedIndividual ;
+    rdfs:label "category_theory_pedagogy_collapse" .

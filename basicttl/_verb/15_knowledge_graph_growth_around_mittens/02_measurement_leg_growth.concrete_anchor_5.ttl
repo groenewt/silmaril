@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_5 a owl:NamedIndividual ;
+    rdfs:label "MeasurementLegEpisodicConcreteAnchor5" .

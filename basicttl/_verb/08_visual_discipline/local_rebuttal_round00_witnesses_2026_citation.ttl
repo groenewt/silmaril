@@ -1,0 +1,2 @@
+silm:instances_papers_08_visual_discipline_citation_localrebuttalround00witnesses2026 a owl:NamedIndividual ;
+    rdfs:label "P08CitationLocalRebuttalRound00Witnesses2026" .

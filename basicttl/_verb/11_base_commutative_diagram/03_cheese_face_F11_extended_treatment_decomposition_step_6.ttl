@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_03_cheese_face_and_siblings_sections_03_cheese_face_F11_extended_treatment_decomposition_step_6__step_recap_03_cheese_face_f11_extended_treatment a owl:NamedIndividual ;
+    rdfs:label "recap of the {sec} commuting law assembled across steps 1-5" .

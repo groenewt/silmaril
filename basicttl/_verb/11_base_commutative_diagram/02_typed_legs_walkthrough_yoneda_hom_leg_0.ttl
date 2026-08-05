@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_02_typed_legs_and_atlas_sections_02_typed_legs_walkthrough_yoneda_hom_leg_0_catanchorlegc a owl:NamedIndividual ;
+    rdfs:label "S02TypedLegsWalkthroughYonedaHomLeg0" .

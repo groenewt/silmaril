@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_02_render_step_decomposition_step_2__step_forge_morphism_for_02_render_step a owl:NamedIndividual ;
+    rdfs:label "render is not free-form code execution. It is a morphism in the Forge olog: every spec must be rendered by a declared template, and every template must carry (1) name, (2) version, (3) admitted spec types, (4) emitted artifact types." .

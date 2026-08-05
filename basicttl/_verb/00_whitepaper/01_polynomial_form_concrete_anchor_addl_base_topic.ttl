@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_concrete_anchor#publishoperationsort a owl:NamedIndividual ;
+    rdfs:label "PolynomialFormConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_concrete_anchor#publishoperationsort silm:hasAdditionalAttribute "base_topic:category theory" .

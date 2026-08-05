@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_diagram_tab_topology_jepa_shacl_shapes__diagram_tab_topology_jepa_shacl_shapes a owl:NamedIndividual ;
+    rdfs:label "tab:topology-jepa-shacl-shapes" .

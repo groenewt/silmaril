@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_08_kg_cross_reference_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 08_kg_cross_reference [LHH]" .

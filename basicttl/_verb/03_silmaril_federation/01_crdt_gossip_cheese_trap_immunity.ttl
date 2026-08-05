@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_cheese_trap_immunity__trap_delta_aboutness_collapse_cross_individual_merge a owl:NamedIndividual ;
+    rdfs:label "delta_aboutness_collapse_cross_individual_merge" .

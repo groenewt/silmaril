@@ -1,0 +1,20 @@
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "'] [r," .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[schemanode]| ProvenanceArrows [r," .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[schemanode]| $(MusicObject,-)$ [r," .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[classnode]| Cat/Felis\\ catus/TSN [d," .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "] \\& [d," .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_6" .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_7" .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_8" .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_9" .
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_yoneda_hom_leg__leg_10 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_10" .

@@ -1,0 +1,6 @@
+instances:
+  - fields:
+      name: Beta process
+      cpo_process_iri: "https://www.commoncoreontologies.org/cpo00000002"
+  - fields:
+      name: Beta missing grounding

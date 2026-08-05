@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_04_install_and_observe_decomposition_step_3__step_forge_morphism_for_04_install_and_observe a owl:NamedIndividual ;
+    rdfs:label "The install morphism places the certified artifact as a typed source leg in the colimit diagram D_Mittens via the indexing functor." .

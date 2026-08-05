@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_01_thesis_concrete_anchor_1#mittensapex a owl:NamedIndividual ;
+    rdfs:label "01ThesisConcreteAnchor1AddlCircuitCorner" .
+silm:instances_papers_01_orientation_chapters_flat_sections_01_thesis_concrete_anchor_1#mittensapex silm:hasAdditionalAttribute "circuit_corner:2" .

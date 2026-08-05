@@ -1,0 +1,6 @@
+GlossaryName, TermName, ShortDescription, LongDescription, Examples, Abbreviation, Usage, AdditionalAttributes, TranslationTerms, ValidValuesFor, Synonyms, ReplacedBy, ValidValues, ReplacementTerms, SeeAlso, TranslatedTerms, IsA, Antonyms, Classifies, PreferredToTerms, PreferredTerms
+Glossary-A,urn:alpha,short-a,long-a,example-a;example-b,,,attr-a;attr-z,,urn:enum-a,syn-a;syn-b,urn:beta;urn:gamma,,,,urn:type-a,,anti-a,,urn:preferred-a,
+Glossary-B,urn:beta,short-b,,,,,,,,,,,urn:alpha,,,,,,,
+urn:enum-a,urn:enum-a,,,,,,,,,,,urn:alpha,,,,,,,,
+,urn:gamma,,,,,,,,,,,,urn:alpha,,,,,,,
+urn:preferred-a,urn:preferred-a,,,,,,,,,,,,,,,,,,,urn:alpha

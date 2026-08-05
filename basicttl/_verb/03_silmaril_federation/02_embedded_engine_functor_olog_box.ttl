@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_embedded_engine_functor_olog_box__embeddedenginefunctor a owl:NamedIndividual ;
+    rdfs:label "EmbeddedEngineFunctor" .

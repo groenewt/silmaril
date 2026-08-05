@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_decomposition_step__step_corner_3 a owl:NamedIndividual ;
+    rdfs:label "semantic-dexterity corner of the cognition cube" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_decomposition_step__step_transportf_as_language_level_mapping a owl:NamedIndividual ;
+    rdfs:label "vocabulary-to-vocabulary functor. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_decomposition_step__step_leary_cube_corner_discipline a owl:NamedIndividual ;
+    rdfs:label "circuit-imprint tensor. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_decomposition_step__step_vocabulary_mapping_at_corner_3 a owl:NamedIndividual ;
+    rdfs:label "naming household and clinic typed arrows, then bijecting them" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_decomposition_step__step_yoneda_preservation_at_corner_3 a owl:NamedIndividual ;
+    rdfs:label "the corner-3 commitment is profile preservation" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_decomposition_step__step_corner_3_anchors_transportf a owl:NamedIndividual ;
+    rdfs:label "the language-level mapping lives at the semantic-dexterity corner" .

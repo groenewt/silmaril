@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_12_orientation_closure_album_sections_03_cheese_clause_reading_olog_box__03cheeseclausereadingologbox a owl:NamedIndividual ;
+    rdfs:label "03CheeseClauseReadingOlogBox" .

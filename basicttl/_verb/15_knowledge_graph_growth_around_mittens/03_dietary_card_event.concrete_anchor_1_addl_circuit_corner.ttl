@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_03_concrete_anchor_1#dietarycard5 a owl:NamedIndividual ;
+    rdfs:label "DietaryCardStageStepConcreteAnchor1AddlCircuitCorner" .
+silm:instances_papers_15_chapters_02_sections_03_concrete_anchor_1#dietarycard5 silm:hasAdditionalAttribute "circuit_corner:7" .

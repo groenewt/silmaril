@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_04_layered_sequencing_cheese_trap_immunity__trap_layer=optional_phase a owl:NamedIndividual ;
+    rdfs:label "layer=optional_phase" .

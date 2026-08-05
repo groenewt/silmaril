@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_01_sentence_chain_as_path_decomposition_step_1__step_v_1 a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the Sentence Chain as Categorical Path claim" .

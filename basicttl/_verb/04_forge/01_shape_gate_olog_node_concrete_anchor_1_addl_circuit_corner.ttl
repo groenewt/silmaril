@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_concrete_anchor_1#vetrecordaboutmittens a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 01_shape_gate_olog_node" .
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_concrete_anchor_1#vetrecordaboutmittens silm:hasAdditionalAttribute "circuit_corner:7" .

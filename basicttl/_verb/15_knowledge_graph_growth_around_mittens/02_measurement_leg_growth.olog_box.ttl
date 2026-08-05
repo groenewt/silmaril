@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_03_sections_02_olog_box__measurementlegepisodicaccumulation a owl:NamedIndividual ;
+    rdfs:label "MeasurementLegEpisodicAccumulation" .

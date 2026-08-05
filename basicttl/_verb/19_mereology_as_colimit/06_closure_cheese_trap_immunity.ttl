@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_flat_sections_06_closure_cheese_trap_immunity__trap_part_list_collapse_or_identity_on_single_leg a owl:NamedIndividual ;
+    rdfs:label "part_list_collapse_or_identity_on_single_leg" .

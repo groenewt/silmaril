@@ -1,0 +1,5 @@
+silm:instances_papers_21_ologs_and_typed_english_terms_pullback a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.21_ologs_and_typed_english.terms.pullback" .
+silm:instances_papers_21_ologs_and_typed_english_terms_pullback silm:hasAntonym silm:instances_papers_21_ologs_and_typed_english_terms_pushout .
+silm:instances_papers_21_ologs_and_typed_english_terms_pullback silm:sourceNode silm:instances_papers_21_ologs_and_typed_english_terms_pullback .
+silm:instances_papers_21_ologs_and_typed_english_terms_pullback silm:targetNode silm:instances_papers_21_ologs_and_typed_english_terms_pushout .

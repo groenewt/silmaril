@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_09_classification_leg_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "09ClassificationLegConcreteAnchor3" .

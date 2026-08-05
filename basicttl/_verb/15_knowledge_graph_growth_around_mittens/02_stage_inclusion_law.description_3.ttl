@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_3#subsequentgrowthsteparrow a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.02.concrete_anchor.3#subsequentgrowthsteparrow" .
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_3#subsequentgrowthsteparrow silm:hasLongDescription "The SubsequentGrowthStepArrow is a subsequent growth-step arrow, e.g. the 2026-04-26 dietary card event. In the paper's apparatus it appears as the symbol '(F',L')', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

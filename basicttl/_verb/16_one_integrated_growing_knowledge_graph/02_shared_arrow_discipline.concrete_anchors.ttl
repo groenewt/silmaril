@@ -1,0 +1,6 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors__sharedarrowdisciplineanchor a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors__sharedarrowdisciplinecrossarrow a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors__integrationmediator a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .

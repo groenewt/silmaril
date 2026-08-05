@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_02_twelve_gaps_decomposition_step_2__step_closedby a owl:NamedIndividual ;
+    rdfs:label "the primary typed arrow connecting objects in the 02_twelve_gaps claim" .

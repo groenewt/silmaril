@@ -1,0 +1,3 @@
+silm:instances_papers_03_silmaril_federation_acronym_crdt a owl:NamedIndividual ;
+    rdfs:label "Conflict-Free Replicated Data Type" .
+silm:instances_papers_03_silmaril_federation_acronym_crdt silm:hasAbbreviation "CRDT" .

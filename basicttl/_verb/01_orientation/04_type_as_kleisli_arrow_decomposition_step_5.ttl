@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_04_type_as_kleisli_arrow_decomposition_step_5__step_y^intypedleg_record_=_admit_arrow_from_gate;_y^outtypedleg_r a owl:NamedIndividual ;
+    rdfs:label "The Yoneda profile of TypedLeg_record has one incoming arrow: admit (the admission from the gate). It has one outgoing arrow: lambda_rec, the cocone leg from TypedLeg_record to the colimit apex Mittens. By Yoneda naturality, classifying the witness as a record leg fixes this profile and determines where glue will wire it in the cocone." .

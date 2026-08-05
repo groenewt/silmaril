@@ -1,0 +1,6 @@
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "typed_patch_inclusion" .
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "overlap_restriction_head" .
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "overlap_restriction_body" .

@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_14_factorization_contract_olog_box__14factorizationcontract a owl:NamedIndividual ;
+    rdfs:label "14FactorizationContract" .

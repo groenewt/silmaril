@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_03_olog_node_arrow_law_concrete_anchor_0_Mittens a owl:NamedIndividual ;
+    rdfs:label "S03OlogNodeArrowLawConcreteAnchor0" .

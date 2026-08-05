@@ -1,0 +1,8 @@
+anchors:
+  - id: common-core
+    pattern: '^cco:ont[0-9]{8}$'
+  - id: event
+    pattern: '^cceo:[A-Za-z0-9_]+$'
+  - id: silmaril
+    pattern: '^urn:silmaril:[a-z\\-]+(:[a-z0-9_\\-]+)+$'
+

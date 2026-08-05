@@ -1,0 +1,3 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_soap a owl:NamedIndividual ;
+    rdfs:label "Subjective Objective Assessment Plan" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_soap silm:hasAbbreviation "SOAP" .

@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_08_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_decomposition_step__step_hom__mittens_vs_hom__graniterow_mittens a owl:NamedIndividual ;
+    rdfs:label "the two incoming-arrow profiles being compared — the full Mittens profile and the narrow storage-chunk profile" .
+silm:instances_papers_05_granite_substrate_chapters_08_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_decomposition_step__step_yoneda_embedding_y a owl:NamedIndividual ;
+    rdfs:label "the Yoneda embedding maps each object to its represented presheaf Hom(-,X)" .
+silm:instances_papers_05_granite_substrate_chapters_08_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_decomposition_step__step_yoneda_lemma a owl:NamedIndividual ;
+    rdfs:label "the Yoneda lemma: any object is fully characterized by its represented presheaf Hom(-,X)" .
+silm:instances_papers_05_granite_substrate_chapters_08_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_decomposition_step__step_mittens_storage_identity_distinction a owl:NamedIndividual ;
+    rdfs:label "the concrete Mittens/Icechunk case where the Yoneda lemma is applied" .
+silm:instances_papers_05_granite_substrate_chapters_08_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_decomposition_step__step_ymittens_≠_ygraniterow_in_presheaf_category a owl:NamedIndividual ;
+    rdfs:label "the Yoneda images of Mittens and the chunk are different presheaves — confirming the objects differ" .
+silm:instances_papers_05_granite_substrate_chapters_08_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_decomposition_step__step_bridge__storage_identity__>_yoneda_lemma a owl:NamedIndividual ;
+    rdfs:label "the storage-identity distinction in Granite is a concrete instance of the Yoneda lemma — the storage-architect tunnel into abstract category theory" .

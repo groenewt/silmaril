@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_03_concrete_anchor_1#colimitoperator a owl:NamedIndividual ;
+    rdfs:label "LongRunColimitExistenceConcreteAnchor1AddlPaperKind" .
+silm:instances_papers_15_chapters_01_sections_03_concrete_anchor_1#colimitoperator silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.15_knowledge_graph_growth_around_mittens" .

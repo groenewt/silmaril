@@ -1,0 +1,3 @@
+silm:GossipPreservesMittensTheorem a owl:Class ;
+    rdfs:label "GossipPreservesMittensTheorem" ;
+    rdfs:comment "Theorem: gossip convergence preserves Mittens. Every replica R_i carries an aboutness arrow a_i: R_i -> Mittens; the gossip-converged state R_vee carries a_vee: R_vee -> Mittens such that a_vee circ mu_i = a_i. The gossip protocol does not change the cat." .

@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_10_alternatives_dual_computational_sections_02_dual_construction_kernel_pair_concrete_anchor_11_VetCarePlanF11 a owl:NamedIndividual ;
+    rdfs:label "S02DualConstructionKernelPairConcreteAnchor11" .

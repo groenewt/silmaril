@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_13_evidence_grammar_quality_sections_03_quality_measurement_role_process_decomposition_step_4__step_mittens_cat_individual a owl:NamedIndividual ;
+    rdfs:label "the cat-vet-clinic individual Mittens whose Cat anchor c, DomesticCat refinement a, vet-classifies, microchip-identifies legs all glue into one m_11 apex" .

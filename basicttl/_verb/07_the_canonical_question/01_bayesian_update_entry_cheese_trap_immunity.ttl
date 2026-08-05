@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_10_epistemology_entry_sections_01_bayesian_update_entry_cheese_trap_immunity__trap_epistemic_reader_collapses_evidence_to_belief a owl:NamedIndividual ;
+    rdfs:label "epistemic_reader_collapses_evidence_to_belief" .

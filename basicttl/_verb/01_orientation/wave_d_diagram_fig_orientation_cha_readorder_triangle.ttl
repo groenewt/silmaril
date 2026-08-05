@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_cha_readorder_triangle__diagram_fig_orientation_cha_readorder_triangle a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chA-readorder-triangle" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chb_two_pages_inst__diagram_fig_orientation_chb_two_pages_inst a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chB-two-pages-inst" .

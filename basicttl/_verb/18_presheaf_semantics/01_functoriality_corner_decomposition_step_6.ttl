@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_functoriality_corner_decomposition_step_6__step_functoriality_corner_of_the_leary_cube a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Functoriality Corner of the Leary Cube on the Mittens presheaf is exactly the lawful construction it names" .

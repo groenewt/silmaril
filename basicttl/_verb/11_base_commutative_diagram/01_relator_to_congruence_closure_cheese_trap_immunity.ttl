@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_05_relator_quotient_projection_sections_01_relator_to_congruence_closure_cheese_trap_immunity__trap_fluent_prose_admitted_without_typed_path_check a owl:NamedIndividual ;
+    rdfs:label "fluent_prose_admitted_without_typed_path_check" .

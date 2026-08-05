@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_che_quality_fan__diagram_fig_orientation_che_quality_fan a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chE-quality-fan" .

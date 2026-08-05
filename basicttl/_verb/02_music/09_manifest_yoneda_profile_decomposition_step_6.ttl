@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_decomposition_step_6__step_path_09_manifest_yoneda_profile a owl:NamedIndividual ;
+    rdfs:label "the recap: why no shortcut bypasses the law of the 09_manifest_yoneda_profile claim" .

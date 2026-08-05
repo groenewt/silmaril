@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_diagram_tab_five_collapse_failures__diagram_tab_five_collapse_failures a owl:NamedIndividual ;
+    rdfs:label "tab:five-collapse-failures" .

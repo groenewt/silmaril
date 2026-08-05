@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_01_factorization_square_decomposition_step_5__step_forge_morphism_for_01_factorization_square a owl:NamedIndividual ;
+    rdfs:label "By the Yoneda lemma, Y determines the runtime atom R up to isomorphism. If Π ≠ Y, the source's declared profile does not match the runtime atom's actual profile — a provenance gap that the gate rejects." .

@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor a owl:NamedIndividual ;
+    rdfs:label "ThesisConcreteAnchorExample" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor silm:hasExample "In 'ThesisConcreteAnchor', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the electronic health record VetRecord_77 for Mittens-the-cat (microchip ID 44B2F9) created at the Tartu Animal Clinic on 2026-05-18; also, the clinical care plan VetCarePlan_77 rendered as a PDF after Mittens's VetRecord_77 passed all four publication gates; also, the DICOM/HL7 intake form submitted by the Tartu Animal Clinic for Mittens's May 2026 annual exam." .

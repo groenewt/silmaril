@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_01_decomposition_step_6__step_theorem_t6_g1 a owl:NamedIndividual ;
+    rdfs:label "Circuit-5 primacy for the growth thesis" .

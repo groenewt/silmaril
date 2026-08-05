@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_03_bare_noun_cheese_trap_concrete_anchor_2_bare_Mittens a owl:NamedIndividual ;
+    rdfs:label "BareNounCheeseTrapConcreteAnchor2" .

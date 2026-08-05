@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_06_closure_decomposition_step_3__step_forge_morphism_for_06_closure a owl:NamedIndividual ;
+    rdfs:label "Category-theoretic base topic for ForgeClosure. — concrete forge-domain reading in section 'Forge Closure --- Return to Yoneda'." .

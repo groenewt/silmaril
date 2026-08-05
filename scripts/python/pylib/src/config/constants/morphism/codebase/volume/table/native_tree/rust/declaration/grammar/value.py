@@ -1,0 +1,1 @@
+VALUE = r"\A[^\S\r\n]*(?:pub(?:[^\S\r\n]*\([^)]*\))?[^\S\r\n]+)?(?:default[^\S\r\n]+)?(?:const[^\S\r\n]+)?(?:async[^\S\r\n]+)?(?:unsafe[^\S\r\n]+)?(?:extern[^\S\r\n]+\"[^\"]*\"[^\S\r\n]+)?(?:fn|struct|enum|trait|mod)[^\S\r\n]+([A-Za-z_][A-Za-z0-9_]*)"

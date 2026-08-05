@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_04_inconsistency_as_non_commuting_yoneda_hom_leg_1_check_commutativity a owl:NamedIndividual ;
+    rdfs:label "InconsistencyAsNonCommutingYonedaHomLeg1" .

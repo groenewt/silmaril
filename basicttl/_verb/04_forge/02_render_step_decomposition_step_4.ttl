@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_02_render_step_decomposition_step_4__step_forge_morphism_for_02_render_step a owl:NamedIndividual ;
+    rdfs:label "The body-mass spec for Mittens is rendered by the template Template_MeasurementProfile: a named template that accepts a body-mass spec with value in kg and date field, and emits a typed measurement-profile artifact." .

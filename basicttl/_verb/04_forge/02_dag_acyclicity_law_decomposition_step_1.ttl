@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_02_dag_acyclicity_law_decomposition_step_1__step_forge_morphism_for_02_dag_acyclicity_law a owl:NamedIndividual ;
+    rdfs:label "The central math object of this section. — concrete forge-domain reading in section 'DAG Acyclicity as a Path Law'." .

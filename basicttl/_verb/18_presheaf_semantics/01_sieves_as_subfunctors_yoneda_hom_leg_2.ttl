@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_sieves_as_subfunctors_yoneda_hom_leg_2_P_r10 a owl:NamedIndividual ;
+    rdfs:label "P1801_sieves_as_subfunctorsYonedaHomLeg2" .

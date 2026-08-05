@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_03_free_monad_unpacked_sections_04_kleisli_triple_concrete_anchor_4 a owl:NamedIndividual ;
+    rdfs:label "04KleisliTripleConcreteAnchor4" .

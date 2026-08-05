@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_04_inconsistency_as_non_commuting_decomposition_step_4__step_the_mittens___domestic_cat___body_mass_quality___vet_anchor a owl:NamedIndividual ;
+    rdfs:label "the concrete domain-story anchor for the claim" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_05_probe_ungated_render_decomposition_step_4__step_measurementevent2024_ungated__figure_shows_"4_1_kg"_but_has_ a owl:NamedIndividual ;
+    rdfs:label "If the source phrase \"Mittens measured at 4.1 kg on 2024-11-01\" is rendered directly without typing MeasurementEvent2024 and validating via the SHACL shape, the figure shows a box labelled \"4.1 kg\" but has no admitted measurement leg in the page olog." .

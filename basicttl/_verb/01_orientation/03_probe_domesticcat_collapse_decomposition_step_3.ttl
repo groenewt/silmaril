@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_03_probe_domesticcat_collapse_decomposition_step_3__step_joc_§11_1__a_diagram_is_a_functor;_objects_at_distinct_index a owl:NamedIndividual ;
+    rdfs:label "Joy of Cats §11.1: a diagram is a functor from an index category into C; objects at different positions in the index are mapped to distinct objects in C (unless explicitly equated). DomesticCat and TaxRow_TSN183798 are at different positions in J_Mittens." .

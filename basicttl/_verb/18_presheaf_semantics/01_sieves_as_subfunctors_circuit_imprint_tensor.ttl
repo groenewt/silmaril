@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_sieves_as_subfunctors_circuit_imprint_tensor__corner_5 a owl:NamedIndividual ;
+    rdfs:label "5" .

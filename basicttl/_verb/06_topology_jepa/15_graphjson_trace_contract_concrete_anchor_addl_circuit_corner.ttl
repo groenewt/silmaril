@@ -1,0 +1,3 @@
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_15_graphjson_trace_contract_concrete_anchor#mittensdiagramimage a owl:NamedIndividual ;
+    rdfs:label "15GraphjsonTraceContractConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_15_graphjson_trace_contract_concrete_anchor#mittensdiagramimage silm:hasAdditionalAttribute "circuit_corner:4" .

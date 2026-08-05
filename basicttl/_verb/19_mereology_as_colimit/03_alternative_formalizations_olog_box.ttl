@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_10_computational_construction_sections_03_alternative_formalizations_olog_box__alternativeformalizations a owl:NamedIndividual ;
+    rdfs:label "AlternativeFormalizations" .

@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_16_bridges_yoneda_sheaf_adj_kan_sections_02_cross_paper_bridge_sheaf_gluing_yoneda_hom_leg_1_domesticcatrefinementlega a owl:NamedIndividual ;
+    rdfs:label "S02CrossPaperBridgeSheafGluingYonedaHomLeg1Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_16_bridges_yoneda_sheaf_adj_kan_sections_02_cross_paper_bridge_sheaf_gluing_yoneda_hom_leg_1_domesticcatrefinementlega silm:hasExample "In 'S02CrossPaperBridgeSheafGluingYonedaHomLeg1', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, a:Mittens->DomesticCat — the domestic-cat refinement leg; admissible iff r.a equals c" .

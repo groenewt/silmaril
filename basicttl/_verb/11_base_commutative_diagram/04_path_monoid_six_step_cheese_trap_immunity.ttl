@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_25_six_step_bridge_deep_dives_sections_04_path_monoid_six_step_cheese_trap_immunity__trap_rewrite_identity_collapse a owl:NamedIndividual ;
+    rdfs:label "rewrite_identity_collapse" .

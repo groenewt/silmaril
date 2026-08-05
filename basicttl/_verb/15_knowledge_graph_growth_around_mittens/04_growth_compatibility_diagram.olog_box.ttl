@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_04_olog_box__fullfourstagecoconediagram a owl:NamedIndividual ;
+    rdfs:label "FullFourStageCoconeDiagram" .

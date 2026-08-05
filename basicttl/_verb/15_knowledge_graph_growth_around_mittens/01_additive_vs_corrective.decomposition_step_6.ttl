@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_05_sections_01_decomposition_step_6__step_theorem_t5_g1 a owl:NamedIndividual ;
+    rdfs:label "Corrective growth admits a non-identity stage-inclusion" .

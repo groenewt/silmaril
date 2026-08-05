@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_diagram_tab_profile_domain_eval__diagram_tab_profile_domain_eval a owl:NamedIndividual ;
+    rdfs:label "tab:profile-domain-eval" .

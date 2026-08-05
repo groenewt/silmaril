@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_07_mittens_storage_packet_olog_box__mittensstoragepacket a owl:NamedIndividual ;
+    rdfs:label "MittensStoragePacket" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_02_generated_material_absorption_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 02_generated_material_absorption [HLH]" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_04_shared_diagram_decomposition_step_2__step_sharedgrammargate a owl:NamedIndividual ;
+    rdfs:label "the primary typed arrow connecting objects in the 04_shared_diagram claim" .

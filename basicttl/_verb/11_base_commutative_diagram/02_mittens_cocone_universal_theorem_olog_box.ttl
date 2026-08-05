@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_01_core_theorems_sections_02_mittens_cocone_universal_theorem_olog_box__basecommutativediagram_s02mittenscoconeuniversaltheorem a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S02mittenscoconeuniversaltheorem" .

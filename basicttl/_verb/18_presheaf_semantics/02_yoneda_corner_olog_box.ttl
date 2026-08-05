@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_yoneda_corner_olog_box__p18section02_yoneda_cornerologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section02_yoneda_cornerOlogBox" .

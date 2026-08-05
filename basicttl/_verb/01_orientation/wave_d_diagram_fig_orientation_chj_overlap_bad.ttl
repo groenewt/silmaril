@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chj_overlap_bad__diagram_fig_orientation_chj_overlap_bad a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chJ-overlap-bad" .

@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_02_sources_and_closure_sections_04_joy_of_cats_clause_unpacking_olog_box__joyofcatsclauseunpacking a owl:NamedIndividual ;
+    rdfs:label "JoyOfCatsClauseUnpacking" .

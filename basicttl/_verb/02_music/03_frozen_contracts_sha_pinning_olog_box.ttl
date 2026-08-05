@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_03_authorship_context_sections_03_frozen_contracts_sha_pinning_olog_box__musicolog03frozencontractsshabox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03FrozenContractsShaBox" .

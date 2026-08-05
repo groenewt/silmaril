@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_cocone_universality_decomposition_step_1__step_p_mittens a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the Universal Property of the Mittens Cocone claim" .

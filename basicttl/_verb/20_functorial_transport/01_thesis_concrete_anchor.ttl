@@ -1,0 +1,20 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "the concrete household cat Mittens, treated as the colimit apex of the household-side diagram D_Mittens whose typed legs the transport functor F must preserve." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__functorialtransportnamed a owl:NamedIndividual ;
+    rdfs:label "the named transport functor F from the household category C to the schema category D, sending each ontology arrow to a typed schema arrow." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__transportedmittensapex a owl:NamedIndividual ;
+    rdfs:label "the schema-side image of Mittens under F, the cocone apex through which every transported household-side leg must factor." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__mittenssourcediagram a owl:NamedIndividual ;
+    rdfs:label "the household-side diagram on Mittens whose objects are the typed household-side legs (type, taxonPath, quality, evidence, process, role, measurement)." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__preservationcomparisonmap a owl:NamedIndividual ;
+    rdfs:label "the comparison map colim(F o D_Mittens) -> F(colim D_Mittens) whose isomorphism is the preservation audit point." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__mittensbodymassquality a owl:NamedIndividual ;
+    rdfs:label "the body-mass quality leg of Mittens recorded by the household; F must preserve this typed leg into the schema category." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__mittensevidencerecord a owl:NamedIndividual ;
+    rdfs:label "the household-side evidence record about Mittens that the transport must keep linked to F(Mittens)." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__mittensmicrochipid a owl:NamedIndividual ;
+    rdfs:label "Mittens' microchip identifier (9-digit string) used by the household for unique row identification across vet records." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__mittenspetrole a owl:NamedIndividual ;
+    rdfs:label "the household role arrow naming Mittens as the household pet; the schema image must keep this typed role." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_01_thesis_concrete_anchor__mittensmeasurementrecord a owl:NamedIndividual ;
+    rdfs:label "the measurement-record arrow that binds Mittens to a body-mass measurement; transport must keep the arrow direction intact." .

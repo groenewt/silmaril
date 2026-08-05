@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_decomposition_step_1__step_forge_morphism_for_01_shape_gate_olog_node a owl:NamedIndividual ;
+    rdfs:label "The central math object of this section: ShapeGateNode. See section tex Step 1 for full symbol list." .

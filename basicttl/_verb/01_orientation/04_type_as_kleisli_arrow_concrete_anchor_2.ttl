@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_04_type_as_kleisli_arrow_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "TypeKleisliAnchorTypedLegRecord" .

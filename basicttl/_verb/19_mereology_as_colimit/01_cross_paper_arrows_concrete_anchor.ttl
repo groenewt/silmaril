@@ -1,0 +1,16 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_11_cross_paper_bridges_a_sections_01_cross_paper_arrows_concrete_anchor__mereologydiagram a owl:NamedIndividual ;
+    rdfs:label "the part-whole diagram of Mittens-the-cat, indexed by body-region tags (head, torso, paws, tail) and overlap joints" .
+silm:instances_papers_19_mereology_as_colimit_chapters_11_cross_paper_bridges_a_sections_01_cross_paper_arrows_concrete_anchor__mittenscolimit a owl:NamedIndividual ;
+    rdfs:label "the colimit apex assembling head, torso, paws, and tail observations into the single individual Mittens-the-cat" .
+silm:instances_papers_19_mereology_as_colimit_chapters_11_cross_paper_bridges_a_sections_01_cross_paper_arrows_concrete_anchor__headobservation a owl:NamedIndividual ;
+    rdfs:label "the head-region olog fragment of Mittens's vet exam: left ear position, right ear position, three-color torbie eye markings" .
+silm:instances_papers_19_mereology_as_colimit_chapters_11_cross_paper_bridges_a_sections_01_cross_paper_arrows_concrete_anchor__torsoobservation a owl:NamedIndividual ;
+    rdfs:label "the torso-region olog fragment of Mittens: flank patch, back stripe, belly fur density and three-color torbie pattern" .
+silm:instances_papers_19_mereology_as_colimit_chapters_11_cross_paper_bridges_a_sections_01_cross_paper_arrows_concrete_anchor__tailobservation a owl:NamedIndividual ;
+    rdfs:label "the tail-region olog fragment of Mittens: base joint, tip white tuft, length 28cm with kink near distal end" .
+silm:instances_papers_19_mereology_as_colimit_chapters_11_cross_paper_bridges_a_sections_01_cross_paper_arrows_concrete_anchor__neckjoint a owl:NamedIndividual ;
+    rdfs:label "the shared anatomical joint between Mittens's head and torso observations, the apex of the head-torso pushout" .
+silm:instances_papers_19_mereology_as_colimit_chapters_11_cross_paper_bridges_a_sections_01_cross_paper_arrows_concrete_anchor__spinejoint a owl:NamedIndividual ;
+    rdfs:label "the shared anatomical joint between Mittens's torso and tail observations, the apex of the torso-tail pushout" .
+silm:instances_papers_19_mereology_as_colimit_chapters_11_cross_paper_bridges_a_sections_01_cross_paper_arrows_concrete_anchor__vetcareplanrecord a owl:NamedIndividual ;
+    rdfs:label "the clinical care plan record 77 generated for Mittens at the May 2026 vet visit at the Tartu Animal Clinic" .

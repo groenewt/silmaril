@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_05_cannon_or_gpt_absorption_concrete_anchor_6#mittensoutgoingyonedaprofile a owl:NamedIndividual ;
+    rdfs:label "05CannonOrGptAbsorptionConcreteAnchor6AddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_flat_sections_05_cannon_or_gpt_absorption_concrete_anchor_6#mittensoutgoingyonedaprofile silm:hasAdditionalAttribute "dunbar_layer:0" .

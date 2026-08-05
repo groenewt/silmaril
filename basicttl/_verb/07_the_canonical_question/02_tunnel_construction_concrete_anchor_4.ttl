@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_03_yoneda_as_tunnel_sections_02_tunnel_construction_concrete_anchor_4 a owl:NamedIndividual ;
+    rdfs:label "P07YonedaAsTunnelTunnelConstructionConcreteAnchor4" .

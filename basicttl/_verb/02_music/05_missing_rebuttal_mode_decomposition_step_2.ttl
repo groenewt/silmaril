@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_11_failure_modes_inventory_sections_05_missing_rebuttal_mode_decomposition_step_2__step_compose a owl:NamedIndividual ;
+    rdfs:label "the typed-arrow composition operation" .

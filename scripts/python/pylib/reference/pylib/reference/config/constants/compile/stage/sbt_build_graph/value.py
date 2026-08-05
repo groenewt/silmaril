@@ -1,0 +1,1 @@
+VALUE = 'sbt-build-graph'

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_01_probe_catus_collision_decomposition_step_1__step_catus a owl:NamedIndividual ;
+    rdfs:label "The string \"catus\" as it appears in an ITIS taxonomy table: a bare species epithet, not a typed olog object." .

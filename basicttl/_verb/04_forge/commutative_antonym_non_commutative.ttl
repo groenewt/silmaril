@@ -1,0 +1,5 @@
+silm:instances_papers_04_forge_terms_commutative a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.commutative" .
+silm:instances_papers_04_forge_terms_commutative silm:hasAntonym silm:instances_papers_04_forge_terms_non_commutative .
+silm:instances_papers_04_forge_terms_commutative silm:sourceNode silm:instances_papers_04_forge_terms_commutative .
+silm:instances_papers_04_forge_terms_commutative silm:targetNode silm:instances_papers_04_forge_terms_non_commutative .

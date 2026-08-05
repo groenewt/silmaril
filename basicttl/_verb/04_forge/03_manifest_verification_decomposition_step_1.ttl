@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_03_manifest_verification_decomposition_step_1__step_forge_morphism_for_03_manifest_verification a owl:NamedIndividual ;
+    rdfs:label "Pi is the declared manifest: the written Hom-profile declared before materialization. Y is the traced profile: the Yoneda-profile emitted by the runtime atom after installation. VerificationResult is the outcome of comparing Pi and Y." .

@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_03_probe_domesticcat_collapse_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "ProbeDomesticCatCollapseAnchorMittensExample" .
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_03_probe_domesticcat_collapse_concrete_anchor_3 silm:hasExample "In 'ProbeDomesticCatCollapseAnchorMittens', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The colimit apex that separates DomesticCat (outward) from TaxRow_TSN183798 (inward). Both arrows pass through Mittens; equating their endpoints would collapse the cocone to a loop through Mittens.." .

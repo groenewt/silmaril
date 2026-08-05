@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_03_yoneda_as_tunnel_sections_01_yoneda_naturality_in_canonical_question_decomposition_step_6__step_q_07_ap a owl:NamedIndividual ;
+    rdfs:label "reading position 6 (recap): the canonical-question Q_07 is read by its answerability profile AP(Q_07) = Hom_O(Q_07,-), determined up to isomorphism by Yoneda" .

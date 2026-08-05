@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "FlattenedHouseholdIn" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "FlattenedClinicOut" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_02_data_dump_as_master_face_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "TransportObjectAssignment_2" .

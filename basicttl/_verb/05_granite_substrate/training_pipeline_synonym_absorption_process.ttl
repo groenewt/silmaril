@@ -1,0 +1,4 @@
+silm:instances_papers_05_granite_substrate_terms_training_pipeline a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.05_granite_substrate.terms.training_pipeline" .
+silm:instances_papers_05_granite_substrate_terms_training_pipeline silm:hasSynonym "absorption process" .
+silm:instances_papers_05_granite_substrate_terms_training_pipeline silm:sourceNode silm:instances_papers_05_granite_substrate_terms_training_pipeline .

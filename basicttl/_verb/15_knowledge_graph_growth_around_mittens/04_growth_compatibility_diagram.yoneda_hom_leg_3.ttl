@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_04_yoneda_hom_leg_3 a owl:NamedIndividual ;
+    rdfs:label "FullGrowthCoconeDiagramYonedaHomLeg3" .

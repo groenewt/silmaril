@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chi_kleisli_6__diagram_fig_orientation_chi_kleisli_6 a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chI-kleisli-6" .

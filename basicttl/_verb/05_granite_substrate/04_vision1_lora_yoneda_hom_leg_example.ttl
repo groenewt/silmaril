@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "Vision1LoRAYonedaHomLegExample" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_yoneda_hom_leg silm:hasExample "In 'Vision1LoRAYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, The arrow Mittens -> VetCarePlan_77 does not survive into ChunkManifest_Mittens. (02_materialization_leg.tex Theorem 1.2 Step 2)" .

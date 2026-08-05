@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_01_forge_position_cheese_trap_immunity__trap_phase4_subsumes_phases a owl:NamedIndividual ;
+    rdfs:label "phase4_subsumes_phases" .

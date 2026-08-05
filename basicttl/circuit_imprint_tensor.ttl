@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:circuitimprinttensor a owl:Class ;
+    rdfs:label "CircuitImprintTensor" ;
+    rdfs:comment "Frame-bound Leary eight-circuit imprint. The carrier is the independently\nindexed family C1 Bio-Survival, C2 Emotional-Territorial, C3\nSymbolic-Neurosemantic, C4 Socio-Sexual, C5 Neurosomatic, C6 Neuroelectric\nReprogramming, C7 Neurogenetic Awareness, and C8 Quantum Non-Local\nIntegration. An imprint is a multi-hot support: any subset of the eight\ncircuits, including the empty subset, can be active without changing the\nidentity of the imprinted atom. No binary coordinate, cube, Hamming\nadjacency, scheduler lane, or arithmetic circuit crosswalk is admitted.\nA relation between two circuits exists only when the same native Frame\nresolves an explicit relation-witness record containing source, authority,\nrelation type, and successful readback receipt. Lambda denotes the motion\nsupplied by lambda-calculus reduction and eigenvalue/eigenvector graph-state\nevolution; it does not manufacture Leary circuit geometry.\n" .

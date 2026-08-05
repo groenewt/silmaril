@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_11_classification_leg_concrete_anchor#domesticcat a owl:NamedIndividual ;
+    rdfs:label "ClassificationLegConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_11_classification_leg_concrete_anchor#domesticcat silm:hasAdditionalAttribute "circuit_corner:6" .

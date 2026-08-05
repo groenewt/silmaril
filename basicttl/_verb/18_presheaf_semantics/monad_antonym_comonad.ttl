@@ -1,0 +1,5 @@
+silm:instances_papers_18_presheaf_semantics_terms_monad a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.monad" .
+silm:instances_papers_18_presheaf_semantics_terms_monad silm:hasAntonym silm:instances_papers_18_presheaf_semantics_terms_comonad .
+silm:instances_papers_18_presheaf_semantics_terms_monad silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_monad .
+silm:instances_papers_18_presheaf_semantics_terms_monad silm:targetNode silm:instances_papers_18_presheaf_semantics_terms_comonad .

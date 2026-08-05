@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_04_negative_witnesses_cheese_trap_immunity__trap_phantom_regression_claim_without_negative_witness_in_ledger a owl:NamedIndividual ;
+    rdfs:label "phantom_regression_claim_without_negative_witness_in_ledger" .

@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_olog_box__crdtgossipdeltapropagation a owl:NamedIndividual ;
+    rdfs:label "CRDTGossipDeltaPropagation" .

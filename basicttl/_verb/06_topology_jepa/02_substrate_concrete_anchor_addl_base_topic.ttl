@@ -1,0 +1,3 @@
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_02_substrate_concrete_anchor#mittensdiagramimage a owl:NamedIndividual ;
+    rdfs:label "02SubstrateConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_02_substrate_concrete_anchor#mittensdiagramimage silm:hasAdditionalAttribute "base_topic:topology" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_decomposition_step_4__step_joc620_witness__path=cannon_cat_joy_of_cats_md__lines=2340_2 a owl:NamedIndividual ;
+    rdfs:label "The joc620 witness is the concrete instantiation of all four fields: path points to the cannon file for Joy of Cats; lines 2340-2360 is the Yoneda lemma corollary; the verbatim quote is the exact text; the local key is the BibTeX key. This witness supports the Kleisli composition theorem via the Yoneda bijection step." .

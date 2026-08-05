@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_01_patch_cover_cocone_sections_02_overlap_compatibility_olog_box__02overlapcompatibility a owl:NamedIndividual ;
+    rdfs:label "02OverlapCompatibility" .

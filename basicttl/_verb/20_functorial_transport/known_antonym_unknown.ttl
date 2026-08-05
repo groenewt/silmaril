@@ -1,0 +1,5 @@
+silm:instances_papers_20_functorial_transport_terms_known a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.20_functorial_transport.terms.known" .
+silm:instances_papers_20_functorial_transport_terms_known silm:hasAntonym silm:instances_papers_20_functorial_transport_terms_unknown .
+silm:instances_papers_20_functorial_transport_terms_known silm:sourceNode silm:instances_papers_20_functorial_transport_terms_known .
+silm:instances_papers_20_functorial_transport_terms_known silm:targetNode silm:instances_papers_20_functorial_transport_terms_unknown .

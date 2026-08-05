@@ -1,0 +1,4 @@
+silm:instances_papers_02_music_sections_07_bridge_to_incoming_outgoing_profiles_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] \\& 13incomingoutgoingprofiles [r," .
+silm:instances_papers_02_music_sections_07_bridge_to_incoming_outgoing_profiles_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_2" .

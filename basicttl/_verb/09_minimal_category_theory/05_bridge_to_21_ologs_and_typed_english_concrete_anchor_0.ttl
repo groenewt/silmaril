@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_08_cross_paper_bridges_sections_05_bridge_to_21_ologs_and_typed_english_concrete_anchor_0_Mittens a owl:NamedIndividual ;
+    rdfs:label "S05BridgeTo21OlogsAndTypedEnglishConcreteAnchor0" .

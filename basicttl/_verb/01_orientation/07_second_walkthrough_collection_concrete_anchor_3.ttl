@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_01_reader_onboarding_sections_07_second_walkthrough_collection_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "07SecondWalkthroughCollectionConcreteAnchor3" .

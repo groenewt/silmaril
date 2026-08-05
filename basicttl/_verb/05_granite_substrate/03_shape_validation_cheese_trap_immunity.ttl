@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_cheese_trap_immunity__trap_validation_as_identity_collapse__treating_a_shape_validation a owl:NamedIndividual ;
+    rdfs:label "validation-as-identity collapse: treating a shape-validation pass as proof that the validated artifact IS the governed object, rather than as proof that it satisfies the typed shape constraint for its declared leg type" .

@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_06_unit_leg_concrete_anchor__unit_grams a owl:NamedIndividual ;
+    rdfs:label "Unit_grams: the SI gram unit node (symbol: g, dimension: mass, UCUM code: g); used as the unit-attribution source for WeightMeas_3450g; shared by any gram-valued measurement in the local olog" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_06_unit_leg_concrete_anchor__unitarrow_grams a owl:NamedIndividual ;
+    rdfs:label "UnitArrow_grams: the composed arrow Unit_grams -> WeightMeas_3450g -> MittensColimitApex; the unit leg routes through the measurement event" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_06_unit_leg_concrete_anchor__si_massunit a owl:NamedIndividual ;
+    rdfs:label "SI_MassUnit: the SI international system mass unit type; the authority node that types Unit_grams as a gram unit; the BIPM SI definition" .

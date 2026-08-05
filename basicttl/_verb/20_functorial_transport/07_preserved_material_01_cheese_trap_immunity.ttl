@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_cheese_trap_immunity__trap_transport_collapses_to_data_dump a owl:NamedIndividual ;
+    rdfs:label "transport_collapses_to_data_dump" .

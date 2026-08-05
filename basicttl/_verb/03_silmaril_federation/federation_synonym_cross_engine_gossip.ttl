@@ -1,0 +1,4 @@
+silm:instances_papers_03_silmaril_federation_terms_federation a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.federation" .
+silm:instances_papers_03_silmaril_federation_terms_federation silm:hasSynonym "cross-engine gossip" .
+silm:instances_papers_03_silmaril_federation_terms_federation silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_federation .

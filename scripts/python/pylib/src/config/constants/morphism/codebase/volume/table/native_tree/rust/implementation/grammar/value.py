@@ -1,0 +1,1 @@
+VALUE = r"\A[^\S\r\n]*(?:default[^\S\r\n]+)?(?:unsafe[^\S\r\n]+)?impl(?:[^\S\r\n]*<.*?>)?[^\S\r\n]+(?:[^{]*?[^\S\r\n]for[^\S\r\n]+)?(?:&[^\S\r\n]*)?(?:'[A-Za-z_][A-Za-z0-9_]*[^\S\r\n]+)?(?:mut[^\S\r\n]+)?([A-Za-z_][A-Za-z0-9_]*)"

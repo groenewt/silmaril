@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_03_decomposition_step_1__step_e^diet_n a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T2-G3 (Dietary-card stage step admits a prescription-bound batch)" .

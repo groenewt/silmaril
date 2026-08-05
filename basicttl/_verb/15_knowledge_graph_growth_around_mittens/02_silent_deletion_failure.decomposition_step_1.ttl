@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_08_sections_02_decomposition_step_1__step_no_admissible_f^del__l^del a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T8-G2 (Silent deletion is forbidden)" .

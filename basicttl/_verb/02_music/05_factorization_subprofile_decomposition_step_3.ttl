@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_13_per_leg_yoneda_subprofiles_sections_05_factorization_subprofile_decomposition_step_3__step_spivak_olog_definition a owl:NamedIndividual ;
+    rdfs:label "the olog typed-English definition Spivak & Kent 2012" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_shared_diagram_decomposition_step_6__step_shared_diagram_anchor a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Shared Diagram Anchor on the Mittens presheaf is exactly the lawful construction it names" .

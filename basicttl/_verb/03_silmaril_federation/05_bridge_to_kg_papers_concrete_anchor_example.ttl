@@ -1,0 +1,3 @@
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_concrete_anchor_mittens_instance a owl:NamedIndividual ;
+    rdfs:label "MittensInstanceNodeExample" .
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_concrete_anchor_mittens_instance silm:hasExample "In 'MittensInstanceNode', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, Mittens is the concrete cat individual — the instancenode in the KG bridge diagram. From this node, typedInto goes to KGNode_Mittens and isAbout goes to VetRecord_Mittens. Mittens is NOT the KG node; it is the individual that KG nodes are about.." .

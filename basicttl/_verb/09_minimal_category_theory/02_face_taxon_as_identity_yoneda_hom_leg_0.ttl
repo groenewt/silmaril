@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_06_cheese_trap_immunity_sections_02_face_taxon_as_identity_yoneda_hom_leg_0_classification_leg a owl:NamedIndividual ;
+    rdfs:label "S02FaceTaxonAsIdentityYonedaHomLeg0" .

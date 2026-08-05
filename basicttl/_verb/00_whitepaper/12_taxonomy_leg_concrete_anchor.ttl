@@ -1,0 +1,10 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_12_taxonomy_leg_concrete_anchor__feliscatustsn183798 a owl:NamedIndividual ;
+    rdfs:label "FelisCatusTSN183798: the ITIS database entry for Felis catus, TSN 183798, Kingdom Animalia, Phylum Chordata, Class Mammalia, Order Carnivora, Family Felidae, Genus Felis, Species catus; accessible at cannon/tax/ITIS.sqlite" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_12_taxonomy_leg_concrete_anchor__taxonomyarrow_itis a owl:NamedIndividual ;
+    rdfs:label "TaxonomyArrow_ITIS: the typed arrow FelisCatusTSN183798 -> MittensColimitApex; distinct from classification_leg (DomesticCat -> MittensColimitApex)" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_12_taxonomy_leg_concrete_anchor__itissqlitedatabase a owl:NamedIndividual ;
+    rdfs:label "ITISSqliteDatabase: the local ITIS taxonomy database at cannon/tax/ITIS.sqlite; the source cannon witness for FelisCatusTSN183798" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_12_taxonomy_leg_concrete_anchor__cheeseviolation_tsnequalsmittens a owl:NamedIndividual ;
+    rdfs:label "CheeseViolation_TSNEqualsMittens: the forbidden claim that Felis catus TSN 183798 is an alternative name for the individual Mittens; blocked by face 2 immunity in the closure theorem" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_12_taxonomy_leg_concrete_anchor__cheeseviolation_taxonrowequalsspecies a owl:NamedIndividual ;
+    rdfs:label "CheeseViolation_TaxonRowEqualsSpecies: the forbidden claim that the ITIS taxon row for Felis catus is interchangeable with the species classification node DomesticCat; blocked by face 8 immunity" .

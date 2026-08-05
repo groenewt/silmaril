@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_concrete_anchor_5 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 01_shape_gate_olog_node #5" .

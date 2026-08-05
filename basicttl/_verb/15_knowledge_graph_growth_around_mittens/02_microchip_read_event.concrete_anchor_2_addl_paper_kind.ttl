@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_02_concrete_anchor_2#mittens a owl:NamedIndividual ;
+    rdfs:label "MicrochipReadStageStepConcreteAnchor2AddlPaperKind" .
+silm:instances_papers_15_chapters_02_sections_02_concrete_anchor_2#mittens silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.15_knowledge_graph_growth_around_mittens" .

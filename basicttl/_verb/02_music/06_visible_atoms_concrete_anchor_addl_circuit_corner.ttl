@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_06_visible_atoms_concrete_anchor#00__content a owl:NamedIndividual ;
+    rdfs:label "06VisibleatomsConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_02_music_sections_06_visible_atoms_concrete_anchor#00__content silm:hasAdditionalAttribute "circuit_corner:6" .

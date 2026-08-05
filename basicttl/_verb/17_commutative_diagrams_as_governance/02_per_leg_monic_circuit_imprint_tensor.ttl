@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_04_yoneda_for_governance_sections_02_per_leg_monic_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "PerLegMonicityAuditCircuitImprintTensor" .

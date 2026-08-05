@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_04_shared_diagram_olog_box__p07shareddiagramologbox a owl:NamedIndividual ;
+    rdfs:label "P07SharedDiagramOlogBox" .

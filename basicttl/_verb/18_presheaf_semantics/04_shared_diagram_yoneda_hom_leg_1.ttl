@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_shared_diagram_yoneda_hom_leg_1_yoneda_profile_arrow a owl:NamedIndividual ;
+    rdfs:label "P1804_shared_diagramYonedaHomLeg1" .

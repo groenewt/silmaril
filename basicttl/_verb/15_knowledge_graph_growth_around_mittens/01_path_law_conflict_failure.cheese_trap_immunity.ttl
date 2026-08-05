@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_08_sections_01_cheese_trap_immunity__trap_system_silently_merges_conflicting_batches a owl:NamedIndividual ;
+    rdfs:label "system_silently_merges_conflicting_batches" .

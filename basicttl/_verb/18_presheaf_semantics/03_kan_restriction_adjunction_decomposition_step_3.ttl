@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_kan_restriction_adjunction_decomposition_step_3__step_presheaf_semantics_kan_restriction_adjunction a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Kan Extension Adjoint to Restriction claim, grounded in the cited literature" .

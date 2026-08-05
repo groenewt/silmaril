@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_08_trace_leg_concrete_anchor_3#orientationsourcesignature a owl:NamedIndividual ;
+    rdfs:label "08TraceLegConcreteAnchor3AddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_08_trace_leg_concrete_anchor_3#orientationsourcesignature silm:hasAdditionalAttribute "dunbar_layer:0" .

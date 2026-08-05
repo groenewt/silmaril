@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_diagram_fig_mittens_integrated_schema_discovery_profile__diagram_fig_mittens_integrated_schema_discovery_profile a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-integrated-schema-discovery-profile" .

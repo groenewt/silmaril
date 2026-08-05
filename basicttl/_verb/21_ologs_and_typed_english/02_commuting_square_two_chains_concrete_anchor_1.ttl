@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_02_commuting_square_two_chains_concrete_anchor_1_chain_top a owl:NamedIndividual ;
+    rdfs:label "CommutingSquareTwoChainsConcreteAnchor1" .

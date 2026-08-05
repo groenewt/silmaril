@@ -1,0 +1,4 @@
+silm:instances_papers_02_music_translation_crescendo_olog_to_rdf a owl:NamedIndividual ;
+    rdfs:label "CrescendoTranslationOlogToRdf" .
+silm:instances_papers_02_music_translation_crescendo_olog_to_rdf silm:sourceNode silm:papers_02_music_term_crescendo .
+silm:instances_papers_02_music_translation_crescendo_olog_to_rdf silm:targetNode silm:instances_papers_02_music_translation_crescendo_olog_to_rdf__xlate_target_rdf_silm_crescendoarrow .

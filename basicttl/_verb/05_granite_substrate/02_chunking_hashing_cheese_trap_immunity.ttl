@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_02_chunking_hashing_cheese_trap_immunity__trap_hash_as_identity_collapse__treating_the_content_hash_sha256_ a owl:NamedIndividual ;
+    rdfs:label "hash-as-identity collapse: treating the content hash sha256:7f4a as sufficient to identify Mittens rather than as a provenance witness on the typed evidence chunk" .

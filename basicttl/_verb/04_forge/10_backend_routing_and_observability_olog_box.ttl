@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_10_backend_routing_and_observability_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 10_backend_routing_and_observability" .

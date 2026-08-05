@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_25_six_step_bridge_deep_dives_sections_01_mereology_six_step_concrete_anchor_0 a owl:NamedIndividual ;
+    rdfs:label "S01MereologySixStepConcreteAnchor0" .

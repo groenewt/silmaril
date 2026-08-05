@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_04_concrete_anchor_survey_concrete_anchor_6_FelisCatusTSN183798 a owl:NamedIndividual ;
+    rdfs:label "S04ConcreteAnchorSurveyConcreteAnchor6Example" .
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_04_concrete_anchor_survey_concrete_anchor_6_FelisCatusTSN183798 silm:hasExample "In 'S04ConcreteAnchorSurveyConcreteAnchor6', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the taxonomic species witness Felis catus, TSN 183798 from ITIS, supplying the taxonomy source leg into D_Mittens." .

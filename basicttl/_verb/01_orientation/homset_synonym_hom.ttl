@@ -1,0 +1,4 @@
+silm:instances_papers_01_orientation_terms_homset a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.01_orientation.terms.homset" .
+silm:instances_papers_01_orientation_terms_homset silm:hasSynonym "Hom" .
+silm:instances_papers_01_orientation_terms_homset silm:sourceNode silm:instances_papers_01_orientation_terms_homset .

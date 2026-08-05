@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_03_olog_node_arrow_law_cheese_trap_immunity__trap_vetrecord_taken_as_mittens a owl:NamedIndividual ;
+    rdfs:label "vetrecord_taken_as_mittens" .

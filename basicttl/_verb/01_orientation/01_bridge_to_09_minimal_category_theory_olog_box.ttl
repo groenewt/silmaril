@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_08_cross_paper_bridges_sections_01_bridge_to_09_minimal_category_theory_olog_box__01bridgeto09minimalcategorytheoryologbox a owl:NamedIndividual ;
+    rdfs:label "01BridgeTo09MinimalCategoryTheoryOlogBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_free_cocompletion_olog_box__p18section03_free_cocompletionologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section03_free_cocompletionOlogBox" .

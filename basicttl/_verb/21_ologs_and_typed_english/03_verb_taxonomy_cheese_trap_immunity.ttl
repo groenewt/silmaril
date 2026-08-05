@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_03_typed_verb_discipline_sections_03_verb_taxonomy_cheese_trap_immunity__trap_verb_aspect_blur a owl:NamedIndividual ;
+    rdfs:label "verb_aspect_blur" .

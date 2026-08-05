@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_decomposition_step__step_h a owl:NamedIndividual ;
+    rdfs:label "a graph homomorphism between the underlying labeled directed graphs" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_decomposition_step__step_f_=_h_plus_identity_composition_preservation a owl:NamedIndividual ;
+    rdfs:label "a functor IS a graph hom together with identity and composition preservation" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_decomposition_step__step_functor_implies_graph_hom a owl:NamedIndividual ;
+    rdfs:label "every functor underlies a graph hom, but not conversely" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_decomposition_step__step_fixed_node_h a owl:NamedIndividual ;
+    rdfs:label "the counterexample where H sends every node to ClinicVoid" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_decomposition_step__step_yoneda_profile_after_h_vs_after_f a owl:NamedIndividual ;
+    rdfs:label "under a graph hom, the Yoneda profile of the image carries fewer typed arrows; under a functor, the typed profile is preserved" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_decomposition_step__step_f_strictly_stronger_than_h a owl:NamedIndividual ;
+    rdfs:label "transport must be functorial because typed-arrow content of the household-side is what makes the transport meaningful" .

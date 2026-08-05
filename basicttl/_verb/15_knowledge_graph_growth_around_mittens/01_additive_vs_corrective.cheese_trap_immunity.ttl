@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_05_sections_01_cheese_trap_immunity__trap_correction_is_replacement a owl:NamedIndividual ;
+    rdfs:label "correction_is_replacement" .

@@ -1,0 +1,14 @@
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_concrete_anchor__theoremtikzcdfigure a owl:NamedIndividual ;
+    rdfs:label "F_formal: the formal view functor that renders the Mittens cocone claim as the tikzcd commutative diagram showing twelve typed legs, theorem statement, and proof in section 02_mittens_anchor" .
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_concrete_anchor__sharedmittenspicturefigure a owl:NamedIndividual ;
+    rdfs:label "F_diagram: the diagram view functor that renders the Mittens cocone claim as the shared TikZ picture figure SilMittensColimitCoconeDiagram from src/shared/components/diagrams/grammar.tex" .
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_concrete_anchor__plainenglishparagraph a owl:NamedIndividual ;
+    rdfs:label "F_reader: the reader view functor that renders the Mittens cocone claim as the plain-English summary paragraph beginning 'Mittens-the-cat is assembled from twelve distinct typed observations...'" .
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_concrete_anchor__witnessescsvtable a owl:NamedIndividual ;
+    rdfs:label "F_source: the source view functor that renders the Mittens cocone claim as the witnesses.csv ledger rows listing VetRecord_77, MicrochipID_44, DomesticCat, FelisCatusTSN183798, and the nine remaining typed legs" .
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_concrete_anchor__comparisonmapkappa a owl:NamedIndividual ;
+    rdfs:label "kappa: the comparison map from colim(F_v circ D_Mittens) to F_v(MittensColimitApex) for each view v; for the multi-view agreement law, kappa must be an isomorphism for each view" .
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_concrete_anchor__mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "MultiViewApex: the Mittens colimit apex colim D_Mittens; the single point at which all four synchronized views must agree via the comparison maps kappa_formal, kappa_diagram, kappa_reader, kappa_source" .
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_concrete_anchor__twelvelegcoconetheorem a owl:NamedIndividual ;
+    rdfs:label "DenseClaimExample: the twelve-leg cocone theorem in 02_mittens_anchor is the canonical dense claim that requires all four synchronized views; the VetRecord_77 table, the tikzcd diagram, the plain-English summary, and the witnesses.csv rows are its four synchronized views" .

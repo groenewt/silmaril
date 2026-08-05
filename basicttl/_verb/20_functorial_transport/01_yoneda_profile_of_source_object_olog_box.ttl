@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_olog_box__yonedaprofileofsourceobject a owl:NamedIndividual ;
+    rdfs:label "YonedaProfileOfSourceObject" .

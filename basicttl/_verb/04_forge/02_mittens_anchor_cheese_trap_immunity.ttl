@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_02_mittens_anchor_cheese_trap_immunity__trap_mittens=catus a owl:NamedIndividual ;
+    rdfs:label "Mittens=catus" .

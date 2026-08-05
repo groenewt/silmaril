@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_01_factorization_square_decomposition_step_6__step_forge_morphism_for_01_factorization_square a owl:NamedIndividual ;
+    rdfs:label "The Forge closes when the materialization path and the declared profile path agree at the Yoneda endpoint." .

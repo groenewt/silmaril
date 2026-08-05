@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_03_free_monad_unpacked_sections_05_free_vs_general_monad_concrete_anchor_1#mittensapex a owl:NamedIndividual ;
+    rdfs:label "05FreeVsGeneralMonadConcreteAnchor1AddlBaseTopic" .
+silm:instances_papers_01_orientation_chapters_03_free_monad_unpacked_sections_05_free_vs_general_monad_concrete_anchor_1#mittensapex silm:hasAdditionalAttribute "base_topic:free monad" .

@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_05_tree_evaluation_duality_concrete_anchor__catamorphism_vetrecord_colimit a owl:NamedIndividual ;
+    rdfs:label "CataMorphism_VetRecord_Colimit: the catamorphism that folds VetRecord_77_tree (the publish tree in mu Sigma) to MittensColimitApex (via the colimit structure map); tree evaluation: consuming the tree to produce a colimit value" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_05_tree_evaluation_duality_concrete_anchor__anamorphism_spinegeneration a owl:NamedIndividual ;
+    rdfs:label "AnaMorphism_SpineGeneration: the anamorphism that unfolds the encyclopedia spine type into publish trees; tree building: producing the publish tree for each encyclopedia entry (paper-00 through paper-41) from the signature description; the dual of the catamorphism fold" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_05_tree_evaluation_duality_concrete_anchor__encyclopediaspinetype a owl:NamedIndividual ;
+    rdfs:label "EncyclopediaSpineType: the Sigma-coalgebra describing the encyclopedia as a whole; the anamorphism unfolds this into all 41+ publish trees; the spine of the free monad generation process" .

@@ -1,0 +1,4 @@
+silm:instances_papers_09_minimal_category_theory_terms_limit a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.09_minimal_category_theory.terms.limit" .
+silm:instances_papers_09_minimal_category_theory_terms_limit silm:hasSynonym "universal cone apex" .
+silm:instances_papers_09_minimal_category_theory_terms_limit silm:sourceNode silm:instances_papers_09_minimal_category_theory_terms_limit .

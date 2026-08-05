@@ -1,0 +1,4 @@
+silm:instances_papers_04_forge_terms_forge a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.forge" .
+silm:instances_papers_04_forge_terms_forge silm:hasSynonym "render pipeline" .
+silm:instances_papers_04_forge_terms_forge silm:sourceNode silm:instances_papers_04_forge_terms_forge .

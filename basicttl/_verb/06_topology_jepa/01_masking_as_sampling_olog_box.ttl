@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_04_ijepa_masking_law_sections_01_masking_as_sampling_olog_box__01maskingassampling a owl:NamedIndividual ;
+    rdfs:label "01MaskingAsSampling" .

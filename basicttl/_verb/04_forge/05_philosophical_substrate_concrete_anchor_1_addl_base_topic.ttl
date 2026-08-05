@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_sections_05_philosophical_substrate_concrete_anchor_1#mittenstracefingerprint a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 05_philosophical_substrate" .
+silm:instances_papers_04_forge_sections_05_philosophical_substrate_concrete_anchor_1#mittenstracefingerprint silm:hasAdditionalAttribute "base_topic:render pipeline" .

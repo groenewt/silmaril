@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_03_colimits_concrete_anchor_5_CareProcess#careprocess a owl:NamedIndividual ;
+    rdfs:label "S03ColimitsConcreteAnchor5AddlCircuitCorner" .
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_03_colimits_concrete_anchor_5_CareProcess#careprocess silm:hasAdditionalAttribute "circuit_corner:2" .

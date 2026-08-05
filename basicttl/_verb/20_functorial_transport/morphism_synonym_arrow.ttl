@@ -1,0 +1,4 @@
+silm:instances_papers_20_functorial_transport_terms_morphism a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.20_functorial_transport.terms.morphism" .
+silm:instances_papers_20_functorial_transport_terms_morphism silm:hasSynonym "arrow" .
+silm:instances_papers_20_functorial_transport_terms_morphism silm:sourceNode silm:instances_papers_20_functorial_transport_terms_morphism .

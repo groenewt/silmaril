@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_olog_box__musicolog03nodearrowlawbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03NodeArrowLawBox" .

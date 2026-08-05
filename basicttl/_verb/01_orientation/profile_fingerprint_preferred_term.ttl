@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_preferred_term_profile_fingerprint a owl:NamedIndividual ;
+    rdfs:label "P01OrientationPreferredTermProfileFingerprint" .
+silm:instances_papers_01_orientation_preferred_term_profile_fingerprint silm:sourceNode silm:instances_papers_01_orientation_preferred_term_profile_fingerprint .

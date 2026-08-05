@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_01_phase2_substrate_olog_box__musicolog01phase2substratebox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog01Phase2SubstrateBox" .

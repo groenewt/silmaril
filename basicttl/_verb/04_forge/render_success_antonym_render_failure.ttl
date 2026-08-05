@@ -1,0 +1,5 @@
+silm:instances_papers_04_forge_terms_render_success a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.render_success" .
+silm:instances_papers_04_forge_terms_render_success silm:hasAntonym silm:instances_papers_04_forge_terms_render_failure .
+silm:instances_papers_04_forge_terms_render_success silm:sourceNode silm:instances_papers_04_forge_terms_render_success .
+silm:instances_papers_04_forge_terms_render_success silm:targetNode silm:instances_papers_04_forge_terms_render_failure .

@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localcannoncheeselearyalpertwitness2026 a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalCannonCheeseLearyAlpertWitness2026" .

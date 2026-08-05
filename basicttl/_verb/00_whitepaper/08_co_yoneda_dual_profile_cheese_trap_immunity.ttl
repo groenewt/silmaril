@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_08_co_yoneda_dual_profile_cheese_trap_immunity__trap_op_direction_collapse_or_apex_equals_target_collapse a owl:NamedIndividual ;
+    rdfs:label "op_direction_collapse_or_apex_equals_target_collapse" .

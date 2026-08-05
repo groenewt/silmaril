@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic, annual vet exam 2026-05-18" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_concrete_anchor__absorptionandstoragesymbol a owl:NamedIndividual ;
+    rdfs:label "The composed path: absorption arrow alpha places the source text as a typed leg; materialization arrow mu then stores that typed leg as an Icechunk chunk. The composition alpha_stored = mu ∘ alpha maps SourceText to ChunkManifest, with both provenance arrows (alpha: semantic interpretation, mu: storage materialization) explicit." .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload, sha256:7f4a...bf2c, evidence leg" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_concrete_anchor__fusedadapter a owl:NamedIndividual ;
+    rdfs:label "A_* the fused adapter — source of the absorption arrow" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_concrete_anchor__absorbedmodel a owl:NamedIndividual ;
+    rdfs:label "T_full the stabilized model — target of the absorption arrow" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_concrete_anchor__mittenschunkmanifest a owl:NamedIndividual ;
+    rdfs:label "ChunkManifest_Mittens the typed chunk-manifest for Mittens — storage representation tracking the c-0x7f4a evidence leg" .

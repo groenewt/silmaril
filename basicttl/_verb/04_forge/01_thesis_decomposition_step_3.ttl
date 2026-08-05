@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_01_thesis_decomposition_step_3__step_forge_morphism_for_01_thesis a owl:NamedIndividual ;
+    rdfs:label "The base topic licensing the composition is functor composition from Joy of Cats: if each morphism preserves its source boundary, the composite preserves both." .

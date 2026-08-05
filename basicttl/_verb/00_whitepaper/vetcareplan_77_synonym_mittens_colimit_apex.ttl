@@ -1,0 +1,4 @@
+silm:instances_papers_00_whitepaper_terms_vetcareplan_77 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.00_whitepaper.terms.vetcareplan_77" .
+silm:instances_papers_00_whitepaper_terms_vetcareplan_77 silm:hasSynonym "Mittens colimit apex" .
+silm:instances_papers_00_whitepaper_terms_vetcareplan_77 silm:sourceNode silm:instances_papers_00_whitepaper_terms_vetcareplan_77 .

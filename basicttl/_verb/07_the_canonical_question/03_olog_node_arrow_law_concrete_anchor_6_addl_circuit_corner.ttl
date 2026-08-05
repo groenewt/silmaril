@@ -1,0 +1,3 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_03_olog_node_arrow_law_concrete_anchor_6#droseiuniquemediator a owl:NamedIndividual ;
+    rdfs:label "P07OlogNodeArrowLawConcreteAnchor6AddlCircuitCorner" .
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_03_olog_node_arrow_law_concrete_anchor_6#droseiuniquemediator silm:hasAdditionalAttribute "circuit_corner:1" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_03_arrow_typing_contract_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 03_arrow_typing_contract [LHL]" .

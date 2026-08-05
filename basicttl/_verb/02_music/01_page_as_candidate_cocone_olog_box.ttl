@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_06_cocone_compatibility_for_pages_sections_01_page_as_candidate_cocone_olog_box__musicolog01pageascandidatecocbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog01PageAsCandidateCocBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_01_forge_position_concrete_anchor_4 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 01_forge_position #4" .

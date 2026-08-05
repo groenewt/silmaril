@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_08_cheese_face_closure_for_music_sections_03_agent_as_author_face_olog_box__musicolog03agentasauthorfacebox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03AgentAsAuthorFaceBox" .

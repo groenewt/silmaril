@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_cheese_trap_immunity__trap_storage_identity_collapse_in_01_training_substrate__graniter a owl:NamedIndividual ;
+    rdfs:label "storage-identity collapse in 01_training_substrate: GraniteRow_Mittens treated as if it has the same Hom-profile as the governed Mittens apex — i.e., the TrainingSubstrate artifact is mistaken for the whole governed individual" .

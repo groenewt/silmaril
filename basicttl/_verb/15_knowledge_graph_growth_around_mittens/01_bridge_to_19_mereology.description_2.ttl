@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_07_sections_01_concrete_anchor_2#paper19staticcocone a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.07.sections.01.concrete_anchor.2#paper19staticcocone" .
+silm:instances_papers_15_chapters_07_sections_01_concrete_anchor_2#paper19staticcocone silm:hasLongDescription "The Paper19StaticCocone is the static cocone treated by paper 19. In the paper's apparatus it appears as the symbol 'paper-19 D_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_03_free_monad_unpacked_sections_03_term_grammar_concrete_anchor_2#orientationfreemonad a owl:NamedIndividual ;
+    rdfs:label "03TermGrammarConcreteAnchor2AddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_03_free_monad_unpacked_sections_03_term_grammar_concrete_anchor_2#orientationfreemonad silm:hasAdditionalAttribute "dunbar_layer:0" .

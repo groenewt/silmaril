@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_01_manifest_as_hom_profile_decomposition_step_4__step_forge_morphism_for_01_manifest_as_hom_profile a owl:NamedIndividual ;
+    rdfs:label "Incoming: source_key (vet record via interpret), shape_gate (BodyMassShapeGate via validates), type_seed (DomesticCat via type). Outgoing: trace_key (ForgeTrace via observe), clinical_summary (VetCarePlan_77 via inform)." .

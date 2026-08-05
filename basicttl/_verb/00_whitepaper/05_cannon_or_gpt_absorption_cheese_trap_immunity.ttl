@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_05_cannon_or_gpt_absorption_cheese_trap_immunity__trap_source_promotion_without_gate_or_sous_identity_substitution a owl:NamedIndividual ;
+    rdfs:label "source_promotion_without_gate_or_sous_identity_substitution" .

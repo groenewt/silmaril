@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_02_yoneda_lemma_statement_olog_box__yonedalemmastatement_abstractform a owl:NamedIndividual ;
+    rdfs:label "YonedaLemmaStatement_AbstractForm" .

@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_03_typed_verb_discipline_sections_03_verb_taxonomy_yoneda_hom_leg_1_classify_quality a owl:NamedIndividual ;
+    rdfs:label "VerbTaxonomyYonedaHomLeg1" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_02_manifest_field_arrows_concrete_anchor_4 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 02_manifest_field_arrows #4" .

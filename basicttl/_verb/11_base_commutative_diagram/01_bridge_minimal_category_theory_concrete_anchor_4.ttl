@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_22_bridges_cat_silmaril_forge_topology_granite_sections_01_bridge_minimal_category_theory_concrete_anchor_4_Mammal a owl:NamedIndividual ;
+    rdfs:label "S01BridgeMinimalCategoryTheoryConcreteAnchor4" .

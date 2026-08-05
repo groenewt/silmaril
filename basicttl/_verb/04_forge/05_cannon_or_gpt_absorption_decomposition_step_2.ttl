@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_05_cannon_or_gpt_absorption_decomposition_step_2__step_forge_morphism_for_05_cannon_or_gpt_absorption a owl:NamedIndividual ;
+    rdfs:label "Name the operations that act on the named symbols: cite, interpret, type, place are morphisms in F_04 whose composition is the ingestion functor." .

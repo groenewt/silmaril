@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_naturality_skipped_decomposition_step_3__step_presheaf_semantics_naturality_skipped a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Cheese-Trap: Naturality Skipped claim, grounded in the cited literature" .

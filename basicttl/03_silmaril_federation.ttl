@@ -1,0 +1,2020 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_cheese_trap_immunity__trap_profile_equals_identity_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "profile_equals_identity_collapse" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_concrete_anchor_mittens_node
+    a owl:NamedIndividual ;
+    rdfs:label "MittensInFederationOlogExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.01_bridge_to_yoneda_lemma.concrete_anchor.mittens_node" ;
+    silm:hasExample "In 'MittensInFederationOlog', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, Mittens is the concrete cat individual entered as a federation object. In the diagram, this node represents the governed individual whose vet records, storage packets, and catalog traces are the cocone legs. A distributed-systems engineer reads this as 'the primary key around which all replicas converge.'." ;
+    silm:hasLongDescription "The MittensAsFederationObject is Mittens is the concrete cat individual entered as a federation object. In the diagram, this node represents the governed individual whose vet records, storage packets, and catalog traces are the cocone legs. A distributed-systems engineer reads this as 'the primary key around which all replicas converge.'." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_concrete_anchor_fedprofile_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.01_bridge_to_yoneda_lemma.concrete_anchor.fedprofile_node" ;
+    silm:hasLongDescription "The MittensYonedaProfile is FedProfile(Mittens) is the pair of Hom-sets: all arrows from other objects to Mittens (VetRecord->Mittens, StoragePacket->Mittens, etc.) and all arrows from Mittens outward. Concretely: the full bill of relationships Mittens the cat has with every other object in the federation. No other object has exactly this profile." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_concrete_anchor_federation_identity_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.01_bridge_to_yoneda_lemma.concrete_anchor.federation_identity_node" ;
+    silm:hasLongDescription "The MittensGovernedFederationIdentity is The federation identity of Mittens is not its storage key, not its TSN number, and not its vet record — it is the colimit apex that all those typed legs converge to. A gossip-merge engineer reads this as 'the canonical converged state that all replicas agree is Mittens.' This is the node that proves the system has correctly federated rather than merely replicated a label." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_olog_box__bridgetoyonedalemma
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeToYonedaLemma" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_cheese_trap_immunity__trap_delta_aboutness_collapse_cross_individual_merge
+    a owl:NamedIndividual ;
+    rdfs:label "delta_aboutness_collapse_cross_individual_merge" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_concrete_anchor_r1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.01_crdt_gossip.concrete_anchor.r1" ;
+    silm:hasLongDescription "The SensorReplica1VetRecord is R_1 is the first replica — the data node on sensor server 1 holding a copy of Mittens's StoragePacket. It contains: vaccination date (2025-01-15), weight (3.6 kg at last reading), breed (domestic shorthair). R_1 emits Delta_1 when a new weight reading arrives." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_concrete_anchor_delta1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.01_crdt_gossip.concrete_anchor.delta1" ;
+    silm:hasLongDescription "The WeightUpdateDeltaForMittens is Delta_1 is the typed change packet: {weight: 3.8kg, timestamp: 2026-05-18T09:30, about: Mittens, sensorID: vet-clinic-scale-01}. It carries the aboutness marker. It is NOT a storage string — it is a typed information object with declared subject (Mittens), operation kind (weight update), and witness condition (vet clinic scale reading)." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_concrete_anchor_r2_merged
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.01_crdt_gossip.concrete_anchor.r2_merged" ;
+    silm:hasLongDescription "The Replica2AfterMerge is R_2 join Delta_1 is the state of replica R_2 after incorporating Delta_1. It now holds: vaccination date (from original R_2), weight 3.8 kg (from Delta_1), breed (from original R_2). The merge adds the new weight without removing any existing data. The cocone leg lambda_gossip from this state to Mittens is the same as from R_1." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_concrete_anchor_mittens_apex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.01_crdt_gossip.concrete_anchor.mittens_apex" ;
+    silm:hasLongDescription "The MittensGovernedIndividualInGossip is Mittens is the instancenode in the gossip diagram — the governed individual that every replica and every delta is about. The cocone legs lambda_gossip from R_1 and from R_2 join Delta_1 both point here. Mittens is the semantic anchor; the replicas and deltas are storage objects about Mittens, not Mittens itself." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_01_crdt_gossip_olog_box__crdtgossipdeltapropagation
+    a owl:NamedIndividual ;
+    rdfs:label "CRDTGossipDeltaPropagation" .
+
+silm:EmbeddedEngineFunctorLaws
+    a owl:Class ;
+    rdfs:comment "The embedded engine functor E_s: C_s -> F_Sil must satisfy identity law (E_s(id_x) = id_{E_s(x)}) and composition law (E_s(g circ f) = E_s(g) circ E_s(f)). These laws are the admission conditions for any Silmaril engine to contribute arrows to the federation olog." ;
+    rdfs:label "EmbeddedEngineFunctorLaws" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_01_embedded_engine_functor_cheese_trap_immunity__trap_engine_treats_f_x_as_the_governed_individual
+    a owl:NamedIndividual ;
+    rdfs:label "engine_treats_F_X_as_the_governed_individual" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_01_embedded_engine_functor_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_01_embedded_engine_functor_concrete_anchor_source_obj
+    a owl:NamedIndividual ;
+    rdfs:label "SourceObjectExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.01_embedded_engine_functor.concrete_anchor.source_obj" ;
+    silm:hasExample "In 'SourceObject', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, X is the source federation object — concretely VetRecord_Mittens in the Mittens example. It is the domain of the functor input morphism.." ;
+    silm:hasLongDescription "The VetRecord_Mittens_SourceObject is X is the source federation object — concretely VetRecord_Mittens in the Mittens example. It is the domain of the functor input morphism. In the paper's apparatus it appears as the symbol 'X (source federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_01_embedded_engine_functor_concrete_anchor_functor_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.01_embedded_engine_functor.concrete_anchor.functor_node" ;
+    silm:hasLongDescription "The EmbeddedEngineFunctorFunctorNode is F is the EmbeddedEngineFunctor functor — it maps typed federation objects and morphisms from the source category to the target category, preserving composition and identity. In the paper's apparatus it appears as the symbol 'F (the EmbeddedEngineFunctor functor)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_01_embedded_engine_functor_concrete_anchor_mapped_obj
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.01_embedded_engine_functor.concrete_anchor.mapped_obj" ;
+    silm:hasLongDescription "The MappedMittensObject is F(X) is the mapped target object — the image of VetRecord_Mittens under the functor. In the embedded engine context, F(VetRecord_Mittens) is the engine's internal representation of the vet record with the aboutness arrow preserved." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_01_embedded_engine_functor_olog_box__embeddedenginefunctor
+    a owl:NamedIndividual ;
+    rdfs:label "EmbeddedEngineFunctor" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_01_embedded_engine_functor_yoneda_hom_leg_functor_on_objects
+    a owl:NamedIndividual ;
+    rdfs:label "FunctorOnObjectsArrowExample" ;
+    silm:hasExample "In 'FunctorOnObjectsArrow', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, F: X |-> F(X) — functor maps VetRecord_Mittens to its engine representation" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_01_federation_contract_cheese_trap_immunity__trap_unsigned_message_accepted_without_contract_verification
+    a owl:NamedIndividual ;
+    rdfs:label "unsigned_message_accepted_without_contract_verification" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_01_federation_contract_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_01_federation_contract_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.01_federation_contract.concrete_anchor.node1" ;
+    silm:hasLongDescription "The FederationContractSourceNode is Typed message with aboutness arrow (source input). In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_01_federation_contract_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.01_federation_contract.concrete_anchor.node2" ;
+    silm:hasLongDescription "The FederationContractResultNode is ContractVerification gate. In the paper's apparatus it appears as the symbol 'Operation result (intermediate or output)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_01_federation_contract_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.01_federation_contract.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_FederationContract is Mittens (apex — destination of verified message). In the paper's apparatus it appears as the symbol 'Mittens (governed individual, colimit apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_01_federation_contract_olog_box__federationcontract
+    a owl:NamedIndividual ;
+    rdfs:label "FederationContract" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_01_kg_cross_reference_cheese_trap_immunity__trap_kg_node_label_returned_as_mittens_identity
+    a owl:NamedIndividual ;
+    rdfs:label "kg_node_label_returned_as_mittens_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_01_kg_cross_reference_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_01_kg_cross_reference_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.01_kg_cross_reference.concrete_anchor.node1" ;
+    silm:hasLongDescription "The KGCrossReferenceSourceNode is KGAssertion_Mittens (KG source leg). In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_01_kg_cross_reference_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.01_kg_cross_reference.concrete_anchor.node2" ;
+    silm:hasLongDescription "The KGCrossReferenceOperationNode is KGCrossReference gate (typed path check). In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_01_kg_cross_reference_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.01_kg_cross_reference.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_KGCrossReference is Mittens (apex — KG node is about Mittens, not Mittens). In the paper's apparatus it appears as the symbol 'Mittens or result (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_01_kg_cross_reference_olog_box__kgcrossreference
+    a owl:NamedIndividual ;
+    rdfs:label "KGCrossReference" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_01_render_integrity_gate_cheese_trap_immunity__trap_rendered_pdf_treated_as_the_paper_identity
+    a owl:NamedIndividual ;
+    rdfs:label "rendered_pdf_treated_as_the_paper_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_01_render_integrity_gate_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_01_render_integrity_gate_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.01_render_integrity_gate.concrete_anchor.node1" ;
+    silm:hasLongDescription "The RenderIntegrityGateSourceNode is LaTeX source (paper source). In the paper's apparatus it appears as the symbol 'Source', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_01_render_integrity_gate_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.01_render_integrity_gate.concrete_anchor.node2" ;
+    silm:hasLongDescription "The RenderIntegrityGateOperationNode is Rendered PDF (render output). In the paper's apparatus it appears as the symbol 'Operation', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_01_render_integrity_gate_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.01_render_integrity_gate.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_RenderIntegrityGate is Paper03 (apex — the rendered PDF is about Paper03, not Paper03 itself). In the paper's apparatus it appears as the symbol 'Mittens (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_01_render_integrity_gate_olog_box__renderintegritygate
+    a owl:NamedIndividual ;
+    rdfs:label "RenderIntegrityGate" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_01_silmaril_roster_cheese_trap_immunity__trap_bare_mittens_update_accepted_without_naming_roster_participa
+    a owl:NamedIndividual ;
+    rdfs:label "bare_mittens_update_accepted_without_naming_roster_participant_or_arrow_family" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_01_silmaril_roster_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_01_silmaril_roster_olog_box__silmarilroster
+    a owl:NamedIndividual ;
+    rdfs:label "SilmarilRoster" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_cheese_trap_immunity__trap_federated_label_collapse_or_storage_packet_identity
+    a owl:NamedIndividual ;
+    rdfs:label "federated_label_collapse_or_storage_packet_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_vet_record_cocone_leg
+    a owl:NamedIndividual ;
+    rdfs:label "VetRecordCoconeLeg" ;
+    rdfs:label "VetRecordCoconeLegAddlBaseTopic" ;
+    rdfs:label "VetRecordCoconeLegAddlCircuitCorner" ;
+    rdfs:label "VetRecordCoconeLegAddlDunbarLayer" ;
+    rdfs:label "VetRecordCoconeLegAddlPaperKind" ;
+    silm:hasAdditionalAttribute "base_topic:crdt" ;
+    silm:hasAdditionalAttribute "circuit_corner:7" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.03_silmaril_federation" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_olog_box__federationthesis
+    a owl:NamedIndividual ;
+    rdfs:label "FederationThesis" .
+
+silm:LambdaVetArrow
+    a owl:Class ;
+    rdfs:comment "The cocone projection lambda_vet: VetRecord_Mittens -> Mittens. This is the typed arrow that admits the veterinary evidence record as a source leg into the Mittens colimit. It is not an identity arrow; it is a cocone projection from an evidence object to the governed individual." ;
+    rdfs:label "LambdaVetArrow" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_02_bridge_to_shacl_validation_cheese_trap_immunity__trap_validation_report_equals_source_evidence_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "validation_report_equals_source_evidence_collapse" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_02_bridge_to_shacl_validation_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_02_bridge_to_shacl_validation_concrete_anchor_kgnode_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "KGNodeMittensExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.02_bridge_to_shacl_validation.concrete_anchor.kgnode_mittens" ;
+    silm:hasExample "In 'KGNodeMittens', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, KGNode_Mittens is the RDF node in the knowledge graph that represents Mittens's vet record — an rdf:Resource typed as a vet-record shape. Concretely: a SPARQL endpoint entry with triples like <Mittens_URI> rdf:type ex:VetRecord, with weight, vaccination date, and breed properties.." ;
+    silm:hasLongDescription "The MittensKnowledgeGraphNode is KGNode_Mittens is the RDF node in the knowledge graph that represents Mittens's vet record — an rdf:Resource typed as a vet-record shape. Concretely: a SPARQL endpoint entry with triples like <Mittens_URI> rdf:type ex:VetRecord, with weight, vaccination date, and breed properties." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_02_bridge_to_shacl_validation_concrete_anchor_conformant_report
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.02_bridge_to_shacl_validation.concrete_anchor.conformant_report" ;
+    silm:hasLongDescription "The SHACLConformantValidationReport is ConformantReport is the SHACL validation report object emitted when KGNode_Mittens passes all declared shapes. It contains sh:conforms true, a list of sh:ValidationResult (empty for full conformance), and a timestamp. This is NOT the vet record itself — it is the typed certification that the vet record node is shape-conformant." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_02_bridge_to_shacl_validation_concrete_anchor_kgnode_mittens_prime
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.02_bridge_to_shacl_validation.concrete_anchor.kgnode_mittens_prime" ;
+    silm:hasLongDescription "The TransformedMittensKnowledgeGraphNode is KGNode_Mittens' is KGNode_Mittens after a compatible graph transformation — e.g., after adding a new triple recording Mittens's updated weight (a delta merge from a replica). The transformation is compatible if it preserves the aboutness arrow to Mittens." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_02_bridge_to_shacl_validation_concrete_anchor_conformant_report_prime
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.02_bridge_to_shacl_validation.concrete_anchor.conformant_report_prime" ;
+    silm:hasLongDescription "The TransportedConformantReport is ConformantReport' is the validation report after transportReport — the derived report for the transformed KGNode_Mittens'. Naturality says: computing V_SHACL(KGNode_Mittens') gives the same answer as applying transportReport to V_SHACL(KGNode_Mittens). The vet-record shape gate commutes with compatible updates." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_02_bridge_to_shacl_validation_olog_box__bridgetoshaclvalidation
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeToSHACLValidation" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_02_cannon_absorption_gate_cheese_trap_immunity__trap_cannon_output_absorbed_without_typed_gate_check
+    a owl:NamedIndividual ;
+    rdfs:label "cannon_output_absorbed_without_typed_gate_check" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_02_cannon_absorption_gate_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_02_cannon_absorption_gate_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.02_cannon_absorption_gate.concrete_anchor.node1" ;
+    silm:hasLongDescription "The CannonAbsorptionGateSourceNode is Cannon output (external input claiming to be about Mittens). In the paper's apparatus it appears as the symbol 'Source', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_02_cannon_absorption_gate_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.02_cannon_absorption_gate.concrete_anchor.node2" ;
+    silm:hasLongDescription "The CannonAbsorptionGateOperationNode is AbsorptionGate (typed path + aboutness check). In the paper's apparatus it appears as the symbol 'Operation', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_02_cannon_absorption_gate_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.02_cannon_absorption_gate.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_CannonAbsorptionGate is ACCEPTED or REJECTED (not Mittens — Mittens is the apex the gate protects). In the paper's apparatus it appears as the symbol 'Mittens (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_02_cannon_absorption_gate_olog_box__cannonabsorptiongate
+    a owl:NamedIndividual ;
+    rdfs:label "CannonAbsorptionGate" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_02_convergence_algebra_cheese_trap_immunity__trap_idempotent_merge_creates_double_reading
+    a owl:NamedIndividual ;
+    rdfs:label "idempotent_merge_creates_double_reading" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_02_convergence_algebra_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_02_convergence_algebra_concrete_anchor_r1_join_r2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.02_convergence_algebra.concrete_anchor.r1_join_r2" ;
+    silm:hasLongDescription "The MorningAndAfternoonReadingsMerged is R_1 join R_2 is the merge of the morning replica (weight=3.8kg, about=Mittens) and the afternoon replica (temp=38.6C, about=Mittens). The merged state contains both readings. This is one grouping of the first two replicas before merging with the evening reading." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_02_convergence_algebra_concrete_anchor_r1r2_join_r3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.02_convergence_algebra.concrete_anchor.r1r2_join_r3" ;
+    silm:hasLongDescription "The AllThreeReadingsFirstGrouping is (R_1 join R_2) join R_3 is the state with all three readings, grouped as (morning+afternoon) then evening. Result: weight=3.8kg, temp=38.6C, microchip=1234567, all about Mittens. In the paper's apparatus it appears as the symbol '(R_1 join R_2) join R_3', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_02_convergence_algebra_concrete_anchor_r1_join_r2r3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.02_convergence_algebra.concrete_anchor.r1_join_r2r3" ;
+    silm:hasLongDescription "The AllThreeReadingsSecondGrouping is R_1 join (R_2 join R_3) is the state with all three readings, grouped as morning then (afternoon+evening). Same result by associativity: weight=3.8kg, temp=38.6C, microchip=1234567, about Mittens. The isomorphism (cong) is the equality of these two states." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_02_convergence_algebra_concrete_anchor_mittens_apex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.02_convergence_algebra.concrete_anchor.mittens_apex" ;
+    silm:hasLongDescription "The MittensGovernedCatInConvergence is Mittens is the instancenode in the associativity diagram — the governed cat whose health readings are being merged. Both groupings of the three replicas carry lambda_gossip to Mittens. The associativity law ensures both groupings reach the same Mittens anchor." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_02_convergence_algebra_olog_box__convergencealgebra_cai
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergenceAlgebra_CAI" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_embedded_engine_functor_cheese_trap_immunity__trap_engine_functor_replaces_mittens_apex
+    a owl:NamedIndividual ;
+    rdfs:label "engine_functor_replaces_mittens_apex" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_embedded_engine_functor_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_embedded_engine_functor_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "Node1Example" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.02_embedded_engine_functor.concrete_anchor.node1" ;
+    silm:hasExample "In 'Node1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The typed source federation object for 02_embedded_engine_functor. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path.." ;
+    silm:hasLongDescription "The 02_embedded_engine_functorSourceNode is The typed source federation object for 02_embedded_engine_functor. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_embedded_engine_functor_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.02_embedded_engine_functor.concrete_anchor.node2" ;
+    silm:hasLongDescription "The 02_embedded_engine_functorOperationNode is The operation or gate node for 02_embedded_engine_functor. F_EE(VetRecord_Mittens) = engine representation. F_EE(lambda_evidence) = engine aboutness arrow. Both travel together. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_embedded_engine_functor_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.02_embedded_engine_functor.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_02_embedded_engine_functor is Mittens is the colimit apex — the governed individual cat. All arrows in 02_embedded_engine_functor ultimately point toward Mittens. Mittens is NOT a source leg, NOT a storage packet, NOT a KG node. In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_embedded_engine_functor_olog_box__embeddedenginefunctor
+    a owl:NamedIndividual ;
+    rdfs:label "EmbeddedEngineFunctor" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_02_functor_preservation_laws_cheese_trap_immunity__trap_engine_silently_drops_composition_when_mapping_morphisms
+    a owl:NamedIndividual ;
+    rdfs:label "engine_silently_drops_composition_when_mapping_morphisms" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_02_functor_preservation_laws_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_02_functor_preservation_laws_concrete_anchor_source_obj
+    a owl:NamedIndividual ;
+    rdfs:label "SourceObjectExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.02_functor_preservation_laws.concrete_anchor.source_obj" ;
+    silm:hasExample "In 'SourceObject', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, X is the source federation object — concretely VetRecord_Mittens in the Mittens example. It is the domain of the functor input morphism.." ;
+    silm:hasLongDescription "The VetRecord_Mittens_SourceObject is X is the source federation object — concretely VetRecord_Mittens in the Mittens example. It is the domain of the functor input morphism. In the paper's apparatus it appears as the symbol 'X (source federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_02_functor_preservation_laws_concrete_anchor_functor_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.02_functor_preservation_laws.concrete_anchor.functor_node" ;
+    silm:hasLongDescription "The FunctorPreservationLawsFunctorNode is F is the FunctorPreservationLaws functor — it maps typed federation objects and morphisms from the source category to the target category, preserving composition and identity. In the paper's apparatus it appears as the symbol 'F (the FunctorPreservationLaws functor)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_02_functor_preservation_laws_concrete_anchor_mapped_obj
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.02_functor_preservation_laws.concrete_anchor.mapped_obj" ;
+    silm:hasLongDescription "The MappedMittensObject is F(X) is the mapped target object — the image of VetRecord_Mittens under the functor. In the embedded engine context, F(VetRecord_Mittens) is the engine's internal representation of the vet record with the aboutness arrow preserved." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_02_functor_preservation_laws_olog_box__functorpreservationlaws
+    a owl:NamedIndividual ;
+    rdfs:label "FunctorPreservationLaws" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_02_functor_preservation_laws_yoneda_hom_leg_functor_on_objects
+    a owl:NamedIndividual ;
+    rdfs:label "FunctorOnObjectsArrowExample" ;
+    silm:hasExample "In 'FunctorOnObjectsArrow', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, F: X |-> F(X) — functor maps VetRecord_Mittens to its engine representation" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_cheese_trap_immunity__trap_bare_catus_match_routes_to_wrong_object
+    a owl:NamedIndividual ;
+    rdfs:label "bare_catus_match_routes_to_wrong_object" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_concrete_anchor_mittens_instance
+    a owl:NamedIndividual ;
+    rdfs:label "MittensInstanceNodeExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.02_mittens_anchor.concrete_anchor.mittens_instance" ;
+    silm:hasExample "In 'MittensInstanceNode', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, Mittens is the governed individual cat — the colimit apex of D_Mittens. In the taxonomy diagram, this is the leftmost instancenode. Mittens is NOT the taxon row, NOT the storage key, NOT the catalog trace. It is the individual cat whose vet records, storage packets, and graph assertions are the cocone legs.." ;
+    silm:hasLongDescription "The MittensGovernedCatIndividual is Mittens is the governed individual cat — the colimit apex of D_Mittens. In the taxonomy diagram, this is the leftmost instancenode. Mittens is NOT the taxon row, NOT the storage key, NOT the catalog trace. It is the individual cat whose vet records, storage packets, and graph assertions are the cocone legs." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_concrete_anchor_domesticcat_type_seed
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.02_mittens_anchor.concrete_anchor.domesticcat_type_seed" ;
+    silm:hasLongDescription "The DomesticCatClassificationSeed is DomesticCat type seed is the schemanode — the local classification bridge from Mittens toward the taxonomy. It is NOT Mittens and NOT the taxon row. It is the intermediate step: Mittens is classified through DomesticCat before reaching the full Felis catus taxonomy." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_concrete_anchor_taxonomy_witness
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.02_mittens_anchor.concrete_anchor.taxonomy_witness" ;
+    silm:hasLongDescription "The FelisFelidaeWitnessSource is The taxonomy witness is the infonode — the source authority for the Felis catus classification. It must be preserved as a source witness before use; the complete name, parent path (Felis -> Felidae -> Carnivora -> Mammalia), and TSN must travel together." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_concrete_anchor_felis_catus_tsn
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.02_mittens_anchor.concrete_anchor.felis_catus_tsn" ;
+    silm:hasLongDescription "The FelisCatusTaxonWithTSN is Felis catus / TSN 183798 is the classnode — the complete taxonomic identifier for domestic cat. It is a SOURCE LEG into D_Mittens, not the identity of Mittens. A bare 'catus' match without the full taxon path is a regression test failure." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_concrete_anchor_d_mittens_source_leg
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.02_mittens_anchor.concrete_anchor.d_mittens_source_leg" ;
+    silm:hasLongDescription "The D_MittensIndexedSourceLeg is D_Mittens source leg is the terminalnode in the taxonomy diagram — where the taxon row enters the source diagram as one indexed leg. The taxonomy leg contributes to D_Mittens but does not replace the colimit apex Mittens." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_olog_box__mittensanchorp03
+    a owl:NamedIndividual ;
+    rdfs:label "MittensAnchorP03" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_02_namespace_placement_separation_cheese_trap_immunity__trap_namespace_key_as_apex_identity
+    a owl:NamedIndividual ;
+    rdfs:label "namespace_key_as_apex_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_02_namespace_placement_separation_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_02_namespace_placement_separation_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.02_namespace_placement_separation.concrete_anchor.node1" ;
+    silm:hasLongDescription "The StoragePacket_Mittens_Node is The typed storage packet for Mittens. Domain of the lambda_storage arrow. Placed in the vet-records/mittens/ namespace. In the paper's apparatus it appears as the symbol 'StoragePacket_Mittens (typed storage object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_02_namespace_placement_separation_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.02_namespace_placement_separation.concrete_anchor.node2" ;
+    silm:hasLongDescription "The VetRecordsMittensNamespace is The placement namespace for Mittens' storage objects. A location address — not the identity of Mittens. Two storage packets in this namespace are both ABOUT Mittens; the namespace does not make them Mittens." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_02_namespace_placement_separation_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.02_namespace_placement_separation.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensGovernedApex_Namespace is Mittens is the apex of D_Mittens — the governed individual cat. The namespace placement points to storage objects about Mittens; Mittens is not inside the namespace. In the paper's apparatus it appears as the symbol 'Mittens (the governed individual at the apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_02_namespace_placement_separation_olog_box__namespaceplacementseparation
+    a owl:NamedIndividual ;
+    rdfs:label "NamespacePlacementSeparation" .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_02_packet_anatomy_cheese_trap_immunity__trap_packet_anatomy_field_returned_as_mittens_identity
+    a owl:NamedIndividual ;
+    rdfs:label "packet_anatomy_field_returned_as_mittens_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_02_packet_anatomy_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_02_packet_anatomy_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.08_mittens_storage_packet.sections.02_packet_anatomy.concrete_anchor.node1" ;
+    silm:hasLongDescription "The PacketAnatomySourceNode is Packet content (typed bytes — VetRecord_Mittens). In the paper's apparatus it appears as the symbol 'Source', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_02_packet_anatomy_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.08_mittens_storage_packet.sections.02_packet_anatomy.concrete_anchor.node2" ;
+    silm:hasLongDescription "The PacketAnatomyOperationNode is Packet metadata (aboutness_arrow, sig, timestamp). In the paper's apparatus it appears as the symbol 'Operation', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_02_packet_anatomy_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.08_mittens_storage_packet.sections.02_packet_anatomy.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_PacketAnatomy is Mittens (apex — the packet is about Mittens, not Mittens itself). In the paper's apparatus it appears as the symbol 'Mittens (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_02_packet_anatomy_olog_box__packetanatomy
+    a owl:NamedIndividual ;
+    rdfs:label "PacketAnatomy" .
+
+silm:ShaclShapeGateArrow
+    a owl:Class ;
+    rdfs:comment "The SHACL shape gate arrow validatedBy: KGNode_Mittens -> ValidationReport_Mittens. This is the typed validation step in the KG governance square. A conformant report enables catalog registration; a violation report blocks it. The gate is not a filter; it is a typed arrow in the federation olog." ;
+    rdfs:label "ShaclShapeGateArrow" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_02_shacl_shape_gate_cheese_trap_immunity__trap_shacl_conformant_report_returned_as_validated_identity
+    a owl:NamedIndividual ;
+    rdfs:label "shacl_conformant_report_returned_as_validated_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_02_shacl_shape_gate_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_02_shacl_shape_gate_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.02_shacl_shape_gate.concrete_anchor.node1" ;
+    silm:hasLongDescription "The SHACLShapeGateSourceNode is KGNode_Mittens (shape input). In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_02_shacl_shape_gate_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.02_shacl_shape_gate.concrete_anchor.node2" ;
+    silm:hasLongDescription "The SHACLShapeGateOperationNode is ConformantReport (shape gate output). In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_02_shacl_shape_gate_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.02_shacl_shape_gate.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_SHACLShapeGate is Mittens (apex — ConformantReport is about Mittens). In the paper's apparatus it appears as the symbol 'Mittens or result (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_02_shacl_shape_gate_olog_box__shaclshapegate
+    a owl:NamedIndividual ;
+    rdfs:label "SHACLShapeGate" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_02_typed_message_boundary_cheese_trap_immunity__trap_untyped_byte_stream_crosses_boundary_without_type_tag
+    a owl:NamedIndividual ;
+    rdfs:label "untyped_byte_stream_crosses_boundary_without_type_tag" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_02_typed_message_boundary_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_02_typed_message_boundary_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.02_typed_message_boundary.concrete_anchor.node1" ;
+    silm:hasLongDescription "The TypedMessageBoundarySourceNode is Untyped byte stream (before boundary). In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_02_typed_message_boundary_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.02_typed_message_boundary.concrete_anchor.node2" ;
+    silm:hasLongDescription "The TypedMessageBoundaryResultNode is TypedMessage{VetRecord_Mittens, lambda_evidence} (after boundary). In the paper's apparatus it appears as the symbol 'Operation result (intermediate or output)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_02_typed_message_boundary_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.02_typed_message_boundary.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_TypedMessageBoundary is Mittens (apex — the typed message is about Mittens). In the paper's apparatus it appears as the symbol 'Mittens (governed individual, colimit apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_02_typed_message_boundary_olog_box__typedmessageboundary
+    a owl:NamedIndividual ;
+    rdfs:label "TypedMessageBoundary" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_03_auth_span_diagram_cheese_trap_immunity__trap_auth_token_returned_as_governed_individual_identity
+    a owl:NamedIndividual ;
+    rdfs:label "auth_token_returned_as_governed_individual_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_03_auth_span_diagram_circuit_imprint_tensor__corner_4
+    a owl:NamedIndividual ;
+    rdfs:label "4" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_03_auth_span_diagram_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.03_auth_span_diagram.concrete_anchor.node1" ;
+    silm:hasLongDescription "The AuthSpanDiagramSourceNode is Auth token (span left leg). In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_03_auth_span_diagram_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.03_auth_span_diagram.concrete_anchor.node2" ;
+    silm:hasLongDescription "The AuthSpanDiagramResultNode is VetRecord_Mittens (span source). In the paper's apparatus it appears as the symbol 'Operation result (intermediate or output)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_03_auth_span_diagram_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.03_auth_span_diagram.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_AuthSpanDiagram is Mittens (span apex — both auth and evidence point here). In the paper's apparatus it appears as the symbol 'Mittens (governed individual, colimit apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_03_auth_span_diagram_olog_box__authspandiagram
+    a owl:NamedIndividual ;
+    rdfs:label "AuthSpanDiagram" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_03_bridge_to_crdt_convergence_cheese_trap_immunity__trap_merged_replica_state_equals_governed_individual_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "merged_replica_state_equals_governed_individual_collapse" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_03_bridge_to_crdt_convergence_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_03_bridge_to_crdt_convergence_concrete_anchor_replica_product
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.03_bridge_to_crdt_convergence.concrete_anchor.replica_product" ;
+    silm:hasLongDescription "The ReplicaPairForMittensVetRecord is R_i x R_j is the pair of replica states — R_i holds Mittens's vaccination history, R_j holds Mittens's weight measurements. Both are about Mittens. The product node represents the inputs to the gossip merge." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_03_bridge_to_crdt_convergence_concrete_anchor_merged_replica
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.03_bridge_to_crdt_convergence.concrete_anchor.merged_replica" ;
+    silm:hasLongDescription "The GossipMergedVetRecord is R_i join R_j is the merged state after GossipMerge — contains both vaccination history and weight measurements for Mittens. This is the direct sum in the CRDT semilattice. It is NOT Mittens itself; it is the merged storage state that carries the aboutness arrow to Mittens." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_03_bridge_to_crdt_convergence_concrete_anchor_mittens_apex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.03_bridge_to_crdt_convergence.concrete_anchor.mittens_apex" ;
+    silm:hasLongDescription "The MittensGovernedIndividualApex is Mittens is the cocone apex — the governed individual that both R_i x R_j and R_i join R_j are about. The aboutness arrows from both replica product and merged state to Mittens must commute. This is NOT the storage state — it is the semantic colimit apex that the storage states are about." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_03_bridge_to_crdt_convergence_olog_box__bridgetocrdtconvergence
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeToCRDTConvergence" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_03_closure_and_yoneda_return_cheese_trap_immunity__trap_closure_loop_exits_without_full_yoneda_profile_verification
+    a owl:NamedIndividual ;
+    rdfs:label "closure_loop_exits_without_full_yoneda_profile_verification" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_03_closure_and_yoneda_return_circuit_imprint_tensor__corner_4
+    a owl:NamedIndividual ;
+    rdfs:label "4" .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_03_closure_and_yoneda_return_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.03_closure_and_yoneda_return.concrete_anchor.node1" ;
+    silm:hasLongDescription "The ClosureAndYonedaReturnSourceNode is Pre-closure state (partial Yoneda profile). In the paper's apparatus it appears as the symbol 'Source', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_03_closure_and_yoneda_return_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.03_closure_and_yoneda_return.concrete_anchor.node2" ;
+    silm:hasLongDescription "The ClosureAndYonedaReturnOperationNode is ClosureOperation (traverse all active legs). In the paper's apparatus it appears as the symbol 'Operation', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_03_closure_and_yoneda_return_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.09_render_integrity_and_governance.sections.03_closure_and_yoneda_return.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_ClosureAndYonedaReturn is Post-closure Mittens (full Yoneda profile reconstructed). In the paper's apparatus it appears as the symbol 'Mittens (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_03_closure_and_yoneda_return_olog_box__closureandyonedareturn
+    a owl:NamedIndividual ;
+    rdfs:label "ClosureAndYonedaReturn" .
+
+silm:ReplicationConvergenceTheorem
+    a owl:Class ;
+    rdfs:comment "Theorem: replication convergence preserves the Mittens cocone. The GossipMerge operation (commutative, associative, idempotent) produces a converged state R_vee whose storage cocone leg lambda_storage is defined and equals the cocone leg of any individual replica." ;
+    rdfs:label "ReplicationConvergenceTheorem" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_federation_contract_cheese_trap_immunity__trap_message_as_string_without_typed_boundary
+    a owl:NamedIndividual ;
+    rdfs:label "message_as_string_without_typed_boundary" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_federation_contract_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_federation_contract_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "Node1Example" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.03_federation_contract.concrete_anchor.node1" ;
+    silm:hasExample "In 'Node1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The typed source federation object for 03_federation_contract. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path.." ;
+    silm:hasLongDescription "The 03_federation_contractSourceNode is The typed source federation object for 03_federation_contract. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_federation_contract_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.03_federation_contract.concrete_anchor.node2" ;
+    silm:hasLongDescription "The 03_federation_contractOperationNode is The operation or gate node for 03_federation_contract. FedContract for Mittens: (VetRecord_Mittens message, ECDSA-sig, lambda_evidence) -> ACCEPT. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_federation_contract_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.03_federation_contract.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_03_federation_contract is Mittens is the colimit apex — the governed individual cat. All arrows in 03_federation_contract ultimately point toward Mittens. Mittens is NOT a source leg, NOT a storage packet, NOT a KG node. In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_federation_contract_olog_box__federationcontract
+    a owl:NamedIndividual ;
+    rdfs:label "FederationContract" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_03_gossip_colimit_diagram_cheese_trap_immunity__trap_storage_colimit_bypasses_semantic_colimit
+    a owl:NamedIndividual ;
+    rdfs:label "storage_colimit_bypasses_semantic_colimit" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_03_gossip_colimit_diagram_circuit_imprint_tensor__corner_4
+    a owl:NamedIndividual ;
+    rdfs:label "4" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_03_gossip_colimit_diagram_concrete_anchor_r1
+    a owl:NamedIndividual ;
+    rdfs:label "Replica1ForColimitExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.03_gossip_colimit_diagram.concrete_anchor.r1" ;
+    silm:hasExample "In 'Replica1ForColimit', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, R_1 is the morning vet-visit replica for Mittens — contains the vaccination record and morning weight. It contributes via mu_1 to R_vee and via nu_1 to VetCarePlan_77.." ;
+    silm:hasLongDescription "The MorningReadingReplica is R_1 is the morning vet-visit replica for Mittens — contains the vaccination record and morning weight. It contributes via mu_1 to R_vee and via nu_1 to VetCarePlan_77. In the paper's apparatus it appears as the symbol 'R_1', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_03_gossip_colimit_diagram_concrete_anchor_r_vee
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.03_gossip_colimit_diagram.concrete_anchor.r_vee" ;
+    silm:hasLongDescription "The FullyConvergedVetRecordForMittens is R_vee is the fully converged vet record state for Mittens — contains all health readings (morning weight, afternoon temperature, evening microchip scan) from all replicas. This is the colimit colim D_gossip. Every other compatible aggregation of R_1 and R_2 must factor through R_vee via the unique mediating arrow u." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_03_gossip_colimit_diagram_concrete_anchor_r2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.03_gossip_colimit_diagram.concrete_anchor.r2" ;
+    silm:hasLongDescription "The AfternoonReadingReplica is R_2 is the afternoon vet-visit replica for Mittens — contains the temperature reading and afternoon weight. It contributes via mu_2 to R_vee and via nu_2 to VetCarePlan_77. In the paper's apparatus it appears as the symbol 'R_2', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_03_gossip_colimit_diagram_concrete_anchor_vet_care_plan
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.03_gossip_colimit_diagram.concrete_anchor.vet_care_plan" ;
+    silm:hasLongDescription "The MittensClinicalSummaryPlan77 is VetCarePlan_77 is the clinical summary that incorporates both health readings — the vet's care plan document that aggregates all of Mittens's measurements. It is the target of the compatible cocone nu_i. The universal property says: any system that correctly aggregates R_1 and R_2 into a clinical summary must factor through R_vee, because R_vee is the canonical convergence point." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_03_gossip_colimit_diagram_olog_box__gossipcolimitdiagram
+    a owl:NamedIndividual ;
+    rdfs:label "GossipColimitDiagram" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_03_kg_colimit_leg_cheese_trap_immunity__trap_kg_colimit_result_confused_with_governed_individual
+    a owl:NamedIndividual ;
+    rdfs:label "kg_colimit_result_confused_with_governed_individual" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_03_kg_colimit_leg_circuit_imprint_tensor__corner_4
+    a owl:NamedIndividual ;
+    rdfs:label "4" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_03_kg_colimit_leg_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.03_kg_colimit_leg.concrete_anchor.node1" ;
+    silm:hasLongDescription "The KGColimitLegSourceNode is KGView_Mittens (colimit of KG sources). In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_03_kg_colimit_leg_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.03_kg_colimit_leg.concrete_anchor.node2" ;
+    silm:hasLongDescription "The KGColimitLegOperationNode is lambda_kg (aboutness arrow from KGView to Mittens). In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_03_kg_colimit_leg_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.03_kg_colimit_leg.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_KGColimitLeg is Mittens (apex — KGView is about Mittens). In the paper's apparatus it appears as the symbol 'Mittens or result (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_03_kg_colimit_leg_olog_box__kgcolimitleg
+    a owl:NamedIndividual ;
+    rdfs:label "KGColimitLeg" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_cheese_trap_immunity__trap_engine_migration_drops_aboutness_arrows_during_transformation
+    a owl:NamedIndividual ;
+    rdfs:label "engine_migration_drops_aboutness_arrows_during_transformation" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_concrete_anchor_source_obj
+    a owl:NamedIndividual ;
+    rdfs:label "SourceObjectExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.03_natural_transformation_between_engines.concrete_anchor.source_obj" ;
+    silm:hasExample "In 'SourceObject', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, X is the source federation object — concretely VetRecord_Mittens in the Mittens example. It is the domain of the functor input morphism.." ;
+    silm:hasLongDescription "The VetRecord_Mittens_SourceObject is X is the source federation object — concretely VetRecord_Mittens in the Mittens example. It is the domain of the functor input morphism. In the paper's apparatus it appears as the symbol 'X (source federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_concrete_anchor_functor_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.03_natural_transformation_between_engines.concrete_anchor.functor_node" ;
+    silm:hasLongDescription "The NaturalTransformationBetweenEnginesFunctorNode is F is the NaturalTransformationBetweenEngines functor — it maps typed federation objects and morphisms from the source category to the target category, preserving composition and identity. In the paper's apparatus it appears as the symbol 'F (the NaturalTransformationBetweenEngines functor)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_concrete_anchor_mapped_obj
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.03_natural_transformation_between_engines.concrete_anchor.mapped_obj" ;
+    silm:hasLongDescription "The MappedMittensObject is F(X) is the mapped target object — the image of VetRecord_Mittens under the functor. In the embedded engine context, F(VetRecord_Mittens) is the engine's internal representation of the vet record with the aboutness arrow preserved." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_olog_box__naturaltransformationbetweenengines
+    a owl:NamedIndividual ;
+    rdfs:label "NaturalTransformationBetweenEngines" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_yoneda_hom_leg_functor_on_objects
+    a owl:NamedIndividual ;
+    rdfs:label "FunctorOnObjectsArrowExample" ;
+    silm:hasExample "In 'FunctorOnObjectsArrow', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, F: X |-> F(X) — functor maps VetRecord_Mittens to its engine representation" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_olog_node_arrow_law_cheese_trap_immunity__trap_operational_vagueness_bypasses_typed_gate
+    a owl:NamedIndividual ;
+    rdfs:label "operational_vagueness_bypasses_typed_gate" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_03_olog_node_arrow_law_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_03_olog_node_arrow_law_concrete_anchor_node_a
+    a owl:NamedIndividual ;
+    rdfs:label "NodeA_VetRecordExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.03_olog_node_arrow_law.concrete_anchor.node_a" ;
+    silm:hasExample "In 'NodeA_VetRecord', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, Node A in the olog node-arrow diagram is VetRecord_Mittens — the physical veterinary record for Mittens. It is the domain of the lambda_evidence arrow and the storedAs arrow. It is a source, not the apex.." ;
+    silm:hasLongDescription "The VetRecord_Mittens is Node A in the olog node-arrow diagram is VetRecord_Mittens — the physical veterinary record for Mittens. It is the domain of the lambda_evidence arrow and the storedAs arrow. It is a source, not the apex." .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_03_olog_node_arrow_law_concrete_anchor_node_b
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.03_olog_node_arrow_law.concrete_anchor.node_b" ;
+    silm:hasLongDescription "The StoragePacket_Mittens is Node B in the composition diagram is StoragePacket_Mittens — the storage packet produced from the vet record via storedAs. It is the codomain of storedAs and the domain of lambda_storage. Intermediate node in the composition law." .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_03_olog_node_arrow_law_concrete_anchor_node_c
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.03_olog_node_arrow_law.concrete_anchor.node_c" ;
+    silm:hasLongDescription "The MittensGovernedIndividual is Node C in the composition diagram is Mittens — the governed individual cat, the colimit apex. The codomain of both lambda_evidence (direct path) and lambda_storage circ storedAs (composed path). The two paths must agree: this IS the commutativity law." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_olog_node_arrow_law_olog_box__olognodearrowlaw
+    a owl:NamedIndividual ;
+    rdfs:label "OlogNodeArrowLaw" .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_03_packet_through_federation_cheese_trap_immunity__trap_packet_content_decoded_without_preserving_aboutness_arrow
+    a owl:NamedIndividual ;
+    rdfs:label "packet_content_decoded_without_preserving_aboutness_arrow" .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_03_packet_through_federation_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_03_packet_through_federation_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.08_mittens_storage_packet.sections.03_packet_through_federation.concrete_anchor.node1" ;
+    silm:hasLongDescription "The PacketThroughFederationSourceNode is StoragePacket_Mittens (input to federation path). In the paper's apparatus it appears as the symbol 'Source', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_03_packet_through_federation_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.08_mittens_storage_packet.sections.03_packet_through_federation.concrete_anchor.node2" ;
+    silm:hasLongDescription "The PacketThroughFederationOperationNode is FederationPath (engine + verify gates). In the paper's apparatus it appears as the symbol 'Operation', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_03_packet_through_federation_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.08_mittens_storage_packet.sections.03_packet_through_federation.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_PacketThroughFederation is Mittens (apex — federation path terminates at the governed individual). In the paper's apparatus it appears as the symbol 'Mittens (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_03_packet_through_federation_olog_box__packetthroughfederation
+    a owl:NamedIndividual ;
+    rdfs:label "PacketThroughFederation" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_03_replication_and_convergence_cheese_trap_immunity__trap_replica_as_governing_source_replaces_apex
+    a owl:NamedIndividual ;
+    rdfs:label "replica_as_governing_source_replaces_apex" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_03_replication_and_convergence_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_03_replication_and_convergence_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.03_replication_and_convergence.concrete_anchor.node1" ;
+    silm:hasLongDescription "The Replica_i_StoragePacket is Replica R_i is a typed copy of StoragePacket_Mittens held at node i in the distributed system. It participates in gossip merge. It is one source in the replication convergence diagram. In the paper's apparatus it appears as the symbol 'R_i (replica i of StoragePacket_Mittens)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_03_replication_and_convergence_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.03_replication_and_convergence.concrete_anchor.node2" ;
+    silm:hasLongDescription "The MergedReplica_i_j is R_i join R_j is the merged replica produced by the gossip join operation. It is the colimit in the sub-diagram of {R_i, R_j, morphisms}. It is still a REPLICA — not the governed individual Mittens. In the paper's apparatus it appears as the symbol 'R_i join R_j (merged replica)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_03_replication_and_convergence_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.03_replication_and_convergence.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensAboveReplicaLattice is Mittens is the colimit apex of D_Mittens — above the replica lattice. The replicas are all ABOUT Mittens; they converge toward a consistent view of Mittens but never become Mittens. In the paper's apparatus it appears as the symbol 'Mittens (the apex, above the replica lattice)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_03_replication_and_convergence_olog_box__replicationandconvergence
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicationAndConvergence" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_03_roster_update_laws_cheese_trap_immunity__trap_roster_update_overwrites_aboutness_arrow
+    a owl:NamedIndividual ;
+    rdfs:label "roster_update_overwrites_aboutness_arrow" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_03_roster_update_laws_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_03_roster_update_laws_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.05_silmaril_roster_and_profiles.sections.03_roster_update_laws.concrete_anchor.node1" ;
+    silm:hasLongDescription "The RosterUpdateLawsSourceNode is FedReg_Mittens before update. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_03_roster_update_laws_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.05_silmaril_roster_and_profiles.sections.03_roster_update_laws.concrete_anchor.node2" ;
+    silm:hasLongDescription "The RosterUpdateLawsOperationNode is UpdateOperation (add/remove typed pair). In the paper's apparatus it appears as the symbol 'Operation (intermediate or gate)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_03_roster_update_laws_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.05_silmaril_roster_and_profiles.sections.03_roster_update_laws.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_RosterUpdateLaws is FedReg_Mittens after update (Mittens apex unchanged). In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_03_roster_update_laws_olog_box__rosterupdatelaws
+    a owl:NamedIndividual ;
+    rdfs:label "RosterUpdateLaws" .
+
+silm:instances_papers_03_silmaril_federation_replacement_silmaril_wave8_theorem_unit
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8TheoremUnitReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_replacement_silmaril_wave8_theorem_unit ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_theorem_unit ;
+    silm:targetNode silm:types_papers_claim_atom_theorem_unit .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_04_engine_failure_modes_cheese_trap_immunity__trap_engine_returns_source_leg_instead_of_mapped_apex
+    a owl:NamedIndividual ;
+    rdfs:label "engine_returns_source_leg_instead_of_mapped_apex" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_04_engine_failure_modes_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_04_engine_failure_modes_concrete_anchor_source_obj
+    a owl:NamedIndividual ;
+    rdfs:label "SourceObjectExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.04_engine_failure_modes.concrete_anchor.source_obj" ;
+    silm:hasExample "In 'SourceObject', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, X is the source federation object — concretely VetRecord_Mittens in the Mittens example. It is the domain of the functor input morphism.." ;
+    silm:hasLongDescription "The VetRecord_Mittens_SourceObject is X is the source federation object — concretely VetRecord_Mittens in the Mittens example. It is the domain of the functor input morphism. In the paper's apparatus it appears as the symbol 'X (source federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_04_engine_failure_modes_concrete_anchor_functor_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.04_engine_failure_modes.concrete_anchor.functor_node" ;
+    silm:hasLongDescription "The EngineFailureModesFunctorNode is F is the EngineFailureModes functor — it maps typed federation objects and morphisms from the source category to the target category, preserving composition and identity. In the paper's apparatus it appears as the symbol 'F (the EngineFailureModes functor)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_04_engine_failure_modes_concrete_anchor_mapped_obj
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.03_embedded_engine_functors.sections.04_engine_failure_modes.concrete_anchor.mapped_obj" ;
+    silm:hasLongDescription "The MappedMittensObject is F(X) is the mapped target object — the image of VetRecord_Mittens under the functor. In the embedded engine context, F(VetRecord_Mittens) is the engine's internal representation of the vet record with the aboutness arrow preserved." .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_04_engine_failure_modes_olog_box__enginefailuremodes
+    a owl:NamedIndividual ;
+    rdfs:label "EngineFailureModes" .
+
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_04_engine_failure_modes_yoneda_hom_leg_functor_on_objects
+    a owl:NamedIndividual ;
+    rdfs:label "FunctorOnObjectsArrowExample" ;
+    silm:hasExample "In 'FunctorOnObjectsArrow', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, F: X |-> F(X) — functor maps VetRecord_Mittens to its engine representation" .
+
+silm:GossipPreservesMittensTheorem
+    a owl:Class ;
+    rdfs:comment "Theorem: gossip convergence preserves Mittens. Every replica R_i carries an aboutness arrow a_i: R_i -> Mittens; the gossip-converged state R_vee carries a_vee: R_vee -> Mittens such that a_vee circ mu_i = a_i. The gossip protocol does not change the cat." ;
+    rdfs:label "GossipPreservesMittensTheorem" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_04_gossip_mittens_preservation_cheese_trap_immunity__trap_gossip_convergence_bypasses_shape_gate_governance
+    a owl:NamedIndividual ;
+    rdfs:label "gossip_convergence_bypasses_shape_gate_governance" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_04_gossip_mittens_preservation_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_04_gossip_mittens_preservation_concrete_anchor_r1
+    a owl:NamedIndividual ;
+    rdfs:label "Replica1WithAboutnessExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.04_gossip_mittens_preservation.concrete_anchor.r1" ;
+    silm:hasExample "In 'Replica1WithAboutness', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, R_1 is the morning vet-clinic replica of Mittens's StoragePacket, carrying aboutness arrow a_1: R_1 -> Mittens. Concretely: the replica holds {weight: 3.8kg, sensor: vet-clinic-scale-01, about: Mittens}.." ;
+    silm:hasLongDescription "The MorningReplicaWithAboutnessA1 is R_1 is the morning vet-clinic replica of Mittens's StoragePacket, carrying aboutness arrow a_1: R_1 -> Mittens. Concretely: the replica holds {weight: 3.8kg, sensor: vet-clinic-scale-01, about: Mittens}." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_04_gossip_mittens_preservation_concrete_anchor_r_vee
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.04_gossip_mittens_preservation.concrete_anchor.r_vee" ;
+    silm:hasLongDescription "The FullyConvergedVetRecordAboutnessAvee is R_vee is the fully converged vet record for Mittens carrying the unique aboutness arrow a_vee: R_vee -> Mittens. After three health readings (weight, temperature, microchip scan) arrive at converged state, R_vee still refers to the same cat. The gossip protocol did not change the cat; it changed the replica's measurement record." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_04_gossip_mittens_preservation_concrete_anchor_r2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.04_gossip_mittens_preservation.concrete_anchor.r2" ;
+    silm:hasLongDescription "The AfternoonReplicaWithAboutnessA2 is R_2 is the afternoon vet-clinic replica of Mittens's StoragePacket, carrying aboutness arrow a_2: R_2 -> Mittens. Concretely: {temperature: 38.6C, sensor: vet-clinic-thermometer-01, about: Mittens}. In the paper's apparatus it appears as the symbol 'R_2', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_04_gossip_mittens_preservation_concrete_anchor_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.06_crdt_gossip_convergence.sections.04_gossip_mittens_preservation.concrete_anchor.mittens" ;
+    silm:hasLongDescription "The MittensGovernedCatThroughGossip is Mittens is the semantic colimit apex — the governed individual cat that all replica aboutness arrows point to. After gossip convergence, a_vee: R_vee -> Mittens is the unique arrow that factors through all a_i. Mittens is unchanged by gossip: the cat's identity is preserved even as the measurement records are updated." .
+
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_04_gossip_mittens_preservation_olog_box__gossippreservesmittens
+    a owl:NamedIndividual ;
+    rdfs:label "GossipPreservesMittens" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_04_kg_growth_and_maintenance_cheese_trap_immunity__trap_kg_growth_op_drops_aboutness_arrows_from_existing_nodes
+    a owl:NamedIndividual ;
+    rdfs:label "kg_growth_op_drops_aboutness_arrows_from_existing_nodes" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_04_kg_growth_and_maintenance_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_04_kg_growth_and_maintenance_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.04_kg_growth_and_maintenance.concrete_anchor.node1" ;
+    silm:hasLongDescription "The KGGrowthAndMaintenanceSourceNode is Existing KGAssertion_Mittens with lambda_graph. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_04_kg_growth_and_maintenance_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.04_kg_growth_and_maintenance.concrete_anchor.node2" ;
+    silm:hasLongDescription "The KGGrowthAndMaintenanceOperationNode is New KGAssertion_Mittens_2 with lambda_graph_2. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_04_kg_growth_and_maintenance_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.07_knowledge_graph_cross_reference.sections.04_kg_growth_and_maintenance.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_KGGrowthAndMaintenance is Mittens (apex — both KG assertions are about Mittens, growth is monotonic). In the paper's apparatus it appears as the symbol 'Mittens or result (apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_04_kg_growth_and_maintenance_olog_box__kggrowthandmaintenance
+    a owl:NamedIndividual ;
+    rdfs:label "KGGrowthAndMaintenance" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_04_message_failure_probes_cheese_trap_immunity__trap_failed_message_treated_as_successful_federation_result
+    a owl:NamedIndividual ;
+    rdfs:label "failed_message_treated_as_successful_federation_result" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_04_message_failure_probes_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_04_message_failure_probes_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.04_message_failure_probes.concrete_anchor.node1" ;
+    silm:hasLongDescription "The MessageFailureProbesSourceNode is Adversarial message (missing aboutness or wrong apex). In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_04_message_failure_probes_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.04_message_failure_probes.concrete_anchor.node2" ;
+    silm:hasLongDescription "The MessageFailureProbesResultNode is FailureProbeGate (the rejection gate). In the paper's apparatus it appears as the symbol 'Operation result (intermediate or output)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_04_message_failure_probes_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.04_federation_contract_and_messages.sections.04_message_failure_probes.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_MessageFailureProbes is REJECTED (outcome — not Mittens). In the paper's apparatus it appears as the symbol 'Mittens (governed individual, colimit apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_04_message_failure_probes_olog_box__messagefailureprobes
+    a owl:NamedIndividual ;
+    rdfs:label "MessageFailureProbes" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_04_roster_mittens_test_cheese_trap_immunity__trap_roster_entry_returned_as_mittens_identity
+    a owl:NamedIndividual ;
+    rdfs:label "roster_entry_returned_as_mittens_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_04_roster_mittens_test_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_04_roster_mittens_test_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.05_silmaril_roster_and_profiles.sections.04_roster_mittens_test.concrete_anchor.node1" ;
+    silm:hasLongDescription "The RosterMittensTestSourceNode is Roster entry under test (typed pair). In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_04_roster_mittens_test_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.05_silmaril_roster_and_profiles.sections.04_roster_mittens_test.concrete_anchor.node2" ;
+    silm:hasLongDescription "The RosterMittensTestOperationNode is MittensTestGate (aboutness direction check). In the paper's apparatus it appears as the symbol 'Operation (intermediate or gate)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_04_roster_mittens_test_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.05_silmaril_roster_and_profiles.sections.04_roster_mittens_test.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_RosterMittensTest is PASS (valid entry) or FAIL (invalid aboutness direction). In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_04_roster_mittens_test_olog_box__rostermittenstest
+    a owl:NamedIndividual ;
+    rdfs:label "RosterMittensTest" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_04_silmaril_roster_cheese_trap_immunity__trap_roster_entry_equals_participant_identity
+    a owl:NamedIndividual ;
+    rdfs:label "roster_entry_equals_participant_identity" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_04_silmaril_roster_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_04_silmaril_roster_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "Node1Example" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.04_silmaril_roster.concrete_anchor.node1" ;
+    silm:hasExample "In 'Node1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The typed source federation object for 04_silmaril_roster. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path.." ;
+    silm:hasLongDescription "The 04_silmaril_rosterSourceNode is The typed source federation object for 04_silmaril_roster. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_04_silmaril_roster_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.04_silmaril_roster.concrete_anchor.node2" ;
+    silm:hasLongDescription "The 04_silmaril_rosterOperationNode is The operation or gate node for 04_silmaril_roster. SilRoster entry: (Mittens, FedReg_Mittens). FedReg_Mittens = 4 typed pairs. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_04_silmaril_roster_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.04_silmaril_roster.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_04_silmaril_roster is Mittens is the colimit apex — the governed individual cat. All arrows in 04_silmaril_roster ultimately point toward Mittens. Mittens is NOT a source leg, NOT a storage packet, NOT a KG node. In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_04_silmaril_roster_olog_box__silmarilroster
+    a owl:NamedIndividual ;
+    rdfs:label "SilmarilRoster" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_04_storage_audit_commuting_square_cheese_trap_immunity__trap_audit_record_as_apex_instead_of_storage_object
+    a owl:NamedIndividual ;
+    rdfs:label "audit_record_as_apex_instead_of_storage_object" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_04_storage_audit_commuting_square_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_04_storage_audit_commuting_square_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.04_storage_audit_commuting_square.concrete_anchor.node1" ;
+    silm:hasLongDescription "The StoragePacket_CommutingSquare is StoragePacket_Mittens is the top-left node of the storage-audit commuting square. It has a storage arrow going right (to AuditRecord) and a lambda_storage arrow going down (to Mittens). In the paper's apparatus it appears as the symbol 'StoragePacket_Mittens (top-left of commuting square)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_04_storage_audit_commuting_square_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.04_storage_audit_commuting_square.concrete_anchor.node2" ;
+    silm:hasLongDescription "The AuditRecord_Mittens_Node is AuditRecord_Mittens is the top-right node — the typed audit record that witnesses the storage event for Mittens. It has a lambda_audit arrow going down to Mittens. It is NOT Mittens. In the paper's apparatus it appears as the symbol 'AuditRecord_Mittens (top-right of commuting square)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_04_storage_audit_commuting_square_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.02_factored_storage_topology.sections.04_storage_audit_commuting_square.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_CommutingSquare is Mittens is the bottom node of the commuting square — the colimit apex that both the lambda_storage and lambda_audit arrows converge to. The square commutes: lambda_audit circ auditedAs = lambda_storage." .
+
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_04_storage_audit_commuting_square_olog_box__storageauditcommutingsquare
+    a owl:NamedIndividual ;
+    rdfs:label "StorageAuditCommutingSquare" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_cheese_trap_immunity__trap_kg_node_equals_governed_individual_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "kg_node_equals_governed_individual_collapse" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_concrete_anchor_mittens_instance
+    a owl:NamedIndividual ;
+    rdfs:label "MittensInstanceNodeExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.05_bridge_to_kg_papers.concrete_anchor.mittens_instance" ;
+    silm:hasExample "In 'MittensInstanceNode', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, Mittens is the concrete cat individual — the instancenode in the KG bridge diagram. From this node, typedInto goes to KGNode_Mittens and isAbout goes to VetRecord_Mittens. Mittens is NOT the KG node; it is the individual that KG nodes are about.." ;
+    silm:hasLongDescription "The MittensConcreteIndividual is Mittens is the concrete cat individual — the instancenode in the KG bridge diagram. From this node, typedInto goes to KGNode_Mittens and isAbout goes to VetRecord_Mittens. Mittens is NOT the KG node; it is the individual that KG nodes are about." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_concrete_anchor_kgnode_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.05_bridge_to_kg_papers.concrete_anchor.kgnode_mittens" ;
+    silm:hasLongDescription "The MittensKGNodeBeforeGrowth is KGNode_Mittens is the classnode — the RDF resource for Mittens's vet record before graph growth. It has triples for vaccination date and breed. It is typed into from Mittens via typedInto, and it can grow." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_concrete_anchor_vetrecord_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.05_bridge_to_kg_papers.concrete_anchor.vetrecord_mittens" ;
+    silm:hasLongDescription "The MittensVetRecord is VetRecord_Mittens is the infonode — the vet record document about Mittens. From it, isAbout goes to Mittens and typedInto goes to KGNode_Mittens'. The vet record is about Mittens (the individual), not identical to Mittens." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_concrete_anchor_kgnode_mittens_prime
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.10_cross_paper_bridges.sections.05_bridge_to_kg_papers.concrete_anchor.kgnode_mittens_prime" ;
+    silm:hasLongDescription "The MittensKGNodeAfterGrowth is KGNode_Mittens' is the classnode after graph growth — the RDF resource with vaccination date, breed, AND updated weight. The grow arrow from KGNode_Mittens points here. The commutativity square says VetRecord_Mittens types into this grown node, and it is still about Mittens." .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_05_bridge_to_kg_papers_olog_box__bridgetokgpapers
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeToKGPapers" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_cannon_or_gpt_absorption_cheese_trap_immunity__trap_generated_source_used_as_authority
+    a owl:NamedIndividual ;
+    rdfs:label "generated_source_used_as_authority" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_cannon_or_gpt_absorption_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_cannon_or_gpt_absorption_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "Node1Example" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.05_cannon_or_gpt_absorption.concrete_anchor.node1" ;
+    silm:hasExample "In 'Node1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The typed source federation object for 05_cannon_or_gpt_absorption. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path.." ;
+    silm:hasLongDescription "The 05_cannon_or_gpt_absorptionSourceNode is The typed source federation object for 05_cannon_or_gpt_absorption. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_cannon_or_gpt_absorption_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.05_cannon_or_gpt_absorption.concrete_anchor.node2" ;
+    silm:hasLongDescription "The 05_cannon_or_gpt_absorptionOperationNode is The operation or gate node for 05_cannon_or_gpt_absorption. Cannon claim 'Mittens is catus' -> REJECTED (bare lexical match). Cannon claim with lambda_evidence -> ACCEPTED. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_cannon_or_gpt_absorption_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.05_cannon_or_gpt_absorption.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_05_cannon_or_gpt_absorption is Mittens is the colimit apex — the governed individual cat. All arrows in 05_cannon_or_gpt_absorption ultimately point toward Mittens. Mittens is NOT a source leg, NOT a storage packet, NOT a KG node. In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_cannon_or_gpt_absorption_olog_box__cannonabsorption
+    a owl:NamedIndividual ;
+    rdfs:label "CannonAbsorption" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_crdt_gossip_cheese_trap_immunity__trap_gossip_merge_bypasses_aboutness_invariant
+    a owl:NamedIndividual ;
+    rdfs:label "gossip_merge_bypasses_aboutness_invariant" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_crdt_gossip_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_crdt_gossip_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "Node1Example" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.05_crdt_gossip.concrete_anchor.node1" ;
+    silm:hasExample "In 'Node1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The typed source federation object for 05_crdt_gossip. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path.." ;
+    silm:hasLongDescription "The 05_crdt_gossipSourceNode is The typed source federation object for 05_crdt_gossip. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_crdt_gossip_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.05_crdt_gossip.concrete_anchor.node2" ;
+    silm:hasLongDescription "The 05_crdt_gossipOperationNode is The operation or gate node for 05_crdt_gossip. R_1 join R_2 = gossip merge of two Mittens replicas. Commutative: R_1 join R_2 = R_2 join R_1. Idempotent: R join R = R. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_crdt_gossip_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.05_crdt_gossip.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_05_crdt_gossip is Mittens is the colimit apex — the governed individual cat. All arrows in 05_crdt_gossip ultimately point toward Mittens. Mittens is NOT a source leg, NOT a storage packet, NOT a KG node. In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_crdt_gossip_olog_box__crdtgossipflat
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtGossipFlat" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_05_federation_olog_register_cheese_trap_immunity__trap_registering_taxonomy_row_as_aboutness_entry_for_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "registering_taxonomy_row_as_aboutness_entry_for_mittens" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_05_federation_olog_register_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_05_federation_olog_register_concrete_anchor_vet_record_entry
+    a owl:NamedIndividual ;
+    rdfs:label "VetRecordRegistryEntryExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.05_federation_olog_register.concrete_anchor.vet_record_entry" ;
+    silm:hasExample "In 'VetRecordRegistryEntry', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The first entry in FedReg_Mittens is the pair (VetRecord_Mittens, lambda_evidence). VetRecord_Mittens is the typed object; lambda_evidence is the aboutness arrow to Mittens. This entry enables observability of Mittens via the physical vet record.." ;
+    silm:hasLongDescription "The VetRecord_Mittens_RegistryEntry is The first entry in FedReg_Mittens is the pair (VetRecord_Mittens, lambda_evidence). VetRecord_Mittens is the typed object; lambda_evidence is the aboutness arrow to Mittens. This entry enables observability of Mittens via the physical vet record." .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_05_federation_olog_register_concrete_anchor_storage_packet_entry
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.05_federation_olog_register.concrete_anchor.storage_packet_entry" ;
+    silm:hasLongDescription "The StoragePacket_Mittens_RegistryEntry is The second entry is (StoragePacket_Mittens, lambda_storage). The storage packet is a typed wrapper around stored vet data; lambda_storage is its aboutness arrow to Mittens. This entry enables observability via the storage topology." .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_05_federation_olog_register_concrete_anchor_register_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.05_federation_olog_register.concrete_anchor.register_node" ;
+    silm:hasLongDescription "The FedReg_Mittens is FedReg_Mittens is the register node — the typed container holding all four (object, aboutness-arrow) pairs for Mittens. It is not an object about Mittens; it is the index of objects that are about Mittens." .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_05_federation_olog_register_olog_box__federationologregister
+    a owl:NamedIndividual ;
+    rdfs:label "FederationOlogRegister" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_05_federation_olog_register_yoneda_hom_leg_register_to_object
+    a owl:NamedIndividual ;
+    rdfs:label "RegisterToTypedObjectArrowExample" ;
+    silm:hasExample "In 'RegisterToTypedObjectArrow', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, FedReg_Mittens -> {VetRecord_Mittens, StoragePacket_Mittens, KGAssertion_Mittens, CatalogTrace_Mittens}" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_06_bridge_to_ologs_cheese_trap_immunity__trap_typed_box_collapsed_to_deployment_object_or_readable_arrow_c
+    a owl:NamedIndividual ;
+    rdfs:label "typed_box_collapsed_to_deployment_object_or_readable_arrow_collapsed_to_operational_fact" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_06_bridge_to_ologs_circuit_imprint_tensor__corner_7
+    a owl:NamedIndividual ;
+    rdfs:label "7" .
+
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_06_bridge_to_ologs_olog_box__bridgetoologs
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeToOlogs" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_06_cheese_trap_immunity_cheese_trap_immunity__trap_bare_lexical_match_routes_engine_to_taxonomy_source_leg_as_apex
+    a owl:NamedIndividual ;
+    rdfs:label "bare_lexical_match_routes_engine_to_taxonomy_source_leg_as_apex" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_06_cheese_trap_immunity_circuit_imprint_tensor__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_06_cheese_trap_immunity_concrete_anchor_cheese_probe
+    a owl:NamedIndividual ;
+    rdfs:label "CheeseProbeNodeExample" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.06_cheese_trap_immunity.concrete_anchor.cheese_probe" ;
+    silm:hasExample "In 'CheeseProbeNode', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The CheeseProbe is the adversarial query 'catus' — a bare string that lexically overlaps with Felis catus / TSN 183798 (a source leg into D_Mittens) but not with Mittens the cat (the colimit apex). The probe is designed to route the federation engine to the wrong object.." ;
+    silm:hasLongDescription "The BareCatusStringMatchProbe is The CheeseProbe is the adversarial query 'catus' — a bare string that lexically overlaps with Felis catus / TSN 183798 (a source leg into D_Mittens) but not with Mittens the cat (the colimit apex). The probe is designed to route the federation engine to the wrong object." .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_06_cheese_trap_immunity_concrete_anchor_wrong_object
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.06_cheese_trap_immunity.concrete_anchor.wrong_object" ;
+    silm:hasLongDescription "The FelisCatusTaxonRow_SourceLeg is The wrong object that the CheeseProbe routes to: Felis catus / TSN 183798. This is a source leg (a D_Mittens element at the taxonomy index position). It is classified-through from Mittens but is NOT Mittens. A federation engine returning this object as the apex has been cheese-trapped." .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_06_cheese_trap_immunity_concrete_anchor_immunity_gate
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.01_foundational_thesis_and_anchors.sections.06_cheese_trap_immunity.concrete_anchor.immunity_gate" ;
+    silm:hasLongDescription "The SilMittensTaxonomyNegativeRegressionTable is The immunity gate is the SilMittensTaxonomyNegativeRegressionTable — a concrete negative regression table listing all known cheese probes and the typed paths that block them. It is the operational form of the Yoneda profile check. Any query must pass through this gate before routing." .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_06_cheese_trap_immunity_olog_box__cheesetrapimmunitysection
+    a owl:NamedIndividual ;
+    rdfs:label "CheeseTrapImmunitySection" .
+
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_06_cheese_trap_immunity_yoneda_hom_leg_probe_to_wrong_object
+    a owl:NamedIndividual ;
+    rdfs:label "ProbeToWrongObjectArrowExample" ;
+    silm:hasExample "In 'ProbeToWrongObjectArrow', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, bare 'catus' -> Felis catus / TSN 183798 (source leg, rejected)" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_closure_cheese_trap_immunity__trap_label_master_trap_at_closure
+    a owl:NamedIndividual ;
+    rdfs:label "label_master_trap_at_closure" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_closure_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_closure_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "Node1Example" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.06_closure.concrete_anchor.node1" ;
+    silm:hasExample "In 'Node1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The typed source federation object for 06_closure. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path.." ;
+    silm:hasLongDescription "The 06_closureSourceNode is The typed source federation object for 06_closure. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_closure_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.06_closure.concrete_anchor.node2" ;
+    silm:hasLongDescription "The 06_closureOperationNode is The operation or gate node for 06_closure. Closure: traverse all 4 active legs (evidence, storage, graph, trace). FedProfile(Mittens) reconstructed. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_closure_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.06_closure.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_06_closure is Mittens is the colimit apex — the governed individual cat. All arrows in 06_closure ultimately point toward Mittens. Mittens is NOT a source leg, NOT a storage packet, NOT a KG node. In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_closure_olog_box__closuresection
+    a owl:NamedIndividual ;
+    rdfs:label "ClosureSection" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_kg_cross_reference_cheese_trap_immunity__trap_kg_node_replaces_governed_individual
+    a owl:NamedIndividual ;
+    rdfs:label "kg_node_replaces_governed_individual" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_kg_cross_reference_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_kg_cross_reference_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "Node1Example" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.06_kg_cross_reference.concrete_anchor.node1" ;
+    silm:hasExample "In 'Node1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The typed source federation object for 06_kg_cross_reference. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path.." ;
+    silm:hasLongDescription "The 06_kg_cross_referenceSourceNode is The typed source federation object for 06_kg_cross_reference. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_kg_cross_reference_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.06_kg_cross_reference.concrete_anchor.node2" ;
+    silm:hasLongDescription "The 06_kg_cross_referenceOperationNode is The operation or gate node for 06_kg_cross_reference. KGNode_Mittens is a source leg. lambda_graph: KGAssertion_Mittens -> Mittens. KG label is not Mittens. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_kg_cross_reference_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.06_kg_cross_reference.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_06_kg_cross_reference is Mittens is the colimit apex — the governed individual cat. All arrows in 06_kg_cross_reference ultimately point toward Mittens. Mittens is NOT a source leg, NOT a storage packet, NOT a KG node. In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_kg_cross_reference_olog_box__kgcrossreference
+    a owl:NamedIndividual ;
+    rdfs:label "KgCrossReference" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_07_mittens_storage_packet_cheese_trap_immunity__trap_storage_packet_identified_with_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "storage_packet_identified_with_mittens" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_07_mittens_storage_packet_circuit_imprint_tensor__corner_3
+    a owl:NamedIndividual ;
+    rdfs:label "3" .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_07_mittens_storage_packet_concrete_anchor_node1
+    a owl:NamedIndividual ;
+    rdfs:label "Node1Example" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.07_mittens_storage_packet.concrete_anchor.node1" ;
+    silm:hasExample "In 'Node1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, The typed source federation object for 07_mittens_storage_packet. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path.." ;
+    silm:hasLongDescription "The 07_mittens_storage_packetSourceNode is The typed source federation object for 07_mittens_storage_packet. In the Mittens example: VetRecord_Mittens, StoragePacket_Mittens, or KGAssertion_Mittens depending on the operation path. In the paper's apparatus it appears as the symbol 'Source (typed federation object)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_07_mittens_storage_packet_concrete_anchor_node2
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.07_mittens_storage_packet.concrete_anchor.node2" ;
+    silm:hasLongDescription "The 07_mittens_storage_packetOperationNode is The operation or gate node for 07_mittens_storage_packet. MittensPacket = {VetRecord_Mittens_bytes, lambda_storage -> Mittens, ECDSA-sig, 2024-01-15T08:30Z}. In the paper's apparatus it appears as the symbol 'Operation or gate', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_07_mittens_storage_packet_concrete_anchor_node3
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.chapters.flat.sections.07_mittens_storage_packet.concrete_anchor.node3" ;
+    silm:hasLongDescription "The MittensApex_07_mittens_storage_packet is Mittens is the colimit apex — the governed individual cat. All arrows in 07_mittens_storage_packet ultimately point toward Mittens. Mittens is NOT a source leg, NOT a storage packet, NOT a KG node. In the paper's apparatus it appears as the symbol 'Mittens (governed individual apex)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_07_mittens_storage_packet_olog_box__mittensstoragepacket
+    a owl:NamedIndividual ;
+    rdfs:label "MittensStoragePacket" .
+
+silm:instances_papers_03_silmaril_federation_citation_adamekherrlichstrecker1990joyofcats
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationAdamekherrlichstrecker1990joyofcats" .
+
+silm:instances_papers_03_silmaril_federation_citation_apacheozonedocs
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationApacheozonedocs" .
+
+silm:instances_papers_03_silmaril_federation_terms_atom
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.atom" ;
+    silm:hasSynonym "Node-or-Arrow" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_atom .
+
+silm:instances_papers_03_silmaril_federation_acronym_cai
+    a owl:NamedIndividual ;
+    rdfs:label "Commutative Associative Idempotent" ;
+    silm:hasAbbreviation "CAI" .
+
+silm:instances_papers_03_silmaril_federation_terms_category
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.category" ;
+    silm:hasSynonym "phylum" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_category .
+
+silm:instances_papers_03_silmaril_federation_acronym_cco
+    a owl:NamedIndividual ;
+    rdfs:label "Common Core Ontologies" ;
+    silm:hasAbbreviation "CCO" .
+
+silm:instances_papers_03_silmaril_federation_terms_cheese_trap
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.cheese_trap" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_cheese_trap_immunity ;
+    silm:hasSynonym "category-theory pitfall" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_cheese_trap ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_cheese_trap_immunity .
+
+silm:instances_papers_03_silmaril_federation_terms_cocone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.cocone" ;
+    silm:hasSynonym "compatible family" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_cocone .
+
+silm:instances_papers_03_silmaril_federation_terms_colimit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.colimit" ;
+    silm:hasSynonym "universal cocone apex" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_colimit .
+
+silm:instances_papers_03_silmaril_federation_terms_commutative
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.commutative" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_non_commutative ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_commutative ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_non_commutative .
+
+silm:instances_papers_03_silmaril_federation_preferred_term_concrete_anchor
+    a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationPreferredTermConcreteAnchor" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_preferred_term_concrete_anchor .
+
+silm:instances_papers_03_silmaril_federation_terms_cone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.cone" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_cocone ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_cone ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_cocone .
+
+silm:instances_papers_03_silmaril_federation_translation_converged_state_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergedStateTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_converged_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_converged_state_category_theory_to_olog__xlate_target_olog_convergedstatenode .
+
+silm:instances_papers_03_silmaril_federation_translation_converged_state_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergedStateTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_converged_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_converged_state_category_theory_to_rdf__xlate_target_rdf_silm_convergedstatenode .
+
+silm:instances_papers_03_silmaril_federation_translation_converged_state_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergedStateTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_converged_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_converged_state_category_theory_to_tikzcd__xlate_target_tikzcd_r_vee .
+
+silm:instances_papers_03_silmaril_federation_translation_converged_state_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergedStateTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_converged_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_converged_state_everyday_prose_to_category_theory__xlate_target_category_theory_least_upper_bound_r_vee .
+
+silm:instances_papers_03_silmaril_federation_translation_converged_state_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergedStateTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_converged_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_converged_state_everyday_prose_to_latex__xlate_target_latex_r___vee .
+
+silm:instances_papers_03_silmaril_federation_translation_converged_state_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergedStateTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_converged_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_converged_state_everyday_prose_to_olog__xlate_target_olog_convergedstatenode .
+
+silm:instances_papers_03_silmaril_federation_translation_converged_state_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergedStateTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_converged_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_converged_state_olog_to_everyday_prose__xlate_target_everyday_prose_the_converged_replica_state .
+
+silm:instances_papers_03_silmaril_federation_translation_converged_state_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "ConvergedStateTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_converged_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_converged_state_olog_to_rdf__xlate_target_rdf_silm_convergedstatenode .
+
+silm:instances_papers_03_silmaril_federation_terms_convergent
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.convergent" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_divergent ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_convergent ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_divergent .
+
+silm:instances_papers_03_silmaril_federation_acronym_cpo
+    a owl:NamedIndividual ;
+    rdfs:label "Common Process Ontology" ;
+    silm:hasAbbreviation "CPO" .
+
+silm:instances_papers_03_silmaril_federation_acronym_crdt
+    a owl:NamedIndividual ;
+    rdfs:label "Conflict-Free Replicated Data Type" ;
+    silm:hasAbbreviation "CRDT" .
+
+silm:instances_papers_03_silmaril_federation_translation_crdt_state_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtStateTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_crdt_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_crdt_state_category_theory_to_olog__xlate_target_olog_crdtstate .
+
+silm:instances_papers_03_silmaril_federation_translation_crdt_state_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtStateTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_crdt_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_crdt_state_category_theory_to_rdf__xlate_target_rdf_silm_crdtstate .
+
+silm:instances_papers_03_silmaril_federation_translation_crdt_state_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtStateTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_crdt_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_crdt_state_category_theory_to_tikzcd__xlate_target_tikzcd_r .
+
+silm:instances_papers_03_silmaril_federation_translation_crdt_state_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtStateTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_crdt_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_crdt_state_everyday_prose_to_category_theory__xlate_target_category_theory_object_in_crdt_state .
+
+silm:instances_papers_03_silmaril_federation_translation_crdt_state_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtStateTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_crdt_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_crdt_state_everyday_prose_to_latex__xlate_target_latex_r .
+
+silm:instances_papers_03_silmaril_federation_translation_crdt_state_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtStateTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_crdt_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_crdt_state_everyday_prose_to_olog__xlate_target_olog_crdtstate .
+
+silm:instances_papers_03_silmaril_federation_translation_crdt_state_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtStateTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_crdt_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_crdt_state_olog_to_everyday_prose__xlate_target_everyday_prose_a_crdt_replica_state .
+
+silm:instances_papers_03_silmaril_federation_translation_crdt_state_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "CrdtStateTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_crdt_state ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_crdt_state_olog_to_rdf__xlate_target_rdf_silm_crdtstate .
+
+silm:instances_papers_03_silmaril_federation_terms_crdt
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.crdt" ;
+    silm:hasSynonym "convergent replicated data type" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_crdt .
+
+silm:instances_papers_03_silmaril_federation_acronym_csv
+    a owl:NamedIndividual ;
+    rdfs:label "Comma-Separated Values" ;
+    silm:hasAbbreviation "CSV" .
+
+silm:instances_papers_03_silmaril_federation_terms_diagram
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.diagram" ;
+    silm:hasSynonym "commutative diagram" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_diagram .
+
+silm:instances_papers_03_silmaril_federation_terms_domain
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.domain" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_codomain ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_domain ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_codomain .
+
+silm:instances_papers_03_silmaril_federation_acronym_ecdsa
+    a owl:NamedIndividual ;
+    rdfs:label "Elliptic Curve Digital Signature Algorithm" ;
+    silm:hasAbbreviation "ECDSA" .
+
+silm:instances_papers_03_silmaril_federation_terms_encyclopedia
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.encyclopedia" ;
+    silm:hasSynonym "atlas" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_encyclopedia .
+
+silm:instances_papers_03_silmaril_federation_terms_equalizer
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.equalizer" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_coequalizer ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_equalizer ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_coequalizer .
+
+silm:instances_papers_03_silmaril_federation_terms_federated
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.federated" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_isolated ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_federated ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_isolated .
+
+silm:instances_papers_03_silmaril_federation_preferred_term_federation_cocone
+    a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationPreferredTermFederationCocone" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_preferred_term_federation_cocone .
+
+silm:instances_papers_03_silmaril_federation_terms_federation
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.federation" ;
+    silm:hasSynonym "cross-engine gossip" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_federation .
+
+silm:instances_papers_03_silmaril_federation_terms_functor
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.functor" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_contravariant_functor ;
+    silm:hasSynonym "structure-preserving map" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_functor ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_contravariant_functor .
+
+silm:instances_papers_03_silmaril_federation_translation_gossip_merge_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "GossipMergeTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_gossip_merge ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_gossip_merge_category_theory_to_olog__xlate_target_olog_gossipmergearrow .
+
+silm:instances_papers_03_silmaril_federation_translation_gossip_merge_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "GossipMergeTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_gossip_merge ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_gossip_merge_category_theory_to_rdf__xlate_target_rdf_silm_gossipmergearrow .
+
+silm:instances_papers_03_silmaril_federation_translation_gossip_merge_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "GossipMergeTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_gossip_merge ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_gossip_merge_category_theory_to_tikzcd__xlate_target_tikzcd___vee .
+
+silm:instances_papers_03_silmaril_federation_translation_gossip_merge_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "GossipMergeTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_gossip_merge ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_gossip_merge_everyday_prose_to_category_theory__xlate_target_category_theory_commutative_associative_idempotent_merge .
+
+silm:instances_papers_03_silmaril_federation_translation_gossip_merge_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "GossipMergeTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_gossip_merge ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_gossip_merge_everyday_prose_to_latex__xlate_target_latex___vee .
+
+silm:instances_papers_03_silmaril_federation_translation_gossip_merge_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "GossipMergeTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_gossip_merge ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_gossip_merge_everyday_prose_to_olog__xlate_target_olog_gossipmergearrow .
+
+silm:instances_papers_03_silmaril_federation_translation_gossip_merge_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "GossipMergeTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_gossip_merge ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_gossip_merge_olog_to_everyday_prose__xlate_target_everyday_prose_gossip_merge_operation .
+
+silm:instances_papers_03_silmaril_federation_translation_gossip_merge_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "GossipMergeTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_gossip_merge ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_gossip_merge_olog_to_rdf__xlate_target_rdf_silm_gossipmergearrow .
+
+silm:instances_papers_03_silmaril_federation_terms_gossiped
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.gossiped" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_siloed ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_gossiped ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_siloed .
+
+silm:instances_papers_03_silmaril_federation_acronym_gpt
+    a owl:NamedIndividual ;
+    rdfs:label "Generative Pretrained Transformer" ;
+    silm:hasAbbreviation "GPT" .
+
+silm:instances_papers_03_silmaril_federation_terms_homset
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.homset" ;
+    silm:hasSynonym "Hom" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_homset .
+
+silm:instances_papers_03_silmaril_federation_terms_incoming
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.incoming" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_outgoing ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_incoming ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_outgoing .
+
+silm:instances_papers_03_silmaril_federation_acronym_kg
+    a owl:NamedIndividual ;
+    rdfs:label "Knowledge Graph" ;
+    silm:hasAbbreviation "KG" .
+
+silm:instances_papers_03_silmaril_federation_terms_known
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.known" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_unknown ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_known ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_unknown .
+
+silm:instances_papers_03_silmaril_federation_terms_limit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.limit" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_colimit ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_limit ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_colimit .
+
+silm:instances_papers_03_silmaril_federation_citation_localcannoncheeselearyalpertwitness2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalCannonCheeseLearyAlpertWitness2026" .
+
+silm:instances_papers_03_silmaril_federation_citation_localcannonsoulwitnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalCannonSoulWitnesses2026" .
+
+silm:instances_papers_03_silmaril_federation_citation_localcannontaxonomywitnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalCannonTaxonomyWitnesses2026" .
+
+silm:instances_papers_03_silmaril_federation_citation_localcategoricalsoulologspine2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalCategoricalSoulOlogSpine2026" .
+
+silm:instances_papers_03_silmaril_federation_citation_localgptyonedaontologywitness2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalGptYonedaOntologyWitness2026" .
+
+silm:instances_papers_03_silmaril_federation_citation_localmittensexampleanchor2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalMittensExampleAnchor2026" .
+
+silm:instances_papers_03_silmaril_federation_citation_localnodeorarrowdiscipline2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalNodeOrArrowDiscipline2026" .
+
+silm:instances_papers_03_silmaril_federation_citation_localrebuttalround00witnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalRebuttalRound00Witnesses2026" .
+
+silm:instances_papers_03_silmaril_federation_citation_localsilmarilarchitecturelabels2026
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalSilmarilArchitectureLabels2026" .
+
+silm:urn_silmaril_universal_anchor_node_enum_milestone
+    a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationEnumMembershipMilestoneAtomPass" ;
+    rdfs:label "P03SilmarilFederationEnumMembershipMilestoneChapterSkeleton" ;
+    rdfs:label "P03SilmarilFederationEnumMembershipMilestoneE2eBuildOk" ;
+    rdfs:label "P03SilmarilFederationEnumMembershipMilestoneRenderAllLegsOk" ;
+    rdfs:label "P03SilmarilFederationEnumMembershipMilestoneVisionPass" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_milestone .
+
+silm:instances_papers_03_silmaril_federation_terms_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.mittens" ;
+    silm:hasSynonym "cat anchor" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_mittens .
+
+silm:instances_papers_03_silmaril_federation_translation_mittens_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_mittens ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_mittens_category_theory_to_olog__xlate_target_olog_mittensreplicatednode .
+
+silm:instances_papers_03_silmaril_federation_translation_mittens_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_mittens ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_mittens_category_theory_to_rdf__xlate_target_rdf_silm_mittensreplicatednode .
+
+silm:instances_papers_03_silmaril_federation_translation_mittens_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "MittensTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_mittens ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_mittens_category_theory_to_tikzcd__xlate_target_tikzcd_m_vee .
+
+silm:instances_papers_03_silmaril_federation_translation_mittens_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "MittensTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_mittens ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_mittens_everyday_prose_to_category_theory__xlate_target_category_theory_preserved_cocone_apex_under_merge .
+
+silm:instances_papers_03_silmaril_federation_translation_mittens_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "MittensTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_mittens ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_mittens_everyday_prose_to_latex__xlate_target_latex___mathrmmittens___vee .
+
+silm:instances_papers_03_silmaril_federation_translation_mittens_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_mittens ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_mittens_everyday_prose_to_olog__xlate_target_olog_mittensreplicatednode .
+
+silm:instances_papers_03_silmaril_federation_translation_mittens_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "MittensTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_mittens ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_mittens_olog_to_everyday_prose__xlate_target_everyday_prose_mittens_record_across_replicas .
+
+silm:instances_papers_03_silmaril_federation_translation_mittens_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_mittens ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_mittens_olog_to_rdf__xlate_target_rdf_silm_mittensreplicatednode .
+
+silm:instances_papers_03_silmaril_federation_terms_monad
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.monad" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_comonad ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_monad ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_comonad .
+
+silm:instances_papers_03_silmaril_federation_terms_morphism
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.morphism" ;
+    silm:hasSynonym "arrow" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_morphism .
+
+silm:instances_papers_03_silmaril_federation_terms_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.node" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_arrow ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_arrow .
+
+silm:instances_papers_03_silmaril_federation_terms_object
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.object" ;
+    silm:hasSynonym "node" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_object .
+
+silm:instances_papers_03_silmaril_federation_preferred_term_olog
+    a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationPreferredTermOlog" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_preferred_term_olog .
+
+silm:instances_papers_03_silmaril_federation_terms_olog
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.olog" ;
+    silm:hasSynonym "ontology log" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_olog .
+
+silm:instances_papers_03_silmaril_federation_terms_paper
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.paper" ;
+    silm:hasSynonym "paper-monad" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_paper .
+
+silm:instances_papers_03_silmaril_federation_acronym_pdf
+    a owl:NamedIndividual ;
+    rdfs:label "Portable Document Format" ;
+    silm:hasAbbreviation "PDF" .
+
+silm:instances_papers_03_silmaril_federation_terms_pullback
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.pullback" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_pushout ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_pullback ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_pushout .
+
+silm:instances_papers_03_silmaril_federation_acronym_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "Resource Description Framework" ;
+    silm:hasAbbreviation "RDF" .
+
+silm:instances_papers_03_silmaril_federation_translation_replica_node_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicaNodeTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_replica_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_replica_node_category_theory_to_olog__xlate_target_olog_replicanode .
+
+silm:instances_papers_03_silmaril_federation_translation_replica_node_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicaNodeTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_replica_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_replica_node_category_theory_to_rdf__xlate_target_rdf_silm_replicanode .
+
+silm:instances_papers_03_silmaril_federation_translation_replica_node_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicaNodeTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_replica_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_replica_node_category_theory_to_tikzcd__xlate_target_tikzcd_r_i .
+
+silm:instances_papers_03_silmaril_federation_translation_replica_node_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicaNodeTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_replica_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_replica_node_everyday_prose_to_category_theory__xlate_target_category_theory_object_replica_i_in_the_federation_diagram .
+
+silm:instances_papers_03_silmaril_federation_translation_replica_node_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicaNodeTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_replica_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_replica_node_everyday_prose_to_latex__xlate_target_latex_r_i .
+
+silm:instances_papers_03_silmaril_federation_translation_replica_node_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicaNodeTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_replica_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_replica_node_everyday_prose_to_olog__xlate_target_olog_replicanode .
+
+silm:instances_papers_03_silmaril_federation_translation_replica_node_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicaNodeTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_replica_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_replica_node_olog_to_everyday_prose__xlate_target_everyday_prose_one_federation_replica .
+
+silm:instances_papers_03_silmaril_federation_translation_replica_node_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "ReplicaNodeTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_03_silmaril_federation_term_replica_node ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_translation_replica_node_olog_to_rdf__xlate_target_rdf_silm_replicanode .
+
+silm:instances_papers_03_silmaril_federation_citation_rfc4120kerberos
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationRfc4120kerberos" .
+
+silm:instances_papers_03_silmaril_federation_citation_rfc4559spnego
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationRfc4559spnego" .
+
+silm:instances_papers_03_silmaril_federation_terms_roster_present
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.roster_present" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_roster_missing ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_roster_present ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_roster_missing .
+
+silm:instances_papers_03_silmaril_federation_terms_roster
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.roster" ;
+    silm:hasSynonym "silmaril registry" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_roster .
+
+silm:instances_papers_03_silmaril_federation_acronym_shacl
+    a owl:NamedIndividual ;
+    rdfs:label "Shapes Constraint Language" ;
+    silm:hasAbbreviation "SHACL" .
+
+silm:instances_papers_03_silmaril_federation_citation_shapiro2011crdt
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationShapiro2011crdt" .
+
+silm:instances_papers_03_silmaril_federation_preferred_term_silmaril_fork
+    a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationPreferredTermSilmarilFork" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_preferred_term_silmaril_fork .
+
+silm:instances_papers_03_silmaril_federation_terms_silmaril
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.silmaril" ;
+    silm:hasSynonym "federation node" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_silmaril .
+
+silm:instances_papers_03_silmaril_federation_terms_source
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.source" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_target ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_source ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_target .
+
+silm:instances_papers_03_silmaril_federation_acronym_sparql
+    a owl:NamedIndividual ;
+    rdfs:label "SPARQL Protocol And RDF Query Language" ;
+    silm:hasAbbreviation "SPARQL" .
+
+silm:instances_papers_03_silmaril_federation_citation_spivakkent2012ologs
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationSpivakkent2012ologs" .
+
+silm:instances_papers_03_silmaril_federation_terms_storage_packet
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.storage_packet" ;
+    silm:hasSynonym "Mittens storage envelope" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_storage_packet .
+
+silm:instances_papers_03_silmaril_federation_terms_synthesis
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.synthesis" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_decomposition ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_synthesis ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_decomposition .
+
+silm:instances_papers_03_silmaril_federation_acronym_tsn
+    a owl:NamedIndividual ;
+    rdfs:label "Taxonomic Serial Number" ;
+    silm:hasAbbreviation "TSN" .
+
+silm:instances_papers_03_silmaril_federation_terms_typed
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.typed" ;
+    silm:hasAntonym silm:instances_papers_03_silmaril_federation_terms_untyped ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_typed ;
+    silm:targetNode silm:instances_papers_03_silmaril_federation_terms_untyped .
+
+silm:instances_papers_03_silmaril_federation_acronym_uri
+    a owl:NamedIndividual ;
+    rdfs:label "Uniform Resource Identifier" ;
+    silm:hasAbbreviation "URI" .
+
+silm:instances_papers_03_silmaril_federation_citation_w3crdf11concepts
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationW3crdf11concepts" .
+
+silm:instances_papers_03_silmaril_federation_citation_w3cshacl
+    a owl:NamedIndividual ;
+    rdfs:label "P03CitationW3cshacl" .
+
+silm:instances_papers_03_silmaril_federation_replacement_agents_rebuttals
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "AgentsRebuttalsReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:_agents_rebuttals_ ;
+    silm:targetNode silm:anchors_repo_rebuttal_dir .
+
+silm:instances_papers_03_silmaril_federation_diagram_tab_silmaril_federation_message_roles__diagram_tab_silmaril_federation_message_roles
+    a owl:NamedIndividual ;
+    rdfs:label "tab:silmaril-federation-message-roles" .
+
+silm:instances_papers_03_silmaril_federation_diagram_tab_silmaril_federation_roster__diagram_tab_silmaril_federation_roster
+    a owl:NamedIndividual ;
+    rdfs:label "tab:silmaril-federation-roster" .
+
+silm:instances_papers_03_silmaril_federation_replacement_silmaril_wave8_replacement_atom
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8ReplacementAtomReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_replacement_atom ;
+    silm:targetNode silm:types_papers_relational_replacement .
+
+silm:urn_silmaril_universal_anchor_node_enum_wave_role
+    a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationEnumMembershipWaveRoleBuilder" ;
+    rdfs:label "P03SilmarilFederationEnumMembershipWaveRolePolisher" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_wave_role .
+
+silm:instances_papers_03_silmaril_federation_preferred_term_yoneda_hom_leg
+    a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationPreferredTermYonedaHomLeg" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_preferred_term_yoneda_hom_leg .
+
+silm:instances_papers_03_silmaril_federation_terms_yoneda_traversal
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.yoneda_traversal" ;
+    silm:hasSynonym "representable walk" ;
+    silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_yoneda_traversal .
+

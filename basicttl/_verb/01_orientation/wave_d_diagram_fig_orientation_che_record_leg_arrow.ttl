@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_che_record_leg_arrow__diagram_fig_orientation_che_record_leg_arrow a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chE-record-leg-arrow" .

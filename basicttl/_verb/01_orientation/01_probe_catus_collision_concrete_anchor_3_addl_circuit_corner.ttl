@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_01_probe_catus_collision_concrete_anchor_3#mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "ProbeCatusCollisionAnchorMittensAddlCircuitCorner" .
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_01_probe_catus_collision_concrete_anchor_3#mittenscolimitapex silm:hasAdditionalAttribute "circuit_corner:6" .

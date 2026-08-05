@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_decomposition_step__step_pathology_i a owl:NamedIndividual ;
+    rdfs:label "the i-th named transport pathology. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_decomposition_step__step_validation_gate a owl:NamedIndividual ;
+    rdfs:label "a SHACL or schema rule that catches the pathology" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_decomposition_step__step_f1__f2 a owl:NamedIndividual ;
+    rdfs:label "the two functoriality laws. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_decomposition_step__step_five_pathologies a owl:NamedIndividual ;
+    rdfs:label "synthesized loop, lost identity, doubled-arrow, composite-mismatch, household-side-target-mismatch" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_decomposition_step__step_degraded_yoneda_profile_per_pathology a owl:NamedIndividual ;
+    rdfs:label "each pathology degrades the patient image's typed arrow profile in a specific way" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_decomposition_step__step_pathology_inventory a owl:NamedIndividual ;
+    rdfs:label "F1 and F2 failures are typed pathologies with characteristic SHACL-catchable signatures" .

@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_03_authorship_cards_concrete_anchor#03authorshipcardscarda a owl:NamedIndividual ;
+    rdfs:label "03AuthorshipcardsConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_03_authorship_cards_concrete_anchor#03authorshipcardscarda silm:hasAdditionalAttribute "dunbar_layer:0" .

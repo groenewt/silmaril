@@ -1,0 +1,2 @@
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_04_mittens_in_the_monad_cheese_trap_immunity a owl:NamedIndividual ;
+    rdfs:label "MittensColimitInMonadAlgebraCheeseTrapImmunity" .

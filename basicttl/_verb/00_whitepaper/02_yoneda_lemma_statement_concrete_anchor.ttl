@@ -1,0 +1,8 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_02_yoneda_lemma_statement_concrete_anchor__d_mittens_category a owl:NamedIndividual ;
+    rdfs:label "D_Mittens_Category: the locally small category used as the instantiation of C in the Yoneda lemma statement; objects = twelve source nodes + MittensColimitApex; morphisms = the twelve typed legs plus identity arrows and compositions" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_02_yoneda_lemma_statement_concrete_anchor__mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "MittensColimitApex: the concrete instantiation of the object A in the Yoneda lemma; the colimit of D_Mittens; Mittens-the-individual-cat assembled from all twelve legs" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_02_yoneda_lemma_statement_concrete_anchor__clinicallabelpresheaf a owl:NamedIndividual ;
+    rdfs:label "ClinicalLabelPresheaf: the concrete instantiation of the presheaf F; assigns to each D_Mittens source node X the set of clinical labels for X stored in VetRecord_77 or associated clinic systems" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_02_yoneda_lemma_statement_concrete_anchor__idarrow_mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "IdArrow_MittensColimitApex: the identity arrow on MittensColimitApex; the element in Hom(MittensColimitApex, MittensColimitApex) that the Yoneda bijection phi uses to evaluate a natural transformation tau at the apex: phi(tau) = tau_{MittensColimitApex}(id_{MittensColimitApex})" .

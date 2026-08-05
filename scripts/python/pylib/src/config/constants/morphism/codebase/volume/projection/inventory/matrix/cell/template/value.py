@@ -1,0 +1,1 @@
+VALUE = "\\texttt{\\small %s}"

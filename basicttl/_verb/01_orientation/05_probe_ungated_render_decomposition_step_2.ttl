@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_05_probe_ungated_render_decomposition_step_2__step_publish_=_render_o_validate_o_type_o_ingest a owl:NamedIndividual ;
+    rdfs:label "The render operation is the final functor in the publish factorization chain: publish = render composed with validate composed with type composed with ingest. The render functor is at the end; it sees only a ValidatedClaim as its source." .

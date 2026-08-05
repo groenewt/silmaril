@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_26_circuit_imprint_tensor_sections_03_tensor_construction_decomposition_step_6__step_see_section_03_tensor_construction_body a owl:NamedIndividual ;
+    rdfs:label "see section 03_tensor_construction body" .

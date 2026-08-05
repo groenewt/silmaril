@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_02_cheese_trap_immunity__trap_mark_is_the_event a owl:NamedIndividual ;
+    rdfs:label "mark_is_the_event" .

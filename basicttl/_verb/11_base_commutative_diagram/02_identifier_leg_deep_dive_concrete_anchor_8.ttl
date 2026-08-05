@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_07_leg_deep_dives_anchor_identifier_sections_02_identifier_leg_deep_dive_concrete_anchor_8_vetclassifies a owl:NamedIndividual ;
+    rdfs:label "S02IdentifierLegDeepDiveConcreteAnchor8" .

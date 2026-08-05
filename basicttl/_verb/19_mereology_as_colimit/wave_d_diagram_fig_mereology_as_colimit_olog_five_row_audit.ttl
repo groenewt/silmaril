@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_diagram_fig_mereology_as_colimit_olog_five_row_audit__diagram_fig_mereology_as_colimit_olog_five_row_audit a owl:NamedIndividual ;
+    rdfs:label "fig:mereology-as-colimit-olog-five-row-audit" .

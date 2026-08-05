@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_03_negative_regression_catalog_decomposition_step_6__step_forge_morphism_for_03_negative_regression_catalog a owl:NamedIndividual ;
+    rdfs:label "Negative regressions are first-class Forge nodes; the gate is incomplete without them." .

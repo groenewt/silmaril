@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_02_naming_provenance_sections_01_naming_act_as_arrow_decomposition_step_4__step_mittens_vocal_anchor a owl:NamedIndividual ;
+    rdfs:label "the Mittens-domain audible-signal anchor" .

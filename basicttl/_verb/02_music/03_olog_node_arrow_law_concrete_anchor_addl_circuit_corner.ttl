@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_concrete_anchor#mittensbodymassobs a owl:NamedIndividual ;
+    rdfs:label "03OlognodearrowlawConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_concrete_anchor#mittensbodymassobs silm:hasAdditionalAttribute "circuit_corner:1" .

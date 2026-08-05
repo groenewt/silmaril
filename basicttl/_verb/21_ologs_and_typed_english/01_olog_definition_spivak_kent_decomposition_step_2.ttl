@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_01_olog_as_typed_english_sections_01_olog_definition_spivak_kent_decomposition_step_2__step_tau_n__tau_v__r_o a owl:NamedIndividual ;
+    rdfs:label "the three typing gates of paper 21's olog discipline" .

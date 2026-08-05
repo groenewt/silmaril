@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_01_forge_position_decomposition_step_2__step_forge_morphism_for_01_forge_position a owl:NamedIndividual ;
+    rdfs:label "Typed morphism in F_04 for ForgePosition. — concrete forge-domain reading in section 'The Forge Position --- What Phase 4 Constructs'." .

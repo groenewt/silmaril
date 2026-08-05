@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_decomposition_step__step_f a owl:NamedIndividual ;
+    rdfs:label "F is the named cross-knowledge-graph transport functor from the household category to the clinic category, treated as a pair of assignments." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_decomposition_step__step_f_on_arrows a owl:NamedIndividual ;
+    rdfs:label "F applied to a household typed arrow returns the clinic typed arrow between the F-images of the household-side and target objects." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_decomposition_step__step_joc_section_3_17 a owl:NamedIndividual ;
+    rdfs:label "Joy of Cats section 3.17 defines a functor as a pair of assignments preserving identity arrows and preserving composition." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_decomposition_step__step_f_applied_to_mittens_path a owl:NamedIndividual ;
+    rdfs:label "F sends the household two-step path measured-by composed with has-quality to the clinic two-step path recorded-in composed with has-clinical-quality on the patient slot." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_decomposition_step__step_yfmittens a owl:NamedIndividual ;
+    rdfs:label "by Yoneda's lemma, F(Mittens) is identifiable in the clinic category by its incoming and outgoing typed-arrow profile, which is the F-image of the household profile of Mittens." .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_decomposition_step__step_f a owl:NamedIndividual ;
+    rdfs:label "the transport functor F is the typed-arrow-preserving cross-knowledge-graph mapping satisfying both functoriality laws F1 and F2." .

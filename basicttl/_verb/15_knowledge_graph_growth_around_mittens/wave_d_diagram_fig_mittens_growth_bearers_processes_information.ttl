@@ -1,0 +1,2 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_diagram_fig_mittens_growth_bearers_processes_information__diagram_fig_mittens_growth_bearers_processes_information a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-growth-bearers-processes-information" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_03_probe_domesticcat_collapse_decomposition_step_4__step_domesticcat_=_type;_taxrow_tsn183798_=_database_row_—_differ a owl:NamedIndividual ;
+    rdfs:label "If DomesticCat equalled any catus row, then lambda_cls (from Mittens to DomesticCat) would target a taxon-table row. But a classification is a type predicate; a database row is a data record. A classification arrow cannot target a data row without collapsing the type/instance distinction." .

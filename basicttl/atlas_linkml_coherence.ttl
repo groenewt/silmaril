@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:checkatlaslinkmlcoherence a owl:Class ;
+    rdfs:label "CheckAtlasLinkMLCoherence" ;
+    rdfs:comment "Schema-instance match between the atlas CSV leg and the LinkML YAML leg\nof every Layer-2 paper. Both legs are projected from the same atom-family\nspec set; coherence here = the LinkML schema's classes contain every\natom-family URN cited as TermName in the atlas CSV.\n" .

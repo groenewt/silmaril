@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_12_cocone_compatibility_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "12CoconeCompatibilityConcreteAnchor3" .

@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_cheese_trap__trap_clinician_patient_role_collapse a owl:NamedIndividual ;
+    rdfs:label "clinician_patient_role_collapse" .

@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_05_pushout_concrete_anchor_5_CareProcess#careprocess a owl:NamedIndividual ;
+    rdfs:label "S05PushoutConcreteAnchor5AddlPaperKind" .
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_05_pushout_concrete_anchor_5_CareProcess#careprocess silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.09_minimal_category_theory" .

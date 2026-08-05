@@ -1,0 +1,4 @@
+silm:instances_papers_20_functorial_transport_terms_household_to_vetclinic a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.20_functorial_transport.terms.household_to_vetclinic" .
+silm:instances_papers_20_functorial_transport_terms_household_to_vetclinic silm:hasSynonym "domain-A-to-domain-B functor" .
+silm:instances_papers_20_functorial_transport_terms_household_to_vetclinic silm:sourceNode silm:instances_papers_20_functorial_transport_terms_household_to_vetclinic .

@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_10_epistemology_entry_sections_03_coherentism_entry_circuit_imprint_tensor__corner_6 a owl:NamedIndividual ;
+    rdfs:label "6" .

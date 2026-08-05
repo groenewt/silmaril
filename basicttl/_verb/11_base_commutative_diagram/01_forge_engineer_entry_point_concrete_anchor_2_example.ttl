@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_24_rosetta_stone_cross_domain_sections_01_forge_engineer_entry_point_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "S01ForgeEngineerEntryPointConcreteAnchor2Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_24_rosetta_stone_cross_domain_sections_01_forge_engineer_entry_point_concrete_anchor_2 silm:hasExample "In 'S01ForgeEngineerEntryPointConcreteAnchor2', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the typed intermediate stage DomesticCat: the cat after subspecies classification (Felis catus, TSN 183798); concrete instance: the rescued cat after the 2026-02-12 shelter classification step." .

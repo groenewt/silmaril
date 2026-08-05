@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_01_kleisli_category_overview_decomposition_step_4__step_measurementevent2024_kleisli_chain__citemittensvetrecord77_b a owl:NamedIndividual ;
+    rdfs:label "The measurement leg Kleisli chain: cite(mittensVetRecord77) produces Free(Sigma)(Witness_measurement); type binds it to TypedLeg_measurement; glue contributes the leg to the cocone, producing Mittens when all ten legs are present. Kleisli associativity guarantees that regrouping does not change Mittens." .

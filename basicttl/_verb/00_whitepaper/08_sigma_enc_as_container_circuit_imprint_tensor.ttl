@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_08_sigma_enc_as_container_circuit_imprint_tensor__corner_5 a owl:NamedIndividual ;
+    rdfs:label "5" .

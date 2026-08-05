@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chd_functoriality_id__diagram_fig_orientation_chd_functoriality_id a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chD-functoriality-id" .

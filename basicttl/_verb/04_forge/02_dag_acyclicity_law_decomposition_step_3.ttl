@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_02_dag_acyclicity_law_decomposition_step_3__step_forge_morphism_for_02_dag_acyclicity_law a owl:NamedIndividual ;
+    rdfs:label "Category-theoretic license for DagAcyclicityLaw. — concrete forge-domain reading in section 'DAG Acyclicity as a Path Law'." .

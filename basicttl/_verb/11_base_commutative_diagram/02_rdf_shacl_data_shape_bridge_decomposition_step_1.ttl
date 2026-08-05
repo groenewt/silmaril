@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_14_taxonomy_rdf_olog_seed_sections_02_rdf_shacl_data_shape_bridge_decomposition_step_1__step_d_mittens_11 a owl:NamedIndividual ;
+    rdfs:label "the page-11 Mittens source diagram" .

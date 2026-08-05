@@ -1,0 +1,2 @@
+VALUE = (".bib","\\addbibresource",)
+

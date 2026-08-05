@@ -1,0 +1,5 @@
+silm:instances_papers_18_presheaf_semantics_terms_dense a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.dense" .
+silm:instances_papers_18_presheaf_semantics_terms_dense silm:hasAntonym silm:instances_papers_18_presheaf_semantics_terms_non_dense .
+silm:instances_papers_18_presheaf_semantics_terms_dense silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_dense .
+silm:instances_papers_18_presheaf_semantics_terms_dense silm:targetNode silm:instances_papers_18_presheaf_semantics_terms_non_dense .

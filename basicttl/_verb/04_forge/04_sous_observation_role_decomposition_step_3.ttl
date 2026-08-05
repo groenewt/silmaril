@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_04_sous_observation_role_decomposition_step_3__step_forge_morphism_for_04_sous_observation_role a owl:NamedIndividual ;
+    rdfs:label "The Yoneda lemma: an object is determined up to isomorphism by its representable functor." .

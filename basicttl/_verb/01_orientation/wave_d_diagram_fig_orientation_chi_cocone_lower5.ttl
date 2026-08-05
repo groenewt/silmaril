@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chi_cocone_lower5__diagram_fig_orientation_chi_cocone_lower5 a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chI-cocone-lower5" .

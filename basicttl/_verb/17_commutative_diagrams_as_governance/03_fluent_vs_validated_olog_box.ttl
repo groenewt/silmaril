@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_05_cheese_trap_immunity_sections_03_fluent_vs_validated_olog_box__fluentgeneratedproseisnotvalidatedclaim a owl:NamedIndividual ;
+    rdfs:label "FluentGeneratedProseIsNotValidatedClaim" .

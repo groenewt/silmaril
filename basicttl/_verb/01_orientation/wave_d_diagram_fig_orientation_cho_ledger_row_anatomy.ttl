@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_cho_ledger_row_anatomy__diagram_fig_orientation_cho_ledger_row_anatomy a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chO-ledger-row-anatomy" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_04_probe_generated_authority_decomposition_step_6__step_probe_r4_holds a owl:NamedIndividual ;
+    rdfs:label "Generated fluency is draft material; admission requires the full absorption pipeline (cite, type, glue); direct promotion from generated text to olog claim is forbidden." .

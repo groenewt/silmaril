@@ -1,0 +1,2 @@
+silm:instances_papers_10_graph_knowledge_graph_category_chapters_02_free_category_monad_sections_01_adjunction_free_forgetful_olog_box__freeforgetfuladjunction a owl:NamedIndividual ;
+    rdfs:label "FreeForgetfulAdjunction" .

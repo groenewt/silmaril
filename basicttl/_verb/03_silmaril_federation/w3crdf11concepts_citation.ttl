@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_citation_w3crdf11concepts a owl:NamedIndividual ;
+    rdfs:label "P03CitationW3crdf11concepts" .

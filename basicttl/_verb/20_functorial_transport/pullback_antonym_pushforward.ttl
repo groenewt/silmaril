@@ -1,0 +1,5 @@
+silm:instances_papers_20_functorial_transport_terms_pullback a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.20_functorial_transport.terms.pullback" .
+silm:instances_papers_20_functorial_transport_terms_pullback silm:hasAntonym silm:instances_papers_20_functorial_transport_terms_pushforward .
+silm:instances_papers_20_functorial_transport_terms_pullback silm:sourceNode silm:instances_papers_20_functorial_transport_terms_pullback .
+silm:instances_papers_20_functorial_transport_terms_pullback silm:targetNode silm:instances_papers_20_functorial_transport_terms_pushforward .

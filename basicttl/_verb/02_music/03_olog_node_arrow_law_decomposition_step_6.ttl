@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_decomposition_step_6__step_path_03_olog_node_arrow_law a owl:NamedIndividual ;
+    rdfs:label "the recap: why no shortcut bypasses the law of the 03_olog_node_arrow_law claim" .

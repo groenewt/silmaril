@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_09_validation_leg_concrete_anchor__shaclpassreport_77 a owl:NamedIndividual ;
+    rdfs:label "SHACLPassReport_77: the W3C SHACL conforms=true validation report for VetRecord_77; produced by the Tartu Animal Clinic SHACL validator on 2026-05-18 against TartuClinicSHACLShapes; distinct from VetRecord_77 itself" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_09_validation_leg_concrete_anchor__validationarrow_shacl a owl:NamedIndividual ;
+    rdfs:label "ValidationArrow_SHACL: the typed arrow SHACLPassReport_77 -> MittensColimitApex; distinct from record_leg (VetRecord_77 -> MittensColimitApex)" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_09_validation_leg_concrete_anchor__tartuclinicshaclshapes a owl:NamedIndividual ;
+    rdfs:label "TartuClinicSHACLShapes: the SHACL shape graph defining the structural requirements for veterinary records at Tartu Animal Clinic; the validation authority that produced SHACLPassReport_77" .

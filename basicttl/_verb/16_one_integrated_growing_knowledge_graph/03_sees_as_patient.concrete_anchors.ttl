@@ -1,0 +1,6 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors__drpatelapex a owl:NamedIndividual ;
+    rdfs:label "Dr. Patel the household-registered veterinarian, presented as the colimit of her DEA number, her clinic, her chart roster, and her authored records" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors__cliniciantopatientrole a owl:NamedIndividual ;
+    rdfs:label "the typed upper-level role arrow Vet77_apex -> colim D_cat; Dr. Patel sees the cat as a patient on her chart roster" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors__catpatient a owl:NamedIndividual ;
+    rdfs:label "the cat patient sub-apex (Mittens or Pumpkin); the target of the typed role arrow" .

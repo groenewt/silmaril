@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_07_phase5_handoff_cheese_trap_immunity__trap_phase5_handoff=file_copy a owl:NamedIndividual ;
+    rdfs:label "phase5_handoff=file_copy" .

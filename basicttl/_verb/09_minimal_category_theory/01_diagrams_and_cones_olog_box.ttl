@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_01_diagrams_and_cones_olog_box__minimalcategorytheory_s01diagramsandcones a owl:NamedIndividual ;
+    rdfs:label "MinimalCategoryTheory_S01DiagramsAndCones" .

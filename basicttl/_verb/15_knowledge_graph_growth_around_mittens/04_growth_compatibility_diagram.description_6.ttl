@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_6#longrundiagram a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.04.concrete_anchor.6#longrundiagram" .
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_6#longrundiagram silm:hasLongDescription "The LongRunDiagram is the long-run object joining every stage by canonical injection. In the paper's apparatus it appears as the symbol 'colim_n D_Mittens^n', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

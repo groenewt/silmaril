@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chc_bind_two_ways__diagram_fig_orientation_chc_bind_two_ways a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chC-bind-two-ways" .

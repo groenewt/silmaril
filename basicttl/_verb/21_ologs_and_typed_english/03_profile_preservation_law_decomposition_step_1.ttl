@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_05_yoneda_for_typed_english_sections_03_profile_preservation_law_decomposition_step_1__step_f a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the Profile-Preservation Law Across Transports claim" .

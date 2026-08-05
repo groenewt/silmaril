@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_diagram_tab_canonical_question_mittens_legs__diagram_tab_canonical_question_mittens_legs a owl:NamedIndividual ;
+    rdfs:label "tab:canonical-question-mittens-legs" .

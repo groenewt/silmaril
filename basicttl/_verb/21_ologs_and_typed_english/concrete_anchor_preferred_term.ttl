@@ -1,0 +1,3 @@
+silm:instances_papers_21_ologs_and_typed_english_preferred_term_concrete_anchor a owl:NamedIndividual ;
+    rdfs:label "P21OlogsAndTypedEnglishPreferredTermConcreteAnchor" .
+silm:instances_papers_21_ologs_and_typed_english_preferred_term_concrete_anchor silm:sourceNode silm:instances_papers_21_ologs_and_typed_english_preferred_term_concrete_anchor .

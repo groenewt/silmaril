@@ -1,0 +1,2 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_chapters_01_growth_as_time_indexed_colimit_sections_01_inductive_sequence_law__growingmittenscoconeinductivesequencelaw a owl:NamedIndividual ;
+    rdfs:label "GrowingMittensCoconeInductiveSequenceLaw" .

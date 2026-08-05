@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_citation_w3cshacl a owl:NamedIndividual ;
+    rdfs:label "P03CitationW3cshacl" .

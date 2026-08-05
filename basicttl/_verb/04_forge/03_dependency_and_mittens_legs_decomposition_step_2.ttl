@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_03_dependency_and_mittens_legs_decomposition_step_2__step_forge_morphism_for_03_dependency_and_mittens_legs a owl:NamedIndividual ;
+    rdfs:label "Operation: typed morphism applying DependencyLeg. — concrete forge-domain reading in section 'Dependencies and \\(\\Mittens\\) Source Legs'." .

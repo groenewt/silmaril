@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_cross_paper_bridges_concrete_anchor_2_P_visit_1_ a owl:NamedIndividual ;
+    rdfs:label "P1804_cross_paper_bridgesConcreteAnchor2" .

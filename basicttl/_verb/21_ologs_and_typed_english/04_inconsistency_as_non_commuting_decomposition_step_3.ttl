@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_04_inconsistency_as_non_commuting_decomposition_step_3__step_spivak_kent_2012_olog_discipline a owl:NamedIndividual ;
+    rdfs:label "the base topic citation grounding the claim" .

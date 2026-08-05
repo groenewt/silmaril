@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_11_contract_verification_surface_decomposition_step_4__step_mittens a owl:NamedIndividual ;
+    rdfs:label "the concrete Music and Mittens-domain anchor for this section law" .

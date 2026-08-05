@@ -1,0 +1,4 @@
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_02_storage_collapse_in_output_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "02_storage_collapse_in_output_detection_leg" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_02_storage_collapse_in_output_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "02_storage_collapse_in_output_sigma_distinction" .

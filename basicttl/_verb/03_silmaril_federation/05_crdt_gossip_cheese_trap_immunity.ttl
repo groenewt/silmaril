@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_crdt_gossip_cheese_trap_immunity__trap_gossip_merge_bypasses_aboutness_invariant a owl:NamedIndividual ;
+    rdfs:label "gossip_merge_bypasses_aboutness_invariant" .

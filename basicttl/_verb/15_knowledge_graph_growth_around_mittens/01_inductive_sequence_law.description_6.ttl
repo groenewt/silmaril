@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_cocone_leg_n#bodymassqualityattachmentarrowstage1 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.01.concrete_anchor.cocone_leg_n#bodymassqualityattachmentarrowstage1" .
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_cocone_leg_n#bodymassqualityattachmentarrowstage1 silm:hasLongDescription "The BodyMassQualityAttachmentArrowStage1 is For l=BodyMassQuality77 and n=1, the cocone leg is the arrow BodyMassQuality77 -> Mittens typed \"Mittens is the bearer of this body-mass quality\". This is a specific arrow in C admitted by the 2026-04-12 vet event." .

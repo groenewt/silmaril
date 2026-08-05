@@ -1,0 +1,4 @@
+silm:instances_papers_09_minimal_category_theory_terms_yoneda_lemma a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.09_minimal_category_theory.terms.yoneda_lemma" .
+silm:instances_papers_09_minimal_category_theory_terms_yoneda_lemma silm:hasSynonym "representable density principle" .
+silm:instances_papers_09_minimal_category_theory_terms_yoneda_lemma silm:sourceNode silm:instances_papers_09_minimal_category_theory_terms_yoneda_lemma .

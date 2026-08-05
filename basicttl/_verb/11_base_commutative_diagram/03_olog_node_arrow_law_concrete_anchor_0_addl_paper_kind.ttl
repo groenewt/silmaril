@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_sections_03_olog_node_arrow_law_concrete_anchor_0_Mittens#mittens a owl:NamedIndividual ;
+    rdfs:label "S03OlogNodeArrowLawConcreteAnchor0AddlPaperKind" .
+silm:instances_papers_11_base_commutative_diagram_sections_03_olog_node_arrow_law_concrete_anchor_0_Mittens#mittens silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.11_base_commutative_diagram" .

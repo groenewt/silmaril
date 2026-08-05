@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_decomposition_step__step_chi_=_t_chi__d_chi__c_chi__h_chi__v_chi a owl:NamedIndividual ;
+    rdfs:label "chi is a typed chunk — a 5-tuple: leg-type, domain (source section), codomain (governed object), content hash, validation predicate" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_decomposition_step__step_leg_type_partition a owl:NamedIndividual ;
+    rdfs:label "a disjoint partition of all Mittens chunks into 8 non-overlapping leg-type cells" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_decomposition_step__step_olog_node_arrow_typing a owl:NamedIndividual ;
+    rdfs:label "the olog typing discipline from Spivak and Kent: every node is a type, every arrow is a typed relationship" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_decomposition_step__step_t_chi_=_evidence a owl:NamedIndividual ;
+    rdfs:label "the leg type of the Tartu vet-record chunk is evidence — it is an information artifact about Mittens" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_decomposition_step__step_hom___chi_for_different_t_chi_values a owl:NamedIndividual ;
+    rdfs:label "chunks with different leg types have different incoming arrow profiles — they are different objects in the olog" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_decomposition_step__step_typed_chunk_=_one_leg__one_type__one_shape a owl:NamedIndividual ;
+    rdfs:label "each Granite chunk has exactly one declared leg type, contributes to exactly one leg of the Mittens source diagram, and must pass exactly one shape-validation predicate" .

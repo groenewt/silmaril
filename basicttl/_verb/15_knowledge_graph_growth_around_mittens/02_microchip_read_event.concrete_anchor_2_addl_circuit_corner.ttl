@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_02_concrete_anchor_2#mittens a owl:NamedIndividual ;
+    rdfs:label "MicrochipReadStageStepConcreteAnchor2AddlCircuitCorner" .
+silm:instances_papers_15_chapters_02_sections_02_concrete_anchor_2#mittens silm:hasAdditionalAttribute "circuit_corner:1" .

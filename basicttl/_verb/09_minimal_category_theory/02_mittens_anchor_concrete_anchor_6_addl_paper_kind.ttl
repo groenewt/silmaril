@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_sections_02_mittens_anchor_concrete_anchor_6_FelisCatusTSN183798#feliscatustsn183798 a owl:NamedIndividual ;
+    rdfs:label "S02MittensAnchorConcreteAnchor6AddlPaperKind" .
+silm:instances_papers_09_minimal_category_theory_sections_02_mittens_anchor_concrete_anchor_6_FelisCatusTSN183798#feliscatustsn183798 silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.09_minimal_category_theory" .

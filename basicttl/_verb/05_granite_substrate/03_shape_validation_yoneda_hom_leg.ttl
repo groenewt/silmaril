@@ -1,0 +1,6 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "03_shape_validation_storage_leg" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "03_shape_validation_outgoing_profile" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "shape_validation_leg" .

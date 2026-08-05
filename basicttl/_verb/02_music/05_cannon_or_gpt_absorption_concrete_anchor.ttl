@@ -1,0 +1,20 @@
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__cannonfile a owl:NamedIndividual ;
+    rdfs:label "the Mittens body-mass observation record from the May 2026 vet visit at Tartu Animal Clinic, entering the engine as a typed quality-claim source packet" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__typedvocabulary a owl:NamedIndividual ;
+    rdfs:label "the Mittens vaccination record FVRCP-2026-03-15, entering as a typed evidence packet with provenance and validation envelope" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__olognode a owl:NamedIndividual ;
+    rdfs:label "the Mittens microchip-id witness 985112000123456 entering as a typed identifier source leg into the Music engine cocone" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__generatedwitness a owl:NamedIndividual ;
+    rdfs:label "the Mittens coat-pattern observation (torbie, three-color) entering as a typed quality-claim into the manifest profile reader" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__draftlanguage a owl:NamedIndividual ;
+    rdfs:label "the Mittens domestic-cat classification leg (DomesticCat) as a typed source-leg arrow that anchors BY Mittens, not as an identity" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__ologarrow a owl:NamedIndividual ;
+    rdfs:label "the Felis catus / TSN 183798 taxonomy source leg, recoverable as a typed leg into D_Mittens but not interchangeable with the colimit apex Mittens" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__category a owl:NamedIndividual ;
+    rdfs:label "the ShapeGate that validates the body-mass measurement schema (kg, range 2-12) before admission to the task node" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__governedindividual a owl:NamedIndividual ;
+    rdfs:label "the TaskNode that records the admitted body-mass measurement as the engine's executable transformation" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__categoryreplacing_individual a owl:NamedIndividual ;
+    rdfs:label "the TraceWitness emitted from the body-mass measurement task, the outgoing-profile representative of the typed work" .
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_concrete_anchor__musicnode_10 a owl:NamedIndividual ;
+    rdfs:label "the ChunkManifest profiling the music-entry task — a Yoneda-profile reader for incoming and outgoing arrows of the engine apex" .

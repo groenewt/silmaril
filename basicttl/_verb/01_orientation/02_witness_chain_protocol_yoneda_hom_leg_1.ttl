@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_02_witness_chain_protocol_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "WitnessChainLegExtractArrow" .

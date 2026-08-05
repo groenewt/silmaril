@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 01_interpret_step #1" .

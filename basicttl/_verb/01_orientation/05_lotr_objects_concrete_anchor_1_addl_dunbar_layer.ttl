@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_05_lotr_objects_concrete_anchor_1#mittensapex a owl:NamedIndividual ;
+    rdfs:label "05LotrObjectsConcreteAnchor1AddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_flat_sections_05_lotr_objects_concrete_anchor_1#mittensapex silm:hasAdditionalAttribute "dunbar_layer:0" .

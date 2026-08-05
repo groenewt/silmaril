@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_04_validation_report_as_olog_object_decomposition_step_4__step_forge_morphism_for_04_validation_report_as_olog_object a owl:NamedIndividual ;
+    rdfs:label "Concrete Mittens domain anchor for the section's math object." .

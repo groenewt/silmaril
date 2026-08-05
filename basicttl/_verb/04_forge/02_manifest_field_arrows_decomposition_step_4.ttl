@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_02_manifest_field_arrows_decomposition_step_4__step_forge_morphism_for_02_manifest_field_arrows a owl:NamedIndividual ;
+    rdfs:label "body_mass_kg (observe_body_mass outgoing), source_key (interpret incoming), shape_gate_key (validates incoming), type_seed (type incoming), trace_key (observe outgoing to trace)." .

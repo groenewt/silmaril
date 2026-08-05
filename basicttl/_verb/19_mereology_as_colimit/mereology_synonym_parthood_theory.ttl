@@ -1,0 +1,4 @@
+silm:instances_papers_19_mereology_as_colimit_terms_mereology a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.19_mereology_as_colimit.terms.mereology" .
+silm:instances_papers_19_mereology_as_colimit_terms_mereology silm:hasSynonym "parthood theory" .
+silm:instances_papers_19_mereology_as_colimit_terms_mereology silm:sourceNode silm:instances_papers_19_mereology_as_colimit_terms_mereology .

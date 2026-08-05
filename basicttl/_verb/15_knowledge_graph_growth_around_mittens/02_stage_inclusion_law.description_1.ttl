@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_1#stagendiagram a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.02.concrete_anchor.1#stagendiagram" .
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_1#stagendiagram silm:hasLongDescription "The StageNDiagram is the stage-n source diagram; concretely the diagram after n recorded events. In the paper's apparatus it appears as the symbol 'D_Mittens^n', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

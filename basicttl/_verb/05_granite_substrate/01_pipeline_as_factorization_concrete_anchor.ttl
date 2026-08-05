@@ -1,0 +1,14 @@
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual — the domestic cat at the Tartu Animal Clinic whose annual vet exam on 2026-05-18 produced the evidence chunk c-0x7f4a" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_concrete_anchor__pipelinefactorizationsymbol a owl:NamedIndividual ;
+    rdfs:label "For Mittens: Pipeline(SourceBody_05) = Validate(Specialize(ManifestTrain(ChunkHash(Extract(src/papers/05_granite_substrate/sections/02_mittens_anchor.tex))))). Each step has a typed return path back to SourceBody_05." .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_concrete_anchor__mittenssourcediagram a owl:NamedIndividual ;
+    rdfs:label "the source diagram: functor from typed-leg index category into G_Granite whose colimit is Mittens" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_concrete_anchor__clinicalcareplan77tartu a owl:NamedIndividual ;
+    rdfs:label "clinical care plan record 77 at Tartu clinic: receives universal-mediator from Mittens apex but not from storage row — concrete proof of strict Hom inclusion" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_concrete_anchor__sourcebody a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia source body B_enc — typed governance container at the start of the training-pipeline factorization" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_concrete_anchor__chunkfamily a owl:NamedIndividual ;
+    rdfs:label "{b_i} chunk family — content-addressed byte-range slices, the chunking-stage output of the pipeline" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_concrete_anchor__fusedadapter a owl:NamedIndividual ;
+    rdfs:label "A_* the fused adapter colimit candidate, mid-stage object in the training-pipeline factorization" .

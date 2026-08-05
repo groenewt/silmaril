@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_01_factorization_square_cheese_trap_immunity__trap_manifest=build_output a owl:NamedIndividual ;
+    rdfs:label "manifest=build_output" .

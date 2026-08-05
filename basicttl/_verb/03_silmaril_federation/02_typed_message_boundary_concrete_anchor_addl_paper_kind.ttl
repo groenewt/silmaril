@@ -1,0 +1,3 @@
+silm: a owl:NamedIndividual ;
+    rdfs:label "AnchorAddlPaperKind" .
+silm: silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.03_silmaril_federation" .

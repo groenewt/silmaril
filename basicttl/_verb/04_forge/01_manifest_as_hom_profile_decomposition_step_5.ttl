@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_01_manifest_as_hom_profile_decomposition_step_5__step_forge_morphism_for_01_manifest_as_hom_profile a owl:NamedIndividual ;
+    rdfs:label "The manifest is complete when every incoming and outgoing arrow in the traced Yoneda profile is declared. Incomplete manifest = PARTIAL factorization square outcome." .

@@ -1,0 +1,6 @@
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic annual vet exam 2026-05-18" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload sha256:7f4a...bf2c evidence leg typed" .
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_01_label_copying_concrete_anchor__01labelcopyingfailureoutput a owl:NamedIndividual ;
+    rdfs:label "an adapter output that exhibits the 01LabelCopying failure: it returns the storage chunk reference or flattened profile instead of preserving the full typed-leg structure of the Mittens cocone" .

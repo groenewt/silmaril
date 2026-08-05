@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_cha_second_walkthrough_compat__diagram_fig_orientation_cha_second_walkthrough_compat a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chA-second-walkthrough-compat" .

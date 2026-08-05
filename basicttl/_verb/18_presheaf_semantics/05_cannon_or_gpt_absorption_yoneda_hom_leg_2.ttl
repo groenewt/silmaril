@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_05_cannon_or_gpt_absorption_yoneda_hom_leg_2_admit_gpt a owl:NamedIndividual ;
+    rdfs:label "P1805_cannon_or_gpt_absorptionYonedaHomLeg2" .

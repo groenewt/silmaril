@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_04_layered_sequencing_decomposition_step_6__step_forge_morphism_for_04_layered_sequencing a owl:NamedIndividual ;
+    rdfs:label "LayeredSequencing: Forge typing discipline enforced. — concrete forge-domain reading in section 'Layered Sequencing'." .

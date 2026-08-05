@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_03_master_dag_cheese_trap_immunity__trap_master_dag=org_chart a owl:NamedIndividual ;
+    rdfs:label "master_DAG=org_chart" .

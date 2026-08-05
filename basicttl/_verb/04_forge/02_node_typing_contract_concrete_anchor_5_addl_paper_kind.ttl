@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_concrete_anchor_5#mittensforgemanifest a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 02_node_typing_contract" .
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_concrete_anchor_5#mittensforgemanifest silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.04_forge" .

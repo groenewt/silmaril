@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_06_probe_sous_totalizing_decomposition_step_3__step_joc_§6_18__hom__a_is_a_read_only_contravariant_profile;_it_d a owl:NamedIndividual ;
+    rdfs:label "Joy of Cats §6.18 introduces representable functors as read-only profiles: Hom(-,A) and Hom(A,-) tell you about existing arrows; they do not manufacture new ones. The sous position reads Y^in_Mittens and Y^out_Mittens; it sees only what is there." .

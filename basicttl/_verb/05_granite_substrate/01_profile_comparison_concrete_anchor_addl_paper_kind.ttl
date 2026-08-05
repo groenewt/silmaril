@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor#mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "ProfileComparisonConcreteAnchorAddlPaperKind" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_concrete_anchor#mittensgovernedindividual silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.05_granite_substrate" .

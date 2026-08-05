@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_decomposition_step__step_manifest_sidecar a owl:NamedIndividual ;
+    rdfs:label "the typed-arrow content beside the raw CSV" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_decomposition_step__step_reconstruct a owl:NamedIndividual ;
+    rdfs:label "the clinic reconstructs KGvet from the sidecar" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_decomposition_step__step_f1__f2__pullback_witnesses a owl:NamedIndividual ;
+    rdfs:label "the four admissibility witnesses. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_decomposition_step__step_manifest_witnesses a owl:NamedIndividual ;
+    rdfs:label "F1_witnesses, F2_witnesses, pullback_constraints fields" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_decomposition_step__step_full_transported_yoneda_profile a owl:NamedIndividual ;
+    rdfs:label "the reconstructed clinic patient image carries the full transported profile" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_decomposition_step__step_csv_+_manifest a owl:NamedIndividual ;
+    rdfs:label "the operational realization of functorial transport" .

@@ -1,0 +1,5 @@
+silm:instances_papers_06_topology_jepa_terms_predictive a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.06_topology_jepa.terms.predictive" .
+silm:instances_papers_06_topology_jepa_terms_predictive silm:hasAntonym silm:instances_papers_06_topology_jepa_terms_reconstructive .
+silm:instances_papers_06_topology_jepa_terms_predictive silm:sourceNode silm:instances_papers_06_topology_jepa_terms_predictive .
+silm:instances_papers_06_topology_jepa_terms_predictive silm:targetNode silm:instances_papers_06_topology_jepa_terms_reconstructive .

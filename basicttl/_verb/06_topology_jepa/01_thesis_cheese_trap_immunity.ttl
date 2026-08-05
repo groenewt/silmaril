@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_01_thesis_cheese_trap_immunity a owl:NamedIndividual ;
+    rdfs:label "ThesisCheeseTrapImmunity" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_construction_dag_decomposition_step_12__step_theoremrecap a owl:NamedIndividual ;
+    rdfs:label "construction DAG associativity recap: regrouping does not change the published witness" .

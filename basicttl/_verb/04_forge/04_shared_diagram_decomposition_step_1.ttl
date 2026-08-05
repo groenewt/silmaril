@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_04_shared_diagram_decomposition_step_1__step_forge_morphism_for_04_shared_diagram a owl:NamedIndividual ;
+    rdfs:label "Name every symbol that appears in the theorem statement, mapping each to a typed Forge object: RawWitness, CitedObject, LocalInfo, OlogNode, ForgeLeg." .

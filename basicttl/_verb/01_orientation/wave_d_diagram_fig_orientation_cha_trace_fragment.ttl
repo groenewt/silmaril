@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_cha_trace_fragment__diagram_fig_orientation_cha_trace_fragment a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chA-trace-fragment" .

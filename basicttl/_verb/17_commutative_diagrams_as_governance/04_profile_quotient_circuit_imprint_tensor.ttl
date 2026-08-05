@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_04_yoneda_for_governance_sections_04_profile_quotient_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "QuotientFunctorOnRepresentableProfilesCircuitImprintTensor" .

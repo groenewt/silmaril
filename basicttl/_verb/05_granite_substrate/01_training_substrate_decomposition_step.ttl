@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_decomposition_step__step_trainingsubstrate_primary_symbol a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of TrainingSubstrate as a typed morphism in the Granite category" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_decomposition_step__step_circ_typed_composition a owl:NamedIndividual ;
+    rdfs:label "composing typed arrows in the Granite category preserving source-body provenance" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_decomposition_step__step_typed_morphisms_in_olog a owl:NamedIndividual ;
+    rdfs:label "base topic grounding TrainingSubstrate via typed_morphisms_in_olog as it appears in Joy of Cats §5 — the morphisms of the Granite olog form the source-leg structure of every training record" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_decomposition_step__step_mittens_at_tartu_animal_clinic_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "the Mittens individual whose vet record provides the evidence chunk grounding this section" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_decomposition_step__step_hom__mittens_neq_hom__graniterow_mittens a owl:NamedIndividual ;
+    rdfs:label "different Hom-profiles confirm different objects — the storage chunk is not the governed individual" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_decomposition_step__step_trainingsubstrate_law a owl:NamedIndividual ;
+    rdfs:label "TrainingSubstrate preserves typed leg separation without collapsing storage rows into the governed apex" .

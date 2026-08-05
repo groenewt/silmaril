@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_07_contrastive_negative_regression_sections_01_contrastive_failure_mode_olog_box__01contrastivefailuremode a owl:NamedIndividual ;
+    rdfs:label "01ContrastiveFailureMode" .

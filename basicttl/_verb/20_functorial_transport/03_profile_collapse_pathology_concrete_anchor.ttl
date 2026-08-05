@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_concrete_anchor__householdfeedinginteractionarrow a owl:NamedIndividual ;
+    rdfs:label "a household arrow recording the feeding event with Mittens" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_concrete_anchor__householdgroominginteractionarrow a owl:NamedIndividual ;
+    rdfs:label "a distinct household arrow recording the grooming event with Mittens" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_concrete_anchor__cliniccollapsedvisitarrow a owl:NamedIndividual ;
+    rdfs:label "the clinic 'patient visit' arrow that aggregates both household interactions without date discrimination" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_concrete_anchor__derivedanchor_03_pro_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

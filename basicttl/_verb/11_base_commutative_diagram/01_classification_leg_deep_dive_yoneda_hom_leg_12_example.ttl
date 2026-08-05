@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_06_leg_deep_dives_class_refine_sections_01_classification_leg_deep_dive_yoneda_hom_leg_12_taxonomytauarrow a owl:NamedIndividual ;
+    rdfs:label "S01ClassificationLegDeepDiveYonedaHomLeg12Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_06_leg_deep_dives_class_refine_sections_01_classification_leg_deep_dive_yoneda_hom_leg_12_taxonomytauarrow silm:hasExample "In 'S01ClassificationLegDeepDiveYonedaHomLeg12', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, tau:TaxonomyWitness->DomesticCat — the source-leg row supporting the refinement, NOT identifying Mittens" .

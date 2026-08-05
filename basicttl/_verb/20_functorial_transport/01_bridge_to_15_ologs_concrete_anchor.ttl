@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_concrete_anchor__paper15ologgrowth a owl:NamedIndividual ;
+    rdfs:label "the olog construction process from paper 15" .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_concrete_anchor__ologproductionarrow a owl:NamedIndividual ;
+    rdfs:label "the arrow from olog-growth process to household-side category" .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_concrete_anchor__transportfforbridge a owl:NamedIndividual ;
+    rdfs:label "the cross-KG transport functor that takes paper 15's olog as household-side" .

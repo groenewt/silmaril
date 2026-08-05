@@ -1,0 +1,3 @@
+silm:instances_papers_03_silmaril_federation_preferred_term_concrete_anchor a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationPreferredTermConcreteAnchor" .
+silm:instances_papers_03_silmaril_federation_preferred_term_concrete_anchor silm:sourceNode silm:instances_papers_03_silmaril_federation_preferred_term_concrete_anchor .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_03_probe_domesticcat_collapse_decomposition_step_2__step_iota_tsn__taxrow_tsn183798__>_mittens_inward_vs_lambda_cls__ a owl:NamedIndividual ;
+    rdfs:label "The taxonomy-source node TaxRow_TSN183798 carries iota_tsn (inward to Mittens); the classification node DomesticCat carries lambda_cls (outward from Mittens). These arrows point in opposite directions through the apex." .

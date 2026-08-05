@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_02_kg_subprofile_concrete_anchor#_acrkg a owl:NamedIndividual ;
+    rdfs:label "02KgsubprofileConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_02_music_sections_02_kg_subprofile_concrete_anchor#_acrkg silm:hasAdditionalAttribute "circuit_corner:7" .

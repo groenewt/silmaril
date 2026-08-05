@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_concrete_anchor__fullnesscondition a owl:NamedIndividual ;
+    rdfs:label "no clinic arrow is invented: every clinic arrow X' -> F(Mittens) comes from a household arrow" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_concrete_anchor__faithfulnesscondition a owl:NamedIndividual ;
+    rdfs:label "no two distinct household arrows collapse to one clinic arrow" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_concrete_anchor__clinichomset a owl:NamedIndividual ;
+    rdfs:label "the clinic hom-set from the patient-image probe to the patient image" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_concrete_anchor__derivedanchor_02_tra_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

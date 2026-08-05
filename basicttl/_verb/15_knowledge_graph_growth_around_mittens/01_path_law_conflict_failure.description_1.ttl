@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_08_sections_01_concrete_anchor_1#inconsistencystatebot a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.08.sections.01.concrete_anchor.1#inconsistencystatebot" .
+silm:instances_papers_15_chapters_08_sections_01_concrete_anchor_1#inconsistencystatebot silm:hasLongDescription "The InconsistencyStateBot is the absorbing-zero state at the cat-level olog category. In the paper's apparatus it appears as the symbol 'bot_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

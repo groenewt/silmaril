@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:instances_papers_02_music_preferred_term_audible_signal_gate a owl:NamedIndividual ;
+    rdfs:label "P02MusicPreferredTermAudibleSignalGate" .
+silm:instances_papers_02_music_preferred_term_audible_signal_gate silm:sourceNode silm:instances_papers_02_music_preferred_term_audible_signal_gate .

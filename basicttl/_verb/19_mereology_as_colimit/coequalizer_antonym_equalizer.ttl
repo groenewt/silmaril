@@ -1,0 +1,5 @@
+silm:instances_papers_19_mereology_as_colimit_terms_coequalizer a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.19_mereology_as_colimit.terms.coequalizer" .
+silm:instances_papers_19_mereology_as_colimit_terms_coequalizer silm:hasAntonym silm:instances_papers_19_mereology_as_colimit_terms_equalizer .
+silm:instances_papers_19_mereology_as_colimit_terms_coequalizer silm:sourceNode silm:instances_papers_19_mereology_as_colimit_terms_coequalizer .
+silm:instances_papers_19_mereology_as_colimit_terms_coequalizer silm:targetNode silm:instances_papers_19_mereology_as_colimit_terms_equalizer .

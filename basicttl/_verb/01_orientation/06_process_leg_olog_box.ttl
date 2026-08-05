@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_06_process_leg_olog_box__06processlegologbox a owl:NamedIndividual ;
+    rdfs:label "06ProcessLegOlogBox" .

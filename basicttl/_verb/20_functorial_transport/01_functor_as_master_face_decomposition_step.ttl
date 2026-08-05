@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_decomposition_step__step_transportf_governs_kghouse a owl:NamedIndividual ;
+    rdfs:label "the pathological case where the household defers to the functor" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_decomposition_step__step_deference_operator a owl:NamedIndividual ;
+    rdfs:label "each side replaces its categorical authority with the functor's" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_decomposition_step__step_cheese_category_weaponization a owl:NamedIndividual ;
+    rdfs:label "useful servants become dangerous masters" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_decomposition_step__step_type_name_adoption a owl:NamedIndividual ;
+    rdfs:label "either side adopts the other's type names through the functor" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_decomposition_step__step_degraded_yoneda_profiles_on_both_sides a owl:NamedIndividual ;
+    rdfs:label "both KGs degrade their typed arrow profiles to match the functor's image" .
+silm:instances_papers_20_functorial_transport_chapters_05_cheese_trap_functor_vs_data_dump_sections_01_functor_as_master_face_decomposition_step__step_functor_as_master a owl:NamedIndividual ;
+    rdfs:label "the cheese face where the named bridge becomes the master of both sides" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_citation_localsilmarilarchitecturelabels2026 a owl:NamedIndividual ;
+    rdfs:label "P04CitationLocalSilmarilArchitectureLabels2026" .

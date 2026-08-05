@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:checknonakedprimitives a owl:Class ;
+    rdfs:label "CheckNoNakedPrimitives" ;
+    rdfs:comment "Verifies that no spec yaml outside data/universal_anchors.spec.yaml uses\na naked primitive type name (StringNode, IntNode, BoolNode, BinaryNode,\nEnumNode, PathNode, IriNode, UrnNode, RecordNode) as a tensor_space.\n" .

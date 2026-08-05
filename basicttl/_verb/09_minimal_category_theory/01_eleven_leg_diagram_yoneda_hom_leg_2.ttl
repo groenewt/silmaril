@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_01_eleven_leg_diagram_yoneda_hom_leg_2_aboutness_leg a owl:NamedIndividual ;
+    rdfs:label "S01ElevenLegDiagramYonedaHomLeg2" .

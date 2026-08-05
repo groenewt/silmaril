@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_03_decomposition_step_6__step_theorem_t1_g3 a owl:NamedIndividual ;
+    rdfs:label "Long-run colimit existence and universality" .

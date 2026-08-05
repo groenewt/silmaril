@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_07_circuit_cube_corner_placement_sections_01_primary_corner_circuit3_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

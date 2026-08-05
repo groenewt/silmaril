@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_proof_decomposition_step_2__step_colim a owl:NamedIndividual ;
+    rdfs:label "the primary operation invoked in the Proof of the Yoneda Lemma claim" .

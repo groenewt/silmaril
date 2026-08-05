@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_05_yoneda_for_typed_english_sections_03_profile_preservation_law_cheese_trap_immunity__trap_profile_loss_under_transport a owl:NamedIndividual ;
+    rdfs:label "profile_loss_under_transport" .

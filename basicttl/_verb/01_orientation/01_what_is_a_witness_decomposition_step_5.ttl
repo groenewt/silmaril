@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_decomposition_step_5__step_y^injoc620_=_locate_from_cannon_cat_joy_of_cats_md;_y^outjoc a owl:NamedIndividual ;
+    rdfs:label "The Yoneda profile of witness joc620 has one incoming arrow (locate from the source file on disk) and two outgoing arrows (one to the Kleisli composition theorem, one to the enrichment section). A witness with no outgoing arrows is an isolated source fact that supports no claim; it exists in the olog but has no effect on the colimit." .

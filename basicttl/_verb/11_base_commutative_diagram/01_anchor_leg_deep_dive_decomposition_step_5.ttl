@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_07_leg_deep_dives_anchor_identifier_sections_01_anchor_leg_deep_dive_decomposition_step_5__step_yoneda_profile_of_mittens a owl:NamedIndividual ;
+    rdfs:label "the representable presheaf O_11(-, Mittens) recovers Mittens up to natural iso from its admissible-arrow profile" .

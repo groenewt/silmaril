@@ -1,0 +1,3 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_01_typed_noun_rule_concrete_anchor_1_N#domesticcatbox a owl:NamedIndividual ;
+    rdfs:label "TypedNounRuleConcreteAnchor1AddlDunbarLayer" .
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_01_typed_noun_rule_concrete_anchor_1_N#domesticcatbox silm:hasAdditionalAttribute "dunbar_layer:0" .

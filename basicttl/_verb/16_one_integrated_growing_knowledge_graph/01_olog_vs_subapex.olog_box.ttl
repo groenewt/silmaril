@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_olog_box__ologvssubapex a owl:NamedIndividual ;
+    rdfs:label "OlogVsSubapex" .

@@ -1,0 +1,6 @@
+entity:
+  fields:
+    - value: one
+      cpo_process_iri: "https://www.commoncoreontologies.org/cpo00000001"
+    - value: two
+      cco_grounding_iri: "   "

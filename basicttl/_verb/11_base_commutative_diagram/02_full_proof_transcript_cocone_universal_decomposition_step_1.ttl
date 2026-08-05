@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_11_proof_transcripts_sections_02_full_proof_transcript_cocone_universal_decomposition_step_1__step_d_mittens_11 a owl:NamedIndividual ;
+    rdfs:label "the page-11 Mittens source diagram" .

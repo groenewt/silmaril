@@ -1,0 +1,3 @@
+silm:instances_papers_19_mereology_as_colimit_preferred_term_part_of_arrow a owl:NamedIndividual ;
+    rdfs:label "P19MereologyAsColimitPreferredTermPartOfArrow" .
+silm:instances_papers_19_mereology_as_colimit_preferred_term_part_of_arrow silm:sourceNode silm:instances_papers_19_mereology_as_colimit_preferred_term_part_of_arrow .

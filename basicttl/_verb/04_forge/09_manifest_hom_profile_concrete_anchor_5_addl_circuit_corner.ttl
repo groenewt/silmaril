@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_concrete_anchor_5#citedvetrecordobject a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 09_manifest_hom_profile" .
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_concrete_anchor_5#citedvetrecordobject silm:hasAdditionalAttribute "circuit_corner:4" .

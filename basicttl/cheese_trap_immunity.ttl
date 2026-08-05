@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:cheesetrapimmunity a owl:Class ;
+    rdfs:label "CheeseTrapImmunity" ;
+    rdfs:comment "The cheese trap (cannon/cheese.md, Leary/Alpert) is the identity-collapse failure mode where an entity is reduced to one of its observations. CheeseTrapImmunity records the failure mode the paper-claim immunises against and the explicit immunity mechanism. (Defends against Leary-circuit collapse — confusing one circuit's read for another, e.g. taking Circuit 3 semantic-token for Circuit 5 somatic-referent; per cannon/cheese.md.)" .

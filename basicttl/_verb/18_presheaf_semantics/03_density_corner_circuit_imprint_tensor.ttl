@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_density_corner_circuit_imprint_tensor__corner_7 a owl:NamedIndividual ;
+    rdfs:label "7" .

@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_mittens_anchor_cheese_trap_immunity__trap_bare_catus_match_routes_to_wrong_object a owl:NamedIndividual ;
+    rdfs:label "bare_catus_match_routes_to_wrong_object" .

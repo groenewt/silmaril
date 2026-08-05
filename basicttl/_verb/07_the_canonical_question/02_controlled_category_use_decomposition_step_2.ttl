@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_04_cheese_trap_and_identity_sections_02_controlled_category_use_decomposition_step_2__step__hom_oq_07__ a owl:NamedIndividual ;
+    rdfs:label "reading position 2: the answerability profile Hom_O(Q_07, -) is a functor C -> Set" .

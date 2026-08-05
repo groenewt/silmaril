@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_che_validation_fan_four__diagram_fig_orientation_che_validation_fan_four a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chE-validation-fan-four" .

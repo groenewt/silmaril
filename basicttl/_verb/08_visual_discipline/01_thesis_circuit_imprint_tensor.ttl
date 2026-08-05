@@ -1,0 +1,2 @@
+silm:instances_papers_08_visual_discipline_chapters_flat_sections_01_thesis_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "08ThesisCircuitImprintTensor" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chc_two_interp__diagram_fig_orientation_chc_two_interp a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chC-two-interp" .

@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_olog_box__profilecomparisonbox a owl:NamedIndividual ;
+    rdfs:label "ProfileComparisonBox" .

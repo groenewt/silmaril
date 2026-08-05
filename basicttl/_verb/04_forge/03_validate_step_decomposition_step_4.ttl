@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_03_validate_step_decomposition_step_4__step_forge_morphism_for_03_validate_step a owl:NamedIndividual ;
+    rdfs:label "SHACL validation shapes declare focus nodes, property shapes, constraints, and severity levels. The Forge olog abstracts away the SHACL syntax and keeps only the typed structure: a shape receives candidates and partitions them." .

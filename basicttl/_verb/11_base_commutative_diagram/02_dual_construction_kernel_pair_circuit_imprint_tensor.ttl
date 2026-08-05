@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_10_alternatives_dual_computational_sections_02_dual_construction_kernel_pair_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_01_representability_proposition_concrete_anchor__hom_neg_mittens a owl:NamedIndividual ;
+    rdfs:label "Hom_neg_Mittens: the representable presheaf Hom(-,MittensColimitApex); assigns to each D_Mittens source object X the set of arrows X -> MittensColimitApex (= the singleton {the X-leg arrow} for each of the twelve source nodes)" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_01_representability_proposition_concrete_anchor__mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "MittensColimitApex: the concrete representing object for the representable profile of Mittens; the unique (up to isomorphism) object A such that Hom(-,A) iso ClinicalLabelPresheaf restricted to D_Mittens" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_01_representability_proposition_concrete_anchor__gptmittensdescription a owl:NamedIndividual ;
+    rdfs:label "GPTMittensDescription: a GPT-generated presheaf over D_Mittens that assigns to each source node a text description; this presheaf is not representable by MittensColimitApex because it has no concrete twelve-leg source witness; the cannon/or/gpt_absorption section (05) of paper-00 rules it non-canonical" .

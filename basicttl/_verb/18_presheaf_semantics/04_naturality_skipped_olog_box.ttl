@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_naturality_skipped_olog_box__p18section04_naturality_skippedologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section04_naturality_skippedOlogBox" .

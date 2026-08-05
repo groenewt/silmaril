@@ -1,0 +1,38 @@
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] [d," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[schemanode]| Manifest [r," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ \\& |[processnode]| TaskNode [d," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "] [dr,dashed," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[rolenode]| OlogLeg [d," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "'] tikzcd% The Node-or-Arrow admission gate for the Music engine: a source packet reaches a published claim only via interpretation into a typed node, governance as an olog leg, and a cocone map to the colimit apex. The dashed diagonal shortcut from \\(SourcePacket\\) to \\(PublishedClaim\\) is forbidden.fig:music-node-arrow-admission Diagram law (Figure~fig:music-node-arrow-admission): the direct shortcut \\(SourcePacket\\) is blocked; the only admissible path factors through interpretation, governance, and cocone compatibility. [0.90]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[classnode]| Cat [r," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[processnode]| MusicEngine [u," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[instancenode]| PublishedSection tikzcd% The Joy of Cats threshold dual reading: the Music engine anchors its admission law in the Mittens colimit (left column), and the Cat-first governance arrow is the threshold quality that distinguishes a governed publication from an ungoverned one. Cheese-trap: \\(MusicEngine\\) is a typed source-leg process node; the \\(anchorsBy\\) arrow does not make it the colimit apex. \\( =  D\\), not the engine or any record it produces.fig:music-joc-threshold Diagram law (Figure~fig:music-joc-threshold): the Joy of Cats threshold dual reading says the Music engine is governed only when its anchor arrow to \\(\\) commutes with the Cat governance arrow; an engine that publishes without anchoring has no threshold discipline. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[classnode]| EncyclopediaFreeMonad [r," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[schemanode]| SourceSignature [r," .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_10 a owl:NamedIndividual ;
+    rdfs:label "generates" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_11 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_11" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_12 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_12" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_13 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_13" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_14 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_14" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_15 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_15" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_16 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_16" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_17 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_17" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_18 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_18" .
+silm:instances_papers_02_music_sections_01_thesis_yoneda_hom_leg__leg_19 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_19" .

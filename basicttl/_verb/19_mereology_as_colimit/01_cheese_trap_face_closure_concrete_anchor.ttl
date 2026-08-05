@@ -1,0 +1,8 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_08_cheese_and_failure_modes_sections_01_cheese_trap_face_closure_concrete_anchor__mereologydiagram a owl:NamedIndividual ;
+    rdfs:label "the part-whole diagram of Mittens-the-cat, indexed by body-region tags (head, torso, paws, tail) and overlap joints" .
+silm:instances_papers_19_mereology_as_colimit_chapters_08_cheese_and_failure_modes_sections_01_cheese_trap_face_closure_concrete_anchor__mittenscolimit a owl:NamedIndividual ;
+    rdfs:label "the colimit apex assembling head, torso, paws, and tail observations into the single individual Mittens-the-cat" .
+silm:instances_papers_19_mereology_as_colimit_chapters_08_cheese_and_failure_modes_sections_01_cheese_trap_face_closure_concrete_anchor__headobservation a owl:NamedIndividual ;
+    rdfs:label "the head-region olog fragment of Mittens's vet exam: left ear position, right ear position, three-color torbie eye markings" .
+silm:instances_papers_19_mereology_as_colimit_chapters_08_cheese_and_failure_modes_sections_01_cheese_trap_face_closure_concrete_anchor__torsoobservation a owl:NamedIndividual ;
+    rdfs:label "the torso-region olog fragment of Mittens: flank patch, back stripe, belly fur density and three-color torbie pattern" .

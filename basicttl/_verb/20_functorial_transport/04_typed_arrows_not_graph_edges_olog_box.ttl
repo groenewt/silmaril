@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_olog_box__typedarrowsnotgraphedges a owl:NamedIndividual ;
+    rdfs:label "TypedArrowsNotGraphEdges" .

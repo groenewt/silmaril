@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_07_sections_02_concrete_anchor_2#representablefunctoratx a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.07.sections.02.concrete_anchor.2#representablefunctoratx" .
+silm:instances_papers_15_chapters_07_sections_02_concrete_anchor_2#representablefunctoratx silm:hasLongDescription "The RepresentableFunctorAtX is the representable functor at the test object X. In the paper's apparatus it appears as the symbol 'Hom_C(X, -)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

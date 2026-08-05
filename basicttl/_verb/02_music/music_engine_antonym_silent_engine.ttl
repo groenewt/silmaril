@@ -1,0 +1,5 @@
+silm:instances_papers_02_music_terms_music_engine a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.02_music.terms.music_engine" .
+silm:instances_papers_02_music_terms_music_engine silm:hasAntonym silm:instances_papers_02_music_terms_silent_engine .
+silm:instances_papers_02_music_terms_music_engine silm:sourceNode silm:instances_papers_02_music_terms_music_engine .
+silm:instances_papers_02_music_terms_music_engine silm:targetNode silm:instances_papers_02_music_terms_silent_engine .

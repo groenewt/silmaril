@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_03_latent_space_representable_sections_03_metric_structure_olog_box__03metricstructure a owl:NamedIndividual ;
+    rdfs:label "03MetricStructure" .

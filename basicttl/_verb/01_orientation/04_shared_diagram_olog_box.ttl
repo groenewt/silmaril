@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_04_shared_diagram_olog_box__04shareddiagramologbox a owl:NamedIndividual ;
+    rdfs:label "04SharedDiagramOlogBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_failure_modes_yoneda_hom_leg_3_y_yoneda a owl:NamedIndividual ;
+    rdfs:label "P1804_failure_modesYonedaHomLeg3" .

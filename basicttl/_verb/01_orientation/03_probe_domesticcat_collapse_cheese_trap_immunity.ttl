@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_03_probe_domesticcat_collapse_cheese_trap_immunity__trap_domesticcat_classification_equals_taxon_row a owl:NamedIndividual ;
+    rdfs:label "domesticcat_classification_equals_taxon_row" .

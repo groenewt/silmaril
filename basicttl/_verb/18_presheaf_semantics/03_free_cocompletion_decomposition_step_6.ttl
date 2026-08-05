@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_free_cocompletion_decomposition_step_6__step_presheaves_as_the_free_cocompletion a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Presheaves as the Free Cocompletion on the Mittens presheaf is exactly the lawful construction it names" .

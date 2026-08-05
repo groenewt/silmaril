@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_01_eleven_leg_diagram_yoneda_hom_leg_4_identifier_leg a owl:NamedIndividual ;
+    rdfs:label "S01ElevenLegDiagramYonedaHomLeg4Example" .
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_01_eleven_leg_diagram_yoneda_hom_leg_4_identifier_leg silm:hasExample "In 'S01ElevenLegDiagramYonedaHomLeg4', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the MicrochipIdentifier9 -> Mittens identifier leg; identifier strengthens the type seed, never replaces the individual" .

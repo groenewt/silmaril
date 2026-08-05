@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_04_negative_regression_audit_yoneda_hom_leg_3_measurement_leg a owl:NamedIndividual ;
+    rdfs:label "S04NegativeRegressionAuditYonedaHomLeg3" .

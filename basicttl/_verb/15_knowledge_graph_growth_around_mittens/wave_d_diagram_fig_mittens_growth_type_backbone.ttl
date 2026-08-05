@@ -1,0 +1,2 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_diagram_fig_mittens_growth_type_backbone__diagram_fig_mittens_growth_type_backbone a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-growth-type-backbone" .

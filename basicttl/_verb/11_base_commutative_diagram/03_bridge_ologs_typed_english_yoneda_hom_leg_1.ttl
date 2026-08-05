@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_19_bridges_monoids_functorial_ologs_sections_03_bridge_ologs_typed_english_yoneda_hom_leg_1_domesticcatrefinementlega a owl:NamedIndividual ;
+    rdfs:label "S03BridgeOlogsTypedEnglishYonedaHomLeg1" .

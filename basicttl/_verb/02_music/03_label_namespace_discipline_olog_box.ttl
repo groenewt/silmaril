@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_02_naming_provenance_sections_03_label_namespace_discipline_olog_box__musicolog03labelnamespacediscbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03LabelNamespaceDiscBox" .

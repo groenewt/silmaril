@@ -1,0 +1,38 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__mereologydiagram a owl:NamedIndividual ;
+    rdfs:label "the part-whole diagram of Mittens-the-cat, indexed by body-region tags (head, torso, paws, tail) and overlap joints" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__mittenscolimit a owl:NamedIndividual ;
+    rdfs:label "the colimit apex assembling head, torso, paws, and tail observations into the single individual Mittens-the-cat" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__headobservation a owl:NamedIndividual ;
+    rdfs:label "the head-region olog fragment of Mittens's vet exam: left ear position, right ear position, three-color torbie eye markings" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__torsoobservation a owl:NamedIndividual ;
+    rdfs:label "the torso-region olog fragment of Mittens: flank patch, back stripe, belly fur density and three-color torbie pattern" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__tailobservation a owl:NamedIndividual ;
+    rdfs:label "the tail-region olog fragment of Mittens: base joint, tip white tuft, length 28cm with kink near distal end" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__neckjoint a owl:NamedIndividual ;
+    rdfs:label "the shared anatomical joint between Mittens's head and torso observations, the apex of the head-torso pushout" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__spinejoint a owl:NamedIndividual ;
+    rdfs:label "the shared anatomical joint between Mittens's torso and tail observations, the apex of the torso-tail pushout" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__vetcareplanrecord a owl:NamedIndividual ;
+    rdfs:label "the clinical care plan record 77 generated for Mittens at the May 2026 vet visit at the Tartu Animal Clinic" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__mittensthecat a owl:NamedIndividual ;
+    rdfs:label "the running anchor: Mittens-the-cat, the integrated whole receiving every typed-leg observation through the cocone" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__legoriginfunctor a owl:NamedIndividual ;
+    rdfs:label "the functor that picks out the origin object of a named cocone leg in the D_Mittens diagram (head, torso, evidence, role)" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__legcoconearrow a owl:NamedIndividual ;
+    rdfs:label "the cocone leg arrow from a typed leg origin into the Mittens apex, realizing the part-of inclusion" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__indexcategoryjmittens a owl:NamedIndividual ;
+    rdfs:label "the index category whose objects are typed leg tags (head, torso, tail, evidence, role, process) and arrows are overlap claims" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__yonedaprofilemap a owl:NamedIndividual ;
+    rdfs:label "the Yoneda profile map sending each leg-origin object to its representable presheaf in Set^{C^op} of probe-test arrows" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__partlistenumeration a owl:NamedIndividual ;
+    rdfs:label "the forbidden plain enumeration of parts that fluent prose mistakes for the whole Mittens individual" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__domesticcatclass a owl:NamedIndividual ;
+    rdfs:label "the domestic-cat classification class leg, kept distinct from the individual Mittens (Mittens IS-A but is not equal to)" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__feliscatustaxonnode a owl:NamedIndividual ;
+    rdfs:label "the Felis catus taxon node, TSN 183798, kept as a typed leg origin distinct from the apex Mittens-the-cat" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__microchipidentifier a owl:NamedIndividual ;
+    rdfs:label "Mittens's 15-digit microchip identifier as the identity leg, kept distinct from the individual Mittens" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__furcolorobservation a owl:NamedIndividual ;
+    rdfs:label "the fur-color quality observation leg recording Mittens's three-color torbie pattern with brown undertones" .
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_concrete_anchor__weightmeasurementrecord a owl:NamedIndividual ;
+    rdfs:label "the body-mass measurement record for Mittens at 4.2 kg recorded during the May 2026 Tartu clinic visit" .

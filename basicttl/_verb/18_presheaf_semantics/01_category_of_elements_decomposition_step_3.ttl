@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_category_of_elements_decomposition_step_3__step_presheaf_semantics_category_of_elements a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the The Category of Elements of a Presheaf claim, grounded in the cited literature" .

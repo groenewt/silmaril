@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_03_olog_node_arrow_law_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 03_olog_node_arrow_law" .

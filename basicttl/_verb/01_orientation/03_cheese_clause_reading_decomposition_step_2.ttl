@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_12_orientation_closure_album_sections_03_cheese_clause_reading_decomposition_step_2__step_sigma a owl:NamedIndividual ;
+    rdfs:label "reading position 2: the orientation typed source signature" .

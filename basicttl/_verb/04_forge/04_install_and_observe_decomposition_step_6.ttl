@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_04_install_and_observe_decomposition_step_6__step_forge_morphism_for_04_install_and_observe a owl:NamedIndividual ;
+    rdfs:label "Install places the certified artifact as a typed source leg; observe emits the Yoneda-readable trace; the trace is evidence of the path, not the apex." .

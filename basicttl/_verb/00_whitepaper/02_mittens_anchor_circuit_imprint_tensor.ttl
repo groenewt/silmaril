@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

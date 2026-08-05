@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_03_dependency_and_mittens_legs_decomposition_step_6__step_forge_morphism_for_03_dependency_and_mittens_legs a owl:NamedIndividual ;
+    rdfs:label "DependencyAndMittensLegs: typed Forge discipline enforced. — concrete forge-domain reading in section 'Dependencies and \\(\\Mittens\\) Source Legs'." .

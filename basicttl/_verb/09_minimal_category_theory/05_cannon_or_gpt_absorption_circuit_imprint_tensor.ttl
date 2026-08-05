@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_05_cannon_or_gpt_absorption_circuit_imprint_tensor__corner_6 a owl:NamedIndividual ;
+    rdfs:label "6" .

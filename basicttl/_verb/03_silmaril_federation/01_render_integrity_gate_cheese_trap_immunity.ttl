@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_01_render_integrity_gate_cheese_trap_immunity__trap_rendered_pdf_treated_as_the_paper_identity a owl:NamedIndividual ;
+    rdfs:label "rendered_pdf_treated_as_the_paper_identity" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_05_cannon_or_gpt_absorption_decomposition_step_6__step_cannon_and_generated_source_absorption a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Cannon and Generated-Source Absorption on the Mittens presheaf is exactly the lawful construction it names" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_05_probe_ungated_render_cheese_trap_immunity__trap_rendered_glyph_as_proof_surface a owl:NamedIndividual ;
+    rdfs:label "rendered_glyph_as_proof_surface" .

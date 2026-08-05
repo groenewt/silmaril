@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_01_decomposition_step_3__step_base_topic_leary_8_circuit_model_as_rank3_tensor a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia base topic providing the formal apparatus" .

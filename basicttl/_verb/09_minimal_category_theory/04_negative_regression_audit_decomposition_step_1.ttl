@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_04_negative_regression_audit_decomposition_step_1__step_object a owl:NamedIndividual ;
+    rdfs:label "name the symbol" .

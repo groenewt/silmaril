@@ -1,0 +1,8 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_02_identifier_leg_concrete_anchor__microchipid_44 a owl:NamedIndividual ;
+    rdfs:label "MicrochipID_44: the ISO 11784 RFID microchip identifier 44B2F9 implanted in Mittens; scanned at Tartu Animal Clinic on the 2026 annual exam; stored as field microchip_id in VetRecord_77" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_02_identifier_leg_concrete_anchor__identifierarrow_microchip a owl:NamedIndividual ;
+    rdfs:label "IdentifierArrow_Microchip: the typed arrow MicrochipID_44 -> MittensColimitApex; distinct from record_leg (VetRecord_77 -> MittensColimitApex)" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_02_identifier_leg_concrete_anchor__scanevent_tartu_2026 a owl:NamedIndividual ;
+    rdfs:label "ScanEvent_Tartu_2026: the physical clinic scanner read event at Tartu Animal Clinic in May 2026 that produced the chip read result 44B2F9; source provenance for MicrochipID_44" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_02_identifier_leg_concrete_anchor__iso11784standard a owl:NamedIndividual ;
+    rdfs:label "ISO11784Standard: the ISO 11784 standard governing RFID transponder code structure for animal identification; the format authority that gives MicrochipID_44 its unambiguous interpretation" .

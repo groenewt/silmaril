@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_04_adapter_specialization_cheese_trap_immunity__trap_adapter_collapse__treating_a_leg_specialized_adapter_a_t_as_ a owl:NamedIndividual ;
+    rdfs:label "adapter-collapse: treating a leg-specialized adapter A_t as if it can answer questions about all leg types simultaneously — i.e., using A_evidence to answer taxonomy or quality questions about Mittens" .

@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_preferred_term_granite_fact a owl:NamedIndividual ;
+    rdfs:label "P05GraniteSubstratePreferredTermGraniteFact" .
+silm:instances_papers_05_granite_substrate_preferred_term_granite_fact silm:sourceNode silm:instances_papers_05_granite_substrate_preferred_term_granite_fact .

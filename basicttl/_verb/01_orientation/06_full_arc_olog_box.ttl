@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_06_full_arc_olog_box__06fullarcologbox a owl:NamedIndividual ;
+    rdfs:label "06FullArcOlogBox" .

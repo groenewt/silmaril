@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_05_glue_as_kleisli_arrow_olog_box__glue__typedleg^n__>_freesigmaapex a owl:NamedIndividual ;
+    rdfs:label "glue: TypedLeg^n -> Free(Sigma)(Apex)" .

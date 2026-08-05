@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_23_summary_audit_residual_sections_01_summary_textbook_chapter_yoneda_hom_leg_6_coconelegtoapex a owl:NamedIndividual ;
+    rdfs:label "S01SummaryTextbookChapterYonedaHomLeg6" .

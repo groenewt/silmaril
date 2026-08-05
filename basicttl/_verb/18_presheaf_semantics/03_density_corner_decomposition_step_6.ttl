@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_density_corner_decomposition_step_6__step_density_corner_of_the_leary_cube a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Density Corner of the Leary Cube on the Mittens presheaf is exactly the lawful construction it names" .

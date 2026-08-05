@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_decomposition_step_6__step_forge_morphism_for_01_interpret_step a owl:NamedIndividual ;
+    rdfs:label "The interpret step converts a cited source into a typed spec without inheriting the source's formatting artifacts or external authority claims." .

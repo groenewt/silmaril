@@ -1,0 +1,4 @@
+silm:instances_papers_02_music_sections_05_factorization_subprofile_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "Yoneda" .
+silm:instances_papers_02_music_sections_05_factorization_subprofile_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_2" .

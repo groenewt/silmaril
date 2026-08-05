@@ -1,0 +1,3 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_01_thesis_concrete_anchor#mittens a owl:NamedIndividual ;
+    rdfs:label "GovernanceThesisForPaper17ConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_01_thesis_concrete_anchor#mittens silm:hasAdditionalAttribute "circuit_corner:6" .

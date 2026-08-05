@@ -1,0 +1,4 @@
+silm:instances_papers_09_minimal_category_theory_terms_olog a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.09_minimal_category_theory.terms.olog" .
+silm:instances_papers_09_minimal_category_theory_terms_olog silm:hasSynonym "ontology log" .
+silm:instances_papers_09_minimal_category_theory_terms_olog silm:sourceNode silm:instances_papers_09_minimal_category_theory_terms_olog .

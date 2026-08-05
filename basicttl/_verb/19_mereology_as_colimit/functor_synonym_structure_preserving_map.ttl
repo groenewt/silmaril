@@ -1,0 +1,4 @@
+silm:instances_papers_19_mereology_as_colimit_terms_functor a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.19_mereology_as_colimit.terms.functor" .
+silm:instances_papers_19_mereology_as_colimit_terms_functor silm:hasSynonym "structure-preserving map" .
+silm:instances_papers_19_mereology_as_colimit_terms_functor silm:sourceNode silm:instances_papers_19_mereology_as_colimit_terms_functor .

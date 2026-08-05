@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_03_packet_through_federation_olog_box__packetthroughfederation a owl:NamedIndividual ;
+    rdfs:label "PacketThroughFederation" .

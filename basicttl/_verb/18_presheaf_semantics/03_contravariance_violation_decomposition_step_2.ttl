@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_contravariance_violation_decomposition_step_2__step_colim a owl:NamedIndividual ;
+    rdfs:label "the primary operation invoked in the Cheese-Trap: Contravariance Violated claim" .

@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_23_summary_audit_residual_sections_03_residual_risks_open_questions_concrete_anchor_3_DomesticCat a owl:NamedIndividual ;
+    rdfs:label "S03ResidualRisksOpenQuestionsConcreteAnchor3" .

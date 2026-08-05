@@ -1,0 +1,4 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "HouseholdVocabIn" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "ClinicVocabOut" .

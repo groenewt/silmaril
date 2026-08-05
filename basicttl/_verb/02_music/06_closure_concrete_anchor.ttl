@@ -1,0 +1,36 @@
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__cannonwitness a owl:NamedIndividual ;
+    rdfs:label "the Mittens body-mass observation record from the May 2026 vet visit at Tartu Animal Clinic, entering the engine as a typed quality-claim source packet" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__musicolog a owl:NamedIndividual ;
+    rdfs:label "the Mittens vaccination record FVRCP-2026-03-15, entering as a typed evidence packet with provenance and validation envelope" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__publishedclaim a owl:NamedIndividual ;
+    rdfs:label "the Mittens microchip-id witness 985112000123456 entering as a typed identifier source leg into the Music engine cocone" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__generatedwitness a owl:NamedIndividual ;
+    rdfs:label "the Mittens coat-pattern observation (torbie, three-color) entering as a typed quality-claim into the manifest profile reader" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__ a owl:NamedIndividual ;
+    rdfs:label "the Mittens domestic-cat classification leg (DomesticCat) as a typed source-leg arrow that anchors BY Mittens, not as an identity" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__musicengine a owl:NamedIndividual ;
+    rdfs:label "the Felis catus / TSN 183798 taxonomy source leg, recoverable as a typed leg into D_Mittens but not interchangeable with the colimit apex Mittens" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__mittens a owl:NamedIndividual ;
+    rdfs:label "the ShapeGate that validates the body-mass measurement schema (kg, range 2-12) before admission to the task node" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__joycatsthreshold a owl:NamedIndividual ;
+    rdfs:label "the TaskNode that records the admitted body-mass measurement as the engine's executable transformation" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__absorbedsource a owl:NamedIndividual ;
+    rdfs:label "the TraceWitness emitted from the body-mass measurement task, the outgoing-profile representative of the typed work" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__typednode a owl:NamedIndividual ;
+    rdfs:label "the ChunkManifest profiling the music-entry task — a Yoneda-profile reader for incoming and outgoing arrows of the engine apex" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__ologleg a owl:NamedIndividual ;
+    rdfs:label "the SourceWitness from the cannon/cat/joy_of_cats.md JoC §11 colimit citation, an external authority source leg" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__incomingprofile a owl:NamedIndividual ;
+    rdfs:label "the EvidencePacket carrying the typing decision and path law that admits the Mittens vaccination record, distinct from the raw audio file or storage object" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__validationtrace a owl:NamedIndividual ;
+    rdfs:label "the AvroPacket serializing a Mittens body-mass observation as a typed record schema, licensed by the AvroSchema for transport" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__outgoingprofile a owl:NamedIndividual ;
+    rdfs:label "the AvroRecord as a schema-layer transport node (silver schemanode), distinct from the colimit apex Mittens" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__musicnode_15 a owl:NamedIndividual ;
+    rdfs:label "the KGEdge (Mittens, hasQuality, BodyMass) admitted to the engine via the typed olog arrow hasQuality" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__musicnode_16 a owl:NamedIndividual ;
+    rdfs:label "the KGNode for Mittens-the-cat as a knowledge-graph reference distinct from the categorical apex" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__musicnode_17 a owl:NamedIndividual ;
+    rdfs:label "the OlogLeg arrow that the Mittens body-mass observation flows through on its way to the published quality section" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor__musicnode_18 a owl:NamedIndividual ;
+    rdfs:label "the PublishedClaim (the rendered quality-section of the Music encyclopedia entry) as the outgoing-profile materialization, distinct from the engine that produced it" .

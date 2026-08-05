@@ -1,0 +1,24 @@
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__vetrecord_77 a owl:NamedIndividual ;
+    rdfs:label "the electronic health record VetRecord_77 for Mittens-the-cat (microchip ID 44B2F9) created at the Tartu Animal Clinic on 2026-05-18" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__vetcareplan_77 a owl:NamedIndividual ;
+    rdfs:label "the clinical care plan VetCarePlan_77 rendered as a PDF after Mittens's VetRecord_77 passed all four publication gates" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__tartuclinicintakeform a owl:NamedIndividual ;
+    rdfs:label "the DICOM/HL7 intake form submitted by the Tartu Animal Clinic for Mittens's May 2026 annual exam" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__mittensspeciesnode a owl:NamedIndividual ;
+    rdfs:label "the typed species node: DomesticCat, Felis catus, TSN 183798, assigned to Mittens during the type gate of VetRecord_77's publication pipeline" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__shaclpassreport_77 a owl:NamedIndividual ;
+    rdfs:label "the SHACL validation pass report for VetRecord_77: all required fields present, species-taxonomy cross-check passed, measurement units conform to SI" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__vetcareplanpdf_77 a owl:NamedIndividual ;
+    rdfs:label "the rendered PDF of VetCarePlan_77: the formatted four-page care plan for Mittens delivered to the owner on 2026-05-18" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "the colimit apex colim D_Mittens: Mittens-the-cat assembled from the twelve typed legs (record, identifier, quality, measurement, value, unit, role, process, validation, trace, classification, taxonomy)" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__mittenssourcediagram a owl:NamedIndividual ;
+    rdfs:label "the source diagram D_Mittens indexed by the twelve typed leg tags, each pointing to a concrete observation facet of Mittens-the-cat" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__clinicalsummaryrecord a owl:NamedIndividual ;
+    rdfs:label "the clinical summary record 77 from the Tartu Animal Clinic, the concrete competing cocone for the universal property test: any other compatible cocone factors uniquely through VetCarePlan_77" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__mittensidentifierleg a owl:NamedIndividual ;
+    rdfs:label "Mittens's ISO 11784 microchip ID 44B2F9: the identifier leg into D_Mittens, distinct from Mittens herself" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__clinicpublishoperation a owl:NamedIndividual ;
+    rdfs:label "the Tartu Animal Clinic's four-gate publication operation: intake form -> species typing -> SHACL validation -> PDF rendering" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor__encyclopediaindexcategory a owl:NamedIndividual ;
+    rdfs:label "the index category whose objects are the 42 encyclopedia entry slugs and whose arrows are the spine-inheritance arrows declared in Chapter 12" .

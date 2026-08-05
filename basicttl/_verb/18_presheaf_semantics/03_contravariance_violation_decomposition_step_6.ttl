@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_contravariance_violation_decomposition_step_6__step_cheese_trap__contravariance_violated a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Cheese-Trap: Contravariance Violated on the Mittens presheaf is exactly the lawful construction it names" .

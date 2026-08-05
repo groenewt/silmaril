@@ -1,0 +1,14 @@
+from config.gate.external.python.morphism.codebase.volume.lexical.lines.library import LINES
+from config.gate.external.python.morphism.codebase.volume.lexical.payload.library import PAYLOAD
+from config.gate.external.python.morphism.codebase.volume.lexical.text.library import TEXT
+from config.gate.external.python.morphism.codebase.volume.lexical.value.library import VALUE
+from config.gate.external.python.morphism.codebase.volume.lexical.vector.library import VECTOR
+from config.gate.external.python.morphism.codebase.volume.table.native_tree.boundary.frame.library import FRAME
+from config.gate.external.python.morphism.codebase.volume.table.transform.construct.native_tree.library import RENDER
+from config.gate.external.python.morphism.codebase.volume.table.encode.library import ENCODE_TABLE
+from silmaril.sparky.morphism.codebase.volume.table.native_tree.frame.value import Value as Frame
+from silmaril.sparky.morphism.codebase.volume.table.native_tree.input.value import Value as Input
+
+
+def PROJECT(value: Input) -> Frame:
+    return FRAME(VECTOR(ENCODE_TABLE(RENDER(LINES(TEXT(PAYLOAD(VALUE(value))))))))

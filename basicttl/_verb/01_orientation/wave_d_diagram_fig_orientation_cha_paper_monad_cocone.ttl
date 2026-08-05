@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_cha_paper_monad_cocone__diagram_fig_orientation_cha_paper_monad_cocone a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chA-paper-monad-cocone" .

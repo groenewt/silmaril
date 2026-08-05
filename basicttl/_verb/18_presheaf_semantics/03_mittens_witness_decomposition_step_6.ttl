@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_mittens_witness_decomposition_step_6__step_mittens_vet_record_functoriality_witness a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Mittens Vet-Record Functoriality Witness on the Mittens presheaf is exactly the lawful construction it names" .

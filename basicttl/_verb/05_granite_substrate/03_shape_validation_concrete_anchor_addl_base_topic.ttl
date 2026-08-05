@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_concrete_anchor#mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "ShapeValidationConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_concrete_anchor#mittensgovernedindividual silm:hasAdditionalAttribute "base_topic:type theory" .

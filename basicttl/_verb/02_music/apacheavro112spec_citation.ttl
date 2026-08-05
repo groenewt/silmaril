@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_citation_apacheavro112spec a owl:NamedIndividual ;
+    rdfs:label "P02CitationApacheavro112spec" .

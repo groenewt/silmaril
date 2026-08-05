@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_01_kleisli_category_overview_decomposition_step_2__step_mu_c__freesigmafreesigmac__>_freesigmac a owl:NamedIndividual ;
+    rdfs:label "mu_C is the monad multiplication (flattening): it takes a nested free-monad term Free(Sigma)(Free(Sigma)(C)) and collapses it to a single-level term Free(Sigma)(C). This is the bind-flattening that makes Kleisli composition associative." .

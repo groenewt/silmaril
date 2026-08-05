@@ -1,0 +1,2 @@
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_decomposition_step_4__step_f_mittens a owl:NamedIndividual ;
+    rdfs:label "embody the symbols in concrete Mittens entities" .

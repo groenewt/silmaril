@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_03_probe_domesticcat_collapse_decomposition_step_5__step_homdomesticcat___is_not_naturally_iso_homtaxrow_tsn183798__ a owl:NamedIndividual ;
+    rdfs:label "By Yoneda, DomesticCat and TaxRow have different outgoing arrow families. DomesticCat has arrows to other classification types (other species classifications); TaxRow has an inward identification arrow to Mittens and no outgoing classification arrows. The representable functors are not naturally isomorphic; the objects are distinct." .

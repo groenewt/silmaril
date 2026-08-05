@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_01_typed_noun_rule_decomposition_step_6__step_typed_noun_admissibility_rule a owl:NamedIndividual ;
+    rdfs:label "the one-line recap of the section's load-bearing claim" .

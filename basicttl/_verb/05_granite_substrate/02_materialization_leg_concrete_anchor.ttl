@@ -1,0 +1,16 @@
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_concrete_anchor__mittensicechunkmaterializationarrow a owl:NamedIndividual ;
+    rdfs:label "the materialization arrow mapping the governed Mittens individual to its Icechunk chunk manifest ChunkManifest_Mittens at the Tartu Animal Clinic, carrying content hash sha256:7f4a...bf2c" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_concrete_anchor__chunkmanifestmittens a owl:NamedIndividual ;
+    rdfs:label "the Icechunk chunk manifest record for the Tartu vet-record payload: chunk c-0x7f4a, hash sha256:7f4a...bf2c, back-pointer to src/papers/05_granite_substrate/sections/02_mittens_anchor.tex, dated 2026-05-18" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_concrete_anchor__manifestreturnpathtosourcebody a owl:NamedIndividual ;
+    rdfs:label "the return path from ChunkManifest_Mittens back to SourceBody B_05 — the governance section of the encyclopedia entry" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_concrete_anchor__sourcebodyb05 a owl:NamedIndividual ;
+    rdfs:label "the source body section src/papers/05_granite_substrate/sections/02_mittens_anchor.tex — the governance section that produced the materialized chunk" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_concrete_anchor__clinicalcareplan77tartu a owl:NamedIndividual ;
+    rdfs:label "clinical care plan record 77 generated for Mittens at the May 2026 Tartu Animal Clinic vet visit — receives a universal-mediator arrow from Mittens in G_Granite but is absent from the chunk manifest in M_Granite" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_concrete_anchor__fullgranitecategoryolog a owl:NamedIndividual ;
+    rdfs:label "the full Granite encyclopedia category containing all typed nodes (Mittens, Cat, DomesticCat, VetCarePlan_77, ChunkManifest_Mittens, etc.) and all typed arrows including classification, evidence, quality, and care-plan arrows" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_concrete_anchor__granitestoragesubcategory a owl:NamedIndividual ;
+    rdfs:label "the manifest/storage subcategory of G_Granite containing only chunk manifests, versioned snapshots, content-addressed records, and manifest-level arrows between them" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a at Tartu Animal Clinic local store 2026-05-18 — the storage row for Mittens, carrying sha256:7f4a...bf2c manifest entry" .

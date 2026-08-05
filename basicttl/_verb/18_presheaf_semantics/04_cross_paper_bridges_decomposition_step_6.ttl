@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_cross_paper_bridges_decomposition_step_6__step_cross_paper_bridges_from_the_cube a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Cross-Paper Bridges from the Cube on the Mittens presheaf is exactly the lawful construction it names" .

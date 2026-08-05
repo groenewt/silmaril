@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_04_yoneda_position_deepening_sections_03_yoneda_embedding_concrete_anchor_1#mittensapex a owl:NamedIndividual ;
+    rdfs:label "03YonedaEmbeddingConcreteAnchor1AddlCircuitCorner" .
+silm:instances_papers_01_orientation_chapters_04_yoneda_position_deepening_sections_03_yoneda_embedding_concrete_anchor_1#mittensapex silm:hasAdditionalAttribute "circuit_corner:7" .

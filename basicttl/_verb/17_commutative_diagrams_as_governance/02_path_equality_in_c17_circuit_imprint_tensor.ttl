@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_02_path_equality_in_c17_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "PathEqualityIn17CircuitImprintTensor" .

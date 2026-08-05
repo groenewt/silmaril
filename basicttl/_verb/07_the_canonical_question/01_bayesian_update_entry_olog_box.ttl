@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_10_epistemology_entry_sections_01_bayesian_update_entry_olog_box__p07epistemologyentrybayesianupdateentryologbox a owl:NamedIndividual ;
+    rdfs:label "P07EpistemologyEntryBayesianUpdateEntryOlogBox" .

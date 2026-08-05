@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_citation_localgptyonedamanifestv902026 a owl:NamedIndividual ;
+    rdfs:label "P17CitationLocalGptYonedaManifestV902026" .

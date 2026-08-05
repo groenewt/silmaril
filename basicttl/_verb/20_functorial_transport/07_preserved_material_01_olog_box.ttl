@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_olog_box__functorialtransport07preservedmaterial01box a owl:NamedIndividual ;
+    rdfs:label "FunctorialTransport07PreservedMaterial01Box" .

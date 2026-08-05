@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_10_epistemology_entry_sections_02_information_theory_entry_yoneda_hom_leg_6 a owl:NamedIndividual ;
+    rdfs:label "P07EpistemologyEntryInformationTheoryEntryYonedaHomLeg6" .

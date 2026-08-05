@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chm_sous_total_probe__diagram_fig_orientation_chm_sous_total_probe a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chM-sous-total-probe" .

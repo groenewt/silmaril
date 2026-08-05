@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_04_cocone_compatibility_decomposition_step_1__step_forge_morphism_for_04_cocone_compatibility a owl:NamedIndividual ;
+    rdfs:label "μ_j is the compatibility arrow for leg j — the arrow from source leg j to candidate apex P. P is the candidate apex. u is the mediator — the unique arrow from the colimit to any competing compatible cocone. λ_j is the universal cocone map from source leg j to the colimit." .

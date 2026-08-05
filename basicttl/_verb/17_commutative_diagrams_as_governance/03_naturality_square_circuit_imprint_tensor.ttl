@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_04_yoneda_for_governance_sections_03_naturality_square_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "NaturalitySquareAsAuditPropagationCircuitImprintTensor" .

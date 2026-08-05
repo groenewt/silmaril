@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_09_joy_of_cats_anchor_for_pages_sections_05_cat_first_anchor_discipline_olog_box__musicolog05catfirstanchordiscbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog05CatFirstAnchorDiscBox" .

@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_sections_09_mittens_regression_protocol_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic annual vet exam 2026-05-18 — the concrete cat whose storage-identity distinction grounds all Granite specs" .
+silm:instances_papers_05_granite_substrate_sections_09_mittens_regression_protocol_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload, sha256:7f4a...bf2c, evidence leg typed, back-pointer to src/papers/05_granite_substrate/sections/02_mittens_anchor.tex" .
+silm:instances_papers_05_granite_substrate_sections_09_mittens_regression_protocol_concrete_anchor__mittensregressionprotocolprimaryobject a owl:NamedIndividual ;
+    rdfs:label "Mittens regression protocol for the Granite adapter output" .
+silm:instances_papers_05_granite_substrate_sections_09_mittens_regression_protocol_concrete_anchor__clinicalcareplan77tartu a owl:NamedIndividual ;
+    rdfs:label "clinical care plan record 77 at Tartu clinic, receives universal-mediator from Mittens apex but not from GraniteRow — concrete proof of strict Hom-profile inclusion" .
+silm:instances_papers_05_granite_substrate_sections_09_mittens_regression_protocol_concrete_anchor__passonerecovery a owl:NamedIndividual ;
+    rdfs:label "P1 pass-one recovery — first regression pass asking T_full to recover the typed Mittens evidence leg from a held-out vet-record fragment" .
+silm:instances_papers_05_granite_substrate_sections_09_mittens_regression_protocol_concrete_anchor__passtwocontext a owl:NamedIndividual ;
+    rdfs:label "P2 pass-two context — second regression pass testing typed context preservation across Mittens neighbour records" .

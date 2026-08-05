@@ -1,0 +1,5 @@
+silm:instances_papers_18_presheaf_semantics_terms_presheaf a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.presheaf" .
+silm:instances_papers_18_presheaf_semantics_terms_presheaf silm:hasAntonym silm:instances_papers_18_presheaf_semantics_terms_copresheaf .
+silm:instances_papers_18_presheaf_semantics_terms_presheaf silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_presheaf .
+silm:instances_papers_18_presheaf_semantics_terms_presheaf silm:targetNode silm:instances_papers_18_presheaf_semantics_terms_copresheaf .

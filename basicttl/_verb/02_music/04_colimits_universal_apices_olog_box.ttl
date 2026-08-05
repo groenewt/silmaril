@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_09_joy_of_cats_anchor_for_pages_sections_04_colimits_universal_apices_olog_box__musicolog04colimitsuniversalabox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog04ColimitsUniversalABox" .

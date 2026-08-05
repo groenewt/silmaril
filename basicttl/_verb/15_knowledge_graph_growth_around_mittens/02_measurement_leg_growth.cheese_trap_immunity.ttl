@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_03_sections_02_cheese_trap_immunity__trap_latest_value_is_the_quality a owl:NamedIndividual ;
+    rdfs:label "latest_value_is_the_quality" .

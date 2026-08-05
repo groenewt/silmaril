@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_05_glue_as_kleisli_arrow_decomposition_step_3__step_joc_§11_3_universal_property_of_the_colimit a owl:NamedIndividual ;
+    rdfs:label "Joy of Cats section 11.3 says: for every compatible cocone (C, (mu_j)), there is a unique mediating arrow u: Mittens -> C. This universal property is what makes the glue step produce the colimit rather than just any cocone apex. If you assembled all ten legs into something other than the true colimit, the mediating arrow u would not exist uniquely." .

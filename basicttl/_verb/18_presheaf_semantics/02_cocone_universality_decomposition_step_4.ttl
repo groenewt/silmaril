@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_cocone_universality_decomposition_step_4__step_mittens_vet_record_presheaf a owl:NamedIndividual ;
+    rdfs:label "the Mittens vet-record concrete instantiation of the Universal Property of the Mittens Cocone claim" .

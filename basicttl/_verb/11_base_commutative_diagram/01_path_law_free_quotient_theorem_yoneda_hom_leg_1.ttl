@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_01_core_theorems_sections_01_path_law_free_quotient_theorem_yoneda_hom_leg_1_domesticcatrefinementlega a owl:NamedIndividual ;
+    rdfs:label "S01PathLawFreeQuotientTheoremYonedaHomLeg1" .

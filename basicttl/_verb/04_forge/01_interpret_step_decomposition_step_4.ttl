@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_decomposition_step_4__step_forge_morphism_for_01_interpret_step a owl:NamedIndividual ;
+    rdfs:label "The vet record is interpreted to produce Spec_MittensBodyMass: a specification requiring a typed body-mass measurement node with value in kg, a cited vet-record source, and a date field." .

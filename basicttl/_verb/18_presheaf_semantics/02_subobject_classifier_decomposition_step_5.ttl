@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_subobject_classifier_decomposition_step_5__step_y_embedding a owl:NamedIndividual ;
+    rdfs:label "the Yoneda-traversal reading verifying that the The Subobject Classifier in the Presheaf Topos claim holds at every representable" .

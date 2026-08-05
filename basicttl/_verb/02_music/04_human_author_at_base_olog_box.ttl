@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_03_authorship_context_sections_04_human_author_at_base_olog_box__musicolog04humanauthoratbasebox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog04HumanAuthorAtBaseBox" .

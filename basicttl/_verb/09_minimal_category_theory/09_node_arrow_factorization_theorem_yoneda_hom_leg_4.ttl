@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_09_node_arrow_factorization_theorem_yoneda_hom_leg_4_identifier_leg a owl:NamedIndividual ;
+    rdfs:label "S09NodeArrowFactorizationTheoremYonedaHomLeg4" .

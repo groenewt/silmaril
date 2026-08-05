@@ -1,0 +1,3 @@
+silm:instances_papers_18_presheaf_semantics_03_apex_uniqueness_concrete_anchor_2_P_visit_1_#mittensvetrecordpresheafanchornode2 a owl:NamedIndividual ;
+    rdfs:label "P1803_apex_uniquenessConcreteAnchor2AddlPaperKind" .
+silm:instances_papers_18_presheaf_semantics_03_apex_uniqueness_concrete_anchor_2_P_visit_1_#mittensvetrecordpresheafanchornode2 silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.18_presheaf_semantics" .

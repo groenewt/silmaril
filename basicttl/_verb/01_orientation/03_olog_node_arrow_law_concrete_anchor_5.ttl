@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_03_olog_node_arrow_law_concrete_anchor_5 a owl:NamedIndividual ;
+    rdfs:label "03OlogNodeArrowLawConcreteAnchor5" .

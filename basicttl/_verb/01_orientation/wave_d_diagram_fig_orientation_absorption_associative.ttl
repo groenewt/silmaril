@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_absorption_associative__diagram_fig_orientation_absorption_associative a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-absorption-associative" .

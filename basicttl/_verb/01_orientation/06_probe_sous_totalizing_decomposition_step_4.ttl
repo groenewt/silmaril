@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_06_probe_sous_totalizing_decomposition_step_4__step_homvetrecord77__mittens_=_about;_homphotorecord2023__mittens a owl:NamedIndividual ;
+    rdfs:label "A sous observer reads Hom(VetRecord77, Mittens): one arrow, \"about\". It reports this. Then it reads Hom(PhotoRecord2023, Mittens): empty set. Sous reports: missing arrow. Sous does not create a photo-record arrow. The cheese-igniter clause: an intellect that fills its own gaps claims totalizing mastery." .

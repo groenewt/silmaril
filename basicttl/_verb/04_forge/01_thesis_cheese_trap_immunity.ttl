@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_01_thesis_cheese_trap_immunity__trap_forge_thesis=tooling_layer a owl:NamedIndividual ;
+    rdfs:label "forge_thesis=tooling_layer" .

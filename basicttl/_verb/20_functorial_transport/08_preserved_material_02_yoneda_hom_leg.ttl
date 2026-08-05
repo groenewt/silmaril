@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_08_preserved_material_02_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "ObjectAssignment_0" .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_08_preserved_material_02_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "ArrowAssignment_1" .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_08_preserved_material_02_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "IdentityPreservation_2" .

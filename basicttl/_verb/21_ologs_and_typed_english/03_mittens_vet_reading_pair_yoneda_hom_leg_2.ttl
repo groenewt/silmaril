@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_03_mittens_vet_reading_pair_yoneda_hom_leg_2_vet_reading_b a owl:NamedIndividual ;
+    rdfs:label "MittensVetReadingPairYonedaHomLeg2" .

@@ -1,0 +1,24 @@
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_fcolim_d_mittens a owl:NamedIndividual ;
+    rdfs:label "the storage image of the Mittens colimit apex — what you would get if you tried to store the entire governed Mittens individual as a single chunk" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_neq_not_equal a owl:NamedIndividual ;
+    rdfs:label "materializing the colimit is NOT the same as taking the colimit of the materialized legs" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_left_adjoint___colimit_preservation a owl:NamedIndividual ;
+    rdfs:label "a functor preserves colimits only if it has a right adjoint (is a left adjoint); F into M_Granite is not left adjoint to the inclusion" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_three_materialized_legs_+_their_storage_aggregate a owl:NamedIndividual ;
+    rdfs:label "the three Icechunk chunk manifests for the vet-record leg, the body-mass quality leg, and the microchip-ID evidence leg, plus their combined manifest aggregate" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_colim_d_mittens_in_g_granite_setminus_m_granite a owl:NamedIndividual ;
+    rdfs:label "the Mittens colimit apex is in the full Granite category but NOT in the storage subcategory" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_granite_is_substrate__not_apex a owl:NamedIndividual ;
+    rdfs:label "Granite stores the typed legs; the colimit lives in the encyclopedia olog above the storage layer" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_g_granite_versus_m_granite a owl:NamedIndividual ;
+    rdfs:label "G_Granite is the full governed olog category (objects = encyclopedia entries with all typed legs); M_Granite is the storage subcategory (objects = chunk manifests and Icechunk rows)" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_inclusion_m_granite_hookrightarrow_g_granite a owl:NamedIndividual ;
+    rdfs:label "the storage subcategory inclusion functor — typed faithful embedding of chunk manifests into the full Granite olog as a strict subcategory" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_colim_d_mittens_lies_outside_m_granite a owl:NamedIndividual ;
+    rdfs:label "the colimit of the source diagram D_Mittens is computed in the full category G_Granite where the cocone targets exist; the storage subcategory M_Granite is not closed under colimits over the typed source diagrams" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_concrete_substrate_vs_apex_separation_at_tartu_animal_clinic a owl:NamedIndividual ;
+    rdfs:label "the concrete geographic and material separation of the substrate (the Icechunk store on disk at the Tartu clinic) and the apex (the governed Mittens individual recorded in the encyclopedia entry on 2026-05-18)" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_hom___chunkmanifest_subsetneq_hom___mittens_in_g_granite a owl:NamedIndividual ;
+    rdfs:label "in the full Granite category G_Granite, the Hom-profile of any chunk manifest is strictly smaller than the Hom-profile of Mittens — by the Yoneda lemma, the chunk manifest cannot be the apex" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_04_colimit_above_granite_decomposition_step__step_graniteassubstratenotapex a owl:NamedIndividual ;
+    rdfs:label "Granite is the storage substrate beneath the governed olog; Mittens the colimit apex lives in the upper governed layer assembled by the colimit universal property from typed leg sources" .

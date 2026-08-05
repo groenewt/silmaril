@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_03_mittens_vet_reading_pair_decomposition_step_1__step_mittens a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the Worked Example: Two Vet Readings of Mittens claim" .

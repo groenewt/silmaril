@@ -1,0 +1,33 @@
+include make/morphism/codebase/volume/operation/file.mk
+include make/morphism/codebase/volume/operation/verification_source_body.mk
+include make/morphism/codebase/volume/operation/verification_symlink_escape.mk
+include make/morphism/codebase/volume/operation/source_observation.mk
+include make/morphism/codebase/volume/operation/artifact_hash.mk
+include make/morphism/codebase/volume/operation/table_constructors.mk
+include make/morphism/codebase/volume/operation/table_public_apis.mk
+include make/morphism/codebase/volume/operation/table_telephone_topology.mk
+
+.PHONY: morphism-codebase-volume-base-total-applications
+morphism-codebase-volume-base-total-applications: \
+	morphism-codebase-volume-source-observation-path \
+	morphism-codebase-volume-source-observation-line \
+	morphism-codebase-volume-source-observation-symlink \
+	morphism-codebase-volume-inventory-source-files \
+	morphism-codebase-volume-source-observation-unreadable \
+	morphism-codebase-volume-source-observation-excluded \
+	morphism-codebase-volume-source-observation-name-segment-excluded \
+	morphism-codebase-volume-artifact-hash-line \
+	morphism-codebase-volume-artifact-hash-manifest \
+	morphism-codebase-volume-table-project-tasks \
+	morphism-codebase-volume-table-tests \
+	morphism-codebase-volume-table-make-targets \
+	morphism-codebase-volume-table-dependencies \
+	morphism-codebase-volume-table-documentation \
+	morphism-codebase-volume-table-mix-tasks \
+	morphism-codebase-volume-table-modules \
+	morphism-codebase-volume-table-scripts \
+	morphism-codebase-volume-table-native-tree \
+	morphism-codebase-volume-table-configuration \
+	morphism-codebase-volume-table-public-apis \
+	morphism-codebase-volume-table-provenance \
+	morphism-codebase-volume-table-telephone-topology

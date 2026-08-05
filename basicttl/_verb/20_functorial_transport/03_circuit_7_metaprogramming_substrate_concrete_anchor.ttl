@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_03_circuit_7_metaprogramming_substrate_concrete_anchor__clinicmetaprogrammingsubstrate a owl:NamedIndividual ;
+    rdfs:label "the typed data structure available to the clinic's rules, views, and automation" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_03_circuit_7_metaprogramming_substrate_concrete_anchor__clinicshaclshapes a owl:NamedIndividual ;
+    rdfs:label "the clinic's validation rules written against patient images" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_03_circuit_7_metaprogramming_substrate_concrete_anchor__clinicchartviews a owl:NamedIndividual ;
+    rdfs:label "the clinic's derived chart-display rules" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_03_circuit_7_metaprogramming_substrate_concrete_anchor__derivedanchor_03_cir_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

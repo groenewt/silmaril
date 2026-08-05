@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_23_summary_audit_residual_sections_03_residual_risks_open_questions_yoneda_hom_leg_3_classchaing a owl:NamedIndividual ;
+    rdfs:label "S03ResidualRisksOpenQuestionsYonedaHomLeg3" .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_3#bodymassvalue4_4kg a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.03.sections.02.concrete_anchor.3#bodymassvalue4_4kg" .
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_3#bodymassvalue4_4kg silm:hasLongDescription "The BodyMassValue4_4kg is the 4.4 kg reading from 2026-05-10. In the paper's apparatus it appears as the symbol 'Value_2', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_citation_localrebuttalround00witnesses2026 a owl:NamedIndividual ;
+    rdfs:label "P05CitationLocalRebuttalRound00Witnesses2026" .

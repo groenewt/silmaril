@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_08_kg_cross_reference_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 08_kg_cross_reference #2" .

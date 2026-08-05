@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_05_yoneda_for_typed_english_sections_03_profile_preservation_law_yoneda_hom_leg_2_fully_faithful_check a owl:NamedIndividual ;
+    rdfs:label "ProfilePreservationLawYonedaHomLeg2" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_source_diagram_decomposition_step_3__step_presheaf_semantics_source_diagram a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the The Mittens Source Diagram of Typed Vet-Record Legs claim, grounded in the cited literature" .

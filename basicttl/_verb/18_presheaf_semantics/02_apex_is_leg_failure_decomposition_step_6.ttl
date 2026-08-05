@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_apex_is_leg_failure_decomposition_step_6__step_cheese_trap__apex_equals_a_source_leg a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Cheese-Trap: Apex Equals a Source Leg on the Mittens presheaf is exactly the lawful construction it names" .

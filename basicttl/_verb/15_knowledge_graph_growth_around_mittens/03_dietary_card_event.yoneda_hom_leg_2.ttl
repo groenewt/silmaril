@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_03_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "DietaryCardStageStepYonedaHomLeg2" .

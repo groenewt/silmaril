@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_03_gossip_colimit_diagram_circuit_imprint_tensor__corner_4 a owl:NamedIndividual ;
+    rdfs:label "4" .

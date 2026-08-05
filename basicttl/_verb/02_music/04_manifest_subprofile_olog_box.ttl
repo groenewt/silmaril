@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_13_per_leg_yoneda_subprofiles_sections_04_manifest_subprofile_olog_box__musicolog04manifestsubprofilebox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog04ManifestSubprofileBox" .

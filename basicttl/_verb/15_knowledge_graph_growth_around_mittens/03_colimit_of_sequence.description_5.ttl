@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_03_concrete_anchor_5#mediatingarrow a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.03.concrete_anchor.5#mediatingarrow" .
+silm:instances_papers_15_chapters_01_sections_03_concrete_anchor_5#mediatingarrow silm:hasLongDescription "The MediatingArrow is the unique arrow from the colimit into Mittens given by universal property. In the paper's apparatus it appears as the symbol 'u', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

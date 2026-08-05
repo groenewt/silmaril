@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_functoriality_corner_decomposition_step_3__step_presheaf_semantics_functoriality_corner a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Functoriality Corner of the Leary Cube claim, grounded in the cited literature" .

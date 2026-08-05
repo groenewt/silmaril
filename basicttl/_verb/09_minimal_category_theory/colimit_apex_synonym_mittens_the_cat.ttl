@@ -1,0 +1,4 @@
+silm:instances_papers_09_minimal_category_theory_terms_colimit_apex a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.09_minimal_category_theory.terms.colimit_apex" .
+silm:instances_papers_09_minimal_category_theory_terms_colimit_apex silm:hasSynonym "Mittens-the-cat" .
+silm:instances_papers_09_minimal_category_theory_terms_colimit_apex silm:sourceNode silm:instances_papers_09_minimal_category_theory_terms_colimit_apex .

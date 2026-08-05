@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_03_sections_01_concrete_anchor_5#refinementarrow1 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.03.sections.01.concrete_anchor.5#refinementarrow1" .
+silm:instances_papers_15_chapters_03_sections_01_concrete_anchor_5#refinementarrow1 silm:hasLongDescription "The RefinementArrow1 is the monic inclusion Felis catus -> DomesticCat. In the paper's apparatus it appears as the symbol 'rho_1', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

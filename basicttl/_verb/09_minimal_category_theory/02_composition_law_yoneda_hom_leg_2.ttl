@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_02_identity_and_composition_sections_02_composition_law_yoneda_hom_leg_2_aboutness_leg a owl:NamedIndividual ;
+    rdfs:label "S02CompositionLawYonedaHomLeg2" .

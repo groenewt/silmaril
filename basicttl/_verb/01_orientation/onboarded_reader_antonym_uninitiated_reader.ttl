@@ -1,0 +1,5 @@
+silm:instances_papers_01_orientation_terms_onboarded_reader a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.01_orientation.terms.onboarded_reader" .
+silm:instances_papers_01_orientation_terms_onboarded_reader silm:hasAntonym silm:instances_papers_01_orientation_terms_uninitiated_reader .
+silm:instances_papers_01_orientation_terms_onboarded_reader silm:sourceNode silm:instances_papers_01_orientation_terms_onboarded_reader .
+silm:instances_papers_01_orientation_terms_onboarded_reader silm:targetNode silm:instances_papers_01_orientation_terms_uninitiated_reader .

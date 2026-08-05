@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_concrete_anchor__clinicpatient a owl:NamedIndividual ;
+    rdfs:label "the clinic's slot for any animal it opens a chart for; not Mittens by household-name" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_concrete_anchor__clinicalbodymassquality a owl:NamedIndividual ;
+    rdfs:label "the clinic's standard body-mass quality, scaled in kilograms, used uniformly for every patient" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_concrete_anchor__patientchartid a owl:NamedIndividual ;
+    rdfs:label "the clinic's internal chart identifier (chart 4419 in the worked example)" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_concrete_anchor__clinicvetrecord a owl:NamedIndividual ;
+    rdfs:label "the clinic's electronic record (the patient's complete chart in the practice-management system)" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chc_no_quotient__diagram_fig_orientation_chc_no_quotient a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chC-no-quotient" .

@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_08_process_leg_concrete_anchor__sleepprocess_7h a owl:NamedIndividual ;
+    rdfs:label "SleepProcess_7h: the daily sleep process of Mittens, duration approximately 7 hours; observed and reported by the owner at the 2026 Tartu Animal Clinic exam; typed as BFO:0000015 (process); distinct from the individual Mittens" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_08_process_leg_concrete_anchor__processarrow_sleep a owl:NamedIndividual ;
+    rdfs:label "ProcessArrow_Sleep: the typed arrow SleepProcess_7h -> MittensColimitApex; distinct from all other legs" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_08_process_leg_concrete_anchor__ownerreport_tartu_2026 a owl:NamedIndividual ;
+    rdfs:label "OwnerReport_Tartu_2026: the 2026-05-18 owner interview at Tartu Animal Clinic reporting Mittens' sleep behavior; the source provenance for SleepProcess_7h; a verbal report, not a measurement event" .

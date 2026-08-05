@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_2#growthsteparrow a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.02.concrete_anchor.2#growthsteparrow" .
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_2#growthsteparrow silm:hasLongDescription "The GrowthStepArrow is a single growth-step arrow; the free-extension functor F paired with the path-law set L. In the paper's apparatus it appears as the symbol '(F,L)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_01_answerability_profile_sections_04_answerability_audit_decomposition_step_3__step_ap a owl:NamedIndividual ;
+    rdfs:label "reading position 3: the base topic licensing this step is Yoneda representability of a question by its answerability profile" .

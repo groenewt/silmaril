@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_02_identity_and_composition_sections_02_composition_law_decomposition_step_3__step_joc_3p1 a owl:NamedIndividual ;
+    rdfs:label "cite the base topic" .

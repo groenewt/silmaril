@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_decomposition_step__step_f^* a owl:NamedIndividual ;
+    rdfs:label "the pullback (inverse-image) functor of TransportF" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_decomposition_step__step_f^*qx_=_qfx a owl:NamedIndividual ;
+    rdfs:label "apply the target presheaf Q at the F-image of the household-side object X" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_decomposition_step__step_f^* a owl:NamedIndividual ;
+    rdfs:label "inverse-image functor on presheaves. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_decomposition_step__step_clinic_shacl_pulled_back a owl:NamedIndividual ;
+    rdfs:label "a clinic constraint becomes a household-side admissibility check" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_decomposition_step__step_f^*_on_yoneda_profiles a owl:NamedIndividual ;
+    rdfs:label "pullback sends a clinic Yoneda profile to a household Yoneda profile of checks" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_decomposition_step__step_f^* a owl:NamedIndividual ;
+    rdfs:label "pullback is constraint flow: clinic rules become household-side checks" .

@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_decomposition_step__step_pipeline=validate∘specialize∘manifesttrain∘chunkhash∘extract a owl:NamedIndividual ;
+    rdfs:label "the primary symbol in PipelineFactorization: composition_in_category as a typed morphism in G_Granite" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_decomposition_step__step_typed_composition_circ a owl:NamedIndividual ;
+    rdfs:label "composing typed arrows in G_Granite, preserving source-body provenance across steps" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_decomposition_step__step_composition_in_category a owl:NamedIndividual ;
+    rdfs:label "the category-theoretic base topic grounding this section" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_decomposition_step__step_mittens_at_tartu_vet_clinic_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "the concrete Mittens individual whose vet record provides the evidence leg in the training pipeline" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_decomposition_step__step_hom__mittens_neq_hom__graniterow a owl:NamedIndividual ;
+    rdfs:label "Hom-profile of Mittens and of the storage row differ — so the objects differ" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_01_pipeline_as_factorization_decomposition_step__step_pipelinefactorization_preserves_typed_leg_separation a owl:NamedIndividual ;
+    rdfs:label "PipelineFactorization establishes that composition_in_category preserves typed leg identity without collapsing storage rows into the governed apex" .

@@ -1,0 +1,4 @@
+silm:instances_papers_07_the_canonical_question_terms_object a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.07_the_canonical_question.terms.object" .
+silm:instances_papers_07_the_canonical_question_terms_object silm:hasSynonym "node" .
+silm:instances_papers_07_the_canonical_question_terms_object silm:sourceNode silm:instances_papers_07_the_canonical_question_terms_object .

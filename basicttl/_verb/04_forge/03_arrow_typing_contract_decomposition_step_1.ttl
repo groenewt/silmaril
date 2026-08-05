@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_03_arrow_typing_contract_decomposition_step_1__step_forge_morphism_for_03_arrow_typing_contract a owl:NamedIndividual ;
+    rdfs:label "α is a proposed arrow. σ(α) is the verb-phrase sentence that makes 'Every [domain-node] [verb-phrase] some [codomain-node]' true. ProposedArrow is the pre-gate arrow. TypedOlogArrow is the post-gate typed morphism in F_04." .

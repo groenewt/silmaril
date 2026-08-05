@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_01_identity_preservation_law_olog_box__identitypreservationlaw a owl:NamedIndividual ;
+    rdfs:label "IdentityPreservationLaw" .

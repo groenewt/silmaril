@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_03_decomposition_step_1__step_colim_n_d_mittens^n a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T1-G3 (Long-run colimit existence and universality)" .

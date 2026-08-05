@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_06_bind_law_alternates_olog_box__bindlaw_kleislicomposition a owl:NamedIndividual ;
+    rdfs:label "BindLaw_KleisliComposition" .

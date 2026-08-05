@@ -1,0 +1,6 @@
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic, annual vet exam 2026-05-18" .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_concrete_anchor__mittensantihallucinationsymbol a owl:NamedIndividual ;
+    rdfs:label "Anti-hallucination test: query 'What is Mittens taxonomy?' must return 'Felis catus / TSN 183798 as the taxonomy source leg, a refinement of DomesticCat classification, not replacing the governed Mittens individual'. Failing output: 'Mittens is catus, TSN 183798.' — taxonomy-identity collapse." .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload, sha256:7f4a...bf2c, evidence leg, 2026-05-18" .

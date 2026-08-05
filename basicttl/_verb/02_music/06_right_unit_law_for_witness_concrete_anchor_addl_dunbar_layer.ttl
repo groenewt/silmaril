@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_06_right_unit_law_for_witness_concrete_anchor#sourceterm a owl:NamedIndividual ;
+    rdfs:label "06RightunitlawforwitnessConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_06_right_unit_law_for_witness_concrete_anchor#sourceterm silm:hasAdditionalAttribute "dunbar_layer:0" .

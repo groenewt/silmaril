@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_05_vjepa_temporal_extension_sections_01_spatiotemporal_patch_category_olog_box__01spatiotemporalpatchcategory a owl:NamedIndividual ;
+    rdfs:label "01SpatiotemporalPatchCategory" .

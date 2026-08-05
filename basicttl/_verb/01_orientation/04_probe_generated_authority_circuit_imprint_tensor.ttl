@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_04_probe_generated_authority_circuit_imprint_tensor__corner_4 a owl:NamedIndividual ;
+    rdfs:label "4" .

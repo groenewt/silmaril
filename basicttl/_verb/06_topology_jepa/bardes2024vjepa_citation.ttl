@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_citation_bardes2024vjepa a owl:NamedIndividual ;
+    rdfs:label "P06CitationBardes2024vjepa" .

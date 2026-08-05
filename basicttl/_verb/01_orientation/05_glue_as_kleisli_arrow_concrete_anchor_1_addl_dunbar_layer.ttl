@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_05_glue_as_kleisli_arrow_concrete_anchor_1#typedleg_record a owl:NamedIndividual ;
+    rdfs:label "GlueKleisliAnchorTypedLegRecordAddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_05_glue_as_kleisli_arrow_concrete_anchor_1#typedleg_record silm:hasAdditionalAttribute "dunbar_layer:0" .

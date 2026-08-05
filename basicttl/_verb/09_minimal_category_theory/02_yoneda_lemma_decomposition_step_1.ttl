@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_05_yoneda_lemma_and_representables_sections_02_yoneda_lemma_decomposition_step_1__step_object a owl:NamedIndividual ;
+    rdfs:label "name the symbol" .

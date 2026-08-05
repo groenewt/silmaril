@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_decomposition_step__step_kgvet a owl:NamedIndividual ;
+    rdfs:label "the clinic-side knowledge-graph category" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_decomposition_step__step_g_o_f_in_kgvet a owl:NamedIndividual ;
+    rdfs:label "first do the clinic arrow f, then do the clinic arrow g" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_decomposition_step__step_hom_kgvetp_q a owl:NamedIndividual ;
+    rdfs:label "the clinic-typed arrows from clinic node P to clinic node Q" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_decomposition_step__step_clinicpatient a owl:NamedIndividual ;
+    rdfs:label "the patient-slot is independent of any one household cat" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_decomposition_step__step_yclinicpatient_=_hom_kgvet___clinicpatient a owl:NamedIndividual ;
+    rdfs:label "the patient-slot is identifiable by its clinic-side incoming arrow profile" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_02_vetclinic_kg_as_target_category_decomposition_step__step_kgvet a owl:NamedIndividual ;
+    rdfs:label "the clinic KG is a category before any transport; it is not a sink" .

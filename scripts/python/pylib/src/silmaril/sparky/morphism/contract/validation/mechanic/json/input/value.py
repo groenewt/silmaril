@@ -1,0 +1,12 @@
+from config.constants.morphism.contract.validation.mechanic.json.input.lineage.identity.value import VALUE as LINEAGE_IDENTITY
+from config.constants.morphism.contract.validation.mechanic.json.input.schema.identity.value import VALUE as SCHEMA_IDENTITY
+from config.constants.morphism.contract.validation.mechanic.json.input.state.identity.value import VALUE as STATE_IDENTITY
+from config.gate.external.python.stdlib.dataclasses.library import DEPENDENCY as DATACLASSES
+from config.gate.external.project.sparky.substrate.byte.vector.library import DEPENDENCY as ByteVector
+
+@DATACLASSES.dataclass(frozen=True, slots=True)
+class Value:
+    value: ByteVector
+    schema_identity = SCHEMA_IDENTITY
+    lineage_identity = LINEAGE_IDENTITY
+    state_identity = STATE_IDENTITY

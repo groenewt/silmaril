@@ -1,0 +1,4 @@
+silm:instances_papers_11_base_commutative_diagram_terms_rosetta_stone a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.11_base_commutative_diagram.terms.rosetta_stone" .
+silm:instances_papers_11_base_commutative_diagram_terms_rosetta_stone silm:hasSynonym "cross-domain translation table" .
+silm:instances_papers_11_base_commutative_diagram_terms_rosetta_stone silm:sourceNode silm:instances_papers_11_base_commutative_diagram_terms_rosetta_stone .

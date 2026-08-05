@@ -1,0 +1,5 @@
+silm:instances_papers_04_forge_terms_domain a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.domain" .
+silm:instances_papers_04_forge_terms_domain silm:hasAntonym silm:instances_papers_04_forge_terms_codomain .
+silm:instances_papers_04_forge_terms_domain silm:sourceNode silm:instances_papers_04_forge_terms_domain .
+silm:instances_papers_04_forge_terms_domain silm:targetNode silm:instances_papers_04_forge_terms_codomain .

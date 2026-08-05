@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_05_value_leg_concrete_anchor__value_3450 a owl:NamedIndividual ;
+    rdfs:label "Value_3450: the pure numeric quantity 3450; an attribute of WeightMeas_3450g; dimensionless without Unit_grams; the specific body-mass reading from the 2026-05-18 Tartu Animal Clinic weighing of Mittens" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_05_value_leg_concrete_anchor__valuearrow_3450 a owl:NamedIndividual ;
+    rdfs:label "ValueArrow_3450: the composed arrow Value_3450 -> WeightMeas_3450g -> MittensColimitApex; the value leg routes through the measurement event rather than directly to the apex" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_05_value_leg_concrete_anchor__realnumbertype a owl:NamedIndividual ;
+    rdfs:label "RealNumberType: the real-number object in the local category; Value_3450 is typed by this object; the typing arrow records that 3450 is a dimensionless real quantity" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_03_arrow_typing_contract_decomposition_step_5__step_forge_morphism_for_03_arrow_typing_contract a owl:NamedIndividual ;
+    rdfs:label "Each arrow family contributes to the Yoneda profile of the apex. The observe family populates Hom(Mittens, -) (outgoing: what Mittens can emit). The cite and interpret families populate Hom(-, Mittens) (incoming). The forbids family constrains both sides by blocking illegal approach paths." .

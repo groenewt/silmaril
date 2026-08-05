@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_cheese_trap_immunity__trap_shape_gate=schema_object a owl:NamedIndividual ;
+    rdfs:label "shape_gate=schema_object" .

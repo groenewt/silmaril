@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_1#headprobe44 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.04.sections.01.concrete_anchor.1#headprobe44" .
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_1#headprobe44 silm:hasLongDescription "The HeadProbe44 is the test object; a head-observation sub-schema concretely numbered 44. In the paper's apparatus it appears as the symbol 'X', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

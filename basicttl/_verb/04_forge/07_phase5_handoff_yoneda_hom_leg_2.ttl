@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_07_phase5_handoff_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 07_phase5_handoff #2" .

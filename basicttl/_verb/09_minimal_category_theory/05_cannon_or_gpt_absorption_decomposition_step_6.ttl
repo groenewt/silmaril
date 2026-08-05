@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_05_cannon_or_gpt_absorption_decomposition_step_6__step_minimal_grammar a owl:NamedIndividual ;
+    rdfs:label "recap one-liner" .

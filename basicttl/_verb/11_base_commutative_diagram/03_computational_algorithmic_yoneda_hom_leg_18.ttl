@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_10_alternatives_dual_computational_sections_03_computational_algorithmic_yoneda_hom_leg_18_hasaspectarrow a owl:NamedIndividual ;
+    rdfs:label "S03ComputationalAlgorithmicYonedaHomLeg18" .

@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_citation_w3crdf11concepts a owl:NamedIndividual ;
+    rdfs:label "P19CitationW3crdf11concepts" .

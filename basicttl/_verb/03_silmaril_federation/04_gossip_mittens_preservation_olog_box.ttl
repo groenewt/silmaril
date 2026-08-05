@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_06_crdt_gossip_convergence_sections_04_gossip_mittens_preservation_olog_box__gossippreservesmittens a owl:NamedIndividual ;
+    rdfs:label "GossipPreservesMittens" .

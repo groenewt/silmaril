@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_08_cross_paper_bridges_sections_02_bridge_to_11_base_commutative_diagram_concrete_anchor_1 a owl:NamedIndividual ;
+    rdfs:label "02BridgeTo11BaseCommutativeDiagramConcreteAnchor1" .

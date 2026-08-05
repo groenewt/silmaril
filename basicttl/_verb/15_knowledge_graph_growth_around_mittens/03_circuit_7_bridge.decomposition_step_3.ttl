@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_03_decomposition_step_3__step_base_topic_scope_axis_flip_individual_to_collective a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia base topic providing the formal apparatus" .

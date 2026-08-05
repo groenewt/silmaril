@@ -1,0 +1,2 @@
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_02_identity_and_composition_sections_01_identity_arrows_decomposition_step_4__step_mittens_4p2kg a owl:NamedIndividual ;
+    rdfs:label "anchor concretely" .

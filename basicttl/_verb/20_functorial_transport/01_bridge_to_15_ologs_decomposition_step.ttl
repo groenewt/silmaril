@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_decomposition_step__step_paper_15_olog_construction a owl:NamedIndividual ;
+    rdfs:label "the olog-growth process named in paper 15" .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_decomposition_step__step_compose__paper_15_produces__paper_20_transports a owl:NamedIndividual ;
+    rdfs:label "the bridge. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_decomposition_step__step_olog_as_category a owl:NamedIndividual ;
+    rdfs:label "ologs are categories. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_decomposition_step__step_mittens_olog a owl:NamedIndividual ;
+    rdfs:label "paper 15's worked olog. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_decomposition_step__step_yoneda_profile_preserved_by_the_bridge a owl:NamedIndividual ;
+    rdfs:label "paper 15 produces the profile; paper 20 transports it" .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_01_bridge_to_15_ologs_decomposition_step__step_bridge_to_paper_15 a owl:NamedIndividual ;
+    rdfs:label "paper 15 produces; paper 20 transports. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .

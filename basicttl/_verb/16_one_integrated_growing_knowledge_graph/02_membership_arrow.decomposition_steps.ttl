@@ -1,0 +1,12 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_member_of a owl:NamedIndividual ;
+    rdfs:label "the typed household-resident classification arrow" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_member_ofe___colim_d_e__>_colim_d_household a owl:NamedIndividual ;
+    rdfs:label "an upper-level arrow whose source is a per-entity sub-apex and whose target is the household sub-apex" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_joc_§10_sources_and_sinks a owl:NamedIndividual ;
+    rdfs:label "typed classification language" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_mittens_resident_at_77_maple_street__pumpkin_resident_at_77_ a owl:NamedIndividual ;
+    rdfs:label "two cats, one household, two distinct enrolment arrows" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_hom___colim_d_household_gains_typed_in_probes_from_each_resi a owl:NamedIndividual ;
+    rdfs:label "household residency typing inherits to the integrated apex via iota_Household" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_member_of a owl:NamedIndividual ;
+    rdfs:label "typed enrolment of residents and affiliates" .

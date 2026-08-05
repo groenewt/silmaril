@@ -1,0 +1,5 @@
+silm:instances_papers_01_orientation_terms_regression_pass a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.01_orientation.terms.regression_pass" .
+silm:instances_papers_01_orientation_terms_regression_pass silm:hasAntonym silm:instances_papers_01_orientation_terms_regression_fail .
+silm:instances_papers_01_orientation_terms_regression_pass silm:sourceNode silm:instances_papers_01_orientation_terms_regression_pass .
+silm:instances_papers_01_orientation_terms_regression_pass silm:targetNode silm:instances_papers_01_orientation_terms_regression_fail .

@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_05_cannon_or_gpt_absorption_concrete_anchor_5#mittensincomingyonedaprofile a owl:NamedIndividual ;
+    rdfs:label "05CannonOrGptAbsorptionConcreteAnchor5AddlCircuitCorner" .
+silm:instances_papers_01_orientation_chapters_flat_sections_05_cannon_or_gpt_absorption_concrete_anchor_5#mittensincomingyonedaprofile silm:hasAdditionalAttribute "circuit_corner:0" .

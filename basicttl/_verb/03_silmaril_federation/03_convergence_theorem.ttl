@@ -1,0 +1,3 @@
+silm:ReplicationConvergenceTheorem a owl:Class ;
+    rdfs:label "ReplicationConvergenceTheorem" ;
+    rdfs:comment "Theorem: replication convergence preserves the Mittens cocone. The GossipMerge operation (commutative, associative, idempotent) produces a converged state R_vee whose storage cocone leg lambda_storage is defined and equals the cocone leg of any individual replica." .

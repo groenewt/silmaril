@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor#schemaatlas a owl:NamedIndividual ;
+    rdfs:label "07Tier1PrimeextensionsConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor#schemaatlas silm:hasAdditionalAttribute "base_topic:graph engine" .

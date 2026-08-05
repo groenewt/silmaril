@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_02_cannon_absorption_gate_olog_box__cannonabsorptiongate a owl:NamedIndividual ;
+    rdfs:label "CannonAbsorptionGate" .

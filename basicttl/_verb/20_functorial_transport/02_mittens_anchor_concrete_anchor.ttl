@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_02_mittens_anchor_concrete_anchor__mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "the concrete household cat Mittens, treated as the colimit apex of the household-side diagram D_Mittens whose typed legs the transport functor F must preserve." .

@@ -1,0 +1,3 @@
+silm:instances_papers_07_the_canonical_question_chapters_02_typed_legs_of_the_question_sections_03_evidence_and_role_legs_yoneda_hom_leg_8 a owl:NamedIndividual ;
+    rdfs:label "P07TypedLegsOfTheQuestionEvidenceAndRoleLegsYonedaHomLeg8Example" .
+silm:instances_papers_07_the_canonical_question_chapters_02_typed_legs_of_the_question_sections_03_evidence_and_role_legs_yoneda_hom_leg_8 silm:hasExample "In 'P07TypedLegsOfTheQuestionEvidenceAndRoleLegsYonedaHomLeg8', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the SHACL VetRecord shape constraining VetRecord_77 well-formedness: a validation-shape arrow into D_Mittens admitting evidence only when shape-valid." .

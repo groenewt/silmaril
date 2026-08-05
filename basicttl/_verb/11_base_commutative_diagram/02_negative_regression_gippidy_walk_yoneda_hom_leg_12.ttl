@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_08_joc_and_regression_sections_02_negative_regression_gippidy_walk_yoneda_hom_leg_12_taxonomytauarrow a owl:NamedIndividual ;
+    rdfs:label "S02NegativeRegressionGippidyWalkYonedaHomLeg12" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_statement_olog_box__p18section01_statementologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section01_statementOlogBox" .

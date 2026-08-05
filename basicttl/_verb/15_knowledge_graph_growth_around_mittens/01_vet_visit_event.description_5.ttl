@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_5#bodymassquality77 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.02.sections.01.concrete_anchor.5#bodymassquality77" .
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_5#bodymassquality77 silm:hasLongDescription "The BodyMassQuality77 is the body-mass quality observed at the visit (4.3 kg). In the paper's apparatus it appears as the symbol 'BodyMassQuality77', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_02_concrete_anchor_5#rdftypearrow a owl:NamedIndividual ;
+    rdfs:label "MicrochipReadStageStepConcreteAnchor5AddlDunbarLayer" .
+silm:instances_papers_15_chapters_02_sections_02_concrete_anchor_5#rdftypearrow silm:hasAdditionalAttribute "dunbar_layer:0" .

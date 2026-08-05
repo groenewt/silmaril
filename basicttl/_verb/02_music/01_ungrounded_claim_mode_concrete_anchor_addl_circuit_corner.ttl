@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_01_ungrounded_claim_mode_concrete_anchor#claim a owl:NamedIndividual ;
+    rdfs:label "01UngroundedclaimmodeConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_02_music_sections_01_ungrounded_claim_mode_concrete_anchor#claim silm:hasAdditionalAttribute "circuit_corner:6" .

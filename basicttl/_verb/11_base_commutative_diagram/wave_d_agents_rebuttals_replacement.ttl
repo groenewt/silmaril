@@ -1,0 +1,6 @@
+silm:instances_papers_11_base_commutative_diagram_replacement_agents_rebuttals a owl:NamedIndividual ;
+    rdfs:label "AgentsRebuttalsReplacement" .
+silm:instances_papers_11_base_commutative_diagram_replacement_agents_rebuttals silm:sourceNode silm:_agents_rebuttals_ .
+silm:instances_papers_11_base_commutative_diagram_replacement_agents_rebuttals silm:targetNode silm:anchors_repo_rebuttal_dir .
+silm:instances_papers_11_base_commutative_diagram_replacement_agents_rebuttals a cceo:Classification .
+silm:instances_papers_11_base_commutative_diagram_replacement_agents_rebuttals silm:groundsIn cceo:Classification .

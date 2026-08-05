@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_03_manifest_verification_decomposition_step_5__step_forge_morphism_for_03_manifest_verification a owl:NamedIndividual ;
+    rdfs:label "The COMMUTES outcome is equivalent to the factorization square commuting: trace ∘ forge = match ∘ profile. This is the Yoneda-level equivalence between manifest verification and the factorization law." .

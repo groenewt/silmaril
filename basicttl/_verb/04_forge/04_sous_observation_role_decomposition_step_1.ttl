@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_04_sous_observation_role_decomposition_step_1__step_forge_morphism_for_04_sous_observation_role a owl:NamedIndividual ;
+    rdfs:label "Y^in_Mittens(X) = Hom(X, Mittens) is the incoming Yoneda profile functor. Y^out_Mittens(X) = Hom(Mittens, X) is the outgoing Yoneda profile functor. Together they are the sous position of Mittens in the Forge olog." .

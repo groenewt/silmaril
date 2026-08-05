@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_1#vetvisit77 a owl:NamedIndividual ;
+    rdfs:label "VetVisitStageStepConcreteAnchor1AddlCircuitCorner" .
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_1#vetvisit77 silm:hasAdditionalAttribute "circuit_corner:4" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_citation_spivakkent2012ologs a owl:NamedIndividual ;
+    rdfs:label "P02CitationSpivakkent2012ologs" .

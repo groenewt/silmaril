@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_24_rosetta_stone_cross_domain_sections_02_music_archivist_entry_point_olog_box__basecommutativediagram_musicarchivistentrypoint a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_MusicArchivistEntryPoint" .

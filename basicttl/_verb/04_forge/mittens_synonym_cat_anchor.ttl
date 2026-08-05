@@ -1,0 +1,4 @@
+silm:instances_papers_04_forge_terms_mittens a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.mittens" .
+silm:instances_papers_04_forge_terms_mittens silm:hasSynonym "cat anchor" .
+silm:instances_papers_04_forge_terms_mittens silm:sourceNode silm:instances_papers_04_forge_terms_mittens .

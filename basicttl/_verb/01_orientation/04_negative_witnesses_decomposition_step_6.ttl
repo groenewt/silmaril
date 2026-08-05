@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_04_negative_witnesses_decomposition_step_6__step_negativewitness_holds__load_bearing_olog_objects_preventing_ a owl:NamedIndividual ;
+    rdfs:label "Negative witnesses are load-bearing olog objects; they prevent silent regression by keeping the empty-hom-set claims visible in the witnesses ledger; removing a negative witness row would allow future agents to silently re-introduce the forbidden collapse." .

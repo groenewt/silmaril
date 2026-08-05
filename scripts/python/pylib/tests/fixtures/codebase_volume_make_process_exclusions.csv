@@ -1,0 +1,7 @@
+coordinate,make_owner,reason
+application/step,Make,Make owns the multi-arrow DAG and must not call a Python transition dispatcher
+cli/exit/status,Make,Make owns child exit routing without a Python wrapper
+cli/stderr/write,Make,child stderr is inherited and redirected directly by Make
+cli/stdin/read,Make,child stdin is redirected directly by Make
+cli/stdout/write,Make,child stdout is inherited and redirected directly by Make
+request/capture,Make,Make owns the initial request file or stdin redirection

@@ -1,0 +1,12 @@
+silm:instances_papers_00_whitepaper_sections_03_olog_node_arrow_law_decomposition_step__step_node_or_arrow_gate a owl:NamedIndividual ;
+    rdfs:label "The Node-or-Arrow gate is the admissibility test: every element in the local olog must be declared as either a node (typed object) or an arrow (typed morphism) before it can carry authority." .
+silm:instances_papers_00_whitepaper_sections_03_olog_node_arrow_law_decomposition_step__step_publish_=_render_circ_validate_circ_type_circ_ingest_factori a owl:NamedIndividual ;
+    rdfs:label "circ is categorical composition in order: ingest first, then type, then validate, then render. The composition is the publish operation. Changing the order or skipping a gate changes the morphism." .
+silm:instances_papers_00_whitepaper_sections_03_olog_node_arrow_law_decomposition_step__step_factorization_structure_joc_§15 a owl:NamedIndividual ;
+    rdfs:label "The factorization structure (JoC §15): a class of monomorphisms (source-truthful arrows) and a class of epimorphisms (surjective-type arrows) factor every morphism in a canonical way. The publish factorization is the categorical factorization for the olog's publish morphism." .
+silm:instances_papers_00_whitepaper_sections_03_olog_node_arrow_law_decomposition_step__step_forbidden_shortcut a owl:NamedIndividual ;
+    rdfs:label "The forbidden shortcut is TartuClinicIntakeForm -> VetCarePlanPDF_77 drawn as a direct dashed arrow, bypassing the ingest, type, validate, render gates." .
+silm:instances_papers_00_whitepaper_sections_03_olog_node_arrow_law_decomposition_step__step_yoneda_inheritance_of_gate_law a owl:NamedIndividual ;
+    rdfs:label "By Yoneda naturality, the four-gate publish law is inherited by every downstream encyclopedia paper: when paper 24 (SHACL validation) claims a validation receipt, it must produce a receipt that is the output of a type gate (not a raw intake form). The gate law transports via the spine inheritance arrow." .
+silm:instances_papers_00_whitepaper_sections_03_olog_node_arrow_law_decomposition_step__step_node_or_arrow_gate_recap a owl:NamedIndividual ;
+    rdfs:label "Every olog element is a node or an arrow; publish factors as render circ validate circ type circ ingest; the forbidden shortcut TartuClinicIntakeForm -> VetCarePlanPDF_77 is blocked unless it is the four-gate composite; downstream papers inherit the gate law via Yoneda naturality." .

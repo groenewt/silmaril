@@ -1,0 +1,3 @@
+silm:instances_papers_07_the_canonical_question_chapters_06_domain_entry_points_sections_02_music_entry_yoneda_hom_leg_5 a owl:NamedIndividual ;
+    rdfs:label "P07DomainEntryPointsMusicEntryYonedaHomLeg5Example" .
+silm:instances_papers_07_the_canonical_question_chapters_06_domain_entry_points_sections_02_music_entry_yoneda_hom_leg_5 silm:hasExample "In 'P07DomainEntryPointsMusicEntryYonedaHomLeg5', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, Patient is the role Mittens occupies in VetClinic_Osei: a role-assignment arrow into D_Mittens distinguishing the role from the cat." .

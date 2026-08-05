@@ -1,0 +1,4 @@
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_noun a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.21_ologs_and_typed_english.terms.typed_noun" .
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_noun silm:hasSynonym "olog node" .
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_noun silm:sourceNode silm:instances_papers_21_ologs_and_typed_english_terms_typed_noun .

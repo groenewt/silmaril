@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_09_bridges_gov_mereology_presheaf_sections_03_cross_paper_bridge_presheaf_yoneda_hom_leg_3_classchaing a owl:NamedIndividual ;
+    rdfs:label "S03CrossPaperBridgePresheafYonedaHomLeg3" .

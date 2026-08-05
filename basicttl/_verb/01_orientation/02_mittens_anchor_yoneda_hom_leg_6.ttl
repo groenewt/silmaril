@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_02_mittens_anchor_yoneda_hom_leg_6 a owl:NamedIndividual ;
+    rdfs:label "02MittensAnchorYonedaHomLeg6" .

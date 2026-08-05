@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_cheese_trap_immunity__trap_music_claim_admitted_without_surviving_node_or_arrow_gate a owl:NamedIndividual ;
+    rdfs:label "music_claim_admitted_without_surviving_node_or_arrow_gate" .

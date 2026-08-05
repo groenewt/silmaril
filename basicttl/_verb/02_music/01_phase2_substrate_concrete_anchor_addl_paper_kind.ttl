@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_01_phase2_substrate_concrete_anchor#inputfile a owl:NamedIndividual ;
+    rdfs:label "01Phase2SubstrateConcreteAnchorAddlPaperKind" .
+silm:instances_papers_02_music_sections_01_phase2_substrate_concrete_anchor#inputfile silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.02_music" .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_07_sections_01_decomposition_step_6__step_theorem_t7_g1 a owl:NamedIndividual ;
+    rdfs:label "Paper-19 stage-snapshot correspondence" .

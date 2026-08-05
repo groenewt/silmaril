@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_02_twelve_gaps_decomposition_step_6__step_path_02_twelve_gaps a owl:NamedIndividual ;
+    rdfs:label "the recap: why no shortcut bypasses the law of the 02_twelve_gaps claim" .

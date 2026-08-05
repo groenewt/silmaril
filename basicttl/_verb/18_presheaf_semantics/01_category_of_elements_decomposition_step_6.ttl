@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_category_of_elements_decomposition_step_6__step_the_category_of_elements_of_a_presheaf a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that The Category of Elements of a Presheaf on the Mittens presheaf is exactly the lawful construction it names" .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_2#stageonevetvisit a owl:NamedIndividual ;
+    rdfs:label "FullGrowthCoconeDiagramConcreteAnchor2AddlCircuitCorner" .
+silm:instances_papers_15_chapters_01_sections_04_concrete_anchor_2#stageonevetvisit silm:hasAdditionalAttribute "circuit_corner:5" .

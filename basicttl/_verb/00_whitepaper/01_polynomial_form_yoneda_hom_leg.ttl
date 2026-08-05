@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "sigma_evaluation_arrow" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "arity_map_arrow" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "sigma_applied_to_record" .

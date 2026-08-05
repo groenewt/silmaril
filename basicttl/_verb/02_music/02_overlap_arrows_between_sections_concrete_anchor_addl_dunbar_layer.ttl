@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_02_overlap_arrows_between_sections_concrete_anchor#section a owl:NamedIndividual ;
+    rdfs:label "02OverlaparrowsbetweensectionsConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_02_overlap_arrows_between_sections_concrete_anchor#section silm:hasAdditionalAttribute "dunbar_layer:0" .

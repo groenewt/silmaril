@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_03_master_dag_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 03_master_dag [LHL]" .

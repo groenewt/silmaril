@@ -1,0 +1,2 @@
+silm:instances_base_00b_source_node_cocone_register_chapters_02_per_leg_source_typing_deep_dive_sections_01_record_leg_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "01RecordLegYonedaHomLeg1" .

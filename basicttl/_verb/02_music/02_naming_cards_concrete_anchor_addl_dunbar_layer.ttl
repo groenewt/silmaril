@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_02_naming_cards_concrete_anchor#02namingcardscarda a owl:NamedIndividual ;
+    rdfs:label "02NamingcardsConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_02_naming_cards_concrete_anchor#02namingcardscarda silm:hasAdditionalAttribute "dunbar_layer:0" .

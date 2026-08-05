@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_acronym_fvrcp a owl:NamedIndividual ;
+    rdfs:label "Feline Viral Rhinotracheitis Calicivirus Panleukopenia vaccine" .
+silm:instances_papers_02_music_acronym_fvrcp silm:hasAbbreviation "FVRCP" .

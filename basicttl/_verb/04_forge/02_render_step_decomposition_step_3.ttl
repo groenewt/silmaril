@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_02_render_step_decomposition_step_3__step_forge_morphism_for_02_render_step a owl:NamedIndividual ;
+    rdfs:label "From Spivak and Kent 2012, every arrow in an olog is typed by its domain and codomain sentences. The template object inherits its typing from the spec it renders." .

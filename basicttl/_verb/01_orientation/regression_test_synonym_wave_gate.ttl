@@ -1,0 +1,4 @@
+silm:instances_papers_01_orientation_terms_regression_test a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.01_orientation.terms.regression_test" .
+silm:instances_papers_01_orientation_terms_regression_test silm:hasSynonym "wave gate" .
+silm:instances_papers_01_orientation_terms_regression_test silm:sourceNode silm:instances_papers_01_orientation_terms_regression_test .

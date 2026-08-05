@@ -1,0 +1,42 @@
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] [d," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[qualitynode]| BodyMassValue [r," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[terminalnode]| [d," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "'] [u," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| MusicPage \\& |[schemanode]| ManifestField [l," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "'] \\& \\& |[terminalnode]| TraceWitness [ul," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "] [dr,bend right=15," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "description]\\\\ D(domesticClass) [ur,bend left=10," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[schemanode]| $VetCarePlan77$ tikzcd% Universal property of the Mittens cocone: the type leg and domestic-class leg both factor through \\(\\) before reaching \\(VetCarePlan77\\) via the unique mediator \\(u\\). Any object that would replace \\(\\) must produce a second incompatible apex.fig:music-mittens-universal-property theorem[Mittens cocone uniqueness] thm:music-mittens-cocone-uniqueness Let the Music source diagram \\(D:J\\) have a compatible cocone with apex \\(\\). For any other compatible cocone target \\(VetCarePlan77\\) (a clinical summary that receives the same Mittens type and domestic-class observations along compatible arrows), there exists a unique mediating morphism \\[ u:77 \\] such that \\(toVetPlanj = uj\\) for all legs \\(j J\\). theorem proof Step 1 (legs). The type leg \\(type\\) and domestic-class leg \\(dc\\) are cocone maps from the source objects to \\(\\). Step 2 (compatibility). For \\(VetCarePlan77\\) to receive both observations, the arrows \\(toVetPlantype\\) and \\(toVetPlandc\\) must satisfy the compatibility condition on the governing arrow \\(subclassOf:domesticClass\\). Step 3 (base topic). The universal property of colimits licenses the unique mediator. Step 4 (anchor). The vet-care plan cannot be a second ``Mittens'' because the existing cocone already provides the unique path; any duplicate apex introduces an arrow that does not commute with \\(type\\). Step 5 (Yoneda). By Yoneda, any natural transformation \\((-,)(-,VetCarePlan77)\\) corresponds exactly to the unique \\(u\\). Step 6 (recap). \\(\\) is the initial compatible apex; the mediator \\(u\\) is unique. proof Diagram law (Figure~fig:music-mittens-universal-property): the two paths to \\(VetCarePlan77\\) commute through \\(\\), so the Music engine may not mint a second cat identity when the source legs already glue. [0.90]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[classnode]| TaxonomyWitness [r," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_10 a owl:NamedIndividual ;
+    rdfs:label "] \\& [r," .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_11 a owl:NamedIndividual ;
+    rdfs:label "type" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_12 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_12" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_13 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_13" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_14 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_14" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_15 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_15" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_16 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_16" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_17 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_17" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_18 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_18" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_19 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_19" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_20 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_20" .
+silm:instances_papers_02_music_sections_02_mittens_anchor_yoneda_hom_leg__leg_21 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_21" .

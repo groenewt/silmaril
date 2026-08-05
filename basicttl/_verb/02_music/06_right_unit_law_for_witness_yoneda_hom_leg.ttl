@@ -1,0 +1,6 @@
+silm:instances_papers_02_music_sections_06_right_unit_law_for_witness_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] [rd," .
+silm:instances_papers_02_music_sections_06_right_unit_law_for_witness_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "pure" .
+silm:instances_papers_02_music_sections_06_right_unit_law_for_witness_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_3" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_04_shared_diagram_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "04SharedDiagramConcreteAnchor2" .

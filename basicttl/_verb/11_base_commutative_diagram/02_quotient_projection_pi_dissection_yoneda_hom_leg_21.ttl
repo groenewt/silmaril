@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_05_relator_quotient_projection_sections_02_quotient_projection_pi_dissection_yoneda_hom_leg_21_coconelegevidence a owl:NamedIndividual ;
+    rdfs:label "S02QuotientProjectionPiDissectionYonedaHomLeg21" .

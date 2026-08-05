@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_03_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "Circuit7CorpusBridgeYonedaHomLeg1" .

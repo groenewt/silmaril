@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_citation_localgptyonedagovernedontologyv1002026 a owl:NamedIndividual ;
+    rdfs:label "P02CitationLocalGptYonedaGovernedOntologyV1002026" .

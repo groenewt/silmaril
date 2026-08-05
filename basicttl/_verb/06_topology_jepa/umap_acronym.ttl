@@ -1,0 +1,3 @@
+silm:instances_papers_06_topology_jepa_acronym_umap a owl:NamedIndividual ;
+    rdfs:label "Uniform Manifold Approximation and Projection" .
+silm:instances_papers_06_topology_jepa_acronym_umap silm:hasAbbreviation "UMAP" .

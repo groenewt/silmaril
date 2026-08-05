@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_07_backend_routing_observability_sections_01_routing_as_functor_decomposition_step_4__step_forge_morphism_for_01_routing_as_functor a owl:NamedIndividual ;
+    rdfs:label "Concrete Mittens-domain anchor for RoutingFunctor. — concrete forge-domain reading in section 'Routing as a Functor'." .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_cho_witness_chain_protocol__diagram_fig_orientation_cho_witness_chain_protocol a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chO-witness-chain-protocol" .

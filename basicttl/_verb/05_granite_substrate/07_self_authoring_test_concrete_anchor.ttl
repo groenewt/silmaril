@@ -1,0 +1,8 @@
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic annual vet exam 2026-05-18 — the concrete cat whose storage-identity distinction grounds all Granite specs" .
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload, sha256:7f4a...bf2c, evidence leg typed, back-pointer to src/papers/05_granite_substrate/sections/02_mittens_anchor.tex" .
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_concrete_anchor__selfauthoringtestprimaryobject a owl:NamedIndividual ;
+    rdfs:label "self-authoring test for the fused adapter on Mittens queries" .
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_concrete_anchor__clinicalcareplan77tartu a owl:NamedIndividual ;
+    rdfs:label "clinical care plan record 77 at Tartu clinic, receives universal-mediator from Mittens apex but not from GraniteRow — concrete proof of strict Hom-profile inclusion" .

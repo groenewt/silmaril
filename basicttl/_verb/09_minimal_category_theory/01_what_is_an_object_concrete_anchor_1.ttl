@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_01_what_is_an_object_concrete_anchor_1_DomesticCat a owl:NamedIndividual ;
+    rdfs:label "S01WhatIsAnObjectConcreteAnchor1" .

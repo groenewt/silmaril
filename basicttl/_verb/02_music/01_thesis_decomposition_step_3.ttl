@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_01_thesis_decomposition_step_3__step_music_olog_typed_node a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic licensing the 01_thesis law" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chg_em_factorization__diagram_fig_orientation_chg_em_factorization a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chG-em-factorization" .

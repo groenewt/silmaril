@@ -1,0 +1,4 @@
+silm:instances_papers_18_presheaf_semantics_terms_colimit a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.colimit" .
+silm:instances_papers_18_presheaf_semantics_terms_colimit silm:hasSynonym "universal cocone apex" .
+silm:instances_papers_18_presheaf_semantics_terms_colimit silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_colimit .

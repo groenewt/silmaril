@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_diagram_fig_mittens_integrated_taxonomy_source_leg__diagram_fig_mittens_integrated_taxonomy_source_leg a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-integrated-taxonomy-source-leg" .

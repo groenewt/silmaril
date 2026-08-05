@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_03_cheese_trap_immunity__trap_model_is_the_corpus a owl:NamedIndividual ;
+    rdfs:label "model_is_the_corpus" .

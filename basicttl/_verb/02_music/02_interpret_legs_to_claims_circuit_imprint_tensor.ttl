@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_04_project_position_discipline_sections_02_interpret_legs_to_claims_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

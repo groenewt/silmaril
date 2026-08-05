@@ -1,0 +1,1 @@
+VALUE = "manifest_artifacts"

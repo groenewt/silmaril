@@ -1,0 +1,6 @@
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_03_post_absorption_test_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic, annual vet exam 2026-05-18" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_03_post_absorption_test_concrete_anchor__postabsorptiontestsymbol a owl:NamedIndividual ;
+    rdfs:label "The post-absorption test on the Mittens shape surface S_Mittens: after absorbing any source text, the resulting adapter output on Mittens-related queries must still pass the typed-leg structure check — type leg preserved, taxonomy leg preserved, evidence leg preserved, quality (4.3 kg) preserved, process leg preserved, role leg preserved." .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_03_post_absorption_test_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload, sha256:7f4a...bf2c, evidence leg" .

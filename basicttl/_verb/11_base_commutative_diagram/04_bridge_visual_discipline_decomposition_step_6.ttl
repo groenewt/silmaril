@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_21_bridges_avogadro_disint_canonq_visual_sections_04_bridge_visual_discipline_decomposition_step_6__step_recap_04_bridge_visual_discipline a owl:NamedIndividual ;
+    rdfs:label "recap of the {sec} commuting law assembled across steps 1-5" .

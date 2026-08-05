@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "YonedaTraversalGrowthConcreteAnchor3" .

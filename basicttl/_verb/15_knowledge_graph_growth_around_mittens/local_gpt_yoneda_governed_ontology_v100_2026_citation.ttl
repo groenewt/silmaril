@@ -1,0 +1,2 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_citation_localgptyonedagovernedontologyv1002026 a owl:NamedIndividual ;
+    rdfs:label "P15CitationLocalGptYonedaGovernedOntologyV1002026" .

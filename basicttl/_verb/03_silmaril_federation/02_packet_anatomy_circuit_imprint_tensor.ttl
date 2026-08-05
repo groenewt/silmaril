@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_08_mittens_storage_packet_sections_02_packet_anatomy_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

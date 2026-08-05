@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_02_shacl_as_implementation_concrete_anchor_3#measurementleg a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 02_shacl_as_implementation" .
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_02_shacl_as_implementation_concrete_anchor_3#measurementleg silm:hasAdditionalAttribute "base_topic:render pipeline" .

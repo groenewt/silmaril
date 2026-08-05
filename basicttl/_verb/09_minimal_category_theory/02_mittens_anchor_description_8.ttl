@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_sections_02_mittens_anchor_concrete_anchor_8_MctApex#mctapex a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.09_minimal_category_theory.sections.02_mittens_anchor.concrete_anchor_8_MctApex#mctapex" .
+silm:instances_papers_09_minimal_category_theory_sections_02_mittens_anchor_concrete_anchor_8_MctApex#mctapex silm:hasLongDescription "The MctApex is the colimit apex colim D_Mittens, isomorphic to Mittens by the colimit anchor. In the paper's apparatus it appears as the symbol 'MctApex', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

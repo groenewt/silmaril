@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_03_circuit_7_metaprogramming_substrate_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "TransportedKGSubstrateIn" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_03_circuit_7_metaprogramming_substrate_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "MetaprogramsOut" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_03_circuit_7_metaprogramming_substrate_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "TransportObjectAssignment_2" .

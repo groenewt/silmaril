@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_03_cite_as_kleisli_arrow_concrete_anchor_2#witness_record a owl:NamedIndividual ;
+    rdfs:label "CiteKleisliAnchorWitnessRecordAddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_03_cite_as_kleisli_arrow_concrete_anchor_2#witness_record silm:hasAdditionalAttribute "dunbar_layer:0" .

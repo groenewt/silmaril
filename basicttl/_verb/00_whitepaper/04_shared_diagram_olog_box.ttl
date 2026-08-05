@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_olog_box__multiviewagreementcontract a owl:NamedIndividual ;
+    rdfs:label "MultiViewAgreementContract" .

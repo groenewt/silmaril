@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_03_olog_node_arrow_law_olog_box__olognodearrowlawbox a owl:NamedIndividual ;
+    rdfs:label "OlogNodeArrowLawBox" .

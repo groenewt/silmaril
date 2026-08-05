@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_04_install_and_observe_yoneda_hom_leg_5 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 04_install_and_observe #5" .

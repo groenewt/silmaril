@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_proof_decomposition_step_6__step_proof_of_the_yoneda_lemma a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Proof of the Yoneda Lemma on the Mittens presheaf is exactly the lawful construction it names" .

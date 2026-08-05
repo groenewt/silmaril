@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_06_closure_decomposition_step_3__step_yoneda_closure a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Yoneda Closure claim, grounded in the cited literature" .

@@ -1,0 +1,3 @@
+silm:instances_papers_07_the_canonical_question_chapters_01_answerability_profile_sections_02_profile_as_representable_yoneda_hom_leg_7 a owl:NamedIndividual ;
+    rdfs:label "P07AnswerabilityProfileProfileAsRepresentableYonedaHomLeg7Example" .
+silm:instances_papers_07_the_canonical_question_chapters_01_answerability_profile_sections_02_profile_as_representable_yoneda_hom_leg_7 silm:hasExample "In 'P07AnswerabilityProfileProfileAsRepresentableYonedaHomLeg7', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the Avro-serialized VetRecord blob in the granite-storage chunk-manifest: a storage-materialization arrow into D_Mittens for the evidence artifact." .

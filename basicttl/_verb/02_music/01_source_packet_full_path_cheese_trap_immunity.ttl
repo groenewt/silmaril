@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_10_worked_examples_music_sections_01_source_packet_full_path_cheese_trap_immunity__trap_music_engine_claim_admitted_without_typed_audible_signal_gate a owl:NamedIndividual ;
+    rdfs:label "music_engine_claim_admitted_without_typed_audible_signal_gate" .

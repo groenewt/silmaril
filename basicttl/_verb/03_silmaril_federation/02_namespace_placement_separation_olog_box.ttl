@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_02_factored_storage_topology_sections_02_namespace_placement_separation_olog_box__namespaceplacementseparation a owl:NamedIndividual ;
+    rdfs:label "NamespacePlacementSeparation" .

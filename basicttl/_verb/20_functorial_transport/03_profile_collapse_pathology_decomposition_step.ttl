@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_decomposition_step__step_a_1__a_2_distinct_in_household__equal_under_f a owl:NamedIndividual ;
+    rdfs:label "two distinct household arrows collapse to one clinic arrow" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_decomposition_step__step_fa_1_=_fa_2 a owl:NamedIndividual ;
+    rdfs:label "the transport's hom-set action loses the distinction" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_decomposition_step__step_non_faithful_f a owl:NamedIndividual ;
+    rdfs:label "the failure of the faithfulness condition" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_decomposition_step__step_collapsed_patient_visit a owl:NamedIndividual ;
+    rdfs:label "the clinic chart records one visit where the household had two interactions" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_decomposition_step__step_degraded_yoneda_profile_of_patient_image a owl:NamedIndividual ;
+    rdfs:label "the patient image's incoming profile has one arrow where the household had two" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_decomposition_step__step_profile_collapse a owl:NamedIndividual ;
+    rdfs:label "the identity-class failure under non-faithful transport" .

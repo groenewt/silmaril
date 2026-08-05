@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_citation_localcannoncheeselearyalpertwitness2026 a owl:NamedIndividual ;
+    rdfs:label "P07CitationLocalCannonCheeseLearyAlpertWitness2026" .

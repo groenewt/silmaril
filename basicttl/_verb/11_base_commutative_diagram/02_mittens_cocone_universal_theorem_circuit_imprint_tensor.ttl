@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_01_core_theorems_sections_02_mittens_cocone_universal_theorem_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_4#measurementdate2026_04_12 a owl:NamedIndividual ;
+    rdfs:label "MeasurementLegEpisodicConcreteAnchor4AddlDunbarLayer" .
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_4#measurementdate2026_04_12 silm:hasAdditionalAttribute "dunbar_layer:0" .

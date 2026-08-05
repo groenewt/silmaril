@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_diagram_tab_forge_mittens_materialization_index__diagram_tab_forge_mittens_materialization_index a owl:NamedIndividual ;
+    rdfs:label "tab:forge-mittens-materialization-index" .

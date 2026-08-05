@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_concrete_anchor__clinicmeasurementsummary a owl:NamedIndividual ;
+    rdfs:label "the import-script-introduced shortcut arrow on the clinic side" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_concrete_anchor__cliniccompositepathmittens a owl:NamedIndividual ;
+    rdfs:label "the categorically correct composite path patient -> body-mass -> chart 4419" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_03_non_functor_counterexample_concrete_anchor__clinicchart4419doubled a owl:NamedIndividual ;
+    rdfs:label "the pathological chart with both the summary and the composite as distinct primitive arrows" .

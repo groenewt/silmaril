@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_sections_02_mittens_anchor_concrete_anchor_6_FeliscatusTSN183798#felis_catus_tsn_183798 a owl:NamedIndividual ;
+    rdfs:label "S02MittensAnchorConcreteAnchor6AddlDunbarLayer" .
+silm:instances_papers_11_base_commutative_diagram_sections_02_mittens_anchor_concrete_anchor_6_FeliscatusTSN183798#felis_catus_tsn_183798 silm:hasAdditionalAttribute "dunbar_layer:0" .

@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_08_joc_and_regression_sections_01_joc_clause_by_clause_olog_box__basecommutativediagram_s01jocclausebyclause a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S01jocclausebyclause" .

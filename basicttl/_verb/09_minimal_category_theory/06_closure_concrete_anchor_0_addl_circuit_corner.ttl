@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_sections_06_closure_concrete_anchor_0_Mittens#mittens a owl:NamedIndividual ;
+    rdfs:label "S06ClosureConcreteAnchor0AddlCircuitCorner" .
+silm:instances_papers_09_minimal_category_theory_sections_06_closure_concrete_anchor_0_Mittens#mittens silm:hasAdditionalAttribute "circuit_corner:6" .

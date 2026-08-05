@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_circuit_imprint_tensor_c7__corner_7 a owl:NamedIndividual ;
+    rdfs:label "7" .

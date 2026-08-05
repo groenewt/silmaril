@@ -1,0 +1,3 @@
+silm: a owl:NamedIndividual ;
+    rdfs:label "AnchorAddlBaseTopic" .
+silm: silm:hasAdditionalAttribute "base_topic:crdt" .

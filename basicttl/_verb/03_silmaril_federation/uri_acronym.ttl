@@ -1,0 +1,3 @@
+silm:instances_papers_03_silmaril_federation_acronym_uri a owl:NamedIndividual ;
+    rdfs:label "Uniform Resource Identifier" .
+silm:instances_papers_03_silmaril_federation_acronym_uri silm:hasAbbreviation "URI" .

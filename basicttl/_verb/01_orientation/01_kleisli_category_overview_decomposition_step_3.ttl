@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_01_kleisli_category_overview_decomposition_step_3__step_joc_§20_1__kleisli_category_klt;_identity_is_eta;_compositio a owl:NamedIndividual ;
+    rdfs:label "Joy of Cats §20.1 defines the Kleisli category of a monad T: objects are the same as the base category; a Kleisli arrow from A to B is a morphism A -> T(B); the identity Kleisli arrow at A is eta_A; Kleisli composition is mu_C o T(g) o f." .

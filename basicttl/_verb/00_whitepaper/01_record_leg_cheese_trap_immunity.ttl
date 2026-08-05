@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_01_record_leg_cheese_trap_immunity__trap_record_about_individual_collapsed_to_individual_identity a owl:NamedIndividual ;
+    rdfs:label "record_about_individual_collapsed_to_individual_identity" .

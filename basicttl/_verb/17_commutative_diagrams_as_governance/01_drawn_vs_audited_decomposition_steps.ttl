@@ -1,0 +1,12 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_01_drawn_vs_audited_decomposition_step__step_g__circ_f__k__circ_h a owl:NamedIndividual ;
+    rdfs:label "the two composite arrows of the catalog-policy square" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_01_drawn_vs_audited_decomposition_step__step__circ a owl:NamedIndividual ;
+    rdfs:label "categorical composition: g circ f is first f then g" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_01_drawn_vs_audited_decomposition_step__step__hom__c_17_conceptcatalogupdate__conceptauthorizationreport a owl:NamedIndividual ;
+    rdfs:label "the hom-set of arrows from CatalogUpdate to AuthorizationReport in C_17 is a set in Set" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_01_drawn_vs_audited_decomposition_step__step_vet_route_vs_constraint_engine_route a owl:NamedIndividual ;
+    rdfs:label "the two routes that the Mittens body-mass write may take to its auth-log line" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_01_drawn_vs_audited_decomposition_step__step_y_conceptauthorizationreport a owl:NamedIndividual ;
+    rdfs:label "the equality lifts to a component equality in the representable profile of AuthorizationReport, transported by Yoneda naturality" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_01_drawn_vs_audited_decomposition_step__step_thm_17_ch01_drawn_vs_audited a owl:NamedIndividual ;
+    rdfs:label "drawing arrows is cheap; auditing the path equation is what produces governance" .

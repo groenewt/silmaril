@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_02_dag_acyclicity_law_cheese_trap_immunity__trap_cycle=allowed_with_priority a owl:NamedIndividual ;
+    rdfs:label "cycle=allowed_with_priority" .

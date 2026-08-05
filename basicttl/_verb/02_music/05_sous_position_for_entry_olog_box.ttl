@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_07_yoneda_profile_of_the_entry_sections_05_sous_position_for_entry_olog_box__musicolog05souspositionforentbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog05SousPositionForEntBox" .

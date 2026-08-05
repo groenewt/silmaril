@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_04_shared_diagram_cheese_trap_immunity__trap_music_diagram_drawn_outside_shared_grammar_vocabulary a owl:NamedIndividual ;
+    rdfs:label "music_diagram_drawn_outside_shared_grammar_vocabulary" .

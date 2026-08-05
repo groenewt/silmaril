@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_02_dag_acyclicity_law_concrete_anchor_2#mittensforgemanifest a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 02_dag_acyclicity_law" .
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_02_dag_acyclicity_law_concrete_anchor_2#mittensforgemanifest silm:hasAdditionalAttribute "circuit_corner:6" .

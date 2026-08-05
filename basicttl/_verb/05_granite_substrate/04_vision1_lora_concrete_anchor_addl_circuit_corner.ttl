@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_concrete_anchor#mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "Vision1LoRAConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_concrete_anchor#mittensgovernedindividual silm:hasAdditionalAttribute "circuit_corner:3" .

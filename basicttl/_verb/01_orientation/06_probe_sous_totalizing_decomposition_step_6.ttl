@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_06_probe_sous_totalizing_decomposition_step_6__step_probe_r6_holds a owl:NamedIndividual ;
+    rdfs:label "Sous observes and reports; it does not act as narrator, authority, or gap-filler. The profile-reading law limits sous to reporting what the existing arrows say." .

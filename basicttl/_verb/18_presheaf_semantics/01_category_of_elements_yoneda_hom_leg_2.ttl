@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_category_of_elements_yoneda_hom_leg_2_P_r10 a owl:NamedIndividual ;
+    rdfs:label "P1801_category_of_elementsYonedaHomLeg2" .

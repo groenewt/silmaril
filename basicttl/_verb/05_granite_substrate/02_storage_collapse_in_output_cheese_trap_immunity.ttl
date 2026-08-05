@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_02_storage_collapse_in_output_cheese_trap_immunity__trap_02_storage_collapse_in_output_collapse__the_adapter_output_e a owl:NamedIndividual ;
+    rdfs:label "02_storage_collapse_in_output collapse: the adapter output exhibits the 02StorageCollapseInOutput failure by treating a partial storage view as the complete governed individual" .

@@ -1,0 +1,4 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_04_naturality_in_two_variables_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "a_naturality_square" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_04_naturality_in_two_variables_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "f_naturality_square" .

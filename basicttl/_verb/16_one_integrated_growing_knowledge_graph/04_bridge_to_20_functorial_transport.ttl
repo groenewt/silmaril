@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_olog_box__bridgeto20 a owl:NamedIndividual ;
+    rdfs:label "BridgeTo20" .

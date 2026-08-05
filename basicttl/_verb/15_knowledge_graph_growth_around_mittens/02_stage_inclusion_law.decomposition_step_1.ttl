@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_02_decomposition_step_1__step_growth_mittens a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T1-G2 (Growth steps compose as a free monoid)" .

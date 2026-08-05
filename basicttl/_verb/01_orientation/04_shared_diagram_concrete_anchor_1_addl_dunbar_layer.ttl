@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_04_shared_diagram_concrete_anchor_1#mittensapex a owl:NamedIndividual ;
+    rdfs:label "04SharedDiagramConcreteAnchor1AddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_flat_sections_04_shared_diagram_concrete_anchor_1#mittensapex silm:hasAdditionalAttribute "dunbar_layer:0" .

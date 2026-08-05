@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_01_decomposition_step_6__step_theorem_t2_g1 a owl:NamedIndividual ;
+    rdfs:label "Vet-visit stage step admits a structured batch" .

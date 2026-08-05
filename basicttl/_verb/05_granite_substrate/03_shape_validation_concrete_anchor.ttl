@@ -1,0 +1,8 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual — the domestic cat at the Tartu Animal Clinic whose annual vet exam on 2026-05-18 produced the evidence chunk c-0x7f4a" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "the specific Icechunk chunk c-0x7f4a storing the Tartu vet-record payload for Mittens, dated 2026-05-18, with hash sha256:7f4a...bf2c, typed as evidence leg" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_concrete_anchor__mittenssourcediagram a owl:NamedIndividual ;
+    rdfs:label "the source diagram D_Mittens: the functor from the index category of typed legs into G_Granite, whose colimit is the governed Mittens individual" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_concrete_anchor__storagelegarrowsigma a owl:NamedIndividual ;
+    rdfs:label "the storage/materialization leg arrow from the Icechunk chunk manifest to the Mittens apex in G_Granite — a one-way typed morphism, not an isomorphism" .

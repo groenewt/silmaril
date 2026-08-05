@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_03_olog_node_arrow_law_cheese_trap_immunity__trap_storage_identity_collapse_in_03_olog_node_arrow_law__granite a owl:NamedIndividual ;
+    rdfs:label "storage-identity collapse in 03_olog_node_arrow_law: GraniteRow_Mittens treated as if it has the same Hom-profile as the governed Mittens apex — i.e., the OlogNodeArrowLaw artifact is mistaken for the whole governed individual" .

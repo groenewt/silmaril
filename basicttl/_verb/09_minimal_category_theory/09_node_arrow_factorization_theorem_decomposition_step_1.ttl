@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_09_node_arrow_factorization_theorem_decomposition_step_1__step_object a owl:NamedIndividual ;
+    rdfs:label "name the symbol" .

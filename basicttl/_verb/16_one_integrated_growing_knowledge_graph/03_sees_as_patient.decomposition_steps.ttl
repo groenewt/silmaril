@@ -1,0 +1,12 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_sees_as_patient a owl:NamedIndividual ;
+    rdfs:label "the upper-level typed role arrow from the vet sub-apex to a cat sub-apex" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_sees_as_patient___vet77_apex__>_colim_d_cat a owl:NamedIndividual ;
+    rdfs:label "upper-level arrow with source = vet sub-apex and target = cat sub-apex" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_joc_§10_sources_and_sinks a owl:NamedIndividual ;
+    rdfs:label "typed role language" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_dr__patel__chart_77__mittens__pumpkin a owl:NamedIndividual ;
+    rdfs:label "one vet, two patients, two typed role arrows" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_hom___colim_d_cat_gains_a_typed_in_probe_from_vet77_apex a owl:NamedIndividual ;
+    rdfs:label "the cat sub-apex Hom-profile inherits the typed professional-relation from the vet sub-apex" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_sees_as_patient a owl:NamedIndividual ;
+    rdfs:label "typed clinician-to-patient role; preserves both vet and cat as distinct sub-apices" .

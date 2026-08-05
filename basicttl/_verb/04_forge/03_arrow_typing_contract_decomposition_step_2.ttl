@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_03_arrow_typing_contract_decomposition_step_2__step_forge_morphism_for_03_arrow_typing_contract a owl:NamedIndividual ;
+    rdfs:label "Composition: if α1 and α2 are typed, their composite must also carry a valid verb phrase. The composed verb is derivable from the two constituent sentences." .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_citation_oneil1996lsm a owl:NamedIndividual ;
+    rdfs:label "P04CitationOneil1996lsm" .

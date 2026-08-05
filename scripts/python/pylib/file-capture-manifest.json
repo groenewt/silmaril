@@ -1,0 +1,136 @@
+{
+  "identity": "urn:silmaril:staging:lambda-blotto:corpus-capture:v2",
+  "status": "staged-not-admitted",
+  "semantics": "Lambda Blotto is discrete Colonel Blotto. Delta is its operational semantics. File observe-run-seal transitions supply explicit evidence effects to that integrated model.",
+  "lambda_role": "Lambda denotes spectral coordinates together with lambda-calculus motion in the integrated discrete Colonel Blotto semantics.",
+  "active_graph_machine": "Sparky is the active approximately-20K-file greenfield stateless graph machine before Phoenix, not an inspiration corpus.",
+  "provenance_contract": "Every request carries source-root, root-key, mapping identity, revision reference, full map-to-target drilldown chain, source kind/family/identity, claim key, volume/chapter/appendix routing, an immutable tuple of exact corpus route occurrences, and evidence class. Each occurrence seals exact text, path, locus, revision, frame time, authority scope, resolution status, non-exclusivity, relation, classification, support boundary, target volume/chapter/subsection, semantic drill-down, diagram route, citation key, publication header/footer state, and readback artifact. Observed, Predicted, Counterfactual, and Admitted are non-interchangeable lineages.",
+  "corpus_routing_contract": {
+    "canonical_topology": "OUR ecosystem -> PHOENIX RUN [contains Molt D/R] -> Icarus -> Helios/GraphAtlas",
+    "mechanism": "Molt is the disintegration/reassimilation mechanism inside PHOENIX RUN.",
+    "icarus_role": "getting-to-the-sun vehicle, custom VS Code/Protege ecosystem integration, named reborn integration state, Daedalus implicated",
+    "helios_graphatlas_role": "mise-en-scene and accessible consolidated stage under construction",
+    "classification_law": "Observed source wording, semantic claim classification, and authority role remain separate receipt fields; a capture map can locate a claim but cannot be promoted to implementation authority.",
+    "computing_substrate_federation": "hardware_profile.html is one non-exclusive, time-scoped host frame inside an open-ended federation of CPU generations, ISAs, firmware, accelerators, compiler stacks, virtual machines and hypervisors, operating environments, networks, storage, and single-/multi-machine deployments.",
+    "discovery_gap_law": "Each user-required but not-yet-resolved computing family is a typed Admitted discovery obligation with its own receipt row; it is never silently omitted or presented as Observed implementation evidence.",
+    "publication_navigation_law": "Each routed occurrence has exactly one coordinate frame exposing volume, chapter, subsection, semantic drill-down, diagram caption/label route, citation key, occurrence-local source locus, header artifact, footer state, and serialized readback artifact. Citation closure requires bibliography resolution and rendered superscript numeric evidence; an unbound diagram or footer is an explicit GAP."
+  },
+  "python_namespace": "silmaril.sparky.lambda_blotto avoids reserved-keyword import syntax while preserving Lambda Blotto identity; the shared ByteVector is consumed through Telephone's project dependency gate.",
+  "root": "src",
+  "cpg_relative_root": "scripts/python/pylib",
+  "owned_source_roots": [
+    "config/constants/lambda_blotto",
+    "config/gate/external/python/lambda_blotto",
+    "silmaril/sparky/contract/file_capture_static",
+    "silmaril/sparky/lambda_blotto"
+  ],
+  "owned_source_files": [
+    "config/gate/external/python/stdlib/fcntl/status/flags/value.py",
+    "config/gate/external/python/stdlib/hashlib/sha256/value.py",
+    "config/gate/external/python/stdlib/os/close/value.py",
+    "config/gate/external/python/stdlib/os/fsencode/value.py",
+    "config/gate/external/python/stdlib/os/fstat/value.py",
+    "config/gate/external/python/stdlib/os/listdir/value.py",
+    "config/gate/external/python/stdlib/os/lseek/value.py",
+    "config/gate/external/python/stdlib/os/open/value.py",
+    "config/gate/external/python/stdlib/os/open/directory/flags/value.py",
+    "config/gate/external/python/stdlib/os/open/flags/value.py",
+    "config/gate/external/python/stdlib/os/path/join/value.py",
+    "config/gate/external/python/stdlib/os/read/value.py",
+    "config/gate/external/python/stdlib/os/stat/value.py",
+    "config/gate/external/python/stdlib/stat/classifiers/value.py"
+  ],
+  "operations": [
+    "entry/stat",
+    "open",
+    "pre/observe",
+    "read/one/chunk",
+    "accumulate",
+    "post/observe",
+    "close",
+    "stability/decide",
+    "revision/derive",
+    "receipt/seal",
+    "receipt/readback",
+    "progress/seal",
+    "scheduler/transition"
+  ],
+  "directory_operations": [
+    "directory/open",
+    "directory/pre/observe",
+    "name/observe/one",
+    "child/metadata/observe",
+    "child/classify",
+    "hidden/policy/decide",
+    "child/dispatch",
+    "child/accumulate",
+    "directory/post/observe",
+    "directory/close",
+    "frame/derive",
+    "revision/derive",
+    "receipt/seal",
+    "receipt/readback",
+    "frontier/file/transition",
+    "scheduler/transition"
+  ],
+  "states": [
+    "awaiting-entry",
+    "awaiting-open",
+    "awaiting-pre",
+    "awaiting-read",
+    "awaiting-accumulate",
+    "awaiting-post",
+    "awaiting-close",
+    "awaiting-failure-close",
+    "awaiting-stability",
+    "awaiting-revision",
+    "awaiting-seal",
+    "awaiting-readback",
+    "complete",
+    "failed"
+  ],
+  "directory_contract": {
+    "hidden_policy": "include-all explicitly includes dot-prefixed entries; exclude-hidden records but does not dispatch them",
+    "symlink_policy": "child metadata uses follow_symlinks=False and symlinks are recorded but never followed",
+    "bounds": "maximum entries, maximum depth, file chunk size, and file maximum bytes are explicit request values; an exceeded entry bound cannot yield a complete observed seal",
+    "freshness": "directory pre/post observations use fstat on the same opened descriptor occurrence and require metadata plus count stability",
+    "progress_receipt": "every scheduler transition seals scan identity, attempt, transition identity, from/to state, effect, and evidence class with SHA-256",
+    "composition": "regular-file frontier work advances the file capture scheduler by exactly one transition; child directory work preserves map drilldown and publication routing"
+  },
+  "exact_external_gates": [
+    "os.stat",
+    "os.fstat",
+    "os.open",
+    "os.read",
+    "os.close",
+    "os.lseek",
+    "os.listdir",
+    "fcntl.fcntl/F_GETFL",
+    "stat classifiers",
+    "hashlib.sha256"
+  ],
+  "proof_sources": {
+    "lambda_blotto_theory_sha256": "fd58e12e13062bc174bcd163bf94dbd27184e223f8eb69ca1cf348c58a9cdaf1",
+    "predecessor_capture_sha256": "c288f32d9605965ed5f9cf455d14c3dcb67fdb2404954b3b2fe08817c6e4d614"
+  },
+  "provisional_gaps": [
+    "typed opaque file-description linearity across independent host invocations is unproved",
+    "there is no admitted Python interpreter entrance",
+    "capture is whole-payload bounded, not a serializable streaming SHA-256 state machine",
+    "format evidence is explicit request evidence, not content sniffing",
+    "progress is a sealed receipt and emission plan; external wire emission is unbound",
+    "os.listdir materializes a whole fresh name vector before one ordinal projection",
+    "a serializable kernel-level directory snapshot token is unavailable; same-descriptor metadata and count checks are the admitted bounded substitute",
+    "frontier orchestration is external; this slice advances one file or directory state per invocation and has no module-global recursion cursor",
+    "Predicted and Counterfactual frames may be evaluated at a current boundary but cannot be sealed as Observed evidence",
+    "the computing-substrate federation is permanently open-ended; unresolved Intel/AMD generation, ISA, accelerator/compiler, firmware, VM/hypervisor, network/storage/OS, and deployment families remain typed discovery obligations rather than omissions"
+    ,"directory child lstat metadata is not yet rebound as an equality precondition when separately scheduled file frontier work re-admits the path; replacement is captured as a fresh occurrence rather than proved identical to the parent observation"
+  ],
+  "excluded": [
+    "symlink following",
+    "module-global attempt counters",
+    "clock or UUID freshness",
+    "direct cpg-highway writes",
+    "interpreter launcher"
+  ]
+}

@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_05_federation_olog_register_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

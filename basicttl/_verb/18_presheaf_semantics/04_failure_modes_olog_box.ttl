@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_failure_modes_olog_box__p18section04_failure_modesologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section04_failure_modesOlogBox" .

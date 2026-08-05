@@ -1,0 +1,3 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_concrete_anchor#mittensd a owl:NamedIndividual ;
+    rdfs:label "TheConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_concrete_anchor#mittensd silm:hasAdditionalAttribute "circuit_corner:0" .

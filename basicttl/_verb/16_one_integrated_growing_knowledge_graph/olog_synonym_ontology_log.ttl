@@ -1,0 +1,4 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_olog a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.olog" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_olog silm:hasSynonym "ontology log" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_olog silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_olog .

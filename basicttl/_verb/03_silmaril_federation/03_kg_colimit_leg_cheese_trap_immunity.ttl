@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_03_kg_colimit_leg_cheese_trap_immunity__trap_kg_colimit_result_confused_with_governed_individual a owl:NamedIndividual ;
+    rdfs:label "kg_colimit_result_confused_with_governed_individual" .

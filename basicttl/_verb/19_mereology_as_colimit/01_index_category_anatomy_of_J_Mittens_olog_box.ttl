@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_07_index_category_anatomy_sections_01_index_category_anatomy_of_J_Mittens_olog_box__indexcategoryanatomyofjmittens a owl:NamedIndividual ;
+    rdfs:label "IndexCategoryAnatomyOfJMittens" .

@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_concrete_anchor__transportmanifestsidecar a owl:NamedIndividual ;
+    rdfs:label "household-to-clinic.manifest.yaml with object assignment, arrow assignment, F1 and F2 witnesses, pullback constraints" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_concrete_anchor__f1witnessfield a owl:NamedIndividual ;
+    rdfs:label "the manifest field declaring identity-arrow correspondences" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_concrete_anchor__pullbackconstraintsfield a owl:NamedIndividual ;
+    rdfs:label "the manifest field declaring clinic constraints pulled back to household checks" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_concrete_anchor__derivedanchor_02_rev_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

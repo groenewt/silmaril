@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_02_enrichment_by_type_information_cheese_trap_immunity__trap_implicit_arrow_addition_without_olog_extension a owl:NamedIndividual ;
+    rdfs:label "implicit_arrow_addition_without_olog_extension" .

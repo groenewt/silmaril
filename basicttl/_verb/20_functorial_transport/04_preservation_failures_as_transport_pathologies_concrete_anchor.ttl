@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_concrete_anchor__syntheticselfloop a owl:NamedIndividual ;
+    rdfs:label "F1 pathology: the transport sends a household identity to a non-identity self-loop on the clinic side" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_concrete_anchor__lostidentity a owl:NamedIndividual ;
+    rdfs:label "F1 pathology: the transport simply drops the household identity arrow; the clinic patient image has no identity declared" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_04_preservation_failures_as_transport_pathologies_concrete_anchor__compositemismatch a owl:NamedIndividual ;
+    rdfs:label "F2 pathology: the transport sends the household composite to a clinic arrow not equal to the composite of the transports" .

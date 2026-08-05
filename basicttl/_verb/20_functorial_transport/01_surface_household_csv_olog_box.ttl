@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_olog_box__surfacehouseholdcsv a owl:NamedIndividual ;
+    rdfs:label "SurfaceHouseholdCsv" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 09_manifest_hom_profile #1" .

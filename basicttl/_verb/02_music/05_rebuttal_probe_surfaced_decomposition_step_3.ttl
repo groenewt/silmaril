@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_10_worked_examples_music_sections_05_rebuttal_probe_surfaced_decomposition_step_3__step_spivak_olog_definition a owl:NamedIndividual ;
+    rdfs:label "the olog typed-English definition Spivak & Kent 2012" .

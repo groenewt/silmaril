@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_07_yoneda_profile_of_the_entry_sections_02_outgoing_profile_of_entry_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

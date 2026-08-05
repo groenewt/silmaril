@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_05_yoneda_lemma_and_representables_sections_04_reality_tunneling_mechanism_decomposition_step_2__step_compose a owl:NamedIndividual ;
+    rdfs:label "name the operation" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chi_page_naturality__diagram_fig_orientation_chi_page_naturality a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chI-page-naturality" .

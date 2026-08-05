@@ -1,0 +1,6 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors__bridgeto15anchor a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors__bridgeto15crossarrow a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors__integrationmediator a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .

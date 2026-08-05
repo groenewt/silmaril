@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_03_cheese_face_and_siblings_sections_03_cheese_face_F11_extended_treatment_decomposition_step_1__step_d_mittens_11 a owl:NamedIndividual ;
+    rdfs:label "the page-11 Mittens source diagram" .

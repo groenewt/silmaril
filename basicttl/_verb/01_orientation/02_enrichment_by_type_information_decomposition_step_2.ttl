@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_02_enrichment_by_type_information_decomposition_step_2__step_sortso_01__witness__typedleg__apex__profile_____;_typed_arro a owl:NamedIndividual ;
+    rdfs:label "The orientation page olog O_01 has explicitly enumerated sorts (Witness, TypedLeg, Apex, Profile, DomesticCat, TaxRow, etc.) and typed arrows with declared domain and codomain. Each hom-set is a finite set of typed arrows; the set is determined by the olog definition." .

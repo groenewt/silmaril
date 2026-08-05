@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_kan_restriction_adjunction_decomposition_step_6__step_kan_extension_adjoint_to_restriction a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Kan Extension Adjoint to Restriction on the Mittens presheaf is exactly the lawful construction it names" .

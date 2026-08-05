@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_04_history_and_path_admission_sections_02_path_admission_predicate_unpacking_concrete_anchor_8_vetclassifies a owl:NamedIndividual ;
+    rdfs:label "S02PathAdmissionPredicateUnpackingConcreteAnchor8Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_04_history_and_path_admission_sections_02_path_admission_predicate_unpacking_concrete_anchor_8_vetclassifies silm:hasExample "In 'S02PathAdmissionPredicateUnpackingConcreteAnchor8', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the vet typed verb-arrow taking Mittens to Cat (classification leg c)." .

@@ -1,0 +1,14 @@
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic annual vet exam 2026-05-18 — the concrete cat whose storage-identity distinction grounds all Granite specs" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload, sha256:7f4a...bf2c, evidence leg typed, back-pointer to src/papers/05_granite_substrate/sections/02_mittens_anchor.tex" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_concrete_anchor__trainingsubstrateprimaryobject a owl:NamedIndividual ;
+    rdfs:label "Granite training substrate at Tartu Animal Clinic local Icechunk store on 2026-05-18 — concrete chunk c-0x7f4a recording the Mittens vet-record payload typed-leg for D_Mittens" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_concrete_anchor__clinicalcareplan77tartu a owl:NamedIndividual ;
+    rdfs:label "clinical care plan record 77 at Tartu clinic, receives universal-mediator from Mittens apex but not from GraniteRow — concrete proof of strict Hom-profile inclusion" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_concrete_anchor__entryboundaryencyclopedia a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia entry boundary B_enc as bookend object — the typed governance container that defines the entry-scoped sandbox in which Granite training records live" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_concrete_anchor__fullstabilizedmodel a owl:NamedIndividual ;
+    rdfs:label "the stabilized full model T_full at Tartu Animal Clinic local Icechunk-store snapshot 2026-05-18 — concrete absorbed-model checkpoint that must preserve Π(B_enc)" .
+silm:instances_papers_05_granite_substrate_sections_01_training_substrate_concrete_anchor__specializedloraadapter a owl:NamedIndividual ;
+    rdfs:label "specialized LoRA adapter A_i, the per-leg adapter trained on the typed leg family of evidence/quality/process records anchored at chunk c-0x7f4a" .

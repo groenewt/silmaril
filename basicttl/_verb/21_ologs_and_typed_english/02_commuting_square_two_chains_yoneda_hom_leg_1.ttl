@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_02_commuting_square_two_chains_yoneda_hom_leg_1_top_chain_witness a owl:NamedIndividual ;
+    rdfs:label "CommutingSquareTwoChainsYonedaHomLeg1" .

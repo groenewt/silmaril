@@ -1,0 +1,5 @@
+silm:instances_papers_19_mereology_as_colimit_terms_domain a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.19_mereology_as_colimit.terms.domain" .
+silm:instances_papers_19_mereology_as_colimit_terms_domain silm:hasAntonym silm:instances_papers_19_mereology_as_colimit_terms_codomain .
+silm:instances_papers_19_mereology_as_colimit_terms_domain silm:sourceNode silm:instances_papers_19_mereology_as_colimit_terms_domain .
+silm:instances_papers_19_mereology_as_colimit_terms_domain silm:targetNode silm:instances_papers_19_mereology_as_colimit_terms_codomain .

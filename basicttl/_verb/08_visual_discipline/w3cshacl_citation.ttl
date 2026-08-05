@@ -1,0 +1,2 @@
+silm:instances_papers_08_visual_discipline_citation_w3cshacl a owl:NamedIndividual ;
+    rdfs:label "P08CitationW3cshacl" .

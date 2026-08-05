@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_02_mittens_anchor_cheese_trap_immunity__trap_storage_identity_collapse_in_02_mittens_anchor__graniterow_m a owl:NamedIndividual ;
+    rdfs:label "storage-identity collapse in 02_mittens_anchor: GraniteRow_Mittens treated as if it has the same Hom-profile as the governed Mittens apex — i.e., the MittensAnchor artifact is mistaken for the whole governed individual" .

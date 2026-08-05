@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_04_validation_report_as_olog_object_decomposition_step_5__step_forge_morphism_for_04_validation_report_as_olog_object a owl:NamedIndividual ;
+    rdfs:label "By the Yoneda lemma, the section's central object is determined by its Hom-profile. The incoming and outgoing profiles make the object inspectable across domains." .

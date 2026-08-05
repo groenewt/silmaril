@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_11_concept_card_index_sections_02_index_page_monad_concrete_anchor_4#mittenssourcediagram a owl:NamedIndividual ;
+    rdfs:label "02IndexPageMonadConcreteAnchor4AddlCircuitCorner" .
+silm:instances_papers_01_orientation_chapters_11_concept_card_index_sections_02_index_page_monad_concrete_anchor_4#mittenssourcediagram silm:hasAdditionalAttribute "circuit_corner:0" .

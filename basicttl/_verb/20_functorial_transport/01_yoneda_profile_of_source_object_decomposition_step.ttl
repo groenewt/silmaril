@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_decomposition_step__step_y^in_mittens a owl:NamedIndividual ;
+    rdfs:label "incoming representable functor at Mittens" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_decomposition_step__step_hom_kghousex__mittens a owl:NamedIndividual ;
+    rdfs:label "the hom-set evaluated at X. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_decomposition_step__step_yoneda_corollary a owl:NamedIndividual ;
+    rdfs:label "an object is determined up to iso by either representable" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_decomposition_step__step_mittens_profile a owl:NamedIndividual ;
+    rdfs:label "the household's full categorical view of the cat" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_decomposition_step__step_profile_determines_object a owl:NamedIndividual ;
+    rdfs:label "Yoneda guarantees: same profile implies isomorphic objects" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_decomposition_step__step_ymittens a owl:NamedIndividual ;
+    rdfs:label "the household's complete categorical view of the cat" .

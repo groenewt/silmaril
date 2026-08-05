@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_05_cannon_or_gpt_absorption_olog_box__minimalcategorytheory_s05cannonorgptabsorption a owl:NamedIndividual ;
+    rdfs:label "MinimalCategoryTheory_S05CannonOrGptAbsorption" .

@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_flat_sections_01_thesis_olog_box__thesis a owl:NamedIndividual ;
+    rdfs:label "Thesis" .

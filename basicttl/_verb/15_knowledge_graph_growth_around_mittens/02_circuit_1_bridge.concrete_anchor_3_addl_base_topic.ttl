@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_06_sections_02_concrete_anchor_3#microchipidentifier9 a owl:NamedIndividual ;
+    rdfs:label "Circuit1MarkImprintingConcreteAnchor3AddlBaseTopic" .
+silm:instances_papers_15_chapters_06_sections_02_concrete_anchor_3#microchipidentifier9 silm:hasAdditionalAttribute "base_topic:knowledge graph growth" .

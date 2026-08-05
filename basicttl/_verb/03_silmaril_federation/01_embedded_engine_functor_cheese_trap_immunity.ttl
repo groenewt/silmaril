@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_01_embedded_engine_functor_cheese_trap_immunity__trap_engine_treats_f_x_as_the_governed_individual a owl:NamedIndividual ;
+    rdfs:label "engine_treats_F_X_as_the_governed_individual" .

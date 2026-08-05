@@ -1,0 +1,12 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_householdkg a owl:NamedIndividual ;
+    rdfs:label "the integrated household knowledge-graph apex; the unique cocone target above the per-entity apices." .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_colim_d^int a owl:NamedIndividual ;
+    rdfs:label "the colimit of the upper-level diagram D^int; glue all per-entity apices along the cross-entity arrows, then take the universal cocone target." .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_universal_cocone_householdkg__iota_e a owl:NamedIndividual ;
+    rdfs:label "the integrated apex together with its integration mediators is the universal cocone over D^int." .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_iota_mittens___householdkg__>_colim_d_mittens a owl:NamedIndividual ;
+    rdfs:label "the integration mediator that resolves a Mittens-claim in the integrated graph by factoring it through the Mittens sub-apex." .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_hom_c___householdkg_determines_householdkg_up_to_unique_iso a owl:NamedIndividual ;
+    rdfs:label "the integrated apex inherits every per-entity probe via the integration mediators; by Yoneda naturality the Hom-profile fixes HouseholdKG." .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_householdkg__=_colim_d^int a owl:NamedIndividual ;
+    rdfs:label "the household-as-one-graph is the colimit of the per-entity colimits, glued by typed cross-entity reference arrows." .

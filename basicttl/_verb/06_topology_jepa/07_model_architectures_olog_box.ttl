@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_07_model_architectures_olog_box__07modelarchitectures a owl:NamedIndividual ;
+    rdfs:label "07ModelArchitectures" .

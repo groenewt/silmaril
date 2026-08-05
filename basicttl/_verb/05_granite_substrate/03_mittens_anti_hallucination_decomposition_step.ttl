@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_decomposition_step__step_a_astq_preserves_type_taxonomy_evidence_quality_process_role a owl:NamedIndividual ;
+    rdfs:label "the primary symbol: colimit_universal_property in G_Granite" .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_decomposition_step__step_circ_typed_composition a owl:NamedIndividual ;
+    rdfs:label "composing typed arrows in the Granite olog category G_Granite — typed source-to-target morphisms where each composition preserves source-body provenance, manifest-entry typing, and validation-leg accountability" .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_decomposition_step__step_colimit_universal_property a owl:NamedIndividual ;
+    rdfs:label "the category-theoretic grounding via colimit universal property — every cocone must factor uniquely through the apex, which licenses fusion of specialized adapter records into a governed apex without identity collapse" .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_decomposition_step__step_mittens_at_tartu_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "the Mittens individual whose vet-record chunk grounds this section" .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_decomposition_step__step_hom__mittens_≠_hom__graniterow a owl:NamedIndividual ;
+    rdfs:label "Hom-profiles differ in measurable witness queries (storage chunk answers hash/manifest queries only; Mittens answers type/evidence/quality/process/role/taxonomy/validation queries) so the two objects differ by the Yoneda lemma" .
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_decomposition_step__step_mittensantihallucination a owl:NamedIndividual ;
+    rdfs:label "MittensAntiHallucination preserves typed leg separation without identity collapse" .

@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_02_yoneda_profile_of_profiles_circuit_imprint_tensor__corner_5 a owl:NamedIndividual ;
+    rdfs:label "5" .

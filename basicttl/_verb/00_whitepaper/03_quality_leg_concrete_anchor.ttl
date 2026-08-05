@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_03_quality_leg_concrete_anchor__bodymassquality a owl:NamedIndividual ;
+    rdfs:label "BodyMassQuality: the quality attribute of having a body mass; a BFO/PATO quality type (PATO:0000128) that inheres in Mittens; distinct from the numeric value 3450 and the measurement event WeightMeas_3450g" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_03_quality_leg_concrete_anchor__qualityarrow_bodymass a owl:NamedIndividual ;
+    rdfs:label "QualityArrow_BodyMass: the typed arrow BodyMassQuality -> MittensColimitApex; distinct from measurement_leg (WeightMeas_3450g -> MittensColimitApex)" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_03_quality_leg_concrete_anchor__pato_0000128 a owl:NamedIndividual ;
+    rdfs:label "PATO_0000128: the Phenotype And Trait Ontology (PATO) term for mass quality; the ontological authority that classifies BodyMassQuality as a mass-type quality attribute" .

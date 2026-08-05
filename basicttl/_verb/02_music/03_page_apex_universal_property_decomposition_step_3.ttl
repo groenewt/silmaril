@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_06_cocone_compatibility_for_pages_sections_03_page_apex_universal_property_decomposition_step_3__step_spivak_olog_definition a owl:NamedIndividual ;
+    rdfs:label "the olog typed-English definition Spivak & Kent 2012" .

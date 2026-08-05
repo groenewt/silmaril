@@ -1,0 +1,4 @@
+silm:instances_papers_02_music_terms_naming_provenance a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.02_music.terms.naming_provenance" .
+silm:instances_papers_02_music_terms_naming_provenance silm:hasSynonym "name-to-source trace" .
+silm:instances_papers_02_music_terms_naming_provenance silm:sourceNode silm:instances_papers_02_music_terms_naming_provenance .

@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_03_functors_and_natural_transformations_sections_01_functors_yoneda_hom_leg_3_measurement_leg a owl:NamedIndividual ;
+    rdfs:label "S01FunctorsYonedaHomLeg3" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_cocone_universality_concrete_anchor_2_P_visit_1_ a owl:NamedIndividual ;
+    rdfs:label "P1802_cocone_universalityConcreteAnchor2" .

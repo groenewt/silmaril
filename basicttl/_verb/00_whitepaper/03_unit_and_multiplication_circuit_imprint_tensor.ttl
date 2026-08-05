@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_03_unit_and_multiplication_circuit_imprint_tensor__corner_6 a owl:NamedIndividual ;
+    rdfs:label "6" .

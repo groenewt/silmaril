@@ -1,0 +1,2 @@
+silm:instances_papers_10_graph_knowledge_graph_category_citation_adamekherrlichstrecker1990joyofcats a owl:NamedIndividual ;
+    rdfs:label "P10CitationAdamekherrlichstrecker1990joyofcats" .

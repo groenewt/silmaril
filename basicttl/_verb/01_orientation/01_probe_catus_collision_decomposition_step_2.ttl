@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_01_probe_catus_collision_decomposition_step_2__step_gate__witness__>_typednode_|_typedarrow_|_bot a owl:NamedIndividual ;
+    rdfs:label "The Node-or-Arrow gate checks whether a candidate claim appears as a typed object (node or arrow) in the page olog O_01. If not, the gate outputs bottom (refused)." .

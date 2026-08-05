@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_04_yoneda_position_deepening_sections_01_representable_functors_yoneda_hom_leg_3 a owl:NamedIndividual ;
+    rdfs:label "01RepresentableFunctorsYonedaHomLeg3" .

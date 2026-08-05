@@ -1,0 +1,4 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_audit_topology a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.17_commutative_diagrams_as_governance.terms.audit_topology" .
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_audit_topology silm:hasSynonym "governance-spectrum cover" .
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_audit_topology silm:sourceNode silm:instances_papers_17_commutative_diagrams_as_governance_terms_audit_topology .

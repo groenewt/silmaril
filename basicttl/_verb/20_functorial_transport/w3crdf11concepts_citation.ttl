@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_citation_w3crdf11concepts a owl:NamedIndividual ;
+    rdfs:label "P20CitationW3crdf11concepts" .

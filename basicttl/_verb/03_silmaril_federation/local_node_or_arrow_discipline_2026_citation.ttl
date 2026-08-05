@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_citation_localnodeorarrowdiscipline2026 a owl:NamedIndividual ;
+    rdfs:label "P03CitationLocalNodeOrArrowDiscipline2026" .

@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_18_free_monad_whitepaper_yoneda_embedding_sections_03_yoneda_embedding_full_and_faithful_local_yoneda_hom_leg_0_catanchorlegc a owl:NamedIndividual ;
+    rdfs:label "S03YonedaEmbeddingFullAndFaithfulLocalYonedaHomLeg0" .

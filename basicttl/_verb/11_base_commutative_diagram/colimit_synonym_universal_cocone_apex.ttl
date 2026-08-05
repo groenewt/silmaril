@@ -1,0 +1,4 @@
+silm:instances_papers_11_base_commutative_diagram_terms_colimit a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.11_base_commutative_diagram.terms.colimit" .
+silm:instances_papers_11_base_commutative_diagram_terms_colimit silm:hasSynonym "universal cocone apex" .
+silm:instances_papers_11_base_commutative_diagram_terms_colimit silm:sourceNode silm:instances_papers_11_base_commutative_diagram_terms_colimit .

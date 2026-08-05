@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_decomposition_step_2__step_cite__assigns_local_key_and_wraps_as_freesigma_term;_type__a a owl:NamedIndividual ;
+    rdfs:label "The cite Kleisli arrow takes the local key and wraps the witness as a free-monad term in Kl(Free(Sigma)). The type Kleisli arrow then assigns the witness an olog sort from O_01. These are the two operations that transform a raw source fact into a typed load-bearing claim." .

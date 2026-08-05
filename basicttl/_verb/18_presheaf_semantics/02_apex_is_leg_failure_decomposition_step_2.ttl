@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_apex_is_leg_failure_decomposition_step_2__step_colim a owl:NamedIndividual ;
+    rdfs:label "the primary operation invoked in the Cheese-Trap: Apex Equals a Source Leg claim" .

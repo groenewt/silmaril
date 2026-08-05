@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_03_negative_regression_catalog_decomposition_step_2__step_forge_morphism_for_03_negative_regression_catalog a owl:NamedIndividual ;
+    rdfs:label "The registration functor sends each known failure mode to a node in the negative-regression subcategory of F_04. The shape gate's forbids arrow formally witnesses the prohibition." .

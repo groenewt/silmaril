@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_density_theorem_decomposition_step_6__step_the_density_theorem a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that The Density Theorem on the Mittens presheaf is exactly the lawful construction it names" .

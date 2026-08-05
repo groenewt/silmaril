@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_01_olog_as_typed_english_sections_04_olog_vs_taxonomy_vs_schema_concrete_anchor_4_Boxes a owl:NamedIndividual ;
+    rdfs:label "OlogVsTaxonomyVsSchemaConcreteAnchor4" .

@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_04_yoneda_for_governance_sections_03_naturality_square_olog_box__naturalitysquareasauditpropagation a owl:NamedIndividual ;
+    rdfs:label "NaturalitySquareAsAuditPropagation" .

@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_05_yoneda_lemma_and_representables_sections_03_yoneda_embedding_olog_box__minimalcategorytheory_s03yonedaembedding a owl:NamedIndividual ;
+    rdfs:label "MinimalCategoryTheory_S03YonedaEmbedding" .

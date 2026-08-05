@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_04_yoneda_position_deepening_sections_05_incoming_outgoing_pair_olog_box__05incomingoutgoingpairologbox a owl:NamedIndividual ;
+    rdfs:label "05IncomingOutgoingPairOlogBox" .

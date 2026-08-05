@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_01_kleisli_category_overview_cheese_trap_immunity__trap_pipeline_as_flat_procedure_not_monad a owl:NamedIndividual ;
+    rdfs:label "pipeline_as_flat_procedure_not_monad" .

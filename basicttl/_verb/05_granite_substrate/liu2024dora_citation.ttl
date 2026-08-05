@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_citation_liu2024dora a owl:NamedIndividual ;
+    rdfs:label "P05CitationLiu2024dora" .

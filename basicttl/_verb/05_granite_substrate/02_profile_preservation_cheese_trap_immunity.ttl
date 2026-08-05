@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_02_profile_preservation_cheese_trap_immunity__trap_profile_loss_collapse__after_absorption__losing_the_yoneda_p a owl:NamedIndividual ;
+    rdfs:label "profile-loss collapse: after absorption, losing the Yoneda-profile traceability — treating the absorbed olog node as having a different or fuller profile than the source text actually supports" .

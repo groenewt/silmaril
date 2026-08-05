@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_closure_associative__diagram_fig_orientation_closure_associative a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-closure-associative" .

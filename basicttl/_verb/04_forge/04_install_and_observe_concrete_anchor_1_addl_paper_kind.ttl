@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_04_install_and_observe_concrete_anchor_1#mittensforgeroutingfunctor a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 04_install_and_observe" .
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_04_install_and_observe_concrete_anchor_1#mittensforgeroutingfunctor silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.04_forge" .

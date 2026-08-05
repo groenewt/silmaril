@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_01_why_music_now_sections_06_what_this_is_not_decomposition_step_4__step_mittens_vocal_anchor a owl:NamedIndividual ;
+    rdfs:label "the Mittens-domain audible-signal anchor" .

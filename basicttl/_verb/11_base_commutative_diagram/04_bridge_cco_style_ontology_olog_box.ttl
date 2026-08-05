@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_20_bridges_graph_kg_integrated_cco_sections_04_bridge_cco_style_ontology_olog_box__basecommutativediagram_s04bridgeccostyleontology a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S04bridgeccostyleontology" .

@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_05_manifest_yoneda_profile_leg_concrete_anchor#manifest a owl:NamedIndividual ;
+    rdfs:label "05ManifestyonedaprofilelegConcreteAnchorAddlPaperKind" .
+silm:instances_papers_02_music_sections_05_manifest_yoneda_profile_leg_concrete_anchor#manifest silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.02_music" .

@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_24_rosetta_stone_cross_domain_sections_06_six_step_scaffold_exposition_cheese_trap_immunity__trap_domain_identity_collapse a owl:NamedIndividual ;
+    rdfs:label "domain_identity_collapse" .

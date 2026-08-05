@@ -1,0 +1,4 @@
+silm:instances_papers_04_forge_terms_object a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.object" .
+silm:instances_papers_04_forge_terms_object silm:hasSynonym "node" .
+silm:instances_papers_04_forge_terms_object silm:sourceNode silm:instances_papers_04_forge_terms_object .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_06_cocone_compatibility_for_pages_sections_03_page_apex_universal_property_decomposition_step_5__step_yoneda_signal_profile a owl:NamedIndividual ;
+    rdfs:label "the representable presheaf of the audible-signal node" .

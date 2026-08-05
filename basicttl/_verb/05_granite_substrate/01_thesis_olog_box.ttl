@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_flat_sections_01_thesis_olog_box__granitesubstratepipeline a owl:NamedIndividual ;
+    rdfs:label "GraniteSubstratePipeline" .

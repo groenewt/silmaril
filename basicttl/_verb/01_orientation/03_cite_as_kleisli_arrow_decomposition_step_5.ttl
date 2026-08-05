@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_03_cite_as_kleisli_arrow_decomposition_step_5__step_y^in_profile_of_eta_witnessmittensvetrecord77_inherited_from a owl:NamedIndividual ;
+    rdfs:label "By Yoneda naturality, the profile of the unit term eta_Witness(mittensVetRecord77) is inherited from the Yoneda embedding of Witness into the Kleisli category. The terms profile is determined by how it maps into Mittens under the type and glue arrows." .

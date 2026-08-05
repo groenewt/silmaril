@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_03_olog_node_arrow_law_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 03_olog_node_arrow_law [LHH]" .

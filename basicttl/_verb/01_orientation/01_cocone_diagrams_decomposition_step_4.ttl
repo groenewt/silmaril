@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_09_diagram_atlas_sections_01_cocone_diagrams_decomposition_step_4__step_d_mittens a owl:NamedIndividual ;
+    rdfs:label "reading position 4: the source diagram whose colimit is Mittens" .

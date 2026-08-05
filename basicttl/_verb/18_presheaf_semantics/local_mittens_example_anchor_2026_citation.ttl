@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_citation_localmittensexampleanchor2026 a owl:NamedIndividual ;
+    rdfs:label "P18CitationLocalMittensExampleAnchor2026" .

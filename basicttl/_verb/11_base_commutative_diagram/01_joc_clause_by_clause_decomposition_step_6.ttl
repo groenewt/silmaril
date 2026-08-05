@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_08_joc_and_regression_sections_01_joc_clause_by_clause_decomposition_step_6__step_recap_01_joc_clause_by_clause a owl:NamedIndividual ;
+    rdfs:label "recap of the {sec} commuting law assembled across steps 1-5" .

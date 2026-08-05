@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_02_enrichment_by_type_information_decomposition_step_6__step_o_01_is_set_enriched;_every_hom_set_is_explicitly_typed_and_ a owl:NamedIndividual ;
+    rdfs:label "Enrichment by type information means every arrow in the pipeline carries its sort declaration; the Yoneda profile of Mittens is the product of ten typed hom-sets; adding a new arrow requires explicit olog extension." .

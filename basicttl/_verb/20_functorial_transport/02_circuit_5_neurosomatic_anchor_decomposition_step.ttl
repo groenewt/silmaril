@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_decomposition_step__step_corner_5 a owl:NamedIndividual ;
+    rdfs:label "neurosomatic corner of the cognition cube" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_decomposition_step__step_neurosomatic_anchor a owl:NamedIndividual ;
+    rdfs:label "the bodily-felt connection between chart and patient" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_decomposition_step__step_leary_corner_5 a owl:NamedIndividual ;
+    rdfs:label "the neurosomatic corner. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_decomposition_step__step_household_to_clinic_neurosomatic_continuity a owl:NamedIndividual ;
+    rdfs:label "the household clinician feels the cat; the clinic clinician must feel the patient image" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_decomposition_step__step_anchor_as_yoneda_profile_outgoing_arrow a owl:NamedIndividual ;
+    rdfs:label "the neurosomatic anchor is one of the outgoing arrows of the patient image's Yoneda profile" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_decomposition_step__step_circuit_5_anchor_preservation a owl:NamedIndividual ;
+    rdfs:label "transport must keep the chart bodily-anchorable on receiving side" .

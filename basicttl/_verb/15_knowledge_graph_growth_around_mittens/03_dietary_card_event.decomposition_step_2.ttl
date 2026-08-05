@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_03_decomposition_step_2__step_composition___batching_at_t2_g3 a owl:NamedIndividual ;
+    rdfs:label "the operation that the theorem's primary symbol participates in" .

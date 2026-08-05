@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_olog_box__mittensanchorcocone a owl:NamedIndividual ;
+    rdfs:label "MittensAnchorCocone" .

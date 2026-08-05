@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_01_chunk_typing_cheese_trap_immunity__trap_multi_leg_chunk_collapse__a_single_chunk_claiming_to_be_evid a owl:NamedIndividual ;
+    rdfs:label "multi-leg chunk collapse: a single chunk claiming to be evidence AND classification AND quality AND storage for Mittens simultaneously" .

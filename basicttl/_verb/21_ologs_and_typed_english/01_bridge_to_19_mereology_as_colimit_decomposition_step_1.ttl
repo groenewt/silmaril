@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_08_cross_paper_bridges_sections_01_bridge_to_19_mereology_as_colimit_decomposition_step_1__step_mittens a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the Bridge to Paper 19 (Mereology as Colimit) claim" .

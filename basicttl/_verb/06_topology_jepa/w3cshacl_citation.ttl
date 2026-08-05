@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_citation_w3cshacl a owl:NamedIndividual ;
+    rdfs:label "P06CitationW3cshacl" .

@@ -1,0 +1,4 @@
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "HouseholdFlattenIn" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "CopyOut" .

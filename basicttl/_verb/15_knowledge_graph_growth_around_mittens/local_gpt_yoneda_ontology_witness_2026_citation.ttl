@@ -1,0 +1,2 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_citation_localgptyonedaontologywitness2026 a owl:NamedIndividual ;
+    rdfs:label "P15CitationLocalGptYonedaOntologyWitness2026" .

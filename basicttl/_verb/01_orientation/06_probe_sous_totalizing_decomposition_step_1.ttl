@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_06_probe_sous_totalizing_decomposition_step_1__step_y^in_mittensx_=_homx__mittens a owl:NamedIndividual ;
+    rdfs:label "The incoming profile functor for Mittens: it takes an object X and returns the set of arrows from X into Mittens. This functor tells you which arrows exist from X to Mittens; it does not create new ones." .

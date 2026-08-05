@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_04_title_music_admissibility_concrete_anchor#title a owl:NamedIndividual ;
+    rdfs:label "04TitlemusicadmissibilityConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_02_music_sections_04_title_music_admissibility_concrete_anchor#title silm:hasAdditionalAttribute "circuit_corner:0" .

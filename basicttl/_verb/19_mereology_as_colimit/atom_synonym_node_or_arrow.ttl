@@ -1,0 +1,4 @@
+silm:instances_papers_19_mereology_as_colimit_terms_atom a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.19_mereology_as_colimit.terms.atom" .
+silm:instances_papers_19_mereology_as_colimit_terms_atom silm:hasSynonym "Node-or-Arrow" .
+silm:instances_papers_19_mereology_as_colimit_terms_atom silm:sourceNode silm:instances_papers_19_mereology_as_colimit_terms_atom .

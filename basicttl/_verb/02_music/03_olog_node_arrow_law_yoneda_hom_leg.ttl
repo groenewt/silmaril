@@ -1,0 +1,40 @@
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| TypedQualityClaim [r," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ \\& \\& |[schemanode]| QualitySectionEntry tikzcd% Concrete instantiation of the Music factorization law with the Mittens body-mass observation: the raw observation is normalized to a typed quality claim, validated by the measurement shape gate, and rendered to the quality section entry.fig:music-mittens-factorization-concrete Diagram law (Figure~fig:music-mittens-factorization-concrete): the Mittens body-mass observation cannot jump directly from \\(MittensBodyMassObs\\) to \\(QualitySectionEntry\\); the full chain through normalization, validation, and rendering is required. The direct shortcut \\[ SourcePacket \\] is forbidden. In categorical form, every publication arrow \\[ p:SourcePacket \\] must factor as \\[ p=render. \\] The equation is the Music entry's core admissibility law. The rebuttal taxonomy packet is admitted by the same law. It is not a loose classification sentence; it is a source witness node with arrows: \\[ TaxonomyWitness selects Felis\\ catus/TSN\\ 183798 refines subclassOf D(type)=Cat. \\] The negative cases are also arrows, but forbidden ones: \\[ catus, TSN\\ 183798. \\] The page treats those failures as regressions because they collapse source leg, class bridge, and colimit apex into one label. disciplinebox[Node and arrow consequences] The engine's nodes name the things being governed: source packets, typed claims, shapes, tasks, manifests, traces, and page objects. Its arrows name the legal movement between them: normalizes, validates, schedules, emits, profiles, absorbs, and closes. If a sentence cannot be assigned to one of these roles, the sentence is not part of the engine. disciplinebox The olog reading follows. A local graph engine is a small category-like presentation whose objects are typed remediation artifacts and whose arrows are interpretation-preserving transformations. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[schemanode]| Manifest [r," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[schemanode]| TaskNode [d," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[terminalnode]| TraceWitness tikzcd% The olog diagram law for Manifest and TaskNode: the Manifest profiles the TaskNode (top) and witnesses the source (left); both paths must agree at the TraceWitness (right and bottom).fig:music-olog-manifest-task Diagram law (Figure~fig:music-olog-manifest-task): the olog square commutes when the manifest's profile and witness arrows are consistent; a manifest that does not witness the source that the task node claims cannot produce a valid trace. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[schemanode]| SourceText [r," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| TypedClaim [d," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "] [d,dashed," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[instancenode]| AdmittedClaim [d," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "description] tikzcd% The Music publication factorization law as a commutative diagram: the direct dashed arrow \\(SourcePacket\\) is forbidden; the only admissible path is \\(render\\).fig:music-publication-factorization theorem[Publication factorization] thm:music-publication-factorization In the Music engine, every publication arrow \\(p:SourcePacket\\) must factor as \\[ p = render. \\] The direct arrow \\(SourcePacket\\) violates the Node-or-Arrow law unless this factorization is explicit. theorem proof Step 1 (symbols). \\(normalize\\) is the typing arrow, \\(validate\\) is the shape-gate arrow, \\(render\\) is the publication arrow. Step 2 (operations). Each step is an olog arrow in the Music category; composition is pipeline execution. Step 3 (base topic). Category composition and the Node-or-Arrow law license the factorization: every arrow in the page olog must have a typed source and target. Step 4 (concrete anchor). For the Mittens body-mass observation: the raw weight record is normalized to a \\(TypedQualityMeasurement\\), validated by the SHACL measurement shape, and rendered to a published measurement section. No direct jump from weight record to section is admitted. Step 5 (Yoneda). By Yoneda, the profile of \\(PublishedEntry\\) at \\((-,PublishedEntry)\\) recovers the full normalized, validated, rendered chain for every incoming arrow. Step 6 (recap). The factorization \\(p=render\\) is the Music admission law. proof Diagram law (Figure~fig:music-publication-factorization): the left shortcut path and the right full path must agree at \\(PublishedEntry\\); equality is the statement that the shortcut is only admissible as the displayed composite. [0.92]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[schemanode]| TaskExtract [r," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[schemanode]| TaskTransform [d," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_10 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[schemanode]| TypedTransform [r," .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_11 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_11" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_12 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_12" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_13 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_13" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_14 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_14" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_15 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_15" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_16 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_16" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_17 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_17" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_18 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_18" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_19 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_19" .
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_yoneda_hom_leg__leg_20 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_20" .

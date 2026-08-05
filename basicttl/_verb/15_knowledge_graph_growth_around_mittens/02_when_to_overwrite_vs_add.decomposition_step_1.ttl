@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_05_sections_02_decomposition_step_1__step_type_discrimination_on_node_type a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T5-G2 (Overwrite-or-add decision rule)" .

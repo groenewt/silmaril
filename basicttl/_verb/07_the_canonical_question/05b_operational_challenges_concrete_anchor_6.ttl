@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_05b_operational_challenges_concrete_anchor_6 a owl:NamedIndividual ;
+    rdfs:label "P07OperationalChallengesConcreteAnchor6" .

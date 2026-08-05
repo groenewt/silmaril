@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_che_class_many__diagram_fig_orientation_che_class_many a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chE-class-many" .

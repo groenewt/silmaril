@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_03_cheese_face_and_siblings_sections_02_sibling_connections_yoneda_hom_leg_13_microchipidentifiesarrow a owl:NamedIndividual ;
+    rdfs:label "S02SiblingConnectionsYonedaHomLeg13" .

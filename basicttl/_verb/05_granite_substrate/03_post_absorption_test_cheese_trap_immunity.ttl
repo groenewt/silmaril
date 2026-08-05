@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_03_post_absorption_test_cheese_trap_immunity__trap_absorption_loop_collapse__treating_a_passing_post_absorption a owl:NamedIndividual ;
+    rdfs:label "absorption-loop collapse: treating a passing post-absorption test score as proof that the absorbed text is source-authoritative, rather than as evidence that the absorption preserved the typed-leg structure" .

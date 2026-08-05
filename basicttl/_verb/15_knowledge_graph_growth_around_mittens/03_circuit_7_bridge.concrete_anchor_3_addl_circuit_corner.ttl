@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_06_sections_03_concrete_anchor_3#eventtypetag a owl:NamedIndividual ;
+    rdfs:label "Circuit7CorpusBridgeConcreteAnchor3AddlCircuitCorner" .
+silm:instances_papers_15_chapters_06_sections_03_concrete_anchor_3#eventtypetag silm:hasAdditionalAttribute "circuit_corner:7" .

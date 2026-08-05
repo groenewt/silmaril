@@ -1,0 +1,32 @@
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[processnode]| MusicOlog [r," .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "'] \\& \\& tikzcd% Absorption closure: cannon witnesses and generated witnesses both reach published claims only through the Music olog governance step. The two absorption paths commute at the olog node.fig:music-absorption-closure Diagram law (Figure~fig:music-absorption-closure): the two witness paths commute at \\(MusicOlog\\); a cannon phrase that reaches \\(PublishedClaim\\) without passing through the olog is an unabsorbed shortcut. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[processnode]| MusicEngine [r," .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[processnode]| MusicEngine [r," .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[rolenode]| TypedNode [r," .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[schemanode]| $(-,MusicEngine)$ [u," .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "description]\\\\ \\& \\& |[schemanode]| $(MusicEngine,-)$ tikzcd% The Yoneda closure for the Music engine: absorbed sources enter through the incoming profile \\((-,MusicEngine)\\), flow through typed nodes and olog legs via cocone maps, and exit through the outgoing profile \\((MusicEngine,-)\\). The engine is known entirely by these two profiles.fig:music-yoneda-closure theorem[Music engine Yoneda closure] thm:music-yoneda-closure The Music graph engine is completely characterized by its representable Hom-profiles: \\[ MusicEngine ( (-,MusicEngine), (MusicEngine,-) ). \\] Specifically: enumerate Every absorbed source, typed witness, manifest, schema, and Mittens source leg enters through an arrow \\(f:X\\) in the incoming profile. Every admitted task, rendered section, catalog trace, and forbidden-path report exits through an arrow \\(g:MusicEngine Y\\) in the outgoing profile. enumerate theorem proof Step 1 (symbols). \\((-,MusicEngine)\\) is the incoming Yoneda profile, collecting all morphisms into the engine. \\((MusicEngine,-)\\) is the outgoing Yoneda profile, collecting all morphisms out. Step 2 (operation). Yoneda's lemma says that natural transformations \\((-,A)(-,B)\\) correspond bijectively to morphisms \\(A B\\) in \\(\\). Step 3 (base topic). Yoneda's lemma and the representable functor discipline. Step 4 (concrete anchor). The Mittens body-mass observation enters as \\(f:MittensBodyMassRecord\\) in the incoming profile. The rendered quality section exits as \\(g:MusicEngine\\) in the outgoing profile. Step 5 (Yoneda traversal). The Yoneda embedding \\(Y:[op,]\\) is fully faithful, so \\(MusicEngine\\) is determined up to isomorphism by its representable. Step 6 (recap). The Music engine is closed when both profiles are fully populated and their composition laws commute. proof Diagram law (Figure~fig:music-yoneda-closure): incoming and outgoing profiles are not optional metadata; they are the Yoneda characterization of the engine as a category-theoretic object. An engine with empty profiles is an engine that cannot be known. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[schemanode]| IncomingProfile [r," .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[processnode]| MusicEngine [d," .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "witnesses" .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_9" .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_10 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_10" .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_11 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_11" .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_12 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_12" .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_13 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_13" .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_14 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_14" .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_15 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_15" .
+silm:instances_papers_02_music_sections_06_closure_yoneda_hom_leg__leg_16 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_16" .

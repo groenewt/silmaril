@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_05_engine_substrate_legs_sections_02_avro_substrate_leg_decomposition_step_3__step_spivak_olog_definition a owl:NamedIndividual ;
+    rdfs:label "the olog typed-English definition Spivak & Kent 2012" .

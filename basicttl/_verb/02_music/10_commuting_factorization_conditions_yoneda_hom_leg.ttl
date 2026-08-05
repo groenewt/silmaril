@@ -1,0 +1,18 @@
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] [d," .
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[instancenode]| ClaimFile [r," .
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[terminalnode]| Trace tikzcd% The execution-witness square: the schedule path and the claim-file path must produce the same trace. The square expresses the third factorization equation \\(trace=trace\\).fig:music-execution-witness-square Diagram law (Figure~fig:music-execution-witness-square): the execution path and the claim-file verification path must meet at the same trace; a task that ran without declaring a claim, or a probe that cannot point to a trace, breaks this square. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[schemanode]| EvidencePacket [r," .
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[schemanode]| KGNode [d," .
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "catalogedAs" .
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_6" .
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_7" .
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_8" .
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_9" .

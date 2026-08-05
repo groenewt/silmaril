@@ -1,0 +1,2 @@
+silm:instances_papers_10_graph_knowledge_graph_category_citation_fongspivak2018sevensketches a owl:NamedIndividual ;
+    rdfs:label "P10CitationFongspivak2018sevensketches" .

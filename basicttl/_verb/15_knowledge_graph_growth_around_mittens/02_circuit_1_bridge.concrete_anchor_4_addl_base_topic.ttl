@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_06_sections_02_concrete_anchor_4#dentalquality77 a owl:NamedIndividual ;
+    rdfs:label "Circuit1MarkImprintingConcreteAnchor4AddlBaseTopic" .
+silm:instances_papers_15_chapters_06_sections_02_concrete_anchor_4#dentalquality77 silm:hasAdditionalAttribute "base_topic:knowledge graph growth" .

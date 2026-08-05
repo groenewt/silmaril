@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_01_page_as_candidate_cocone_concrete_anchor#section a owl:NamedIndividual ;
+    rdfs:label "01PageascandidatecoconeConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_01_page_as_candidate_cocone_concrete_anchor#section silm:hasAdditionalAttribute "dunbar_layer:0" .

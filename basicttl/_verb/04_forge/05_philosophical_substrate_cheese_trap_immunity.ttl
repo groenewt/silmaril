@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_05_philosophical_substrate_cheese_trap_immunity__trap_substrate=metaphor a owl:NamedIndividual ;
+    rdfs:label "substrate=metaphor" .

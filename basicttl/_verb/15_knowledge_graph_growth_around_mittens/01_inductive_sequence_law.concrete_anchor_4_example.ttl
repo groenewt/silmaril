@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_inclusion a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchorStageInclusionExample" .
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_inclusion silm:hasExample "In 'ConcreteAnchorStageInclusion', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, At each pre-existing leg of stage n (HeadObs77, BodyMassQuality77, etc.), the component of i_{n,n+1} is the identity arrow in C. On the new legs admitted at stage n+1 (e.g. MicrochipIdentifier9), the natural transformation has no component because those legs are not in J_Mittens^n. The inclusion never modifies a pre-existing arrow.." .

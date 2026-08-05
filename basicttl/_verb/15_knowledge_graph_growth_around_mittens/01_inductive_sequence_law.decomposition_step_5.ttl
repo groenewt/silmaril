@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_01_decomposition_step_5__step_phi^l_n+1___hom_c___legsourcel_==>_legprofilel^n+1__inherits a owl:NamedIndividual ;
+    rdfs:label "the leg-restricted Yoneda profile of leg l at stage n+1 is the same natural isomorphism as the profile at stage n, composed with the identity stage-inclusion at that leg; downstream papers may speak of \"the body-mass profile\" without parameterising by stage" .

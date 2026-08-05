@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_11_classification_leg_olog_box__classificationleg_domesticcat a owl:NamedIndividual ;
+    rdfs:label "ClassificationLeg_DomesticCat" .

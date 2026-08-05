@@ -1,0 +1,4 @@
+silm:instances_papers_02_music_terms_page a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.02_music.terms.page" .
+silm:instances_papers_02_music_terms_page silm:hasSynonym "music-monad facet" .
+silm:instances_papers_02_music_terms_page silm:sourceNode silm:instances_papers_02_music_terms_page .

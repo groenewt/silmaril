@@ -1,0 +1,5 @@
+silm:instances_papers_21_ologs_and_typed_english_terms_monad a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.21_ologs_and_typed_english.terms.monad" .
+silm:instances_papers_21_ologs_and_typed_english_terms_monad silm:hasAntonym silm:instances_papers_21_ologs_and_typed_english_terms_comonad .
+silm:instances_papers_21_ologs_and_typed_english_terms_monad silm:sourceNode silm:instances_papers_21_ologs_and_typed_english_terms_monad .
+silm:instances_papers_21_ologs_and_typed_english_terms_monad silm:targetNode silm:instances_papers_21_ologs_and_typed_english_terms_comonad .

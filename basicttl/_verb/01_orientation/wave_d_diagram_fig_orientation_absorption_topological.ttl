@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_absorption_topological__diagram_fig_orientation_absorption_topological a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-absorption-topological" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_contravariance_violation_olog_box__p18section03_contravariance_violationologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section03_contravariance_violationOlogBox" .

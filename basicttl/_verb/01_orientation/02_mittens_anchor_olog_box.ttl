@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_02_mittens_anchor_olog_box__02mittensanchorologbox a owl:NamedIndividual ;
+    rdfs:label "02MittensAnchorOlogBox" .

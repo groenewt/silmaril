@@ -1,0 +1,3 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "WhenInformationFlowsVsValidatesYonedaHomLegExample" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_yoneda_hom_leg silm:hasExample "In 'WhenInformationFlowsVsValidatesYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the clinic constraints are pulled back as pre-checks at the gate; also, the functor F sends Mittens to F(Mittens), giving the central object of the transport diagram its clinic-side image." .

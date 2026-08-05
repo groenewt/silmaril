@@ -1,0 +1,3 @@
+silm:instances_papers_18_presheaf_semantics_01_statement_concrete_anchor_2_P_visit_1_ a owl:NamedIndividual ;
+    rdfs:label "P1801_statementConcreteAnchor2Example" .
+silm:instances_papers_18_presheaf_semantics_01_statement_concrete_anchor_2_P_visit_1_ silm:hasExample "In 'P1801_statementConcreteAnchor2', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the population set P(visit_1) of vet records observed at Mittens' first weekly check-up time-point, concretely body-mass 4.1 kg and Alice-as-owner records." .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_06_closure_olog_box__p18section06_closureologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section06_closureOlogBox" .

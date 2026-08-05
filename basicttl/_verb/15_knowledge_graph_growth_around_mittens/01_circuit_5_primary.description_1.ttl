@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_06_sections_01_concrete_anchor_1#axissubstrateneuro a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.06.sections.01.concrete_anchor.1#axissubstrateneuro" .
+silm:instances_papers_15_chapters_06_sections_01_concrete_anchor_1#axissubstrateneuro silm:hasLongDescription "The AxisSubstrateNeuro is the bodily-felt referent lives on the neuro substrate, not the bio substrate. In the paper's apparatus it appears as the symbol 'substrate=neuro=1', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

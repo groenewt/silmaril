@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_02_enrichment_by_type_information_decomposition_step_5__step_yoneda_for_set_enriched__knowing_all_homx__mittens_uniquely_ a owl:NamedIndividual ;
+    rdfs:label "By the Yoneda lemma for Set-enriched categories, knowing all hom-sets Hom(X, Mittens) for all objects X in O_01 uniquely determines Mittens up to isomorphism. This is why the orientation page can describe Mittens by exhibiting its ten-leg cocone: those legs are exactly the generators of the relevant hom-sets." .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_03_sections_01_concrete_anchor_5#refinementarrow1 a owl:NamedIndividual ;
+    rdfs:label "ClassificationLegMonotoneConcreteAnchor5AddlDunbarLayer" .
+silm:instances_papers_15_chapters_03_sections_01_concrete_anchor_5#refinementarrow1 silm:hasAdditionalAttribute "dunbar_layer:0" .

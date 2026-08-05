@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_1#bodymassquality77 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.03.sections.02.concrete_anchor.1#bodymassquality77" .
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_1#bodymassquality77 silm:hasLongDescription "The BodyMassQuality77 is the body-mass quality leg of Mittens. In the paper's apparatus it appears as the symbol 'Q', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

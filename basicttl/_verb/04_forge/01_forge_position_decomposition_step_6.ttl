@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_01_forge_position_decomposition_step_6__step_forge_morphism_for_01_forge_position a owl:NamedIndividual ;
+    rdfs:label "ForgePosition: Forge typing discipline enforced. — concrete forge-domain reading in section 'The Forge Position --- What Phase 4 Constructs'." .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_08_sections_02_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "SilentDeletionForbiddenYonedaHomLeg2" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_01_factorization_square_decomposition_step_1__step_forge_morphism_for_01_factorization_square a owl:NamedIndividual ;
+    rdfs:label "S is a cited source object (a SourceWitness that has passed ingestion). R is a runtime atom in F_04. Y is the Yoneda profile of R: Y = (Hom(-, R), Hom(R, -)). Π is the declared manifest profile of the source S." .

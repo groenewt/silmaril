@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_03_downstream_factorization_decomposition_step_3__step_joc_3p1 a owl:NamedIndividual ;
+    rdfs:label "cite the base topic" .

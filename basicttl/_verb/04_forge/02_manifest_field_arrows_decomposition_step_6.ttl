@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_02_manifest_field_arrows_decomposition_step_6__step_forge_morphism_for_02_manifest_field_arrows a owl:NamedIndividual ;
+    rdfs:label "Every manifest field names a typed arrow in F_04 with a checkable verb-phrase sentence; field name is distinct from the node it documents." .

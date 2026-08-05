@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_05_atomic_colimit_constructions_sections_01_pushout_as_gluing_olog_box__pushoutasgluing a owl:NamedIndividual ;
+    rdfs:label "PushoutAsGluing" .

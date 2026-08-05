@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_06_closure_circuit_imprint_tensor__corner_7 a owl:NamedIndividual ;
+    rdfs:label "7" .

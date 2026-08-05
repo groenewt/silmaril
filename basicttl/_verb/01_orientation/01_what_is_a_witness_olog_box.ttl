@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_olog_box__witness_typed_source_object_with_4_fields a owl:NamedIndividual ;
+    rdfs:label "Witness (typed source object with 4 fields)" .

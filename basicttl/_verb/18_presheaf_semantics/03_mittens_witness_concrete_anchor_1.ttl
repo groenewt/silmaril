@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_mittens_witness_concrete_anchor_1_L_Mittens a owl:NamedIndividual ;
+    rdfs:label "P1803_mittens_witnessConcreteAnchor1" .

@@ -1,0 +1,3 @@
+silm:instances_papers_19_mereology_as_colimit_acronym_csv a owl:NamedIndividual ;
+    rdfs:label "Comma-Separated Values" .
+silm:instances_papers_19_mereology_as_colimit_acronym_csv silm:hasAbbreviation "CSV" .

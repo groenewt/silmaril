@@ -1,0 +1,10 @@
+silm:instances_papers_02_music_sections_03_bind_associativity_concrete_anchor__source a owl:NamedIndividual ;
+    rdfs:label "the Mittens body-mass observation record from the May 2026 vet visit at Tartu Animal Clinic, entering the engine as a typed quality-claim source packet" .
+silm:instances_papers_02_music_sections_03_bind_associativity_concrete_anchor__typed a owl:NamedIndividual ;
+    rdfs:label "the Mittens vaccination record FVRCP-2026-03-15, entering as a typed evidence packet with provenance and validation envelope" .
+silm:instances_papers_02_music_sections_03_bind_associativity_concrete_anchor__published a owl:NamedIndividual ;
+    rdfs:label "the Mittens microchip-id witness 985112000123456 entering as a typed identifier source leg into the Music engine cocone" .
+silm:instances_papers_02_music_sections_03_bind_associativity_concrete_anchor__regrouped a owl:NamedIndividual ;
+    rdfs:label "the Mittens coat-pattern observation (torbie, three-color) entering as a typed quality-claim into the manifest profile reader" .
+silm:instances_papers_02_music_sections_03_bind_associativity_concrete_anchor__regroup2 a owl:NamedIndividual ;
+    rdfs:label "the Mittens domestic-cat classification leg (DomesticCat) as a typed source-leg arrow that anchors BY Mittens, not as an identity" .

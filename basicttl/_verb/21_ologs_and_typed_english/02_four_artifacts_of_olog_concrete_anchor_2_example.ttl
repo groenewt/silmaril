@@ -1,0 +1,3 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_01_olog_as_typed_english_sections_02_four_artifacts_of_olog_concrete_anchor_2_Arrows a owl:NamedIndividual ;
+    rdfs:label "FourArtifactsOfOlogConcreteAnchor2Example" .
+silm:instances_papers_21_ologs_and_typed_english_chapters_01_olog_as_typed_english_sections_02_four_artifacts_of_olog_concrete_anchor_2_Arrows silm:hasExample "In 'FourArtifactsOfOlogConcreteAnchor2', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the arrows set: typed-verb morphisms; e.g. has as body mass : DomesticCatBox -> BodyMassQualityBox." .

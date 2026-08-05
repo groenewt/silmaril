@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_24_rosetta_stone_cross_domain_sections_04_governance_policy_entry_point_cheese_trap_immunity__trap_certificate_identity_collapse a owl:NamedIndividual ;
+    rdfs:label "certificate_identity_collapse" .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_07_sections_02_olog_box__bridgetopaper14yonedagrowing a owl:NamedIndividual ;
+    rdfs:label "BridgeToPaper14YonedaGrowing" .

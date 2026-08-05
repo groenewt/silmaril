@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_06_pushout_and_coequalizer_zoo_sections_01_pushout_zoo_olog_box__pushoutzoo a owl:NamedIndividual ;
+    rdfs:label "PushoutZoo" .

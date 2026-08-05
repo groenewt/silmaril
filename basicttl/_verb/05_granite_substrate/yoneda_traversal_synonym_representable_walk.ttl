@@ -1,0 +1,4 @@
+silm:instances_papers_05_granite_substrate_terms_yoneda_traversal a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.05_granite_substrate.terms.yoneda_traversal" .
+silm:instances_papers_05_granite_substrate_terms_yoneda_traversal silm:hasSynonym "representable walk" .
+silm:instances_papers_05_granite_substrate_terms_yoneda_traversal silm:sourceNode silm:instances_papers_05_granite_substrate_terms_yoneda_traversal .

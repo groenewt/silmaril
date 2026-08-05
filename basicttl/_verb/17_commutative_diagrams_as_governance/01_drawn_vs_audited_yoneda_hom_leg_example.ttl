@@ -1,0 +1,3 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_01_drawn_vs_audited_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "DrawnVsAuditedYonedaHomLegExample" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_01_commutativity_as_governance_contract_sections_01_drawn_vs_audited_yoneda_hom_leg silm:hasExample "In 'DrawnVsAuditedYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, f : CatalogUpdate -> MetadataView projects the new Mittens body-mass row onto the four metadata columns the vet admin pane displays (subject, predicate, value, unit) at 10:00:00 on 2026-05-18." .

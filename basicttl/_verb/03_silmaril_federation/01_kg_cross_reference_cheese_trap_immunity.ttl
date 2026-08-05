@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_01_kg_cross_reference_cheese_trap_immunity__trap_kg_node_label_returned_as_mittens_identity a owl:NamedIndividual ;
+    rdfs:label "kg_node_label_returned_as_mittens_identity" .

@@ -1,0 +1,4 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_object a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.17_commutative_diagrams_as_governance.terms.object" .
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_object silm:hasSynonym "node" .
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_object silm:sourceNode silm:instances_papers_17_commutative_diagrams_as_governance_terms_object .

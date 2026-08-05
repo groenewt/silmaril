@@ -1,0 +1,4 @@
+silm:instances_papers_06_topology_jepa_terms_patch_cover a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.06_topology_jepa.terms.patch_cover" .
+silm:instances_papers_06_topology_jepa_terms_patch_cover silm:hasSynonym "topology open-cover" .
+silm:instances_papers_06_topology_jepa_terms_patch_cover silm:sourceNode silm:instances_papers_06_topology_jepa_terms_patch_cover .

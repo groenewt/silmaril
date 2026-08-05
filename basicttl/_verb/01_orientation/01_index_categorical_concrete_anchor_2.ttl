@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_11_concept_card_index_sections_01_index_categorical_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "01IndexCategoricalConcreteAnchor2" .

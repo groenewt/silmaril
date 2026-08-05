@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_01_patch_cover_cocone_sections_03_cocone_assembly_law_circuit_imprint_tensor__corner_1 a owl:NamedIndividual ;
+    rdfs:label "1" .

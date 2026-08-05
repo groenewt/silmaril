@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_07_sections_03_decomposition_step_6__step_theorem_t7_g3 a owl:NamedIndividual ;
+    rdfs:label "Lifecycle-phase / growth-subsequence refinement" .

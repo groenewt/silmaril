@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_01_decomposition_step_3__step_cocone_compatibility_under_stage_inclusion__legcocone_l^n+1_ a owl:NamedIndividual ;
+    rdfs:label "a cocone over a directed system is a family of arrows commuting with both the diagram arrows and the stage-inclusion arrows; on pre-existing legs the stage-inclusion is identity, so the equation reduces to \"the new cocone leg agrees with the old cocone leg on the old source-leg object\"" .

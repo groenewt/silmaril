@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_cheese_trap_immunity__trap_manifest_profile=field_list a owl:NamedIndividual ;
+    rdfs:label "manifest_profile=field_list" .

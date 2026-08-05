@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_free_cocompletion_decomposition_step_3__step_presheaf_semantics_free_cocompletion a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Presheaves as the Free Cocompletion claim, grounded in the cited literature" .

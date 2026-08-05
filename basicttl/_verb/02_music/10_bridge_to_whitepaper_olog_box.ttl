@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_12_cross_paper_bridges_sections_10_bridge_to_whitepaper_olog_box__musicolog10bridgetowhitepaperbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog10BridgeToWhitepaperBox" .

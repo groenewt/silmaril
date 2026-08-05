@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_failure_modes_decomposition_step_6__step_failure_modes_for_the_yoneda_reading a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Failure Modes for the Yoneda Reading on the Mittens presheaf is exactly the lawful construction it names" .

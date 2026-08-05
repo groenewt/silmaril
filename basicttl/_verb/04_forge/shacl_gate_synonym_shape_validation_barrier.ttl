@@ -1,0 +1,4 @@
+silm:instances_papers_04_forge_terms_shacl_gate a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.shacl_gate" .
+silm:instances_papers_04_forge_terms_shacl_gate silm:hasSynonym "shape-validation barrier" .
+silm:instances_papers_04_forge_terms_shacl_gate silm:sourceNode silm:instances_papers_04_forge_terms_shacl_gate .

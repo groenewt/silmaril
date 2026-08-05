@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_decomposition_step__step_household_csv a owl:NamedIndividual ;
+    rdfs:label "the flattened household export. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_decomposition_step__step_row_level_copy a owl:NamedIndividual ;
+    rdfs:label "the operational interchange. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_decomposition_step__step_cheese_flattening a owl:NamedIndividual ;
+    rdfs:label "categorical content is lost at the row level" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_decomposition_step__step_csv_columns__individual__microchip_id__body_mass_kg__record_id a owl:NamedIndividual ;
+    rdfs:label "the surface fields. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_decomposition_step__step_no_yoneda_profile_at_surface a owl:NamedIndividual ;
+    rdfs:label "the Yoneda profile is undefined at the CSV level" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_decomposition_step__step_surface_artifact a owl:NamedIndividual ;
+    rdfs:label "the raw operational data; not functorial transport" .

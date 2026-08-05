@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_26_circuit_imprint_tensor_sections_02_eight_corners_atlas_yoneda_hom_leg_0 a owl:NamedIndividual ;
+    rdfs:label "S02EightCornersAtlasYonedaHomLeg0" .

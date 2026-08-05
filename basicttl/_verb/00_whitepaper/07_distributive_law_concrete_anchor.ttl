@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_07_distributive_law_concrete_anchor__shaclvalidationmonad a owl:NamedIndividual ;
+    rdfs:label "SHACLValidationMonad: the SHACL validation monad T_Pi; operations Pi = {check_shape, report_pass, report_fail}; applies TartuClinicSHACLShapes to a record; produces SHACLPassReport_77 on success; the validation gate of the publish pipeline" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_07_distributive_law_concrete_anchor__distlaw_publishvalidation a owl:NamedIndividual ;
+    rdfs:label "DistLaw_PublishValidation: the distributive law lambda: T_Sigma(T_Pi(VetRecord_77)) -> T_Pi(T_Sigma(VetRecord_77)); commutes the SHACL validation (T_Pi) and publish tree (T_Sigma) monads; ensures that validate-then-publish equals publish-then-validate at the monad level" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_07_distributive_law_concrete_anchor__encyclopediapublicationmonad a owl:NamedIndividual ;
+    rdfs:label "EncyclopediaPublicationMonad: the composed monad T_Pi circ T_Sigma; the full encyclopedia publication monad; its carrier type is validated-published records; an element of T_Pi(T_Sigma(VetRecord_77)) is a validation-wrapped publish tree, e.g., SHACLPass(VetRecord_77_tree)" .

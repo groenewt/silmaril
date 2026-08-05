@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_decomposition_step_5__step_forge_morphism_for_02_node_typing_contract a owl:NamedIndividual ;
+    rdfs:label "By Yoneda, the node RuntimeAtom_Mittens is determined by its profile Hom(-, RuntimeAtom_Mittens). The typing sentence is the human-readable surrogate for that profile: it tells a reader which incoming arrows are expected." .

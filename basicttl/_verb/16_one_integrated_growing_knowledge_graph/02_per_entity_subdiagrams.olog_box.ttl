@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_olog_box__perentitysubdiagramcocone a owl:NamedIndividual ;
+    rdfs:label "PerEntitySubdiagramCocone" .

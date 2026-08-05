@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_01_source_witness_ingestion_decomposition_step_2__step_forge_morphism_for_01_source_witness_ingestion a owl:NamedIndividual ;
+    rdfs:label "The arrows cite, interpret, type, place are typed Forge operations — each is a morphism in F_04. Their composition is the ingestion composite." .

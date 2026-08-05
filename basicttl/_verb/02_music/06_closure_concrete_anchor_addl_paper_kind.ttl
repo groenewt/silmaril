@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor#cannonwitness a owl:NamedIndividual ;
+    rdfs:label "06ClosureConcreteAnchorAddlPaperKind" .
+silm:instances_papers_02_music_sections_06_closure_concrete_anchor#cannonwitness silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.02_music" .

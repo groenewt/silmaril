@@ -1,0 +1,4 @@
+silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_collapse a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.identity_collapse" .
+silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_collapse silm:hasSynonym "cheese-trap loop" .
+silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_collapse silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_identity_collapse .

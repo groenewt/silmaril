@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_07_yoneda_profile_of_the_entry_sections_05_sous_position_for_entry_circuit_imprint_tensor__corner_6 a owl:NamedIndividual ;
+    rdfs:label "6" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_12_sous_position_for_music_olog_box a owl:NamedIndividual ;
+    rdfs:label "Flat12SousPositionOlogBox" .

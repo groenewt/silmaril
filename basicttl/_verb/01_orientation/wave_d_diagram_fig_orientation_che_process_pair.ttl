@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_che_process_pair__diagram_fig_orientation_che_process_pair a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chE-process-pair" .

@@ -1,0 +1,8 @@
+external_evidence,executable_locus,observed_version,consumer,authority_boundary
+sed,/usr/bin/sed,4.9,namespace_evidence_projection_and_normalization_and_source_line_filter,external_command_spelling_is_evidence_only
+awk,/usr/bin/awk,5.2.1,namespace_and_fragment_relational_edges,external_command_spelling_is_evidence_only
+jq,/usr/bin/jq,1.7,fragment_row_tabular_projection,external_command_spelling_is_evidence_only
+yq,/usr/bin/yq,3.4.3,anchor_document_pattern_observation,external_command_spelling_is_evidence_only
+sort,/usr/bin/sort,9.7,subject_property_canonical_ordering,external_command_spelling_is_evidence_only
+python3,/usr/bin/python3,3.13,namespace_required_evidence_append_and_fragment_relational_parsing,external_command_spelling_is_evidence_only
+

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_03_cite_as_kleisli_arrow_cheese_trap_immunity__trap_cite_as_interpretation_shortcut a owl:NamedIndividual ;
+    rdfs:label "cite_as_interpretation_shortcut" .

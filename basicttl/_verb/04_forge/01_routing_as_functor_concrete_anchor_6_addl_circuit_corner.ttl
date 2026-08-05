@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_07_backend_routing_observability_sections_01_routing_as_functor_concrete_anchor_6#mittensforgeroutingfunctor a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 01_routing_as_functor" .
+silm:instances_papers_04_forge_chapters_07_backend_routing_observability_sections_01_routing_as_functor_concrete_anchor_6#mittensforgeroutingfunctor silm:hasAdditionalAttribute "circuit_corner:6" .

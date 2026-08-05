@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_01_yoneda_hom_leg_in_stage_inclusion a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLegInStageInclusion" .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_5#mittens a owl:NamedIndividual ;
+    rdfs:label "CorrectiveGrowthNonIdentityConcreteAnchor5AddlCircuitCorner" .
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_5#mittens silm:hasAdditionalAttribute "circuit_corner:3" .

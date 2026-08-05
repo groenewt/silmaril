@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_09_proof_units_sections_02_node_arrow_preservation_yoneda_hom_leg_3 a owl:NamedIndividual ;
+    rdfs:label "P07ProofUnitsNodeArrowPreservationYonedaHomLeg3" .

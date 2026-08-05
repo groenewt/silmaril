@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_01_thesis_concrete_anchor_6#mittensoutgoingyonedaprofile a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.01_orientation.chapters.flat.sections.01_thesis.concrete_anchor_6#mittensoutgoingyonedaprofile" .
+silm:instances_papers_01_orientation_chapters_flat_sections_01_thesis_concrete_anchor_6#mittensoutgoingyonedaprofile silm:hasLongDescription "The MittensOutgoingYonedaProfile is the outgoing Yoneda profile of Mittens: covariant functor X -> Hom(Mittens, X). In the paper's apparatus it appears as the symbol 'Y^out_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

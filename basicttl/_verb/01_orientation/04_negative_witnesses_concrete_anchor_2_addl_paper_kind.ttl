@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_04_negative_witnesses_concrete_anchor_2#hom_o_01catus__mittens_=_empty a owl:NamedIndividual ;
+    rdfs:label "NegativeWitnessAnchorEmptyHomSetAddlPaperKind" .
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_04_negative_witnesses_concrete_anchor_2#hom_o_01catus__mittens_=_empty silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.01_orientation" .

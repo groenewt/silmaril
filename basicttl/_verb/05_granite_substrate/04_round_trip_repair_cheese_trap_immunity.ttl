@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_04_round_trip_repair_cheese_trap_immunity__trap_round_trip_as_identity_collapse__treating_the_manifest_retur a owl:NamedIndividual ;
+    rdfs:label "round-trip-as-identity collapse: treating the manifest return path rho_X∘mu_X as a proof that Materialized(X) = X rather than as a provenance path back to the source body" .

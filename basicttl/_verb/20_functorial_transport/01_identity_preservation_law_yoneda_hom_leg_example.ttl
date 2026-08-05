@@ -1,0 +1,3 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_01_identity_preservation_law_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "IdentityPreservationLawYonedaHomLegExample" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_01_identity_preservation_law_yoneda_hom_leg silm:hasExample "In 'IdentityPreservationLawYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the functor F sends Mittens to F(Mittens), giving the central object of the transport diagram its clinic-side image." .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_01_circuit_imprint_corner_7__corner_7 a owl:NamedIndividual ;
+    rdfs:label "7" .

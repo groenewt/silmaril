@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_7#eventbatchdietarycard a owl:NamedIndividual ;
+    rdfs:label "GrowthStepsFreeMonoidConcreteAnchor7AddlPaperKind" .
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_7#eventbatchdietarycard silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.15_knowledge_graph_growth_around_mittens" .

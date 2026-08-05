@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_cocone_universality_decomposition_step_5__step_y_embedding a owl:NamedIndividual ;
+    rdfs:label "the Yoneda-traversal reading verifying that the Universal Property of the Mittens Cocone claim holds at every representable" .

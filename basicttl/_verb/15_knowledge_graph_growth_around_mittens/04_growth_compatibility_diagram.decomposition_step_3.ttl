@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_04_decomposition_step_3__step_base_topic_cocone_compatibility_diagram a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia base topic providing the formal apparatus" .

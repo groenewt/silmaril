@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_04_cheese_trap_and_identity_sections_02_controlled_category_use_decomposition_step_5__step__hom_o__x a owl:NamedIndividual ;
+    rdfs:label "reading position 5: by Yoneda naturality, the profile Hom_O(-,X) transports along functors preserving representability" .

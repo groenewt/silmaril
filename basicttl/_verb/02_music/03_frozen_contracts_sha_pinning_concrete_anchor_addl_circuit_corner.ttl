@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_03_frozen_contracts_sha_pinning_concrete_anchor#contract a owl:NamedIndividual ;
+    rdfs:label "03FrozencontractsshapinningConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_02_music_sections_03_frozen_contracts_sha_pinning_concrete_anchor#contract silm:hasAdditionalAttribute "circuit_corner:7" .

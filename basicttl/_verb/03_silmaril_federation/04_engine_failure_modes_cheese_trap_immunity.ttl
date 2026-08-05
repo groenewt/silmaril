@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_04_engine_failure_modes_cheese_trap_immunity__trap_engine_returns_source_leg_instead_of_mapped_apex a owl:NamedIndividual ;
+    rdfs:label "engine_returns_source_leg_instead_of_mapped_apex" .

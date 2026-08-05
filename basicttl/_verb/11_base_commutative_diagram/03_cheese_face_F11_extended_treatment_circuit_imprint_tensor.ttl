@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_03_cheese_face_and_siblings_sections_03_cheese_face_F11_extended_treatment_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

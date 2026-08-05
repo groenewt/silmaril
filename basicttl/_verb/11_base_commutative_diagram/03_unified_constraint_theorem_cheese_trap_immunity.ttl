@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_27_governance_shacl_deep_dive_sections_03_unified_constraint_theorem_cheese_trap_immunity__trap_constraint_identity_collapse a owl:NamedIndividual ;
+    rdfs:label "constraint_identity_collapse" .

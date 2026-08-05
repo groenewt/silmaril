@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_08_cross_paper_bridges_sections_03_bridge_to_14_yoneda_lemma_decomposition_step_5__step_typed_english_commuting_cone___path___square___yoneda_profile a owl:NamedIndividual ;
+    rdfs:label "the composed Yoneda-traversal witnessing the claim's commutativity" .

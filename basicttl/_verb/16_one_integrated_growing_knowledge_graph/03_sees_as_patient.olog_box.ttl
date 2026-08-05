@@ -1,0 +1,2 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_olog_box__seesaspatienttypedrolearrow a owl:NamedIndividual ;
+    rdfs:label "SeesAsPatientTypedRoleArrow" .

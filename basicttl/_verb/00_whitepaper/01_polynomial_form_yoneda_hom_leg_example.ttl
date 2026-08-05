@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "PolynomialFormYonedaHomLegExample" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_yoneda_hom_leg silm:hasExample "In 'PolynomialFormYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, In 'Polynomial Form', the sigma_applied_to_record arrow maps VetRecord_77 to FourCopyVetRecord = Sigma(VetRecord_77); monic because VetRecord_77 is injected distinctly into each of the four tagged copies." .

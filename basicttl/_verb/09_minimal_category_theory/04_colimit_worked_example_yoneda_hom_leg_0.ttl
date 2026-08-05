@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_04_colimit_worked_example_yoneda_hom_leg_0_classification_leg a owl:NamedIndividual ;
+    rdfs:label "S04ColimitWorkedExampleYonedaHomLeg0" .

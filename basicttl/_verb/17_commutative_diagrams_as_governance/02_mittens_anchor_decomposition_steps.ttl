@@ -1,0 +1,12 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_decomposition_step__step_step1_symbol_for_02_mittens_anchor a owl:NamedIndividual ;
+    rdfs:label "name the typed symbols of the section (The \\texorpdfstring{\\(\\Mittens\\)) — typed objects in C_17 and the typed arrows between them, no bare letters allowed" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_decomposition_step__step_step2_symbol_for_02_mittens_anchor a owl:NamedIndividual ;
+    rdfs:label "name the operation of composition: g circ f is first f then g, on the typed arrows that the section displays for the Mittens audit" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_decomposition_step__step_step3_symbol_for_02_mittens_anchor a owl:NamedIndividual ;
+    rdfs:label "cite the base topic that licenses the equation: composition associativity in Joy of Cats S3, naturality of the Yoneda embedding in S6, or the colimit universal property in S11" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_decomposition_step__step_step4_symbol_for_02_mittens_anchor a owl:NamedIndividual ;
+    rdfs:label "anchor the equation concretely in the Mittens body-mass write at 4.7 kg, recorded by the vet at 10:00:03 on 2026-05-18, certified by the signed auth-log line under policy CAT-17" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_decomposition_step__step_step5_symbol_for_02_mittens_anchor a owl:NamedIndividual ;
+    rdfs:label "transport the audited equation through the Yoneda profile of AuthorizationReport — every downstream auditor inherits one arrow-class regardless of which route they walked" .
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_02_mittens_anchor_decomposition_step__step_step6_symbol_for_02_mittens_anchor a owl:NamedIndividual ;
+    rdfs:label "recap: the section binds two operationally different routes through the integrated knowledge-graph of Mittens into one governed claim by the audited path equation" .

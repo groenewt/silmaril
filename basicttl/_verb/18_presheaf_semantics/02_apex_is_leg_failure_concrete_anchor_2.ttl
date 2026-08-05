@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_apex_is_leg_failure_concrete_anchor_2_P_visit_1_ a owl:NamedIndividual ;
+    rdfs:label "P1802_apex_is_leg_failureConcreteAnchor2" .

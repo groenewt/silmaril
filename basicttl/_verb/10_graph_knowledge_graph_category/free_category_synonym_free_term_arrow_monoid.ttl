@@ -1,0 +1,4 @@
+silm:instances_papers_10_graph_knowledge_graph_category_terms_free_category a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.10_graph_knowledge_graph_category.terms.free_category" .
+silm:instances_papers_10_graph_knowledge_graph_category_terms_free_category silm:hasSynonym "free term-arrow monoid" .
+silm:instances_papers_10_graph_knowledge_graph_category_terms_free_category silm:sourceNode silm:instances_papers_10_graph_knowledge_graph_category_terms_free_category .

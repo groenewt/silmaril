@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_04_inconsistency_as_non_commuting_decomposition_step_6__step_inconsistency_equals_non_commutativity a owl:NamedIndividual ;
+    rdfs:label "the one-line recap of the section's load-bearing claim" .

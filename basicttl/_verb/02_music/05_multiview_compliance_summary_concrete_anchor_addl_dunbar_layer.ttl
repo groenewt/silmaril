@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_05_multiview_compliance_summary_concrete_anchor#diagram a owl:NamedIndividual ;
+    rdfs:label "05MultiviewcompliancesummaryConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_05_multiview_compliance_summary_concrete_anchor#diagram silm:hasAdditionalAttribute "dunbar_layer:0" .

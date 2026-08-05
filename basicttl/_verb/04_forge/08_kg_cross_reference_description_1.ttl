@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_sections_08_kg_cross_reference_concrete_anchor_1#mittensforgeroutingfunctor a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.sections.08_kg_cross_reference.concrete_anchor_1#mittensforgeroutingfunctor" .
+silm:instances_papers_04_forge_sections_08_kg_cross_reference_concrete_anchor_1#mittensforgeroutingfunctor silm:hasLongDescription "The MittensForgeRoutingFunctor is In section 'Knowledge-Graph Cross-Reference --- The Forge as Knowledge Map' the bare symbol |[instancenode]| Mittens anchors to MittensForgeRoutingFunctor: The routing functor R: F_04 to Backend that sends each typed source leg to a backend write target while preserving the leg's Yoneda profile (incoming and outgoing arrows)." .

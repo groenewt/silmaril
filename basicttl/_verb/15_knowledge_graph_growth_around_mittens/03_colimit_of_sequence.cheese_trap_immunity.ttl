@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_03_cheese_trap_immunity__trap_snapshot_is_the_limit a owl:NamedIndividual ;
+    rdfs:label "snapshot_is_the_limit" .

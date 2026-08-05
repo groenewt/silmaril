@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_01_kleisli_category_overview_decomposition_step_1__step_g_o^kl_f_=_mu_c_o_freesigmag_o_f a owl:NamedIndividual ;
+    rdfs:label "Kleisli composition of f: A -> Free(Sigma)(B) and g: B -> Free(Sigma)(C) is: apply f, then lift g along the monad functor Free(Sigma), then flatten with mu_C. The result is a new Kleisli arrow from A to C." .

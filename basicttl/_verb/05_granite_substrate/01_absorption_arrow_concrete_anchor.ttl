@@ -1,0 +1,8 @@
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_01_absorption_arrow_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic, annual vet exam 2026-05-18" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_01_absorption_arrow_concrete_anchor__absorptionarrowsymbol a owl:NamedIndividual ;
+    rdfs:label "The absorption arrow alpha from raw cannon text about cheese-trap (cannon/cheese.md warning about rational mastery) to the typed OlogNode CheeseTrapWarning in G_Granite; alpha carries the interpretation as a typed morphism" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_01_absorption_arrow_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload, sha256:7f4a...bf2c, evidence leg" .
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_01_absorption_arrow_concrete_anchor__fusedadapter a owl:NamedIndividual ;
+    rdfs:label "A_* the fused adapter — source of the absorption arrow into T_full" .

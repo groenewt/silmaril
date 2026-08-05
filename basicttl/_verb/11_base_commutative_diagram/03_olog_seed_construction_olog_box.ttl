@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_14_taxonomy_rdf_olog_seed_sections_03_olog_seed_construction_olog_box__basecommutativediagram_s03ologseedconstruction a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S03ologseedconstruction" .

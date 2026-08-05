@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_3#headobs77 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.04.sections.01.concrete_anchor.3#headobs77" .
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_3#headobs77 silm:hasLongDescription "The HeadObs77 is the source-leg object for the head-observation leg. In the paper's apparatus it appears as the symbol 'LegSource(l)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

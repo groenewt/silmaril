@@ -1,0 +1,32 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__householdentityvariable a owl:NamedIndividual ;
+    rdfs:label "a variable ranging over the four named household entities Mittens, Pumpkin, Vet77, Household; never a free index" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__upperlevelindexcategory a owl:NamedIndividual ;
+    rdfs:label "the four-object index category whose objects are Mittens, Pumpkin, Vet77, Household and whose arrows are the typed cross-entity reference arrows of the household" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__upperlevelsourcediagram a owl:NamedIndividual ;
+    rdfs:label "the inclusion functor that sends each entity name e to its per-entity colimit apex colim D_e and each cross-entity reference arrow to its categorical realisation" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__mittensapex a owl:NamedIndividual ;
+    rdfs:label "Mittens the individual cat presented as the colimit of her observation, identifier, quality, and role legs per paper 15" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__pumpkinapex a owl:NamedIndividual ;
+    rdfs:label "Pumpkin the sibling cat, the second cat in the household, presented as the colimit of her own per-entity diagram" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__vet77apex a owl:NamedIndividual ;
+    rdfs:label "Dr. Patel, the household-registered veterinarian, presented as the colimit of her DEA number, her clinic, her appointments, and her authored records" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__householddwellingapex a owl:NamedIndividual ;
+    rdfs:label "the dwelling at 77 Maple Street, presented as the colimit of its postal address, the cat tree, the food bowls, the litter station, the microchip registry account, and the residents enrolled in it" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__householdkg a owl:NamedIndividual ;
+    rdfs:label "the integrated household knowledge-graph apex, the single object resolved when the encyclopedia is asked \"return the entire household ontology\"" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__integrationmediator a owl:NamedIndividual ;
+    rdfs:label "the unique cocone-mediator arrow HouseholdKG -> colim D_e for entity e; iota_Mittens is the household-to-cat arrow that strictly does NOT collapse the household onto Mittens" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__microchipidentifiesarrow a owl:NamedIndividual ;
+    rdfs:label "the cross-entity identity-leg arrow colim D_Mittens -> colim D_Pumpkin that links the two cats through their shared household microchip registry without collapsing them" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__memberofarrow a owl:NamedIndividual ;
+    rdfs:label "the typed household-membership arrow colim D_e -> colim D_Household; e is enrolled as a resident" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__seesaspatientarrow a owl:NamedIndividual ;
+    rdfs:label "the typed professional-relation arrow Vet77_apex -> colim D_cat; Dr. Patel sees the cat as a patient" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__crossrefersarrow a owl:NamedIndividual ;
+    rdfs:label "the typed evidence cross-reference arrow Vet77_apex -> colim D_Household; the vet records cite the household as a billable site of care" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__annualbill77 a owl:NamedIndividual ;
+    rdfs:label "a concrete competing cocone target: AnnualBill77, the household's annual vet-bill query result, which receives one alpha_e arrow from each per-entity apex and a unique mediator u from HouseholdKG" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__annualbillcoconearrow a owl:NamedIndividual ;
+    rdfs:label "the per-entity component of the AnnualBill77 cocone: alpha_Mittens lists Mittens's vet visits, alpha_Pumpkin lists Pumpkin's, alpha_Vet77 lists the vet's authored invoices, alpha_Household resolves the billing address" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__annualbillmediator a owl:NamedIndividual ;
+    rdfs:label "the unique mediator HouseholdKG -> AnnualBill77 promised by the universal property; the encyclopedia's formal warrant for \"one annual bill for the whole household\"" .

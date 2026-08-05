@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_21_bridges_avogadro_disint_canonq_visual_sections_04_bridge_visual_discipline_decomposition_step_2__step_compose_relator a owl:NamedIndividual ;
+    rdfs:label "compose typed arrows in the free path category Free(G_11) modulo the relator R_11" .

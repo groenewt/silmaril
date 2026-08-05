@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_05_yoneda_lemma_and_representables_sections_01_representable_functors_decomposition_step_5__step_homc_minus_mittens a owl:NamedIndividual ;
+    rdfs:label "Yoneda traversal" .

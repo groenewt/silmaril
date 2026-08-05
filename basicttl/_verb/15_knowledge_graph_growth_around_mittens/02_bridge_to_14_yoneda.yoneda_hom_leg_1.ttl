@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_07_sections_02_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "BridgeTo14YonedaYonedaHomLeg1" .

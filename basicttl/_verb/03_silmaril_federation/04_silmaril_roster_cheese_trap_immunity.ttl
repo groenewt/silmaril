@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_04_silmaril_roster_cheese_trap_immunity__trap_roster_entry_equals_participant_identity a owl:NamedIndividual ;
+    rdfs:label "roster_entry_equals_participant_identity" .

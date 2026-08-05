@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_01_decomposition_step_1__step_e^vet_n a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T2-G1 (Vet-visit stage step admits a structured batch)" .

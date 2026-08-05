@@ -1,0 +1,4 @@
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_verb a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.21_ologs_and_typed_english.terms.typed_verb" .
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_verb silm:hasSynonym "olog arrow" .
+silm:instances_papers_21_ologs_and_typed_english_terms_typed_verb silm:sourceNode silm:instances_papers_21_ologs_and_typed_english_terms_typed_verb .

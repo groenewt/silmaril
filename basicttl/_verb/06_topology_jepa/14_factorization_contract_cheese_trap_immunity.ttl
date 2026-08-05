@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_flat_sections_14_factorization_contract_cheese_trap_immunity__trap_embedding_latent_collapse_or_encoder_output_identity a owl:NamedIndividual ;
+    rdfs:label "embedding_latent_collapse_or_encoder_output_identity" .

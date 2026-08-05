@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_14_validation_and_deployment_sections_02_validation_audit_cosmos_olog_box__validationauditcosmos a owl:NamedIndividual ;
+    rdfs:label "ValidationAuditCosmos" .

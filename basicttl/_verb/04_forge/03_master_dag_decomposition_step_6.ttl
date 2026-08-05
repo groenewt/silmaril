@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_03_master_dag_decomposition_step_6__step_forge_morphism_for_03_master_dag a owl:NamedIndividual ;
+    rdfs:label "MasterDAG: Forge typing discipline enforced. — concrete forge-domain reading in section 'The Forge Master Graph'." .

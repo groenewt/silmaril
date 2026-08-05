@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_12_worked_counterexamples_avogadro_sections_01_worked_counterexamples_olog_box__basecommutativediagram_s01workedcounterexamples a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S01workedcounterexamples" .

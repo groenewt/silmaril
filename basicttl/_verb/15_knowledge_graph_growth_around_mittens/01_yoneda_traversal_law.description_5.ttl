@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_5#admissibleheadprobe a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.04.sections.01.concrete_anchor.5#admissibleheadprobe" .
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_5#admissibleheadprobe silm:hasLongDescription "The AdmissibleHeadProbe is the composite probe X -> HeadObs77 -> Mittens at stage n. In the paper's apparatus it appears as the symbol 'f^{(n)}', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

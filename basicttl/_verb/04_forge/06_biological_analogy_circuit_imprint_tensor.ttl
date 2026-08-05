@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_06_biological_analogy_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 06_biological_analogy [LLL]" .

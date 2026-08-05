@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_16_bridges_yoneda_sheaf_adj_kan_sections_03_cross_paper_bridge_adjunctions_olog_box__basecommutativediagram_s03crosspaperbridgeadjunctions a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S03crosspaperbridgeadjunctions" .

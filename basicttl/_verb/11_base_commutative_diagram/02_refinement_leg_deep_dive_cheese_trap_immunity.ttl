@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_06_leg_deep_dives_class_refine_sections_02_refinement_leg_deep_dive_cheese_trap_immunity__trap_fluent_prose_admitted_without_typed_path_check a owl:NamedIndividual ;
+    rdfs:label "fluent_prose_admitted_without_typed_path_check" .

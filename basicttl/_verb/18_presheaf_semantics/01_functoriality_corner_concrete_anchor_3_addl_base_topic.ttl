@@ -1,0 +1,3 @@
+silm:instances_papers_18_presheaf_semantics_01_functoriality_corner_concrete_anchor_3_P_visit_0_#mittensvetrecordpresheafanchornode3 a owl:NamedIndividual ;
+    rdfs:label "P1801_functoriality_cornerConcreteAnchor3AddlBaseTopic" .
+silm:instances_papers_18_presheaf_semantics_01_functoriality_corner_concrete_anchor_3_P_visit_0_#mittensvetrecordpresheafanchornode3 silm:hasAdditionalAttribute "base_topic:presheaf" .

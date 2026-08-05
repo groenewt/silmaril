@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_5#mittens a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.05.sections.01.concrete_anchor.5#mittens" .
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_5#mittens silm:hasLongDescription "The Mittens is the cat; invariant under both additive and corrective growth. In the paper's apparatus it appears as the symbol 'Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

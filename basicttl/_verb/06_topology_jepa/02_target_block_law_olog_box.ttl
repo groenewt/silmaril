@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_04_ijepa_masking_law_sections_02_target_block_law_olog_box__02targetblocklaw a owl:NamedIndividual ;
+    rdfs:label "02TargetBlockLaw" .

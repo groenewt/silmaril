@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_08_cheese_face_closure_for_music_sections_01_title_as_discipline_face_olog_box__musicolog01titleasdisciplinefbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog01TitleAsDisciplineFBox" .

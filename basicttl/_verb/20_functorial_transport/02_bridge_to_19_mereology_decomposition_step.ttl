@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_02_bridge_to_19_mereology_decomposition_step__step_paper_19_per_leg_structure a owl:NamedIndividual ;
+    rdfs:label "Mittens as colimit of typed mereological legs" .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_02_bridge_to_19_mereology_decomposition_step__step_transportf_on_each_leg a owl:NamedIndividual ;
+    rdfs:label "the transport functor applied leg-by-leg" .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_02_bridge_to_19_mereology_decomposition_step__step_per_leg_yoneda_representability a owl:NamedIndividual ;
+    rdfs:label "paper 19 theorem M1. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_02_bridge_to_19_mereology_decomposition_step__step_transported_head_observation_leg a owl:NamedIndividual ;
+    rdfs:label "the clinic-side image of the household head-observation" .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_02_bridge_to_19_mereology_decomposition_step__step_per_leg_profile_preservation a owl:NamedIndividual ;
+    rdfs:label "chapter 04 fully faithful condition preserves the per-leg profile" .
+silm:instances_papers_20_functorial_transport_chapters_08_cross_paper_bridges_sections_02_bridge_to_19_mereology_decomposition_step__step_bridge_to_paper_19 a owl:NamedIndividual ;
+    rdfs:label "paper 19's per-leg structure transports leg-by-leg under paper 20" .

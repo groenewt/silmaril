@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_03_ledger_row_anatomy_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "LedgerRowAnchorEditTarget" .

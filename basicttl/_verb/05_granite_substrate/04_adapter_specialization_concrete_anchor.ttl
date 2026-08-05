@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_04_adapter_specialization_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual — the domestic cat at the Tartu Animal Clinic whose annual vet exam on 2026-05-18 produced the evidence chunk c-0x7f4a" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_04_adapter_specialization_concrete_anchor__adapterspecializationsymbol a owl:NamedIndividual ;
+    rdfs:label "For the evidence leg: A_evidence = Specialize(evidence, ManifestTrain(D_evidence)) where D_evidence is the sub-diagram of D_Mittens restricted to evidence-typed chunks. A_evidence is specialized to answer questions about information artifacts about Mittens, not about Mittens taxonomy or body mass." .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_04_adapter_specialization_concrete_anchor__mittenssourcediagram a owl:NamedIndividual ;
+    rdfs:label "the source diagram: functor from typed-leg index category into G_Granite whose colimit is Mittens" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_04_adapter_specialization_concrete_anchor__clinicalcareplan77tartu a owl:NamedIndividual ;
+    rdfs:label "clinical care plan record 77 at Tartu clinic: receives universal-mediator from Mittens apex but not from storage row — concrete proof of strict Hom inclusion" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_04_adapter_specialization_concrete_anchor__basefoundationmodel a owl:NamedIndividual ;
+    rdfs:label "M_0 base foundation model — pre-specialization checkpoint that becomes M_i after typed adapter composition" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_04_adapter_specialization_concrete_anchor__specializedmodel a owl:NamedIndividual ;
+    rdfs:label "M_i specialized model on leg type i — concrete output of M_0 composed with adapter A_i" .

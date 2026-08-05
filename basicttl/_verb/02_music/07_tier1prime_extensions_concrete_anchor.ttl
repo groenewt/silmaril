@@ -1,0 +1,18 @@
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__schemaatlas a owl:NamedIndividual ;
+    rdfs:label "the Mittens body-mass observation record from the May 2026 vet visit at Tartu Animal Clinic, entering the engine as a typed quality-claim source packet" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__x a owl:NamedIndividual ;
+    rdfs:label "the Mittens vaccination record FVRCP-2026-03-15, entering as a typed evidence packet with provenance and validation envelope" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__traversalgovernance a owl:NamedIndividual ;
+    rdfs:label "the Mittens microchip-id witness 985112000123456 entering as a typed identifier source leg into the Music engine cocone" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__forbiddenpathrules a owl:NamedIndividual ;
+    rdfs:label "the Mittens coat-pattern observation (torbie, three-color) entering as a typed quality-claim into the manifest profile reader" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__ a owl:NamedIndividual ;
+    rdfs:label "the Mittens domestic-cat classification leg (DomesticCat) as a typed source-leg arrow that anchors BY Mittens, not as an identity" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__manifestcache a owl:NamedIndividual ;
+    rdfs:label "the Felis catus / TSN 183798 taxonomy source leg, recoverable as a typed leg into D_Mittens but not interchangeable with the colimit apex Mittens" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__traversal a owl:NamedIndividual ;
+    rdfs:label "the ShapeGate that validates the body-mass measurement schema (kg, range 2-12) before admission to the task node" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__admittednode a owl:NamedIndividual ;
+    rdfs:label "the TaskNode that records the admitted body-mass measurement as the engine's executable transformation" .
+silm:instances_papers_02_music_sections_07_tier1prime_extensions_concrete_anchor__ologclaim a owl:NamedIndividual ;
+    rdfs:label "the TraceWitness emitted from the body-mass measurement task, the outgoing-profile representative of the typed work" .

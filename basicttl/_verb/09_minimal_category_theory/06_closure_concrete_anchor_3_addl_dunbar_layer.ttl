@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_sections_06_closure_concrete_anchor_3_BodyMassMeasurement99#bodymassmeasurement99 a owl:NamedIndividual ;
+    rdfs:label "S06ClosureConcreteAnchor3AddlDunbarLayer" .
+silm:instances_papers_09_minimal_category_theory_sections_06_closure_concrete_anchor_3_BodyMassMeasurement99#bodymassmeasurement99 silm:hasAdditionalAttribute "dunbar_layer:0" .

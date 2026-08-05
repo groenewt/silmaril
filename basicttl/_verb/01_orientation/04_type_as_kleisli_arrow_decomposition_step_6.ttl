@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_04_type_as_kleisli_arrow_decomposition_step_6__step_type^kl_holds a owl:NamedIndividual ;
+    rdfs:label "The type Kleisli arrow assigns an olog sort to each witness by factoring through the Node-or-Arrow gate; the gate is the admissibility predicate that determines which node sorts are available; the result is a typed leg in O_01." .

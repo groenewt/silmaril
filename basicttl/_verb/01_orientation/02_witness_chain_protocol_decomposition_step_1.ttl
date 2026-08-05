@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_02_witness_chain_protocol_decomposition_step_1__step_locate;_extract;_key;_cite_four_sequential_gates a owl:NamedIndividual ;
+    rdfs:label "The four gates are: locate (find the file on disk), extract (copy the relevant lines verbatim), key (assign a local citation key to the verbatim quote), cite (wrap as a Kleisli witness term in Free(Sigma)). Each gate is a named operation with a specific input and output." .

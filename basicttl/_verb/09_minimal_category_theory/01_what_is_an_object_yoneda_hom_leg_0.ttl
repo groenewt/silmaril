@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_01_what_is_an_object_yoneda_hom_leg_0_classification_leg a owl:NamedIndividual ;
+    rdfs:label "S01WhatIsAnObjectYonedaHomLeg0" .

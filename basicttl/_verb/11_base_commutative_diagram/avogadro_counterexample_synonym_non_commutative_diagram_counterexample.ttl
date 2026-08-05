@@ -1,0 +1,4 @@
+silm:instances_papers_11_base_commutative_diagram_terms_avogadro_counterexample a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.11_base_commutative_diagram.terms.avogadro_counterexample" .
+silm:instances_papers_11_base_commutative_diagram_terms_avogadro_counterexample silm:hasSynonym "non-commutative diagram counterexample" .
+silm:instances_papers_11_base_commutative_diagram_terms_avogadro_counterexample silm:sourceNode silm:instances_papers_11_base_commutative_diagram_terms_avogadro_counterexample .

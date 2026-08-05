@@ -1,0 +1,5 @@
+silm:instances_papers_06_topology_jepa_terms_open_cover a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.06_topology_jepa.terms.open_cover" .
+silm:instances_papers_06_topology_jepa_terms_open_cover silm:hasAntonym silm:instances_papers_06_topology_jepa_terms_closed_point_set .
+silm:instances_papers_06_topology_jepa_terms_open_cover silm:sourceNode silm:instances_papers_06_topology_jepa_terms_open_cover .
+silm:instances_papers_06_topology_jepa_terms_open_cover silm:targetNode silm:instances_papers_06_topology_jepa_terms_closed_point_set .

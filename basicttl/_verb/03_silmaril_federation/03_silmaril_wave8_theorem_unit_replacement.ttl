@@ -1,0 +1,3 @@
+silm:instances_papers_03_silmaril_federation_replacement_silmaril_wave8_theorem_unit a owl:NamedIndividual ;
+    rdfs:label "SilmarilWave8TheoremUnitReplacement" .
+silm:instances_papers_03_silmaril_federation_replacement_silmaril_wave8_theorem_unit silm:sourceNode silm:instances_papers_03_silmaril_federation_replacement_silmaril_wave8_theorem_unit .

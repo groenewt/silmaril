@@ -1,0 +1,2 @@
+silm:instances_papers_25_sheaf_gluing_citation_spivakkent2012ologs a owl:NamedIndividual ;
+    rdfs:label "P25CitationSpivakkent2012ologs" .

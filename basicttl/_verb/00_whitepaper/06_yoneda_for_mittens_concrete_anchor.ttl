@@ -1,0 +1,10 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_06_yoneda_for_mittens_concrete_anchor__d_mittens_category a owl:NamedIndividual ;
+    rdfs:label "D_Mittens_Category: the diagram category D_Mittens over which the Yoneda lemma is applied; its objects are the twelve typed source nodes (VetRecord_77, MicrochipID_44, BodyMassQuality, WeightMeas_3450g, Value_3450, Unit_grams, PetRole, SleepProcess_7h, SHACLPassReport_77, AuditTrail_77, DomesticCat, FelisCatusTSN183798); its apex is MittensColimitApex" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_06_yoneda_for_mittens_concrete_anchor__mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "MittensColimitApex: the colimit apex — the assembled individual Mittens; the object whose representable functor Hom(-,MittensColimitApex) is the Yoneda subject" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_06_yoneda_for_mittens_concrete_anchor__clinicallabelpresheaf a owl:NamedIndividual ;
+    rdfs:label "ClinicalLabelPresheaf: the concrete presheaf that assigns to each D_Mittens source object X the set of clinical labels recorded against X in VetRecord_77; used as the concrete F in the Yoneda bijection Nat(Hom(-,Mittens), F) iso F(Mittens)" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_06_yoneda_for_mittens_concrete_anchor__yonedanaturaltransformationset a owl:NamedIndividual ;
+    rdfs:label "YonedaNaturalTransformationSet: the set of natural transformations from the representable functor Hom(-,MittensColimitApex) into ClinicalLabelPresheaf; by the Yoneda lemma, this set is in bijection with the clinical labels at MittensColimitApex" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_06_yoneda_for_mittens_concrete_anchor__sousobservation_mittens a owl:NamedIndividual ;
+    rdfs:label "SousObservation_Mittens: the sous reading position at MittensColimitApex; the role that traverses the Yoneda profile to read all twelve leg values without replacing the apex; defined in section 04_sous_profile_law of paper-00" .

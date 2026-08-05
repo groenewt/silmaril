@@ -1,0 +1,2110 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_cheese_trap__trap_bridgeto15_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo15_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors__bridgeto15anchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors__bridgeto15crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors%23bridgeto15anchor
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo15ConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "BridgeTo15ConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "BridgeTo15ConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "BridgeTo15ConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.01_bridge_to_15.concrete_anchors#bridgeto15anchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:5" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The BridgeTo15Anchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_decomposition_steps__step_bridgeto15_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming bridge from per-entity (paper 15) to per-integration (paper 16) discipline" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_decomposition_steps__step_cocone_compatibility_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_decomposition_steps__step_bridgeto15_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors%23bridgeto15crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.01_bridge_to_15.concrete_anchors#bridgeto15crossarrow" ;
+    silm:hasLongDescription "The BridgeTo15CrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.01_bridge_to_15.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_01_bridge_to_15_olog_box__bridgeto15
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo15" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_cheese_trap_immunity__trap_part_whole_identity_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "part_whole_identity_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_circuit_imprint_c4__corner_4
+    a owl:NamedIndividual ;
+    rdfs:label "4" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__householdentityvariable
+    a owl:NamedIndividual ;
+    rdfs:label "a variable ranging over the four named household entities Mittens, Pumpkin, Vet77, Household; never a free index" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__upperlevelindexcategory
+    a owl:NamedIndividual ;
+    rdfs:label "the four-object index category whose objects are Mittens, Pumpkin, Vet77, Household and whose arrows are the typed cross-entity reference arrows of the household" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__upperlevelsourcediagram
+    a owl:NamedIndividual ;
+    rdfs:label "the inclusion functor that sends each entity name e to its per-entity colimit apex colim D_e and each cross-entity reference arrow to its categorical realisation" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__mittensapex
+    a owl:NamedIndividual ;
+    rdfs:label "Mittens the individual cat presented as the colimit of her observation, identifier, quality, and role legs per paper 15" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__pumpkinapex
+    a owl:NamedIndividual ;
+    rdfs:label "Pumpkin the sibling cat, the second cat in the household, presented as the colimit of her own per-entity diagram" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__vet77apex
+    a owl:NamedIndividual ;
+    rdfs:label "Dr. Patel, the household-registered veterinarian, presented as the colimit of her DEA number, her clinic, her appointments, and her authored records" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__householddwellingapex
+    a owl:NamedIndividual ;
+    rdfs:label "the dwelling at 77 Maple Street, presented as the colimit of its postal address, the cat tree, the food bowls, the litter station, the microchip registry account, and the residents enrolled in it" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__householdkg
+    a owl:NamedIndividual ;
+    rdfs:label "the integrated household knowledge-graph apex, the single object resolved when the encyclopedia is asked \"return the entire household ontology\"" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "the unique cocone-mediator arrow HouseholdKG -> colim D_e for entity e; iota_Mittens is the household-to-cat arrow that strictly does NOT collapse the household onto Mittens" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__microchipidentifiesarrow
+    a owl:NamedIndividual ;
+    rdfs:label "the cross-entity identity-leg arrow colim D_Mittens -> colim D_Pumpkin that links the two cats through their shared household microchip registry without collapsing them" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__memberofarrow
+    a owl:NamedIndividual ;
+    rdfs:label "the typed household-membership arrow colim D_e -> colim D_Household; e is enrolled as a resident" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__seesaspatientarrow
+    a owl:NamedIndividual ;
+    rdfs:label "the typed professional-relation arrow Vet77_apex -> colim D_cat; Dr. Patel sees the cat as a patient" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__crossrefersarrow
+    a owl:NamedIndividual ;
+    rdfs:label "the typed evidence cross-reference arrow Vet77_apex -> colim D_Household; the vet records cite the household as a billable site of care" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__annualbill77
+    a owl:NamedIndividual ;
+    rdfs:label "a concrete competing cocone target: AnnualBill77, the household's annual vet-bill query result, which receives one alpha_e arrow from each per-entity apex and a unique mediator u from HouseholdKG" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__annualbillcoconearrow
+    a owl:NamedIndividual ;
+    rdfs:label "the per-entity component of the AnnualBill77 cocone: alpha_Mittens lists Mittens's vet visits, alpha_Pumpkin lists Pumpkin's, alpha_Vet77 lists the vet's authored invoices, alpha_Household resolves the billing address" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors__annualbillmediator
+    a owl:NamedIndividual ;
+    rdfs:label "the unique mediator HouseholdKG -> AnnualBill77 promised by the universal property; the encyclopedia's formal warrant for \"one annual bill for the whole household\"" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23householdentityvariable
+    a owl:NamedIndividual ;
+    rdfs:label "HigherOrderIndexCategoryConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "HigherOrderIndexCategoryConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "HigherOrderIndexCategoryConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "HigherOrderIndexCategoryConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#householdentityvariable" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:5" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The HouseholdEntityVariable is a variable ranging over the four named household entities Mittens, Pumpkin, Vet77, Household; never a free index. In the paper's apparatus it appears as the symbol 'e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors
+    a owl:NamedIndividual ;
+    rdfs:label "HigherOrderIndexCategoryConcreteAnchorsExample" ;
+    silm:hasExample "In 'HigherOrderIndexCategoryConcreteAnchors', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, Dr. Patel, the household-registered veterinarian, presented as the colimit of her DEA number, her clinic, her appointments, and her authored records; also, the dwelling at 77 Maple Street, presented as the colimit of its postal address, the cat tree, the food bowls, the litter station, the microchip registry account, and the residents enrolled in it; also, the cross-entity identity-leg arrow colim D_Mittens -> colim D_Pumpkin that links the two cats through their shared household microchip registry without collapsing them." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_householdkg
+    a owl:NamedIndividual ;
+    rdfs:label "the integrated household knowledge-graph apex; the unique cocone target above the per-entity apices." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_colim_d%5Eint
+    a owl:NamedIndividual ;
+    rdfs:label "the colimit of the upper-level diagram D^int; glue all per-entity apices along the cross-entity arrows, then take the universal cocone target." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_universal_cocone_householdkg__iota_e
+    a owl:NamedIndividual ;
+    rdfs:label "the integrated apex together with its integration mediators is the universal cocone over D^int." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_iota_mittens___householdkg__%3E_colim_d_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "the integration mediator that resolves a Mittens-claim in the integrated graph by factoring it through the Mittens sub-apex." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_hom_c___householdkg_determines_householdkg_up_to_unique_iso
+    a owl:NamedIndividual ;
+    rdfs:label "the integrated apex inherits every per-entity probe via the integration mediators; by Yoneda naturality the Hom-profile fixes HouseholdKG." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_decomposition_steps__step_householdkg__%3D_colim_d%5Eint
+    a owl:NamedIndividual ;
+    rdfs:label "the household-as-one-graph is the colimit of the per-entity colimits, glued by typed cross-entity reference arrows." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23upperlevelindexcategory
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#upperlevelindexcategory" ;
+    silm:hasLongDescription "The UpperLevelIndexCategory is the four-object index category whose objects are Mittens, Pumpkin, Vet77, Household and whose arrows are the typed cross-entity reference arrows of the household. In the paper's apparatus it appears as the symbol 'J^int', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23upperlevelsourcediagram
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#upperlevelsourcediagram" ;
+    silm:hasLongDescription "The UpperLevelSourceDiagram is the inclusion functor that sends each entity name e to its per-entity colimit apex colim D_e and each cross-entity reference arrow to its categorical realisation. In the paper's apparatus it appears as the symbol 'D^int', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23mittensapex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#mittensapex" ;
+    silm:hasLongDescription "The MittensApex is Mittens the individual cat presented as the colimit of her observation, identifier, quality, and role legs per paper 15. In the paper's apparatus it appears as the symbol 'colim D_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23pumpkinapex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#pumpkinapex" ;
+    silm:hasLongDescription "The PumpkinApex is Pumpkin the sibling cat, the second cat in the household, presented as the colimit of her own per-entity diagram. In the paper's apparatus it appears as the symbol 'colim D_Pumpkin', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23vet77apex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#vet77apex" ;
+    silm:hasLongDescription "The Vet77Apex is Dr. Patel, the household-registered veterinarian, presented as the colimit of her DEA number, her clinic, her appointments, and her authored records. In the paper's apparatus it appears as the symbol 'Vet77_apex', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23householddwellingapex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#householddwellingapex" ;
+    silm:hasLongDescription "The HouseholdDwellingApex is the dwelling at 77 Maple Street, presented as the colimit of its postal address, the cat tree, the food bowls, the litter station, the microchip registry account, and the residents enrolled in it. In the paper's apparatus it appears as the symbol 'colim D_Household', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23householdkg
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#householdkg" ;
+    silm:hasLongDescription "The HouseholdKG is the integrated household knowledge-graph apex, the single object resolved when the encyclopedia is asked \"return the entire household ontology\". In the paper's apparatus it appears as the symbol 'HouseholdKG', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is the unique cocone-mediator arrow HouseholdKG -> colim D_e for entity e; iota_Mittens is the household-to-cat arrow that strictly does NOT collapse the household onto Mittens. In the paper's apparatus it appears as the symbol 'iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23microchipidentifiesarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#microchipidentifiesarrow" ;
+    silm:hasLongDescription "The MicrochipIdentifiesArrow is the cross-entity identity-leg arrow colim D_Mittens -> colim D_Pumpkin that links the two cats through their shared household microchip registry without collapsing them. In the paper's apparatus it appears as the symbol 'microchip_identifies', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23memberofarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#memberofarrow" ;
+    silm:hasLongDescription "The MemberOfArrow is the typed household-membership arrow colim D_e -> colim D_Household; e is enrolled as a resident. In the paper's apparatus it appears as the symbol 'member_of', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23seesaspatientarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#seesaspatientarrow" ;
+    silm:hasLongDescription "The SeesAsPatientArrow is the typed professional-relation arrow Vet77_apex -> colim D_cat; Dr. Patel sees the cat as a patient. In the paper's apparatus it appears as the symbol 'sees_as_patient', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23crossrefersarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#crossrefersarrow" ;
+    silm:hasLongDescription "The CrossRefersArrow is the typed evidence cross-reference arrow Vet77_apex -> colim D_Household; the vet records cite the household as a billable site of care. In the paper's apparatus it appears as the symbol 'cross_refers', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23annualbill77
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#annualbill77" ;
+    silm:hasLongDescription "The AnnualBill77 is a concrete competing cocone target: AnnualBill77, the household's annual vet-bill query result, which receives one alpha_e arrow from each per-entity apex and a unique mediator u from HouseholdKG. In the paper's apparatus it appears as the symbol 'X', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23annualbillcoconearrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#annualbillcoconearrow" ;
+    silm:hasLongDescription "The AnnualBillCoconeArrow is the per-entity component of the AnnualBill77 cocone: alpha_Mittens lists Mittens's vet visits, alpha_Pumpkin lists Pumpkin's, alpha_Vet77 lists the vet's authored invoices, alpha_Household resolves the billing address." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_concrete_anchors%23annualbillmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.01_higher_order_index_category.concrete_anchors#annualbillmediator" ;
+    silm:hasLongDescription "The AnnualBillMediator is the unique mediator HouseholdKG -> AnnualBill77 promised by the universal property; the encyclopedia's formal warrant for \"one annual bill for the whole household\". In the paper's apparatus it appears as the symbol 'u', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_olog_box__integratedhouseholdcocone
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedHouseholdCocone" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "iota_Mittens" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "iota_Pumpkin" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "iota_Vet77" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_4
+    a owl:NamedIndividual ;
+    rdfs:label "iota_Household" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_5
+    a owl:NamedIndividual ;
+    rdfs:label "microchip_identifies" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_6
+    a owl:NamedIndividual ;
+    rdfs:label "member_of_Mittens" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_7
+    a owl:NamedIndividual ;
+    rdfs:label "sees_as_patient_Mittens" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_8
+    a owl:NamedIndividual ;
+    rdfs:label "unique_mediator_u" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_9
+    a owl:NamedIndividual ;
+    rdfs:label "member_of_Pumpkin" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs__leg_10
+    a owl:NamedIndividual ;
+    rdfs:label "cross_refers" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_01_higher_order_index_category_yoneda_hom_legs
+    a owl:NamedIndividual ;
+    rdfs:label "HigherOrderIndexCategoryYonedaHomLegsExample" ;
+    silm:hasExample "In 'HigherOrderIndexCategoryYonedaHomLegs', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the microchip_identifies arrow colim D_Mittens -> colim D_Pumpkin lives in the upper-level diagram and is preserved through the integration cocone; the integrated apex sees both cats as distinct individuals sharing one household registry.; also, Dr. Patel sees Mittens as a patient; sees_as_patient is a typed clinician-to-patient role arrow Vet77_apex -> colim D_Mittens, blocked from collapsing the vet onto the cat." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_cheese_trap__trap_integratedrepresentable_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedRepresentable_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_circuit_imprint_tensor_c7__corner_7
+    a owl:NamedIndividual ;
+    rdfs:label "7" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_concrete_anchors__integratedrepresentableanchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_concrete_anchors__integratedrepresentablecrossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_concrete_anchors%23integratedrepresentableanchor
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedRepresentableConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "IntegratedRepresentableConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "IntegratedRepresentableConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "IntegratedRepresentableConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.04_yoneda_for_integration.sections.01_integrated_representable.concrete_anchors#integratedrepresentableanchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:3" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The IntegratedRepresentableAnchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_integratedrepresentable_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming integrated representable as colimit of per-entity representables" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_yoneda_lemma_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_integratedrepresentable_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_concrete_anchors%23integratedrepresentablecrossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.04_yoneda_for_integration.sections.01_integrated_representable.concrete_anchors#integratedrepresentablecrossarrow" ;
+    silm:hasLongDescription "The IntegratedRepresentableCrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.04_yoneda_for_integration.sections.01_integrated_representable.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_olog_box__integratedrepresentable
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedRepresentable" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "mittens_representable_in" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "pumpkin_representable_in" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "vet77_representable_in" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_yoneda_hom_legs__leg_4
+    a owl:NamedIndividual ;
+    rdfs:label "household_representable_in" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_yoneda_hom_legs__leg_5
+    a owl:NamedIndividual ;
+    rdfs:label "yoneda_embedding_out" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_cheese_trap__trap_identifier_as_identity_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "identifier_as_identity_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_circuit_imprint_tensor_c1__corner_1
+    a owl:NamedIndividual ;
+    rdfs:label "1" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__householdchipregistry
+    a owl:NamedIndividual ;
+    rdfs:label "the household local registry record under file 77 binding chip 9000-0000-0042 and chip 9000-0000-0099 to the household account at 77 Maple Street" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__chipdesignatesmittens
+    a owl:NamedIndividual ;
+    rdfs:label "the information arrow asserting that chip ID 9000-0000-0042 designates Mittens; not an identity, a designation" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__chipdesignatespumpkin
+    a owl:NamedIndividual ;
+    rdfs:label "the information arrow asserting that chip ID 9000-0000-0099 designates Pumpkin" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__registryrecords
+    a owl:NamedIndividual ;
+    rdfs:label "the typed evidence record of the chip registry storing both chip-to-cat designation arrows" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__crosscatidentityreference
+    a owl:NamedIndividual ;
+    rdfs:label "the upper-level cross-cat reference arrow exposing the shared registry as a typed link between the two cats; the load-bearing identity-leg of paper 16" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors%23householdchipregistry
+    a owl:NamedIndividual ;
+    rdfs:label "MicrochipIdentifiesConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "MicrochipIdentifiesConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "MicrochipIdentifiesConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "MicrochipIdentifiesConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.01_microchip_identifies.concrete_anchors#householdchipregistry" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:3" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The HouseholdChipRegistry is the household local registry record under file 77 binding chip 9000-0000-0042 and chip 9000-0000-0099 to the household account at 77 Maple Street. In the paper's apparatus it appears as the symbol 'ChipRegistry77', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_microchip_identifies
+    a owl:NamedIndividual ;
+    rdfs:label "identity-leg cross-reference; preserves all three (Mittens, Pumpkin, ChipRegistry77) as distinct" ;
+    rdfs:label "the upper-level cross-cat identity-leg reference arrow" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_composition_with_designates_and_records
+    a owl:NamedIndividual ;
+    rdfs:label "microchip_identifies factors through the chip registry but is not identified with it" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_joc_%C2%A715_5_factorization_structures_for_sources
+    a owl:NamedIndividual ;
+    rdfs:label "typed reference factorisation" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_mittens_with_chip_9000_0000_0042__pumpkin_with_chip_9000_000
+    a owl:NamedIndividual ;
+    rdfs:label "the concrete household registry record under household file 77 binding both chip IDs to the household account" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_hom_c___colim_d_pumpkin_gains_a_typed_in_probe_via_microchip
+    a owl:NamedIndividual ;
+    rdfs:label "the Hom-profile of the Pumpkin sub-apex inherits a typed in-probe from the Mittens sub-apex via the cross-cat reference" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors%23chipdesignatesmittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.01_microchip_identifies.concrete_anchors#chipdesignatesmittens" ;
+    silm:hasLongDescription "The ChipDesignatesMittens is the information arrow asserting that chip ID 9000-0000-0042 designates Mittens; not an identity, a designation. In the paper's apparatus it appears as the symbol 'designates_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors%23chipdesignatespumpkin
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.01_microchip_identifies.concrete_anchors#chipdesignatespumpkin" ;
+    silm:hasLongDescription "The ChipDesignatesPumpkin is the information arrow asserting that chip ID 9000-0000-0099 designates Pumpkin. In the paper's apparatus it appears as the symbol 'designates_Pumpkin', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors%23registryrecords
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.01_microchip_identifies.concrete_anchors#registryrecords" ;
+    silm:hasLongDescription "The RegistryRecords is the typed evidence record of the chip registry storing both chip-to-cat designation arrows. In the paper's apparatus it appears as the symbol 'records', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors%23crosscatidentityreference
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.01_microchip_identifies.concrete_anchors#crosscatidentityreference" ;
+    silm:hasLongDescription "The CrossCatIdentityReference is the upper-level cross-cat reference arrow exposing the shared registry as a typed link between the two cats; the load-bearing identity-leg of paper 16. In the paper's apparatus it appears as the symbol 'microchip_identifies', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_olog_box__microchipidentifiescrossentityidentityleg
+    a owl:NamedIndividual ;
+    rdfs:label "MicrochipIdentifiesCrossEntityIdentityLeg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "chip_designates_mittens" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "microchip_identifies_out" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_yoneda_hom_legs
+    a owl:NamedIndividual ;
+    rdfs:label "MicrochipIdentifiesYonedaHomLegsExample" ;
+    silm:hasExample "In 'MicrochipIdentifiesYonedaHomLegs', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, microchip_identifies: colim D_Mittens -> colim D_Pumpkin is the upper-level cross-cat reference arrow; it preserves both cats as distinct individuals." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_cheese_trap__trap_ologvssubapex_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "OlogVsSubapex_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_circuit_imprint_tensor_c7__corner_7
+    a owl:NamedIndividual ;
+    rdfs:label "7" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_concrete_anchors__ologvssubapexanchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_concrete_anchors__ologvssubapexcrossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_concrete_anchors%23ologvssubapexanchor
+    a owl:NamedIndividual ;
+    rdfs:label "OlogVsSubapexConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "OlogVsSubapexConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "OlogVsSubapexConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "OlogVsSubapexConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.05_part_whole_immunity.sections.01_olog_vs_subapex.concrete_anchors#ologvssubapexanchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:2" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The OlogVsSubapexAnchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_ologvssubapex_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming olog vs sub-apex categorical distinction (part-whole cheese-trap immunity)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_colimit_construction_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_ologvssubapex_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_concrete_anchors%23ologvssubapexcrossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.05_part_whole_immunity.sections.01_olog_vs_subapex.concrete_anchors#ologvssubapexcrossarrow" ;
+    silm:hasLongDescription "The OlogVsSubapexCrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.05_part_whole_immunity.sections.01_olog_vs_subapex.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_olog_box__ologvssubapex
+    a owl:NamedIndividual ;
+    rdfs:label "OlogVsSubapex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "functor_olog_leg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "colimit_operator_bridge" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "apex_object_leg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_yoneda_hom_legs__leg_4
+    a owl:NamedIndividual ;
+    rdfs:label "cheese_trap_block_arrow" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_yoneda_hom_legs
+    a owl:NamedIndividual ;
+    rdfs:label "OlogVsSubapexYonedaHomLegsExample" ;
+    silm:hasExample "In 'OlogVsSubapexYonedaHomLegs', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, Theorem 16.4 supplies a kind-discipline witness arrow that blocks the cheese trap of treating D_Mittens (functor) and colim D_Mittens (object) as the same; the witness is the colimit construction itself, which is an operator, not an identity." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_cheese_trap__trap_sharednodediscipline_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "SharedNodeDiscipline_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_circuit_imprint_tensor_c7__corner_7
+    a owl:NamedIndividual ;
+    rdfs:label "7" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_concrete_anchors__sharednodedisciplineanchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_concrete_anchors__sharednodedisciplinecrossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_concrete_anchors%23sharednodedisciplineanchor
+    a owl:NamedIndividual ;
+    rdfs:label "SharedNodeDisciplineConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "SharedNodeDisciplineConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "SharedNodeDisciplineConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "SharedNodeDisciplineConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.03_identity_discipline.sections.01_shared_node_discipline.concrete_anchors#sharednodedisciplineanchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:1" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The SharedNodeDisciplineAnchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_decomposition_steps__step_sharednodediscipline_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming equalizer identification of shared cross-olog nodes" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_decomposition_steps__step_equalizer_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_decomposition_steps__step_sharednodediscipline_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_concrete_anchors%23sharednodedisciplinecrossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.03_identity_discipline.sections.01_shared_node_discipline.concrete_anchors#sharednodedisciplinecrossarrow" ;
+    silm:hasLongDescription "The SharedNodeDisciplineCrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.03_identity_discipline.sections.01_shared_node_discipline.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_olog_box__sharednodediscipline
+    a owl:NamedIndividual ;
+    rdfs:label "SharedNodeDiscipline" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "witness_arrow_left" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "witness_arrow_right" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_01_shared_node_discipline_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "identification_arrow_out" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_cheese_trap__trap_bridgeto18_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo18_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_concrete_anchors__bridgeto18anchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_concrete_anchors__bridgeto18crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_concrete_anchors%23bridgeto18anchor
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo18ConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "BridgeTo18ConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "BridgeTo18ConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "BridgeTo18ConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.02_bridge_to_18_presheaf.concrete_anchors#bridgeto18anchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:0" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The BridgeTo18Anchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_decomposition_steps__step_bridgeto18_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming bridge from presheaf semantics (paper 18) to integrated representable (paper 16)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_decomposition_steps__step_presheaf_colimit_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_decomposition_steps__step_bridgeto18_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_concrete_anchors%23bridgeto18crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.02_bridge_to_18_presheaf.concrete_anchors#bridgeto18crossarrow" ;
+    silm:hasLongDescription "The BridgeTo18CrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.02_bridge_to_18_presheaf.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_02_bridge_to_18_presheaf_olog_box__bridgeto18
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo18" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_cheese_trap__trap_resident_household_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "resident_household_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_circuit_imprint_tensor_c2__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors__householdenrolmentarrow
+    a owl:NamedIndividual ;
+    rdfs:label "the typed enrolment arrow colim D_e -> colim D_Household; concretely the residency-classification of Mittens or Pumpkin as a resident of 77 Maple Street" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors__mittensresident
+    a owl:NamedIndividual ;
+    rdfs:label "the Mittens sub-apex enrolled as a resident; Mittens the individual cat at 77 Maple Street" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors__pumpkinresident
+    a owl:NamedIndividual ;
+    rdfs:label "the Pumpkin sub-apex enrolled as a resident; the sibling cat" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors__householddwellingapex
+    a owl:NamedIndividual ;
+    rdfs:label "the dwelling at 77 Maple Street as a sub-apex; receives both enrolment arrows" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors%23householdenrolmentarrow
+    a owl:NamedIndividual ;
+    rdfs:label "MembershipArrowConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "MembershipArrowConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "MembershipArrowConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "MembershipArrowConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.02_membership_arrow.concrete_anchors#householdenrolmentarrow" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:1" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The HouseholdEnrolmentArrow is the typed enrolment arrow colim D_e -> colim D_Household; concretely the residency-classification of Mittens or Pumpkin as a resident of 77 Maple Street. In the paper's apparatus it appears as the symbol 'member_of', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_member_of
+    a owl:NamedIndividual ;
+    rdfs:label "the typed household-resident classification arrow" ;
+    rdfs:label "typed enrolment of residents and affiliates" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_member_ofe___colim_d_e__%3E_colim_d_household
+    a owl:NamedIndividual ;
+    rdfs:label "an upper-level arrow whose source is a per-entity sub-apex and whose target is the household sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_joc_%C2%A710_sources_and_sinks
+    a owl:NamedIndividual ;
+    rdfs:label "typed classification language" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_mittens_resident_at_77_maple_street__pumpkin_resident_at_77_
+    a owl:NamedIndividual ;
+    rdfs:label "two cats, one household, two distinct enrolment arrows" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_decomposition_steps__step_hom___colim_d_household_gains_typed_in_probes_from_each_resi
+    a owl:NamedIndividual ;
+    rdfs:label "household residency typing inherits to the integrated apex via iota_Household" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors%23mittensresident
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.02_membership_arrow.concrete_anchors#mittensresident" ;
+    silm:hasLongDescription "The MittensResident is the Mittens sub-apex enrolled as a resident; Mittens the individual cat at 77 Maple Street. In the paper's apparatus it appears as the symbol 'Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors%23pumpkinresident
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.02_membership_arrow.concrete_anchors#pumpkinresident" ;
+    silm:hasLongDescription "The PumpkinResident is the Pumpkin sub-apex enrolled as a resident; the sibling cat. In the paper's apparatus it appears as the symbol 'Pumpkin', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_concrete_anchors%23householddwellingapex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.02_membership_arrow.concrete_anchors#householddwellingapex" ;
+    silm:hasLongDescription "The HouseholdDwellingApex is the dwelling at 77 Maple Street as a sub-apex; receives both enrolment arrows. In the paper's apparatus it appears as the symbol 'colim D_Household', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_olog_box__membershiparrowclassification
+    a owl:NamedIndividual ;
+    rdfs:label "MembershipArrowClassification" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "member_of_mittens_out" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "member_of_pumpkin_out" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "resident_probe_mittens" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_yoneda_hom_legs__leg_4
+    a owl:NamedIndividual ;
+    rdfs:label "household_witness_back" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_02_membership_arrow_yoneda_hom_legs
+    a owl:NamedIndividual ;
+    rdfs:label "MembershipArrowYonedaHomLegsExample" ;
+    silm:hasExample "In 'MembershipArrowYonedaHomLegs', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, a residency probe (e.g. the vet care plan asking \"is Mittens a household resident?\") factors through the member_of arrow into the dwelling apex; the probe is monic on its evidence image." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_cheese_trap__trap_sub_apex_collapse_onto_single_leg
+    a owl:NamedIndividual ;
+    rdfs:label "sub_apex_collapse_onto_single_leg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_circuit_imprint_tensor_c4__corner_4
+    a owl:NamedIndividual ;
+    rdfs:label "4" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__headphoto20260214
+    a owl:NamedIndividual ;
+    rdfs:label "the medical photograph Dr. Patel took of Mittens head at the 2026-02-14 wellness visit" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__chipiso90000000042
+    a owl:NamedIndividual ;
+    rdfs:label "ISO microchip 9000-0000-0042, scanned and recorded at intake" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__mass47kg20260214
+    a owl:NamedIndividual ;
+    rdfs:label "4.7 kg, measured on 2026-02-14 on the clinic calibrated scale" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__soapnotechart77
+    a owl:NamedIndividual ;
+    rdfs:label "the SOAP note Dr. Patel filed under chart number 77" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__iitislineagerow
+    a owl:NamedIndividual ;
+    rdfs:label "the Felis catus / TSN 183798 lineage row imported from the ITIS sqlite cannon witness" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__registeredresidentrole77
+    a owl:NamedIndividual ;
+    rdfs:label "the registered-resident role under owner-record number 77" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__mittensapex
+    a owl:NamedIndividual ;
+    rdfs:label "Mittens the individual cat presented as the per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__genericsublegsource
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, any of the six named source-leg objects above (HeadPhoto20260214, ChipIso90000000042, etc.)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors__liftedinprobe
+    a owl:NamedIndividual ;
+    rdfs:label "the typed in-probe S_ell -> HouseholdKG inherited by the integrated apex from each sub-cocone leg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23headphoto20260214
+    a owl:NamedIndividual ;
+    rdfs:label "PerEntitySubdiagramConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "PerEntitySubdiagramConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "PerEntitySubdiagramConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "PerEntitySubdiagramConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#headphoto20260214" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:1" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The HeadPhoto20260214 is the medical photograph Dr. Patel took of Mittens head at the 2026-02-14 wellness visit. In the paper's apparatus it appears as the symbol 'HeadObs_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors
+    a owl:NamedIndividual ;
+    rdfs:label "PerEntitySubdiagramConcreteAnchorsExample" ;
+    silm:hasExample "In 'PerEntitySubdiagramConcreteAnchors', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, ISO microchip 9000-0000-0042, scanned and recorded at intake; also, 4.7 kg, measured on 2026-02-14 on the clinic calibrated scale; also, the Felis catus / TSN 183798 lineage row imported from the ITIS sqlite cannon witness." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_colim_d_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "the Mittens sub-apex; the per-entity colimit of the Mittens sub-diagram" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_colim_over_d_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "universal cocone target receiving the six typed source legs of the sub-diagram" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_cocone_universal_property_%2B_section_15_factorization
+    a owl:NamedIndividual ;
+    rdfs:label "Joy of Cats Section 11 supplies the cocone; Section 15 supplies the factorization structure" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_integration_mediator_iota_mittens___householdkg__%3E_colim_d_m
+    a owl:NamedIndividual ;
+    rdfs:label "the upper-level arrow that connects the integration apex to the Mittens sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_lifted_in_probe_tilde_ell___s_ell__%3E_householdkg
+    a owl:NamedIndividual ;
+    rdfs:label "each typed source leg of the sub-diagram lifts to a typed in-probe of the integration apex via cocone composition" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_per_entity_sub_diagram
+    a owl:NamedIndividual ;
+    rdfs:label "one node of the upper-level integration diagram, with its own typed cocone" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23chipiso90000000042
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#chipiso90000000042" ;
+    silm:hasLongDescription "The ChipIso90000000042 is ISO microchip 9000-0000-0042, scanned and recorded at intake. In the paper's apparatus it appears as the symbol 'MicrochipId9', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23mass47kg20260214
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#mass47kg20260214" ;
+    silm:hasLongDescription "The Mass47kg20260214 is 4.7 kg, measured on 2026-02-14 on the clinic calibrated scale. In the paper's apparatus it appears as the symbol 'BodyMass77', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23soapnotechart77
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#soapnotechart77" ;
+    silm:hasLongDescription "The SoapNoteChart77 is the SOAP note Dr. Patel filed under chart number 77. In the paper's apparatus it appears as the symbol 'VetRecord77', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23iitislineagerow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#iitislineagerow" ;
+    silm:hasLongDescription "The IitisLineageRow is the Felis catus / TSN 183798 lineage row imported from the ITIS sqlite cannon witness. In the paper's apparatus it appears as the symbol 'TaxonHierarchyWitness', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23registeredresidentrole77
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#registeredresidentrole77" ;
+    silm:hasLongDescription "The RegisteredResidentRole77 is the registered-resident role under owner-record number 77. In the paper's apparatus it appears as the symbol 'PetRole', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23mittensapex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#mittensapex" ;
+    silm:hasLongDescription "The MittensApex is Mittens the individual cat presented as the per-entity sub-apex. In the paper's apparatus it appears as the symbol 'colim D_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23genericsublegsource
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#genericsublegsource" ;
+    silm:hasLongDescription "The GenericSubLegSource is concretely, any of the six named source-leg objects above (HeadPhoto20260214, ChipIso90000000042, etc.). In the paper's apparatus it appears as the symbol 'S_ell', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_concrete_anchors%23liftedinprobe
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.02_per_entity_subdiagrams.concrete_anchors#liftedinprobe" ;
+    silm:hasLongDescription "The LiftedInProbe is the typed in-probe S_ell -> HouseholdKG inherited by the integrated apex from each sub-cocone leg. In the paper's apparatus it appears as the symbol 'tilde_ell', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_olog_box__perentitysubdiagramcocone
+    a owl:NamedIndividual ;
+    rdfs:label "PerEntitySubdiagramCocone" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "ell_head_lifted" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "ell_id_lifted" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "ell_vet_lifted" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_yoneda_hom_legs__leg_4
+    a owl:NamedIndividual ;
+    rdfs:label "ell_mass_lifted" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_yoneda_hom_legs__leg_5
+    a owl:NamedIndividual ;
+    rdfs:label "ell_tax_lifted" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_yoneda_hom_legs__leg_6
+    a owl:NamedIndividual ;
+    rdfs:label "ell_role_lifted" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_yoneda_hom_legs
+    a owl:NamedIndividual ;
+    rdfs:label "PerEntitySubdiagramYonedaHomLegsExample" ;
+    silm:hasExample "In 'PerEntitySubdiagramYonedaHomLegs', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the microchip-identifier source leg ell_id lifts to a typed in-probe of HouseholdKG; the integrated apex sees the microchip as the canonical identity-leg witness for Mittens.; also, the vet-record source leg ell_vet lifts to a typed in-probe of HouseholdKG; the integrated apex sees the SOAP note as a typed evidence probe of Mittens." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_cheese_trap__trap_sharedarrowdiscipline_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "SharedArrowDiscipline_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_circuit_imprint_tensor_c7__corner_7
+    a owl:NamedIndividual ;
+    rdfs:label "7" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors__sharedarrowdisciplineanchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors__sharedarrowdisciplinecrossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors%23sharedarrowdisciplineanchor
+    a owl:NamedIndividual ;
+    rdfs:label "SharedArrowDisciplineConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "SharedArrowDisciplineConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "SharedArrowDisciplineConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "SharedArrowDisciplineConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.03_identity_discipline.sections.02_shared_arrow_discipline.concrete_anchors#sharedarrowdisciplineanchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:0" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The SharedArrowDisciplineAnchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_decomposition_steps__step_sharedarrowdiscipline_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming upper-level cross-olog arrow discipline" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_decomposition_steps__step_functoriality_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_decomposition_steps__step_sharedarrowdiscipline_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors%23sharedarrowdisciplinecrossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.03_identity_discipline.sections.02_shared_arrow_discipline.concrete_anchors#sharedarrowdisciplinecrossarrow" ;
+    silm:hasLongDescription "The SharedArrowDisciplineCrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.03_identity_discipline.sections.02_shared_arrow_discipline.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_olog_box__sharedarrowdiscipline
+    a owl:NamedIndividual ;
+    rdfs:label "SharedArrowDiscipline" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "upper_level_source_leg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "upper_level_target_leg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "jint_membership_leg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_03_identity_discipline_sections_02_shared_arrow_discipline_yoneda_hom_legs
+    a owl:NamedIndividual ;
+    rdfs:label "SharedArrowDisciplineYonedaHomLegsExample" ;
+    silm:hasExample "In 'SharedArrowDisciplineYonedaHomLegs', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the upper-level arrow is an arrow of J^int (the upper-level index category), NOT an arrow of any per-entity D_e sub-diagram; this membership leg is the kind-discipline that blocks the cheese trap of treating an upper arrow as internal." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_cheese_trap__trap_bridgeto19_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo19_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_concrete_anchors__bridgeto19anchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_concrete_anchors__bridgeto19crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_concrete_anchors%23bridgeto19anchor
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo19ConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "BridgeTo19ConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "BridgeTo19ConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "BridgeTo19ConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.03_bridge_to_19_mereology.concrete_anchors#bridgeto19anchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:2" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The BridgeTo19Anchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_decomposition_steps__step_bridgeto19_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming bridge from per-leg representability (paper 19) to per-entity representability (paper 16)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_decomposition_steps__step_per_leg_representability_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_decomposition_steps__step_bridgeto19_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_concrete_anchors%23bridgeto19crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.03_bridge_to_19_mereology.concrete_anchors#bridgeto19crossarrow" ;
+    silm:hasLongDescription "The BridgeTo19CrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.03_bridge_to_19_mereology.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_03_bridge_to_19_mereology_olog_box__bridgeto19
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo19" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_cheese_trap__trap_object_iso_misread_as_typed_iso
+    a owl:NamedIndividual ;
+    rdfs:label "object_iso_misread_as_typed_iso" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_circuit_imprint_tensor_c7__corner_7
+    a owl:NamedIndividual ;
+    rdfs:label "7" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors__combinedsourcepool
+    a owl:NamedIndividual ;
+    rdfs:label "the disjoint union of the four per-entity source diagrams plus typed cross-entity arrows; concretely, the combined pool of every Mittens-source, every Pumpkin-source, every Vet77-source, and every Household-source" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors__flatcolimitapex
+    a owl:NamedIndividual ;
+    rdfs:label "the flat colimit of the combined source pool; canonically isomorphic to HouseholdKG" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors__fubinicanonicaliso
+    a owl:NamedIndividual ;
+    rdfs:label "the canonical isomorphism kappa : colim D^flat -> HouseholdKG promised by Joy of Cats Section 11.13" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors__audittrailquery
+    a owl:NamedIndividual ;
+    rdfs:label "a concrete competing cocone target: the auditor query asking which arrows of the ontology supplied the annual vet bill" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors%23combinedsourcepool
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedUniversalPropertyConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "IntegratedUniversalPropertyConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "IntegratedUniversalPropertyConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "IntegratedUniversalPropertyConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.03_integrated_universal_property.concrete_anchors#combinedsourcepool" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:5" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The CombinedSourcePool is the disjoint union of the four per-entity source diagrams plus typed cross-entity arrows; concretely, the combined pool of every Mittens-source, every Pumpkin-source, every Vet77-source, and every Household-source." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedUniversalPropertyConcreteAnchorsExample" ;
+    silm:hasExample "In 'IntegratedUniversalPropertyConcreteAnchors', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, a concrete competing cocone target: the auditor query asking which arrows of the ontology supplied the annual vet bill." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_householdkg_%7E_colim_d%5Eflat
+    a owl:NamedIndividual ;
+    rdfs:label "the integrated apex is canonically isomorphic to the flat colimit of the combined source data" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_%7E_canonical_iso_kappa
+    a owl:NamedIndividual ;
+    rdfs:label "a uniquely determined invertible arrow kappa : colim D^flat -> HouseholdKG" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_joy_of_cats_section_11_13
+    a owl:NamedIndividual ;
+    rdfs:label "Fubini-style commutation of colimits: lower-then-upper = flat" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_vet_bill_query_example_16_1
+    a owl:NamedIndividual ;
+    rdfs:label "computing the household vet bill from the combined pool yields the same number as computing it per-entity first then integrating" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_typed_audit_trail_vs_flat_audit_trail
+    a owl:NamedIndividual ;
+    rdfs:label "the typed two-level audit trail preserves cross-entity arrows (sees_as_patient, cross_refers) that the flat audit trail discards" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_decomposition_steps__step_theorem_16_3
+    a owl:NamedIndividual ;
+    rdfs:label "apex objects are canonically iso; typed arrow inventories are not" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors%23flatcolimitapex
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.03_integrated_universal_property.concrete_anchors#flatcolimitapex" ;
+    silm:hasLongDescription "The FlatColimitApex is the flat colimit of the combined source pool; canonically isomorphic to HouseholdKG. In the paper's apparatus it appears as the symbol 'colim D^flat', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors%23fubinicanonicaliso
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.03_integrated_universal_property.concrete_anchors#fubinicanonicaliso" ;
+    silm:hasLongDescription "The FubiniCanonicalIso is the canonical isomorphism kappa : colim D^flat -> HouseholdKG promised by Joy of Cats Section 11.13. In the paper's apparatus it appears as the symbol 'kappa', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors%23audittrailquery
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.01_integration_as_colimit_of_colimits.sections.03_integrated_universal_property.concrete_anchors#audittrailquery" ;
+    silm:hasLongDescription "The AuditTrailQuery is a concrete competing cocone target: the auditor query asking which arrows of the ontology supplied the annual vet bill. In the paper's apparatus it appears as the symbol 'X (= AnnualBill77)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_olog_box__fubinicommutationandtypedrichness
+    a owl:NamedIndividual ;
+    rdfs:label "FubiniCommutationAndTypedRichness" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "kappa_iso" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "typed_audit_probe" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "unique_mediator_alpha" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_yoneda_hom_legs__leg_4
+    a owl:NamedIndividual ;
+    rdfs:label "flat_collapse_arrow" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_cheese_trap__trap_clinician_patient_role_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "clinician_patient_role_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_circuit_imprint_c7__corner_7
+    a owl:NamedIndividual ;
+    rdfs:label "7" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors__drpatelapex
+    a owl:NamedIndividual ;
+    rdfs:label "Dr. Patel the household-registered veterinarian, presented as the colimit of her DEA number, her clinic, her chart roster, and her authored records" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors__cliniciantopatientrole
+    a owl:NamedIndividual ;
+    rdfs:label "the typed upper-level role arrow Vet77_apex -> colim D_cat; Dr. Patel sees the cat as a patient on her chart roster" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors__catpatient
+    a owl:NamedIndividual ;
+    rdfs:label "the cat patient sub-apex (Mittens or Pumpkin); the target of the typed role arrow" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors%23drpatelapex
+    a owl:NamedIndividual ;
+    rdfs:label "SeesAsPatientConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "SeesAsPatientConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "SeesAsPatientConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "SeesAsPatientConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.03_sees_as_patient.concrete_anchors#drpatelapex" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:0" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The DrPatelApex is Dr. Patel the household-registered veterinarian, presented as the colimit of her DEA number, her clinic, her chart roster, and her authored records. In the paper's apparatus it appears as the symbol 'Vet77_apex', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors
+    a owl:NamedIndividual ;
+    rdfs:label "SeesAsPatientConcreteAnchorsExample" ;
+    silm:hasExample "In 'SeesAsPatientConcreteAnchors', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, Dr. Patel the household-registered veterinarian, presented as the colimit of her DEA number, her clinic, her chart roster, and her authored records." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_sees_as_patient
+    a owl:NamedIndividual ;
+    rdfs:label "the upper-level typed role arrow from the vet sub-apex to a cat sub-apex" ;
+    rdfs:label "typed clinician-to-patient role; preserves both vet and cat as distinct sub-apices" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_sees_as_patient___vet77_apex__%3E_colim_d_cat
+    a owl:NamedIndividual ;
+    rdfs:label "upper-level arrow with source = vet sub-apex and target = cat sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_joc_%C2%A710_sources_and_sinks
+    a owl:NamedIndividual ;
+    rdfs:label "typed role language" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_dr__patel__chart_77__mittens__pumpkin
+    a owl:NamedIndividual ;
+    rdfs:label "one vet, two patients, two typed role arrows" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_decomposition_steps__step_hom___colim_d_cat_gains_a_typed_in_probe_from_vet77_apex
+    a owl:NamedIndividual ;
+    rdfs:label "the cat sub-apex Hom-profile inherits the typed professional-relation from the vet sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors%23cliniciantopatientrole
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.03_sees_as_patient.concrete_anchors#cliniciantopatientrole" ;
+    silm:hasLongDescription "The ClinicianToPatientRole is the typed upper-level role arrow Vet77_apex -> colim D_cat; Dr. Patel sees the cat as a patient on her chart roster. In the paper's apparatus it appears as the symbol 'sees_as_patient', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_concrete_anchors%23catpatient
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.02_cross_entity_reference_arrows.sections.03_sees_as_patient.concrete_anchors#catpatient" ;
+    silm:hasLongDescription "The CatPatient is the cat patient sub-apex (Mittens or Pumpkin); the target of the typed role arrow. In the paper's apparatus it appears as the symbol 'cat', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_olog_box__seesaspatienttypedrolearrow
+    a owl:NamedIndividual ;
+    rdfs:label "SeesAsPatientTypedRoleArrow" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_yoneda_hom_legs__leg_1
+    a owl:NamedIndividual ;
+    rdfs:label "sees_as_patient_mittens" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_yoneda_hom_legs__leg_2
+    a owl:NamedIndividual ;
+    rdfs:label "sees_as_patient_pumpkin" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_yoneda_hom_legs__leg_3
+    a owl:NamedIndividual ;
+    rdfs:label "patient_probe_back" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_yoneda_hom_legs__leg_4
+    a owl:NamedIndividual ;
+    rdfs:label "clinician_routing_witness" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_03_sees_as_patient_yoneda_hom_legs
+    a owl:NamedIndividual ;
+    rdfs:label "SeesAsPatientYonedaHomLegsExample" ;
+    silm:hasExample "In 'SeesAsPatientYonedaHomLegs', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, sees_as_patient (Vet -> Mittens) : Vet77_apex -> colim D_Mittens; Dr. Patel sees Mittens as a patient; the role arrow is typed, NOT the identity (the vet is not the cat).; also, sees_as_patient (Vet -> Pumpkin) : Vet77_apex -> colim D_Pumpkin; Dr. Patel also sees Pumpkin as a patient; two distinct role arrows from one vet to two patients preserve both as distinct sub-apices." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_cheese_trap__trap_bridgeto20_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo20_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_concrete_anchors__bridgeto20anchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_concrete_anchors__bridgeto20crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_concrete_anchors%23bridgeto20anchor
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo20ConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "BridgeTo20ConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "BridgeTo20ConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "BridgeTo20ConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.04_bridge_to_20_functorial_transport.concrete_anchors#bridgeto20anchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:2" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The BridgeTo20Anchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_decomposition_steps__step_bridgeto20_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming bridge from functorial transport (paper 20) to integration mediator composition (paper 16)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_decomposition_steps__step_functoriality_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_decomposition_steps__step_bridgeto20_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_concrete_anchors%23bridgeto20crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.04_bridge_to_20_functorial_transport.concrete_anchors#bridgeto20crossarrow" ;
+    silm:hasLongDescription "The BridgeTo20CrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.04_bridge_to_20_functorial_transport.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_04_bridge_to_20_functorial_transport_olog_box__bridgeto20
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo20" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_cheese_trap__trap_bridgeto14_collapse
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo14_collapse" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_concrete_anchors__bridgeto14anchor
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_concrete_anchors__bridgeto14crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_concrete_anchors__integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_concrete_anchors%23bridgeto14anchor
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo14ConcreteAnchorsAddlBaseTopic" ;
+    rdfs:label "BridgeTo14ConcreteAnchorsAddlCircuitCorner" ;
+    rdfs:label "BridgeTo14ConcreteAnchorsAddlDunbarLayer" ;
+    rdfs:label "BridgeTo14ConcreteAnchorsAddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.05_bridge_to_14_yoneda.concrete_anchors#bridgeto14anchor" ;
+    silm:hasAdditionalAttribute "base_topic:knowledge graph integration" ;
+    silm:hasAdditionalAttribute "circuit_corner:1" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.16_one_integrated_growing_knowledge_graph" ;
+    silm:hasLongDescription "The BridgeTo14Anchor is concretely, the central object of this section instantiated in the household story (Mittens, Pumpkin, Dr. Patel, 77 Maple Street, or the chart/chip/registry witnesses). In the paper's apparatus it appears as the symbol 'central object of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_decomposition_steps__step_bridgeto14_central
+    a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming bridge from Yoneda lemma (paper 14) to integration profile law (paper 16)" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_decomposition_steps__step_composition_under_integration
+    a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_decomposition_steps__step_yoneda_lemma_joy_of_cats_authority
+    a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_decomposition_steps__step_household_instantiation
+    a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_decomposition_steps__step_integrated_profile_inheritance
+    a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_decomposition_steps__step_bridgeto14_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_concrete_anchors%23bridgeto14crossarrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.05_bridge_to_14_yoneda.concrete_anchors#bridgeto14crossarrow" ;
+    silm:hasLongDescription "The BridgeTo14CrossArrow is concretely, the cross-entity arrow exhibited in the section diagram, anchored in the household story. In the paper's apparatus it appears as the symbol 'cross-entity arrow of section', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_concrete_anchors%23integrationmediator
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.chapters.06_cross_paper_bridges.sections.05_bridge_to_14_yoneda.concrete_anchors#integrationmediator" ;
+    silm:hasLongDescription "The IntegrationMediator is concretely, the integration mediator from HouseholdKG to the relevant per-entity sub-apex. In the paper's apparatus it appears as the symbol 'integration mediator iota_e', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_06_cross_paper_bridges_sections_05_bridge_to_14_yoneda_olog_box__bridgeto14
+    a owl:NamedIndividual ;
+    rdfs:label "BridgeTo14" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_adamekherrlichstrecker1990joyofcats
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationAdamekherrlichstrecker1990joyofcats" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_atom
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.atom" ;
+    silm:hasSynonym "Node-or-Arrow" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_atom .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_category
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.category" ;
+    silm:hasSynonym "phylum" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_category .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_cco
+    a owl:NamedIndividual ;
+    rdfs:label "Common Core Ontologies" ;
+    silm:hasAbbreviation "CCO" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cheese_trap
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.cheese_trap" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cheese_trap_immunity ;
+    silm:hasSynonym "category-theory pitfall" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cheese_trap ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cheese_trap_immunity .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cocone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.cocone" ;
+    silm:hasSynonym "compatible family" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cocone .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_colimit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.colimit" ;
+    silm:hasSynonym "universal cocone apex" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_colimit .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_commutative
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.commutative" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_non_commutative ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_commutative ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_non_commutative .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_concrete_anchor
+    a owl:NamedIndividual ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphPreferredTermConcreteAnchor" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_concrete_anchor .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.cone" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cocone ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cone ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cocone .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_cpo
+    a owl:NamedIndividual ;
+    rdfs:label "Common Process Ontology" ;
+    silm:hasAbbreviation "CPO" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cross_entity_reference
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.cross_entity_reference" ;
+    silm:hasSynonym "inter-monad arrow" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_cross_entity_reference .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_csv
+    a owl:NamedIndividual ;
+    rdfs:label "Comma-Separated Values" ;
+    silm:hasAbbreviation "CSV" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_diagram
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.diagram" ;
+    silm:hasSynonym "commutative diagram" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_diagram .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_doi
+    a owl:NamedIndividual ;
+    rdfs:label "Digital Object Identifier" ;
+    silm:hasAbbreviation "DOI" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_domain
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.domain" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_codomain ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_domain ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_codomain .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_encyclopedia
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.encyclopedia" ;
+    silm:hasSynonym "atlas" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_encyclopedia .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_equalizer
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.equalizer" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_coequalizer ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_equalizer ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_coequalizer .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_functor
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.functor" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_contravariant_functor ;
+    silm:hasSynonym "structure-preserving map" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_contravariant_functor .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_homset
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.homset" ;
+    silm:hasSynonym "Hom" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_homset .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_household_kg
+    a owl:NamedIndividual ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphPreferredTermHouseholdKg" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_household_kg .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_identity_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.identity_discipline" ;
+    silm:hasSynonym "URN canonicalization rule" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_identity_discipline .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_incoming
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.incoming" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_outgoing ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_incoming ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_outgoing .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_integrated
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.integrated" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_fragmented ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_integrated ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_fragmented .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedKgTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_integrated_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_category_theory_to_olog__xlate_target_olog_integratedkgnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedKgTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_integrated_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_category_theory_to_rdf__xlate_target_rdf_silm_integratedkgnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedKgTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_integrated_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_category_theory_to_tikzcd__xlate_target_tikzcd_kg_infty .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedKgTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_integrated_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_everyday_prose_to_category_theory__xlate_target_category_theory_colimit_of_all_paper_kg_functors .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedKgTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_integrated_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_everyday_prose_to_latex__xlate_target_latex___mathrmkg___infty .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedKgTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_integrated_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_everyday_prose_to_olog__xlate_target_olog_integratedkgnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedKgTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_integrated_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_olog_to_everyday_prose__xlate_target_everyday_prose_the_one_integrated_knowledge_graph .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "IntegratedKgTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_integrated_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_integrated_kg_olog_to_rdf__xlate_target_rdf_silm_integratedkgnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_integrated_knowledge_graph
+    a owl:NamedIndividual ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphPreferredTermIntegratedKnowledgeGraph" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_integrated_knowledge_graph .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_integration
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.integration" ;
+    silm:hasSynonym "colimit of colimits" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_integration .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_inter_monad_arrow
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.inter_monad_arrow" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_intra_monad_arrow ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_inter_monad_arrow ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_intra_monad_arrow .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_isbn
+    a owl:NamedIndividual ;
+    rdfs:label "International Standard Book Number" ;
+    silm:hasAbbreviation "ISBN" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_iso
+    a owl:NamedIndividual ;
+    rdfs:label "International Organization for Standardization" ;
+    silm:hasAbbreviation "ISO" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_itis
+    a owl:NamedIndividual ;
+    rdfs:label "Integrated Taxonomic Information System" ;
+    silm:hasAbbreviation "ITIS" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_kg
+    a owl:NamedIndividual ;
+    rdfs:label "Knowledge Graph" ;
+    silm:hasAbbreviation "KG" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_known
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.known" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_unknown ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_known ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_unknown .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_limit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.limit" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_colimit ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_limit ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_colimit .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localcannoncheeselearyalpertwitness2026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalCannonCheeseLearyAlpertWitness2026" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localcannonsoulwitnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalCannonSoulWitnesses2026" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localcannontaxonomywitnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalCannonTaxonomyWitnesses2026" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localgptyonedamanifestv902026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalGptYonedaManifestV902026" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localgptyonedaontologywitness2026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalGptYonedaOntologyWitness2026" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localmittensexampleanchor2026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalMittensExampleAnchor2026" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localnodeorarrowdiscipline2026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalNodeOrArrowDiscipline2026" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localrebuttalround00witnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalRebuttalRound00Witnesses2026" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_localsilmarilarchitecturelabels2026
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationLocalSilmarilArchitectureLabels2026" .
+
+silm:urn_silmaril_universal_anchor_node_enum_milestone
+    a owl:NamedIndividual ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphEnumMembershipMilestoneAtomPass" ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphEnumMembershipMilestoneChapterSkeleton" ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphEnumMembershipMilestoneE2eBuildOk" ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphEnumMembershipMilestoneRenderAllLegsOk" ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphEnumMembershipMilestoneVisionPass" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_milestone .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGlobalTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_mittens_global ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_category_theory_to_olog__xlate_target_olog_mittensglobalnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGlobalTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_mittens_global ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_category_theory_to_rdf__xlate_target_rdf_silm_mittensglobalnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGlobalTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_mittens_global ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_category_theory_to_tikzcd__xlate_target_tikzcd_m_infty .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGlobalTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_mittens_global ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_everyday_prose_to_category_theory__xlate_target_category_theory_image_of_mittens_under_union_functor .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGlobalTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_mittens_global ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_everyday_prose_to_latex__xlate_target_latex___mathrmmittens___infty .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGlobalTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_mittens_global ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_everyday_prose_to_olog__xlate_target_olog_mittensglobalnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGlobalTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_mittens_global ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_olog_to_everyday_prose__xlate_target_everyday_prose_mittens_as_a_global_kg_node .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGlobalTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_mittens_global ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_mittens_global_olog_to_rdf__xlate_target_rdf_silm_mittensglobalnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.mittens" ;
+    silm:hasSynonym "cat anchor" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_mittens .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_monad
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.monad" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_comonad ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_monad ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_comonad .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_morphism
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.morphism" ;
+    silm:hasSynonym "arrow" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_morphism .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.node" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_arrow ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_node ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_arrow .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_object
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.object" ;
+    silm:hasSynonym "node" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_object .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_olog
+    a owl:NamedIndividual ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphPreferredTermOlog" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_olog .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_olog
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.olog" ;
+    silm:hasSynonym "ontology log" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_olog .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "PaperKgTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_paper_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_category_theory_to_olog__xlate_target_olog_paperkgnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "PaperKgTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_paper_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_category_theory_to_rdf__xlate_target_rdf_silm_paperkgnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "PaperKgTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_paper_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_category_theory_to_tikzcd__xlate_target_tikzcd_kg_i .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "PaperKgTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_paper_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_everyday_prose_to_category_theory__xlate_target_category_theory_object_kg_paper_i_in_indexcat .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "PaperKgTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_paper_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_everyday_prose_to_latex__xlate_target_latex_kg_i .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "PaperKgTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_paper_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_everyday_prose_to_olog__xlate_target_olog_paperkgnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "PaperKgTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_paper_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_olog_to_everyday_prose__xlate_target_everyday_prose_one_paper%27s_local_kg .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "PaperKgTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_paper_kg ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_paper_kg_olog_to_rdf__xlate_target_rdf_silm_paperkgnode .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_paper
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.paper" ;
+    silm:hasSynonym "paper-monad" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_paper .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_part_whole_consistent
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.part_whole_consistent" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_part_whole_broken ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_part_whole_consistent ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_part_whole_broken .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_part_whole_immunity
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.part_whole_immunity" ;
+    silm:hasSynonym "mereology cheese-trap immunity" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_part_whole_immunity .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_pullback
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.pullback" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_pushout ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_pullback ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_pushout .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "Resource Description Framework" ;
+    silm:hasAbbreviation "RDF" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_shacl
+    a owl:NamedIndividual ;
+    rdfs:label "Shapes Constraint Language" ;
+    silm:hasAbbreviation "SHACL" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_soap
+    a owl:NamedIndividual ;
+    rdfs:label "Subjective Objective Assessment Plan" ;
+    silm:hasAbbreviation "SOAP" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_source
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.source" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_target ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_source ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_target .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_spivakkent2012ologs
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationSpivakkent2012ologs" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_synthesis
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.synthesis" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_decomposition ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_synthesis ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_decomposition .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_acronym_tsn
+    a owl:NamedIndividual ;
+    rdfs:label "Taxonomic Serial Number" ;
+    silm:hasAbbreviation "TSN" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_typed
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.typed" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_untyped ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_typed ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_untyped .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "UnionFunctorTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_union_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_category_theory_to_olog__xlate_target_olog_unionfunctorarrow .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "UnionFunctorTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_union_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_category_theory_to_rdf__xlate_target_rdf_silm_unionfunctorarrow .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "UnionFunctorTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_union_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_category_theory_to_tikzcd__xlate_target_tikzcd_lan .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "UnionFunctorTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_union_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_everyday_prose_to_category_theory__xlate_target_category_theory_left_kan_extension_over_indexcat .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "UnionFunctorTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_union_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_everyday_prose_to_latex__xlate_target_latex___mathrmlan .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "UnionFunctorTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_union_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_everyday_prose_to_olog__xlate_target_olog_unionfunctorarrow .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "UnionFunctorTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_union_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_olog_to_everyday_prose__xlate_target_everyday_prose_the_union_functor_across_papers .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "UnionFunctorTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_16_one_integrated_growing_knowledge_graph_term_union_functor ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_translation_union_functor_olog_to_rdf__xlate_target_rdf_silm_unionfunctorarrow .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_urn_canonical
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.urn_canonical" ;
+    silm:hasAntonym silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_urn_ad_hoc ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_urn_canonical ;
+    silm:targetNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_urn_ad_hoc .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_w3crdf11concepts
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationW3crdf11concepts" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_citation_w3cshacl
+    a owl:NamedIndividual ;
+    rdfs:label "P16CitationW3cshacl" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_replacement_agents_rebuttals
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "AgentsRebuttalsReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:_agents_rebuttals_ ;
+    silm:targetNode silm:anchors_repo_rebuttal_dir .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_diagram_fig_mittens_integrated_schema_discovery_profile__diagram_fig_mittens_integrated_schema_discovery_profile
+    a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-integrated-schema-discovery-profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_diagram_fig_mittens_integrated_taxonomy_source_leg__diagram_fig_mittens_integrated_taxonomy_source_leg
+    a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-integrated-taxonomy-source-leg" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_diagram_fig_mittens_integrated_traversal_stack__diagram_fig_mittens_integrated_traversal_stack
+    a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-integrated-traversal-stack" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_diagram_fig_mittens_integrated_typed_interface__diagram_fig_mittens_integrated_typed_interface
+    a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-integrated-typed-interface" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_diagram_fig_mittens_integrated_yoneda_profile__diagram_fig_mittens_integrated_yoneda_profile
+    a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-integrated-yoneda-profile" .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_replacement_silmaril_wave8_replacement_atom
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8ReplacementAtomReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_replacement_atom ;
+    silm:targetNode silm:types_papers_relational_replacement .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_replacement_silmaril_wave8_theorem_unit
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8TheoremUnitReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_theorem_unit ;
+    silm:targetNode silm:types_papers_claim_atom_theorem_unit .
+
+silm:urn_silmaril_universal_anchor_node_enum_wave_role
+    a owl:NamedIndividual ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphEnumMembershipWaveRoleBuilder" ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphEnumMembershipWaveRolePolisher" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_wave_role .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_yoneda_hom_leg
+    a owl:NamedIndividual ;
+    rdfs:label "P16OneIntegratedGrowingKnowledgeGraphPreferredTermYonedaHomLeg" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_preferred_term_yoneda_hom_leg .
+
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_yoneda_traversal
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.16_one_integrated_growing_knowledge_graph.terms.yoneda_traversal" ;
+    silm:hasSynonym "representable walk" ;
+    silm:sourceNode silm:instances_papers_16_one_integrated_growing_knowledge_graph_terms_yoneda_traversal .
+

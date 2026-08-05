@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_05_tree_evaluation_duality_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "TreeEvaluationDualityYonedaHomLegExample" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_05_tree_evaluation_duality_yoneda_hom_leg silm:hasExample "In 'TreeEvaluationDualityYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, In 'Tree Evaluation Duality', the catamorphism is tree evaluation: VetRecord_77_tree -> MittensColimitApex; not monic in general (different trees can evaluate to the same colimit element)." .

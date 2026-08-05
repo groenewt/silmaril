@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_01_sentence_chain_as_path_cheese_trap_immunity__trap_chain_treated_as_prose a owl:NamedIndividual ;
+    rdfs:label "chain_treated_as_prose" .

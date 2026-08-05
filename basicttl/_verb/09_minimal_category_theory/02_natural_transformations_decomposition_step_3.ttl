@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_03_functors_and_natural_transformations_sections_02_natural_transformations_decomposition_step_3__step_joc_3p1 a owl:NamedIndividual ;
+    rdfs:label "cite the base topic" .

@@ -1,0 +1,2 @@
+silm:instances_papers_08_visual_discipline_citation_localmittensexampleanchor2026 a owl:NamedIndividual ;
+    rdfs:label "P08CitationLocalMittensExampleAnchor2026" .

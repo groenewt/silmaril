@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_01_factorization_square_decomposition_step_2__step_forge_morphism_for_01_factorization_square a owl:NamedIndividual ;
+    rdfs:label "The square has two paths from S to Y. Top-right (Forge path): S → forge → R → trace → Y. Left-bottom (profile path): S → profile → Π → match → Y. The factorization law requires these paths to agree." .

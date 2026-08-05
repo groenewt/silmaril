@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_01_identity_preservation_law_concrete_anchor__householdmittensidentity a owl:NamedIndividual ;
+    rdfs:label "the household identity arrow on Mittens (Mittens-is-Mittens)" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_01_identity_preservation_law_concrete_anchor__clinicpatientidentity a owl:NamedIndividual ;
+    rdfs:label "the clinic identity arrow on the patient image of Mittens (this-patient-is-this-patient)" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_01_identity_preservation_law_concrete_anchor__transportf a owl:NamedIndividual ;
+    rdfs:label "the Vet-Imports-Household-Records functor" .

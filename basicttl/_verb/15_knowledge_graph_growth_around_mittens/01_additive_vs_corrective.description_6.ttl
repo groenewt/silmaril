@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_6#erroneoussupersededtypenode a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.05.sections.01.concrete_anchor.6#erroneoussupersededtypenode" .
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_6#erroneoussupersededtypenode silm:hasLongDescription "The ErroneousSupersededTypeNode is the re-typing target for the historical-trace. In the paper's apparatus it appears as the symbol 'erroneous_superseded', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

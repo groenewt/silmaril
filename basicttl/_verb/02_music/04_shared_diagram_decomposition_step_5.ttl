@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_04_shared_diagram_decomposition_step_5__step_hom__x a owl:NamedIndividual ;
+    rdfs:label "the Yoneda traversal reading the section claim through the incoming Hom-profile" .

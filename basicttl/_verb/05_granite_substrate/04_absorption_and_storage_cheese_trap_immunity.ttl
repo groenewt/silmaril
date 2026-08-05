@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_cheese_trap_immunity__trap_absorption_storage_shortcut_collapse__absorbing_source_text_ a owl:NamedIndividual ;
+    rdfs:label "absorption-storage-shortcut collapse: absorbing source text directly into a storage chunk without the typed interpretation step — losing the semantic leg-type assignment and producing a chunk with no declared leg type" .

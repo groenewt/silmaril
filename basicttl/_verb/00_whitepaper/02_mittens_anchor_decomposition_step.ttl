@@ -1,0 +1,12 @@
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_decomposition_step__step_colim_d_mittens a owl:NamedIndividual ;
+    rdfs:label "colim D_Mittens names the colimit of the source diagram D_Mittens. 'colim' is the colimit operation; 'D_Mittens' is the diagram (a functor from the index category J_Mittens to the local olog category C)." .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_decomposition_step__step_cocone_compatibility_arrow_lambda_j__d_mittensj__>_mittens a owl:NamedIndividual ;
+    rdfs:label "lambda_j is the cocone leg from the j-th typed source node to the Mittens apex. For each indexing arrow alpha: j -> k in J_Mittens, the equation lambda_k composed with D_Mittens(alpha) equals lambda_j must hold." .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_decomposition_step__step_colimit_universal_property a owl:NamedIndividual ;
+    rdfs:label "The colimit universal property (JoC §11): for any other compatible cocone (N, mu_j) in C, there exists a unique mediator u: Mittens -> N such that for all j, u composed with lambda_j equals mu_j." .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_decomposition_step__step_twelve_typed_legs a owl:NamedIndividual ;
+    rdfs:label "The twelve typed legs are: (1) record: VetRecord_77; (2) identifier: MicrochipID_44; (3) quality: BodyMassQuality; (4) measurement: WeightMeas_3450g; (5) value: Value_3450; (6) unit: Unit_grams; (7) role: PetRole; (8) process: SleepProcess_7h; (9) validation: SHACLPassReport_77; (10) trace: AuditTrail_77; (11) classification: DomesticCat; (12) taxonomy: FelisCatusTSN183798." .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_decomposition_step__step_yoneda_self_identification a owl:NamedIndividual ;
+    rdfs:label "By the Yoneda lemma (JoC §6.18-6.20), Mittens-as-colimit is known precisely by its incoming profile Hom_C(-, Mittens) and outgoing profile Hom_C(Mittens, -). The twelve typed legs define both profiles; downstream papers inherit the profiles via Yoneda naturality without re-stating the cocone construction." .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_decomposition_step__step_mittens_anchor_recap a owl:NamedIndividual ;
+    rdfs:label "Mittens-the-cat is the colimit of a twelve-leg source diagram; no single leg is an isomorphism onto the apex; the universal property gives unique factorization through any compatible competing cocone (e.g. VetCarePlan_77); downstream papers inherit the twelve-leg profile via Yoneda naturality." .

@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_09_proof_units_sections_02_node_arrow_preservation_cheese_trap_immunity__trap_proof_unit_compressed_to_diagram a owl:NamedIndividual ;
+    rdfs:label "proof_unit_compressed_to_diagram" .

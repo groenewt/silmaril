@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_05_philosophical_substrate_yoneda_hom_leg_8 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 05_philosophical_substrate #8" .

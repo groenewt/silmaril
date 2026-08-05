@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_10_failure_modes_inventory_sections_03_fysa_class_conflict_concrete_anchor_1 a owl:NamedIndividual ;
+    rdfs:label "03FysaClassConflictConcreteAnchor1" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_05_cannon_or_gpt_absorption_olog_box__musicolog05cannonabsorptionbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog05CannonAbsorptionBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_04_type_as_kleisli_arrow_decomposition_step_4__step_typemittensvetrecord77_=_typedleg_record;_typeitisrow183798_ a owl:NamedIndividual ;
+    rdfs:label "The witness mittensVetRecord77 (from the vet record) gates as a TypedNode_record and is admitted as TypedLeg_record. The witness itisRow183798 (from the ITIS taxonomy row) gates as TypedNode_taxonomy and is admitted as TypedLeg_taxonomy. In both cases the witness names an olog object." .

@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_08_cross_paper_bridges_sections_03_bridge_to_21_ologs_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "P07CrossPaperBridgesBridgeTo21OlogsConcreteAnchor2" .

@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_03_icechunk_fanout_olog_box__icechunkfanoutbox a owl:NamedIndividual ;
+    rdfs:label "IcechunkFanoutBox" .

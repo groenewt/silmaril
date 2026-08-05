@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_09_bridges_gov_mereology_presheaf_sections_03_cross_paper_bridge_presheaf_decomposition_step_1__step_d_mittens_11 a owl:NamedIndividual ;
+    rdfs:label "the page-11 Mittens source diagram" .

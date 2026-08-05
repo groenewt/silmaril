@@ -1,0 +1,2 @@
+silm:instances_papers_08_visual_discipline_diagram_tab_08_mark_role__diagram_tab_08_mark_role a owl:NamedIndividual ;
+    rdfs:label "tab:08-mark-role" .

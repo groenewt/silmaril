@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_05_avro_substrate_circuit_imprint_tensor__corner_1 a owl:NamedIndividual ;
+    rdfs:label "1" .

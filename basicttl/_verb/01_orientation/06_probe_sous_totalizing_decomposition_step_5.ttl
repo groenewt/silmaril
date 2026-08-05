@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_06_probe_sous_totalizing_decomposition_step_5__step_if_sous_invents_arrows__the_profile_misrepresents_the_olog;_ a owl:NamedIndividual ;
+    rdfs:label "By Yoneda, the profile is determined by what IS there. If sous invented the arrow PhotoRecord2023 -> Mittens to fill a gap, the profile would claim Hom(PhotoRecord2023, Mittens) is non-empty. But the olog has no such arrow. The Yoneda bijection between natural transformations and profile elements would then misrepresent the olog." .

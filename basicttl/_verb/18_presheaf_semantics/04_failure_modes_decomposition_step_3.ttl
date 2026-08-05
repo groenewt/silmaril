@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_failure_modes_decomposition_step_3__step_presheaf_semantics_failure_modes a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Failure Modes for the Yoneda Reading claim, grounded in the cited literature" .

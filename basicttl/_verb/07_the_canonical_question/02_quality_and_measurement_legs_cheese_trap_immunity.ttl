@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_02_typed_legs_of_the_question_sections_02_quality_and_measurement_legs_cheese_trap_immunity__trap_leg_image_promoted_to_identity a owl:NamedIndividual ;
+    rdfs:label "leg_image_promoted_to_identity" .

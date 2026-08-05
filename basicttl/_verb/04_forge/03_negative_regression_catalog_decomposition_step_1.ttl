@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_03_negative_regression_catalog_decomposition_step_1__step_forge_morphism_for_03_negative_regression_catalog a owl:NamedIndividual ;
+    rdfs:label "NegReg_k is the k-th registered negative-regression object — a typed node in F_04. blocked-path is the illegal morphism sequence. reason is the olog constraint violated. required-factorization is the admissible path that replaces the blocked one." .

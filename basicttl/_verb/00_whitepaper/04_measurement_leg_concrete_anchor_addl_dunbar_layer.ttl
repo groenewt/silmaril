@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_04_measurement_leg_concrete_anchor#weightmeas_3450g a owl:NamedIndividual ;
+    rdfs:label "MeasurementLegConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_04_measurement_leg_concrete_anchor#weightmeas_3450g silm:hasAdditionalAttribute "dunbar_layer:0" .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_4#headobscoconestagen a owl:NamedIndividual ;
+    rdfs:label "YonedaTraversalGrowthConcreteAnchor4AddlDunbarLayer" .
+silm:instances_papers_15_chapters_04_sections_01_concrete_anchor_4#headobscoconestagen silm:hasAdditionalAttribute "dunbar_layer:0" .

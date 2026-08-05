@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:checkatlascsvatlassemantics a owl:Class ;
+    rdfs:label "CheckAtlasCsvAtlasSemantics" ;
+    rdfs:comment "The cannon/atlas/<slug>.csv files render from the universal Atlas\n21-column template (cannon/atlas.csv.template) and are imported into\nthe Atlas tool with strict semantics: TAB separator, cross-glossary\nGlossaryName.TermName notation, AdditionalAttributes as k:v pairs,\nnew-only inserts, pre-validation against the header template, and\nshort-circuit on a header-only file.\n" .

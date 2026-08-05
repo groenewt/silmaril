@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_15_cocone_apex_and_naturality_sections_02_cocone_naturality_walkthrough_concrete_anchor_1_DMittens11 a owl:NamedIndividual ;
+    rdfs:label "S02CoconeNaturalityWalkthroughConcreteAnchor1" .

@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor#vetrecord_77 a owl:NamedIndividual ;
+    rdfs:label "ThesisConcreteAnchorAddlPaperKind" .
+silm:instances_papers_00_whitepaper_sections_01_thesis_concrete_anchor#vetrecord_77 silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.00_whitepaper" .

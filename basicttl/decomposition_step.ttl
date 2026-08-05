@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:decompositionstep a owl:Class ;
+    rdfs:label "DecompositionStep" ;
+    rdfs:comment "Single step in the Wave-8 six-step semantic decomposition: name symbol, name op, cite base topic, anchor concretely, Yoneda traversal, recap. (Addresses Leary Circuit 3 / semantic-dexterity: the language layer that follows the argument once Circuit 1 has named the marks; per cannon/cheese.md.)" .

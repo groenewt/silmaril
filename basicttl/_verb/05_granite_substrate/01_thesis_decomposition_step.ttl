@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_flat_sections_01_thesis_decomposition_step__step_gamma_granite_=_b__chi__m__a__alpha__t__v a owl:NamedIndividual ;
+    rdfs:label "Gamma_Granite is the Granite closure tuple: the seven-tuple of source body, chunk extraction, manifest family, adapter family, fusion cocone, stabilized model, and validation profile." .
+silm:instances_papers_05_granite_substrate_chapters_flat_sections_01_thesis_decomposition_step__step_xrightarrowmanifested_chunks a owl:NamedIndividual ;
+    rdfs:label "The arrow named manifested-chunks is the composite morphism ChunkHash circ Extract: it reads the source body, produces typed chunks, and adds content-addressed hash annotations." .
+silm:instances_papers_05_granite_substrate_chapters_flat_sections_01_thesis_decomposition_step__step_adapter_cocone a owl:NamedIndividual ;
+    rdfs:label "The adapter cocone is the colimit construction from AdamekHerrlichStrecker1990JoyOfCats §11 applied to the adapter family over the leg partition." .
+silm:instances_papers_05_granite_substrate_chapters_flat_sections_01_thesis_decomposition_step__step_yoneda_readable_outputs a owl:NamedIndividual ;
+    rdfs:label "Yoneda-readable outputs are emitted specifications that can be parsed as valid elements of G_Granite: typed nodes, typed arrows, shape witnesses, citation keys, and repair routes." .
+silm:instances_papers_05_granite_substrate_chapters_flat_sections_01_thesis_decomposition_step__step_profile_outt_full_<=_profile_trainb__m__a_ast a owl:NamedIndividual ;
+    rdfs:label "The outgoing profile of the stabilized model is dominated by the training provenance profile: every admitted output traces back to a training record via the manifest return path." .
+silm:instances_papers_05_granite_substrate_chapters_flat_sections_01_thesis_decomposition_step__step_granite_closure a owl:NamedIndividual ;
+    rdfs:label "Granite is closed when the stabilized model can emit specifications that factor through the encyclopedia olog." .

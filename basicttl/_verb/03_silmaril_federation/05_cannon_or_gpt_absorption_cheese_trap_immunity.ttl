@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_05_cannon_or_gpt_absorption_cheese_trap_immunity__trap_generated_source_used_as_authority a owl:NamedIndividual ;
+    rdfs:label "generated_source_used_as_authority" .

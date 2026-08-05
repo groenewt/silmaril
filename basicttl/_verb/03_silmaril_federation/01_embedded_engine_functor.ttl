@@ -1,0 +1,3 @@
+silm:EmbeddedEngineFunctorLaws a owl:Class ;
+    rdfs:label "EmbeddedEngineFunctorLaws" ;
+    rdfs:comment "The embedded engine functor E_s: C_s -> F_Sil must satisfy identity law (E_s(id_x) = id_{E_s(x)}) and composition law (E_s(g circ f) = E_s(g) circ E_s(f)). These laws are the admission conditions for any Silmaril engine to contribute arrows to the federation olog." .

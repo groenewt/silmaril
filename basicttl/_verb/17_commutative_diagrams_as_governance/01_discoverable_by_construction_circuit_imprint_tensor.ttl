@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_03_discoverable_contradictions_sections_01_discoverable_by_construction_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "DiscoverableByConstructionCircuitImprintTensor" .

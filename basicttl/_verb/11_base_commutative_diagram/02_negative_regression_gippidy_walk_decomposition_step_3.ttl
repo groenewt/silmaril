@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_08_joc_and_regression_sections_02_negative_regression_gippidy_walk_decomposition_step_3__step_cocone_universality a owl:NamedIndividual ;
+    rdfs:label "cocone universality of the colimit apex m_11 = colim D_Mittens_11" .

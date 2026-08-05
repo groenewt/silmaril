@@ -1,0 +1,12 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_integratedrepresentable_central a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming integrated representable as colimit of per-entity representables" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_composition_under_integration a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_yoneda_lemma_joy_of_cats_authority a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_household_instantiation a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_integrated_profile_inheritance a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_04_yoneda_for_integration_sections_01_integrated_representable_decomposition_steps__step_integratedrepresentable_discipline a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .

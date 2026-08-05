@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_07_sections_03_decomposition_step_3__step_base_topic_contiguous_subsequence_colimit_restriction a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia base topic providing the formal apparatus" .

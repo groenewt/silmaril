@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_15_cocone_apex_and_naturality_sections_01_cocone_apex_construction_step_by_step_yoneda_hom_leg_4_refinementembeddingr a owl:NamedIndividual ;
+    rdfs:label "S01CoconeApexConstructionStepByStepYonedaHomLeg4Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_15_cocone_apex_and_naturality_sections_01_cocone_apex_construction_step_by_step_yoneda_hom_leg_4_refinementembeddingr silm:hasExample "In 'S01CoconeApexConstructionStepByStepYonedaHomLeg4', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, r:DomesticCat->Cat — the refinement-to-anchor embedding; required by path law c=r.a" .

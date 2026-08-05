@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_03_path_law_enforcement_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 03_path_law_enforcement" .

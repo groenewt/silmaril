@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_yoneda_hom_leg_3 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 01_shape_gate_olog_node #3" .

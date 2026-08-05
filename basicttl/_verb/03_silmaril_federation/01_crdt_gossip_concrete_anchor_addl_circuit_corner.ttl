@@ -1,0 +1,3 @@
+silm: a owl:NamedIndividual ;
+    rdfs:label "AnchorAddlCircuitCorner" .
+silm: silm:hasAdditionalAttribute "circuit_corner:3" .

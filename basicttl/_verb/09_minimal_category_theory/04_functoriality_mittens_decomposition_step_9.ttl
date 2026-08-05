@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_03_functors_and_natural_transformations_sections_04_functoriality_mittens_decomposition_step_9__step_joc_17p40 a owl:NamedIndividual ;
+    rdfs:label "cite JoC 17.40" .

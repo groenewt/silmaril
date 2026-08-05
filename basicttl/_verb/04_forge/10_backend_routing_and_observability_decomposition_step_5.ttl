@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_10_backend_routing_and_observability_decomposition_step_5__step_forge_morphism_for_10_backend_routing_and_observability a owl:NamedIndividual ;
+    rdfs:label "By Yoneda naturality, any approach to Mittens via body-mass information must travel through MeasurementLeg: Hom(-, Mittens) factors through this typed leg whenever the approach is a measurement." .

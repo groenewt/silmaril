@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_1#vetvisit77 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.02.sections.01.concrete_anchor.1#vetvisit77" .
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_1#vetvisit77 silm:hasLongDescription "The VetVisit77 is the 2026-04-12 visit process node at Dr. Mendez's practice. In the paper's apparatus it appears as the symbol 'VetVisit77', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_mittens_anchor_decomposition_step_6__step_mittens_presheaf_colimit_anchor a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Mittens Presheaf Colimit Anchor on the Mittens presheaf is exactly the lawful construction it names" .

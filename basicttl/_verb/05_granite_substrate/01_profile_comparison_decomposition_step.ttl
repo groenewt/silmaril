@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_decomposition_step__step_hom__mittens_vs_hom__graniterow a owl:NamedIndividual ;
+    rdfs:label "primary symbol: yoneda_lemma in G_Granite" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_decomposition_step__step_circ a owl:NamedIndividual ;
+    rdfs:label "typed composition of arrows in the Granite olog category G_Granite — each composed morphism carries source-body provenance, manifest-entry typing, and Yoneda-profile preservation through the chain" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_decomposition_step__step_yoneda_lemma a owl:NamedIndividual ;
+    rdfs:label "base topic grounding ProfileComparison via yoneda_lemma in Joy of Cats §6.18 — two objects are isomorphic iff their incoming and outgoing Hom-profiles coincide on all probe objects in the encyclopedia category" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_decomposition_step__step_mittens_at_tartu_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "Mittens individual whose vet-record grounds this section" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_decomposition_step__step_hom__mittens_vs_hom__graniterow a owl:NamedIndividual ;
+    rdfs:label "different incoming/outgoing Hom-profiles by witness query enumeration imply different objects by the Yoneda lemma — two objects with identical profiles must be isomorphic, contrapositively distinct profiles guarantee distinct objects" .
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_01_profile_comparison_decomposition_step__step_profilecomparison a owl:NamedIndividual ;
+    rdfs:label "ProfileComparison preserves typed separation" .

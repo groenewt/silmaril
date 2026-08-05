@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_08_sections_01_decomposition_step_6__step_theorem_t8_g1 a owl:NamedIndividual ;
+    rdfs:label "Path-law conflict produces an absorbing-zero state" .

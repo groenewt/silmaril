@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_concrete_anchor__clinicintakevalidationgate a owl:NamedIndividual ;
+    rdfs:label "the clinic's import pipeline gate that issues admit/reject verdicts" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_concrete_anchor__mittenshouseholddata a owl:NamedIndividual ;
+    rdfs:label "the typed household-side data about Mittens slated for transport" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_concrete_anchor__transportadmissibilityverdict a owl:NamedIndividual ;
+    rdfs:label "the validation gate's admit/reject decision for the candidate transport" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_concrete_anchor__derivedanchor_03_whe_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

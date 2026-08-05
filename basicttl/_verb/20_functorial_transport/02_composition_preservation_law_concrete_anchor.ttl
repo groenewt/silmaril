@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_concrete_anchor__householdhasqualityarrow a owl:NamedIndividual ;
+    rdfs:label "the household has-quality arrow from Mittens to body-mass quality 77" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_concrete_anchor__householdmeasuredbyarrow a owl:NamedIndividual ;
+    rdfs:label "the household measured-by arrow from body-mass quality 77 to record 77" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_concrete_anchor__householdmeasurementcomposite a owl:NamedIndividual ;
+    rdfs:label "the household two-step composite path from Mittens to record 77" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_concrete_anchor__derivedanchor_02_com_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_concrete_anchor__householdhomset_02_com_4 a owl:NamedIndividual ;
+    rdfs:label "the household hom-set of typed arrows between two nodes; finite, enumerable, and preserved under transport F." .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_concrete_anchor__coconeapex_02_com_5 a owl:NamedIndividual ;
+    rdfs:label "the cocone apex into which Mittens' typed household-side legs collect; the transport must preserve this colimit cocone." .

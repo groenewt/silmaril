@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_03_embedded_engine_functors_sections_03_natural_transformation_between_engines_olog_box__naturaltransformationbetweenengines a owl:NamedIndividual ;
+    rdfs:label "NaturalTransformationBetweenEngines" .

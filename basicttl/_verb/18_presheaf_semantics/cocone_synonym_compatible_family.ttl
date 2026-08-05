@@ -1,0 +1,4 @@
+silm:instances_papers_18_presheaf_semantics_terms_cocone a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.cocone" .
+silm:instances_papers_18_presheaf_semantics_terms_cocone silm:hasSynonym "compatible family" .
+silm:instances_papers_18_presheaf_semantics_terms_cocone silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_cocone .

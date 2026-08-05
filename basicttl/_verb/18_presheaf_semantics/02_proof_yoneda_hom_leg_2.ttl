@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_proof_yoneda_hom_leg_2_P_r10 a owl:NamedIndividual ;
+    rdfs:label "P1802_proofYonedaHomLeg2" .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_cocone_leg_n_plus_1 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchorCoconeLegStageNplus1" .

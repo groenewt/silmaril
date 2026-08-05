@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_cocone_leg_n#bodymassqualityattachmentarrowstage1 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchorCoconeLegStageNAddlCircuitCorner" .
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_cocone_leg_n#bodymassqualityattachmentarrowstage1 silm:hasAdditionalAttribute "circuit_corner:5" .

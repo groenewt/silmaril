@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_02_typed_legs_of_the_question_sections_02_quality_and_measurement_legs_decomposition_step_5__step__hom_o__x a owl:NamedIndividual ;
+    rdfs:label "reading position 5: by Yoneda naturality, the profile Hom_O(-,X) transports along functors preserving representability" .

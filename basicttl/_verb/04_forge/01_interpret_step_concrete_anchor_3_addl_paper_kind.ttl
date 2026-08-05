@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_concrete_anchor_3#mittensvalidationreport_0413 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 01_interpret_step" .
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_concrete_anchor_3#mittensvalidationreport_0413 silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.04_forge" .

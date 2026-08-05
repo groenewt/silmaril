@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_09_joy_of_cats_anchor_for_pages_sections_01_categories_as_governed_decomposition_step_3__step_spivak_olog_definition a owl:NamedIndividual ;
+    rdfs:label "the olog typed-English definition Spivak & Kent 2012" .

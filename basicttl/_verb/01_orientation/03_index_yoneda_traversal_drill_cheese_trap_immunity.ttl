@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_11_concept_card_index_sections_03_index_yoneda_traversal_drill_cheese_trap_immunity__trap_index_row_collapsed_to_concept_card_page a owl:NamedIndividual ;
+    rdfs:label "index_row_collapsed_to_concept_card_page" .

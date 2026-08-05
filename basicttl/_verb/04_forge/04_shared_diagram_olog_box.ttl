@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_04_shared_diagram_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 04_shared_diagram" .

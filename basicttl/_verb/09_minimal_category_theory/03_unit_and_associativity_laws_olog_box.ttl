@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_02_identity_and_composition_sections_03_unit_and_associativity_laws_olog_box__minimalcategorytheory_s03unitandassociativitylaws a owl:NamedIndividual ;
+    rdfs:label "MinimalCategoryTheory_S03UnitAndAssociativityLaws" .

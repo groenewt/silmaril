@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_citation_w3crdf11concepts a owl:NamedIndividual ;
+    rdfs:label "P21CitationW3crdf11concepts" .

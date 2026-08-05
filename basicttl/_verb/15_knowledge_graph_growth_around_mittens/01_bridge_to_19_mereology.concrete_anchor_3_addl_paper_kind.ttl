@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_07_sections_01_concrete_anchor_3#headobsadmissionstage a owl:NamedIndividual ;
+    rdfs:label "BridgeTo19MereologyConcreteAnchor3AddlPaperKind" .
+silm:instances_papers_15_chapters_07_sections_01_concrete_anchor_3#headobsadmissionstage silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.15_knowledge_graph_growth_around_mittens" .

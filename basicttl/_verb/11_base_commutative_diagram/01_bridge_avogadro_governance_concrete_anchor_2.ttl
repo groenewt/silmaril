@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_21_bridges_avogadro_disint_canonq_visual_sections_01_bridge_avogadro_governance_concrete_anchor_2_Cat a owl:NamedIndividual ;
+    rdfs:label "S01BridgeAvogadroGovernanceConcreteAnchor2" .

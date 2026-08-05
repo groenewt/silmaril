@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_decomposition_step__step_kghouse a owl:NamedIndividual ;
+    rdfs:label "the household-side knowledge-graph category" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_decomposition_step__step_g_o_f a owl:NamedIndividual ;
+    rdfs:label "first do f, then do g. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_decomposition_step__step_hom_kghousea_b a owl:NamedIndividual ;
+    rdfs:label "the set of typed household arrows from node A to node B" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_decomposition_step__step_two_paths_mittens__>_housevetrecord_77 a owl:NamedIndividual ;
+    rdfs:label "the household has two distinct typed routes from cat to record" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_decomposition_step__step_ymittens_=_hom_kghouse___mittens a owl:NamedIndividual ;
+    rdfs:label "Mittens is identifiable in the household category by its incoming typed arrow profile" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_decomposition_step__step_kghouse a owl:NamedIndividual ;
+    rdfs:label "the household KG is a category before any transport: typed objects, typed arrows, composition law" .

@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_sections_03_olog_node_arrow_law_yoneda_hom_leg_7_directanimalpathh a owl:NamedIndividual ;
+    rdfs:label "S03OlogNodeArrowLawYonedaHomLeg7" .

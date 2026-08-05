@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_09_node_arrow_factorization_theorem_olog_box__minimalcategorytheory_s09nodearrowfactorizationtheorem a owl:NamedIndividual ;
+    rdfs:label "MinimalCategoryTheory_S09NodeArrowFactorizationTheorem" .

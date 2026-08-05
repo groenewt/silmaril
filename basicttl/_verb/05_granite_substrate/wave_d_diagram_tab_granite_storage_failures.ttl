@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_diagram_tab_granite_storage_failures__diagram_tab_granite_storage_failures a owl:NamedIndividual ;
+    rdfs:label "tab:granite-storage-failures" .

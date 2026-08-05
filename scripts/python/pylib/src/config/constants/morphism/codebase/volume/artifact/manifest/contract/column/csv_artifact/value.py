@@ -1,0 +1,1 @@
+VALUE = "output_artifact"

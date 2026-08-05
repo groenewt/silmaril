@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_02_typed_source_signature_sections_06_kleisli_category_of_sigma_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "06KleisliCategoryOfSigmaConcreteAnchor3" .

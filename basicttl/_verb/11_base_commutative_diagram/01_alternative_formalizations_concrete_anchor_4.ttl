@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_10_alternatives_dual_computational_sections_01_alternative_formalizations_concrete_anchor_4_Mammal a owl:NamedIndividual ;
+    rdfs:label "S01AlternativeFormalizationsConcreteAnchor4" .

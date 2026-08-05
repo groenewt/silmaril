@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_federation_contract_olog_box__federationcontract a owl:NamedIndividual ;
+    rdfs:label "FederationContract" .

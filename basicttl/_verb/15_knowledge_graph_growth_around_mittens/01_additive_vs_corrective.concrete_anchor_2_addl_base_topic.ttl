@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_2#bodymasscorrected4_0kg a owl:NamedIndividual ;
+    rdfs:label "CorrectiveGrowthNonIdentityConcreteAnchor2AddlBaseTopic" .
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_2#bodymasscorrected4_0kg silm:hasAdditionalAttribute "base_topic:knowledge graph growth" .

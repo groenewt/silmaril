@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_08_sections_02_concrete_anchor_1#forbiddendeletionbatch a owl:NamedIndividual ;
+    rdfs:label "SilentDeletionForbiddenConcreteAnchor1AddlCircuitCorner" .
+silm:instances_papers_15_chapters_08_sections_02_concrete_anchor_1#forbiddendeletionbatch silm:hasAdditionalAttribute "circuit_corner:2" .

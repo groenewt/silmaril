@@ -1,0 +1,3 @@
+silm:instances_papers_03_silmaril_federation_preferred_term_federation_cocone a owl:NamedIndividual ;
+    rdfs:label "P03SilmarilFederationPreferredTermFederationCocone" .
+silm:instances_papers_03_silmaril_federation_preferred_term_federation_cocone silm:sourceNode silm:instances_papers_03_silmaril_federation_preferred_term_federation_cocone .

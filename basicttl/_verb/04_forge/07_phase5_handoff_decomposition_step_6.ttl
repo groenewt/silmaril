@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_07_phase5_handoff_decomposition_step_6__step_forge_morphism_for_07_phase5_handoff a owl:NamedIndividual ;
+    rdfs:label "Phase5Handoff: Forge typing discipline enforced. — concrete forge-domain reading in section 'The Phase-4 to Phase-5 Handoff'." .

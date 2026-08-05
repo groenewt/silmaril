@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_06_cross_paper_bridges_sections_02_bridge_to_16_integration_olog_box__bridgetopaper16integration a owl:NamedIndividual ;
+    rdfs:label "BridgeToPaper16Integration" .

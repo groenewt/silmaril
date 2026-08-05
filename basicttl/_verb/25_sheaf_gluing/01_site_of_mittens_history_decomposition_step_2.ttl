@@ -1,0 +1,2 @@
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_decomposition_step_2__step_pullback_over_u_intersection_of_opens a owl:NamedIndividual ;
+    rdfs:label "first take U_i, then intersect with V to get U_i cap V" .

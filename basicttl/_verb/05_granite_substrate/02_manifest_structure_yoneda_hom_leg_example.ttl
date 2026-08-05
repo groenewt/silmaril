@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_02_manifest_structure_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "ManifestStructureYonedaHomLegExample" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_02_manifest_structure_yoneda_hom_leg silm:hasExample "In 'ManifestStructureYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, Mittens is characterized by its full Hom-profile including outgoing arrows to downstream objects like VetCarePlan_77; the storage chunk does not carry these arrows. (02_manifest_structure.tex, Yoneda traversal)" .

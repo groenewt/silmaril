@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_01_reader_onboarding_sections_05_what_an_entry_owes_you_olog_box__05whatanentryowesyouologbox a owl:NamedIndividual ;
+    rdfs:label "05WhatAnEntryOwesYouOlogBox" .

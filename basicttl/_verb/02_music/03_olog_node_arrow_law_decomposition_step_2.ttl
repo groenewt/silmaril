@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_olog_node_arrow_law_decomposition_step_2__step_nodeorarrowgate a owl:NamedIndividual ;
+    rdfs:label "the primary typed arrow connecting objects in the 03_olog_node_arrow_law claim" .

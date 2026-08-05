@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_06_cocone_compatibility_for_pages_sections_04_cross_page_references_compatibility_decomposition_step_6__step_music_olog_admissibility a owl:NamedIndividual ;
+    rdfs:label "the assembled typed-English sentence the section asserts" .

@@ -1,0 +1,1 @@
+VALUE = "\\input{%s}\n"

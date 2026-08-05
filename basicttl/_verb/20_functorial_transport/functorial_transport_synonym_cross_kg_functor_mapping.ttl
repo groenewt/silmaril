@@ -1,0 +1,4 @@
+silm:instances_papers_20_functorial_transport_terms_functorial_transport a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.20_functorial_transport.terms.functorial_transport" .
+silm:instances_papers_20_functorial_transport_terms_functorial_transport silm:hasSynonym "cross-KG functor mapping" .
+silm:instances_papers_20_functorial_transport_terms_functorial_transport silm:sourceNode silm:instances_papers_20_functorial_transport_terms_functorial_transport .

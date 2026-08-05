@@ -1,0 +1,6 @@
+external_evidence,executable_locus,observed_version,sha256,consumer,authority_boundary
+find,/usr/bin/find,"GNU findutils 4.10.0",91b75e72c495e68dd6aab198c2fd6c458fd51a2dc361045ee31f8e657417de26,"specification source discovery","external spelling is evidence; lexical internal coordinates own semantics"
+sort,/usr/bin/sort,"GNU coreutils 9.7",4bf4f14424fa481b1f40d28534b0c5c7a7d07affcb82c805b07255cc4c2034be,"zero-terminated source canonical ordering","external spelling is evidence; lexical internal coordinates own semantics"
+jq,/usr/bin/jq,"jq-1.7",5e1dcc8c21b9362013a1f30acb24c69a128cbd5238364b88803f4c60cd9376dd,"grounding classification, paper-slug aggregation, completeness validation","external spelling is evidence; lexical internal coordinates own semantics"
+mkdir,/usr/bin/mkdir,"GNU coreutils 9.7",bd3d9b36a1cc1c63b8dca7967003f4e5b0bb8556c87cbb7c1916aa358bf3f053,"stage-directory construction","external spelling is evidence; lexical internal coordinates own semantics"
+python3,/usr/bin/python3,"Python 3.13",17b78e0a93175e86f9ac03141924fd7a7f0c0c52e66b34bfa0de20ffef989df1,"papers-directory presence, specification document-instance relation parsing, summary JSON construction, summary text projection","external spelling is evidence; lexical internal coordinates own semantics"

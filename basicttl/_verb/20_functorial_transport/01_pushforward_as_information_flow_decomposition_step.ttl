@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_decomposition_step__step_transportf_* a owl:NamedIndividual ;
+    rdfs:label "the pushforward (direct-image) functor of TransportF" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_decomposition_step__step_transportf_*p_=_p_o_transportf^op a owl:NamedIndividual ;
+    rdfs:label "apply the transport's opposite to compose with the household-side presheaf P" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_decomposition_step__step_f_* a owl:NamedIndividual ;
+    rdfs:label "direct-image functor on presheaves. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_decomposition_step__step_pushforward_of_mittens_record a owl:NamedIndividual ;
+    rdfs:label "the household's typed knowledge becomes the clinic's typed knowledge" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_decomposition_step__step_ytransportfmittens a owl:NamedIndividual ;
+    rdfs:label "the pushforward sends the household Yoneda profile of Mittens to a typed clinic profile of the patient image" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_decomposition_step__step_f_* a owl:NamedIndividual ;
+    rdfs:label "pushforward is information flow with typing preserved" .

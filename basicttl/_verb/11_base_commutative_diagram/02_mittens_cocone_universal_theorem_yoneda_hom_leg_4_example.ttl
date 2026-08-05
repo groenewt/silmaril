@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_01_core_theorems_sections_02_mittens_cocone_universal_theorem_yoneda_hom_leg_4_refinementembeddingr a owl:NamedIndividual ;
+    rdfs:label "S02MittensCoconeUniversalTheoremYonedaHomLeg4Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_01_core_theorems_sections_02_mittens_cocone_universal_theorem_yoneda_hom_leg_4_refinementembeddingr silm:hasExample "In 'S02MittensCoconeUniversalTheoremYonedaHomLeg4', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, r:DomesticCat->Cat — the refinement-to-anchor embedding; required by path law c=r.a" .

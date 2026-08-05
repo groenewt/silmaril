@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_10_absorption_failure_modes_cheese_trap_immunity__trap_storage_identity_collapse_in_10_absorption_failure_modes__gr a owl:NamedIndividual ;
+    rdfs:label "storage-identity collapse in 10_absorption_failure_modes: GraniteRow_Mittens treated as if it has the same Hom-profile as the governed Mittens apex — i.e., the AbsorptionFailureModes artifact is mistaken for the whole governed individual" .

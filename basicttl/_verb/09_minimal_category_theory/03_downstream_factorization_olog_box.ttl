@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_03_downstream_factorization_olog_box__minimalcategorytheory_s03downstreamfactorization a owl:NamedIndividual ;
+    rdfs:label "MinimalCategoryTheory_S03DownstreamFactorization" .

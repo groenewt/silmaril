@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_02_identifier_leg_cheese_trap_immunity__trap_mittens_collapsed_to_catus_string a owl:NamedIndividual ;
+    rdfs:label "mittens_collapsed_to_catus_string" .

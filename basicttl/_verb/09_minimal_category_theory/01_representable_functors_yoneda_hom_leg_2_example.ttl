@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_chapters_05_yoneda_lemma_and_representables_sections_01_representable_functors_yoneda_hom_leg_2_aboutness_leg a owl:NamedIndividual ;
+    rdfs:label "S01RepresentableFunctorsYonedaHomLeg2Example" .
+silm:instances_papers_09_minimal_category_theory_chapters_05_yoneda_lemma_and_representables_sections_01_representable_functors_yoneda_hom_leg_2_aboutness_leg silm:hasExample "In 'S01RepresentableFunctorsYonedaHomLeg2', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the VetRecord77 -> Mittens aboutness leg; an information arrow, not an isomorphism" .

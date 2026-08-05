@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_04_three_substrates_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "04ThreeSubstratesYonedaHomLeg1" .

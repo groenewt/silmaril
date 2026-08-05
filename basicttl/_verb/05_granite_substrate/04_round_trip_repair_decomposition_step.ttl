@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_04_round_trip_repair_decomposition_step__step_rho_x∘mu_x a owl:NamedIndividual ;
+    rdfs:label "the primary symbol in this section — functors_and_natural_transformations as a typed morphism in G_Granite" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_04_round_trip_repair_decomposition_step__step_typed_composition_in_g_granite a owl:NamedIndividual ;
+    rdfs:label "composing two typed arrows in the Granite category gives a typed arrow, preserving source-body provenance" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_04_round_trip_repair_decomposition_step__step_functors_and_natural_transformations_base a owl:NamedIndividual ;
+    rdfs:label "the category-theoretic base topic grounding this section" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_04_round_trip_repair_decomposition_step__step_mittens_at_tartu_vet_clinic a owl:NamedIndividual ;
+    rdfs:label "the concrete Mittens individual with the Tartu vet-record as the evidence chunk" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_04_round_trip_repair_decomposition_step__step_hom__mittens_vs_hom__graniterow a owl:NamedIndividual ;
+    rdfs:label "the Hom-profile of Mittens (full typed web) vs the Hom-profile of a storage row (only storage-layer arrows) — different profiles, different objects" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_04_round_trip_repair_decomposition_step__step_roundtriprepair_law a owl:NamedIndividual ;
+    rdfs:label "the RoundTripRepair section establishes that functors_and_natural_transformations in G_Granite preserves typed leg identity without collapsing storage rows into the governed apex" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_14_concept_card_index_sections_05_cheese_face_cards_olog_box__musicolog05cheesefacecardsbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog05CheeseFaceCardsBox" .

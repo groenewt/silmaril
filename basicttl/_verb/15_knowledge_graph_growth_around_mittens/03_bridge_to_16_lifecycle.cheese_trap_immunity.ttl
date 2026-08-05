@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_07_sections_03_cheese_trap_immunity__trap_lifecycle_stage_is_calendar_date a owl:NamedIndividual ;
+    rdfs:label "lifecycle_stage_is_calendar_date" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_naturality_skipped_decomposition_step_1__step_p_mittens a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the Cheese-Trap: Naturality Skipped claim" .

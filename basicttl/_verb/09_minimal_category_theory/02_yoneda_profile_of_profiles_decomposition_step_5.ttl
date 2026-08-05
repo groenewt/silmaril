@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_02_yoneda_profile_of_profiles_decomposition_step_5__step_homc_minus_mittens a owl:NamedIndividual ;
+    rdfs:label "Yoneda traversal" .

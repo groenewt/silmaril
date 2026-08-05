@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_05_cannon_or_gpt_absorption_olog_box__p07cannonorgptabsorptionologbox a owl:NamedIndividual ;
+    rdfs:label "P07CannonOrGptAbsorptionOlogBox" .

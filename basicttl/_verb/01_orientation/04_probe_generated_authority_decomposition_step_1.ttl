@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_04_probe_generated_authority_decomposition_step_1__step_generatedwitness a owl:NamedIndividual ;
+    rdfs:label "A GeneratedWitness is any material created or drafted without an external archival source: GPT-drafted phrases, locally-generated reformulations, material drawn from training data." .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_02_sections_02_concrete_anchor_3#designationarrow a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.02.sections.02.concrete_anchor.3#designationarrow" .
+silm:instances_papers_15_chapters_02_sections_02_concrete_anchor_3#designationarrow silm:hasLongDescription "The DesignationArrow is the cocone arrow from the identifier literal into Mittens. In the paper's apparatus it appears as the symbol 'designates', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

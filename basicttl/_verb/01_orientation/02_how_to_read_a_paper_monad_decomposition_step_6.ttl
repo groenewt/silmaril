@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_01_reader_onboarding_sections_02_how_to_read_a_paper_monad_decomposition_step_6__step_y^out_mittens a owl:NamedIndividual ;
+    rdfs:label "reading position 6: the outgoing Yoneda profile of Mittens (uses by downstream pages)" .

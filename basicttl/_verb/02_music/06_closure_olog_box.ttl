@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_06_closure_olog_box__musicolog06closurebox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog06ClosureBox" .

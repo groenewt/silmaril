@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_04_sous_observation_role_yoneda_hom_leg_5 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 04_sous_observation_role #5" .

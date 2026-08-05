@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_cross_paper_bridges_decomposition_step_2__step_colim a owl:NamedIndividual ;
+    rdfs:label "the primary operation invoked in the Cross-Paper Bridges from the Cube claim" .

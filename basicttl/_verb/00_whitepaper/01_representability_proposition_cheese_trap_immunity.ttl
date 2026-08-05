@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_01_representability_proposition_cheese_trap_immunity__trap_non_grounded_representability a owl:NamedIndividual ;
+    rdfs:label "non_grounded_representability" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_05_validation_and_shapes_sections_01_shape_gate_olog_node_decomposition_step_2__step_forge_morphism_for_01_shape_gate_olog_node a owl:NamedIndividual ;
+    rdfs:label "The operation connecting the section's nodes: a typed morphism in F_04. See section tex Step 2 for the specific operation." .

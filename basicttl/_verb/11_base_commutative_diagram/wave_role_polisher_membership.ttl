@@ -1,0 +1,3 @@
+silm:urn_silmaril_universal_anchor_node_enum_wave_role a owl:NamedIndividual ;
+    rdfs:label "P11BaseCommutativeDiagramEnumMembershipWaveRolePolisher" .
+silm:urn_silmaril_universal_anchor_node_enum_wave_role silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_wave_role .

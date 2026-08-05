@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_06_closure_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 06_closure" .

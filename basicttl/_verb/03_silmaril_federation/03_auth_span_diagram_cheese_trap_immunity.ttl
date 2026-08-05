@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_03_auth_span_diagram_cheese_trap_immunity__trap_auth_token_returned_as_governed_individual_identity a owl:NamedIndividual ;
+    rdfs:label "auth_token_returned_as_governed_individual_identity" .

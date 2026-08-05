@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_06_closure_decomposition_step_2__step_yonedaclosuregate a owl:NamedIndividual ;
+    rdfs:label "the primary typed arrow connecting objects in the 06_closure claim" .

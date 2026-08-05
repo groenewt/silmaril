@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_01_circuit_3_semantic_dexterity_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "Circuit3SemanticDexterityCircuitImprintTensor" .

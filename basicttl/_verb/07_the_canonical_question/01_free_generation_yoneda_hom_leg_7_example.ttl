@@ -1,0 +1,3 @@
+silm:instances_papers_07_the_canonical_question_chapters_05_free_construction_and_quotient_sections_01_free_generation_yoneda_hom_leg_7 a owl:NamedIndividual ;
+    rdfs:label "P07FreeConstructionAndQuotientFreeGenerationYonedaHomLeg7Example" .
+silm:instances_papers_07_the_canonical_question_chapters_05_free_construction_and_quotient_sections_01_free_generation_yoneda_hom_leg_7 silm:hasExample "In 'P07FreeConstructionAndQuotientFreeGenerationYonedaHomLeg7', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the Avro-serialized VetRecord blob in the granite-storage chunk-manifest: a storage-materialization arrow into D_Mittens for the evidence artifact." .

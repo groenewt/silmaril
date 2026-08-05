@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_02_typed_legs_of_the_question_sections_03_evidence_and_role_legs_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

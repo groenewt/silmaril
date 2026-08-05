@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_01_patch_cover_cocone_sections_01_cover_definition_olog_box__01coverdefinition a owl:NamedIndividual ;
+    rdfs:label "01CoverDefinition" .

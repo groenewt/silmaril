@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chd_pair_iso__diagram_fig_orientation_chd_pair_iso a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chD-pair-iso" .

@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "TransportedProfileUnderFullAndFaithfulCircuitImprintTensor" .

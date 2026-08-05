@@ -1,0 +1,3 @@
+silm:ShaclShapeGateArrow a owl:Class ;
+    rdfs:label "ShaclShapeGateArrow" ;
+    rdfs:comment "The SHACL shape gate arrow validatedBy: KGNode_Mittens -> ValidationReport_Mittens. This is the typed validation step in the KG governance square. A conformant report enables catalog registration; a violation report blocks it. The gate is not a filter; it is a typed arrow in the federation olog." .

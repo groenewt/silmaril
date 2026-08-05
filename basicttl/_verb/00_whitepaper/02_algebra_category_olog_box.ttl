@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_02_algebra_category_olog_box__algebracategory_algsigma a owl:NamedIndividual ;
+    rdfs:label "AlgebraCategory_AlgSigma" .

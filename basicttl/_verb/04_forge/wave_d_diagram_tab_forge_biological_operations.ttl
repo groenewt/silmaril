@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_diagram_tab_forge_biological_operations__diagram_tab_forge_biological_operations a owl:NamedIndividual ;
+    rdfs:label "tab:forge-biological-operations" .

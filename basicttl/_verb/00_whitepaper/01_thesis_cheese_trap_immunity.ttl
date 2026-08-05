@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_01_thesis_cheese_trap_immunity__trap_publish_shortcut_or_identity_collapse_on_taxonomy_type_or_render a owl:NamedIndividual ;
+    rdfs:label "publish_shortcut_or_identity_collapse_on_taxonomy_type_or_render" .

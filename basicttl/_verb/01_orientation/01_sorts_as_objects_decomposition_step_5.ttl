@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_02_typed_source_signature_sections_01_sorts_as_objects_decomposition_step_5__step_y^in_mittens a owl:NamedIndividual ;
+    rdfs:label "reading position 5: the incoming Yoneda profile of Mittens (probes by source legs)" .

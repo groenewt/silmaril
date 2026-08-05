@@ -1,0 +1,18 @@
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[instancenode]| AdmittedClaim [l," .
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "] [d," .
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ \\& |[schemanode]| ManifestProfile tikzcd% The Music engine span: the \\(AdmittedClaim\\) is the shared center of the data-engine and exec-engine axes. The manifest profile is the common comparison object that both engines must agree upon.fig:music-engine-span theorem[Engine span coherence] thm:music-engine-span The Music engine span is coherent if and only if the following identities hold: \\[ objectId = objectId, \\] \\[ ManifestProfile and ManifestProfile \\] are both inhabited arrows with equal source object. theorem proof Step 1. The span \\(DataEngine\\) requires a common apex. Step 2. The manifest profile supplies the common comparison object. Step 3. The pullback-style discipline says that data and execution projections must agree on object identifier, input type, and output type. Step 4 (anchor). For the Mittens body-mass observation: the data record stores the mass value as \\(MeasuredMass\\); the execution task schedules the quality-section renderer with the same \\(MeasuredMass\\) as input. The manifest profile confirms both point to the same typed quality claim. Step 5 (Yoneda). The coherence condition is a naturality square: \\((-,DataRecord)\\) and \\((-,ExecutionTask)\\) must agree when restricted to arrows from \\(ManifestProfile\\). Step 6. The span is coherent when the manifest profile is a valid equalizer of the data and execution projections. proof Diagram law (Figure~fig:music-engine-span): the two arms of the span meet at \\(ManifestProfile\\); an engine that cannot produce this meeting has split the admitted claim into two incompatible objects. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] |[instancenode]| AdmittedClaim [r," .
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[schemanode]| DataRecord [d," .
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "emits" .
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_6" .
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_7" .
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_8" .
+silm:instances_papers_02_music_sections_04_engine_spans_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_9" .

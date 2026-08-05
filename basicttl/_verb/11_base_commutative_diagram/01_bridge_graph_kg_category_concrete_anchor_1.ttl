@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_20_bridges_graph_kg_integrated_cco_sections_01_bridge_graph_kg_category_concrete_anchor_1_DMittens11 a owl:NamedIndividual ;
+    rdfs:label "S01BridgeGraphKgCategoryConcreteAnchor1" .

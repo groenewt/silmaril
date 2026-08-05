@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_concrete_anchor_3#joc620 a owl:NamedIndividual ;
+    rdfs:label "WitnessAnchorJoc620AddlCircuitCorner" .
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_concrete_anchor_3#joc620 silm:hasAdditionalAttribute "circuit_corner:2" .

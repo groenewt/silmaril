@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_04_initial_algebra_olog_box__initialalgebra_publishtree a owl:NamedIndividual ;
+    rdfs:label "InitialAlgebra_PublishTree" .

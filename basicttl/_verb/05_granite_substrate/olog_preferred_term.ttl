@@ -1,0 +1,3 @@
+silm:instances_papers_05_granite_substrate_preferred_term_olog a owl:NamedIndividual ;
+    rdfs:label "P05GraniteSubstratePreferredTermOlog" .
+silm:instances_papers_05_granite_substrate_preferred_term_olog silm:sourceNode silm:instances_papers_05_granite_substrate_preferred_term_olog .

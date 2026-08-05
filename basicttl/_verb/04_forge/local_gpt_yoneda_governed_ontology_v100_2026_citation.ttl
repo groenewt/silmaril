@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_citation_localgptyonedagovernedontologyv1002026 a owl:NamedIndividual ;
+    rdfs:label "P04CitationLocalGptYonedaGovernedOntologyV1002026" .

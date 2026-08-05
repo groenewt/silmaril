@@ -1,0 +1,25 @@
+from config.gate.external.python.base.builtins.bytes.value import VALUE as Bytes
+from config.gate.value.projection.bundle.prefix.value import VALUE as PREFIX
+from config.gate.value.projection.bundle.file_marker.value import VALUE as FILE
+from config.gate.value.projection.bundle.content_marker.value import VALUE as CONTENT
+from config.gate.value.projection.bundle.path.file_00.value import VALUE as PATH00
+from ...projection.self.apply import apply as R00
+from config.gate.value.projection.bundle.path.file_01.value import VALUE as PATH01
+from ...projection.manifest.apply import apply as R01
+from config.gate.value.projection.bundle.path.file_02.value import VALUE as PATH02
+from ...projection.shacl.shapes.apply import apply as R02
+from config.gate.value.projection.bundle.path.file_03.value import VALUE as PATH03
+from ...projection.shacl.data.apply import apply as R03
+from config.gate.value.projection.bundle.path.file_04.value import VALUE as PATH04
+from ...projection.linkml.schema.apply import apply as R04
+from config.gate.value.projection.bundle.path.file_05.value import VALUE as PATH05
+from ...projection.linkml.instance.apply import apply as R05
+from config.gate.value.projection.bundle.path.file_06.value import VALUE as PATH06
+from ...projection.linkml.transform.apply import apply as R06
+from config.gate.value.projection.bundle.path.file_07.value import VALUE as PATH07
+from ...projection.ossie.model.apply import apply as R07
+from config.gate.value.projection.bundle.path.file_08.value import VALUE as PATH08
+from ...projection.geosparql.profile.apply import apply as R08
+from config.gate.value.projection.bundle.path.file_09.value import VALUE as PATH09
+from ...projection.geosparql.data.apply import apply as R09
+def apply(payload: Bytes) -> Bytes: return PREFIX + FILE + PATH00 + CONTENT + R00(payload) + FILE + PATH01 + CONTENT + R01(payload) + FILE + PATH02 + CONTENT + R02(payload) + FILE + PATH03 + CONTENT + R03(payload) + FILE + PATH04 + CONTENT + R04(payload) + FILE + PATH05 + CONTENT + R05(payload) + FILE + PATH06 + CONTENT + R06(payload) + FILE + PATH07 + CONTENT + R07(payload) + FILE + PATH08 + CONTENT + R08(payload) + FILE + PATH09 + CONTENT + R09(payload)

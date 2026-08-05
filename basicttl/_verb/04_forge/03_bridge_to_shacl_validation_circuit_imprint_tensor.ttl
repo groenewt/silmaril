@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_08_cross_paper_bridges_sections_03_bridge_to_shacl_validation_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 03_bridge_to_shacl_validation [LHH]" .

@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "MittensAnchorYonedaHomLegExample" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_yoneda_hom_leg silm:hasExample "In 'MittensAnchorYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, In 'Mittens Anchor', the record_leg arrow witnesses the VetRecord_77 evidence attachment to Mittens as a typed cocone leg. Without this leg the about-ness of VetRecord_77 cannot be established.; also, In 'Mittens Anchor', the identifier_leg arrow places the microchip ID as a typed source leg, not as an identity for Mittens." .

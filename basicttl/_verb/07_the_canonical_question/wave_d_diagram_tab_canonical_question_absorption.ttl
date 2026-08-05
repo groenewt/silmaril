@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_diagram_tab_canonical_question_absorption__diagram_tab_canonical_question_absorption a owl:NamedIndividual ;
+    rdfs:label "tab:canonical-question-absorption" .

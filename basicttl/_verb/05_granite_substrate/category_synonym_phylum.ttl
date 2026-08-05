@@ -1,0 +1,4 @@
+silm:instances_papers_05_granite_substrate_terms_category a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.05_granite_substrate.terms.category" .
+silm:instances_papers_05_granite_substrate_terms_category silm:hasSynonym "phylum" .
+silm:instances_papers_05_granite_substrate_terms_category silm:sourceNode silm:instances_papers_05_granite_substrate_terms_category .

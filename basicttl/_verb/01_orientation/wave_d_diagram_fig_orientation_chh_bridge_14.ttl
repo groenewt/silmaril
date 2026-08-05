@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chh_bridge_14__diagram_fig_orientation_chh_bridge_14 a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chH-bridge-14" .

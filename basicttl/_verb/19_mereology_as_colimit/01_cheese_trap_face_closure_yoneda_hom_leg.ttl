@@ -1,0 +1,6 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_08_cheese_and_failure_modes_sections_01_cheese_trap_face_closure_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "typed_leg_inclusion" .
+silm:instances_papers_19_mereology_as_colimit_chapters_08_cheese_and_failure_modes_sections_01_cheese_trap_face_closure_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "overlap_arrow" .
+silm:instances_papers_19_mereology_as_colimit_chapters_08_cheese_and_failure_modes_sections_01_cheese_trap_face_closure_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "cocone_factorisation" .

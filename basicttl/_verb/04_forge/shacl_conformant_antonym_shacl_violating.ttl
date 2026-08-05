@@ -1,0 +1,5 @@
+silm:instances_papers_04_forge_terms_shacl_conformant a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.shacl_conformant" .
+silm:instances_papers_04_forge_terms_shacl_conformant silm:hasAntonym silm:instances_papers_04_forge_terms_shacl_violating .
+silm:instances_papers_04_forge_terms_shacl_conformant silm:sourceNode silm:instances_papers_04_forge_terms_shacl_conformant .
+silm:instances_papers_04_forge_terms_shacl_conformant silm:targetNode silm:instances_papers_04_forge_terms_shacl_violating .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_12_cross_paper_bridges_sections_06_bridge_to_mereology_as_colimit_olog_box__musicolog06bridgetomereologyabox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog06BridgeToMereologyABox" .

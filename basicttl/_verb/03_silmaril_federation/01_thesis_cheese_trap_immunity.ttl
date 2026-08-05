@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_01_thesis_cheese_trap_immunity__trap_federated_label_collapse_or_storage_packet_identity a owl:NamedIndividual ;
+    rdfs:label "federated_label_collapse_or_storage_packet_identity" .

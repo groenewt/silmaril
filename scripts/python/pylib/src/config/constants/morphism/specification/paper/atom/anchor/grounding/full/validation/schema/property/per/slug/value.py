@@ -1,0 +1,1 @@
+VALUE = "per_slug"

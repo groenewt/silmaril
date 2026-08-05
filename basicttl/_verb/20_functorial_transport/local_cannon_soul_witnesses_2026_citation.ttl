@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_citation_localcannonsoulwitnesses2026 a owl:NamedIndividual ;
+    rdfs:label "P20CitationLocalCannonSoulWitnesses2026" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_subobject_classifier_olog_box__p18section02_subobject_classifierologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section02_subobject_classifierOlogBox" .

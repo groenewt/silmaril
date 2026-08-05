@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_03_ledger_row_anatomy_decomposition_step_6__step_ledgerrow_holds__typed_morphism_with_8_accountability_fields a owl:NamedIndividual ;
+    rdfs:label "The ledger row is the accountability atom of the orientation entry; each row is a typed morphism from a source file to a paper section; the weaver verifies every row byte-for-byte in Tier 4." .

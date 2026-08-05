@@ -1,0 +1,4 @@
+silm:instances_papers_04_forge_terms_diagram a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.diagram" .
+silm:instances_papers_04_forge_terms_diagram silm:hasSynonym "commutative diagram" .
+silm:instances_papers_04_forge_terms_diagram silm:sourceNode silm:instances_papers_04_forge_terms_diagram .

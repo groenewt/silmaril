@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_05_profunctor_generalization_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "ProfunctorGeneralizationYonedaHomLegExample" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_05_profunctor_generalization_yoneda_hom_leg silm:hasExample "In 'ProfunctorGeneralizationYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, In 'Profunctor Generalization', the weighted_colimit_arrow is the canonical factorization map from the W-profunctor to MittensColimitApex; the weighted colimit is MittensColimitApex and the arrow is unique by the weighted-colimit universal property." .

@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_18_free_monad_whitepaper_yoneda_embedding_sections_02_bridge_00_whitepaper_concrete_anchor_0_Mittens a owl:NamedIndividual ;
+    rdfs:label "S02Bridge00WhitepaperConcreteAnchor0" .

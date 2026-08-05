@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_08_cross_paper_bridges_sections_04_bridge_to_18_presheaf_semantics_cheese_trap_immunity__trap_presheaf_semantics_floating a owl:NamedIndividual ;
+    rdfs:label "presheaf_semantics_floating" .

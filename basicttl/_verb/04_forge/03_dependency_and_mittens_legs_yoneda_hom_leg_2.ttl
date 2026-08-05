@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_03_dependency_and_mittens_legs_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 03_dependency_and_mittens_legs #2" .

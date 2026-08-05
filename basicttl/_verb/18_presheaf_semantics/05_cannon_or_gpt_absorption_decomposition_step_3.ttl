@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_05_cannon_or_gpt_absorption_decomposition_step_3__step_witness_absorption a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Cannon and Generated-Source Absorption claim, grounded in the cited literature" .

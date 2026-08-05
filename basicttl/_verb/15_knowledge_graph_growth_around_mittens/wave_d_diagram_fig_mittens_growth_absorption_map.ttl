@@ -1,0 +1,2 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_diagram_fig_mittens_growth_absorption_map__diagram_fig_mittens_growth_absorption_map a owl:NamedIndividual ;
+    rdfs:label "fig:mittens-growth-absorption-map" .

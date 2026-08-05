@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_08_cross_paper_bridges_sections_10_bridge_to_33_yoneda_generalized_ontology_decomposition_step_4__step_d_mittens a owl:NamedIndividual ;
+    rdfs:label "reading position 4: the source diagram whose colimit is Mittens" .

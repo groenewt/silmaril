@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_02_identity_and_composition_sections_02_composition_law_decomposition_step_1__step_object a owl:NamedIndividual ;
+    rdfs:label "name the symbol" .

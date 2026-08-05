@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_03_validate_step_decomposition_step_2__step_forge_morphism_for_03_validate_step a owl:NamedIndividual ;
+    rdfs:label "The morphism validate exists if and only if the shape gate issues a validates arrow to Candidate_C. The gate does not transform the candidate; it certifies it. Candidate and checked artifact are distinct typed objects." .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_02_dependency_rules_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 02_dependency_rules [LLL]" .

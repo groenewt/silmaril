@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_03_ledger_row_anatomy_concrete_anchor_2#sections_01_thesis_tex a owl:NamedIndividual ;
+    rdfs:label "LedgerRowAnchorEditTargetAddlDunbarLayer" .
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_03_ledger_row_anatomy_concrete_anchor_2#sections_01_thesis_tex silm:hasAdditionalAttribute "dunbar_layer:0" .

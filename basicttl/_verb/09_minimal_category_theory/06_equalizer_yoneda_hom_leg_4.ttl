@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_04_limits_and_colimits_sections_06_equalizer_yoneda_hom_leg_4_identifier_leg a owl:NamedIndividual ;
+    rdfs:label "S06EqualizerYonedaHomLeg4" .

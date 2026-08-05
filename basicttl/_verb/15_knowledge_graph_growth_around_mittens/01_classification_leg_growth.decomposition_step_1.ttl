@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_03_sections_01_decomposition_step_1__step_rho_n a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T3-G1 (Classification-leg growth is monotone-refining)" .

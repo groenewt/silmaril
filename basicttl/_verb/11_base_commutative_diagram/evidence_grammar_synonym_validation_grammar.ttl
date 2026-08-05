@@ -1,0 +1,4 @@
+silm:instances_papers_11_base_commutative_diagram_terms_evidence_grammar a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.11_base_commutative_diagram.terms.evidence_grammar" .
+silm:instances_papers_11_base_commutative_diagram_terms_evidence_grammar silm:hasSynonym "validation grammar" .
+silm:instances_papers_11_base_commutative_diagram_terms_evidence_grammar silm:sourceNode silm:instances_papers_11_base_commutative_diagram_terms_evidence_grammar .

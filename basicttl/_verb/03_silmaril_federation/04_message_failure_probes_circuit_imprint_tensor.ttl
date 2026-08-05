@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_04_federation_contract_and_messages_sections_04_message_failure_probes_circuit_imprint_tensor__corner_1 a owl:NamedIndividual ;
+    rdfs:label "1" .

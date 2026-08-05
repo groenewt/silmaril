@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_05_tree_evaluation_duality_circuit_imprint_tensor__corner_5 a owl:NamedIndividual ;
+    rdfs:label "5" .

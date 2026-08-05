@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_04_concrete_anchor_survey_concrete_anchor_9_Mammal a owl:NamedIndividual ;
+    rdfs:label "S04ConcreteAnchorSurveyConcreteAnchor9" .

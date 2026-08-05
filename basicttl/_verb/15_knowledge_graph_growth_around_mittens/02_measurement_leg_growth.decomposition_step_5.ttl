@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_03_sections_02_decomposition_step_5__step_yoneda_profile_of_t3_g2_central_object a owl:NamedIndividual ;
+    rdfs:label "the Yoneda traversal that recovers the central object's identity from its representable profile" .

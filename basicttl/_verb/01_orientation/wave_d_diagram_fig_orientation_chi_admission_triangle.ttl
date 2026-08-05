@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chi_admission_triangle__diagram_fig_orientation_chi_admission_triangle a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chI-admission-triangle" .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_statement_yoneda_hom_leg_1_iota_visit a owl:NamedIndividual ;
+    rdfs:label "P1801_statementYonedaHomLeg1" .

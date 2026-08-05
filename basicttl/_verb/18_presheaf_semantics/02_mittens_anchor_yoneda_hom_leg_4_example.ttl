@@ -1,0 +1,3 @@
+silm:instances_papers_18_presheaf_semantics_02_mittens_anchor_yoneda_hom_leg_4_iota_mass a owl:NamedIndividual ;
+    rdfs:label "P1802_mittens_anchorYonedaHomLeg4Example" .
+silm:instances_papers_18_presheaf_semantics_02_mittens_anchor_yoneda_hom_leg_4_iota_mass silm:hasExample "In 'P1802_mittens_anchorYonedaHomLeg4', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, cocone leg iota_mass: D_Mittens(BodyMassQuality) -> L_Mittens carrying the body-mass quality into the apex" .

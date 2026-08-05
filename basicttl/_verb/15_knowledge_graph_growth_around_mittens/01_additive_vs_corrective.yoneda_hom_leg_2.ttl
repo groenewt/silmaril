@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_05_sections_01_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "CorrectiveGrowthNonIdentityYonedaHomLeg2" .

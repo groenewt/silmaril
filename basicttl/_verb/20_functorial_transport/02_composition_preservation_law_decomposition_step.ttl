@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_decomposition_step__step_g_o_f a owl:NamedIndividual ;
+    rdfs:label "first f, then g; the categorical composition" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_decomposition_step__step_transportfg_o_f a owl:NamedIndividual ;
+    rdfs:label "the functor applied to the composite. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_decomposition_step__step_f2 a owl:NamedIndividual ;
+    rdfs:label "the second functoriality axiom. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_decomposition_step__step_f2_in_the_household_to_clinic_case a owl:NamedIndividual ;
+    rdfs:label "the clinic two-step path equals the transport of the household two-step path" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_decomposition_step__step_ytransportfmittens a owl:NamedIndividual ;
+    rdfs:label "F2 ensures the path structure of the household survives transport; by Yoneda the clinic patient image inherits every household composite" .
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_decomposition_step__step_f2__fg_o_f_=_fg_o_ff a owl:NamedIndividual ;
+    rdfs:label "composition preservation: the transport does not shortcut" .

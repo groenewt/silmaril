@@ -1,0 +1,4 @@
+silm:instances_papers_18_presheaf_semantics_terms_yoneda_traversal a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.yoneda_traversal" .
+silm:instances_papers_18_presheaf_semantics_terms_yoneda_traversal silm:hasSynonym "representable walk" .
+silm:instances_papers_18_presheaf_semantics_terms_yoneda_traversal silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_yoneda_traversal .

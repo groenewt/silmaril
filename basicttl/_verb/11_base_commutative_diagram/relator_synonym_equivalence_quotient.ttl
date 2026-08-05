@@ -1,0 +1,4 @@
+silm:instances_papers_11_base_commutative_diagram_terms_relator a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.11_base_commutative_diagram.terms.relator" .
+silm:instances_papers_11_base_commutative_diagram_terms_relator silm:hasSynonym "equivalence quotient" .
+silm:instances_papers_11_base_commutative_diagram_terms_relator silm:sourceNode silm:instances_papers_11_base_commutative_diagram_terms_relator .

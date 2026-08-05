@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_01_probe_catus_collision_decomposition_step_5__step_lambda_tax__taxrow_tsn183798__>_mittens_unique;_catus_does_n a owl:NamedIndividual ;
+    rdfs:label "By Yoneda naturality, an identification arrow from TaxRow_TSN183798 to Mittens is the unique arrow licensed by the taxonomy witness. The string \"catus\" does not uniquely select TaxRow_TSN183798 (collision list shows 6 candidates), so no identification arrow from catus to Mittens exists." .

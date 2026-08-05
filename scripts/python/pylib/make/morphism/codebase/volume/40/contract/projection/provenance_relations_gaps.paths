@@ -1,0 +1,5 @@
+src/volumes/40_silmaril_wire_codebase/generated/tables/catalog_documents.tex
+src/volumes/40_silmaril_wire_codebase/generated/tables/catalog_claims.tex
+src/volumes/40_silmaril_wire_codebase/generated/tables/catalog_gaps.tex
+src/volumes/40_silmaril_wire_codebase/generated/tables/catalog_quality_flags.tex
+src/volumes/40_silmaril_wire_codebase/generated/tables/provenance.tex

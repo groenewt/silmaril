@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_density_theorem_decomposition_step_3__step_presheaf_semantics_density_theorem a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the The Density Theorem claim, grounded in the cited literature" .

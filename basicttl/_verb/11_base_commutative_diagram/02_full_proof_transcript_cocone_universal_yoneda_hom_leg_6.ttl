@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_11_proof_transcripts_sections_02_full_proof_transcript_cocone_universal_yoneda_hom_leg_6_coconelegtoapex a owl:NamedIndividual ;
+    rdfs:label "S02FullProofTranscriptCoconeUniversalYonedaHomLeg6" .

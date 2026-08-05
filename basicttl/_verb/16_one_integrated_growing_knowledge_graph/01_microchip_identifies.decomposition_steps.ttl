@@ -1,0 +1,12 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_microchip_identifies a owl:NamedIndividual ;
+    rdfs:label "the upper-level cross-cat identity-leg reference arrow" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_composition_with_designates_and_records a owl:NamedIndividual ;
+    rdfs:label "microchip_identifies factors through the chip registry but is not identified with it" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_joc_§15_5_factorization_structures_for_sources a owl:NamedIndividual ;
+    rdfs:label "typed reference factorisation" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_mittens_with_chip_9000_0000_0042__pumpkin_with_chip_9000_000 a owl:NamedIndividual ;
+    rdfs:label "the concrete household registry record under household file 77 binding both chip IDs to the household account" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_hom_c___colim_d_pumpkin_gains_a_typed_in_probe_via_microchip a owl:NamedIndividual ;
+    rdfs:label "the Hom-profile of the Pumpkin sub-apex inherits a typed in-probe from the Mittens sub-apex via the cross-cat reference" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_decomposition_steps__step_microchip_identifies a owl:NamedIndividual ;
+    rdfs:label "identity-leg cross-reference; preserves all three (Mittens, Pumpkin, ChipRegistry77) as distinct" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_02_typed_source_signature_sections_05_signature_extension_pattern_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "05SignatureExtensionPatternConcreteAnchor2" .

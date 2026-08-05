@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_06_yoneda_closure_sections_02_closure_criterion_cheese_trap_immunity__trap_closure_as_completeness_collapse__treating_the_yoneda_closur a owl:NamedIndividual ;
+    rdfs:label "closure-as-completeness collapse: treating the Yoneda closure criterion as proof that the Granite entry fully describes Mittens, rather than as a structural gate that checks whether the current olog state is consistent with the Mittens profile" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_01_manifest_as_hom_profile_decomposition_step_6__step_forge_morphism_for_01_manifest_as_hom_profile a owl:NamedIndividual ;
+    rdfs:label "A manifest is a document-level object that declares the Hom-profile of a Forge node; each field is a named incoming or outgoing arrow." .

@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_diagram_tab_presheaf_mittens_taxonomy_regressions__diagram_tab_presheaf_mittens_taxonomy_regressions a owl:NamedIndividual ;
+    rdfs:label "tab:presheaf-mittens-taxonomy-regressions" .

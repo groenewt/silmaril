@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_08_kg_cross_reference_cheese_trap_immunity__trap_cross_ref=tex_label a owl:NamedIndividual ;
+    rdfs:label "cross_ref=tex_label" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_08_cross_paper_bridges_sections_05_bridge_to_18_presheaf_semantics_decomposition_step_1__step_freesigma a owl:NamedIndividual ;
+    rdfs:label "reading position 1: the free monad on the orientation source signature" .

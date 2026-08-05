@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_07_index_category_anatomy_sections_03_overlap_object_taxonomy_olog_box__overlapobjecttaxonomy a owl:NamedIndividual ;
+    rdfs:label "OverlapObjectTaxonomy" .

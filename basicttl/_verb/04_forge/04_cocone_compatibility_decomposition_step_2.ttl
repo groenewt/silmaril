@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_04_cocone_compatibility_decomposition_step_2__step_forge_morphism_for_04_cocone_compatibility a owl:NamedIndividual ;
+    rdfs:label "The mediator u is unique and determined by the universal property of the colimit. It is not freely chosen: if the candidate apex P receives the legs compatibly, the gate produces exactly one u." .

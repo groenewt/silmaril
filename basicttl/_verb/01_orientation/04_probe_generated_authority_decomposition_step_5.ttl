@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_04_probe_generated_authority_decomposition_step_5__step_ygeneratedwitness_=_empty_profile;_yprofileclaim_=_non_empty a owl:NamedIndividual ;
+    rdfs:label "By Yoneda, a claim becomes an encyclopedia object only when its representable profile is exhibited. A floating generated phrase has no arrows entering or leaving it in O_01; its profile is empty. After absorption, ProfileClaim has arrows from its witnesses and arrows into Mittens via glue." .

@@ -1,0 +1,1 @@
+VALUE = "\\subsection{%s}\n"

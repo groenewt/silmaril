@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_06_probe_sous_totalizing_olog_box__soustotalizingprober6 a owl:NamedIndividual ;
+    rdfs:label "SousTotalizingProbeR6" .

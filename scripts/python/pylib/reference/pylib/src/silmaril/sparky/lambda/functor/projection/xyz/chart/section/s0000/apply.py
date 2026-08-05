@@ -1,0 +1,23 @@
+from config.gate.external.python.base.builtins.bytes.value import VALUE as Bytes
+from config.gate.value.render.token.projection_xyz_chart_00000_000_a848cd13e35a.value import VALUE as T000
+from config.gate.value.render.token.projection_xyz_chart_00000_001_cce03a3db6e9.value import VALUE as T001
+from ......digest.sha256.apply import apply as D000
+from config.gate.value.render.token.projection_xyz_chart_00000_002_01ba4719c80b.value import VALUE as T002
+from config.gate.value.render.token.projection_xyz_chart_00000_003_3b596366a9b6.value import VALUE as T003
+from config.gate.value.render.token.projection_xyz_chart_00000_004_65c2b3065c50.value import VALUE as T004
+from ......packet.field.axis_x.apply import apply as D001
+from config.gate.value.render.token.projection_xyz_chart_00000_005_e6ab253c5f96.value import VALUE as T005
+from config.gate.value.render.token.projection_xyz_chart_00000_006_d60600dc5c22.value import VALUE as T006
+from ......packet.field.axis_y.apply import apply as D002
+from config.gate.value.render.token.projection_xyz_chart_00000_007_e6ab253c5f96.value import VALUE as T007
+from config.gate.value.render.token.projection_xyz_chart_00000_008_aab3a9bf54b9.value import VALUE as T008
+from ......packet.field.axis_z.apply import apply as D003
+from config.gate.value.render.token.projection_xyz_chart_00000_009_e6ab253c5f96.value import VALUE as T009
+from config.gate.value.render.token.projection_xyz_chart_00000_010_a5ea45163d62.value import VALUE as T010
+from config.gate.value.render.token.projection_xyz_chart_00000_011_3c465b5795a4.value import VALUE as T011
+from config.gate.value.render.token.projection_xyz_chart_00000_012_5343c98d02a0.value import VALUE as T012
+from config.gate.value.render.token.projection_xyz_chart_00000_013_6f7a010eabd5.value import VALUE as T013
+from config.gate.value.render.token.projection_xyz_chart_00000_014_3b3baa934d41.value import VALUE as T014
+from config.gate.value.render.token.projection_xyz_chart_00000_015_ebed27fe6ca4.value import VALUE as T015
+from config.gate.value.render.token.projection_xyz_chart_00000_016_a6dd8760667e.value import VALUE as T016
+def apply(payload: Bytes) -> Bytes: return T000 + T001 + D000(payload) + T002 + T003 + T004 + D001(payload) + T005 + T006 + D002(payload) + T007 + T008 + D003(payload) + T009 + T010 + T011 + T012 + T013 + T014 + T015 + T016

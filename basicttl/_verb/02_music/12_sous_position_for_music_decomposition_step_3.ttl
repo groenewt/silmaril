@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_12_sous_position_for_music_decomposition_step_3__step_nodeorarrowlaw a owl:NamedIndividual ;
+    rdfs:label "the Node-or-Arrow admission gate: every incoming claim must be admitted as a typed node, typed arrow, diagram, equation, witness, or rendering" .

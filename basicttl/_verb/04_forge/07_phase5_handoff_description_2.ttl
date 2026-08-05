@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_sections_07_phase5_handoff_concrete_anchor_2#mittensforgeroutingfunctor a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.sections.07_phase5_handoff.concrete_anchor_2#mittensforgeroutingfunctor" .
+silm:instances_papers_04_forge_sections_07_phase5_handoff_concrete_anchor_2#mittensforgeroutingfunctor silm:hasLongDescription "The MittensForgeRoutingFunctor is In section 'The Phase-4 to Phase-5 Handoff' the bare symbol ForgeProfile anchors to MittensForgeRoutingFunctor: The routing functor R: F_04 to Backend that sends each typed source leg to a backend write target while preserving the leg's Yoneda profile (incoming and outgoing arrows)." .

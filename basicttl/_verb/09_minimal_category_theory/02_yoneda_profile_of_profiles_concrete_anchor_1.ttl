@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_02_yoneda_profile_of_profiles_concrete_anchor_1_DomesticCat a owl:NamedIndividual ;
+    rdfs:label "S02YonedaProfileOfProfilesConcreteAnchor1" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_10_backend_routing_and_observability_cheese_trap_immunity__trap_routing=string_map a owl:NamedIndividual ;
+    rdfs:label "routing=string_map" .

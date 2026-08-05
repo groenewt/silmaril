@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_12_cross_paper_bridges_b_sections_01_cross_paper_bridge_disintegration_olog_box__crosspaperbridgedisintegration a owl:NamedIndividual ;
+    rdfs:label "CrossPaperBridgeDisintegration" .

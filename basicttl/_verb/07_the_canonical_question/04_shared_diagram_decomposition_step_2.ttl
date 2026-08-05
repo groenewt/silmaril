@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_04_shared_diagram_decomposition_step_2__step__hom_oq_07__ a owl:NamedIndividual ;
+    rdfs:label "reading position 2: the answerability profile Hom_O(Q_07, -) is a functor C -> Set" .

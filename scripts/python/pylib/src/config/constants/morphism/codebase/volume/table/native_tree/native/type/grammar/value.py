@@ -1,0 +1,1 @@
+VALUE = r"\A[^\S\r\n]*(?:typedef[^\S\r\n]+)?(?:template[^\S\r\n]*<[^>]*>[^\S\r\n]*)?(?:namespace|struct|class|union|enum(?:[^\S\r\n]+(?:class|struct))?)[^\S\r\n]+([A-Za-z_][A-Za-z0-9_:]*)[^\S\r\n]*(?:[{;:]|\Z)"

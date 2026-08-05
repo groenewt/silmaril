@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_01_sentence_chain_as_path_decomposition_step_5__step_typed_english_commuting_cone___path___square___yoneda_profile a owl:NamedIndividual ;
+    rdfs:label "the composed Yoneda-traversal witnessing the claim's commutativity" .

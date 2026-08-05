@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_12_taxonomy_leg_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "TaxonomyLegYonedaHomLegExample" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_12_taxonomy_leg_yoneda_hom_leg silm:hasExample "In 'TaxonomyLegYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, In 'Taxonomy Leg', the taxonomy_leg_arrow is FelisCatusTSN183798 -> MittensColimitApex: the ITIS taxonomy source leg; it is monic but not epic; it does not identify Mittens.; also, In 'Taxonomy Leg', the itis_source_arrow witnesses the provenance of FelisCatusTSN183798 from the ITIS sqlite database at cannon/tax/ITIS.sqlite." .

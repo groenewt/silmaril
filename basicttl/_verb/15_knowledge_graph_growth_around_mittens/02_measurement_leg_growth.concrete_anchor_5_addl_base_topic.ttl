@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_5#measurementdate2026_05_10 a owl:NamedIndividual ;
+    rdfs:label "MeasurementLegEpisodicConcreteAnchor5AddlBaseTopic" .
+silm:instances_papers_15_chapters_03_sections_02_concrete_anchor_5#measurementdate2026_05_10 silm:hasAdditionalAttribute "base_topic:knowledge graph growth" .

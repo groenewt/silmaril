@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_03_olog_node_arrow_law_cheese_trap_immunity__trap_gate_trivialization_or_shortcut_admission a owl:NamedIndividual ;
+    rdfs:label "gate_trivialization_or_shortcut_admission" .

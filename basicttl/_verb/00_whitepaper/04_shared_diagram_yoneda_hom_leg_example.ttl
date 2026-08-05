@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "SharedDiagramYonedaHomLegExample" .
+silm:instances_papers_00_whitepaper_sections_04_shared_diagram_yoneda_hom_leg silm:hasExample "In 'SharedDiagramYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, In 'Shared Diagram', the formal_view_arrow places the tikzcd diagram of the twelve-leg cocone as a typed rendering of MittensColimitApex that preserves all twelve typed legs.; also, In 'Shared Diagram', the diagram_view_arrow places the shared TikZ figure as a synchronized visual rendering of MittensColimitApex." .

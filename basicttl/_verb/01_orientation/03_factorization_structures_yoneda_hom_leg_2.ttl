@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_07_node_arrow_gate_mechanics_sections_03_factorization_structures_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "03FactorizationStructuresYonedaHomLeg2" .

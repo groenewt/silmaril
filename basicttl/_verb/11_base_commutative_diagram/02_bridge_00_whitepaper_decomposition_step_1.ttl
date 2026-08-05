@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_18_free_monad_whitepaper_yoneda_embedding_sections_02_bridge_00_whitepaper_decomposition_step_1__step_d_mittens_11 a owl:NamedIndividual ;
+    rdfs:label "the page-11 Mittens source diagram" .

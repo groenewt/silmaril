@@ -1,0 +1,4 @@
+silm:instances_papers_02_music_translation_mittens_motif_olog_to_rdf a owl:NamedIndividual ;
+    rdfs:label "MittensMotifTranslationOlogToRdf" .
+silm:instances_papers_02_music_translation_mittens_motif_olog_to_rdf silm:sourceNode silm:papers_02_music_term_mittens_motif .
+silm:instances_papers_02_music_translation_mittens_motif_olog_to_rdf silm:targetNode silm:instances_papers_02_music_translation_mittens_motif_olog_to_rdf__xlate_target_rdf_silm_mittensmotif .

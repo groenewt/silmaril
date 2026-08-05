@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_09_joy_of_cats_anchor_for_pages_sections_01_categories_as_governed_decomposition_step_5__step_yoneda_signal_profile a owl:NamedIndividual ;
+    rdfs:label "the representable presheaf of the audible-signal node" .

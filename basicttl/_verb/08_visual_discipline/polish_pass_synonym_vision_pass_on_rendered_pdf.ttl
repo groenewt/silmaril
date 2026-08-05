@@ -1,0 +1,4 @@
+silm:instances_papers_08_visual_discipline_terms_polish_pass a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.polish_pass" .
+silm:instances_papers_08_visual_discipline_terms_polish_pass silm:hasSynonym "vision-pass on rendered PDF" .
+silm:instances_papers_08_visual_discipline_terms_polish_pass silm:sourceNode silm:instances_papers_08_visual_discipline_terms_polish_pass .

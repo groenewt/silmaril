@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_10_cross_paper_bridges_sections_01_bridge_to_yoneda_lemma_cheese_trap_immunity__trap_profile_equals_identity_collapse a owl:NamedIndividual ;
+    rdfs:label "profile_equals_identity_collapse" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_decomposition_step_2__step_homprofilearrowgate a owl:NamedIndividual ;
+    rdfs:label "the primary typed arrow connecting objects in the 09_manifest_yoneda_profile claim" .

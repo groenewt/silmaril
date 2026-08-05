@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_sections_06_vision3_absorption_decomposition_step__step_vision3absorption_primary_symbol a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of Vision3Absorption as a typed morphism in the Granite category" .
+silm:instances_papers_05_granite_substrate_sections_06_vision3_absorption_decomposition_step__step_circ_typed_composition a owl:NamedIndividual ;
+    rdfs:label "composing typed arrows in the Granite category preserving source-body provenance" .
+silm:instances_papers_05_granite_substrate_sections_06_vision3_absorption_decomposition_step__step_functors_and_natural_transformations a owl:NamedIndividual ;
+    rdfs:label "base topic grounding Vision3Absorption via colimit_universal_property in Joy of Cats §11 — absorption is the arrow A_* → T_full from fused adapter to stabilized model that preserves profile order and source-body typing" .
+silm:instances_papers_05_granite_substrate_sections_06_vision3_absorption_decomposition_step__step_mittens_at_tartu_animal_clinic_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "the Mittens individual whose vet record provides the evidence chunk grounding this section" .
+silm:instances_papers_05_granite_substrate_sections_06_vision3_absorption_decomposition_step__step_hom__mittens_neq_hom__graniterow_mittens a owl:NamedIndividual ;
+    rdfs:label "different Hom-profiles confirm different objects — the storage chunk is not the governed individual" .
+silm:instances_papers_05_granite_substrate_sections_06_vision3_absorption_decomposition_step__step_vision3absorption_law a owl:NamedIndividual ;
+    rdfs:label "Vision3Absorption preserves typed leg separation without collapsing storage rows into the governed apex" .

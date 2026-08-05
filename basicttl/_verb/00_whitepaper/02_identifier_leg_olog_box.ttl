@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_02_identifier_leg_olog_box__identifierleg_microchipid_44 a owl:NamedIndividual ;
+    rdfs:label "IdentifierLeg_MicrochipID_44" .

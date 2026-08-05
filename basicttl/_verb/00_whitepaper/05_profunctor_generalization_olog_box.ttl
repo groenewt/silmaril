@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_05_profunctor_generalization_olog_box__profunctorgeneralization_weightedcolimit a owl:NamedIndividual ;
+    rdfs:label "ProfunctorGeneralization_WeightedColimit" .

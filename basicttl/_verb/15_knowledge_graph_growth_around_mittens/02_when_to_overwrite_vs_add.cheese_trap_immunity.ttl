@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_05_sections_02_cheese_trap_immunity__trap_operator_choice_overrides_typing a owl:NamedIndividual ;
+    rdfs:label "operator_choice_overrides_typing" .

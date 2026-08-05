@@ -1,0 +1,22 @@
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] \\& G2:TypedClaim [r," .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ G7:AvroRecord [u," .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ G4:Manifest [r," .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "'] tikzcd% The twelve-gap closure diagram: gaps G1--G12 are closed when the source packet can be typed (G1), claimed as a typed arrow (G2), assigned a dependency (G3), manifested (G4), validated (G5), traced (G6), serialized (G7), ungated-shortcut-free (G8), catus-collision-free (G9), citation-bounded (G10), storage-coherent (G11), and Yoneda-closed (G12).fig:music-gaps-closure Diagram law (Figure~fig:music-gaps-closure): the gap-closure diagram commutes when every numbered gap is sealed; a missing node or arrow in the diagram signals an unclosed gap in the page's construction obligation. [0.88]% tikzcd[column sep=large,row sep=large,ampersand replacement=\\&] G9:CatusCollision [r,dashed," .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "] [ur," .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "refines\\,\\,subclassOf\\," .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_7" .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_8" .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_9 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_9" .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_10 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_10" .
+silm:instances_papers_02_music_sections_02_twelve_gaps_yoneda_hom_leg__leg_11 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_11" .

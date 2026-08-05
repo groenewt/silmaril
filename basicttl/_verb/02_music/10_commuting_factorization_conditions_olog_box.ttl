@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_10_commuting_factorization_conditions_olog_box__musicolog10commutingfactorizabox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog10CommutingFactorizaBox" .

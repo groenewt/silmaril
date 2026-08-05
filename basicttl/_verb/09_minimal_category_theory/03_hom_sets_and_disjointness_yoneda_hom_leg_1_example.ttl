@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_03_hom_sets_and_disjointness_yoneda_hom_leg_1_taxonomy_source_leg a owl:NamedIndividual ;
+    rdfs:label "S03HomSetsAndDisjointnessYonedaHomLeg1Example" .
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_03_hom_sets_and_disjointness_yoneda_hom_leg_1_taxonomy_source_leg silm:hasExample "In 'S03HomSetsAndDisjointnessYonedaHomLeg1', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the Mittens -> Felis catus / TSN 183798 taxonomy source leg into D_Mittens; never identity for Mittens" .

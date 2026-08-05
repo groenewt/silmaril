@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_04_cocone_compatibility_decomposition_step_6__step_forge_morphism_for_04_cocone_compatibility a owl:NamedIndividual ;
+    rdfs:label "Cocone compatibility is the gate's final check: only a compatible cocone produces an admitted apex; fluency or partial coverage does not suffice." .

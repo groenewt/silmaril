@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_06_leg_deep_dives_class_refine_sections_01_classification_leg_deep_dive_yoneda_hom_leg_4_refinementembeddingr a owl:NamedIndividual ;
+    rdfs:label "S01ClassificationLegDeepDiveYonedaHomLeg4Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_06_leg_deep_dives_class_refine_sections_01_classification_leg_deep_dive_yoneda_hom_leg_4_refinementembeddingr silm:hasExample "In 'S01ClassificationLegDeepDiveYonedaHomLeg4', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, r:DomesticCat->Cat — the refinement-to-anchor embedding; required by path law c=r.a" .

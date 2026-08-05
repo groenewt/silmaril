@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_06_biological_analogy_decomposition_step_2__step_forge_morphism_for_06_biological_analogy a owl:NamedIndividual ;
+    rdfs:label "Typed morphism in F_04 for BiologicalAnalogy. — concrete forge-domain reading in section 'Biological Analogy --- Taxonomy and Evolution'." .

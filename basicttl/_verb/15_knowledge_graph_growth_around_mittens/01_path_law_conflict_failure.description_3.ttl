@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_08_sections_01_concrete_anchor_3#pathlawsetdisjointnessclaim a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.08.sections.01.concrete_anchor.3#pathlawsetdisjointnessclaim" .
+silm:instances_papers_15_chapters_08_sections_01_concrete_anchor_3#pathlawsetdisjointnessclaim silm:hasLongDescription "The PathLawSetDisjointnessClaim is a path-law set asserting designates_A != designates_B at the same source X with same target. In the paper's apparatus it appears as the symbol 'L'', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_04_yoneda_position_deepening_sections_01_representable_functors_decomposition_step_1__step_freesigma a owl:NamedIndividual ;
+    rdfs:label "reading position 1: the free monad on the orientation source signature" .

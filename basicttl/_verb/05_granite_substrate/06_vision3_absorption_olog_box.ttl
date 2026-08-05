@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_06_vision3_absorption_olog_box__vision3absorptionbox a owl:NamedIndividual ;
+    rdfs:label "Vision3AbsorptionBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_cheese_trap_immunity__trap_interpret=raw_quote a owl:NamedIndividual ;
+    rdfs:label "interpret=raw_quote" .

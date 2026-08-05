@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_12_worked_counterexamples_avogadro_sections_01_worked_counterexamples_yoneda_hom_leg_1_domesticcatrefinementlega a owl:NamedIndividual ;
+    rdfs:label "S01WorkedCounterexamplesYonedaHomLeg1" .

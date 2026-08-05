@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_05_yoneda_lemma_and_representables_sections_04_reality_tunneling_mechanism_decomposition_step_4__step_mittens_4p2kg a owl:NamedIndividual ;
+    rdfs:label "anchor concretely" .

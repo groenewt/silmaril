@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_10_alternatives_dual_computational_sections_03_computational_algorithmic_yoneda_hom_leg_13_microchipidentifiesarrow a owl:NamedIndividual ;
+    rdfs:label "S03ComputationalAlgorithmicYonedaHomLeg13Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_10_alternatives_dual_computational_sections_03_computational_algorithmic_yoneda_hom_leg_13_microchipidentifiesarrow silm:hasExample "In 'S03ComputationalAlgorithmicYonedaHomLeg13', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, microchip-identifies arrow: MicrochipReader->Mittens identifier leg, evidence not identity" .

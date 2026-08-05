@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chb_op_specialization_commutes__diagram_fig_orientation_chb_op_specialization_commutes a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chB-op-specialization-commutes" .

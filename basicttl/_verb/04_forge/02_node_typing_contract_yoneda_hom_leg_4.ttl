@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_yoneda_hom_leg_4 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 02_node_typing_contract #4" .

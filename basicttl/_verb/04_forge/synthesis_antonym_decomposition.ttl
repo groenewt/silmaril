@@ -1,0 +1,5 @@
+silm:instances_papers_04_forge_terms_synthesis a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.terms.synthesis" .
+silm:instances_papers_04_forge_terms_synthesis silm:hasAntonym silm:instances_papers_04_forge_terms_decomposition .
+silm:instances_papers_04_forge_terms_synthesis silm:sourceNode silm:instances_papers_04_forge_terms_synthesis .
+silm:instances_papers_04_forge_terms_synthesis silm:targetNode silm:instances_papers_04_forge_terms_decomposition .

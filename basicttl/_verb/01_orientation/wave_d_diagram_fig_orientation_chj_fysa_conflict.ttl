@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chj_fysa_conflict__diagram_fig_orientation_chj_fysa_conflict a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chJ-fysa-conflict" .

@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_03_typed_verb_discipline_sections_03_verb_taxonomy_decomposition_step_2__step_tau_n__tau_v__r_o a owl:NamedIndividual ;
+    rdfs:label "the three typing gates of paper 21's olog discipline" .

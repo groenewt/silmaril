@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_03_olog_node_arrow_law_cheese_trap_immunity__trap_operational_vagueness_bypasses_typed_gate a owl:NamedIndividual ;
+    rdfs:label "operational_vagueness_bypasses_typed_gate" .

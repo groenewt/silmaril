@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_06_kg_cross_reference_cheese_trap_immunity__trap_kg_node_replaces_governed_individual a owl:NamedIndividual ;
+    rdfs:label "kg_node_replaces_governed_individual" .

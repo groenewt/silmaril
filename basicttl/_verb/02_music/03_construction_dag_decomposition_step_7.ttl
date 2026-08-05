@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_construction_dag_decomposition_step_7__step_y_03_construction_dag_thm2 a owl:NamedIndividual ;
+    rdfs:label "the secondary typed object of theorem 2: the executable task DAG node" .

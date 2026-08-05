@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_concrete_anchor__transportpullback a owl:NamedIndividual ;
+    rdfs:label "the pullback of the Vet-Imports-Household-Records functor" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_concrete_anchor__clinicbodymassrangeconstraint a owl:NamedIndividual ;
+    rdfs:label "the clinic-side SHACL shape that asserts every body-mass is in [0.5, 10] kg" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_concrete_anchor__householdadmissibilitycheck a owl:NamedIndividual ;
+    rdfs:label "the household-side precondition: 'Mittens body-mass must be in [0.5, 10] kg before transport is admitted'" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_concrete_anchor__derivedanchor_02_pul_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

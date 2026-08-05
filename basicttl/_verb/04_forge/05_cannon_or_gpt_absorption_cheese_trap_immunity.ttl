@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_05_cannon_or_gpt_absorption_cheese_trap_immunity__trap_cannon=gospel a owl:NamedIndividual ;
+    rdfs:label "cannon=gospel" .

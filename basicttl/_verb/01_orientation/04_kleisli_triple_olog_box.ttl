@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_03_free_monad_unpacked_sections_04_kleisli_triple_olog_box__04kleislitripleologbox a owl:NamedIndividual ;
+    rdfs:label "04KleisliTripleOlogBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_07_yoneda_profile_of_the_entry_sections_04_entry_as_representable_decomposition_step_5__step_yoneda_signal_profile a owl:NamedIndividual ;
+    rdfs:label "the representable presheaf of the audible-signal node" .

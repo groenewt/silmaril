@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_04_shared_diagram_concrete_anchor_1_Mittens a owl:NamedIndividual ;
+    rdfs:label "P1804_shared_diagramConcreteAnchor1" .

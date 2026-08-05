@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_04_shared_diagram_yoneda_hom_leg_4 a owl:NamedIndividual ;
+    rdfs:label "04SharedDiagramYonedaHomLeg4" .

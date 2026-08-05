@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_01_manifest_as_hom_profile_decomposition_step_3__step_forge_morphism_for_01_manifest_as_hom_profile a owl:NamedIndividual ;
+    rdfs:label "Natural transformations F_04(-, X) => P correspond to elements of P(X). The manifest is the document that records this natural transformation for each arrow family." .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_4#growthactioncategory a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.02.concrete_anchor.4#growthactioncategory" .
+silm:instances_papers_15_chapters_01_sections_02_concrete_anchor_4#growthactioncategory silm:hasLongDescription "The GrowthActionCategory is the action category whose objects are stage diagrams and whose arrows are growth steps. In the paper's apparatus it appears as the symbol 'Growth_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_06_cheese_trap_immunity_sections_01_face_record_as_cat_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

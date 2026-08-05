@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_03_profile_collapse_pathology_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "ProfileCollapsePathologyCircuitImprintTensor" .

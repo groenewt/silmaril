@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_06_closure_cheese_trap_immunity__trap_closure_theorem_as_blanket_license_or_composition_associativ a owl:NamedIndividual ;
+    rdfs:label "closure_theorem_as_blanket_license_or_composition_associativity_dropped" .

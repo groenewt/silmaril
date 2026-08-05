@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_02_preservation_laws_as_transport_correctness_sections_02_composition_preservation_law_cheese_trap_immunity__trap_composite_becomes_separate_primitive a owl:NamedIndividual ;
+    rdfs:label "composite_becomes_separate_primitive" .

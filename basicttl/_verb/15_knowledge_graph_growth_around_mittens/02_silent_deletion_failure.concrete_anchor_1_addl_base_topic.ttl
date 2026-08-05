@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_08_sections_02_concrete_anchor_1#forbiddendeletionbatch a owl:NamedIndividual ;
+    rdfs:label "SilentDeletionForbiddenConcreteAnchor1AddlBaseTopic" .
+silm:instances_papers_15_chapters_08_sections_02_concrete_anchor_1#forbiddendeletionbatch silm:hasAdditionalAttribute "base_topic:knowledge graph growth" .

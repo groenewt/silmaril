@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_cheese_trap_immunity__trap_neurosomatic_anchor_lost_after_transport a owl:NamedIndividual ;
+    rdfs:label "neurosomatic_anchor_lost_after_transport" .

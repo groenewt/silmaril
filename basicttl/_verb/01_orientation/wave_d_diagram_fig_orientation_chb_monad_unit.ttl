@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chb_monad_unit__diagram_fig_orientation_chb_monad_unit a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chB-monad-unit" .

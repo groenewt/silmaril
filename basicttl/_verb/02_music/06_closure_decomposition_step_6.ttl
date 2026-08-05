@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_06_closure_decomposition_step_6__step_path_06_closure a owl:NamedIndividual ;
+    rdfs:label "the recap: why no shortcut bypasses the law of the 06_closure claim" .

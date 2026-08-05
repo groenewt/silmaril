@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_17_evidence_composition_identity_sections_01_cross_paper_bridge_evidence_rule_of_three_yoneda_hom_leg_6_coconelegtoapex a owl:NamedIndividual ;
+    rdfs:label "S01CrossPaperBridgeEvidenceRuleOfThreeYonedaHomLeg6" .

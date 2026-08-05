@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_03_when_information_flows_vs_validates_cheese_trap_immunity__trap_directions_used_in_isolation a owl:NamedIndividual ;
+    rdfs:label "directions_used_in_isolation" .

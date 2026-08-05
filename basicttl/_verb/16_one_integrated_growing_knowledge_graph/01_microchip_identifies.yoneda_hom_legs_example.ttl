@@ -1,0 +1,3 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_yoneda_hom_legs a owl:NamedIndividual ;
+    rdfs:label "MicrochipIdentifiesYonedaHomLegsExample" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_yoneda_hom_legs silm:hasExample "In 'MicrochipIdentifiesYonedaHomLegs', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, microchip_identifies: colim D_Mittens -> colim D_Pumpkin is the upper-level cross-cat reference arrow; it preserves both cats as distinct individuals." .

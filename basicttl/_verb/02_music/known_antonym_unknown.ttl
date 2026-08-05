@@ -1,0 +1,5 @@
+silm:instances_papers_02_music_terms_known a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.02_music.terms.known" .
+silm:instances_papers_02_music_terms_known silm:hasAntonym silm:instances_papers_02_music_terms_unknown .
+silm:instances_papers_02_music_terms_known silm:sourceNode silm:instances_papers_02_music_terms_known .
+silm:instances_papers_02_music_terms_known silm:targetNode silm:instances_papers_02_music_terms_unknown .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_09_manifest_yoneda_profile_cheese_trap_immunity__trap_manifest_treated_as_metadata_list_not_as_hom_profile_approxi a owl:NamedIndividual ;
+    rdfs:label "manifest_treated_as_metadata_list_not_as_hom_profile_approximation" .

@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_05_free_construction_and_quotient_sections_01_free_generation_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "P07FreeConstructionAndQuotientFreeGenerationConcreteAnchor3" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_04_install_and_observe_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 04_install_and_observe" .

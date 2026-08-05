@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_07_sections_01_cheese_trap_immunity__trap_snapshot_is_the_long_run a owl:NamedIndividual ;
+    rdfs:label "snapshot_is_the_long_run" .

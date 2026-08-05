@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_20_bridges_graph_kg_integrated_cco_sections_04_bridge_cco_style_ontology_decomposition_step_2__step_compose_relator a owl:NamedIndividual ;
+    rdfs:label "compose typed arrows in the free path category Free(G_11) modulo the relator R_11" .

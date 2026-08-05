@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_05_silmaril_roster_and_profiles_sections_03_roster_update_laws_cheese_trap_immunity__trap_roster_update_overwrites_aboutness_arrow a owl:NamedIndividual ;
+    rdfs:label "roster_update_overwrites_aboutness_arrow" .

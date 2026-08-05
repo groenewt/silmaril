@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_citation_malkov2018hnsw a owl:NamedIndividual ;
+    rdfs:label "P04CitationMalkov2018hnsw" .

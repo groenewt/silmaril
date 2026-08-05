@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_citation_fongspivak2018sevensketches a owl:NamedIndividual ;
+    rdfs:label "P04CitationFongspivak2018sevensketches" .

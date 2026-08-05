@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_06_cheese_face_atlas_sections_02_face_tsn_eq_mittens_decomposition_step_4__step_d_mittens a owl:NamedIndividual ;
+    rdfs:label "reading position 4: the source diagram whose colimit is Mittens" .

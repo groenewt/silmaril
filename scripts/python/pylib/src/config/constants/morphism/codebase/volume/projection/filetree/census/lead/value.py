@@ -1,0 +1,1 @@
+VALUE = "Every table of this volume, the relation declared for it, and the column that relation reads. A table whose declared column is empty names no filesystem path and therefore contributes no node to the tree below.\n"

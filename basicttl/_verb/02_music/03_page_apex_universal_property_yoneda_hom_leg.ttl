@@ -1,0 +1,10 @@
+silm:instances_papers_02_music_sections_03_page_apex_universal_property_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] [rd," .
+silm:instances_papers_02_music_sections_03_page_apex_universal_property_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[schemanode]| $leg2$ [r," .
+silm:instances_papers_02_music_sections_03_page_apex_universal_property_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[terminalnode]| altApex tikzcd% Universal property: any candidate apex factors uniquely through the page apex.fig:music-page-apex-universal-property theorem[Page apex is universal] thm:music-page-apex-universal The page apex is universal: any other candidate apex factors uniquely through it. theorem proof Step 1 (cocone). The page apex receives a compatible cocone. Step 2 (alternative apex). Suppose \\(A'\\) also receives the cocone. Step 3 (factorization). By the colimit universal property, there is a unique \\(u:pageApex A'\\) such that \\(j=uj\\). Step 4 (uniqueness). \\(u\\) is unique by the universal property. proof example[worked: the Music page's draft apex factors through the published apex] ex:music-this-page-as-colimit This page's published apex \\(music\\) receives the four-family cocone (sections, figures, theorems, concept cards). Take \\(A' = musicDraftV1\\), a previous-round preview of this same page (the round-2 buildout state stored under src/appendices/38\\appendix\\d\\research\\phases/sections/2026-05-13\\3\\agent\\dag\\round2/). \\(A'\\) receives the same cocone families. The universal property delivers a unique factorisation \\(u:music A'\\) that points the published apex back at the draft; in this case \\(u\\) is non-identity because the draft has different content. The universal property is the categorical statement of" .
+silm:instances_papers_02_music_sections_03_page_apex_universal_property_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_4" .
+silm:instances_papers_02_music_sections_03_page_apex_universal_property_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_5" .

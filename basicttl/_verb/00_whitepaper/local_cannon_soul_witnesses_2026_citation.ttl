@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_citation_localcannonsoulwitnesses2026 a owl:NamedIndividual ;
+    rdfs:label "P00CitationLocalCannonSoulWitnesses2026" .

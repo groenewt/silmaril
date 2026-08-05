@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_24_rosetta_stone_cross_domain_sections_06_six_step_scaffold_exposition_yoneda_hom_leg_0 a owl:NamedIndividual ;
+    rdfs:label "S06SixStepScaffoldExpositionYonedaHomLeg0" .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_03_decomposition_step_1__step_c_mittens a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T6-G3 (Circuit-7 corpus characterisation)" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chb_extension_functorial__diagram_fig_orientation_chb_extension_functorial a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chB-extension-functorial" .

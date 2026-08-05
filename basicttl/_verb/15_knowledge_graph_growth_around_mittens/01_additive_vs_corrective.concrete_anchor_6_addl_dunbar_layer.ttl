@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_6#erroneoussupersededtypenode a owl:NamedIndividual ;
+    rdfs:label "CorrectiveGrowthNonIdentityConcreteAnchor6AddlDunbarLayer" .
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_6#erroneoussupersededtypenode silm:hasAdditionalAttribute "dunbar_layer:0" .

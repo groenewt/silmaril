@@ -1,0 +1,5 @@
+silm:instances_papers_08_visual_discipline_terms_commutative a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.commutative" .
+silm:instances_papers_08_visual_discipline_terms_commutative silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_non_commutative .
+silm:instances_papers_08_visual_discipline_terms_commutative silm:sourceNode silm:instances_papers_08_visual_discipline_terms_commutative .
+silm:instances_papers_08_visual_discipline_terms_commutative silm:targetNode silm:instances_papers_08_visual_discipline_terms_non_commutative .

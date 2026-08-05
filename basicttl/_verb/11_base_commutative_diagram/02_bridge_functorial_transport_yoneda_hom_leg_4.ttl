@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_19_bridges_monoids_functorial_ologs_sections_02_bridge_functorial_transport_yoneda_hom_leg_4_refinementembeddingr a owl:NamedIndividual ;
+    rdfs:label "S02BridgeFunctorialTransportYonedaHomLeg4" .

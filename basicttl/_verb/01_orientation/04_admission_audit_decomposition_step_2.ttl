@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_07_node_arrow_gate_mechanics_sections_04_admission_audit_decomposition_step_2__step_sigma a owl:NamedIndividual ;
+    rdfs:label "reading position 2: the orientation typed source signature" .

@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_sections_04_shared_diagram_concrete_anchor_0_Mittens#mittens a owl:NamedIndividual ;
+    rdfs:label "S04SharedDiagramConcreteAnchor0AddlDunbarLayer" .
+silm:instances_papers_09_minimal_category_theory_sections_04_shared_diagram_concrete_anchor_0_Mittens#mittens silm:hasAdditionalAttribute "dunbar_layer:0" .

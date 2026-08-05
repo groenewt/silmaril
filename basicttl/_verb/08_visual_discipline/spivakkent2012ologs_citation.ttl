@@ -1,0 +1,2 @@
+silm:instances_papers_08_visual_discipline_citation_spivakkent2012ologs a owl:NamedIndividual ;
+    rdfs:label "P08CitationSpivakkent2012ologs" .

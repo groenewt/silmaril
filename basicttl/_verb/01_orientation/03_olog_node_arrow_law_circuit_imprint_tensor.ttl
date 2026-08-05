@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_03_olog_node_arrow_law_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

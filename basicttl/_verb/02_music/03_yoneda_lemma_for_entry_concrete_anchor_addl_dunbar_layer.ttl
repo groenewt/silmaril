@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_03_yoneda_lemma_for_entry_concrete_anchor#hom a owl:NamedIndividual ;
+    rdfs:label "03YonedalemmaforentryConcreteAnchorAddlDunbarLayer" .
+silm:instances_papers_02_music_sections_03_yoneda_lemma_for_entry_concrete_anchor#hom silm:hasAdditionalAttribute "dunbar_layer:0" .

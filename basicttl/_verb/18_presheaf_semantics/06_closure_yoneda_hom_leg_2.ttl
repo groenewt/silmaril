@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_06_closure_yoneda_hom_leg_2_profile_read a owl:NamedIndividual ;
+    rdfs:label "P1806_closureYonedaHomLeg2" .

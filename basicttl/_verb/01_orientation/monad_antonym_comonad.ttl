@@ -1,0 +1,5 @@
+silm:instances_papers_01_orientation_terms_monad a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.01_orientation.terms.monad" .
+silm:instances_papers_01_orientation_terms_monad silm:hasAntonym silm:instances_papers_01_orientation_terms_comonad .
+silm:instances_papers_01_orientation_terms_monad silm:sourceNode silm:instances_papers_01_orientation_terms_monad .
+silm:instances_papers_01_orientation_terms_monad silm:targetNode silm:instances_papers_01_orientation_terms_comonad .

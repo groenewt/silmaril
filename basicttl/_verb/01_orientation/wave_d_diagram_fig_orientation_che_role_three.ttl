@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_che_role_three__diagram_fig_orientation_che_role_three a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chE-role-three" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_citation_adamekherrlichstrecker1990joyofcats a owl:NamedIndividual ;
+    rdfs:label "P01CitationAdamekherrlichstrecker1990joyofcats" .

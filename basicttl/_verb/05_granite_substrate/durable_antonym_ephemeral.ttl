@@ -1,0 +1,5 @@
+silm:instances_papers_05_granite_substrate_terms_durable a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.05_granite_substrate.terms.durable" .
+silm:instances_papers_05_granite_substrate_terms_durable silm:hasAntonym silm:instances_papers_05_granite_substrate_terms_ephemeral .
+silm:instances_papers_05_granite_substrate_terms_durable silm:sourceNode silm:instances_papers_05_granite_substrate_terms_durable .
+silm:instances_papers_05_granite_substrate_terms_durable silm:targetNode silm:instances_papers_05_granite_substrate_terms_ephemeral .

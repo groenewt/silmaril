@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_04_naturality_in_two_variables_circuit_imprint_tensor__corner_8 a owl:NamedIndividual ;
+    rdfs:label "8" .

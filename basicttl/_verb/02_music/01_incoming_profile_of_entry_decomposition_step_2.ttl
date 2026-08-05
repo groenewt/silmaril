@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_07_yoneda_profile_of_the_entry_sections_01_incoming_profile_of_entry_decomposition_step_2__step_compose a owl:NamedIndividual ;
+    rdfs:label "the typed-arrow composition operation" .

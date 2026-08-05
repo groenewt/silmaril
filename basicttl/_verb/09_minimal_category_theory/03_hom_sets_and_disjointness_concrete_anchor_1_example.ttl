@@ -1,0 +1,3 @@
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_03_hom_sets_and_disjointness_concrete_anchor_1_DomesticCat a owl:NamedIndividual ;
+    rdfs:label "S03HomSetsAndDisjointnessConcreteAnchor1Example" .
+silm:instances_papers_09_minimal_category_theory_chapters_01_objects_and_arrows_sections_03_hom_sets_and_disjointness_concrete_anchor_1_DomesticCat silm:hasExample "In 'S03HomSetsAndDisjointnessConcreteAnchor1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the classification leg label; a typed class object distinct from Mittens; receives only the type leg, not the body-mass/microchip/care-process legs." .

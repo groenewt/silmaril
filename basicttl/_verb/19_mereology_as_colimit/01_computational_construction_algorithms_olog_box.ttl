@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_10_computational_construction_sections_01_computational_construction_algorithms_olog_box__computationalconstructionalgorithms a owl:NamedIndividual ;
+    rdfs:label "ComputationalConstructionAlgorithms" .

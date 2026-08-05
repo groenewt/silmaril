@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_27_governance_shacl_deep_dive_sections_03_unified_constraint_theorem_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "S03UnifiedConstraintTheoremYonedaHomLeg1" .

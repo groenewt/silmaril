@@ -1,0 +1,10 @@
+silm:instances_papers_02_music_sections_05_cat_first_anchor_discipline_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "',] \\& Felis\\ catus [l," .
+silm:instances_papers_02_music_sections_05_cat_first_anchor_discipline_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "] [u," .
+silm:instances_papers_02_music_sections_05_cat_first_anchor_discipline_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "taxonomy" .
+silm:instances_papers_02_music_sections_05_cat_first_anchor_discipline_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_4" .
+silm:instances_papers_02_music_sections_05_cat_first_anchor_discipline_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_5" .

@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_concrete_anchor__bodilyfeltconnection a owl:NamedIndividual ;
+    rdfs:label "the bodily-felt connection between the chart entry and the actual patient" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_concrete_anchor__householdfeltmittens a owl:NamedIndividual ;
+    rdfs:label "Mittens as known through household care-giving attention" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_concrete_anchor__clinicfeltpatient a owl:NamedIndividual ;
+    rdfs:label "the patient image as it is felt by the clinician reading the chart" .
+silm:instances_papers_20_functorial_transport_chapters_06_circuit_imprint_transport_sections_02_circuit_5_neurosomatic_anchor_concrete_anchor__derivedanchor_02_cir_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

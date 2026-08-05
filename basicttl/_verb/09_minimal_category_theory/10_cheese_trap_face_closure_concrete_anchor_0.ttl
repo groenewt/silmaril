@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_10_cheese_trap_face_closure_concrete_anchor_0_Mittens a owl:NamedIndividual ;
+    rdfs:label "S10CheeseTrapFaceClosureConcreteAnchor0" .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_04_project_position_discipline_sections_01_encyclopedia_as_free_monad_decomposition_step_1__step_x_01_encyclopedia_as_free_monad a owl:NamedIndividual ;
+    rdfs:label "the primary typed object of the 01_encyclopedia_as_free_monad claim" .

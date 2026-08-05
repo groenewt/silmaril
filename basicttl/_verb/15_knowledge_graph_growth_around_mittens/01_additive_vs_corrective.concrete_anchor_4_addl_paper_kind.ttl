@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_4#bodymassquality77 a owl:NamedIndividual ;
+    rdfs:label "CorrectiveGrowthNonIdentityConcreteAnchor4AddlPaperKind" .
+silm:instances_papers_15_chapters_05_sections_01_concrete_anchor_4#bodymassquality77 silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.15_knowledge_graph_growth_around_mittens" .

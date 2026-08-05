@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_apex#mittensthecatasleepontheradiator a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.01.concrete_anchor.apex#mittensthecatasleepontheradiator" .
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_apex#mittensthecatasleepontheradiator silm:hasLongDescription "The MittensTheCatAsleepOnTheRadiator is The single governed individual: the cat asleep on the radiator. Mittens is the same cat on 2026-04-12 (vet visit), 2026-04-19 (microchip read), and 2026-04-26 (dietary card). Mittens is NOT the union of all records about Mittens; it is the colimit apex of the directed system of source diagrams." .

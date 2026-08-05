@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_02_render_step_decomposition_step_6__step_forge_morphism_for_02_render_step a owl:NamedIndividual ;
+    rdfs:label "Render converts a typed spec commitment into a named, versioned, checkable template process; the template is not the spec and not the artifact." .

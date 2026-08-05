@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_02_mittens_anchor_decomposition_step_5__step__hom_o__x a owl:NamedIndividual ;
+    rdfs:label "reading position 5: by Yoneda naturality, the profile Hom_O(-,X) transports along functors preserving representability" .

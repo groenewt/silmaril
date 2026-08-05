@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_02_typed_legs_and_atlas_sections_03_diagram_atlas_yoneda_hom_leg_16_typeedgearrow a owl:NamedIndividual ;
+    rdfs:label "S03DiagramAtlasYonedaHomLeg16" .

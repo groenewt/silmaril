@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_decomposition_step_4__step_forge_morphism_for_02_node_typing_contract a owl:NamedIndividual ;
+    rdfs:label "Each of the seven principal Forge nodes has a typed sentence. For example: 'A manifest is a written Hom-profile that declares the incoming and outgoing arrows of a materialized node.'" .

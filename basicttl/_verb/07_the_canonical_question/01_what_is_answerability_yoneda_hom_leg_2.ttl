@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_01_answerability_profile_sections_01_what_is_answerability_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "P07AnswerabilityProfileWhatIsAnswerabilityYonedaHomLeg2" .

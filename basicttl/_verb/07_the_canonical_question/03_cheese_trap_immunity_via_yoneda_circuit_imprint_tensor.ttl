@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_03_yoneda_as_tunnel_sections_03_cheese_trap_immunity_via_yoneda_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

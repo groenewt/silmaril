@@ -1,0 +1,3 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_02_domestic_cat_anchor_typed_yoneda_hom_leg_1_anchor_admission a owl:NamedIndividual ;
+    rdfs:label "DomesticCatAnchorTypedYonedaHomLeg1Example" .
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_02_domestic_cat_anchor_typed_yoneda_hom_leg_1_anchor_admission silm:hasExample "In 'DomesticCatAnchorTypedYonedaHomLeg1', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, The anchor phrase 'a domestic cat' is admitted as DomesticCatBox." .

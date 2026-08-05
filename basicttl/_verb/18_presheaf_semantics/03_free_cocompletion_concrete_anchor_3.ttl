@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_free_cocompletion_concrete_anchor_3_P_visit_0_ a owl:NamedIndividual ;
+    rdfs:label "P1803_free_cocompletionConcreteAnchor3" .

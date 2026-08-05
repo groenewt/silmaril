@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_06_cheese_trap_immunity_sections_03_face_classification_as_apex_concrete_anchor_0_Mittens a owl:NamedIndividual ;
+    rdfs:label "S03FaceClassificationAsApexConcreteAnchor0" .

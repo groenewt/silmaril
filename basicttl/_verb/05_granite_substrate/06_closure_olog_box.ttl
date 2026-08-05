@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_06_closure_olog_box__closurebox a owl:NamedIndividual ;
+    rdfs:label "ClosureBox" .

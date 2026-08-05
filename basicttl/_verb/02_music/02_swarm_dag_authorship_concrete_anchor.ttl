@@ -1,0 +1,12 @@
+silm:instances_papers_02_music_sections_02_swarm_dag_authorship_concrete_anchor__auditor a owl:NamedIndividual ;
+    rdfs:label "the Mittens body-mass observation record from the May 2026 vet visit at Tartu Animal Clinic, entering the engine as a typed quality-claim source packet" .
+silm:instances_papers_02_music_sections_02_swarm_dag_authorship_concrete_anchor__ripper a owl:NamedIndividual ;
+    rdfs:label "the Mittens vaccination record FVRCP-2026-03-15, entering as a typed evidence packet with provenance and validation envelope" .
+silm:instances_papers_02_music_sections_02_swarm_dag_authorship_concrete_anchor__perpaperagent a owl:NamedIndividual ;
+    rdfs:label "the Mittens microchip-id witness 985112000123456 entering as a typed identifier source leg into the Music engine cocone" .
+silm:instances_papers_02_music_sections_02_swarm_dag_authorship_concrete_anchor__weaver a owl:NamedIndividual ;
+    rdfs:label "the Mittens coat-pattern observation (torbie, three-color) entering as a typed quality-claim into the manifest profile reader" .
+silm:instances_papers_02_music_sections_02_swarm_dag_authorship_concrete_anchor__ a owl:NamedIndividual ;
+    rdfs:label "the Mittens domestic-cat classification leg (DomesticCat) as a typed source-leg arrow that anchors BY Mittens, not as an identity" .
+silm:instances_papers_02_music_sections_02_swarm_dag_authorship_concrete_anchor__rebuttalagent a owl:NamedIndividual ;
+    rdfs:label "the Felis catus / TSN 183798 taxonomy source leg, recoverable as a typed leg into D_Mittens but not interchangeable with the colimit apex Mittens" .

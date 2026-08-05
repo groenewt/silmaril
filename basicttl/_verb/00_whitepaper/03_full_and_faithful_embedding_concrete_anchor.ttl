@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_03_full_and_faithful_embedding_concrete_anchor__colimitfactorizationarrow_vetcareplan a owl:NamedIndividual ;
+    rdfs:label "ColimitFactorizationArrow_VetCarePlan: the unique arrow VetCarePlan_77 -> MittensColimitApex; the concrete fullness witness — the natural transformation Hom(-,VetCarePlan_77) -> Hom(-,MittensColimitApex) arises from exactly this arrow" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_03_full_and_faithful_embedding_concrete_anchor__distinctlegarrows_d_mittens a owl:NamedIndividual ;
+    rdfs:label "DistinctLegArrows_D_Mittens: the twelve distinct leg arrows of D_Mittens (record_leg, identifier_leg, ..., taxonomy_leg); faithfulness means they yield twelve distinct natural transformations; no two produce the same Nat(Hom(-,X), Hom(-,MittensColimitApex))" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_03_full_and_faithful_embedding_concrete_anchor__vetcareplan_77 a owl:NamedIndividual ;
+    rdfs:label "VetCarePlan_77: the clinical care plan document for Mittens at Tartu Animal Clinic; a competing cocone (a cone from D_Mittens that also receives all twelve legs); the colimit factorization gives the unique arrow VetCarePlan_77 -> MittensColimitApex" .

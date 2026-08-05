@@ -1,0 +1,2 @@
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_cheese_trap_immunity__trap_open_patch_confused_with_global_object a owl:NamedIndividual ;
+    rdfs:label "open_patch_confused_with_global_object" .

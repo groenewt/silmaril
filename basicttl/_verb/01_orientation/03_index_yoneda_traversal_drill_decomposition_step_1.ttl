@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_11_concept_card_index_sections_03_index_yoneda_traversal_drill_decomposition_step_1__step_indexrowx a owl:NamedIndividual ;
+    rdfs:label "reading position 1: the concept-card-index ROW for a given Mittens-domain anchor X (e.g. VetRecord_77, MicrochipID_44, WeightMeas_3450g) is the unit object whose Yoneda profile Hom(-, IndexRow(X)) names the per-row traversal slot of the index" .

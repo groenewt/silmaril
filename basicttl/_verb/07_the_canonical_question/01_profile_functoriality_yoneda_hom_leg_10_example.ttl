@@ -1,0 +1,3 @@
+silm:instances_papers_07_the_canonical_question_chapters_09_proof_units_sections_01_profile_functoriality_yoneda_hom_leg_10 a owl:NamedIndividual ;
+    rdfs:label "P07ProofUnitsProfileFunctorialityYonedaHomLeg10Example" .
+silm:instances_papers_07_the_canonical_question_chapters_09_proof_units_sections_01_profile_functoriality_yoneda_hom_leg_10 silm:hasExample "In 'P07ProofUnitsProfileFunctorialityYonedaHomLeg10', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, DomesticCat is the governed classification leg admitting Mittens via the type system; it is a source leg, not the cat itself." .

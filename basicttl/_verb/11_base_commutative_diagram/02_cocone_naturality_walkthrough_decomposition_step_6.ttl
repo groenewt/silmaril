@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_15_cocone_apex_and_naturality_sections_02_cocone_naturality_walkthrough_decomposition_step_6__step_recap_02_cocone_naturality_walkthrough a owl:NamedIndividual ;
+    rdfs:label "recap of the {sec} commuting law assembled across steps 1-5" .

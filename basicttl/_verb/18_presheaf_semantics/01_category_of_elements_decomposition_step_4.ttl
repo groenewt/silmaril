@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_category_of_elements_decomposition_step_4__step_mittens_vet_record_presheaf a owl:NamedIndividual ;
+    rdfs:label "the Mittens vet-record concrete instantiation of the The Category of Elements of a Presheaf claim" .

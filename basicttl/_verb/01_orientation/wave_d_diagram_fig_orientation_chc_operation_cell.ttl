@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chc_operation_cell__diagram_fig_orientation_chc_operation_cell a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chC-operation-cell" .

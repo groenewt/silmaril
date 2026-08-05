@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_03_free_monad_unpacked_sections_03_term_grammar_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

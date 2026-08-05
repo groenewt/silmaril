@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_che_classification__diagram_fig_orientation_che_classification a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chE-classification" .

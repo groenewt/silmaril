@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_cocone_universality_olog_box__p18section02_cocone_universalityologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section02_cocone_universalityOlogBox" .

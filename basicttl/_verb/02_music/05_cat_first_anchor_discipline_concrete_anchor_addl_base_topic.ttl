@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_05_cat_first_anchor_discipline_concrete_anchor#cat a owl:NamedIndividual ;
+    rdfs:label "05CatfirstanchordisciplineConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_02_music_sections_05_cat_first_anchor_discipline_concrete_anchor#cat silm:hasAdditionalAttribute "base_topic:graph engine" .

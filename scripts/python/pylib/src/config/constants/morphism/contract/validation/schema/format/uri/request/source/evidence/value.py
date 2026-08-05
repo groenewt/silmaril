@@ -1,0 +1,1 @@
+VALUE = b"urn:silmaril:evidence:sha256:5591bad136166929e8b8dcfad0d3a6ba19f8fb2bd739f8ced61f017bafea18b8#validatorLambda.combinators/format/uri"

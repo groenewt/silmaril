@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_decomposition_step_5__step_forge_morphism_for_01_interpret_step a owl:NamedIndividual ;
+    rdfs:label "The spec's profile Hom(-, Spec_MittensBodyMass) includes the vet-record source interpretation as an incoming arrow. Downstream templates that receive this spec inherit the interpretation-chain provenance." .

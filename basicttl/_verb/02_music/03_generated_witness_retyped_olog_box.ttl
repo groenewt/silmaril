@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_10_worked_examples_music_sections_03_generated_witness_retyped_olog_box__musicolog03generatedwitnessrebox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03GeneratedWitnessReBox" .

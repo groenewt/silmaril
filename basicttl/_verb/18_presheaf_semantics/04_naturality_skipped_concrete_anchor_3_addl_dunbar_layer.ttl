@@ -1,0 +1,3 @@
+silm:instances_papers_18_presheaf_semantics_04_naturality_skipped_concrete_anchor_3_P_visit_0_#mittensvetrecordpresheafanchornode3 a owl:NamedIndividual ;
+    rdfs:label "P1804_naturality_skippedConcreteAnchor3AddlDunbarLayer" .
+silm:instances_papers_18_presheaf_semantics_04_naturality_skipped_concrete_anchor_3_P_visit_0_#mittensvetrecordpresheafanchornode3 silm:hasAdditionalAttribute "dunbar_layer:0" .

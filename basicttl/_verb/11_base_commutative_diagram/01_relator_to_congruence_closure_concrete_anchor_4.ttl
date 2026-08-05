@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_05_relator_quotient_projection_sections_01_relator_to_congruence_closure_concrete_anchor_4_Mammal a owl:NamedIndividual ;
+    rdfs:label "S01RelatorToCongruenceClosureConcreteAnchor4" .

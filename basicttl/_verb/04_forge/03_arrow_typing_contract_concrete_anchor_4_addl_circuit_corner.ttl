@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_03_arrow_typing_contract_concrete_anchor_4#measurementlegnode a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 03_arrow_typing_contract" .
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_03_arrow_typing_contract_concrete_anchor_4#measurementlegnode silm:hasAdditionalAttribute "circuit_corner:2" .

@@ -1,0 +1,3 @@
+silm:instances_papers_18_presheaf_semantics_01_category_of_elements_concrete_anchor_3_P_visit_0_#mittensvetrecordpresheafanchornode3 a owl:NamedIndividual ;
+    rdfs:label "P1801_category_of_elementsConcreteAnchor3AddlCircuitCorner" .
+silm:instances_papers_18_presheaf_semantics_01_category_of_elements_concrete_anchor_3_P_visit_0_#mittensvetrecordpresheafanchornode3 silm:hasAdditionalAttribute "circuit_corner:3" .

@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_01_core_theorems_sections_01_path_law_free_quotient_theorem_decomposition_step_4__step_mittens_cat_individual a owl:NamedIndividual ;
+    rdfs:label "the cat-vet-clinic individual Mittens whose Cat anchor c, DomesticCat refinement a, vet-classifies, microchip-identifies legs all glue into one m_11 apex" .

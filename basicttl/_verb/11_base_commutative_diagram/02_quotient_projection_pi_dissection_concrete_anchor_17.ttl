@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_05_relator_quotient_projection_sections_02_quotient_projection_pi_dissection_concrete_anchor_17_PathLawceqra a owl:NamedIndividual ;
+    rdfs:label "S02QuotientProjectionPiDissectionConcreteAnchor17" .

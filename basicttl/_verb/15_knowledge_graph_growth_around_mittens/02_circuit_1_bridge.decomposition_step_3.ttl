@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_06_sections_02_decomposition_step_3__step_base_topic_substrate_axis_flip_neuro_to_bio a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia base topic providing the formal apparatus" .

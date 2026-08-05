@@ -1,0 +1,5 @@
+silm:instances_papers_00_whitepaper_terms_vetrecord_77 a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.00_whitepaper.terms.vetrecord_77" .
+silm:instances_papers_00_whitepaper_terms_vetrecord_77 silm:hasAntonym silm:instances_papers_00_whitepaper_terms_emptymittensprofile .
+silm:instances_papers_00_whitepaper_terms_vetrecord_77 silm:sourceNode silm:instances_papers_00_whitepaper_terms_vetrecord_77 .
+silm:instances_papers_00_whitepaper_terms_vetrecord_77 silm:targetNode silm:instances_papers_00_whitepaper_terms_emptymittensprofile .

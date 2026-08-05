@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_02_pullback_as_constraint_validation_cheese_trap_immunity__trap_validation_without_information a owl:NamedIndividual ;
+    rdfs:label "validation_without_information" .

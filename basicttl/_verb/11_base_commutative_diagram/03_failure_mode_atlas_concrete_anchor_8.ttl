@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_08_joc_and_regression_sections_03_failure_mode_atlas_concrete_anchor_8_vetclassifies a owl:NamedIndividual ;
+    rdfs:label "S03FailureModeAtlasConcreteAnchor8" .

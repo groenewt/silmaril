@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_10_backend_routing_and_observability_decomposition_step_4__step_forge_morphism_for_10_backend_routing_and_observability a owl:NamedIndividual ;
+    rdfs:label "Anchor every symbol and operation to a Mittens-domain object: VetRecordAboutMittens (raw), CitedInfoObject (cited), MittensBodyMassLocalInfo (interpreted), MeasurementLeg (typed), MeasurementSourceLeg (placed)." .

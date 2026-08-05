@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_flat_sections_02_mittens_anchor_cheese_trap_immunity__trap_mittens_collapsed_to_catus_string a owl:NamedIndividual ;
+    rdfs:label "mittens_collapsed_to_catus_string" .

@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_08_colimit_universal_property_olog_box__minimalcategorytheory_s08colimituniversalproperty a owl:NamedIndividual ;
+    rdfs:label "MinimalCategoryTheory_S08ColimitUniversalProperty" .

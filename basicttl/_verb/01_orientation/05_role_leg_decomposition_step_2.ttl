@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_05_mittens_leg_walkthrough_sections_05_role_leg_decomposition_step_2__step_sigma a owl:NamedIndividual ;
+    rdfs:label "reading position 2: the orientation typed source signature" .

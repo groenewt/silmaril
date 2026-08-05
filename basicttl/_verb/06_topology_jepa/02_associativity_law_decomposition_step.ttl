@@ -1,0 +1,12 @@
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_decomposition_step__step_step_1_symbol_theorem_1_of_'associativity_law_for_colimit_gl a owl:NamedIndividual ;
+    rdfs:label "Name the primary symbol and what it stands for in the load-bearing claim of the section." .
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_decomposition_step__step_step_2_symbol_theorem_1_of_'associativity_law_for_colimit_gl a owl:NamedIndividual ;
+    rdfs:label "Name the operation and the order of composition that combines the named symbols." .
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_decomposition_step__step_step_3_symbol_theorem_1_of_'associativity_law_for_colimit_gl a owl:NamedIndividual ;
+    rdfs:label "Cite the base abstract topic (functoriality, naturality, monad-bind, cocone-compatibility, Yoneda lemma) that licenses the step." .
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_decomposition_step__step_step_4_symbol_theorem_1_of_'associativity_law_for_colimit_gl a owl:NamedIndividual ;
+    rdfs:label "Anchor the abstract topic in a Mittens-the-cat embodiment (body-mass 4.2 kg, vet-record May 2026, head/body/tail patches, signed by Dr. Osei)." .
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_decomposition_step__step_step_5_symbol_theorem_1_of_'associativity_law_for_colimit_gl a owl:NamedIndividual ;
+    rdfs:label "Compose upward via the Yoneda lemma as the traversal mechanism: the representable profile transports the conclusion to downstream readers." .
+silm:instances_papers_06_topology_jepa_chapters_10_jepa_colimit_gluing_sections_02_associativity_law_decomposition_step__step_step_6_symbol_theorem_1_of_'associativity_law_for_colimit_gl a owl:NamedIndividual ;
+    rdfs:label "Recap the load-bearing claim in one line that a zero-math reader can repeat back." .

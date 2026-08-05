@@ -1,0 +1,8 @@
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_02_chunking_hashing_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual — the domestic cat at the Tartu Animal Clinic whose annual vet exam on 2026-05-18 produced the evidence chunk c-0x7f4a" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_02_chunking_hashing_concrete_anchor__chunkinghashingsymbol a owl:NamedIndividual ;
+    rdfs:label "The content hash of the Mittens vet-record chunk: sha256(vet-record-payload) = sha256:7f4a...bf2c. This hash uniquely identifies the payload, enables content-addressed retrieval, and serves as the witness annotation on the materialization arrow mu_Mittens." .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_02_chunking_hashing_concrete_anchor__mittenssourcediagram a owl:NamedIndividual ;
+    rdfs:label "the source diagram: functor from typed-leg index category into G_Granite whose colimit is Mittens" .
+silm:instances_papers_05_granite_substrate_chapters_03_training_pipeline_law_sections_02_chunking_hashing_concrete_anchor__clinicalcareplan77tartu a owl:NamedIndividual ;
+    rdfs:label "clinical care plan record 77 at Tartu clinic: receives universal-mediator from Mittens apex but not from storage row — concrete proof of strict Hom inclusion" .

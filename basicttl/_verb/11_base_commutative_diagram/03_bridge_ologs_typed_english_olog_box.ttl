@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_19_bridges_monoids_functorial_ologs_sections_03_bridge_ologs_typed_english_olog_box__basecommutativediagram_s03bridgeologstypedenglish a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S03bridgeologstypedenglish" .

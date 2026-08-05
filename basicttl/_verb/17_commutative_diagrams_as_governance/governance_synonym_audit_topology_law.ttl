@@ -1,0 +1,4 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_governance a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.17_commutative_diagrams_as_governance.terms.governance" .
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_governance silm:hasSynonym "audit-topology law" .
+silm:instances_papers_17_commutative_diagrams_as_governance_terms_governance silm:sourceNode silm:instances_papers_17_commutative_diagrams_as_governance_terms_governance .

@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_construction_dag_olog_box__musicolog03constructiondagbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03ConstructionDagBox" .

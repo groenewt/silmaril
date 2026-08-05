@@ -1,0 +1,5 @@
+silm:instances_papers_09_minimal_category_theory_terms_natural a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.09_minimal_category_theory.terms.natural" .
+silm:instances_papers_09_minimal_category_theory_terms_natural silm:hasAntonym silm:instances_papers_09_minimal_category_theory_terms_unnatural .
+silm:instances_papers_09_minimal_category_theory_terms_natural silm:sourceNode silm:instances_papers_09_minimal_category_theory_terms_natural .
+silm:instances_papers_09_minimal_category_theory_terms_natural silm:targetNode silm:instances_papers_09_minimal_category_theory_terms_unnatural .

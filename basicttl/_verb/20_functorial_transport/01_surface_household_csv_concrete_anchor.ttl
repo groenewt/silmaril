@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_concrete_anchor__householdcsvfile a owl:NamedIndividual ;
+    rdfs:label "the flattened household export file with four columns" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_concrete_anchor__mittenscsvrow a owl:NamedIndividual ;
+    rdfs:label "the row 'Mittens, 9, 4.2, 77' carrying the surface data" .
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_01_surface_household_csv_concrete_anchor__clinicingestcsvfile a owl:NamedIndividual ;
+    rdfs:label "the clinic-side received file (typically identical content to household.csv)" .

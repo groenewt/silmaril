@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_04_cheese_trap_and_identity_sections_02_controlled_category_use_decomposition_step_1__step_q_07 a owl:NamedIndividual ;
+    rdfs:label "reading position 1: name the canonical question Q_07 posed of the Mittens cocone" .

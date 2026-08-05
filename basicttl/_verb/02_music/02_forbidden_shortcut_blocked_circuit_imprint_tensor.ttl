@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_10_worked_examples_music_sections_02_forbidden_shortcut_blocked_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

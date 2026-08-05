@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_mittens_witness_decomposition_step_3__step_presheaf_semantics_mittens_witness a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Mittens Vet-Record Functoriality Witness claim, grounded in the cited literature" .

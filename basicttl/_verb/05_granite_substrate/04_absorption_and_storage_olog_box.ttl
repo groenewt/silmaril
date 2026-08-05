@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_05_absorption_law_sections_04_absorption_and_storage_olog_box__absorptionandstoragebox a owl:NamedIndividual ;
+    rdfs:label "AbsorptionAndStorageBox" .

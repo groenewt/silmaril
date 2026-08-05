@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_concrete_anchor__graphhomomorphism a owl:NamedIndividual ;
+    rdfs:label "a graph homomorphism on the underlying labeled directed graphs" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_concrete_anchor__clinicvoid a owl:NamedIndividual ;
+    rdfs:label "the pathological clinic node that absorbs all household nodes under a fixed-node graph hom" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_concrete_anchor__householdmeasurementpath a owl:NamedIndividual ;
+    rdfs:label "the household path measured-by composed-with has-quality from Mittens to record 77" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_04_typed_arrows_not_graph_edges_concrete_anchor__derivedanchor_04_typ_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

@@ -1,0 +1,12 @@
+silm:instances_papers_00_whitepaper_sections_01_thesis_decomposition_step__step_publish a owl:NamedIndividual ;
+    rdfs:label "publish is the composition of four typed operations: ingest, type, validate, render." .
+silm:instances_papers_00_whitepaper_sections_01_thesis_decomposition_step__step_circ_categorical_composition a owl:NamedIndividual ;
+    rdfs:label "circ is categorical composition: render circ validate means 'first validate, then render'. The order matters; rendering before validating is the forbidden shortcut." .
+silm:instances_papers_00_whitepaper_sections_01_thesis_decomposition_step__step_free_monad___initial_algebra a owl:NamedIndividual ;
+    rdfs:label "The publication composite is the initial algebra of the free monad on the EncyclopediaEntry endofunctor. Joy of Cats §20.1 gives the monad triple (T, eta, mu)." .
+silm:instances_papers_00_whitepaper_sections_01_thesis_decomposition_step__step_encyclopediaentry a owl:NamedIndividual ;
+    rdfs:label "An EncyclopediaEntry is a Mittens-domain entity: e.g. the May 2026 VetRecord_77 for Mittens-the-cat at the Tartu Animal Clinic." .
+silm:instances_papers_00_whitepaper_sections_01_thesis_decomposition_step__step_yoneda_inheritance a owl:NamedIndividual ;
+    rdfs:label "By Yoneda naturality, the publish-factorization law transports from the whitepaper spine to every downstream paper without re-proof: downstream papers inherit it as a cocone leg into the spine colimit." .
+silm:instances_papers_00_whitepaper_sections_01_thesis_decomposition_step__step_thesis_anchor_recap a owl:NamedIndividual ;
+    rdfs:label "The encyclopedia is an olog: the publish operation factors as render circ validate circ type circ ingest, the Mittens colimit is the running anchor, and every claim is publishable only when source boundary, typing, validation, and render integrity are recoverable." .

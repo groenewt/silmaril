@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_05_probe_ungated_render_decomposition_step_6__step_probe_r5_holds_for_proof_surface_diagrams a owl:NamedIndividual ;
+    rdfs:label "The render functor admits only validated claims; an ungated proof-surface render produces a visual artefact, not a proof surface; schematic diagrams labelled as illustrative-only are outside the probe scope." .

@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_02_yoneda_hom_leg_4 a owl:NamedIndividual ;
+    rdfs:label "GrowthStepsFreeMonoidYonedaHomLeg4Example" .
+silm:instances_papers_15_chapters_01_sections_02_yoneda_hom_leg_4 silm:hasExample "In 'GrowthStepsFreeMonoidYonedaHomLeg4', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, (F',L') : D_Mittens^{n+1} -> D_Mittens^{n+2} is the second batch in the stacked compatibility square; it admits a further finite event-batch (e.g. the dietary card after the microchip read)." .

@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_04_measurement_leg_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

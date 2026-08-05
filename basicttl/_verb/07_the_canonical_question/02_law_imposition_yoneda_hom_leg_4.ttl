@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_05_free_construction_and_quotient_sections_02_law_imposition_yoneda_hom_leg_4 a owl:NamedIndividual ;
+    rdfs:label "P07FreeConstructionAndQuotientLawImpositionYonedaHomLeg4" .

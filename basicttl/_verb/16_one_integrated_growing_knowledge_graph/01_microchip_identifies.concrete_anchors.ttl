@@ -1,0 +1,10 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__householdchipregistry a owl:NamedIndividual ;
+    rdfs:label "the household local registry record under file 77 binding chip 9000-0000-0042 and chip 9000-0000-0099 to the household account at 77 Maple Street" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__chipdesignatesmittens a owl:NamedIndividual ;
+    rdfs:label "the information arrow asserting that chip ID 9000-0000-0042 designates Mittens; not an identity, a designation" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__chipdesignatespumpkin a owl:NamedIndividual ;
+    rdfs:label "the information arrow asserting that chip ID 9000-0000-0099 designates Pumpkin" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__registryrecords a owl:NamedIndividual ;
+    rdfs:label "the typed evidence record of the chip registry storing both chip-to-cat designation arrows" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_02_cross_entity_reference_arrows_sections_01_microchip_identifies_concrete_anchors__crosscatidentityreference a owl:NamedIndividual ;
+    rdfs:label "the upper-level cross-cat reference arrow exposing the shared registry as a typed link between the two cats; the load-bearing identity-leg of paper 16" .

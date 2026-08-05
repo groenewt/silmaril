@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_10_worked_examples_music_sections_04_cross_paper_bridge_admitted_decomposition_step_6__step_music_olog_admissibility a owl:NamedIndividual ;
+    rdfs:label "the assembled typed-English sentence the section asserts" .

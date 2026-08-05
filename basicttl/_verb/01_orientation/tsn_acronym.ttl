@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_acronym_tsn a owl:NamedIndividual ;
+    rdfs:label "Taxonomic Serial Number" .
+silm:instances_papers_01_orientation_acronym_tsn silm:hasAbbreviation "TSN" .

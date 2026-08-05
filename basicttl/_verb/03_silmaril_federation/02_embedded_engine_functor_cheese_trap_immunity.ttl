@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_02_embedded_engine_functor_cheese_trap_immunity__trap_engine_functor_replaces_mittens_apex a owl:NamedIndividual ;
+    rdfs:label "engine_functor_replaces_mittens_apex" .

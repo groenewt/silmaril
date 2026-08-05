@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_05b_operational_challenges_olog_box__p07operationalchallengesologbox a owl:NamedIndividual ;
+    rdfs:label "P07OperationalChallengesOlogBox" .

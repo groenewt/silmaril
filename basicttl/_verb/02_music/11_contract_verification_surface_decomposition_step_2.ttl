@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_11_contract_verification_surface_decomposition_step_2__step_verificationgate a owl:NamedIndividual ;
+    rdfs:label "the primary typed arrow connecting objects in the 11_contract_verification_surface claim" .

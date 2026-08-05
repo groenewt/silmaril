@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_16_bridges_yoneda_sheaf_adj_kan_sections_01_cross_paper_bridge_yoneda_decomposition_step_1__step_d_mittens_11 a owl:NamedIndividual ;
+    rdfs:label "the page-11 Mittens source diagram" .

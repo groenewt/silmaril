@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_13_per_leg_yoneda_subprofiles_sections_02_kg_subprofile_decomposition_step_1__step_x_02_kg_subprofile a owl:NamedIndividual ;
+    rdfs:label "the primary typed object of the 02_kg_subprofile claim" .

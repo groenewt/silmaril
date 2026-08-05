@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_11_failure_modes_inventory_sections_02_contested_source_mode_olog_box__musicolog02contestedsourcemodbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog02ContestedSourceModBox" .

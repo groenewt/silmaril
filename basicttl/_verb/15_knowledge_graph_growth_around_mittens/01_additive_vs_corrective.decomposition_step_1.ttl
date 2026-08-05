@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_05_sections_01_decomposition_step_1__step_corrects a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of T5-G1 (Corrective growth admits a non-identity stage-inclusion)" .

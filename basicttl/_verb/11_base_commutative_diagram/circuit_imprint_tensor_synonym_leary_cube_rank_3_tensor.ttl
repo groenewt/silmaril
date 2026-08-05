@@ -1,0 +1,4 @@
+silm:instances_papers_11_base_commutative_diagram_terms_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.11_base_commutative_diagram.terms.circuit_imprint_tensor" .
+silm:instances_papers_11_base_commutative_diagram_terms_circuit_imprint_tensor silm:hasSynonym "Leary cube rank-3 tensor" .
+silm:instances_papers_11_base_commutative_diagram_terms_circuit_imprint_tensor silm:sourceNode silm:instances_papers_11_base_commutative_diagram_terms_circuit_imprint_tensor .

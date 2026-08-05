@@ -1,0 +1,4 @@
+silm:instances_papers_25_sheaf_gluing_terms_gluing a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.gluing" .
+silm:instances_papers_25_sheaf_gluing_terms_gluing silm:hasSynonym "cocone amalgamation" .
+silm:instances_papers_25_sheaf_gluing_terms_gluing silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_gluing .

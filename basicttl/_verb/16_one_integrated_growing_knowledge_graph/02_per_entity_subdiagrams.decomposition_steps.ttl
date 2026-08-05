@@ -1,0 +1,12 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_colim_d_mittens a owl:NamedIndividual ;
+    rdfs:label "the Mittens sub-apex; the per-entity colimit of the Mittens sub-diagram" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_colim_over_d_mittens a owl:NamedIndividual ;
+    rdfs:label "universal cocone target receiving the six typed source legs of the sub-diagram" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_cocone_universal_property_+_section_15_factorization a owl:NamedIndividual ;
+    rdfs:label "Joy of Cats Section 11 supplies the cocone; Section 15 supplies the factorization structure" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_integration_mediator_iota_mittens___householdkg__>_colim_d_m a owl:NamedIndividual ;
+    rdfs:label "the upper-level arrow that connects the integration apex to the Mittens sub-apex" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_lifted_in_probe_tilde_ell___s_ell__>_householdkg a owl:NamedIndividual ;
+    rdfs:label "each typed source leg of the sub-diagram lifts to a typed in-probe of the integration apex via cocone composition" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_02_per_entity_subdiagrams_decomposition_steps__step_per_entity_sub_diagram a owl:NamedIndividual ;
+    rdfs:label "one node of the upper-level integration diagram, with its own typed cocone" .

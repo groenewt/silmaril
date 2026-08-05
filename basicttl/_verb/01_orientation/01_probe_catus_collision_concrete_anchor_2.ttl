@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_01_probe_catus_collision_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "ProbeCatusCollisionAnchorTaxRow183798" .

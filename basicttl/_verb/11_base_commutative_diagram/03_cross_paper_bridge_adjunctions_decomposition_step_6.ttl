@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_16_bridges_yoneda_sheaf_adj_kan_sections_03_cross_paper_bridge_adjunctions_decomposition_step_6__step_recap_03_cross_paper_bridge_adjunctions a owl:NamedIndividual ;
+    rdfs:label "recap of the {sec} commuting law assembled across steps 1-5" .

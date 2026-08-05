@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_tab_orientation_node_arrow_law__diagram_tab_orientation_node_arrow_law a owl:NamedIndividual ;
+    rdfs:label "tab:orientation-node-arrow-law" .

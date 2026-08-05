@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:concreteanchor a owl:Class ;
+    rdfs:label "ConcreteAnchor" ;
+    rdfs:comment "Wave-8 rule: every bare math placeholder (X, Y, Z, T, U, A, B) in a diagram or theorem MUST be a concrete real-world example from the paper Mittens/cat/cheese domain. ConcreteAnchor records one such mapping. (Addresses Leary Circuit 5 / neurosomatic: the bodily-felt anchor that prevents purely semantic reading; per cannon/cheese.md.)" .

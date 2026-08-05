@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_02_mittens_anchor_yoneda_hom_leg_5_role_leg a owl:NamedIndividual ;
+    rdfs:label "S02MittensAnchorYonedaHomLeg5" .

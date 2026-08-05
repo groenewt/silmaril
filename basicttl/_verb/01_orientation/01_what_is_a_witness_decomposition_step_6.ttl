@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_decomposition_step_6__step_witness_holds__typed_source_object_with_four_fields a owl:NamedIndividual ;
+    rdfs:label "A witness is a typed source object with four declared fields (path, lines, quote, key); its Yoneda profile is the set of claims it supports; a witness with no outgoing arrows is isolated and supports no claim." .

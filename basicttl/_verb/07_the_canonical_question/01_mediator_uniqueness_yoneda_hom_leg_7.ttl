@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_07_universal_property_as_answer_sections_01_mediator_uniqueness_yoneda_hom_leg_7 a owl:NamedIndividual ;
+    rdfs:label "P07UniversalPropertyAsAnswerMediatorUniquenessYonedaHomLeg7" .

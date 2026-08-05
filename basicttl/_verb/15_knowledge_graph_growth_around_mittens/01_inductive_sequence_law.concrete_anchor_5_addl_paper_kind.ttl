@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_apex#mittensthecatasleepontheradiator a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchorMittensApexAddlPaperKind" .
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_apex#mittensthecatasleepontheradiator silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.15_knowledge_graph_growth_around_mittens" .

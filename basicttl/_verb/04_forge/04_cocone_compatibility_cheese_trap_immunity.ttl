@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_04_cocone_compatibility_cheese_trap_immunity__trap_incompatible_cocone=admissible_colimit a owl:NamedIndividual ;
+    rdfs:label "incompatible_cocone=admissible_colimit" .

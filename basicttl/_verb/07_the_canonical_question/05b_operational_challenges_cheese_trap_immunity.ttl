@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_05b_operational_challenges_cheese_trap_immunity__trap_operational_shortcut_promoted_to_authority a owl:NamedIndividual ;
+    rdfs:label "operational_shortcut_promoted_to_authority" .

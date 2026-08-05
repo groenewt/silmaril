@@ -1,0 +1,30 @@
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__mittensthecat a owl:NamedIndividual ;
+    rdfs:label "Mittens-the-cat: the individual domestic cat (Felis catus, TSN 183798, microchip ID 44B2F9) resident at the Tartu Animal Clinic's patient roster, the running colimit anchor for the entire encyclopedia" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__vetrecord_77 a owl:NamedIndividual ;
+    rdfs:label "VetRecord_77: the electronic health record created at the Tartu Animal Clinic on 2026-05-18 for Mittens's annual exam; the record leg of the twelve-leg cocone" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__microchipid_44 a owl:NamedIndividual ;
+    rdfs:label "MicrochipID_44B2F9: the ISO 11784 microchip identifier implanted at the base of Mittens's neck; the identifier leg of the cocone" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__bodymassquality a owl:NamedIndividual ;
+    rdfs:label "BodyMassQuality: the body-mass quality attributed to Mittens in VetRecord_77; a quality attribute, not the measurement value" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__weightmeas_3450g a owl:NamedIndividual ;
+    rdfs:label "WeightMeas_3450g: the body-weight measurement event for Mittens on 2026-05-18 (3450g); the measurement leg, distinct from the quality and value legs" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__value_3450 a owl:NamedIndividual ;
+    rdfs:label "Value_3450: the numeric value 3450 assigned to the WeightMeas measurement; the value leg, distinct from the unit and measurement legs" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__unit_grams a owl:NamedIndividual ;
+    rdfs:label "Unit_grams: the SI unit gram (g) assigned to the WeightMeas measurement; the unit leg, distinct from the value and measurement legs" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__petrole a owl:NamedIndividual ;
+    rdfs:label "PetRole: the social role of Mittens as a household companion pet registered at the Tartu Animal Clinic; the role leg" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__sleepprocess_7h a owl:NamedIndividual ;
+    rdfs:label "SleepProcess_7h: the daily sleep process of Mittens (approximately 7 hours per night); the process participation leg" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__shaclpassreport_77 a owl:NamedIndividual ;
+    rdfs:label "SHACLPassReport_77: the SHACL shape-validation pass report for VetRecord_77; the validation leg, distinct from the source evidence VetRecord_77" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__audittrail_77 a owl:NamedIndividual ;
+    rdfs:label "AuditTrail_77: the audit trail log for VetRecord_77's creation, modification, and publication history; the trace/profile leg" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__domesticcat a owl:NamedIndividual ;
+    rdfs:label "DomesticCat: the domestic-cat classification type that Mittens is classified under in the Tartu Animal Clinic taxonomy; the classification leg, distinct from the individual Mittens" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__feliscatustsn183798 a owl:NamedIndividual ;
+    rdfs:label "Felis catus TSN 183798: the ITIS taxonomy source record for the species that DomesticCat belongs to; the taxonomy source leg, distinct from the classification leg and from Mittens herself" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__clinicalsummarycompetingcocone a owl:NamedIndividual ;
+    rdfs:label "VetCarePlan_77: the clinical care plan record that also receives all twelve typed source legs from D_Mittens; the concrete competing cocone for the universal property test; the unique mediator u: MittensColimitApex -> VetCarePlan_77 exists by the colimit universal property" .
+silm:instances_papers_00_whitepaper_sections_02_mittens_anchor_concrete_anchor__groomingrecord42 a owl:NamedIndividual ;
+    rdfs:label "GroomingLog_42: the grooming session log for Mittens (grooming by the Tartu Animal Clinic assistant on 2026-05-18); a second concrete competing cocone for the outgoing profile" .

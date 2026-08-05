@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_14_taxonomy_rdf_olog_seed_sections_02_rdf_shacl_data_shape_bridge_yoneda_hom_leg_2_classchainf a owl:NamedIndividual ;
+    rdfs:label "S02RdfShaclDataShapeBridgeYonedaHomLeg2" .

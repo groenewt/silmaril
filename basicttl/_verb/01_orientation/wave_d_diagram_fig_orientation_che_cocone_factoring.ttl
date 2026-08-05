@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_che_cocone_factoring__diagram_fig_orientation_che_cocone_factoring a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chE-cocone-factoring" .

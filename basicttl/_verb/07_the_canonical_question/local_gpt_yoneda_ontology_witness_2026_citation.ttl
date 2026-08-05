@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_citation_localgptyonedaontologywitness2026 a owl:NamedIndividual ;
+    rdfs:label "P07CitationLocalGptYonedaOntologyWitness2026" .

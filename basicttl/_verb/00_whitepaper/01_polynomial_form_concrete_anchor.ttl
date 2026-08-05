@@ -1,0 +1,8 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_concrete_anchor__anchor_publishoperationsort a owl:NamedIndividual ;
+    rdfs:label "PublishOperationSort: the set {ingest, type, validate, render}; the four stages of the publish factorization that form the signature S of the encyclopedia free monad; each element of S is a publish operation" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_concrete_anchor__anchor_arity_1_ingest a owl:NamedIndividual ;
+    rdfs:label "Arity_1_Ingest: the arity 1 assigned to the ingest operation; one recursive argument position in the ingest functor; Sigma_{ingest}(X) = X (one copy, labeled as ingested)" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_concrete_anchor__anchor_vetrecord_77 a owl:NamedIndividual ;
+    rdfs:label "VetRecord_77: the concrete carrier set element used to instantiate the polynomial functor; Sigma(VetRecord_77) = four tagged copies (ingest, type, validate, render) of VetRecord_77" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_01_polynomial_form_concrete_anchor__anchor_fourcopyvetrecord a owl:NamedIndividual ;
+    rdfs:label "FourCopyVetRecord: the concrete result of Sigma(VetRecord_77) = VetRecord_77_{ingest} + VetRecord_77_{type} + VetRecord_77_{validate} + VetRecord_77_{render}; four disjoint tagged copies representing VetRecord_77 at each publish stage" .

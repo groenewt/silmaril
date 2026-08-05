@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chf_face4_pipeline__diagram_fig_orientation_chf_face4_pipeline a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chF-face4-pipeline" .

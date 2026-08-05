@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_08_cross_paper_bridges_sections_04_bridge_to_19_mereology_as_colimit_decomposition_step_6__step_minimal_grammar a owl:NamedIndividual ;
+    rdfs:label "recap one-liner" .

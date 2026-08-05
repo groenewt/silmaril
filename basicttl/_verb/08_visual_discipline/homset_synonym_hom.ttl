@@ -1,0 +1,4 @@
+silm:instances_papers_08_visual_discipline_terms_homset a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.homset" .
+silm:instances_papers_08_visual_discipline_terms_homset silm:hasSynonym "Hom" .
+silm:instances_papers_08_visual_discipline_terms_homset silm:sourceNode silm:instances_papers_08_visual_discipline_terms_homset .

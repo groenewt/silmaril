@@ -1,0 +1,4 @@
+silm:instances_papers_19_mereology_as_colimit_terms_index_category a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.19_mereology_as_colimit.terms.index_category" .
+silm:instances_papers_19_mereology_as_colimit_terms_index_category silm:hasSynonym "diagram shape" .
+silm:instances_papers_19_mereology_as_colimit_terms_index_category silm:sourceNode silm:instances_papers_19_mereology_as_colimit_terms_index_category .

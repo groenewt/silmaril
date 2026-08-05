@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_08_process_leg_olog_box__processleg_sleepprocess_7h a owl:NamedIndividual ;
+    rdfs:label "ProcessLeg_SleepProcess_7h" .

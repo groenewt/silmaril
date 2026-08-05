@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 09_manifest_hom_profile" .

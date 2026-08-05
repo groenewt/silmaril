@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_diagram_n#stagensourcefunctor a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.01.sections.01.concrete_anchor.diagram_n#stagensourcefunctor" .
+silm:instances_papers_15_chapters_01_sections_01_concrete_anchor_diagram_n#stagensourcefunctor silm:hasLongDescription "The StageNSourceFunctor is At n=1, the source functor whose admitted legs are: the Cat anchor, the species-type leg, the head observation HeadObs77, the body-mass quality BodyMassQuality77. At n=2, additionally the microchip identifier MicrochipIdentifier9. The diagram is finite at every stage but unbounded across the limit." .

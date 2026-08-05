@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_04_install_and_observe_decomposition_step_5__step_forge_morphism_for_04_install_and_observe a owl:NamedIndividual ;
+    rdfs:label "The trace populates the outgoing Yoneda profile of Mittens: Hom(Mittens, -). But the trace is NOT Mittens (NegReg_k7): trace is evidence that a path was followed, not the path's apex." .

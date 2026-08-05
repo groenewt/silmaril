@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_05_glue_as_kleisli_arrow_decomposition_step_6__step_glue_holds a owl:NamedIndividual ;
+    rdfs:label "Glue is the cocone-assembly step; ten compatible typed legs (paper-tier abstraction) are required; the colimit Mittens is the canonical apex by the universal property of the cocone." .

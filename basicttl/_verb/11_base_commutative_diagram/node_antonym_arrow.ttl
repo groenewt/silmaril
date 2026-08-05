@@ -1,0 +1,5 @@
+silm:instances_papers_11_base_commutative_diagram_terms_node a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.11_base_commutative_diagram.terms.node" .
+silm:instances_papers_11_base_commutative_diagram_terms_node silm:hasAntonym silm:instances_papers_11_base_commutative_diagram_terms_arrow .
+silm:instances_papers_11_base_commutative_diagram_terms_node silm:sourceNode silm:instances_papers_11_base_commutative_diagram_terms_node .
+silm:instances_papers_11_base_commutative_diagram_terms_node silm:targetNode silm:instances_papers_11_base_commutative_diagram_terms_arrow .

@@ -1,0 +1,16 @@
+silm:instances_papers_02_music_sections_05_avro_substrate_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "] [d," .
+silm:instances_papers_02_music_sections_05_avro_substrate_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "]\\\\ |[classnode]| MusicTypedClaim' [r," .
+silm:instances_papers_02_music_sections_05_avro_substrate_yoneda_hom_leg__leg_3 a owl:NamedIndividual ;
+    rdfs:label "] \\& |[schemanode]| SourcePacket [d," .
+silm:instances_papers_02_music_sections_05_avro_substrate_yoneda_hom_leg__leg_4 a owl:NamedIndividual ;
+    rdfs:label "'] \\& |[classnode]| TypedObject [r," .
+silm:instances_papers_02_music_sections_05_avro_substrate_yoneda_hom_leg__leg_5 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_5" .
+silm:instances_papers_02_music_sections_05_avro_substrate_yoneda_hom_leg__leg_6 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_6" .
+silm:instances_papers_02_music_sections_05_avro_substrate_yoneda_hom_leg__leg_7 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_7" .
+silm:instances_papers_02_music_sections_05_avro_substrate_yoneda_hom_leg__leg_8 a owl:NamedIndividual ;
+    rdfs:label "music_typed_leg_8" .

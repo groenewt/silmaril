@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_12_sous_position_for_music_decomposition_step_6__step_sousposition_!=_musicengine a owl:NamedIndividual ;
+    rdfs:label "the sous position is not the Music engine: the observation role must never be identified with the governed apex" .

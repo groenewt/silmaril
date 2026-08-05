@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_03_ledger_row_anatomy_cheese_trap_immunity__trap_incomplete_ledger_row_missing_column_treated_as_valid_morphism a owl:NamedIndividual ;
+    rdfs:label "incomplete_ledger_row_missing_column_treated_as_valid_morphism" .

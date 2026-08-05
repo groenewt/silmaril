@@ -1,0 +1,4 @@
+silm:instances_papers_18_presheaf_semantics_terms_functoriality a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.18_presheaf_semantics.terms.functoriality" .
+silm:instances_papers_18_presheaf_semantics_terms_functoriality silm:hasSynonym "structure-preservation law" .
+silm:instances_papers_18_presheaf_semantics_terms_functoriality silm:sourceNode silm:instances_papers_18_presheaf_semantics_terms_functoriality .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_02_probe_tsn_identity_decomposition_step_5__step_y^in_mittens_!=_y^in_taxrow a owl:NamedIndividual ;
+    rdfs:label "By Yoneda, Mittens is determined by its full incoming/outgoing profile. Mittens has ten typed legs (record, identifier, quality, measurement, role, process, validation, trace, classification, taxonomy). TaxRow_TSN183798 has one outgoing arrow (iota_tsn into Mittens) and no other legs. The profiles differ; the objects differ." .

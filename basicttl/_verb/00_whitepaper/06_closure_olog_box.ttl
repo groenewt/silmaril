@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_sections_06_closure_olog_box__closurecube a owl:NamedIndividual ;
+    rdfs:label "ClosureCube" .

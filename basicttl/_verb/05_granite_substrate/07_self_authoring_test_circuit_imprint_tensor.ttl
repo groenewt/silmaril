@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_sections_07_self_authoring_test_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

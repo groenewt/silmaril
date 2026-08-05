@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_04_visible_atoms_leg_concrete_anchor#typedclaim a owl:NamedIndividual ;
+    rdfs:label "04VisibleatomslegConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_02_music_sections_04_visible_atoms_leg_concrete_anchor#typedclaim silm:hasAdditionalAttribute "base_topic:graph engine" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chd_sous_non_authority__diagram_fig_orientation_chd_sous_non_authority a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chD-sous-non-authority" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_02_probe_tsn_identity_decomposition_step_4__step_iota_tsn_loop_refutation__if_tsn_183798_=_mittens__then_iota a owl:NamedIndividual ;
+    rdfs:label "If TSN 183798 = Mittens, then the identification arrow iota_tsn would be a loop from Mittens to itself. But a loop is an endomorphism; it says nothing about the cat — it is a self-referential tautology. The olog structure distinguishes a domestic cat from a database row precisely because they have different types." .

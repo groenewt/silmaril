@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_11_contract_verification_surface_concrete_anchor#contract a owl:NamedIndividual ;
+    rdfs:label "11ContractverificationsurfaceConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_02_music_sections_11_contract_verification_surface_concrete_anchor#contract silm:hasAdditionalAttribute "circuit_corner:0" .

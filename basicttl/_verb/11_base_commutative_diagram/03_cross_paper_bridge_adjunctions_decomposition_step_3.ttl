@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_16_bridges_yoneda_sheaf_adj_kan_sections_03_cross_paper_bridge_adjunctions_decomposition_step_3__step_cocone_universality a owl:NamedIndividual ;
+    rdfs:label "cocone universality of the colimit apex m_11 = colim D_Mittens_11" .

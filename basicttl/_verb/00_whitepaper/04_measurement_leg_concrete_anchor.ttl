@@ -1,0 +1,6 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_04_measurement_leg_concrete_anchor__weightmeas_3450g a owl:NamedIndividual ;
+    rdfs:label "WeightMeas_3450g: the measurement event recording Mittens at 3450 grams; performed on 2026-05-18 at Tartu Animal Clinic; stored in VetRecord_77; distinct from Value_3450 (the pure number) and BodyMassQuality (the attribute type)" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_04_measurement_leg_concrete_anchor__measurementarrow_weight a owl:NamedIndividual ;
+    rdfs:label "MeasurementArrow_Weight: the typed arrow WeightMeas_3450g -> MittensColimitApex; distinct from quality_leg (BodyMassQuality -> MittensColimitApex) and value_leg (Value_3450 -> WeightMeas_3450g)" .
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_04_measurement_leg_concrete_anchor__date_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "Date_2026_05_18: the date of the measurement event; the temporal anchor that makes WeightMeas_3450g a time-indexed token of the quality BodyMassQuality" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_03_cite_as_kleisli_arrow_decomposition_step_2__step_eta_witnesskey__wraps_key_in_free_monad_without_interpretation a owl:NamedIndividual ;
+    rdfs:label "The unit embedding eta_Witness wraps the source key into a free-monad term of sort Witness. This is the smallest free term of sort Witness: it carries the key as a reference, not an interpretation." .

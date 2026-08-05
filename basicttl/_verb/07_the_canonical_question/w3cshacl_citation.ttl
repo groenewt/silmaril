@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_citation_w3cshacl a owl:NamedIndividual ;
+    rdfs:label "P07CitationW3cshacl" .

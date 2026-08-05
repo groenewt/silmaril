@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_04_layered_sequencing_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 04_layered_sequencing" .

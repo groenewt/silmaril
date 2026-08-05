@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_preferred_term_path_equation a owl:NamedIndividual ;
+    rdfs:label "P11BaseCommutativeDiagramPreferredTermPathEquation" .
+silm:instances_papers_11_base_commutative_diagram_preferred_term_path_equation silm:sourceNode silm:instances_papers_11_base_commutative_diagram_preferred_term_path_equation .

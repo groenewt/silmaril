@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_03_cheese_trap_immunity__trap_prescription_is_the_behavior a owl:NamedIndividual ;
+    rdfs:label "prescription_is_the_behavior" .

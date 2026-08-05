@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_apex_uniqueness_concrete_anchor_2_P_visit_1_ a owl:NamedIndividual ;
+    rdfs:label "P1803_apex_uniquenessConcreteAnchor2" .

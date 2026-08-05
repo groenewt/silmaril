@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_15_cocone_apex_and_naturality_sections_01_cocone_apex_construction_step_by_step_yoneda_hom_leg_2_classchainf a owl:NamedIndividual ;
+    rdfs:label "S01CoconeApexConstructionStepByStepYonedaHomLeg2" .

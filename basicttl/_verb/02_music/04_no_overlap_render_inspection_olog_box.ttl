@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_15_diagram_audit_rollup_sections_04_no_overlap_render_inspection_olog_box__musicolog04nooverlaprenderinsbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog04NoOverlapRenderInsBox" .

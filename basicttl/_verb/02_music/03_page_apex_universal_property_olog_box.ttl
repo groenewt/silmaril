@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_06_cocone_compatibility_for_pages_sections_03_page_apex_universal_property_olog_box__musicolog03pageapexuniversalpbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog03PageApexUniversalPBox" .

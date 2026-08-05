@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_02_enrichment_by_type_information_decomposition_step_3__step_joc_§6_18__hom__a_is_contravariant;_homa___is_covariant;_bot a owl:NamedIndividual ;
+    rdfs:label "JoC §6.18 defines representable functors: Hom(-,A) is a contravariant Set-valued functor (it assigns to each X the hom-set Hom(X,A)). For Set-enriched categories this is exactly the enriched representable functor." .

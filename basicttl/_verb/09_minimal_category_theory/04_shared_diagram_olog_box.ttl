@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_04_shared_diagram_olog_box__minimalcategorytheory_s04shareddiagram a owl:NamedIndividual ;
+    rdfs:label "MinimalCategoryTheory_S04SharedDiagram" .

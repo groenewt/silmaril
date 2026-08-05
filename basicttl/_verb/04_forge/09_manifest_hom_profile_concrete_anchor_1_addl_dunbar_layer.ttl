@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_concrete_anchor_1#mittensvetrecordbackendtarget a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 09_manifest_hom_profile" .
+silm:instances_papers_04_forge_sections_09_manifest_hom_profile_concrete_anchor_1#mittensvetrecordbackendtarget silm:hasAdditionalAttribute "dunbar_layer:0" .

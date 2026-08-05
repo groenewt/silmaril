@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_22_bridges_cat_silmaril_forge_topology_granite_sections_02_bridge_silmaril_federation_olog_box__basecommutativediagram_s02bridgesilmarilfederation a owl:NamedIndividual ;
+    rdfs:label "BaseCommutativeDiagram_S02bridgesilmarilfederation" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chf_face2_many__diagram_fig_orientation_chf_face2_many a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chF-face2-many" .

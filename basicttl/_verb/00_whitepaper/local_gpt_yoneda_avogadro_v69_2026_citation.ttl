@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_citation_localgptyonedaavogadrov692026 a owl:NamedIndividual ;
+    rdfs:label "P00CitationLocalGptYonedaAvogadroV692026" .

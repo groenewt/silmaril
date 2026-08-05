@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_02_shacl_shape_gate_cheese_trap_immunity__trap_shacl_conformant_report_returned_as_validated_identity a owl:NamedIndividual ;
+    rdfs:label "shacl_conformant_report_returned_as_validated_identity" .

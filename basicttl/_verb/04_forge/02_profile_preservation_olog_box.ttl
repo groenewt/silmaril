@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_07_backend_routing_observability_sections_02_profile_preservation_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 02_profile_preservation" .

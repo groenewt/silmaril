@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_decomposition_step_2__step_forge_morphism_for_02_node_typing_contract a owl:NamedIndividual ;
+    rdfs:label "The map τ is a functor from the free graph of proposed names to the olog category. Functoriality means that if node N1 has an arrow to N2 in the proposal, then τ(N1) must have a typed arrow to τ(N2) in the olog." .

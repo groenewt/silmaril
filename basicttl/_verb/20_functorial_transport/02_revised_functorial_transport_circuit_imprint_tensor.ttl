@@ -1,0 +1,2 @@
+silm:instances_papers_20_functorial_transport_chapters_07_worked_household_to_vetclinic_sections_02_revised_functorial_transport_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "RevisedFunctorialTransportCircuitImprintTensor" .

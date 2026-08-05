@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_chapters_07_mittens_as_colimit_anchor_sections_02_yoneda_profile_of_profiles_yoneda_hom_leg_1_taxonomy_source_leg a owl:NamedIndividual ;
+    rdfs:label "S02YonedaProfileOfProfilesYonedaHomLeg1" .

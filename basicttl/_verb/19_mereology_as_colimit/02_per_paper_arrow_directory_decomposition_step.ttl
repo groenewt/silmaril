@@ -1,0 +1,12 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_13_directories_and_indices_sections_02_per_paper_arrow_directory_decomposition_step__step_step_1_symbol_theorem_1_of_'per_paper_arrow_directory' a owl:NamedIndividual ;
+    rdfs:label "Name the primary symbol of the section's load-bearing claim." .
+silm:instances_papers_19_mereology_as_colimit_chapters_13_directories_and_indices_sections_02_per_paper_arrow_directory_decomposition_step__step_step_2_symbol_theorem_1_of_'per_paper_arrow_directory' a owl:NamedIndividual ;
+    rdfs:label "Name the operation and the order of composition." .
+silm:instances_papers_19_mereology_as_colimit_chapters_13_directories_and_indices_sections_02_per_paper_arrow_directory_decomposition_step__step_step_3_symbol_theorem_1_of_'per_paper_arrow_directory' a owl:NamedIndividual ;
+    rdfs:label "Cite the base abstract topic that licenses the step." .
+silm:instances_papers_19_mereology_as_colimit_chapters_13_directories_and_indices_sections_02_per_paper_arrow_directory_decomposition_step__step_step_4_symbol_theorem_1_of_'per_paper_arrow_directory' a owl:NamedIndividual ;
+    rdfs:label "Anchor the abstract topic in a Mittens/cat/cheese embodiment." .
+silm:instances_papers_19_mereology_as_colimit_chapters_13_directories_and_indices_sections_02_per_paper_arrow_directory_decomposition_step__step_step_5_symbol_theorem_1_of_'per_paper_arrow_directory' a owl:NamedIndividual ;
+    rdfs:label "Compose upward via Yoneda's lemma as the traversal mechanism." .
+silm:instances_papers_19_mereology_as_colimit_chapters_13_directories_and_indices_sections_02_per_paper_arrow_directory_decomposition_step__step_step_6_symbol_theorem_1_of_'per_paper_arrow_directory' a owl:NamedIndividual ;
+    rdfs:label "Recap the load-bearing claim in one line." .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_diagram_fig_orientation_chc_initial_algebra__diagram_fig_orientation_chc_initial_algebra a owl:NamedIndividual ;
+    rdfs:label "fig:orientation-chC-initial-algebra" .

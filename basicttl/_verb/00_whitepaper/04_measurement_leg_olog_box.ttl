@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_04_measurement_leg_olog_box__measurementleg_weightmeas_3450g a owl:NamedIndividual ;
+    rdfs:label "MeasurementLeg_WeightMeas_3450g" .

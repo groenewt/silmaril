@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_citation_localgptyonedamanifestv902026 a owl:NamedIndividual ;
+    rdfs:label "P06CitationLocalGptYonedaManifestV902026" .

@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_decomposition_step__step_vision1lora_primary_symbol a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of Vision1LoRA as a typed morphism in the Granite category" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_decomposition_step__step_circ_typed_composition a owl:NamedIndividual ;
+    rdfs:label "composing typed arrows in the Granite category preserving source-body provenance" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_decomposition_step__step_adjunctions_and_kan_extensions a owl:NamedIndividual ;
+    rdfs:label "base topic grounding Vision1LoRA via colimit_universal_property in Joy of Cats §11 — LoRA adapters specialize on typed leg families A_i and the supp-anchored authority leg keeps each specialization within its scope" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_decomposition_step__step_mittens_at_tartu_animal_clinic_2026_05_18 a owl:NamedIndividual ;
+    rdfs:label "the Mittens individual whose vet record provides the evidence chunk grounding this section" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_decomposition_step__step_hom__mittens_neq_hom__graniterow_mittens a owl:NamedIndividual ;
+    rdfs:label "different Hom-profiles confirm different objects — the storage chunk is not the governed individual" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_decomposition_step__step_vision1lora_law a owl:NamedIndividual ;
+    rdfs:label "Vision1LoRA preserves typed leg separation without collapsing storage rows into the governed apex" .

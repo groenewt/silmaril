@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_flat_sections_07_mittens_storage_packet_cheese_trap_immunity__trap_storage_packet_identified_with_mittens a owl:NamedIndividual ;
+    rdfs:label "storage_packet_identified_with_mittens" .

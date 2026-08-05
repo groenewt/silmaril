@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_02_typed_noun_discipline_sections_03_bare_noun_cheese_trap_decomposition_step_1__step_bare_cat a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the The Bare-Noun Cheese-Trap claim" .

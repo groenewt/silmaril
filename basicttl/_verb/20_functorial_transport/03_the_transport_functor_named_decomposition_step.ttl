@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_decomposition_step__step_transportf a owl:NamedIndividual ;
+    rdfs:label "the Vet-Imports-Household-Records functor from the household category to the clinic category" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_decomposition_step__step_transportf_on_arrows a owl:NamedIndividual ;
+    rdfs:label "TransportF takes each household typed arrow to a clinic typed arrow" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_decomposition_step__step_f1_a_=_1_fa_and_fg_o_f_=_fg_o_ff a owl:NamedIndividual ;
+    rdfs:label "the two functoriality laws. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_decomposition_step__step_transportfmeasured_by_o_has_quality a owl:NamedIndividual ;
+    rdfs:label "the transport of the two-step household path" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_decomposition_step__step_ytransportfmittens a owl:NamedIndividual ;
+    rdfs:label "the clinic image of Mittens is identifiable by its transported profile" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_decomposition_step__step_transportf a owl:NamedIndividual ;
+    rdfs:label "transport is a functor: typed object assignment plus typed arrow assignment plus identity-and-composition preservation" .

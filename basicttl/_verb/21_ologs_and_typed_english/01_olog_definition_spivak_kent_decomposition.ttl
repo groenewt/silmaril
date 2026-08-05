@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_01_olog_as_typed_english_sections_01_olog_definition_spivak_kent_decomposition_step_1__step_o_eng a owl:NamedIndividual ;
+    rdfs:label "the olog-category presented by typed English noun-boxes and typed English verb arrows" .

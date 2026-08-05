@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_04_negative_witnesses_olog_box__negativewitness_typed_source_object;_outgoing_arrow_=_not_exists a owl:NamedIndividual ;
+    rdfs:label "NegativeWitness (typed source object; outgoing arrow = not-exists)" .

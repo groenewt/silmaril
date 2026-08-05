@@ -1,0 +1,50 @@
+MORPHISM_CODEBASE_VOLUME_TABLE_CONSTRUCT_ROOT ?= $(MORPHISM_CODEBASE_VOLUME_OPERATION_ROOT)/table/construct
+VOLUME_TABLE_PUBLIC_APIS_INPUT ?=
+VOLUME_TABLE_PUBLIC_APIS_ROOT := $(MORPHISM_CODEBASE_VOLUME_TABLE_CONSTRUCT_ROOT)/public-apis
+VOLUME_TABLE_PUBLIC_APIS_INPUT_PARSE := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/input-parse.carrier
+VOLUME_TABLE_PUBLIC_APIS_PATH_NORMALIZATION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/path-normalization.carrier
+VOLUME_TABLE_PUBLIC_APIS_ELIXIR_PATH_SELECTION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/elixir-path-selection.carrier
+VOLUME_TABLE_PUBLIC_APIS_MODULE_PARSE := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/module-parse.carrier
+VOLUME_TABLE_PUBLIC_APIS_MODULE_NAME_NORMALIZATION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/module-name-normalization.carrier
+VOLUME_TABLE_PUBLIC_APIS_MODULE_INDEX := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/module-index.carrier
+VOLUME_TABLE_PUBLIC_APIS_API_PARSE := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/api-parse.carrier
+VOLUME_TABLE_PUBLIC_APIS_API_FILTER := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/api-filter.carrier
+VOLUME_TABLE_PUBLIC_APIS_OWNER_VALIDATION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/owner-validation.carrier
+VOLUME_TABLE_PUBLIC_APIS_ARGUMENT_NORMALIZATION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/argument-normalization.carrier
+VOLUME_TABLE_PUBLIC_APIS_ARGUMENT_PARSE := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/argument-parse.carrier
+VOLUME_TABLE_PUBLIC_APIS_ARITY_PROJECTION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/arity-projection.carrier
+VOLUME_TABLE_PUBLIC_APIS_ARITY_NORMALIZATION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/arity-normalization.carrier
+VOLUME_TABLE_PUBLIC_APIS_ROW_CONSTRUCTION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/row-construction.carrier
+VOLUME_TABLE_PUBLIC_APIS_PRESENCE_VALIDATION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/presence-validation.carrier
+VOLUME_TABLE_PUBLIC_APIS_UNIQUENESS_VALIDATION := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/uniqueness-validation.carrier
+VOLUME_TABLE_PUBLIC_APIS_ORDER_NUMERIC := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/order-numeric.carrier
+VOLUME_TABLE_PUBLIC_APIS_ORDER_KEY := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/order-key.carrier
+VOLUME_TABLE_PUBLIC_APIS_ORDER := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/order.carrier
+VOLUME_TABLE_PUBLIC_APIS_ORDER_RESULT := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/order-result.carrier
+VOLUME_TABLE_PUBLIC_APIS_HEADER := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/header.carrier
+VOLUME_TABLE_PUBLIC_APIS_CSV := $(VOLUME_TABLE_PUBLIC_APIS_ROOT)/public-apis.csv
+
+.PHONY: morphism-codebase-volume-table-public-apis
+morphism-codebase-volume-table-public-apis: $(VOLUME_TABLE_PUBLIC_APIS_CSV)
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_INPUT_PARSE),$(VOLUME_TABLE_PUBLIC_APIS_INPUT),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.input.parse.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_PATH_NORMALIZATION),$(VOLUME_TABLE_PUBLIC_APIS_INPUT_PARSE),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.path.normalization.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ELIXIR_PATH_SELECTION),$(VOLUME_TABLE_PUBLIC_APIS_PATH_NORMALIZATION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.elixir.path.selection.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_MODULE_PARSE),$(VOLUME_TABLE_PUBLIC_APIS_ELIXIR_PATH_SELECTION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.module.parse.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_MODULE_NAME_NORMALIZATION),$(VOLUME_TABLE_PUBLIC_APIS_MODULE_PARSE),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.module.name.normalization.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_MODULE_INDEX),$(VOLUME_TABLE_PUBLIC_APIS_MODULE_NAME_NORMALIZATION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.module.index.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_API_PARSE),$(VOLUME_TABLE_PUBLIC_APIS_MODULE_INDEX),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.api.parse.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_API_FILTER),$(VOLUME_TABLE_PUBLIC_APIS_API_PARSE),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.api.filter.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_OWNER_VALIDATION),$(VOLUME_TABLE_PUBLIC_APIS_API_FILTER),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.owner.presence.validation.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ARGUMENT_NORMALIZATION),$(VOLUME_TABLE_PUBLIC_APIS_OWNER_VALIDATION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.argument.normalization.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ARGUMENT_PARSE),$(VOLUME_TABLE_PUBLIC_APIS_ARGUMENT_NORMALIZATION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.argument.parse.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ARITY_PROJECTION),$(VOLUME_TABLE_PUBLIC_APIS_ARGUMENT_PARSE),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.arity.projection.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ARITY_NORMALIZATION),$(VOLUME_TABLE_PUBLIC_APIS_ARITY_PROJECTION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.arity.normalization.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ROW_CONSTRUCTION),$(VOLUME_TABLE_PUBLIC_APIS_ARITY_NORMALIZATION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.row.construction.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_PRESENCE_VALIDATION),$(VOLUME_TABLE_PUBLIC_APIS_ROW_CONSTRUCTION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.presence.validation.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_UNIQUENESS_VALIDATION),$(VOLUME_TABLE_PUBLIC_APIS_PRESENCE_VALIDATION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.uniqueness.validation.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ORDER_NUMERIC),$(VOLUME_TABLE_PUBLIC_APIS_UNIQUENESS_VALIDATION),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.order.numeric.normalization.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ORDER_KEY),$(VOLUME_TABLE_PUBLIC_APIS_ORDER_NUMERIC),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.order.key.projection.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ORDER),$(VOLUME_TABLE_PUBLIC_APIS_ORDER_KEY),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.order.projection.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_ORDER_RESULT),$(VOLUME_TABLE_PUBLIC_APIS_ORDER),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.order.result.projection.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_HEADER),$(VOLUME_TABLE_PUBLIC_APIS_ORDER_RESULT),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.header.projection.process))
+$(eval $(call MORPHISM_CODEBASE_VOLUME_OPERATION_EDGE,$(VOLUME_TABLE_PUBLIC_APIS_CSV),$(VOLUME_TABLE_PUBLIC_APIS_HEADER),silmaril.sparky.morphism.codebase.volume.table.public_apis.construct.csv.encode.process))

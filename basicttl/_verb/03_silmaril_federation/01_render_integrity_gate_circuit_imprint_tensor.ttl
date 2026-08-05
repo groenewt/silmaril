@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_09_render_integrity_and_governance_sections_01_render_integrity_gate_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

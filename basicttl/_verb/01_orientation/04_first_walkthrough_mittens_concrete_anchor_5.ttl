@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_01_reader_onboarding_sections_04_first_walkthrough_mittens_concrete_anchor_5 a owl:NamedIndividual ;
+    rdfs:label "04FirstWalkthroughMittensConcreteAnchor5" .

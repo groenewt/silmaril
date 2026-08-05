@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_06_domain_entry_points_sections_02_music_entry_yoneda_hom_leg_3 a owl:NamedIndividual ;
+    rdfs:label "P07DomainEntryPointsMusicEntryYonedaHomLeg3" .

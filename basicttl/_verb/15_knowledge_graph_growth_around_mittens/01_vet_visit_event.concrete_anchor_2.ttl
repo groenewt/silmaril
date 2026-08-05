@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_01_concrete_anchor_2 a owl:NamedIndividual ;
+    rdfs:label "VetVisitStageStepConcreteAnchor2" .

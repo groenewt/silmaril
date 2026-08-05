@@ -1,0 +1,2 @@
+silm:instances_papers_10_graph_knowledge_graph_category_citation_localgptyonedamanifestv902026 a owl:NamedIndividual ;
+    rdfs:label "P10CitationLocalGptYonedaManifestV902026" .

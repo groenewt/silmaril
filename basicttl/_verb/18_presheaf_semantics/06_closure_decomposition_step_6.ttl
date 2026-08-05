@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_06_closure_decomposition_step_6__step_yoneda_closure a owl:NamedIndividual ;
+    rdfs:label "the one-line summary that Yoneda Closure on the Mittens presheaf is exactly the lawful construction it names" .

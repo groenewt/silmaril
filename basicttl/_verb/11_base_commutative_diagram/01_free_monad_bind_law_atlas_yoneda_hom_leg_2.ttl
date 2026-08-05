@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_18_free_monad_whitepaper_yoneda_embedding_sections_01_free_monad_bind_law_atlas_yoneda_hom_leg_2_classchainf a owl:NamedIndividual ;
+    rdfs:label "S01FreeMonadBindLawAtlasYonedaHomLeg2" .

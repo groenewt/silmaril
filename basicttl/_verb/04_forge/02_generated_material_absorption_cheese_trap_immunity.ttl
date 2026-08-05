@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_02_generated_material_absorption_cheese_trap_immunity__trap_gpt_paragraph=cited_source a owl:NamedIndividual ;
+    rdfs:label "GPT_paragraph=cited_source" .

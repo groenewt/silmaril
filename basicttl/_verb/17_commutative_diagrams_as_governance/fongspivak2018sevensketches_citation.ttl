@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_citation_fongspivak2018sevensketches a owl:NamedIndividual ;
+    rdfs:label "P17CitationFongspivak2018sevensketches" .

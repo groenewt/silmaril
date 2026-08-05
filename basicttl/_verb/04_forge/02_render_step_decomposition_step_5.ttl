@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_02_render_step_decomposition_step_5__step_forge_morphism_for_02_render_step a owl:NamedIndividual ;
+    rdfs:label "The template's Yoneda profile includes all specs it can render (incoming) and all artifact types it emits (outgoing). The profile makes the template inspectable." .

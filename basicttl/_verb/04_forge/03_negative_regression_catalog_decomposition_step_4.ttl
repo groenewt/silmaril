@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_03_negative_regression_catalog_decomposition_step_4__step_forge_morphism_for_03_negative_regression_catalog a owl:NamedIndividual ;
+    rdfs:label "Seven specific blocked paths for the Mittens fixture: k1 (catus→Mittens), k2 (TSN 183798→Mittens), k3 (any-catus-row→DomesticCat), k4 (RawWitness→RuntimeAtom), k5 (GPTWitness→ColimitApex), k6 (Manifest=RuntimeAtom), k7 (Trace→Mittens as identity)." .

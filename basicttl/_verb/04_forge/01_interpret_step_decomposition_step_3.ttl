@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_decomposition_step_3__step_forge_morphism_for_01_interpret_step a owl:NamedIndividual ;
+    rdfs:label "Every box maps to a box, every arrow maps to an arrow, every diagram law is preserved. From Spivak and Kent 2012." .

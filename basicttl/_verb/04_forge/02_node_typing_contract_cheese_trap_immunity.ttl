@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_02_node_typing_contract_cheese_trap_immunity__trap_rawnodeproposal=typedologbox a owl:NamedIndividual ;
+    rdfs:label "RawNodeProposal=TypedOlogBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_decomposition_step_1__step_w_=_pathw__linesw__quotew__keyw a owl:NamedIndividual ;
+    rdfs:label "A witness object w has four named fields: path(w) is the file path on disk; lines(w) is the line range in that file; quote(w) is the verbatim copied text from those lines; key(w) is the local citation key assigned to this witness. All four must be present for the witness to be traceable." .

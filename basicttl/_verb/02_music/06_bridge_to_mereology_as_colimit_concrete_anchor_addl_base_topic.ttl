@@ -1,0 +1,3 @@
+silm:instances_papers_02_music_sections_06_bridge_to_mereology_as_colimit_concrete_anchor#mittens a owl:NamedIndividual ;
+    rdfs:label "06BridgetomereologyascolimitConcreteAnchorAddlBaseTopic" .
+silm:instances_papers_02_music_sections_06_bridge_to_mereology_as_colimit_concrete_anchor#mittens silm:hasAdditionalAttribute "base_topic:graph engine" .

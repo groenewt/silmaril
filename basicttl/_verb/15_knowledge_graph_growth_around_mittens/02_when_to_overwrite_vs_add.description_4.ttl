@@ -1,0 +1,3 @@
+silm:instances_papers_15_chapters_05_sections_02_concrete_anchor_4#nodetypecorrection a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15.chapters.05.sections.02.concrete_anchor.4#nodetypecorrection" .
+silm:instances_papers_15_chapters_05_sections_02_concrete_anchor_4#nodetypecorrection silm:hasLongDescription "The NodeTypeCorrection is the type tag for correction nodes pointing at pre-existing nodes. In the paper's apparatus it appears as the symbol 'Correction', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .

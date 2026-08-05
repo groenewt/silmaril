@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_12_cross_paper_bridges_sections_04_bridge_to_yoneda_lemma_olog_box__musicolog04bridgetoyonedalemmbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog04BridgeToYonedaLemmBox" .

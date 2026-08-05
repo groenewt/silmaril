@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_concrete_anchor__mittensgovernedindividual a owl:NamedIndividual ;
+    rdfs:label "the governed Mittens individual at Tartu Animal Clinic annual vet exam 2026-05-18 — the concrete cat whose storage-identity distinction grounds all Granite specs" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_concrete_anchor__icechunkchunkc0x7f4a a owl:NamedIndividual ;
+    rdfs:label "Icechunk chunk c-0x7f4a: Tartu vet-record payload, sha256:7f4a...bf2c, evidence leg typed, back-pointer to src/papers/05_granite_substrate/sections/02_mittens_anchor.tex" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_concrete_anchor__vision1loraprimaryobject a owl:NamedIndividual ;
+    rdfs:label "LoRA adapter specialization for typed legs of D_Mittens" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_concrete_anchor__clinicalcareplan77tartu a owl:NamedIndividual ;
+    rdfs:label "clinical care plan record 77 at Tartu clinic, receives universal-mediator from Mittens apex but not from GraniteRow — concrete proof of strict Hom-profile inclusion" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_concrete_anchor__basefoundationmodel a owl:NamedIndividual ;
+    rdfs:label "M_0 base foundation model — the unspecialized starting checkpoint before any leg-typed adapter is composed" .
+silm:instances_papers_05_granite_substrate_sections_04_vision1_lora_concrete_anchor__adaptedmodel a owl:NamedIndividual ;
+    rdfs:label "M_i adapted model on leg i — the foundation model composed with adapter A_i for evidence/quality/process/role-typed records" .

@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_08_colimit_universal_property_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

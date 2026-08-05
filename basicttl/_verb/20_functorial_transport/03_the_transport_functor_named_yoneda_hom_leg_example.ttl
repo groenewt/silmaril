@@ -1,0 +1,3 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_yoneda_hom_leg a owl:NamedIndividual ;
+    rdfs:label "TheTransportFunctorNamedYonedaHomLegExample" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_03_the_transport_functor_named_yoneda_hom_leg silm:hasExample "In 'TheTransportFunctorNamedYonedaHomLeg', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, the household arrow has-quality lands on the clinic-side has-clinical-quality; also, the household arrow measured-by lands on the clinic-side recorded-in" .

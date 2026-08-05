@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_12_orientation_closure_album_sections_05_reader_handoff_concrete_anchor_1 a owl:NamedIndividual ;
+    rdfs:label "05ReaderHandoffConcreteAnchor1" .

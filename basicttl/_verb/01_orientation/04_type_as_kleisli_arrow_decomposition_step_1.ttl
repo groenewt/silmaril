@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_04_type_as_kleisli_arrow_decomposition_step_1__step_type^kl__witness__>_freesigmatypedleg a owl:NamedIndividual ;
+    rdfs:label "The symbol is called \"type-superscript-Kl\". The arrow goes FROM the object Witness TO the object Free-of-Sigma applied to TypedLeg. In the Kleisli category, this is the second pipeline arrow after cite." .

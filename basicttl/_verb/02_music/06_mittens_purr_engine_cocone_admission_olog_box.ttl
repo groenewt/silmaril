@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_10_worked_examples_music_sections_06_mittens_purr_engine_cocone_admission_olog_box__musicolog06mittenspurrenginecoconeadmissionbox a owl:NamedIndividual ;
+    rdfs:label "MusicOlog06MittensPurrEngineCoconeAdmissionBox" .

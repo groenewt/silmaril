@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_11_concept_card_index_sections_03_index_yoneda_traversal_drill_olog_box__03indexyonedatraversaldrillologbox a owl:NamedIndividual ;
+    rdfs:label "03IndexYonedaTraversalDrillOlogBox" .

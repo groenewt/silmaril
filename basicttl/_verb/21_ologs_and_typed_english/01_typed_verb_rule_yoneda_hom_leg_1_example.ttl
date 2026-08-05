@@ -1,0 +1,3 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_03_typed_verb_discipline_sections_01_typed_verb_rule_yoneda_hom_leg_1_tau_V_in a owl:NamedIndividual ;
+    rdfs:label "TypedVerbRuleYonedaHomLeg1Example" .
+silm:instances_papers_21_ologs_and_typed_english_chapters_03_typed_verb_discipline_sections_01_typed_verb_rule_yoneda_hom_leg_1_tau_V_in silm:hasExample "In 'TypedVerbRuleYonedaHomLeg1', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, tau_V admits 'has as body mass' as DomesticCatBox -> BodyMassQualityBox." .

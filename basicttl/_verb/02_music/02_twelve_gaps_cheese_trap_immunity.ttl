@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_02_twelve_gaps_cheese_trap_immunity__trap_gap_closure_claimed_without_typed_node_arrow_law_and_witness a owl:NamedIndividual ;
+    rdfs:label "gap_closure_claimed_without_typed_node_arrow_law_and_witness" .

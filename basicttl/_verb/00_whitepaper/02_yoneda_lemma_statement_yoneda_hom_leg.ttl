@@ -1,0 +1,4 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_02_yoneda_lemma_statement_yoneda_hom_leg__leg_1 a owl:NamedIndividual ;
+    rdfs:label "yoneda_bijection_phi" .
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_02_yoneda_lemma_statement_yoneda_hom_leg__leg_2 a owl:NamedIndividual ;
+    rdfs:label "yoneda_inverse_psi" .

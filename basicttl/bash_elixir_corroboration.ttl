@@ -1,0 +1,10 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:checkbashelixircorroboration a owl:Class ;
+    rdfs:label "CheckBashElixirCorroboration" ;
+    rdfs:comment "Every check-rule verb in src/silmaril_specs/data/check_rules/ must\nrender to BOTH a bash leg (scripts/check-<name>.sh) and an Elixir leg\n(src/silmaril_specs/lib/silmaril/wave8/checks/<name>.ex). On every\nshared fixture, the two legs must produce BYTE-EQUAL stdout and EQUAL\nexit codes. M9 + M23 are satisfied IFF this check passes.\n" .

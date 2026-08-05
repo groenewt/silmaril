@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_04_commuting_square_sentence_chain_sections_02_commuting_square_two_chains_cheese_trap_immunity__trap_square_non_commutativity_silent a owl:NamedIndividual ;
+    rdfs:label "square_non_commutativity_silent" .

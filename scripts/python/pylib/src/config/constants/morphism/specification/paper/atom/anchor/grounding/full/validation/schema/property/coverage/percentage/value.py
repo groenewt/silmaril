@@ -1,0 +1,1 @@
+VALUE = "coverage_pct"

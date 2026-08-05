@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_03_manifest_verification_concrete_anchor_1#mittensadmissionmorphism_admit a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 03_manifest_verification" .
+silm:instances_papers_04_forge_chapters_04_manifest_hom_profiles_sections_03_manifest_verification_concrete_anchor_1#mittensadmissionmorphism_admit silm:hasAdditionalAttribute "dunbar_layer:0" .

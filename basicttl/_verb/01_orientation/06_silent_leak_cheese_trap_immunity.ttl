@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_10_failure_modes_inventory_sections_06_silent_leak_cheese_trap_immunity__trap_mittens_collapsed_to_catus_string a owl:NamedIndividual ;
+    rdfs:label "mittens_collapsed_to_catus_string" .

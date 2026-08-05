@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_14_taxonomy_rdf_olog_seed_sections_03_olog_seed_construction_circuit_imprint_tensor__corner_3 a owl:NamedIndividual ;
+    rdfs:label "3" .

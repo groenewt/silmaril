@@ -1,0 +1,6 @@
+silm:instances_papers_02_music_sections_10_bridge_to_whitepaper_concrete_anchor__mittens a owl:NamedIndividual ;
+    rdfs:label "the Mittens body-mass observation record from the May 2026 vet visit at Tartu Animal Clinic, entering the engine as a typed quality-claim source packet" .
+silm:instances_papers_02_music_sections_10_bridge_to_whitepaper_concrete_anchor__00whitepaper a owl:NamedIndividual ;
+    rdfs:label "the Mittens vaccination record FVRCP-2026-03-15, entering as a typed evidence packet with provenance and validation envelope" .
+silm:instances_papers_02_music_sections_10_bridge_to_whitepaper_concrete_anchor__10bridgetowhitepaper_;_textclaim a owl:NamedIndividual ;
+    rdfs:label "the Mittens microchip-id witness 985112000123456 entering as a typed identifier source leg into the Music engine cocone" .

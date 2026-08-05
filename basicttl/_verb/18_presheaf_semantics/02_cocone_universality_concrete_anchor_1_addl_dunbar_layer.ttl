@@ -1,0 +1,3 @@
+silm:instances_papers_18_presheaf_semantics_02_cocone_universality_concrete_anchor_1_L_Mittens#mittensvetrecordpresheafanchornode1 a owl:NamedIndividual ;
+    rdfs:label "P1802_cocone_universalityConcreteAnchor1AddlDunbarLayer" .
+silm:instances_papers_18_presheaf_semantics_02_cocone_universality_concrete_anchor_1_L_Mittens#mittensvetrecordpresheafanchornode1 silm:hasAdditionalAttribute "dunbar_layer:0" .

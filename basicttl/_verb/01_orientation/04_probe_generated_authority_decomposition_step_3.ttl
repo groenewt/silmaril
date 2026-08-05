@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_04_probe_generated_authority_decomposition_step_3__step_joc_§15_1__every_arrow_in_a_factorization_system_has_declare a owl:NamedIndividual ;
+    rdfs:label "JoC §15.1 (factorization structures for sources): every arrow in a factorization system must be exhibited as a morphism with a declared source object and a declared target object. A generated phrase has neither source nor target until it is typed." .

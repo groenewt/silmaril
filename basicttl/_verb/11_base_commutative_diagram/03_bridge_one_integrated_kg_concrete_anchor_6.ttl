@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_20_bridges_graph_kg_integrated_cco_sections_03_bridge_one_integrated_kg_concrete_anchor_6_FeliscatusTSN183798 a owl:NamedIndividual ;
+    rdfs:label "S03BridgeOneIntegratedKgConcreteAnchor6" .

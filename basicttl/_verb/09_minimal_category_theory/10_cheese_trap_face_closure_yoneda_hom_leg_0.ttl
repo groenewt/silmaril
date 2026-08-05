@@ -1,0 +1,2 @@
+silm:instances_papers_09_minimal_category_theory_sections_10_cheese_trap_face_closure_yoneda_hom_leg_0_classification_leg a owl:NamedIndividual ;
+    rdfs:label "S10CheeseTrapFaceClosureYonedaHomLeg0" .

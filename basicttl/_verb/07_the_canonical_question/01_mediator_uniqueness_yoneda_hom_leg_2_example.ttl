@@ -1,0 +1,3 @@
+silm:instances_papers_07_the_canonical_question_chapters_07_universal_property_as_answer_sections_01_mediator_uniqueness_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "P07UniversalPropertyAsAnswerMediatorUniquenessYonedaHomLeg2Example" .
+silm:instances_papers_07_the_canonical_question_chapters_07_universal_property_as_answer_sections_01_mediator_uniqueness_yoneda_hom_leg_2 silm:hasExample "In 'P07UniversalPropertyAsAnswerMediatorUniquenessYonedaHomLeg2', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, Felis catus / TSN 183798 is the ITIS taxonomy source row admitting the cat-classification arrow into D_Mittens; it is a source leg, not the cat." .

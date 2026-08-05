@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_01_sieves_as_subfunctors_concrete_anchor_1_L_Mittens a owl:NamedIndividual ;
+    rdfs:label "P1801_sieves_as_subfunctorsConcreteAnchor1" .

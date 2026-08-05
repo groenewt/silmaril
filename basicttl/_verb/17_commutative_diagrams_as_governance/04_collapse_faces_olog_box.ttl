@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_05_cheese_trap_immunity_sections_04_collapse_faces_olog_box__inventoryofforbiddencollapsefaces a owl:NamedIndividual ;
+    rdfs:label "InventoryOfForbiddenCollapseFaces" .

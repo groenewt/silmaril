@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_diagram_tab_topology_jepa_validation_failures__diagram_tab_topology_jepa_validation_failures a owl:NamedIndividual ;
+    rdfs:label "tab:topology-jepa-validation-failures" .

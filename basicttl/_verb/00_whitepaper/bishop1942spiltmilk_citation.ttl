@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_citation_bishop1942spiltmilk a owl:NamedIndividual ;
+    rdfs:label "P00CitationBishop1942spiltmilk" .

@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_acronym_bfo a owl:NamedIndividual ;
+    rdfs:label "Basic Formal Ontology" .
+silm:instances_papers_00_whitepaper_acronym_bfo silm:hasAbbreviation "BFO" .

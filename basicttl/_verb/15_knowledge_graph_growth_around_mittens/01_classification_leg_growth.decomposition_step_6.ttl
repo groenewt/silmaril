@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_03_sections_01_decomposition_step_6__step_theorem_t3_g1 a owl:NamedIndividual ;
+    rdfs:label "Classification-leg growth is monotone-refining" .

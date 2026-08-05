@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_04_role_process_and_deep_dives_sections_02_yoneda_profile_detailed_olog_box__yonedaprofiledetailed a owl:NamedIndividual ;
+    rdfs:label "YonedaProfileDetailed" .

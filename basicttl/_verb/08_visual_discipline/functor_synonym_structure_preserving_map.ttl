@@ -1,0 +1,4 @@
+silm:instances_papers_08_visual_discipline_terms_functor a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.functor" .
+silm:instances_papers_08_visual_discipline_terms_functor silm:hasSynonym "structure-preserving map" .
+silm:instances_papers_08_visual_discipline_terms_functor silm:sourceNode silm:instances_papers_08_visual_discipline_terms_functor .

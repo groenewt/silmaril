@@ -1,0 +1,12 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_decomposition_step__step_full_and_faithful_f a owl:NamedIndividual ;
+    rdfs:label "F surjects and injects on each hom-set. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_decomposition_step__step_f_on_homx__mittens__>_homfx__fmittens a owl:NamedIndividual ;
+    rdfs:label "the functor's hom-set action. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_decomposition_step__step_yoneda_preserved_under_fully_faithful a owl:NamedIndividual ;
+    rdfs:label "the standard preservation result. this step names a piece of the transport functor mechanism so a zero-math reader can follow the household-to-clinic migration line by line, with arrow direction and typing preserved end-to-end." .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_decomposition_step__step_isomorphic_profile a owl:NamedIndividual ;
+    rdfs:label "the clinic patient image has the same shape of incoming arrows as Mittens did in the household" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_decomposition_step__step_profile_iso_via_fully_faithful_f a owl:NamedIndividual ;
+    rdfs:label "the profiles are isomorphic functors; Yoneda gives the object iso" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_02_transported_profile_under_full_and_faithful_decomposition_step__step_fully_faithful_=_profile_preservation a owl:NamedIndividual ;
+    rdfs:label "the transport preserves Yoneda profile when it is fully faithful" .

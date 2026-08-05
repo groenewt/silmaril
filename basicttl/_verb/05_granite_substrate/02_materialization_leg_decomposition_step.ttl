@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_decomposition_step__step_mu_x___x__>_materializedx a owl:NamedIndividual ;
+    rdfs:label "mu_X is the materialization arrow — the typed one-way map from a governed object X to its persistent storage representation" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_decomposition_step__step_subsetneq_strict_inclusion_of_hom_sets a owl:NamedIndividual ;
+    rdfs:label "every storage-level arrow between mu(X) and mu(Y) comes from a Granite-level arrow, but not every Granite-level arrow survives materialization — some are lost" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_decomposition_step__step_mu___g_granite__>_m_granite_functor a owl:NamedIndividual ;
+    rdfs:label "mu is a functor from the full Granite category to the manifest/storage subcategory" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_decomposition_step__step_vetcareplan_77 a owl:NamedIndividual ;
+    rdfs:label "the clinical care plan record 77 for Mittens at the May 2026 Tartu vet visit" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_decomposition_step__step_hom__mittens_neq_hom__chunkmanifest_mittens a owl:NamedIndividual ;
+    rdfs:label "the arrows pointing into Mittens and the arrows pointing into the chunk manifest are different sets — so the objects are different" .
+silm:instances_papers_05_granite_substrate_chapters_01_storage_as_leg_sections_02_materialization_leg_decomposition_step__step_mu_is_functor_to_smaller_category a owl:NamedIndividual ;
+    rdfs:label "materialization maps to a subcategory that carries provenance but not the full relational profile" .

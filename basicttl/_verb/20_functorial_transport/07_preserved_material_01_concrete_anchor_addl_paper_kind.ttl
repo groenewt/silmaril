@@ -1,0 +1,3 @@
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_concrete_anchor#mittenscolimitapex a owl:NamedIndividual ;
+    rdfs:label "FunctorialTransportDataMigrationAdjointsConcreteAnchorAddlPaperKind" .
+silm:instances_papers_20_functorial_transport_chapters_flat_sections_07_preserved_material_01_concrete_anchor#mittenscolimitapex silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.20_functorial_transport" .

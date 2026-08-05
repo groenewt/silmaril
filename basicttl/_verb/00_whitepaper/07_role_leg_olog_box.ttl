@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_02_twelve_leg_deep_dive_sections_07_role_leg_olog_box__roleleg_petrole a owl:NamedIndividual ;
+    rdfs:label "RoleLeg_PetRole" .

@@ -1,0 +1,6 @@
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_concrete_anchor__householdcareplan a owl:NamedIndividual ;
+    rdfs:label "a generic household-side object; concretely the household's care plan for Mittens, used as a probe object" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_concrete_anchor__householdcareplanprobearrow a owl:NamedIndividual ;
+    rdfs:label "a generic incoming-Yoneda element: a household-typed arrow from the care plan into Mittens" .
+silm:instances_papers_20_functorial_transport_chapters_04_yoneda_for_transport_sections_01_yoneda_profile_of_source_object_concrete_anchor__outgoingyonedaprofilemittens a owl:NamedIndividual ;
+    rdfs:label "the outgoing representable functor: what Mittens projects forward into the household ontology" .

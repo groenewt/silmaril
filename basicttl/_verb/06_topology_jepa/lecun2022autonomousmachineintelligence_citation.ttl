@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_citation_lecun2022autonomousmachineintelligence a owl:NamedIndividual ;
+    rdfs:label "P06CitationLecun2022autonomousmachineintelligence" .

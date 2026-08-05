@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_10_backend_routing_and_observability_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 10_backend_routing_and_observability [HLH]" .

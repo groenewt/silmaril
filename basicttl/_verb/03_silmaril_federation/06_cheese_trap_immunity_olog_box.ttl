@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_01_foundational_thesis_and_anchors_sections_06_cheese_trap_immunity_olog_box__cheesetrapimmunitysection a owl:NamedIndividual ;
+    rdfs:label "CheeseTrapImmunitySection" .

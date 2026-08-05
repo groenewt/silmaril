@@ -1,0 +1,3 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_03_validate_step_concrete_anchor_4#mittensyonedaprofile a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.04_forge.chapters.03_materialization_spine.sections.03_validate_step.concrete_anchor_4#mittensyonedaprofile" .
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_03_validate_step_concrete_anchor_4#mittensyonedaprofile silm:hasLongDescription "The MittensYonedaProfile is In section 'The Validate Step' the bare symbol ValidationReport anchors to MittensYonedaProfile: The Yoneda profile of Mittens: the family of Hom(-, Mittens) and Hom(Mittens, -) sets describing all typed approaches to and departures from Mittens — a representable functor." .

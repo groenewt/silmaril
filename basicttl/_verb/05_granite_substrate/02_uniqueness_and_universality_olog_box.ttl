@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_02_uniqueness_and_universality_olog_box__uniquenessanduniversalitybox a owl:NamedIndividual ;
+    rdfs:label "UniquenessAndUniversalityBox" .

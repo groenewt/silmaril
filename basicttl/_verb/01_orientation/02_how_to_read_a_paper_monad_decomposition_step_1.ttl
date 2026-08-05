@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_01_reader_onboarding_sections_02_how_to_read_a_paper_monad_decomposition_step_1__step_freesigma a owl:NamedIndividual ;
+    rdfs:label "reading position 1: the free monad on the orientation source signature" .

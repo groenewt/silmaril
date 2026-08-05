@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_05_relator_quotient_projection_sections_01_relator_to_congruence_closure_yoneda_hom_leg_20_admissibilityjudgment a owl:NamedIndividual ;
+    rdfs:label "S01RelatorToCongruenceClosureYonedaHomLeg20" .

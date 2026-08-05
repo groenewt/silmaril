@@ -1,0 +1,4 @@
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_terms_colimit a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.15_knowledge_graph_growth_around_mittens.terms.colimit" .
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_terms_colimit silm:hasSynonym "universal cocone apex" .
+silm:instances_papers_15_knowledge_graph_growth_around_mittens_terms_colimit silm:sourceNode silm:instances_papers_15_knowledge_graph_growth_around_mittens_terms_colimit .

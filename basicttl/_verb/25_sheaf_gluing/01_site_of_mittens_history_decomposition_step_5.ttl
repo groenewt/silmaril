@@ -1,0 +1,2 @@
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_decomposition_step_5__step_opx_mittens a owl:NamedIndividual ;
+    rdfs:label "the covering-sieve representable Hom(-, U) transports cover admissibility along site morphisms" .

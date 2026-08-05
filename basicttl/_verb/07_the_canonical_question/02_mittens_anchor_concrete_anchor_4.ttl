@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_02_mittens_anchor_concrete_anchor_4 a owl:NamedIndividual ;
+    rdfs:label "P07MittensAnchorConcreteAnchor4" .

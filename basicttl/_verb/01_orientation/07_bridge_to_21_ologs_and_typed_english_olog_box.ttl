@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_08_cross_paper_bridges_sections_07_bridge_to_21_ologs_and_typed_english_olog_box__07bridgeto21ologsandtypedenglishologbox a owl:NamedIndividual ;
+    rdfs:label "07BridgeTo21OlogsAndTypedEnglishOlogBox" .

@@ -1,0 +1,4 @@
+silm:instances_papers_03_silmaril_federation_terms_paper a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.03_silmaril_federation.terms.paper" .
+silm:instances_papers_03_silmaril_federation_terms_paper silm:hasSynonym "paper-monad" .
+silm:instances_papers_03_silmaril_federation_terms_paper silm:sourceNode silm:instances_papers_03_silmaril_federation_terms_paper .

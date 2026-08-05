@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_03_arrow_typing_contract_decomposition_step_3__step_forge_morphism_for_03_arrow_typing_contract a owl:NamedIndividual ;
+    rdfs:label "Typed arrows compose to typed arrows, and the sentence check must hold for the composite. From Spivak and Kent 2012 Ologs." .

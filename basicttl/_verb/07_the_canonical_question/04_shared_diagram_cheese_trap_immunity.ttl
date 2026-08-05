@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_flat_sections_04_shared_diagram_cheese_trap_immunity__trap_bodymass_taken_as_mittens a owl:NamedIndividual ;
+    rdfs:label "bodymass_taken_as_mittens" .

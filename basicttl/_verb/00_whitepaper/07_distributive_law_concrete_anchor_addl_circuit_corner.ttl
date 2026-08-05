@@ -1,0 +1,3 @@
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_07_distributive_law_concrete_anchor#shaclvalidationmonad a owl:NamedIndividual ;
+    rdfs:label "DistributiveLawConcreteAnchorAddlCircuitCorner" .
+silm:instances_papers_00_whitepaper_chapters_01_signature_calculus_sections_07_distributive_law_concrete_anchor#shaclvalidationmonad silm:hasAdditionalAttribute "circuit_corner:3" .

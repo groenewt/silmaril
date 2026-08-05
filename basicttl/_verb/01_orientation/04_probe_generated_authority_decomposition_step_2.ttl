@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_04_probe_generated_authority_decomposition_step_2__step_cite__generatedwitness__>_localwitness_provenance_key_assignment a owl:NamedIndividual ;
+    rdfs:label "The cite operation is the first step: it assigns a local provenance key to the generated material. Only after key assignment does the material become a LocalWitness that can enter the typing gate." .

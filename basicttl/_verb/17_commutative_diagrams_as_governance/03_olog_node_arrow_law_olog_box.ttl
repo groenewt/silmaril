@@ -1,0 +1,2 @@
+silm:instances_papers_17_commutative_diagrams_as_governance_chapters_00_thesis_and_prelude_sections_03_olog_node_arrow_law_olog_box__olognodeorarrowlaw a owl:NamedIndividual ;
+    rdfs:label "OlogNodeOrArrowLaw" .

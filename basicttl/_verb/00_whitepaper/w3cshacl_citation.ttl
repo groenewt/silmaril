@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_citation_w3cshacl a owl:NamedIndividual ;
+    rdfs:label "P00CitationW3cshacl" .

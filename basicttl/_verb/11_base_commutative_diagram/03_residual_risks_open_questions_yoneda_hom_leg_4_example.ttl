@@ -1,0 +1,3 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_23_summary_audit_residual_sections_03_residual_risks_open_questions_yoneda_hom_leg_4_refinementembeddingr a owl:NamedIndividual ;
+    rdfs:label "S03ResidualRisksOpenQuestionsYonedaHomLeg4Example" .
+silm:instances_papers_11_base_commutative_diagram_chapters_23_summary_audit_residual_sections_03_residual_risks_open_questions_yoneda_hom_leg_4_refinementembeddingr silm:hasExample "In 'S03ResidualRisksOpenQuestionsYonedaHomLeg4', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, r:DomesticCat->Cat — the refinement-to-anchor embedding; required by path law c=r.a" .

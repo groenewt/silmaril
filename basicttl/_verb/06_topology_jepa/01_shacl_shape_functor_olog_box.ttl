@@ -1,0 +1,2 @@
+silm:instances_papers_06_topology_jepa_chapters_06_validation_shacl_gate_sections_01_shacl_shape_functor_olog_box__01shaclshapefunctor a owl:NamedIndividual ;
+    rdfs:label "01ShaclShapeFunctor" .

@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_concrete_anchor__transportpushforward a owl:NamedIndividual ;
+    rdfs:label "the pushforward of the Vet-Imports-Household-Records functor" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_concrete_anchor__transportpullback a owl:NamedIndividual ;
+    rdfs:label "the pullback functor (sec 02). The bare math anchor-node name is resolved to a concrete household-or-clinic node of the Mittens vet-clinic transport scenario so a zero-math reader can ground the reading; the transport functor F preserves the typed arrows that bind this node into the larger commutative diagram." .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_concrete_anchor__householdmittenspresheaf a owl:NamedIndividual ;
+    rdfs:label "the typed family of facts about Mittens on the household side" .
+silm:instances_papers_20_functorial_transport_chapters_03_pullback_vs_pushforward_sections_01_pushforward_as_information_flow_concrete_anchor__derivedanchor_01_pus_3 a owl:NamedIndividual ;
+    rdfs:label "a derived anchor for the transport diagram: the clinic-side image of the household typed leg, carrying composition data." .

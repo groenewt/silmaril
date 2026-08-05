@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_04_probe_generated_authority_decomposition_step_4__step_profileclaim__citejoc620__>_typeprofileclaim__>_gluemittens a owl:NamedIndividual ;
+    rdfs:label "The generated phrase \"Mittens is the colimit of its observable profile\" must pass four concrete gates: (a) cite assigns local key; (b) type classifies as ProfileClaim node in O_01; (c) gate validates the claim against JoC §11; (d) glue contributes the typed node to the cocone." .

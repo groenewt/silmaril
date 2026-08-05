@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_02_yoneda_corner_decomposition_step_5__step_y_embedding a owl:NamedIndividual ;
+    rdfs:label "the Yoneda-traversal reading verifying that the Yoneda Corner of the Leary Cube claim holds at every representable" .

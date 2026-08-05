@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_citation_spivakkent2012ologs a owl:NamedIndividual ;
+    rdfs:label "P07CitationSpivakkent2012ologs" .

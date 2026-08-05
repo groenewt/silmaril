@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_03_validate_step_concrete_anchor_6 a owl:NamedIndividual ;
+    rdfs:label "ConcreteAnchor — 03_validate_step #6" .

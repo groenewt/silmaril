@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_06_dependency_governance_sections_01_dependency_as_typed_arrow_cheese_trap_immunity__trap_dependency=string_reference a owl:NamedIndividual ;
+    rdfs:label "dependency=string_reference" .

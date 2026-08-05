@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_02_mittens_anchor_decomposition_step_6__step_forge_morphism_for_02_mittens_anchor a owl:NamedIndividual ;
+    rdfs:label "A source witness becomes a Forge leg only by completing the ingestion chain admit = place o type o interpret o cite; partial chains have no local authority." .

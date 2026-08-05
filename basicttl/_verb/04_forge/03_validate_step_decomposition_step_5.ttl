@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_03_validate_step_decomposition_step_5__step_forge_morphism_for_03_validate_step a owl:NamedIndividual ;
+    rdfs:label "The checked artifact's Yoneda profile includes only shape-certified candidates as incoming. Any downstream node referencing CheckedArtifact_A inherits the shape-gate certification — the profile propagates the certification forward." .

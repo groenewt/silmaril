@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_02_enrichment_by_type_information_concrete_anchor_1 a owl:NamedIndividual ;
+    rdfs:label "EnrichmentAnchorVetRecord77ToMittens" .

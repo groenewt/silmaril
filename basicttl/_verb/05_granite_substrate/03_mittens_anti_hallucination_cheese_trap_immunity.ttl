@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_04_adapter_cocone_sections_03_mittens_anti_hallucination_cheese_trap_immunity__trap_fluency_as_validity_collapse__treating_a_fluent_adapter_outp a owl:NamedIndividual ;
+    rdfs:label "fluency-as-validity collapse: treating a fluent adapter output as passing the Mittens anti-hallucination test, when the output may still conflate storage rows with the governed individual or taxonomy labels with identity" .

@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_02_sections_01_cheese_trap_immunity__trap_evidence_record_is_the_event a owl:NamedIndividual ;
+    rdfs:label "evidence_record_is_the_event" .

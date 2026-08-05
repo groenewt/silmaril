@@ -1,0 +1,2 @@
+silm:instances_papers_03_silmaril_federation_chapters_07_knowledge_graph_cross_reference_sections_02_shacl_shape_gate_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

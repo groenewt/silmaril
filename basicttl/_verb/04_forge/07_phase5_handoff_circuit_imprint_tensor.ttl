@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_07_phase5_handoff_circuit_imprint_tensor a owl:NamedIndividual ;
+    rdfs:label "CircuitImprintTensor — 07_phase5_handoff [LHL]" .

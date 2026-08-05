@@ -1,0 +1,12 @@
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_decomposition_step__step_vetrecordshape a owl:NamedIndividual ;
+    rdfs:label "the primary symbol in this section — typed_morphisms_in_olog as a typed morphism in G_Granite" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_decomposition_step__step_typed_composition_in_g_granite a owl:NamedIndividual ;
+    rdfs:label "composing two typed arrows in the Granite category gives a typed arrow, preserving source-body provenance" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_decomposition_step__step_typed_morphisms_in_olog_base a owl:NamedIndividual ;
+    rdfs:label "the category-theoretic base topic grounding this section" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_decomposition_step__step_mittens_at_tartu_vet_clinic a owl:NamedIndividual ;
+    rdfs:label "the concrete Mittens individual with the Tartu vet-record as the evidence chunk" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_decomposition_step__step_hom__mittens_vs_hom__graniterow a owl:NamedIndividual ;
+    rdfs:label "the Hom-profile of Mittens (full typed web) vs the Hom-profile of a storage row (only storage-layer arrows) — different profiles, different objects" .
+silm:instances_papers_05_granite_substrate_chapters_02_typed_materialization_sections_03_shape_validation_decomposition_step__step_shapevalidation_law a owl:NamedIndividual ;
+    rdfs:label "the ShapeValidation section establishes that typed_morphisms_in_olog in G_Granite preserves typed leg identity without collapsing storage rows into the governed apex" .

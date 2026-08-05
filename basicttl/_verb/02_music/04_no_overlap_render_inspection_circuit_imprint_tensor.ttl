@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_chapters_15_diagram_audit_rollup_sections_04_no_overlap_render_inspection_circuit_imprint_tensor__corner_2 a owl:NamedIndividual ;
+    rdfs:label "2" .

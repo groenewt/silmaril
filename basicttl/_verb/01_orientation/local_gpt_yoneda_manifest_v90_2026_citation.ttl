@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_citation_localgptyonedamanifestv902026 a owl:NamedIndividual ;
+    rdfs:label "P01CitationLocalGptYonedaManifestV902026" .

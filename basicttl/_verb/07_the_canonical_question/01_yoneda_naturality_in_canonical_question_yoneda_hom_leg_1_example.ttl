@@ -1,0 +1,3 @@
+silm:instances_papers_07_the_canonical_question_chapters_03_yoneda_as_tunnel_sections_01_yoneda_naturality_in_canonical_question_yoneda_hom_leg_1 a owl:NamedIndividual ;
+    rdfs:label "P07YonedaAsTunnelYonedaNaturalityInCanonicalQuestionYonedaHomLeg1Example" .
+silm:instances_papers_07_the_canonical_question_chapters_03_yoneda_as_tunnel_sections_01_yoneda_naturality_in_canonical_question_yoneda_hom_leg_1 silm:hasExample "In 'P07YonedaAsTunnelYonedaNaturalityInCanonicalQuestionYonedaHomLeg1', the typed legs of the Yoneda hom-profile are witnessed by concrete Mittens-domain arrows. For example, VetRecord_77 is the clinical-record information artifact about Mittens; it depicts Mittens via a typed aboutness arrow and is not itself the cat." .

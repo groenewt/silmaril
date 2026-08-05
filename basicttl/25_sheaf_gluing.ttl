@@ -1,0 +1,845 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_cheese_trap_immunity__trap_open_patch_confused_with_global_object
+    a owl:NamedIndividual ;
+    rdfs:label "open_patch_confused_with_global_object" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_1
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor1" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_1%23vetvisit1window
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor1AddlBaseTopic" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor1AddlCircuitCorner" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor1AddlDunbarLayer" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor1AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.01_site_of_mittens_history.concrete_anchor_1#vetvisit1window" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:5" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The VetVisit1Window is the June 3rd vet-visit window during which the veterinary record was written. In the paper's apparatus it appears as the symbol 'U_{vet1}', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_2
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor2" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_2%23ownerstatement1window
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor2AddlBaseTopic" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor2AddlCircuitCorner" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor2AddlDunbarLayer" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor2AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.01_site_of_mittens_history.concrete_anchor_2#ownerstatement1window" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:7" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The OwnerStatement1Window is the June 1st-14th household-log window of two weeks of owner-reported behaviour. In the paper's apparatus it appears as the symbol 'U_{owner1}', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_3
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor3" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_3%23sensortrace1window
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor3AddlBaseTopic" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor3AddlCircuitCorner" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor3AddlDunbarLayer" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor3AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.01_site_of_mittens_history.concrete_anchor_3#sensortrace1window" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:3" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The SensorTrace1Window is the collar-stream pull from hours 144 to 216 of June. In the paper's apparatus it appears as the symbol 'U_{sensor1}', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_4
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor4" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_4%23vetowneroverlap1window
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor4AddlBaseTopic" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor4AddlCircuitCorner" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor4AddlDunbarLayer" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor4AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.01_site_of_mittens_history.concrete_anchor_4#vetowneroverlap1window" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:0" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The VetOwnerOverlap1Window is the half-day of June 3rd that is both inside the vet-visit window and inside the household-log span. In the paper's apparatus it appears as the symbol 'U_{vet1} cap U_{owner1}', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_5
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor5" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_concrete_anchor_5%23siteofmittenshistory
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor5AddlBaseTopic" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor5AddlCircuitCorner" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor5AddlDunbarLayer" ;
+    rdfs:label "SiteOfMittensHistoryConcreteAnchor5AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.01_site_of_mittens_history.concrete_anchor_5#siteofmittenshistory" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:7" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The SiteOfMittensHistory is the small category whose objects are named, typed opens over the Mittens history. In the paper's apparatus it appears as the symbol 'Op(X_Mittens)', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_decomposition_step_1__step_opx_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the The Site of Mittens History claim" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_decomposition_step_2__step_pullback_over_u_intersection_of_opens
+    a owl:NamedIndividual ;
+    rdfs:label "first take U_i, then intersect with V to get U_i cap V" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_decomposition_step_3__step_opx_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "cite the base topic grothendieck_topology that licenses this step" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_decomposition_step_4__step_opx_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "embody the symbols in concrete Mittens entities" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_decomposition_step_5__step_opx_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "the covering-sieve representable Hom(-, U) transports cover admissibility along site morphisms" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_decomposition_step_6__step_opx_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "A cover is admitted exactly when its overlaps are themselves typed opens, sub-covers remain admitted, and the trivial self-cover is admitted." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_olog_box__siteofmittenshistory
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistory" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_yoneda_hom_leg_1_open_inclusion_gate
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryYonedaHomLeg1" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_01_site_of_mittens_history_yoneda_hom_leg_2_covering_sieve_readout
+    a owl:NamedIndividual ;
+    rdfs:label "SiteOfMittensHistoryYonedaHomLeg2" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_cheese_trap_immunity__trap_section_confused_with_global_object
+    a owl:NamedIndividual ;
+    rdfs:label "section_confused_with_global_object" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_circuit_imprint_tensor__corner_2
+    a owl:NamedIndividual ;
+    rdfs:label "2" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_1
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor1" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_1%23jointvetownersectionset
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor1AddlBaseTopic" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor1AddlCircuitCorner" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor1AddlDunbarLayer" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor1AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.02_presheaf_of_typed_sections.concrete_anchor_1#jointvetownersectionset" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:4" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The JointVetOwnerSectionSet is the set of typed sections over the joint vet-plus-owner window: bundles holding both a vet-visit summary and an owner-statement excerpt. In the paper's apparatus it appears as the symbol 'F_Mittens(U_{vet1+owner1})', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_2
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor2" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_2%23vetvisit1sectionset
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor2AddlBaseTopic" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor2AddlCircuitCorner" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor2AddlDunbarLayer" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor2AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.02_presheaf_of_typed_sections.concrete_anchor_2#vetvisit1sectionset" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:3" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The VetVisit1SectionSet is the set of vet-only typed sections (body-mass 4.2 KG observation, vaccination status). In the paper's apparatus it appears as the symbol 'F_Mittens(U_{vet1})', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_3
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor3" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor3Example" ;
+    silm:hasExample "In 'PresheafOfTypedSectionsConcreteAnchor3', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the set of owner-only typed sections (Mittens's afternoon nap, food preference, microchip ID)." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_3%23ownerstatement1sectionset
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor3AddlBaseTopic" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor3AddlCircuitCorner" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor3AddlDunbarLayer" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor3AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.02_presheaf_of_typed_sections.concrete_anchor_3#ownerstatement1sectionset" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:0" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The OwnerStatement1SectionSet is the set of owner-only typed sections (Mittens's afternoon nap, food preference, microchip ID). In the paper's apparatus it appears as the symbol 'F_Mittens(U_{owner1})', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_4
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor4" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor4Example" ;
+    silm:hasExample "In 'PresheafOfTypedSectionsConcreteAnchor4', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the small set of facts known during the half-day overlap that BOTH the vet and the owner must agree on (microchip ID, body-mass quality, household role)." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_4%23vetowneroverlap1sectionset
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor4AddlBaseTopic" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor4AddlCircuitCorner" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor4AddlDunbarLayer" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor4AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.02_presheaf_of_typed_sections.concrete_anchor_4#vetowneroverlap1sectionset" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:7" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The VetOwnerOverlap1SectionSet is the small set of facts known during the half-day overlap that BOTH the vet and the owner must agree on (microchip ID, body-mass quality, household role). In the paper's apparatus it appears as the symbol 'F_Mittens(U_{vet1} cap U_{owner1})', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_5
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor5" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_5%23mittenspresheaf
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor5AddlBaseTopic" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor5AddlCircuitCorner" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor5AddlDunbarLayer" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor5AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.02_presheaf_of_typed_sections.concrete_anchor_5#mittenspresheaf" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:7" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The MittensPresheaf is the contravariant functor assigning each open to its set of typed local sections. In the paper's apparatus it appears as the symbol 'F_Mittens', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_6
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor6" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_concrete_anchor_6%23restrictionofsection
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor6AddlBaseTopic" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor6AddlCircuitCorner" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor6AddlDunbarLayer" ;
+    rdfs:label "PresheafOfTypedSectionsConcreteAnchor6AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.chapters.01_sheaf_basics_local_sections.sections.02_presheaf_of_typed_sections.concrete_anchor_6#restrictionofsection" ;
+    silm:hasAdditionalAttribute "base_topic:sheaf" ;
+    silm:hasAdditionalAttribute "circuit_corner:4" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.25_sheaf_gluing" ;
+    silm:hasLongDescription "The RestrictionOfSection is the result of cropping a section s to the smaller open U_i along an open-inclusion. In the paper's apparatus it appears as the symbol 's|_{U_i}', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_decomposition_step_1__step_f_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "the primary symbol of the Presheaf of Typed Sections over the Mittens Site claim" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_decomposition_step_2__step_restriction_along_open_inclusion
+    a owl:NamedIndividual ;
+    rdfs:label "given a typed section s over a larger open, crop it down to the smaller sub-open" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_decomposition_step_3__step_f_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "cite the base topic presheaf_functoriality that licenses this step" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_decomposition_step_4__step_f_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "embody the symbols in concrete Mittens entities" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_decomposition_step_5__step_f_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "by Yoneda's lemma the presheaf is known by its representable profile: which sections each test-open can carry through restriction maps" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_decomposition_step_6__step_f_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "A presheaf is a functor on opens that crops sections contravariantly; functoriality means crop-paths compose." .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_yoneda_hom_leg_1_restriction_in_leg
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsYonedaHomLeg1" .
+
+silm:instances_papers_25_sheaf_gluing_chapters_01_sheaf_basics_local_sections_sections_02_presheaf_of_typed_sections_yoneda_hom_leg_2_section_set_out_leg
+    a owl:NamedIndividual ;
+    rdfs:label "PresheafOfTypedSectionsYonedaHomLeg2" .
+
+silm:instances_papers_25_sheaf_gluing_citation_adamekherrlichstrecker1990joyofcats
+    a owl:NamedIndividual ;
+    rdfs:label "P25CitationAdamekherrlichstrecker1990joyofcats" .
+
+silm:instances_papers_25_sheaf_gluing_terms_atom
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.atom" ;
+    silm:hasSynonym "Node-or-Arrow" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_atom .
+
+silm:instances_papers_25_sheaf_gluing_terms_category
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.category" ;
+    silm:hasSynonym "phylum" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_category .
+
+silm:instances_papers_25_sheaf_gluing_acronym_cco
+    a owl:NamedIndividual ;
+    rdfs:label "Common Core Ontologies" ;
+    silm:hasAbbreviation "CCO" .
+
+silm:instances_papers_25_sheaf_gluing_terms_cheese_trap
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.cheese_trap" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_cheese_trap_immunity ;
+    silm:hasSynonym "category-theory pitfall" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_cheese_trap ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_cheese_trap_immunity .
+
+silm:instances_papers_25_sheaf_gluing_terms_cocone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.cocone" ;
+    silm:hasSynonym "compatible family" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_cocone .
+
+silm:instances_papers_25_sheaf_gluing_terms_colimit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.colimit" ;
+    silm:hasSynonym "universal cocone apex" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_colimit .
+
+silm:instances_papers_25_sheaf_gluing_terms_commutative
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.commutative" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_non_commutative ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_commutative ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_non_commutative .
+
+silm:instances_papers_25_sheaf_gluing_terms_compatible_patches
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.compatible_patches" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_incompatible_patches ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_compatible_patches ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_incompatible_patches .
+
+silm:instances_papers_25_sheaf_gluing_preferred_term_concrete_anchor
+    a owl:NamedIndividual ;
+    rdfs:label "P25SheafGluingPreferredTermConcreteAnchor" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_preferred_term_concrete_anchor .
+
+silm:instances_papers_25_sheaf_gluing_terms_cone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.cone" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_cocone ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_cone ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_cocone .
+
+silm:instances_papers_25_sheaf_gluing_acronym_cpo
+    a owl:NamedIndividual ;
+    rdfs:label "Common Process Ontology" ;
+    silm:hasAbbreviation "CPO" .
+
+silm:instances_papers_25_sheaf_gluing_terms_descent_successful
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.descent_successful" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_descent_failed ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_descent_successful ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_descent_failed .
+
+silm:instances_papers_25_sheaf_gluing_terms_descent
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.descent" ;
+    silm:hasSynonym "global-from-local construction" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_descent .
+
+silm:instances_papers_25_sheaf_gluing_terms_diagram
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.diagram" ;
+    silm:hasSynonym "commutative diagram" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_diagram .
+
+silm:instances_papers_25_sheaf_gluing_terms_domain
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.domain" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_codomain ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_domain ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_codomain .
+
+silm:instances_papers_25_sheaf_gluing_terms_encyclopedia
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.encyclopedia" ;
+    silm:hasSynonym "atlas" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_encyclopedia .
+
+silm:instances_papers_25_sheaf_gluing_terms_equalizer
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.equalizer" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_coequalizer ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_equalizer ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_coequalizer .
+
+silm:instances_papers_25_sheaf_gluing_terms_functor
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.functor" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_contravariant_functor ;
+    silm:hasSynonym "structure-preserving map" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_functor ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_contravariant_functor .
+
+silm:instances_papers_25_sheaf_gluing_terms_glueable
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.glueable" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_non_glueable ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_glueable ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_non_glueable .
+
+silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "GluingArrowTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_gluing_arrow ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_category_theory_to_olog__xlate_target_olog_gluingarrow .
+
+silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "GluingArrowTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_gluing_arrow ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_category_theory_to_rdf__xlate_target_rdf_silm_gluingarrow .
+
+silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "GluingArrowTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_gluing_arrow ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_category_theory_to_tikzcd__xlate_target_tikzcd_glue .
+
+silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "GluingArrowTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_gluing_arrow ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_everyday_prose_to_category_theory__xlate_target_category_theory_equalizer_induced_unique_section .
+
+silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "GluingArrowTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_gluing_arrow ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_everyday_prose_to_latex__xlate_target_latex___mathrmglue .
+
+silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "GluingArrowTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_gluing_arrow ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_everyday_prose_to_olog__xlate_target_olog_gluingarrow .
+
+silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "GluingArrowTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_gluing_arrow ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_olog_to_everyday_prose__xlate_target_everyday_prose_the_gluing_morphism .
+
+silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "GluingArrowTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_gluing_arrow ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_gluing_arrow_olog_to_rdf__xlate_target_rdf_silm_gluingarrow .
+
+silm:instances_papers_25_sheaf_gluing_preferred_term_gluing_axiom
+    a owl:NamedIndividual ;
+    rdfs:label "P25SheafGluingPreferredTermGluingAxiom" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_preferred_term_gluing_axiom .
+
+silm:instances_papers_25_sheaf_gluing_terms_gluing
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.gluing" ;
+    silm:hasSynonym "cocone amalgamation" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_gluing .
+
+silm:instances_papers_25_sheaf_gluing_terms_homset
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.homset" ;
+    silm:hasSynonym "Hom" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_homset .
+
+silm:instances_papers_25_sheaf_gluing_terms_incoming
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.incoming" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_outgoing ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_incoming ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_outgoing .
+
+silm:instances_papers_25_sheaf_gluing_acronym_kg
+    a owl:NamedIndividual ;
+    rdfs:label "Knowledge Graph" ;
+    silm:hasAbbreviation "KG" .
+
+silm:instances_papers_25_sheaf_gluing_terms_known
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.known" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_unknown ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_known ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_unknown .
+
+silm:instances_papers_25_sheaf_gluing_terms_limit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.limit" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_colimit ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_limit ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_colimit .
+
+silm:instances_papers_25_sheaf_gluing_citation_localmittensexampleanchor2026
+    a owl:NamedIndividual ;
+    rdfs:label "P25CitationLocalMittensExampleAnchor2026" .
+
+silm:instances_papers_25_sheaf_gluing_terms_local_section
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.local_section" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_global_section ;
+    silm:hasSynonym "patch-level data" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_local_section ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_global_section .
+
+silm:urn_silmaril_universal_anchor_node_enum_milestone
+    a owl:NamedIndividual ;
+    rdfs:label "P25SheafGluingEnumMembershipMilestoneAtomPass" ;
+    rdfs:label "P25SheafGluingEnumMembershipMilestoneChapterSkeleton" ;
+    rdfs:label "P25SheafGluingEnumMembershipMilestoneE2eBuildOk" ;
+    rdfs:label "P25SheafGluingEnumMembershipMilestoneRenderAllLegsOk" ;
+    rdfs:label "P25SheafGluingEnumMembershipMilestoneVisionPass" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_milestone .
+
+silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGluedTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_mittens_glued ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_category_theory_to_olog__xlate_target_olog_mittensgluednode .
+
+silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGluedTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_mittens_glued ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_category_theory_to_rdf__xlate_target_rdf_silm_mittensgluednode .
+
+silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGluedTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_mittens_glued ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_category_theory_to_tikzcd__xlate_target_tikzcd_m_glue .
+
+silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGluedTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_mittens_glued ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_everyday_prose_to_category_theory__xlate_target_category_theory_glued_section_across_the_mittens_cover .
+
+silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGluedTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_mittens_glued ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_everyday_prose_to_latex__xlate_target_latex___mathrmmittens___mathrmglue .
+
+silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGluedTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_mittens_glued ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_everyday_prose_to_olog__xlate_target_olog_mittensgluednode .
+
+silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGluedTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_mittens_glued ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_olog_to_everyday_prose__xlate_target_everyday_prose_mittens_glued_from_views .
+
+silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensGluedTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_mittens_glued ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_mittens_glued_olog_to_rdf__xlate_target_rdf_silm_mittensgluednode .
+
+silm:instances_papers_25_sheaf_gluing_terms_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.mittens" ;
+    silm:hasSynonym "cat anchor" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_mittens .
+
+silm:instances_papers_25_sheaf_gluing_terms_monad
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.monad" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_comonad ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_monad ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_comonad .
+
+silm:instances_papers_25_sheaf_gluing_terms_morphism
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.morphism" ;
+    silm:hasSynonym "arrow" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_morphism .
+
+silm:instances_papers_25_sheaf_gluing_terms_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.node" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_arrow ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_arrow .
+
+silm:instances_papers_25_sheaf_gluing_terms_object
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.object" ;
+    silm:hasSynonym "node" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_object .
+
+silm:instances_papers_25_sheaf_gluing_preferred_term_olog
+    a owl:NamedIndividual ;
+    rdfs:label "P25SheafGluingPreferredTermOlog" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_preferred_term_olog .
+
+silm:instances_papers_25_sheaf_gluing_terms_olog
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.olog" ;
+    silm:hasSynonym "ontology log" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_olog .
+
+silm:instances_papers_25_sheaf_gluing_translation_open_cover_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "OpenCoverTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_open_cover ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_open_cover_category_theory_to_olog__xlate_target_olog_opencovernode .
+
+silm:instances_papers_25_sheaf_gluing_translation_open_cover_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "OpenCoverTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_open_cover ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_open_cover_category_theory_to_rdf__xlate_target_rdf_silm_opencovernode .
+
+silm:instances_papers_25_sheaf_gluing_translation_open_cover_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "OpenCoverTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_open_cover ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_open_cover_category_theory_to_tikzcd__xlate_target_tikzcd_u_i .
+
+silm:instances_papers_25_sheaf_gluing_translation_open_cover_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "OpenCoverTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_open_cover ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_open_cover_everyday_prose_to_category_theory__xlate_target_category_theory_cover_u_i__%3E_x .
+
+silm:instances_papers_25_sheaf_gluing_translation_open_cover_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "OpenCoverTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_open_cover ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_open_cover_everyday_prose_to_latex__xlate_target_latex___u_i__ .
+
+silm:instances_papers_25_sheaf_gluing_translation_open_cover_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "OpenCoverTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_open_cover ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_open_cover_everyday_prose_to_olog__xlate_target_olog_opencovernode .
+
+silm:instances_papers_25_sheaf_gluing_translation_open_cover_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "OpenCoverTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_open_cover ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_open_cover_olog_to_everyday_prose__xlate_target_everyday_prose_an_open_cover_of_x .
+
+silm:instances_papers_25_sheaf_gluing_translation_open_cover_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "OpenCoverTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_open_cover ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_open_cover_olog_to_rdf__xlate_target_rdf_silm_opencovernode .
+
+silm:instances_papers_25_sheaf_gluing_terms_paper
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.paper" ;
+    silm:hasSynonym "paper-monad" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_paper .
+
+silm:instances_papers_25_sheaf_gluing_terms_pullback
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.pullback" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_pushout ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_pullback ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_pushout .
+
+silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "RestrictionCompatibleFamilyTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_restriction_compatible_family ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_category_theory_to_olog__xlate_target_olog_compatiblefamilynode .
+
+silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "RestrictionCompatibleFamilyTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_restriction_compatible_family ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_category_theory_to_rdf__xlate_target_rdf_silm_compatiblefamilynode .
+
+silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "RestrictionCompatibleFamilyTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_restriction_compatible_family ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_category_theory_to_tikzcd__xlate_target_tikzcd_s_i .
+
+silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "RestrictionCompatibleFamilyTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_restriction_compatible_family ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_everyday_prose_to_category_theory__xlate_target_category_theory_family_s_i_in_fu_i_agreeing_on_overlaps .
+
+silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "RestrictionCompatibleFamilyTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_restriction_compatible_family ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_everyday_prose_to_latex__xlate_target_latex___s_i__ .
+
+silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "RestrictionCompatibleFamilyTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_restriction_compatible_family ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_everyday_prose_to_olog__xlate_target_olog_compatiblefamilynode .
+
+silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "RestrictionCompatibleFamilyTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_restriction_compatible_family ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_olog_to_everyday_prose__xlate_target_everyday_prose_a_compatible_family_of_sections .
+
+silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "RestrictionCompatibleFamilyTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_restriction_compatible_family ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_restriction_compatible_family_olog_to_rdf__xlate_target_rdf_silm_compatiblefamilynode .
+
+silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "SheafNodeTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_sheaf_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_category_theory_to_olog__xlate_target_olog_sheafnode .
+
+silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "SheafNodeTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_sheaf_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_category_theory_to_rdf__xlate_target_rdf_silm_sheafnode .
+
+silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "SheafNodeTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_sheaf_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_category_theory_to_tikzcd__xlate_target_tikzcd_f .
+
+silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "SheafNodeTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_sheaf_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_everyday_prose_to_category_theory__xlate_target_category_theory_object_f_satisfying_gluing .
+
+silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "SheafNodeTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_sheaf_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_everyday_prose_to_latex__xlate_target_latex___mathcalf .
+
+silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "SheafNodeTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_sheaf_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_everyday_prose_to_olog__xlate_target_olog_sheafnode .
+
+silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "SheafNodeTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_sheaf_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_olog_to_everyday_prose__xlate_target_everyday_prose_a_sheaf_on_a_site .
+
+silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "SheafNodeTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_25_sheaf_gluing_term_sheaf_node ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_translation_sheaf_node_olog_to_rdf__xlate_target_rdf_silm_sheafnode .
+
+silm:instances_papers_25_sheaf_gluing_preferred_term_sheaf
+    a owl:NamedIndividual ;
+    rdfs:label "P25SheafGluingPreferredTermSheaf" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_preferred_term_sheaf .
+
+silm:instances_papers_25_sheaf_gluing_terms_sheaf
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.sheaf" ;
+    silm:hasSynonym "presheaf-with-gluing" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_sheaf .
+
+silm:instances_papers_25_sheaf_gluing_terms_source
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.source" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_target ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_source ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_target .
+
+silm:instances_papers_25_sheaf_gluing_citation_spivakkent2012ologs
+    a owl:NamedIndividual ;
+    rdfs:label "P25CitationSpivakkent2012ologs" .
+
+silm:instances_papers_25_sheaf_gluing_terms_synthesis
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.synthesis" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_decomposition ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_synthesis ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_decomposition .
+
+silm:instances_papers_25_sheaf_gluing_terms_typed
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.typed" ;
+    silm:hasAntonym silm:instances_papers_25_sheaf_gluing_terms_untyped ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_typed ;
+    silm:targetNode silm:instances_papers_25_sheaf_gluing_terms_untyped .
+
+silm:instances_papers_25_sheaf_gluing_replacement_agents_rebuttals
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "AgentsRebuttalsReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:_agents_rebuttals_ ;
+    silm:targetNode silm:anchors_repo_rebuttal_dir .
+
+silm:instances_papers_25_sheaf_gluing_replacement_silmaril_wave8_replacement_atom
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8ReplacementAtomReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_replacement_atom ;
+    silm:targetNode silm:types_papers_relational_replacement .
+
+silm:instances_papers_25_sheaf_gluing_replacement_silmaril_wave8_theorem_unit
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8TheoremUnitReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_theorem_unit ;
+    silm:targetNode silm:types_papers_claim_atom_theorem_unit .
+
+silm:urn_silmaril_universal_anchor_node_enum_wave_role
+    a owl:NamedIndividual ;
+    rdfs:label "P25SheafGluingEnumMembershipWaveRoleBuilder" ;
+    rdfs:label "P25SheafGluingEnumMembershipWaveRolePolisher" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_wave_role .
+
+silm:instances_papers_25_sheaf_gluing_preferred_term_yoneda_hom_leg
+    a owl:NamedIndividual ;
+    rdfs:label "P25SheafGluingPreferredTermYonedaHomLeg" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_preferred_term_yoneda_hom_leg .
+
+silm:instances_papers_25_sheaf_gluing_terms_yoneda_traversal
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.25_sheaf_gluing.terms.yoneda_traversal" ;
+    silm:hasSynonym "representable walk" ;
+    silm:sourceNode silm:instances_papers_25_sheaf_gluing_terms_yoneda_traversal .
+

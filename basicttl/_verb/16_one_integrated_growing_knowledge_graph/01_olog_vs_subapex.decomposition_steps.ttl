@@ -1,0 +1,12 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_ologvssubapex_central a owl:NamedIndividual ;
+    rdfs:label "the central symbol naming olog vs sub-apex categorical distinction (part-whole cheese-trap immunity)" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_composition_under_integration a owl:NamedIndividual ;
+    rdfs:label "the operation that the section establishes; composes against the integration mediators iota_e" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_colimit_construction_joy_of_cats_authority a owl:NamedIndividual ;
+    rdfs:label "the base topic that licenses the section claim" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_household_instantiation a owl:NamedIndividual ;
+    rdfs:label "embed the abstract claim in the concrete household story" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_integrated_profile_inheritance a owl:NamedIndividual ;
+    rdfs:label "the section claim transports to the integrated apex via the Yoneda profile" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_05_part_whole_immunity_sections_01_olog_vs_subapex_decomposition_steps__step_ologvssubapex_discipline a owl:NamedIndividual ;
+    rdfs:label "the encyclopedia-level recap of the section claim" .

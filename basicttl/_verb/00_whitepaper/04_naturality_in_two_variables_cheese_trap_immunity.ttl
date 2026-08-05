@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_04_naturality_in_two_variables_cheese_trap_immunity__trap_naturality_apex_conflation a owl:NamedIndividual ;
+    rdfs:label "naturality_apex_conflation" .

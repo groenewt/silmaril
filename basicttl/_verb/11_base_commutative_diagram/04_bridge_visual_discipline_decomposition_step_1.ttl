@@ -1,0 +1,2 @@
+silm:instances_papers_11_base_commutative_diagram_chapters_21_bridges_avogadro_disint_canonq_visual_sections_04_bridge_visual_discipline_decomposition_step_1__step_d_mittens_11 a owl:NamedIndividual ;
+    rdfs:label "the page-11 Mittens source diagram" .

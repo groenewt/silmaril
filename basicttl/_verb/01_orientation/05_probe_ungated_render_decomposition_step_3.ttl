@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_13_regression_test_suite_sections_05_probe_ungated_render_decomposition_step_3__step_joc_§13_5__a_functor_preserves_colimit_structure_only_when_s a owl:NamedIndividual ;
+    rdfs:label "JoC §13.5: a functor preserves the colimit structure only when source and target categories are correctly paired. A render functor applied to a pre-validation sort sees only the pre-validation category; the resulting diagram does not carry the validation legs of the ValidatedClaim category." .

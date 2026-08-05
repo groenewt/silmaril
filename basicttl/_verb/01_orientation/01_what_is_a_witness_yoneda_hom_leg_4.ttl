@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_15_witness_traceability_sections_01_what_is_a_witness_yoneda_hom_leg_4 a owl:NamedIndividual ;
+    rdfs:label "WhatIsWitnessLegCiteKl" .

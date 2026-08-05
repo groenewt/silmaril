@@ -1,0 +1,611 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:instances_papers_08_visual_discipline_chapters_flat_sections_01_thesis_cheese_trap_immunity__trap_glyph_mastery_replaces_governed_individual
+    a owl:NamedIndividual ;
+    rdfs:label "glyph_mastery_replaces_governed_individual" .
+
+silm:instances_papers_08_visual_discipline_chapters_flat_sections_01_thesis_circuit_imprint_tensor
+    a owl:NamedIndividual ;
+    rdfs:label "08ThesisCircuitImprintTensor" .
+
+silm:instances_papers_08_visual_discipline_chapters_flat_sections_01_thesis_concrete_anchor_1
+    a owl:NamedIndividual ;
+    rdfs:label "08ThesisConcreteAnchor1" ;
+    rdfs:label "08ThesisConcreteAnchor1Example" ;
+    silm:hasExample "In '08ThesisConcreteAnchor1', the bare-symbol→anchor table grounds the abstract symbols in the Tartu-Animal-Clinic / Mittens-2026-05-18 domain story. For example, the typed graph (G, R, tau) for the Mittens taxonomy diagram — nodes are Mittens, Felis catus, TSN 183798; arrows are classification-leg, taxonomy-leg, identity arrows." .
+
+silm:instances_papers_08_visual_discipline_chapters_flat_sections_01_thesis_concrete_anchor_1%23typedgraphmittens
+    a owl:NamedIndividual ;
+    rdfs:label "08ThesisConcreteAnchor1AddlBaseTopic" ;
+    rdfs:label "08ThesisConcreteAnchor1AddlCircuitCorner" ;
+    rdfs:label "08ThesisConcreteAnchor1AddlDunbarLayer" ;
+    rdfs:label "08ThesisConcreteAnchor1AddlPaperKind" ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.chapters.flat.sections.01_thesis.concrete_anchor_1#typedgraphmittens" ;
+    silm:hasAdditionalAttribute "base_topic:diagrammatic reasoning" ;
+    silm:hasAdditionalAttribute "circuit_corner:6" ;
+    silm:hasAdditionalAttribute "dunbar_layer:0" ;
+    silm:hasAdditionalAttribute "paper_kind:urn:silmaril:entity#papers.08_visual_discipline" ;
+    silm:hasLongDescription "The TypedGraphMittens is the typed graph (G, R, tau) for the Mittens taxonomy diagram — nodes are Mittens, Felis catus, TSN 183798; arrows are classification-leg, taxonomy-leg, identity arrows. In the paper's apparatus it appears as the symbol 'TGraph_8', a concrete instance grounded in the Mittens domain story; it serves as the anchor whose semantics every diagram, formula, and prose reference back to." .
+
+silm:instances_papers_08_visual_discipline_chapters_flat_sections_01_thesis_decomposition_step_1__step_g
+    a owl:NamedIndividual ;
+    rdfs:label "G" .
+
+silm:instances_papers_08_visual_discipline_chapters_flat_sections_01_thesis_decomposition_step_2__step_r
+    a owl:NamedIndividual ;
+    rdfs:label "R" .
+
+silm:instances_papers_08_visual_discipline_chapters_flat_sections_01_thesis_decomposition_step_3__step_tau
+    a owl:NamedIndividual ;
+    rdfs:label "tau" .
+
+silm:instances_papers_08_visual_discipline_citation_adamekherrlichstrecker1990joyofcats
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationAdamekherrlichstrecker1990joyofcats" .
+
+silm:instances_papers_08_visual_discipline_terms_atom
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.atom" ;
+    silm:hasSynonym "Node-or-Arrow" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_atom .
+
+silm:instances_papers_08_visual_discipline_terms_category
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.category" ;
+    silm:hasSynonym "phylum" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_category .
+
+silm:instances_papers_08_visual_discipline_acronym_cco
+    a owl:NamedIndividual ;
+    rdfs:label "Common Core Ontologies" ;
+    silm:hasAbbreviation "CCO" .
+
+silm:instances_papers_08_visual_discipline_terms_cheese_trap
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.cheese_trap" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_cheese_trap_immunity ;
+    silm:hasSynonym "category-theory pitfall" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_cheese_trap ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_cheese_trap_immunity .
+
+silm:instances_papers_08_visual_discipline_terms_clean_page
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.clean_page" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_page_break_in_body ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_clean_page ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_page_break_in_body .
+
+silm:instances_papers_08_visual_discipline_terms_cocone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.cocone" ;
+    silm:hasSynonym "compatible family" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_cocone .
+
+silm:instances_papers_08_visual_discipline_terms_colimit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.colimit" ;
+    silm:hasSynonym "universal cocone apex" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_colimit .
+
+silm:instances_papers_08_visual_discipline_terms_commutative
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.commutative" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_non_commutative ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_commutative ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_non_commutative .
+
+silm:instances_papers_08_visual_discipline_preferred_term_commuting_figure
+    a owl:NamedIndividual ;
+    rdfs:label "P08VisualDisciplinePreferredTermCommutingFigure" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_preferred_term_commuting_figure .
+
+silm:instances_papers_08_visual_discipline_preferred_term_concrete_anchor
+    a owl:NamedIndividual ;
+    rdfs:label "P08VisualDisciplinePreferredTermConcreteAnchor" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_preferred_term_concrete_anchor .
+
+silm:instances_papers_08_visual_discipline_terms_cone
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.cone" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_cocone ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_cone ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_cocone .
+
+silm:instances_papers_08_visual_discipline_acronym_cpo
+    a owl:NamedIndividual ;
+    rdfs:label "Common Process Ontology" ;
+    silm:hasAbbreviation "CPO" .
+
+silm:instances_papers_08_visual_discipline_acronym_csv
+    a owl:NamedIndividual ;
+    rdfs:label "Comma-Separated Values" ;
+    silm:hasAbbreviation "CSV" .
+
+silm:instances_papers_08_visual_discipline_terms_diagram
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.diagram" ;
+    silm:hasSynonym "commutative diagram" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_diagram .
+
+silm:instances_papers_08_visual_discipline_translation_diagram_unit_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "DiagramUnitTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_diagram_unit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_diagram_unit_category_theory_to_olog__xlate_target_olog_diagramunit .
+
+silm:instances_papers_08_visual_discipline_translation_diagram_unit_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "DiagramUnitTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_diagram_unit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_diagram_unit_category_theory_to_rdf__xlate_target_rdf_silm_diagramunit .
+
+silm:instances_papers_08_visual_discipline_translation_diagram_unit_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "DiagramUnitTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_diagram_unit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_diagram_unit_category_theory_to_tikzcd__xlate_target_tikzcd_d .
+
+silm:instances_papers_08_visual_discipline_translation_diagram_unit_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "DiagramUnitTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_diagram_unit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_diagram_unit_everyday_prose_to_category_theory__xlate_target_category_theory_object_in_commdiag .
+
+silm:instances_papers_08_visual_discipline_translation_diagram_unit_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "DiagramUnitTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_diagram_unit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_diagram_unit_everyday_prose_to_latex__xlate_target_latex_d .
+
+silm:instances_papers_08_visual_discipline_translation_diagram_unit_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "DiagramUnitTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_diagram_unit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_diagram_unit_everyday_prose_to_olog__xlate_target_olog_diagramunit .
+
+silm:instances_papers_08_visual_discipline_translation_diagram_unit_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "DiagramUnitTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_diagram_unit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_diagram_unit_olog_to_everyday_prose__xlate_target_everyday_prose_a_commutative_diagram .
+
+silm:instances_papers_08_visual_discipline_translation_diagram_unit_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "DiagramUnitTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_diagram_unit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_diagram_unit_olog_to_rdf__xlate_target_rdf_silm_diagramunit .
+
+silm:instances_papers_08_visual_discipline_terms_domain
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.domain" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_codomain ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_domain ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_codomain .
+
+silm:instances_papers_08_visual_discipline_terms_encyclopedia
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.encyclopedia" ;
+    silm:hasSynonym "atlas" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_encyclopedia .
+
+silm:instances_papers_08_visual_discipline_terms_equalizer
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.equalizer" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_coequalizer ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_equalizer ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_coequalizer .
+
+silm:instances_papers_08_visual_discipline_terms_functor
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.functor" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_contravariant_functor ;
+    silm:hasSynonym "structure-preserving map" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_functor ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_contravariant_functor .
+
+silm:instances_papers_08_visual_discipline_terms_homset
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.homset" ;
+    silm:hasSynonym "Hom" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_homset .
+
+silm:instances_papers_08_visual_discipline_terms_incoming
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.incoming" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_outgoing ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_incoming ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_outgoing .
+
+silm:instances_papers_08_visual_discipline_terms_known
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.known" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_unknown ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_known ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_unknown .
+
+silm:instances_papers_08_visual_discipline_terms_limit
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.limit" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_colimit ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_limit ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_colimit .
+
+silm:instances_papers_08_visual_discipline_citation_localcannoncheeselearyalpertwitness2026
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationLocalCannonCheeseLearyAlpertWitness2026" .
+
+silm:instances_papers_08_visual_discipline_citation_localcannontaxonomywitnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationLocalCannonTaxonomyWitnesses2026" .
+
+silm:instances_papers_08_visual_discipline_citation_localmittensexampleanchor2026
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationLocalMittensExampleAnchor2026" .
+
+silm:instances_papers_08_visual_discipline_citation_localnodeorarrowdiscipline2026
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationLocalNodeOrArrowDiscipline2026" .
+
+silm:instances_papers_08_visual_discipline_citation_localrebuttalround00witnesses2026
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationLocalRebuttalRound00Witnesses2026" .
+
+silm:urn_silmaril_universal_anchor_node_enum_milestone
+    a owl:NamedIndividual ;
+    rdfs:label "P08VisualDisciplineEnumMembershipMilestoneAtomPass" ;
+    rdfs:label "P08VisualDisciplineEnumMembershipMilestoneChapterSkeleton" ;
+    rdfs:label "P08VisualDisciplineEnumMembershipMilestoneE2eBuildOk" ;
+    rdfs:label "P08VisualDisciplineEnumMembershipMilestoneRenderAllLegsOk" ;
+    rdfs:label "P08VisualDisciplineEnumMembershipMilestoneVisionPass" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_milestone .
+
+silm:instances_papers_08_visual_discipline_translation_mittens_diagram_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensDiagramTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_mittens_diagram ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_mittens_diagram_category_theory_to_olog__xlate_target_olog_mittensdiagramnode .
+
+silm:instances_papers_08_visual_discipline_translation_mittens_diagram_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensDiagramTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_mittens_diagram ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_mittens_diagram_category_theory_to_rdf__xlate_target_rdf_silm_mittensdiagramnode .
+
+silm:instances_papers_08_visual_discipline_translation_mittens_diagram_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "MittensDiagramTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_mittens_diagram ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_mittens_diagram_category_theory_to_tikzcd__xlate_target_tikzcd_d_m .
+
+silm:instances_papers_08_visual_discipline_translation_mittens_diagram_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "MittensDiagramTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_mittens_diagram ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_mittens_diagram_everyday_prose_to_category_theory__xlate_target_category_theory_instance_d_mittens .
+
+silm:instances_papers_08_visual_discipline_translation_mittens_diagram_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "MittensDiagramTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_mittens_diagram ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_mittens_diagram_everyday_prose_to_latex__xlate_target_latex_d_m .
+
+silm:instances_papers_08_visual_discipline_translation_mittens_diagram_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "MittensDiagramTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_mittens_diagram ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_mittens_diagram_everyday_prose_to_olog__xlate_target_olog_mittensdiagramnode .
+
+silm:instances_papers_08_visual_discipline_translation_mittens_diagram_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "MittensDiagramTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_mittens_diagram ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_mittens_diagram_olog_to_everyday_prose__xlate_target_everyday_prose_the_diagram_showing_mittens_cocone .
+
+silm:instances_papers_08_visual_discipline_translation_mittens_diagram_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "MittensDiagramTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_mittens_diagram ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_mittens_diagram_olog_to_rdf__xlate_target_rdf_silm_mittensdiagramnode .
+
+silm:instances_papers_08_visual_discipline_terms_mittens
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.mittens" ;
+    silm:hasSynonym "cat anchor" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_mittens .
+
+silm:instances_papers_08_visual_discipline_terms_monad
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.monad" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_comonad ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_monad ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_comonad .
+
+silm:instances_papers_08_visual_discipline_terms_morphism
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.morphism" ;
+    silm:hasSynonym "arrow" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_morphism .
+
+silm:instances_papers_08_visual_discipline_terms_node
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.node" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_arrow ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_node ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_arrow .
+
+silm:instances_papers_08_visual_discipline_terms_object
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.object" ;
+    silm:hasSynonym "node" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_object .
+
+silm:instances_papers_08_visual_discipline_preferred_term_olog
+    a owl:NamedIndividual ;
+    rdfs:label "P08VisualDisciplinePreferredTermOlog" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_preferred_term_olog .
+
+silm:instances_papers_08_visual_discipline_terms_olog
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.olog" ;
+    silm:hasSynonym "ontology log" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_olog .
+
+silm:instances_papers_08_visual_discipline_terms_page_break
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.page_break" ;
+    silm:hasSynonym "render-time discontinuity" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_page_break .
+
+silm:instances_papers_08_visual_discipline_terms_paper
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.paper" ;
+    silm:hasSynonym "paper-monad" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_paper .
+
+silm:instances_papers_08_visual_discipline_acronym_pdf
+    a owl:NamedIndividual ;
+    rdfs:label "Portable Document Format" ;
+    silm:hasAbbreviation "PDF" .
+
+silm:instances_papers_08_visual_discipline_translation_polish_arrow_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "PolishArrowTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_polish_arrow ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_polish_arrow_category_theory_to_olog__xlate_target_olog_polisharrow .
+
+silm:instances_papers_08_visual_discipline_translation_polish_arrow_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "PolishArrowTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_polish_arrow ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_polish_arrow_category_theory_to_rdf__xlate_target_rdf_silm_polisharrow .
+
+silm:instances_papers_08_visual_discipline_translation_polish_arrow_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "PolishArrowTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_polish_arrow ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_polish_arrow_category_theory_to_tikzcd__xlate_target_tikzcd_polish .
+
+silm:instances_papers_08_visual_discipline_translation_polish_arrow_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "PolishArrowTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_polish_arrow ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_polish_arrow_everyday_prose_to_category_theory__xlate_target_category_theory_endo_arrow_on_artifact_preserving_content .
+
+silm:instances_papers_08_visual_discipline_translation_polish_arrow_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "PolishArrowTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_polish_arrow ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_polish_arrow_everyday_prose_to_latex__xlate_target_latex___mathrmpolish .
+
+silm:instances_papers_08_visual_discipline_translation_polish_arrow_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "PolishArrowTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_polish_arrow ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_polish_arrow_everyday_prose_to_olog__xlate_target_olog_polisharrow .
+
+silm:instances_papers_08_visual_discipline_translation_polish_arrow_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "PolishArrowTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_polish_arrow ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_polish_arrow_olog_to_everyday_prose__xlate_target_everyday_prose_the_polish_pass_arrow .
+
+silm:instances_papers_08_visual_discipline_translation_polish_arrow_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "PolishArrowTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_polish_arrow ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_polish_arrow_olog_to_rdf__xlate_target_rdf_silm_polisharrow .
+
+silm:instances_papers_08_visual_discipline_terms_polish_pass
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.polish_pass" ;
+    silm:hasSynonym "vision-pass on rendered PDF" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_polish_pass .
+
+silm:instances_papers_08_visual_discipline_terms_polished
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.polished" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_janky ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_polished ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_janky .
+
+silm:instances_papers_08_visual_discipline_terms_pullback
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.pullback" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_pushout ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_pullback ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_pushout .
+
+silm:instances_papers_08_visual_discipline_acronym_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "Resource Description Framework" ;
+    silm:hasAbbreviation "RDF" .
+
+silm:instances_papers_08_visual_discipline_acronym_shacl
+    a owl:NamedIndividual ;
+    rdfs:label "Shapes Constraint Language" ;
+    silm:hasAbbreviation "SHACL" .
+
+silm:instances_papers_08_visual_discipline_terms_source
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.source" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_target ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_source ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_target .
+
+silm:instances_papers_08_visual_discipline_citation_spivakkent2012ologs
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationSpivakkent2012ologs" .
+
+silm:instances_papers_08_visual_discipline_terms_subsection
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.subsection" ;
+    silm:hasSynonym "chapter sub-leg" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_subsection .
+
+silm:instances_papers_08_visual_discipline_terms_synthesis
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.synthesis" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_decomposition ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_synthesis ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_decomposition .
+
+silm:instances_papers_08_visual_discipline_acronym_tsn
+    a owl:NamedIndividual ;
+    rdfs:label "Taxonomic Serial Number" ;
+    silm:hasAbbreviation "TSN" .
+
+silm:instances_papers_08_visual_discipline_terms_typed
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.typed" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_untyped ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_typed ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_untyped .
+
+silm:instances_papers_08_visual_discipline_terms_vision_pass_clear
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.vision_pass_clear" ;
+    silm:hasAntonym silm:instances_papers_08_visual_discipline_terms_vision_pass_alarm ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_vision_pass_clear ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_terms_vision_pass_alarm .
+
+silm:instances_papers_08_visual_discipline_terms_visual_discipline
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.visual_discipline" ;
+    silm:hasSynonym "diagram-jank ban" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_visual_discipline .
+
+silm:instances_papers_08_visual_discipline_translation_visual_lint_category_theory_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "VisualLintTranslationCategorytheoryToOlog" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_visual_lint ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_visual_lint_category_theory_to_olog__xlate_target_olog_visuallintcheck .
+
+silm:instances_papers_08_visual_discipline_translation_visual_lint_category_theory_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "VisualLintTranslationCategorytheoryToRdf" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_visual_lint ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_visual_lint_category_theory_to_rdf__xlate_target_rdf_silm_visuallintcheck .
+
+silm:instances_papers_08_visual_discipline_translation_visual_lint_category_theory_to_tikzcd
+    a owl:NamedIndividual ;
+    rdfs:label "VisualLintTranslationCategorytheoryToTikzcd" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_visual_lint ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_visual_lint_category_theory_to_tikzcd__xlate_target_tikzcd_lint .
+
+silm:instances_papers_08_visual_discipline_translation_visual_lint_everyday_prose_to_category_theory
+    a owl:NamedIndividual ;
+    rdfs:label "VisualLintTranslationEverydayproseToCategorytheory" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_visual_lint ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_visual_lint_everyday_prose_to_category_theory__xlate_target_category_theory_predicate_visuallintd_on_diagram .
+
+silm:instances_papers_08_visual_discipline_translation_visual_lint_everyday_prose_to_latex
+    a owl:NamedIndividual ;
+    rdfs:label "VisualLintTranslationEverydayproseToLatex" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_visual_lint ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_visual_lint_everyday_prose_to_latex__xlate_target_latex___mathrmlint .
+
+silm:instances_papers_08_visual_discipline_translation_visual_lint_everyday_prose_to_olog
+    a owl:NamedIndividual ;
+    rdfs:label "VisualLintTranslationEverydayproseToOlog" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_visual_lint ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_visual_lint_everyday_prose_to_olog__xlate_target_olog_visuallintcheck .
+
+silm:instances_papers_08_visual_discipline_translation_visual_lint_olog_to_everyday_prose
+    a owl:NamedIndividual ;
+    rdfs:label "VisualLintTranslationOlogToEverydayprose" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_visual_lint ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_visual_lint_olog_to_everyday_prose__xlate_target_everyday_prose_the_visual_lint_check .
+
+silm:instances_papers_08_visual_discipline_translation_visual_lint_olog_to_rdf
+    a owl:NamedIndividual ;
+    rdfs:label "VisualLintTranslationOlogToRdf" ;
+    silm:sourceNode silm:papers_08_visual_discipline_term_visual_lint ;
+    silm:targetNode silm:instances_papers_08_visual_discipline_translation_visual_lint_olog_to_rdf__xlate_target_rdf_silm_visuallintcheck .
+
+silm:instances_papers_08_visual_discipline_preferred_term_visual_polish
+    a owl:NamedIndividual ;
+    rdfs:label "P08VisualDisciplinePreferredTermVisualPolish" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_preferred_term_visual_polish .
+
+silm:instances_papers_08_visual_discipline_citation_w3crdf11concepts
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationW3crdf11concepts" .
+
+silm:instances_papers_08_visual_discipline_citation_w3cshacl
+    a owl:NamedIndividual ;
+    rdfs:label "P08CitationW3cshacl" .
+
+silm:instances_papers_08_visual_discipline_replacement_agents_rebuttals
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "AgentsRebuttalsReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:_agents_rebuttals_ ;
+    silm:targetNode silm:anchors_repo_rebuttal_dir .
+
+silm:instances_papers_08_visual_discipline_diagram_tab_08_14field__diagram_tab_08_14field
+    a owl:NamedIndividual ;
+    rdfs:label "tab:08-14field" .
+
+silm:instances_papers_08_visual_discipline_diagram_tab_08_mark_role__diagram_tab_08_mark_role
+    a owl:NamedIndividual ;
+    rdfs:label "tab:08-mark-role" .
+
+silm:instances_papers_08_visual_discipline_replacement_silmaril_wave8_replacement_atom
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8ReplacementAtomReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_replacement_atom ;
+    silm:targetNode silm:types_papers_relational_replacement .
+
+silm:instances_papers_08_visual_discipline_replacement_silmaril_wave8_theorem_unit
+    a owl:NamedIndividual ;
+    a cceo:Classification ;
+    rdfs:label "SilmarilWave8TheoremUnitReplacement" ;
+    silm:groundsIn cceo:Classification ;
+    silm:sourceNode silm:types_papers_silmaril_wave8_theorem_unit ;
+    silm:targetNode silm:types_papers_claim_atom_theorem_unit .
+
+silm:urn_silmaril_universal_anchor_node_enum_wave_role
+    a owl:NamedIndividual ;
+    rdfs:label "P08VisualDisciplineEnumMembershipWaveRoleBuilder" ;
+    rdfs:label "P08VisualDisciplineEnumMembershipWaveRolePolisher" ;
+    silm:sourceNode silm:urn_silmaril_universal_anchor_node_enum_wave_role .
+
+silm:instances_papers_08_visual_discipline_preferred_term_yoneda_hom_leg
+    a owl:NamedIndividual ;
+    rdfs:label "P08VisualDisciplinePreferredTermYonedaHomLeg" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_preferred_term_yoneda_hom_leg .
+
+silm:instances_papers_08_visual_discipline_terms_yoneda_traversal
+    a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.08_visual_discipline.terms.yoneda_traversal" ;
+    silm:hasSynonym "representable walk" ;
+    silm:sourceNode silm:instances_papers_08_visual_discipline_terms_yoneda_traversal .
+

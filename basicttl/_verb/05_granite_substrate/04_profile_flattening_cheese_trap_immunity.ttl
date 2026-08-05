@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_04_profile_flattening_cheese_trap_immunity__trap_04_profile_flattening_collapse__the_adapter_output_exhibits_ a owl:NamedIndividual ;
+    rdfs:label "04_profile_flattening collapse: the adapter output exhibits the 04ProfileFlattening failure by treating a partial storage view as the complete governed individual" .

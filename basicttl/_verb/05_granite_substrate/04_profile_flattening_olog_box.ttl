@@ -1,0 +1,2 @@
+silm:instances_papers_05_granite_substrate_chapters_07_failure_modes_sections_04_profile_flattening_olog_box__04profileflatteningbox a owl:NamedIndividual ;
+    rdfs:label "04ProfileFlatteningBox" .

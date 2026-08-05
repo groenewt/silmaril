@@ -1,0 +1,2 @@
+silm:instances_papers_02_music_sections_03_construction_dag_decomposition_step_11__step_y^out_construction a owl:NamedIndividual ;
+    rdfs:label "outgoing Yoneda profile of the construction DAG, viewed as the published-claim-emitting side" .

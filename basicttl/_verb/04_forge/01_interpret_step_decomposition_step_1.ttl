@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_01_interpret_step_decomposition_step_1__step_forge_morphism_for_01_interpret_step a owl:NamedIndividual ;
+    rdfs:label "CitedSource is a source object that has passed ingestion (it has a citation key and a source-boundary declaration). Spec is the schema-level commitment derived from it: a typed node in F_04 declaring the structure a Forge output must instantiate. interpret is the morphism connecting them." .

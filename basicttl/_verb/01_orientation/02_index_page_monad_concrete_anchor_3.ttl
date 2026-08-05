@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_11_concept_card_index_sections_02_index_page_monad_concrete_anchor_3 a owl:NamedIndividual ;
+    rdfs:label "02IndexPageMonadConcreteAnchor3" .

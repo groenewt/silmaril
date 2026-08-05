@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_olog_node_arrow_law_cheese_trap_immunity__trap_presheaf_collapsed_to_static_function_dropping_contravariance a owl:NamedIndividual ;
+    rdfs:label "presheaf_collapsed_to_static_function_dropping_contravariance" .

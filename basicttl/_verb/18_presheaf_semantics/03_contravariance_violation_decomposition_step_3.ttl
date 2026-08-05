@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_contravariance_violation_decomposition_step_3__step_presheaf_semantics_contravariance_violation a owl:NamedIndividual ;
+    rdfs:label "the categorical base topic underlying the Cheese-Trap: Contravariance Violated claim, grounded in the cited literature" .

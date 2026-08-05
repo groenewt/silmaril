@@ -1,0 +1,1 @@
+import unicodedata as DEPENDENCY

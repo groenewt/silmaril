@@ -1,0 +1,2 @@
+silm:instances_papers_07_the_canonical_question_chapters_01_answerability_profile_sections_03_epistemology_reader_entry_concrete_anchor_8 a owl:NamedIndividual ;
+    rdfs:label "P07AnswerabilityProfileEpistemologyReaderEntryConcreteAnchor8" .

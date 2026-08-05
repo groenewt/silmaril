@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_03_arrow_typing_contract_decomposition_step_6__step_forge_morphism_for_03_arrow_typing_contract a owl:NamedIndividual ;
+    rdfs:label "Arrow-typing assigns a checkable verb phrase before the arrow appears in any diagram; composition must preserve type integrity." .

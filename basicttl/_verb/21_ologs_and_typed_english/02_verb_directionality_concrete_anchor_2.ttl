@@ -1,0 +1,2 @@
+silm:instances_papers_21_ologs_and_typed_english_chapters_03_typed_verb_discipline_sections_02_verb_directionality_concrete_anchor_2_f_inv a owl:NamedIndividual ;
+    rdfs:label "VerbDirectionalityConcreteAnchor2" .

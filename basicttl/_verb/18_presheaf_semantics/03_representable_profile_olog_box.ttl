@@ -1,0 +1,2 @@
+silm:instances_papers_18_presheaf_semantics_03_representable_profile_olog_box__p18section03_representable_profileologbox a owl:NamedIndividual ;
+    rdfs:label "P18Section03_representable_profileOlogBox" .

@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_08_kg_cross_reference_decomposition_step_3__step_forge_morphism_for_08_kg_cross_reference a owl:NamedIndividual ;
+    rdfs:label "Category-theoretic base topic for KgCrossReference. — concrete forge-domain reading in section 'Knowledge-Graph Cross-Reference --- The Forge as Knowledge Map'." .

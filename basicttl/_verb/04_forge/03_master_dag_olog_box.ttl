@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_sections_03_master_dag_olog_box a owl:NamedIndividual ;
+    rdfs:label "OlogBox — 03_master_dag" .

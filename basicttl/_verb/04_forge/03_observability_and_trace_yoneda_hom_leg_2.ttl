@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_07_backend_routing_observability_sections_03_observability_and_trace_yoneda_hom_leg_2 a owl:NamedIndividual ;
+    rdfs:label "YonedaHomLeg — 03_observability_and_trace #2" .

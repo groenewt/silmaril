@@ -1,0 +1,2 @@
+silm:instances_papers_15_chapters_07_sections_01_olog_box__bridgetopaper19stagesnapshot a owl:NamedIndividual ;
+    rdfs:label "BridgeToPaper19StageSnapshot" .

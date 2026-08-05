@@ -1,0 +1,3 @@
+silm:instances_papers_01_orientation_chapters_02_typed_source_signature_sections_01_sorts_as_objects_concrete_anchor_9#mittensbodymassreading a owl:NamedIndividual ;
+    rdfs:label "01SortsAsObjectsConcreteAnchor9AddlBaseTopic" .
+silm:instances_papers_01_orientation_chapters_02_typed_source_signature_sections_01_sorts_as_objects_concrete_anchor_9#mittensbodymassreading silm:hasAdditionalAttribute "base_topic:free monad" .

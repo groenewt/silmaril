@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_03_cite_as_kleisli_arrow_decomposition_step_4__step_citemittensvetrecord77_=_eta_witnessmittensvetrecord77 a owl:NamedIndividual ;
+    rdfs:label "The Mittens fixture key is mittensVetRecord77. cite(mittensVetRecord77) = eta_Witness(mittensVetRecord77): a free term that stands for the veterinary record witness before any interpretation." .

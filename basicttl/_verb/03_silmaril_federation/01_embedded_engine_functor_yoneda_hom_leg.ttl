@@ -1,0 +1,3 @@
+silm: a owl:Class ;
+    rdfs:label "" ;
+    rdfs:comment "" .

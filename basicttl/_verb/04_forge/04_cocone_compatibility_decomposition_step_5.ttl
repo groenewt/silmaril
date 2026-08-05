@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_01_gate_discipline_sections_04_cocone_compatibility_decomposition_step_5__step_forge_morphism_for_04_cocone_compatibility a owl:NamedIndividual ;
+    rdfs:label "By the Yoneda lemma, the colimit is determined up to unique isomorphism by its Hom-profile. The compatibility condition is the formal statement that the Yoneda embedding preserves this colimit: every leg's representation in the Hom-set must agree with the universal cocone maps." .

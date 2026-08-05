@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_02_typing_law_sections_03_negative_regression_catalog_decomposition_step_5__step_forge_morphism_for_03_negative_regression_catalog a owl:NamedIndividual ;
+    rdfs:label "By Yoneda, each negative regression object is determined by the incoming proposes arrows and outgoing forbids arrows. The profile of NegReg_1 is: 'is approached by catus-collapse proposals; blocks identity assignments of taxonomy rows to the Mittens apex.'" .

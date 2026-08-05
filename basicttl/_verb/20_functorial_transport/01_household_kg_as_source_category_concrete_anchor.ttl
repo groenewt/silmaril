@@ -1,0 +1,8 @@
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_concrete_anchor__mittens a owl:NamedIndividual ;
+    rdfs:label "the concrete household cat called Mittens, identified by microchip 9, owner-fed daily, subject of household vet record 77" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_concrete_anchor__bodymassquality_77 a owl:NamedIndividual ;
+    rdfs:label "the household's record of Mittens' body-mass quality (scaled in kilograms, captured March 2026, log entry 77)" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_concrete_anchor__microchipid_9 a owl:NamedIndividual ;
+    rdfs:label "Mittens' implanted microchip's serial identifier (a 9-digit string registered with the household vet)" .
+silm:instances_papers_20_functorial_transport_chapters_01_functors_as_typed_cross_kg_mappings_sections_01_household_kg_as_source_category_concrete_anchor__housevetrecord_77 a owl:NamedIndividual ;
+    rdfs:label "the household-side aggregate vet record numbered 77, kept in the family's filing cabinet, that ties the body-mass measurement to the microchip registration" .

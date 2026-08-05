@@ -1,0 +1,3 @@
+#!/bin/sh
+printf '%s\n' 'original-domain-error' >&2
+exit 73

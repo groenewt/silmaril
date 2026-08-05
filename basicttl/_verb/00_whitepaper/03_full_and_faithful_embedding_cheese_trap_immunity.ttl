@@ -1,0 +1,2 @@
+silm:instances_papers_00_whitepaper_chapters_07_yoneda_profile_drill_sections_03_full_and_faithful_embedding_cheese_trap_immunity__trap_competing_cocone_elevation a owl:NamedIndividual ;
+    rdfs:label "competing_cocone_elevation" .

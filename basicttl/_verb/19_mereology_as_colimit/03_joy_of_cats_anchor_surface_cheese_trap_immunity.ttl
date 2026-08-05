@@ -1,0 +1,2 @@
+silm:instances_papers_19_mereology_as_colimit_chapters_02_sources_and_closure_sections_03_joy_of_cats_anchor_surface_cheese_trap_immunity__trap_part_list_collapse_or_identity_on_single_leg a owl:NamedIndividual ;
+    rdfs:label "part_list_collapse_or_identity_on_single_leg" .

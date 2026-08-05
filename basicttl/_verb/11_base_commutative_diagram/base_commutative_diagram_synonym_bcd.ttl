@@ -1,0 +1,4 @@
+silm:instances_papers_11_base_commutative_diagram_terms_base_commutative_diagram a owl:NamedIndividual ;
+    rdfs:label "urn:silmaril:entity#instances.papers.11_base_commutative_diagram.terms.base_commutative_diagram" .
+silm:instances_papers_11_base_commutative_diagram_terms_base_commutative_diagram silm:hasSynonym "BCD" .
+silm:instances_papers_11_base_commutative_diagram_terms_base_commutative_diagram silm:sourceNode silm:instances_papers_11_base_commutative_diagram_terms_base_commutative_diagram .

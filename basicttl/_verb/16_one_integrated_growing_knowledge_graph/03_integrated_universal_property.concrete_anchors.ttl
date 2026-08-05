@@ -1,0 +1,8 @@
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors__combinedsourcepool a owl:NamedIndividual ;
+    rdfs:label "the disjoint union of the four per-entity source diagrams plus typed cross-entity arrows; concretely, the combined pool of every Mittens-source, every Pumpkin-source, every Vet77-source, and every Household-source" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors__flatcolimitapex a owl:NamedIndividual ;
+    rdfs:label "the flat colimit of the combined source pool; canonically isomorphic to HouseholdKG" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors__fubinicanonicaliso a owl:NamedIndividual ;
+    rdfs:label "the canonical isomorphism kappa : colim D^flat -> HouseholdKG promised by Joy of Cats Section 11.13" .
+silm:instances_papers_16_one_integrated_growing_knowledge_graph_chapters_01_integration_as_colimit_of_colimits_sections_03_integrated_universal_property_concrete_anchors__audittrailquery a owl:NamedIndividual ;
+    rdfs:label "a concrete competing cocone target: the auditor query asking which arrows of the ontology supplied the annual vet bill" .

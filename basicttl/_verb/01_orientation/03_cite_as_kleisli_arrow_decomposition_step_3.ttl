@@ -1,0 +1,2 @@
+silm:instances_papers_01_orientation_chapters_14_kleisli_enrichment_pipeline_sections_03_cite_as_kleisli_arrow_decomposition_step_3__step_joc_§20_1__eta_b__b__>_tb_is_the_unit_of_the_monad a owl:NamedIndividual ;
+    rdfs:label "JoC §20.1 defines the unit eta_B: B -> T(B) as an embedding. Applying eta_Witness to a source key produces the smallest free term of sort Witness. The monad axiom eta bind f = f confirms cite then type = type directly." .

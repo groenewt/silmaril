@@ -1,0 +1,2 @@
+silm:instances_papers_04_forge_chapters_03_materialization_spine_sections_03_validate_step_decomposition_step_1__step_forge_morphism_for_03_validate_step a owl:NamedIndividual ;
+    rdfs:label "Shape_S is a validation constraint node. Candidate_C is the template output before validation. CheckedArtifact_A is the template output after passing the shape gate." .
