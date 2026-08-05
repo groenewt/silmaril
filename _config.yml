@@ -1,0 +1,51 @@
+title: "Silmaril | Computational Economics Laboratory"
+description: "A prescriptive framework for innovation-driven economic growth through computational game theory, category-theoretic semantics, and strategic interaction modeling."
+baseurl: ""
+url: "https://groenewt.github.io"
+author: "Tristan Groenewold"
+email: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Collections
+collections:
+  concepts:
+    output: true
+    permalink: /:collection/:name/
+  demos:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "concepts"
+    values:
+      layout: "concept"
+  - scope:
+      path: ""
+      type: "demos"
+    values:
+      layout: "demo"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - .jekyll-metadata
