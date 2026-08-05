@@ -1,0 +1,43 @@
+
+# Silmaril SPARQL Query Library
+
+# Q1: List all papers with their concrete anchors
+# PREFIX silm: <urn:silmaril:entity#>
+# PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?paper ?anchor ?label WHERE {
+    ?paper a owl:NamedIndividual .
+    ?paper rdfs:label ?label .
+    FILTER (strstarts(str(?paper), str(silm:instances_papers_)))
+} ORDER BY ?paper
+
+# Q2: Find all cheese-trap immunity mechanisms
+# PREFIX silm: <urn:silmaril:entity#>
+# PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?immunity ?label ?comment WHERE {
+    ?immunity a silm:cheesetrapimmunity .
+    OPTIONAL { ?immunity rdfs:label ?label }
+    OPTIONAL { ?immunity rdfs:comment ?comment }
+}
+
+# Q3: Count entities per paper
+# PREFIX silm: <urn:silmaril:entity#>
+SELECT ?paper (COUNT(?entity) AS ?count) WHERE {
+    ?entity a owl:NamedIndividual .
+    FILTER (strstarts(str(?entity), str(silm:instances_papers_)))
+    BIND (strbefore(strafter(str(?entity), str(silm:instances_papers_)), ".chapters") AS ?paper)
+} GROUP BY ?paper ORDER BY DESC(?count)
+
+# Q4: Find all decomposition steps without examples
+# PREFIX silm: <urn:silmaril:entity#>
+SELECT ?step ?label WHERE {
+    ?step a silm:decompositionstep .
+    ?step rdfs:label ?label .
+    FILTER NOT EXISTS { ?step silm:hasExample ?ex }
+}
+
+# Q5: Full-text search across long descriptions
+# PREFIX silm: <urn:silmaril:entity#>
+SELECT ?entity ?desc WHERE {
+    ?entity silm:hasLongDescription ?desc .
+    FILTER (contains(lcase(str(?desc)), "mittens"))
+}

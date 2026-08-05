@@ -1,0 +1,24 @@
+
+# Silmaril GeoSPARQL Query Library
+# NOTE: The current Silmaril substrate does not contain explicit geospatial
+# data, but these queries are ready for when location-aware concrete anchors
+# are added (e.g., Tartu Animal Clinic coordinates).
+
+# GQ1: Find all entities within a bounding box (when geo data is added)
+# PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+# PREFIX sf: <http://www.opengis.net/ont/sf#>
+SELECT ?entity ?wkt WHERE {
+    ?entity geo:hasGeometry ?geom .
+    ?geom geo:asWKT ?wkt .
+    FILTER (geof:sfWithin(?wkt,
+        "POLYGON((24.7 58.3, 24.8 58.3, 24.8 58.4, 24.7 58.4, 24.7 58.3))"^^geo:wktLiteral))
+}
+
+# GQ2: Find entities near a point (buffer search)
+# PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+SELECT ?entity ?wkt WHERE {
+    ?entity geo:hasGeometry ?geom .
+    ?geom geo:asWKT ?wkt .
+    FILTER (geof:sfWithin(?wkt,
+        geof:buffer("POINT(24.745 58.378)"^^geo:wktLiteral, 0.01)))
+}
