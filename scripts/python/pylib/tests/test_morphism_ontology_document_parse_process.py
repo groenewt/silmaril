@@ -26,4 +26,4 @@ def test_parse_process_counts_consolidated_document_triples() -> None:
 
     assert completed.returncode == 0
     assert completed.stderr == b""
-    assert completed.stdout == b"triple-count=81454\n"
+    assert completed.stdout == b"triple-count=81526\n"

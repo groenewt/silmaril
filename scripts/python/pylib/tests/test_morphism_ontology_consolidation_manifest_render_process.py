@@ -23,11 +23,11 @@ def test_manifest_render_process_reproduces_committed_manifest_bytes(
     tmp_path: Path,
 ) -> None:
     corpus_tally = tmp_path / "corpus-tally"
-    corpus_tally.write_bytes(b"30083\n")
+    corpus_tally.write_bytes(b"30084\n")
     statement_tally = tmp_path / "statement-tally"
-    statement_tally.write_bytes(b"177619\n")
+    statement_tally.write_bytes(b"177683\n")
     entity_tally = tmp_path / "entity-tally"
-    entity_tally.write_bytes(b"59786\n")
+    entity_tally.write_bytes(b"59794\n")
 
     completed = subprocess.run(
         (

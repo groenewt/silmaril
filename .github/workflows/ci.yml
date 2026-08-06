@@ -44,7 +44,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install semantic dependencies
-        run: pip install rdflib pyshacl
+        run: pip install rdflib==7.6.0 pyshacl==0.40.1
       - name: Parse, conformance, and query gates
         run: make -C scripts/python/pylib morphism-ontology-validation
 
@@ -71,7 +71,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install test dependencies
-        run: pip install pytest rdflib pyshacl
+        run: pip install pytest==9.1.1 rdflib==7.6.0 pyshacl==0.40.1
       - name: Python syntax gate
         run: python3 -m compileall -q scripts
       - name: Shell syntax gate

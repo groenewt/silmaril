@@ -9,10 +9,10 @@
 
 silm:OntologyManifest a owl:Ontology ;
     rdfs:label "Silmaril Consolidated Ontology" ;
-    rdfs:comment "Consolidated from 30083 source TTL files" ;
+    rdfs:comment "Consolidated from 30084 source TTL files" ;
     owl:versionInfo "1.0.0" .
 
 silm:ConsolidatedGraph a void:Dataset ;
     rdfs:label "Silmaril Knowledge Graph" ;
-    void:triples "177619"^^xsd:integer ;
-    void:entities "59786"^^xsd:integer .
+    void:triples "177683"^^xsd:integer ;
+    void:entities "59794"^^xsd:integer .
