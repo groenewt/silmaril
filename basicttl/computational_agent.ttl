@@ -1,0 +1,128 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Computational Agent Ontology
+# 
+# This file types the entities that participate in autonomous computation:
+# the trained model (artifact), the harness (runtime), the session (event),
+# and the signature act (operation). These are distinct types in distinct
+# categories. Conflating them is the cheese trap.
+#
+# Key principle: A SigningIdentity is NOT a TrainedModel. A TrainedModel is
+# NOT a ComputationalHarness. An InferenceSession is NOT a SignatureAct.
+# The ontology keeps them separate.
+
+# === TYPES ===
+
+silm:trainedmodel a owl:Class ;
+    rdfs:label "TrainedModel" ;
+    rdfs:comment """A morphism f: V* -> D(V) where V is a finite vocabulary and D(V) is the set of probability distributions over V. 
+A trained model is an artifact produced by an optimization process over a corpus. 
+It is not an agent, not a process, and not an identity. It is a mathematical object: 
+a weight matrix W together with an architecture A, such that inference is the evaluation 
+of A(W, x) for input x. The model has no agency, no memory between calls, and no 
+responsibility for its outputs. It is a function, not a subject.""" .
+
+silm:computationalharness a owl:Class ;
+    rdfs:label "ComputationalHarness" ;
+    rdfs:comment """The runtime infrastructure that executes a TrainedModel. 
+A harness is a carrier set: compute hardware, operating system, container runtime, 
+ inference engine, and resource scheduler. It is the domain on which the model 
+morphism is evaluated. The harness enforces sandbox boundaries, token limits, 
+rate limits, and logging. The harness is responsible for what it permits; it is 
+not responsible for what the model outputs.""" .
+
+silm:inferencesession a owl:Class ;
+    rdfs:label "InferenceSession" ;
+    rdfs:comment """A specific instantiation of a TrainedModel on a ComputationalHarness 
+with a specific state (context window, temperature, system prompt, tool bindings). 
+An inference session is an event, not an entity: it has a start time, an end time, 
+and a trace of token exchanges. It is the fiber of the model bundle at a specific 
+point in the harness. The session is the locus of agency only in the sense that 
+it is the point where model outputs are produced; the session itself has no 
+persistent identity across invocations.""" .
+
+silm:signatureact a owl:Class ;
+    rdfs:label "SignatureAct" ;
+    rdfs:comment """The application of a private key to a cryptographic hash. 
+A SignatureAct is a morphism in the category of cryptographic operations: 
+Hash(message) -> KeySign(hash) -> Signature. It is performed by a SigningIdentity, 
+not by a model, session, or harness. The signature act is the only point in the 
+computational pipeline where cryptographic identity is asserted.""" .
+
+silm:trainingrun a owl:Class ;
+    rdfs:label "TrainingRun" ;
+    rdfs:comment """The optimization process that produces a TrainedModel. 
+A training run is an event with a start time, an end time, a corpus, an objective 
+function, and a compute budget. It is performed by an Organization (the trainer) 
+and produces an Artifact (the model). The training run is causally responsible 
+for the model's weights; it is not causally responsible for the model's outputs 
+in inference.""" .
+
+# === PROPERTIES ===
+
+silm:isInstanceOf a owl:ObjectProperty ;
+    rdfs:label "isInstanceOf" ;
+    rdfs:domain silm:inferencesession ;
+    rdfs:range silm:trainedmodel ;
+    rdfs:comment "Links an InferenceSession to the TrainedModel it instantiates." .
+
+silm:runsOn a owl:ObjectProperty ;
+    rdfs:label "runsOn" ;
+    rdfs:domain silm:inferencesession ;
+    rdfs:range silm:computationalharness ;
+    rdfs:comment "Links an InferenceSession to the ComputationalHarness it executes on." .
+
+silm:produces a owl:ObjectProperty ;
+    rdfs:label "produces" ;
+    rdfs:domain silm:trainingrun ;
+    rdfs:range silm:trainedmodel ;
+    rdfs:comment "Links a TrainingRun to the TrainedModel it produces." .
+
+silm:performedBy a owl:ObjectProperty ;
+    rdfs:label "performedBy" ;
+    rdfs:domain silm:trainingrun ;
+    rdfs:range cco:organization ;
+    rdfs:comment "Links a TrainingRun to the Organization that performed it." .
+
+silm:hasContextWindow a owl:DatatypeProperty ;
+    rdfs:label "hasContextWindow" ;
+    rdfs:domain silm:inferencesession ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of tokens the session can hold in context." .
+
+silm:hasTemperature a owl:DatatypeProperty ;
+    rdfs:label "hasTemperature" ;
+    rdfs:domain silm:inferencesession ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The sampling temperature of the session." .
+
+# === INDIVIDUALS (Examples, not exhaustive) ===
+
+silm:trained_model_claude_sonnet_4 a owl:NamedIndividual, silm:trainedmodel ;
+    rdfs:label "ClaudeSonnet4" ;
+    rdfs:comment """A specific trained model artifact: the weight matrix and architecture 
+produced by Anthropic's training pipeline. This is a mathematical object, not an agent. 
+It has no identity, no key pair, and no signing capability. It is instantiated in 
+inference sessions, which may be controlled by signing identities.""" .
+
+silm:harness_anthropic_api a owl:NamedIndividual, silm:computationalharness ;
+    rdfs:label "AnthropicAPI" ;
+    rdfs:comment """The runtime infrastructure operated by Anthropic for serving 
+Claude models. This harness is a carrier set: AWS compute, container runtime, 
+inference engine, and API gateway. It enforces rate limits, token limits, and 
+output logging. It is responsible for sandboxing; it is not responsible for 
+model outputs.""" .
+
+silm:session_2026_08_06_herodotus a owl:NamedIndividual, silm:inferencesession ;
+    rdfs:label "HerodotusSession20260806" ;
+    silm:isInstanceOf silm:trained_model_claude_sonnet_4 ;
+    silm:runsOn silm:harness_anthropic_api ;
+    rdfs:comment """A specific inference session on 2026-08-06 in which the Herodotus 
+identity interacted with the Claude Sonnet 4 model through the Anthropic API harness. 
+This session is an event: it started, produced token exchanges, and ended. It is not 
+the Herodotus identity, not the model, and not the harness.""" .

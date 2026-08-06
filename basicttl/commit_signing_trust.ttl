@@ -13,22 +13,32 @@
 # the only supported way to change trust. SHACL shapes guarding this model
 # live in the typed consolidation constants under
 # scripts/python/pylib/src/config/constants/morphism/ontology/consolidation/.
+#
+# NOTE: The ontology of computational agents (trained models, harnesses,
+# inference sessions) has been moved to basicttl/computational_agent.ttl.
+# This file concerns ONLY cryptographic identity and trust policy.
+# A SigningIdentity is NOT a model, NOT a session, and NOT a harness.
+# See the PR #2 Review Addendum for the full argument.
 
 silm:signingidentity a owl:Class ;
     rdfs:label "SigningIdentity" ;
-    rdfs:comment "An agent that authors and signs commits in this repository: a human maintainer, an autonomous agent (openclaw, Claude), or a platform service (GitHub web-flow). Each identity signs with one or more SigningKeys." .
+    rdfs:comment """An entity that authors and signs commits in this repository. 
+A SigningIdentity is a cryptographic entity: a key pair, a policy class, and an 
+email address. It is NOT a trained model, NOT an inference session, and NOT a 
+computational harness. These are distinct types in distinct categories, and 
+conflating them is the cheese trap.""" .
 
 silm:signingkey a owl:Class ;
     rdfs:label "SigningKey" ;
-    rdfs:comment "A concrete OpenPGP public key: 40-hex-character fingerprint, algorithm, the armored key file committed under keys/, and the trust policy class the key carries. The secret half is never represented in the ontology or the repository." .
+    rdfs:comment """A concrete OpenPGP public key: 40-hex-character fingerprint, 
+algorithm, the armored key file committed under keys/, and the trust policy class 
+the key carries. The secret half is never represented in the ontology or the repository.""" .
 
 silm:trustpolicyclass a owl:Class ;
     rdfs:label "TrustPolicyClass" ;
-    rdfs:comment "The policy role a SigningKey plays when scripts/verify-signatures.sh classifies commits: release (maintainer/openclaw agent), web-flow (GitHub web UI commits), or agent (session-scoped autonomous agent keys)." .
-
-silm:agentmodel a owl:Class ;
-    rdfs:label "AgentModel" ;
-    rdfs:comment "The language model an agent identity runs on. Recorded so that an autonomous signing identity names not only its key material but the model that animates the session behind the signature." .
+    rdfs:comment """The policy role a SigningKey plays when scripts/verify-signatures.sh 
+classifies commits: release (maintainer/openclaw agent), web-flow (GitHub web UI commits), 
+or agent (session-scoped autonomous agent keys).""" .
 
 silm:signsWith a owl:ObjectProperty ;
     rdfs:label "signsWith" ;
@@ -41,12 +51,6 @@ silm:hasPolicyClass a owl:ObjectProperty ;
     rdfs:domain silm:signingkey ;
     rdfs:range silm:trustpolicyclass ;
     rdfs:comment "Links a SigningKey to the TrustPolicyClass it carries in the verifier's policy table." .
-
-silm:hasAgentModel a owl:ObjectProperty ;
-    rdfs:label "hasAgentModel" ;
-    rdfs:domain silm:signingidentity ;
-    rdfs:range silm:agentmodel ;
-    rdfs:comment "Links a SigningIdentity to the AgentModel it runs on. Only autonomous agent identities carry this arrow; human and platform identities have no model." .
 
 silm:hasFingerprint a owl:DatatypeProperty ;
     rdfs:label "hasFingerprint" ;
@@ -80,15 +84,14 @@ silm:trust_policy_agent a owl:NamedIndividual, silm:trustpolicyclass ;
     rdfs:label "TrustPolicyAgent" ;
     rdfs:comment "Session-agent trust: keys minted by autonomous agent sessions. Secret halves are session-ephemeral by design; superseded keys stay listed so historical commits keep verifying." .
 
-silm:agent_model_fable_5 a owl:NamedIndividual, silm:agentmodel ;
-    rdfs:label "Fable5" ;
-    rdfs:comment "Fable 5 (Anthropic) — the language model behind the Claude session identity. The identity names the agent; this individual names the model the agent runs on." .
-
 silm:signing_identity_herodotus a owl:NamedIndividual, silm:signingidentity ;
     rdfs:label "Herodotus" ;
     silm:hasEmail "herodotus@silmaril.internal" ;
     silm:signsWith silm:signing_key_herodotus_2026 ;
-    rdfs:comment "The openclaw agent — the repository's primary maintainer identity." .
+    rdfs:comment """The openclaw agent — the repository's primary maintainer identity. 
+This is a cryptographic entity with a key pair. It is NOT the Claude model, NOT an 
+inference session, and NOT a computational harness. The identity may CONTROL sessions 
+that instantiate models, but the identity itself is a persistent cryptographic object.""" .
 
 silm:signing_identity_github_web_flow a owl:NamedIndividual, silm:signingidentity ;
     rdfs:label "GitHub" ;
@@ -100,8 +103,13 @@ silm:signing_identity_claude a owl:NamedIndividual, silm:signingidentity ;
     rdfs:label "Claude" ;
     silm:hasEmail "claude@silmaril.internal" ;
     silm:signsWith silm:signing_key_claude_2026 ;
-    silm:hasAgentModel silm:agent_model_fable_5 ;
-    rdfs:comment "The Claude session agent — a signing identity deliberately distinct from the openclaw agent (Herodotus)." .
+    rdfs:comment """The Claude session agent — a signing identity deliberately distinct 
+from the openclaw agent (Herodotus). This is a cryptographic entity: a key pair, an 
+email, and a policy class. It is NOT the Claude model (a TrainedModel), NOT the 
+Anthropic API harness (a ComputationalHarness), and NOT any specific inference session 
+(an event). The identity may CONTROL sessions that instantiate the model, but the 
+identity itself is a persistent cryptographic object. See basicttl/computational_agent.ttl 
+for the proper typing of models, harnesses, and sessions.""" .
 
 silm:signing_key_herodotus_2026 a owl:NamedIndividual, silm:signingkey ;
     rdfs:label "HerodotusKey2026" ;

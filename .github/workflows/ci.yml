@@ -47,6 +47,11 @@ jobs:
         run: pip install rdflib==7.6.0 pyshacl==0.40.1
       - name: Parse, conformance, and query gates
         run: make -C scripts/python/pylib morphism-ontology-validation
+      - name: Ontology depth check (advisory)
+        run: |
+          python3 scripts/ontology-depth-check.py basicttl/ || true
+          echo "Note: Depth check is advisory until legacy files are cleaned up"
+        continue-on-error: true
 
   provenance:
     name: Signature Policy
