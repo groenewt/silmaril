@@ -10,6 +10,41 @@ env:
   SILMARIL_PYTHON: python3
 
 jobs:
+  ui-constructor:
+    name: UI Constructor Sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate CSS from ontology
+        run: |
+          python3 scripts/ui-constructor.py \
+            --input basicttl/ui_constructor.ttl \
+            --output docs/assets/css/generated.css \
+            --format css
+      - name: Generate HTML from ontology
+        run: |
+          python3 scripts/ui-constructor.py \
+            --input basicttl/ui_constructor.ttl \
+            --output docs/_includes/build-status.html \
+            --format html
+      - name: Verify generated CSS matches committed
+        run: |
+          git diff --exit-code docs/assets/css/generated.css || {
+            echo "UI CSS drift: docs/assets/css/generated.css does not match regeneration from basicttl/ui_constructor.ttl"
+            exit 1
+          }
+      - name: Verify generated HTML matches committed
+        run: |
+          git diff --exit-code docs/_includes/build-status.html || {
+            echo "UI HTML drift: docs/_includes/build-status.html does not match regeneration from basicttl/ui_constructor.ttl"
+            exit 1
+          }
+      - name: UI constructor sync OK
+        run: echo "UI assets in sync with ontology"
+
   site:
     name: Jekyll Site Build
     runs-on: ubuntu-latest
