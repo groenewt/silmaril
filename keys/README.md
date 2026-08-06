@@ -1,7 +1,7 @@
 # Signing Keys & Trust Manifest
 
 Committed public keys and the trust manifest driving
-`scripts/verify-signatures.sh`. The authoritative trust model lives in the
+the typed provenance pipeline. The authoritative trust model lives in the
 ontology — `basicttl/commit_signing_trust.ttl` — and this directory's manifest
 is generated from it.
 
@@ -17,9 +17,10 @@ is generated from it.
 ## Verifying
 
 ```bash
-bash scripts/verify-signatures.sh            # default policy, full history
-bash scripts/verify-signatures.sh --report   # classify only
-bash scripts/verify-signatures.sh --strict   # GOOD-only gate
+export SILMARIL_PYTHON=$(command -v python3)
+make -C scripts/python/pylib morphism-provenance-commit-policy-default  # default policy
+make -C scripts/python/pylib morphism-provenance-commit-policy-report   # classify only
+make -C scripts/python/pylib morphism-provenance-commit-policy-strict   # GOOD-only gate
 ```
 
 The verifier imports these keys into an ephemeral keyring — your personal
@@ -40,8 +41,11 @@ GnuPG keyring is never read or written.
 3. Regenerate the derived artifacts:
 
    ```bash
-   python3 scripts/generate-trust-manifest.py
-   python3 scripts/consolidate-ontology.py --output-dir ontology/
+   export SILMARIL_PYTHON=$(command -v python3)
+   make -C scripts/python/pylib morphism-provenance-trust-manifest
+   cp scripts/python/pylib/build/morphism/provenance/trust/manifest/render.out keys/trust-manifest.txt
+   make -C scripts/python/pylib morphism-ontology-consolidation
+   cp scripts/python/pylib/build/morphism/ontology/consolidation/{silmaril-consolidated.ttl,shapes.ttl,queries.sparql,geosparql.sparql,manifest.ttl} ontology/
    ```
 
 4. Commit the TTL, the key file, the manifest, and the regenerated ontology

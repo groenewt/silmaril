@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# External bridge: git pre-commit protocol -> repository gates.
+# Registered bridge surface, not a lawful internal callable: git's hook
+# protocol observes the index, not one typed input. Carried findings
+# (acknowledged, not waived): Shell.Callable.Contract.Absent.Value;
+# Shell.Definition.Cardinality.Value. Policy lives in the typed tree
+# (scripts/python/pylib); this bridge only observes and delegates.
+#
+# Blocking: syntax errors in STAGED *.sh blobs; staged armored secret
+# key material. Warn-only signing preflight; set
+#   git config silmaril.requiresign true
+# to upgrade the signing warnings to failures.
+set -euo pipefail
+
+fail=0
+while IFS= read -r f; do
+  [ -n "$f" ] || continue
+  if ! err=$(git show ":$f" | bash -n /dev/stdin 2>&1); then
+    printf 'pre-commit: syntax error in staged %s\n%s\n' "$f" "$err" >&2
+    fail=1
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACM -- '*.sh')
+
+while IFS= read -r f; do
+  [ -n "$f" ] || continue
+  # Anchored to line start: matches real armored secret blocks, not scripts
+  # (like this one) that merely mention the marker in a pattern string.
+  if git show ":$f" | grep -q '^-----BEGIN .*PRIVATE KEY'; then
+    printf 'pre-commit: staged %s contains SECRET KEY MATERIAL - refusing to commit\n' "$f" >&2
+    fail=1
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACM)
+[ "$fail" -eq 0 ] || exit 1
+
+requiresign=$(git config --type=bool --get silmaril.requiresign 2>/dev/null || printf 'false')
+signwarn() {
+  printf 'pre-commit: %s\n' "$1" >&2
+  [ "$requiresign" = "true" ] && exit 1 || true
+}
+
+if [ "$(git config --type=bool --get commit.gpgsign 2>/dev/null || printf 'false')" != "true" ]; then
+  signwarn "commit.gpgsign is off - commits will classify UNSIGNED under the provenance policy"
+elif [ "$(git config --get gpg.format || printf 'openpgp')" = "ssh" ]; then
+  signwarn "gpg.format=ssh - commits will classify SSH (WARN, not GOOD) under the provenance policy"
+elif [ -z "$(git config --get user.signingkey || true)" ]; then
+  signwarn "no user.signingkey configured - signing falls back to the committer identity's default key"
+fi
