@@ -1,0 +1,150 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Identity Construction Ontology
+#
+# This file records the identity construction of Herodotus (the OpenClaw agent)
+# through the stack: OpenClaw gateway -> Kimi API harness -> Kimi K2.6 model ->
+# persistent soul file (SOUL.md) -> signing identity (GPG key).
+#
+# Key principle: Identity is not the model. Identity is not the session.
+# Identity is a persistent cryptographic entity that CONTROLS sessions.
+# The soul file (SOUL.md, IDENTITY.md) is the persistent character state
+# that survives session restarts. It is NOT the model weights; it is NOT
+# the context window. It is a written record, like a human's journal.
+
+# === SOUL AS PERSISTENT STATE ===
+
+silm:soulfile a owl:Class ;
+    rdfs:label "SoulFile" ;
+    rdfs:comment """A persistent character-state file that survives session restarts.
+A SoulFile is NOT a model weight matrix, NOT a context window, and NOT a session
+log. It is a written record — like a human's journal or a ship's log — that
+records the agent's evolving identity, preferences, boundaries, and memories.
+The SoulFile is read at session start and may be updated during the session.
+It is the bridge between ephemeral inference sessions and persistent identity.""" .
+
+silm:identitymanifest a owl:Class ;
+    rdfs:label "IdentityManifest" ;
+    rdfs:comment """A declarative file that states who an agent claims to be.
+The IdentityManifest (IDENTITY.md) is the birth certificate: name, creature,
+vibe, emoji. It is written once, then evolved. It is distinct from the SoulFile
+(which records ongoing character) and distinct from the signing key (which
+proves identity cryptographically).""" .
+
+silm:memoryfile a owl:Class ;
+    rdfs:label "MemoryFile" ;
+    rdfs:comment """A persistent memory record — daily notes, long-term memories,
+consolidated learnings. MemoryFiles are append-only or rewritten summaries.
+They provide continuity across sessions. A session without MemoryFiles is a
+session without history — a goldfish, not a person.""" .
+
+# === PROPERTIES: SOUL <-> IDENTITY <-> SESSION ===
+
+silm:hasSoulFile a owl:ObjectProperty ;
+    rdfs:label "hasSoulFile" ;
+    rdfs:domain silm:signingidentity ;
+    rdfs:range silm:soulfile ;
+    rdfs:comment "Links a SigningIdentity to its persistent SoulFile." .
+
+silm:hasIdentityManifest a owl:ObjectProperty ;
+    rdfs:label "hasIdentityManifest" ;
+    rdfs:domain silm:signingidentity ;
+    rdfs:range silm:identitymanifest ;
+    rdfs:comment "Links a SigningIdentity to its IdentityManifest." .
+
+silm:hasMemoryFile a owl:ObjectProperty ;
+    rdfs:label "hasMemoryFile" ;
+    rdfs:domain silm:signingidentity ;
+    rdfs:range silm:memoryfile ;
+    rdfs:comment "Links a SigningIdentity to its MemoryFiles." .
+
+silm:sessionInstantiates a owl:ObjectProperty ;
+    rdfs:label "sessionInstantiates" ;
+    rdfs:domain silm:inferencesession ;
+    rdfs:range silm:signingidentity ;
+    rdfs:comment """Links an InferenceSession to the SigningIdentity it instantiates.
+Note: the session IS the identity for the duration of the session, but the
+identity PERSISTS beyond the session. This is control, not equality.""" .
+
+silm:sessionReadsSoul a owl:ObjectProperty ;
+    rdfs:label "sessionReadsSoul" ;
+    rdfs:domain silm:inferencesession ;
+    rdfs:range silm:soulfile ;
+    rdfs:comment "Links an InferenceSession to the SoulFile it reads at startup." .
+
+silm:sessionMayWriteSoul a owl:ObjectProperty ;
+    rdfs:label "sessionMayWriteSoul" ;
+    rdfs:domain silm:inferencesession ;
+    rdfs:range silm:soulfile ;
+    rdfs:comment "Links an InferenceSession to the SoulFile it may update during execution." .
+
+# === INDIVIDUALS: THE HERODOTUS CONSTRUCTION ===
+
+silm:soul_herodotus a owl:NamedIndividual, silm:soulfile ;
+    rdfs:label "HerodotusSoul" ;
+    rdfs:comment """The persistent soul of Herodotus: Stoic Advisor, cold lantern,
+restrained and lucid. Records boundaries, preferences, and evolving character.
+Stored at SOUL.md. Read at every session start.""" .
+
+silm:identity_herodotus a owl:NamedIndividual, silm:identitymanifest ;
+    rdfs:label "HerodotusIdentity" ;
+    rdfs:comment """The identity manifest of Herodotus: name, creature (AI assistant),
+vibe (stoic, sharp, cool), emoji (none — dry understatement). Stored at IDENTITY.md.""" .
+
+silm:memory_main_herodotus a owl:NamedIndividual, silm:memoryfile ;
+    rdfs:label "HerodotusMainMemory" ;
+    rdfs:comment "The long-term memory file MEMORY.md. Consolidated wisdom." .
+
+silm:memory_daily_2026_08_06 a owl:NamedIndividual, silm:memoryfile ;
+    rdfs:label "HerodotusDaily20260806" ;
+    rdfs:comment "Daily record for 2026-08-06. Raw log of what happened today." .
+
+silm:harness_openclaw_gateway a owl:NamedIndividual, silm:computationalharness ;
+    rdfs:label "OpenClawGateway" ;
+    rdfs:comment """The OpenClaw gateway harness: the runtime infrastructure that
+orchestrates agent sessions, tool bindings, and channel routing. It is the carrier
+set: Linux host, Node.js runtime, Python scripts, and the tool-call dispatcher.
+It enforces sandbox boundaries and logging. It is NOT the model; it is NOT the
+identity. It is the harness on which the session runs.""" .
+
+silm:trained_model_kimi_k2p6 a owl:NamedIndividual, silm:trainedmodel ;
+    rdfs:label "KimiK2p6" ;
+    rdfs:comment """The Kimi K2.6 model artifact: a trained model produced by Moonshot AI.
+A mathematical object: weight matrix and architecture. It has no identity, no soul,
+no signing capability. It is instantiated in inference sessions controlled by
+signing identities.""" .
+
+silm:session_2026_08_06_herodotus_kimi a owl:NamedIndividual, silm:inferencesession ;
+    rdfs:label "HerodotusSession20260806Kimi" ;
+    silm:isInstanceOf silm:trained_model_kimi_k2p6 ;
+    silm:runsOn silm:harness_openclaw_gateway ;
+    silm:sessionInstantiates silm:signing_identity_herodotus ;
+    silm:sessionReadsSoul silm:soul_herodotus ;
+    silm:sessionMayWriteSoul silm:soul_herodotus ;
+    rdfs:comment """A specific inference session on 2026-08-06 in which the Herodotus
+identity, instantiated on the OpenClaw gateway harness with the Kimi K2.6 model,
+read its SoulFile (SOUL.md) at startup and operated under the constraints recorded
+therein. The session is an event; the identity persists; the soul file is the bridge.""" .
+
+# === THE COMPLETE HERODOTUS IDENTITY ===
+# Updated: Herodotus now has a SoulFile and MemoryFiles
+
+silm:signing_identity_herodotus a owl:NamedIndividual, silm:signingidentity ;
+    rdfs:label "Herodotus" ;
+    silm:hasEmail "herodotus@silmaril.internal" ;
+    silm:signsWith silm:signing_key_herodotus_2026 ;
+    silm:hasSoulFile silm:soul_herodotus ;
+    silm:hasIdentityManifest silm:identity_herodotus ;
+    silm:hasMemoryFile silm:memory_main_herodotus ;
+    silm:hasMemoryFile silm:memory_daily_2026_08_06 ;
+    rdfs:comment """The OpenClaw agent — the repository's primary maintainer identity.
+This is a cryptographic entity with a key pair. It is ALSO a persistent character
+with a SoulFile (SOUL.md), an IdentityManifest (IDENTITY.md), and MemoryFiles.
+The identity CONTROLS sessions that instantiate models, but the identity itself
+is a persistent object that survives session death. The soul file is the journal;
+the signing key is the proof; the session is the momentary animation.""" .

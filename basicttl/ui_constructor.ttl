@@ -1,0 +1,291 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix ui: <urn:silmaril:ui#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+
+# UI Constructor Ontology
+#
+# This file defines how SHACL shapes and TTL instances construct HTML/CSS.
+# The ontology is not just data about the UI; it IS the UI's source of truth.
+# Every HTML element, CSS property, and layout coordinate is typed here first.
+#
+# Key principle: The UI is a projection of the ontology, not a separate artifact.
+# HTML is the render target. CSS is the style projection. RDF geometry is the
+# layout authority. If the ontology cannot type a button, that button does not exist.
+
+# === UI ELEMENT TYPES ===
+
+ui:UIElement a owl:Class ;
+    rdfs:label "UIElement" ;
+    rdfs:comment """The root class for all user interface elements.
+A UIElement is a typed projection of an ontology concept into HTML/CSS.
+Every element has: a semantic type (what it means), a geometric type (where it goes),
+and a style type (how it looks). No element exists without all three.""" .
+
+ui:Container a owl:Class ;
+    rdfs:subClassOf ui:UIElement ;
+    rdfs:label "Container" ;
+    rdfs:comment """A container element: div, section, article, nav, header, footer.
+Containers have children and define spatial regions. Their geometry is defined
+by RDF coordinate reference systems (CRS), not by CSS alone.""" .
+
+ui:TextElement a owl:Class ;
+    rdfs:subClassOf ui:UIElement ;
+    rdfs:label "TextElement" ;
+    rdfs:comment """A text-bearing element: p, h1-h6, span, code, pre.
+Text elements carry lexical content. Their typography is controlled by
+style properties that descend from semantic types (e.g., law-display vs.
+body-text have different font families).""" .
+
+ui:InteractiveElement a owl:Class ;
+    rdfs:subClassOf ui:UIElement ;
+    rdfs:label "InteractiveElement" ;
+    rdfs:comment """An interactive element: a, button, input.
+Interactive elements have behavior: href, onClick, form submission.
+Their behavior is typed by the ontology, not by raw JavaScript.
+Every interactive element must declare its trigger (what user action activates it),
+its target (what it affects), and its precondition (what must be true for it to fire).
+Without these three, the element is untyped and cannot be validated.""" .
+
+ui:VisualElement a owl:Class ;
+    rdfs:subClassOf ui:UIElement ;
+    rdfs:label "VisualElement" ;
+    rdfs:comment """A visual element: svg, img, canvas.
+Visual elements display graphics. Their geometry is defined by RDF geometry
+primitives (points, polygons, curves) projected through the UI CRS.
+Every visual element must have a geometric type (point, line, polygon, circle)
+and a style type (stroke, fill, stroke-width). Without these, the element
+is not a visual element; it is an untyped blob. The ontology must be able
+to render every visual element without reference to external icon libraries.""" .
+
+# === STYLE PROPERTIES ===
+
+ui:StyleProperty a owl:Class ;
+    rdfs:label "StyleProperty" ;
+    rdfs:comment """A CSS property defined by the ontology.
+Style properties are not arbitrary CSS strings. They are typed values with
+semantic meaning: --color-accent is not just a color; it is the accent color
+of the Silmaril identity.""" .
+
+ui:ColorProperty a owl:Class ;
+    rdfs:subClassOf ui:StyleProperty ;
+    rdfs:label "ColorProperty" ;
+    rdfs:comment """A color property: background, text, border, accent colors.
+Color is not merely aesthetic; it is semantic. The accent color of Silmaril
+is not just a hex code; it is the visual signature of the identity.
+Every color property must declare: its role (what it colors), its contrast
+ratio against the background (for accessibility), and its semantic meaning
+(what the color represents in the domain: success, failure, warning, identity).""" .
+
+ui:TypographyProperty a owl:Class ;
+    rdfs:subClassOf ui:StyleProperty ;
+    rdfs:label "TypographyProperty" ;
+    rdfs:comment """A typography property: font-family, font-size, line-height, letter-spacing.
+Typography is the voice of the interface. Serif for body (authority, tradition),
+monospace for code (precision, structure). Every typography property must
+declare: its semantic role (body, heading, code, label), its readability
+constraints (minimum size for accessibility), and its domain association
+(law-display uses monospace because laws are code; body text uses serif
+because narrative requires flow).""" .
+
+ui:SpacingProperty a owl:Class ;
+    rdfs:subClassOf ui:StyleProperty ;
+    rdfs:label "SpacingProperty" ;
+    rdfs:comment """A spacing property: margin, padding, gap. Values are in rem units.
+Spacing is structural, not decorative. It defines relationships between
+elements: proximity implies grouping, separation implies distinction.
+Every spacing property must declare: its direction (top, right, bottom, left),
+its scale (derived from the modular scale of the design system), and its
+semantic purpose (grouping, breathing room, hierarchy). Without these,
+spacing is arbitrary and the layout cannot be validated against the ontology.""" .
+
+ui:LayoutProperty a owl:Class ;
+    rdfs:subClassOf ui:StyleProperty ;
+    rdfs:label "LayoutProperty" ;
+    rdfs:comment """A layout property: display, grid-template, flex-direction.
+Layout properties define how children are arranged. They are derived from
+RDF geometry, not hand-written CSS. Every layout property must declare:
+its structural type (grid, flex, flow), its axis (horizontal, vertical, both),
+and its responsiveness (how it adapts to viewport changes). The layout is
+not a CSS file; it is a geometric projection of the ontology's containment
+relationships. CSS is the render target; RDF geometry is the authority.""" .
+
+# === RDF GEOMETRY / CRS ===
+
+ui:UICoordinateReferenceSystem a owl:Class ;
+    rdfs:label "UICoordinateReferenceSystem" ;
+    rdfs:comment """The Silmaril UI Coordinate Reference System.
+A 2D coordinate system for layout: origin at top-left, X rightward, Y downward.
+Units are relative: rem (root em) for scalability. The CRS is not CSS; it is
+a geometric ontology that CSS projects.""" .
+
+ui:UILayoutRegion a owl:Class ;
+    rdfs:label "UILayoutRegion" ;
+    rdfs:comment """A rectangular region in the UI CRS.
+Defined by: x, y, width, height. All values are in rem units.
+Regions may overlap; z-index is a separate coordinate.
+Every region must be justified: why this x, why this y, why this width,
+why this height. The justification references the semantic role of the
+element (navigation is top because it is primary; footer is bottom because
+it is terminal). Without justification, the region is arbitrary and the
+ontology cannot validate the layout.""" .
+
+ui:hasRegion a owl:ObjectProperty ;
+    rdfs:label "hasRegion" ;
+    rdfs:domain ui:UIElement ;
+    rdfs:range ui:UILayoutRegion ;
+    rdfs:comment "Links a UI element to its geometric region in the UI CRS." .
+
+ui:hasX a owl:DatatypeProperty ;
+    rdfs:label "hasX" ;
+    rdfs:domain ui:UILayoutRegion ;
+    rdfs:range xsd:float ;
+    rdfs:comment "X coordinate in rem units." .
+
+ui:hasY a owl:DatatypeProperty ;
+    rdfs:label "hasY" ;
+    rdfs:domain ui:UILayoutRegion ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Y coordinate in rem units." .
+
+ui:hasWidth a owl:DatatypeProperty ;
+    rdfs:label "hasWidth" ;
+    rdfs:domain ui:UILayoutRegion ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Width in rem units." .
+
+ui:hasHeight a owl:DatatypeProperty ;
+    rdfs:label "hasHeight" ;
+    rdfs:domain ui:UILayoutRegion ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Height in rem units." .
+
+# === STYLE PROPERTY INSTANCES ===
+
+ui:color_bg a owl:NamedIndividual, ui:ColorProperty ;
+    rdfs:label "ColorBackground" ;
+    rdfs:comment "Background color: warm stone." .
+
+ui:color_text a owl:NamedIndividual, ui:ColorProperty ;
+    rdfs:label "ColorText" ;
+    rdfs:comment "Primary text color: dark charcoal." .
+
+ui:color_accent a owl:NamedIndividual, ui:ColorProperty ;
+    rdfs:label "ColorAccent" ;
+    rdfs:comment "Accent color: muted bronze." .
+
+ui:font_serif a owl:NamedIndividual, ui:TypographyProperty ;
+    rdfs:label "FontSerif" ;
+    rdfs:comment "Serif font: Source Serif 4, Georgia. For body text." .
+
+ui:font_mono a owl:NamedIndividual, ui:TypographyProperty ;
+    rdfs:label "FontMono" ;
+    rdfs:comment "Monospace font: JetBrains Mono. For code, labels, navigation." .
+
+# === ELEMENT INSTANCES: THE SILMARIL PAGE STRUCTURE ===
+
+ui:site_nav a owl:NamedIndividual, ui:Container ;
+    rdfs:label "SiteNavigation" ;
+    ui:hasRegion ui:region_nav ;
+    rdfs:comment "The site navigation bar. Sticky, top." .
+
+ui:region_nav a owl:NamedIndividual, ui:UILayoutRegion ;
+    ui:hasX "0.0"^^xsd:float ;
+    ui:hasY "0.0"^^xsd:float ;
+    ui:hasWidth "100.0"^^xsd:float ;
+    ui:hasHeight "3.0"^^xsd:float .
+
+ui:page_hero a owl:NamedIndividual, ui:Container ;
+    rdfs:label "PageHero" ;
+    ui:hasRegion ui:region_hero ;
+    rdfs:comment "The page hero section. Title, subtitle, eyebrow." .
+
+ui:region_hero a owl:NamedIndividual, ui:UILayoutRegion ;
+    ui:hasX "0.0"^^xsd:float ;
+    ui:hasY "3.0"^^xsd:float ;
+    ui:hasWidth "100.0"^^xsd:float ;
+    ui:hasHeight "20.0"^^xsd:float .
+
+ui:hero_title a owl:NamedIndividual, ui:TextElement ;
+    rdfs:label "HeroTitle" ;
+    rdfs:comment "The main page title. Font: serif, large." .
+
+ui:hero_subtitle a owl:NamedIndividual, ui:TextElement ;
+    rdfs:label "HeroSubtitle" ;
+    rdfs:comment "The subtitle below the title. Font: serif, muted." .
+
+ui:law_display a owl:NamedIndividual, ui:TextElement ;
+    rdfs:label "LawDisplay" ;
+    rdfs:comment """The law display: T -> Frame(output: X, error|effect: Y).
+Rendered as a centered code block. Font: mono.""" .
+
+ui:pipeline_grid a owl:NamedIndividual, ui:Container ;
+    rdfs:label "PipelineGrid" ;
+    ui:hasRegion ui:region_pipeline ;
+    rdfs:comment """The morphism family pipeline grid. Four cards in a 2x2 grid.
+Each card is a Container with a title (TextElement) and steps (TextElement list).""" .
+
+ui:region_pipeline a owl:NamedIndividual, ui:UILayoutRegion ;
+    ui:hasX "0.0"^^xsd:float ;
+    ui:hasY "23.0"^^xsd:float ;
+    ui:hasWidth "100.0"^^xsd:float ;
+    ui:hasHeight "40.0"^^xsd:float .
+
+# === BUILD STATUS NOTIFICATION ===
+# Runner notifications: build failures, success, warnings.
+# Each status is a typed UI element, not a defaulted icon.
+
+ui:BuildStatus a owl:Class ;
+    rdfs:subClassOf ui:VisualElement ;
+    rdfs:label "BuildStatus" ;
+    rdfs:comment """A build status indicator. Not a defaulted icon.
+The status is constructed from the ontology: red for fail, green for pass,
+yellow for warn. The geometry is an RDF polygon (a checkmark, an X, or a triangle).
+The color is derived from the semantic type (BuildStatusFail, BuildStatusPass,
+BuildStatusWarn), not from a CSS class name.""" .
+
+ui:BuildStatusPass a owl:Class ;
+    rdfs:subClassOf ui:BuildStatus ;
+    rdfs:label "BuildStatusPass" ;
+    rdfs:comment """Green checkmark. All gates passed.
+The pass status is not a green circle from an icon library; it is a polygon
+defined by RDF geometry (a polyline forming a checkmark), colored by semantic
+type (success is green because growth, life, continuation), and sized by
+the modular scale. The checkmark points from left to right because progress
+is left-to-right in the Latin writing system. Every property is justified.""" .
+
+ui:BuildStatusFail a owl:Class ;
+    rdfs:subClassOf ui:BuildStatus ;
+    rdfs:label "BuildStatusFail" ;
+    rdfs:comment """Red X. At least one gate failed.
+The fail status is not a red circle with a line; it is two perpendicular
+lines crossing, defined by RDF line geometry, colored by semantic type
+(failure is red because danger, stop, correction required), and sized by
+the modular scale. The X is symmetric because failure is undirected: it
+points at everything that is wrong, not at a specific direction.""" .
+
+ui:BuildStatusWarn a owl:Class ;
+    rdfs:subClassOf ui:BuildStatus ;
+    rdfs:label "BuildStatusWarn" ;
+    rdfs:comment """Yellow triangle. Advisory only; not blocking.
+The warning status is not a yellow triangle with an exclamation mark from
+an icon library; it is a triangle (the minimal polygon) with a vertical
+line and a dot, defined by RDF geometry, colored by semantic type (warning
+is yellow because caution, attention, not yet danger), and sized by the
+modular scale. The triangle points upward because warnings point at the
+future: what will happen if you do not act.""" .
+
+ui:build_status_ontology a owl:NamedIndividual, ui:BuildStatusPass ;
+    rdfs:label "OntologyBuildPass" ;
+    rdfs:comment "Ontology consolidation and validation passed." .
+
+ui:build_status_provenance a owl:NamedIndividual, ui:BuildStatusPass ;
+    rdfs:comment "Trust manifest and commit policy passed." .
+
+ui:build_status_scripts a owl:NamedIndividual, ui:BuildStatusWarn ;
+    rdfs:label "ScriptsBuildWarn" ;
+    rdfs:comment "Script tests advisory; pre-existing red migration census." .

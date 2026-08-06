@@ -1,0 +1,104 @@
+@prefix ui: <urn:silmaril:ui#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# SHACL Shapes for UI Constructor
+#
+# These shapes validate that UI elements are properly typed and structured.
+# They also drive generation: a shape violation means the UI cannot be rendered.
+
+ui:UIElementShape a sh:NodeShape ;
+    sh:targetClass ui:UIElement ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Every UIElement must have an rdfs:label." ;
+    ] ;
+    sh:property [
+        sh:path ui:hasRegion ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class ui:UILayoutRegion ;
+        sh:message "Every UIElement must have exactly one hasRegion." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Every UIElement must have an rdfs:comment explaining its purpose." ;
+    ] .
+
+ui:UILayoutRegionShape a sh:NodeShape ;
+    sh:targetClass ui:UILayoutRegion ;
+    sh:property [
+        sh:path ui:hasX ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:float ;
+        sh:message "Region must have exactly one X coordinate." ;
+    ] ;
+    sh:property [
+        sh:path ui:hasY ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:float ;
+        sh:message "Region must have exactly one Y coordinate." ;
+    ] ;
+    sh:property [
+        sh:path ui:hasWidth ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:float ;
+        sh:minInclusive 0.0 ;
+        sh:message "Region must have a non-negative width." ;
+    ] ;
+    sh:property [
+        sh:path ui:hasHeight ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:float ;
+        sh:minInclusive 0.0 ;
+        sh:message "Region must have a non-negative height." ;
+    ] .
+
+ui:ContainerShape a sh:NodeShape ;
+    sh:targetClass ui:Container ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 50 ;
+        sh:message "Containers must have substantive comments (> 50 chars)." ;
+    ] .
+
+ui:BuildStatusShape a sh:NodeShape ;
+    sh:targetClass ui:BuildStatus ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "BuildStatus must explain what it indicates." ;
+    ] ;
+    sh:or (
+        [ sh:class ui:BuildStatusPass ]
+        [ sh:class ui:BuildStatusFail ]
+        [ sh:class ui:BuildStatusWarn ]
+    ) ;
+    sh:message "BuildStatus must be one of: Pass, Fail, Warn." .
+
+ui:StylePropertyShape a sh:NodeShape ;
+    sh:targetClass ui:StyleProperty ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "StyleProperty must have a label." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 20 ;
+        sh:message "StyleProperty must explain its semantic meaning, not just its CSS name." ;
+    ] .
