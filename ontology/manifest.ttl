@@ -3,13 +3,16 @@
 
 @prefix silm: <urn:silmaril:entity#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 silm:OntologyManifest a owl:Ontology ;
     rdfs:label "Silmaril Consolidated Ontology" ;
-    rdfs:comment "Consolidated from {count} source TTL files" ;
+    rdfs:comment "Consolidated from 30083 source TTL files" ;
     owl:versionInfo "1.0.0" .
 
 silm:ConsolidatedGraph a void:Dataset ;
     rdfs:label "Silmaril Knowledge Graph" ;
-    void:triples "{triples_estimate}" ;
-    void:entities "{entities_estimate}" .
+    void:triples "177619"^^xsd:integer ;
+    void:entities "59786"^^xsd:integer .

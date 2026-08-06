@@ -68,3 +68,60 @@ silm:DecompositionStepShape a sh:NodeShape ;
         sh:minCount 1 ;
         sh:datatype xsd:string ;
     ] .
+
+# Commit-signing trust model shapes — guard the identities/keys declared in
+# basicttl/commit_signing_trust.ttl, which keys/trust-manifest.txt is
+# generated from (scripts/generate-trust-manifest.py).
+
+silm:SigningIdentityShape a sh:NodeShape ;
+    sh:targetClass silm:signingidentity ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path silm:hasEmail ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path silm:signsWith ;
+        sh:minCount 1 ;
+        sh:class silm:signingkey ;
+    ] .
+
+silm:SigningKeyShape a sh:NodeShape ;
+    sh:targetClass silm:signingkey ;
+    sh:property [
+        sh:path silm:hasFingerprint ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[0-9A-F]{40}$" ;
+    ] ;
+    sh:property [
+        sh:path silm:hasKeyAlgorithm ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path silm:hasKeyFile ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path silm:hasPolicyClass ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( silm:trust_policy_release silm:trust_policy_web_flow silm:trust_policy_agent ) ;
+    ] .
+
+silm:TrustPolicyClassShape a sh:NodeShape ;
+    sh:targetClass silm:trustpolicyclass ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+    ] .

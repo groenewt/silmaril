@@ -18,6 +18,10 @@ include make/morphism/codebase/volume/table/phase14.mk
 include make/morphism/codebase/volume/table/aggregate/directory.mk
 include make/morphism/codebase/volume/40/directory.mk
 include make/morphism/contract/validation/directory.mk
+include make/morphism/provenance/trust.mk
+include make/morphism/provenance/commit.mk
+include make/morphism/ontology/consolidation.mk
+include make/morphism/ontology/validation.mk
 include make/quality/python.mk
 
 .PHONY: morphism-codebase-volume

@@ -1,0 +1,1 @@
+import pyshacl as DEPENDENCY

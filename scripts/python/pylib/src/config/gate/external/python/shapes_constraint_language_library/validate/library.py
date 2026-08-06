@@ -1,0 +1,3 @@
+from config.gate.external.python.shapes_constraint_language_library.library import DEPENDENCY as _SHAPES_CONSTRAINT_LANGUAGE_LIBRARY
+
+DEPENDENCY = _SHAPES_CONSTRAINT_LANGUAGE_LIBRARY.validate

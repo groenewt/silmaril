@@ -1,0 +1,108 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Commit-signing trust model — the authoritative source for the repository's
+# signing identities ("drivers"), their keys, and the policy class each key
+# carries. keys/trust-manifest.txt is GENERATED from this file by
+# scripts/generate-trust-manifest.py; editing this file (and regenerating) is
+# the only supported way to change trust. SHACL shapes guarding this model
+# live in generate_shacl_shapes() in scripts/consolidate-ontology.py.
+
+silm:signingidentity a owl:Class ;
+    rdfs:label "SigningIdentity" ;
+    rdfs:comment "An agent that authors and signs commits in this repository: a human maintainer, an autonomous agent (openclaw, Claude), or a platform service (GitHub web-flow). Each identity signs with one or more SigningKeys." .
+
+silm:signingkey a owl:Class ;
+    rdfs:label "SigningKey" ;
+    rdfs:comment "A concrete OpenPGP public key: 40-hex-character fingerprint, algorithm, the armored key file committed under keys/, and the trust policy class the key carries. The secret half is never represented in the ontology or the repository." .
+
+silm:trustpolicyclass a owl:Class ;
+    rdfs:label "TrustPolicyClass" ;
+    rdfs:comment "The policy role a SigningKey plays when scripts/verify-signatures.sh classifies commits: release (maintainer/openclaw agent), web-flow (GitHub web UI commits), or agent (session-scoped autonomous agent keys)." .
+
+silm:signsWith a owl:ObjectProperty ;
+    rdfs:label "signsWith" ;
+    rdfs:domain silm:signingidentity ;
+    rdfs:range silm:signingkey ;
+    rdfs:comment "Links a SigningIdentity to a SigningKey it signs commits with." .
+
+silm:hasPolicyClass a owl:ObjectProperty ;
+    rdfs:label "hasPolicyClass" ;
+    rdfs:domain silm:signingkey ;
+    rdfs:range silm:trustpolicyclass ;
+    rdfs:comment "Links a SigningKey to the TrustPolicyClass it carries in the verifier's policy table." .
+
+silm:hasFingerprint a owl:DatatypeProperty ;
+    rdfs:label "hasFingerprint" ;
+    rdfs:domain silm:signingkey ;
+    rdfs:comment "The key's full OpenPGP fingerprint: exactly 40 uppercase hexadecimal characters, no spaces." .
+
+silm:hasKeyAlgorithm a owl:DatatypeProperty ;
+    rdfs:label "hasKeyAlgorithm" ;
+    rdfs:domain silm:signingkey ;
+    rdfs:comment "The key algorithm, e.g. ed25519 or rsa4096." .
+
+silm:hasKeyFile a owl:DatatypeProperty ;
+    rdfs:label "hasKeyFile" ;
+    rdfs:domain silm:signingkey ;
+    rdfs:comment "Filename of the armored public key, relative to the repository's keys/ directory. A key whose file is not yet committed is 'attested': acknowledged by fingerprint, not cryptographically verifiable." .
+
+silm:hasEmail a owl:DatatypeProperty ;
+    rdfs:label "hasEmail" ;
+    rdfs:domain silm:signingidentity ;
+    rdfs:comment "The mailbox the identity signs and authors commits as." .
+
+silm:trust_policy_release a owl:NamedIndividual, silm:trustpolicyclass ;
+    rdfs:label "TrustPolicyRelease" ;
+    rdfs:comment "Maintainer-grade trust: keys held by the project's primary agents." .
+
+silm:trust_policy_web_flow a owl:NamedIndividual, silm:trustpolicyclass ;
+    rdfs:label "TrustPolicyWebFlow" ;
+    rdfs:comment "Platform trust: GitHub's web-flow key, which signs commits made through the GitHub web UI (merges, uploads, edits)." .
+
+silm:trust_policy_agent a owl:NamedIndividual, silm:trustpolicyclass ;
+    rdfs:label "TrustPolicyAgent" ;
+    rdfs:comment "Session-agent trust: keys minted by autonomous agent sessions. Secret halves are session-ephemeral by design; superseded keys stay listed so historical commits keep verifying." .
+
+silm:signing_identity_herodotus a owl:NamedIndividual, silm:signingidentity ;
+    rdfs:label "Herodotus" ;
+    silm:hasEmail "herodotus@silmaril.internal" ;
+    silm:signsWith silm:signing_key_herodotus_2026 ;
+    rdfs:comment "The openclaw agent — the repository's primary maintainer identity." .
+
+silm:signing_identity_github_web_flow a owl:NamedIndividual, silm:signingidentity ;
+    rdfs:label "GitHub" ;
+    silm:hasEmail "noreply@github.com" ;
+    silm:signsWith silm:signing_key_github_web_flow ;
+    rdfs:comment "GitHub's web-flow service identity, committer of web-UI commits." .
+
+silm:signing_identity_claude a owl:NamedIndividual, silm:signingidentity ;
+    rdfs:label "Claude" ;
+    silm:hasEmail "claude@silmaril.internal" ;
+    silm:signsWith silm:signing_key_claude_2026 ;
+    rdfs:comment "The Claude session agent — a signing identity deliberately distinct from the openclaw agent (Herodotus)." .
+
+silm:signing_key_herodotus_2026 a owl:NamedIndividual, silm:signingkey ;
+    rdfs:label "HerodotusKey2026" ;
+    silm:hasFingerprint "77481DD960B9CBE52BEC60CFC998590FAEA8530A" ;
+    silm:hasKeyAlgorithm "ed25519" ;
+    silm:hasKeyFile "herodotus.asc" ;
+    silm:hasPolicyClass silm:trust_policy_release .
+
+silm:signing_key_github_web_flow a owl:NamedIndividual, silm:signingkey ;
+    rdfs:label "GitHubWebFlowKey" ;
+    silm:hasFingerprint "968479A1AFF927E37D1A566BB5690EEEBB952194" ;
+    silm:hasKeyAlgorithm "rsa4096" ;
+    silm:hasKeyFile "github-web-flow.asc" ;
+    silm:hasPolicyClass silm:trust_policy_web_flow .
+
+silm:signing_key_claude_2026 a owl:NamedIndividual, silm:signingkey ;
+    rdfs:label "ClaudeKey2026" ;
+    silm:hasFingerprint "27044DC503CD3A5EE470CE4E15B79D364040C858" ;
+    silm:hasKeyAlgorithm "ed25519" ;
+    silm:hasKeyFile "claude.asc" ;
+    silm:hasPolicyClass silm:trust_policy_agent .

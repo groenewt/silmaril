@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# External bridge: git update-hook protocol -> provenance commit policy,
+# server side. Registered bridge surface, not a lawful internal callable:
+# the update hook receives three arguments (refname, old, new). Carried
+# findings (acknowledged, not waived): Shell.Callable.Contract.Absent.Value.
+#
+# The typed tree and trust material are extracted from a TRUSTED revision -
+# the old ref value when it exists (prior state cannot be rewritten by the
+# incoming push) - never from the incoming tip, so a push cannot smuggle in
+# its own policy. Brand-new refs fall back to the pushed tip with a warning;
+# a trusted revision without the typed tree warns and allows (bootstrap).
+# Flipping those two allowances to denial is the hardening step once every
+# ref carries the policy.
+set -euo pipefail
+refname=$1; old=$2; new=$3
+zero=0000000000000000000000000000000000000000
+
+[ "$new" = "$zero" ] && exit 0  # deletion: allow
+
+trust_rev=$old
+if [ "$old" = "$zero" ]; then
+  printf 'remote-update: new ref %s - extracting policy from the pushed tip (unverified bootstrap)\n' "$refname" >&2
+  trust_rev=$new
+fi
+
+if ! git cat-file -e "$trust_rev:keys/trust-manifest.txt" 2>/dev/null \
+   || ! git cat-file -e "$trust_rev:scripts/python/pylib/make/morphism/provenance/commit.mk" 2>/dev/null; then
+  printf 'remote-update: trusted revision carries no signing policy - allowing (bootstrap)\n' >&2
+  exit 0
+fi
+
+tmp=$(mktemp -d "${TMPDIR:-/tmp}/silmaril-update.XXXXXX")
+# Short keyring home: the gpg-agent socket path is bound by the AF_UNIX
+# 108-byte limit and the extracted tree's build path exceeds it.
+keyring=$(mktemp -d "${TMPDIR:-/tmp}/silmaril-g.XXXXXX")
+trap 'gpgconf --homedir "$keyring" --kill all >/dev/null 2>&1 || true; rm -rf "$tmp" "$keyring"' EXIT
+git archive "$trust_rev" keys scripts/python/pylib | tar -x -C "$tmp"
+
+if [ "$old" = "$zero" ]; then
+  range="$new --not --all"
+else
+  range="$old..$new"
+fi
+SILMARIL_PYTHON="${SILMARIL_PYTHON:-$(command -v python3)}" \
+  make -C "$tmp/scripts/python/pylib" morphism-provenance-commit-policy-default \
+  PROVENANCE_COMMIT_GIT_REPOSITORY="$PWD" PROVENANCE_COMMIT_REVISIONS="$range" \
+  MORPHISM_PROVENANCE_COMMIT_KEYRING_HOME="$keyring"

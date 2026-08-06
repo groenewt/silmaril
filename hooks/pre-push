@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# External bridge: git pre-push protocol -> provenance commit policy.
+# Registered bridge surface, not a lawful internal callable: git's hook
+# protocol supplies two arguments plus a stdin ref stream. Carried
+# findings (acknowledged, not waived): Shell.Callable.Contract.Absent.Value;
+# Shell.Expansion input surface beyond $1. Policy lives in the typed tree:
+# every outgoing range is verified by
+#   make -C scripts/python/pylib morphism-provenance-commit-policy-default
+set -euo pipefail
+ROOT=$(git rev-parse --show-toplevel)
+PYLIB="$ROOT/scripts/python/pylib"
+SILMARIL_PYTHON="${SILMARIL_PYTHON:-$(command -v python3)}"
+export SILMARIL_PYTHON
+zero=0000000000000000000000000000000000000000
+
+while read -r _lref lsha _rref rsha; do
+  [ "$lsha" = "$zero" ] && continue  # deletion: nothing to verify
+  # The remote tip from pre-push stdin is not guaranteed to exist locally
+  # (githooks(5)); fall back to everything locally novel.
+  if [ "$rsha" = "$zero" ] || ! git cat-file -e "$rsha^{commit}" 2>/dev/null; then
+    make -C "$PYLIB" morphism-provenance-commit-policy-default PROVENANCE_COMMIT_REVISIONS="$lsha --not --remotes" || exit 1
+  else
+    make -C "$PYLIB" morphism-provenance-commit-policy-default PROVENANCE_COMMIT_REVISIONS="$rsha..$lsha" || exit 1
+  fi
+done
+exit 0
