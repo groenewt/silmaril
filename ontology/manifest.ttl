@@ -14,5 +14,5 @@ silm:OntologyManifest a owl:Ontology ;
 
 silm:ConsolidatedGraph a void:Dataset ;
     rdfs:label "Silmaril Knowledge Graph" ;
-    void:triples "177997"^^xsd:integer ;
-    void:entities "59821"^^xsd:integer .
+    void:triples "178182"^^xsd:integer ;
+    void:entities "59843"^^xsd:integer .

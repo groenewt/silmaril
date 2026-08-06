@@ -248,9 +248,264 @@ yellow for warn. The geometry is an RDF polygon (a checkmark, an X, or a triangl
 The color is derived from the semantic type (BuildStatusFail, BuildStatusPass,
 BuildStatusWarn), not from a CSS class name.""" .
 
+# === SVG GEOMETRY PRIMITIVES ===
+# Every visual element must be constructible from these primitives.
+# No external icon libraries. No magic strings. Geometry is data.
+
+ui:SVGIcon a owl:Class ;
+    rdfs:subClassOf ui:VisualElement ;
+    rdfs:label "SVGIcon" ;
+    rdfs:comment """A scalable vector graphic icon defined by RDF geometry primitives.
+An SVGIcon has: a viewBox (the coordinate system), one or more geometric
+primitives (polyline, line, polygon, circle), and style properties (stroke,
+fill, stroke-width). Every SVGIcon must be fully defined in the ontology;
+no external references, no defaulted symbols. The renderer constructs the
+SVG markup from the primitive data.""" .
+
+ui:SVGPrimitive a owl:Class ;
+    rdfs:label "SVGPrimitive" ;
+    rdfs:comment """A geometric primitive for SVG construction: polyline, line,
+polygon, or circle. Each primitive has coordinates in the SVGIcon's viewBox
+and style properties (stroke color, stroke width, fill). Primitives are
+composed to form complete icons.""" .
+
+ui:SVGPolyline a owl:Class ;
+    rdfs:subClassOf ui:SVGPrimitive ;
+    rdfs:label "SVGPolyline" ;
+    rdfs:comment "An open polygonal chain: a sequence of connected line segments.
+A polyline does not close; it is a path from a start point through intermediate
+points to an end point. In SVG it renders as connected line segments. Every
+vertex must be justified: why this point, why this sequence, why this direction.
+The polyline is the minimal geometry for directional symbols (arrows, checkmarks)." ;
+
+ui:SVGLine a owl:Class ;
+    rdfs:subClassOf ui:SVGPrimitive ;
+    rdfs:label "SVGLine" ;
+    rdfs:comment "A single straight line segment between two points.
+A line has a start and an end; it is directed. In SVG it renders as one
+straight segment. Every line must declare its purpose: is it a divider,
+a connector, a cross, a boundary? Without purpose, the line is arbitrary
+and the ontology cannot validate the visual semantics." ;
+
+ui:SVGPolygon a owl:Class ;
+    rdfs:subClassOf ui:SVGPrimitive ;
+    rdfs:label "SVGPolygon" ;
+    rdfs:comment "A closed polygon: a sequence of vertices connected and closed.
+A polygon encloses an area; it has an inside and an outside. In SVG it
+renders as a filled shape with an optional stroke. Every polygon must
+justify its number of vertices (triangle = minimal, quadrilateral = stable,
+higher = complex) and its symmetry (regular vs. irregular)." ;
+
+ui:SVGCircle a owl:Class ;
+    rdfs:subClassOf ui:SVGPrimitive ;
+    rdfs:label "SVGCircle" ;
+    rdfs:comment "A circle defined by center point and radius.
+A circle is the set of all points equidistant from a center. In SVG it
+renders as a round shape. Every circle must justify its center (what does
+it center on?) and its radius (what does the radius measure?). Without
+justification, the circle is arbitrary decoration, not ontology." ;
+
+ui:SVGPoint a owl:Class ;
+    rdfs:label "SVGPoint" ;
+    rdfs:comment "A point in the SVG coordinate system. Has x and y as floats.
+A point is the atomic unit of SVG geometry. It has no dimension, only
+position. Every point must be justified: why this x, why this y. In the
+context of an icon, points are relative to the viewBox, not absolute pixels.
+The viewBox provides the coordinate reference system; the point provides
+the data." ;
+
+ui:hasViewBox a owl:DatatypeProperty ;
+    rdfs:label "hasViewBox" ;
+    rdfs:domain ui:SVGIcon ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The SVG viewBox attribute: 'min-x min-y width height'." .
+
+ui:hasPrimitive a owl:ObjectProperty ;
+    rdfs:label "hasPrimitive" ;
+    rdfs:domain ui:SVGIcon ;
+    rdfs:range ui:SVGPrimitive ;
+    rdfs:comment "Links an SVGIcon to its geometric primitives." .
+
+ui:hasPoints a owl:DatatypeProperty ;
+    rdfs:label "hasPoints" ;
+    rdfs:domain ui:SVGPolyline ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Space-separated x,y coordinate pairs for polyline vertices." .
+
+ui:hasLineStart a owl:ObjectProperty ;
+    rdfs:label "hasLineStart" ;
+    rdfs:domain ui:SVGLine ;
+    rdfs:range ui:SVGPoint ;
+    rdfs:comment "The start point of a line segment." .
+
+ui:hasLineEnd a owl:ObjectProperty ;
+    rdfs:label "hasLineEnd" ;
+    rdfs:domain ui:SVGLine ;
+    rdfs:range ui:SVGPoint ;
+    rdfs:comment "The end point of a line segment." .
+
+ui:hasPolygonPoints a owl:DatatypeProperty ;
+    rdfs:label "hasPolygonPoints" ;
+    rdfs:domain ui:SVGPolygon ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Space-separated x,y coordinate pairs for polygon vertices." .
+
+ui:hasCenter a owl:ObjectProperty ;
+    rdfs:label "hasCenter" ;
+    rdfs:domain ui:SVGCircle ;
+    rdfs:range ui:SVGPoint ;
+    rdfs:comment "The center point of a circle." .
+
+ui:hasRadius a owl:DatatypeProperty ;
+    rdfs:label "hasRadius" ;
+    rdfs:domain ui:SVGCircle ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The radius of a circle." .
+
+ui:hasStrokeColor a owl:DatatypeProperty ;
+    rdfs:label "hasStrokeColor" ;
+    rdfs:domain ui:SVGPrimitive ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Hex stroke color (e.g. '#4a6b3a'). Use 'currentColor' to inherit from parent." .
+
+ui:hasStrokeWidth a owl:DatatypeProperty ;
+    rdfs:label "hasStrokeWidth" ;
+    rdfs:domain ui:SVGPrimitive ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Stroke width in SVG units." .
+
+ui:hasFillColor a owl:DatatypeProperty ;
+    rdfs:label "hasFillColor" ;
+    rdfs:domain ui:SVGPrimitive ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Hex fill color or 'none' for transparent." .
+
+ui:hasIcon a owl:ObjectProperty ;
+    rdfs:label "hasIcon" ;
+    rdfs:domain ui:BuildStatus ;
+    rdfs:range ui:SVGIcon ;
+    rdfs:comment "Links a BuildStatus to its SVGIcon geometry." .
+
+# === SVG POINT INSTANCES ===
+
+ui:point_20_6 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "20.0"^^xsd:float ;
+    ui:hasY "6.0"^^xsd:float .
+
+ui:point_9_17 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "9.0"^^xsd:float ;
+    ui:hasY "17.0"^^xsd:float .
+
+ui:point_4_12 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "4.0"^^xsd:float ;
+    ui:hasY "12.0"^^xsd:float .
+
+ui:point_6_6 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "6.0"^^xsd:float ;
+    ui:hasY "6.0"^^xsd:float .
+
+ui:point_18_18 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "18.0"^^xsd:float ;
+    ui:hasY "18.0"^^xsd:float .
+
+ui:point_18_6 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "18.0"^^xsd:float ;
+    ui:hasY "6.0"^^xsd:float .
+
+ui:point_6_18 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "6.0"^^xsd:float ;
+    ui:hasY "18.0"^^xsd:float .
+
+ui:point_12_3p6 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "12.0"^^xsd:float ;
+    ui:hasY "3.6"^^xsd:float .
+
+ui:point_20p4_19p2 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "20.4"^^xsd:float ;
+    ui:hasY "19.2"^^xsd:float .
+
+ui:point_3p6_19p2 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "3.6"^^xsd:float ;
+    ui:hasY "19.2"^^xsd:float .
+
+ui:point_12_9p6 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "12.0"^^xsd:float ;
+    ui:hasY "9.6"^^xsd:float .
+
+ui:point_12_13p2 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "12.0"^^xsd:float ;
+    ui:hasY "13.2"^^xsd:float .
+
+ui:point_12_15p6 a owl:NamedIndividual, ui:SVGPoint ;
+    ui:hasX "12.0"^^xsd:float ;
+    ui:hasY "15.6"^^xsd:float .
+
+# === SVG PRIMITIVE INSTANCES ===
+
+ui:pass_checkmark a owl:NamedIndividual, ui:SVGPolyline ;
+    ui:hasPoints "20,6 9,17 4,12" ;
+    ui:hasStrokeColor "#4a6b3a" ;
+    ui:hasStrokeWidth "3.0"^^xsd:float ;
+    ui:hasFillColor "none" .
+
+ui:fail_line_1 a owl:NamedIndividual, ui:SVGLine ;
+    ui:hasLineStart ui:point_6_6 ;
+    ui:hasLineEnd ui:point_18_18 ;
+    ui:hasStrokeColor "#94402e" ;
+    ui:hasStrokeWidth "2.0"^^xsd:float .
+
+ui:fail_line_2 a owl:NamedIndividual, ui:SVGLine ;
+    ui:hasLineStart ui:point_18_6 ;
+    ui:hasLineEnd ui:point_6_18 ;
+    ui:hasStrokeColor "#94402e" ;
+    ui:hasStrokeWidth "2.0"^^xsd:float .
+
+ui:warn_triangle a owl:NamedIndividual, ui:SVGPolygon ;
+    ui:hasPolygonPoints "12,3.6 20.4,19.2 3.6,19.2" ;
+    ui:hasStrokeColor "#8a6d1a" ;
+    ui:hasStrokeWidth "2.0"^^xsd:float ;
+    ui:hasFillColor "none" .
+
+ui:warn_exclamation_line a owl:NamedIndividual, ui:SVGLine ;
+    ui:hasLineStart ui:point_12_9p6 ;
+    ui:hasLineEnd ui:point_12_13p2 ;
+    ui:hasStrokeColor "#8a6d1a" ;
+    ui:hasStrokeWidth "2.0"^^xsd:float .
+
+ui:warn_exclamation_dot a owl:NamedIndividual, ui:SVGCircle ;
+    ui:hasCenter ui:point_12_15p6 ;
+    ui:hasRadius "1.0"^^xsd:float ;
+    ui:hasFillColor "#8a6d1a" .
+
+# === SVG ICON INSTANCES ===
+
+ui:icon_pass a owl:NamedIndividual, ui:SVGIcon ;
+    rdfs:label "IconPass" ;
+    ui:hasViewBox "0 0 24 24" ;
+    ui:hasPrimitive ui:pass_checkmark ;
+    rdfs:comment "Pass icon: a checkmark polyline in green. Constructed from RDF geometry." .
+
+ui:icon_fail a owl:NamedIndividual, ui:SVGIcon ;
+    rdfs:label "IconFail" ;
+    ui:hasViewBox "0 0 24 24" ;
+    ui:hasPrimitive ui:fail_line_1 ;
+    ui:hasPrimitive ui:fail_line_2 ;
+    rdfs:comment "Fail icon: two crossing lines in red. Constructed from RDF geometry." .
+
+ui:icon_warn a owl:NamedIndividual, ui:SVGIcon ;
+    rdfs:label "IconWarn" ;
+    ui:hasViewBox "0 0 24 24" ;
+    ui:hasPrimitive ui:warn_triangle ;
+    ui:hasPrimitive ui:warn_exclamation_line ;
+    ui:hasPrimitive ui:warn_exclamation_dot ;
+    rdfs:comment "Warning icon: triangle with exclamation mark in yellow. Constructed from RDF geometry." .
+
+# === BUILD STATUS WITH ICON LINKAGE ===
+
 ui:BuildStatusPass a owl:Class ;
     rdfs:subClassOf ui:BuildStatus ;
     rdfs:label "BuildStatusPass" ;
+    ui:hasIcon ui:icon_pass ;
     rdfs:comment """Green checkmark. All gates passed.
 The pass status is not a green circle from an icon library; it is a polygon
 defined by RDF geometry (a polyline forming a checkmark), colored by semantic
@@ -261,6 +516,7 @@ is left-to-right in the Latin writing system. Every property is justified.""" .
 ui:BuildStatusFail a owl:Class ;
     rdfs:subClassOf ui:BuildStatus ;
     rdfs:label "BuildStatusFail" ;
+    ui:hasIcon ui:icon_fail ;
     rdfs:comment """Red X. At least one gate failed.
 The fail status is not a red circle with a line; it is two perpendicular
 lines crossing, defined by RDF line geometry, colored by semantic type
@@ -271,6 +527,7 @@ points at everything that is wrong, not at a specific direction.""" .
 ui:BuildStatusWarn a owl:Class ;
     rdfs:subClassOf ui:BuildStatus ;
     rdfs:label "BuildStatusWarn" ;
+    ui:hasIcon ui:icon_warn ;
     rdfs:comment """Yellow triangle. Advisory only; not blocking.
 The warning status is not a yellow triangle with an exclamation mark from
 an icon library; it is a triangle (the minimal polygon) with a vertical
@@ -284,6 +541,7 @@ ui:build_status_ontology a owl:NamedIndividual, ui:BuildStatusPass ;
     rdfs:comment "Ontology consolidation and validation passed." .
 
 ui:build_status_provenance a owl:NamedIndividual, ui:BuildStatusPass ;
+    rdfs:label "ProvenanceBuildPass" ;
     rdfs:comment "Trust manifest and commit policy passed." .
 
 ui:build_status_scripts a owl:NamedIndividual, ui:BuildStatusWarn ;

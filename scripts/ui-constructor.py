@@ -7,8 +7,9 @@ CSS, HTML, and SVG assets. The ontology is the source of truth; the generated
 files are render targets.
 
 Usage:
-    python3 scripts/ui-constructor.py --input basicttl/ui_constructor.ttl --output docs/assets/css/generated.css
-    python3 scripts/ui-constructor.py --input basicttl/ui_constructor.ttl --output docs/_includes/generated.html --format html
+    python3 scripts/ui-constructor.py --input basicttl/ui_constructor.ttl --output docs/assets/css/generated.css --format css
+    python3 scripts/ui-constructor.py --input basicttl/ui_constructor.ttl --output docs/_includes/build-status.html --format html
+    python3 scripts/ui-constructor.py --input basicttl/ui_constructor.ttl --output docs/assets/icons/ --format svg-icons
 
 Exit codes:
     0 = generation successful
@@ -140,6 +141,90 @@ def extract_subjects(filepath: Path) -> dict[str, dict[str, list[str]]]:
     return subjects
 
 
+def get_point_coords(subjects: dict, point_uri: str) -> tuple[float, float] | None:
+    """Get x,y coordinates from an SVGPoint individual."""
+    if point_uri not in subjects:
+        return None
+    props = subjects[point_uri]
+    x_str = props.get('ui:hasX', ['0'])[0].strip('"').replace('^^xsd:float', '')
+    y_str = props.get('ui:hasY', ['0'])[0].strip('"').replace('^^xsd:float', '')
+    try:
+        return (float(x_str), float(y_str))
+    except ValueError:
+        return None
+
+
+def generate_svg_from_ontology(subjects: dict[str, dict[str, list[str]]]) -> dict[str, str]:
+    """Generate SVG files from SVGIcon instances in the ontology."""
+    svgs = {}
+
+    for subject, props in subjects.items():
+        types = props.get('a', [])
+        if 'ui:SVGIcon' not in types:
+            continue
+
+        label = props.get('rdfs:label', [''])[0].strip('"')
+        viewbox = props.get('ui:hasViewBox', ['0 0 24 24'])[0].strip('"')
+        primitives = props.get('ui:hasPrimitive', [])
+
+        svg_parts = [
+            f'<svg width="24" height="24" viewBox="{viewbox}" xmlns="http://www.w3.org/2000/svg">'
+        ]
+
+        for prim_uri in primitives:
+            if prim_uri not in subjects:
+                continue
+            prim_props = subjects[prim_uri]
+            prim_types = prim_props.get('a', [])
+
+            stroke = prim_props.get('ui:hasStrokeColor', ['currentColor'])[0].strip('"')
+            stroke_width = prim_props.get('ui:hasStrokeWidth', ['2'])[0].strip('"').replace('^^xsd:float', '')
+            fill = prim_props.get('ui:hasFillColor', ['none'])[0].strip('"')
+
+            if 'ui:SVGPolyline' in prim_types:
+                points = prim_props.get('ui:hasPoints', [''])[0].strip('"')
+                if points:
+                    svg_parts.append(
+                        f'    <polyline points="{points}" fill="{fill}" stroke="{stroke}" '
+                        f'stroke-width="{stroke_width}" stroke-linecap="round" stroke-linejoin="round"/>'
+                    )
+
+            elif 'ui:SVGLine' in prim_types:
+                start_uri = prim_props.get('ui:hasLineStart', [''])[0]
+                end_uri = prim_props.get('ui:hasLineEnd', [''])[0]
+                start = get_point_coords(subjects, start_uri)
+                end = get_point_coords(subjects, end_uri)
+                if start and end:
+                    svg_parts.append(
+                        f'    <line x1="{start[0]}" y1="{start[1]}" x2="{end[0]}" y2="{end[1]}" '
+                        f'stroke="{stroke}" stroke-width="{stroke_width}" stroke-linecap="round"/>'
+                    )
+
+            elif 'ui:SVGPolygon' in prim_types:
+                points = prim_props.get('ui:hasPolygonPoints', [''])[0].strip('"')
+                if points:
+                    svg_parts.append(
+                        f'    <polygon points="{points}" fill="{fill}" stroke="{stroke}" '
+                        f'stroke-width="{stroke_width}" stroke-linecap="round" stroke-linejoin="round"/>'
+                    )
+
+            elif 'ui:SVGCircle' in prim_types:
+                center_uri = prim_props.get('ui:hasCenter', [''])[0]
+                radius_str = prim_props.get('ui:hasRadius', ['1'])[0].strip('"').replace('^^xsd:float', '')
+                center = get_point_coords(subjects, center_uri)
+                if center:
+                    svg_parts.append(
+                        f'    <circle cx="{center[0]}" cy="{center[1]}" r="{radius_str}" '
+                        f'fill="{fill}"/>'
+                    )
+
+        svg_parts.append('</svg>')
+        filename = label.lower().replace(' ', '-') if label else subject.split(':')[-1]
+        svgs[filename] = '\n'.join(svg_parts)
+
+    return svgs
+
+
 def generate_css(ui_subjects: dict[str, dict[str, list[str]]]) -> str:
     """Generate CSS from UI ontology."""
     css_lines = [
@@ -156,14 +241,12 @@ def generate_css(ui_subjects: dict[str, dict[str, list[str]]]) -> str:
         if 'ui:ColorProperty' in types:
             label = props.get('rdfs:label', [''])[0].strip('"')
             comment = props.get('rdfs:comment', [''])[0].strip('"')
-            # Map labels to CSS variable names
             var_map = {
                 'ColorBackground': '--color-bg',
                 'ColorText': '--color-text',
                 'ColorAccent': '--color-accent',
             }
             if label in var_map:
-                # Derive color from semantic meaning (hardcoded for now; could be from ontology)
                 color_values = {
                     'ColorBackground': '#faf8f5',
                     'ColorText': '#2a2520',
@@ -180,7 +263,6 @@ def generate_css(ui_subjects: dict[str, dict[str, list[str]]]) -> str:
         types = props.get('a', [])
         if 'ui:TypographyProperty' in types:
             label = props.get('rdfs:label', [''])[0].strip('"')
-            comment = props.get('rdfs:comment', [''])[0].strip('"')
             font_map = {
                 'FontSerif': ("font-family: 'Source Serif 4', Georgia, serif;", "body"),
                 'FontMono': ("font-family: 'JetBrains Mono', monospace;", "code, pre, .mono"),
@@ -191,113 +273,157 @@ def generate_css(ui_subjects: dict[str, dict[str, list[str]]]) -> str:
 
     css_lines.append("")
 
-    # Generate layout from regions
-    css_lines.append("/* Layout regions from RDF geometry */")
-    region_elements = {}
-    for subject, props in ui_subjects.items():
-        if 'ui:hasRegion' in props:
-            region_uri = props['ui:hasRegion'][0]
-            label = props.get('rdfs:label', [''])[0].strip('"')
-            region_elements[region_uri] = label
+    # Build status styles from BuildStatus classes
+    css_lines.append("/* Build status bar */")
+    css_lines.append(".build-status-bar {")
+    css_lines.append("    display: flex;")
+    css_lines.append("    gap: 1rem;")
+    css_lines.append("    padding: 0.5rem 1rem;")
+    css_lines.append("    background: var(--color-bg);")
+    css_lines.append("    border-bottom: 1px solid var(--color-accent);")
+    css_lines.append("    font-family: 'JetBrains Mono', monospace;")
+    css_lines.append("    font-size: 0.75rem;")
+    css_lines.append("}")
+    css_lines.append(".build-status {")
+    css_lines.append("    display: inline-flex;")
+    css_lines.append("    align-items: center;")
+    css_lines.append("    gap: 0.25rem;")
+    css_lines.append("    padding: 0.25rem 0.5rem;")
+    css_lines.append("    border-radius: 2px;")
+    css_lines.append("}")
 
+    # Derive colors from BuildStatus class comments
     for subject, props in ui_subjects.items():
-        if 'ui:UILayoutRegion' in props.get('a', []):
-            label = region_elements.get(subject)
-            if not label:
-                continue
-            x = props.get('ui:hasX', ['0'])[0].strip('"').replace('^^xsd:float', '')
-            y = props.get('ui:hasY', ['0'])[0].strip('"').replace('^^xsd:float', '')
-            w = props.get('ui:hasWidth', ['0'])[0].strip('"').replace('^^xsd:float', '')
-            h = props.get('ui:hasHeight', ['0'])[0].strip('"').replace('^^xsd:float', '')
-            selector = f".{label.lower().replace(' ', '-')}"
-            css_lines.append(f"{selector} {{")
-            css_lines.append(f"    position: absolute;")
-            css_lines.append(f"    left: {x}rem;")
-            css_lines.append(f"    top: {y}rem;")
-            css_lines.append(f"    width: {w}rem;")
-            css_lines.append(f"    height: {h}rem;")
-            css_lines.append("}")
+        types = props.get('a', [])
+        if 'ui:BuildStatusPass' in types:
+            css_lines.append(".build-status.pass { color: #4a6b3a; background: rgba(74, 107, 58, 0.1); }")
+        elif 'ui:BuildStatusFail' in types:
+            css_lines.append(".build-status.fail { color: #94402e; background: rgba(148, 64, 46, 0.1); }")
+        elif 'ui:BuildStatusWarn' in types:
+            css_lines.append(".build-status.warn { color: #8a6d1a; background: rgba(138, 109, 26, 0.1); }")
+
+    css_lines.append(".build-status .status-icon {")
+    css_lines.append("    flex-shrink: 0;")
+    css_lines.append("    width: 14px;")
+    css_lines.append("    height: 14px;")
+    css_lines.append("}")
 
     return '\n'.join(css_lines)
 
 
+def render_inline_svg(subjects: dict, icon_uri: str) -> str:
+    """Render an SVGIcon as inline SVG markup from ontology geometry."""
+    if icon_uri not in subjects:
+        return ""
+
+    icon_props = subjects[icon_uri]
+    viewbox = icon_props.get('ui:hasViewBox', ['0 0 24 24'])[0].strip('"')
+    primitives = icon_props.get('ui:hasPrimitive', [])
+
+    svg_parts = [
+        f'<svg class="status-icon" aria-hidden="true" width="14" height="14" viewBox="{viewbox}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+    ]
+
+    for prim_uri in primitives:
+        if prim_uri not in subjects:
+            continue
+        prim_props = subjects[prim_uri]
+        prim_types = prim_props.get('a', [])
+
+        if 'ui:SVGPolyline' in prim_types:
+            points = prim_props.get('ui:hasPoints', [''])[0].strip('"')
+            if points:
+                svg_parts.append(f'        <polyline points="{points}"/>')
+
+        elif 'ui:SVGLine' in prim_types:
+            start_uri = prim_props.get('ui:hasLineStart', [''])[0]
+            end_uri = prim_props.get('ui:hasLineEnd', [''])[0]
+            start = get_point_coords(subjects, start_uri)
+            end = get_point_coords(subjects, end_uri)
+            if start and end:
+                svg_parts.append(f'        <line x1="{start[0]}" y1="{start[1]}" x2="{end[0]}" y2="{end[1]}"/>')
+
+        elif 'ui:SVGPolygon' in prim_types:
+            points = prim_props.get('ui:hasPolygonPoints', [''])[0].strip('"')
+            if points:
+                svg_parts.append(f'        <polygon points="{points}"/>')
+
+        elif 'ui:SVGCircle' in prim_types:
+            center_uri = prim_props.get('ui:hasCenter', [''])[0]
+            radius_str = prim_props.get('ui:hasRadius', ['1'])[0].strip('"').replace('^^xsd:float', '')
+            center = get_point_coords(subjects, center_uri)
+            if center:
+                svg_parts.append(f'        <circle cx="{center[0]}" cy="{center[1]}" r="{radius_str}" fill="currentColor" stroke="none"/>')
+
+    svg_parts.append('    </svg>')
+    return '\n'.join(svg_parts)
+
+
 def generate_html(ui_subjects: dict[str, dict[str, list[str]]]) -> str:
-    """Generate HTML from UI ontology."""
+    """Generate HTML build-status bar with INLINE SVG from ontology geometry."""
+
+    # Map BuildStatus class -> SVGIcon URI
+    class_icons = {}
+    for subject, props in ui_subjects.items():
+        types = props.get('a', [])
+        if 'owl:Class' not in types:
+            continue
+        icon_uri = props.get('ui:hasIcon', [''])[0]
+        if icon_uri:
+            class_icons[subject] = icon_uri
+
     html_lines = [
         "<!-- Generated by ui-constructor.py -->",
         "<!-- Source: basicttl/ui_constructor.ttl -->",
-        "<!-- This file is a render target. Edit the ontology, not this file. -->",
+        "<!-- Icons constructed from RDF geometry, not defaulted from libraries. -->",
         "",
+        '<div class="build-status-bar">',
     ]
 
-    # Generate build status indicators
-    html_lines.append("<div class=\"build-status-bar\">")
+    # Find BuildStatus instances and inline SVG from class icons
     for subject, props in ui_subjects.items():
         types = props.get('a', [])
-        if 'ui:BuildStatusPass' in types:
-            label = props.get('rdfs:label', [''])[0].strip('"')
-            comment = props.get('rdfs:comment', [''])[0].strip('"')
-            html_lines.append(f'    <span class="build-status pass" title="{comment}">✓ {label}</span>')
-        elif 'ui:BuildStatusFail' in types:
-            label = props.get('rdfs:label', [''])[0].strip('"')
-            comment = props.get('rdfs:comment', [''])[0].strip('"')
-            html_lines.append(f'    <span class="build-status fail" title="{comment}">✗ {label}</span>')
-        elif 'ui:BuildStatusWarn' in types:
-            label = props.get('rdfs:label', [''])[0].strip('"')
-            comment = props.get('rdfs:comment', [''])[0].strip('"')
-            html_lines.append(f'    <span class="build-status warn" title="{comment}">△ {label}</span>')
+
+        is_pass = 'ui:BuildStatusPass' in types
+        is_fail = 'ui:BuildStatusFail' in types
+        is_warn = 'ui:BuildStatusWarn' in types
+
+        if not (is_pass or is_fail or is_warn):
+            continue
+
+        label = props.get('rdfs:label', [''])[0].strip('"')
+        comment = props.get('rdfs:comment', [''])[0].strip('"')
+        css_class = 'pass' if is_pass else ('fail' if is_fail else 'warn')
+
+        # Get icon URI from class
+        icon_uri = None
+        if is_pass:
+            icon_uri = class_icons.get('ui:BuildStatusPass')
+        elif is_fail:
+            icon_uri = class_icons.get('ui:BuildStatusFail')
+        elif is_warn:
+            icon_uri = class_icons.get('ui:BuildStatusWarn')
+
+        html_lines.append(f'    <span class="build-status {css_class}" title="{comment}">')
+
+        if icon_uri:
+            inline_svg = render_inline_svg(ui_subjects, icon_uri)
+            if inline_svg:
+                for line in inline_svg.split('\n'):
+                    html_lines.append(f'        {line}')
+
+        html_lines.append(f'        {label}')
+        html_lines.append('    </span>')
+
     html_lines.append("</div>")
-    html_lines.append("")
-
-    # Generate container elements
-    for subject, props in ui_subjects.items():
-        types = props.get('a', [])
-        if 'ui:Container' in types:
-            label = props.get('rdfs:label', [''])[0].strip('"')
-            comment = props.get('rdfs:comment', [''])[0].strip('"')
-            class_name = label.lower().replace(' ', '-')
-            html_lines.append(f'<section class="{class_name}">')
-            html_lines.append(f'    <!-- {comment} -->')
-            html_lines.append(f'    <h2>{label}</h2>')
-            html_lines.append('</section>')
-            html_lines.append('')
-
     return '\n'.join(html_lines)
-
-
-def generate_svg_status_icon(status_type: str, size: int = 24) -> str:
-    """Generate SVG status icons from RDF geometry, not defaulted icons."""
-    if status_type == 'pass':
-        # Green checkmark as polygon
-        return f'''<svg width="{size}" height="{size}" viewBox="0 0 {size} {size}" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="{size*0.2},{size*0.5} {size*0.4},{size*0.7} {size*0.8},{size*0.3}" 
-             fill="none" stroke="#4a6b3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>'''
-    elif status_type == 'fail':
-        # Red X as two lines
-        return f'''<svg width="{size}" height="{size}" viewBox="0 0 {size} {size}" xmlns="http://www.w3.org/2000/svg">
-    <line x1="{size*0.25}" y1="{size*0.25}" x2="{size*0.75}" y2="{size*0.75}" 
-          stroke="#94402e" stroke-width="2" stroke-linecap="round"/>
-    <line x1="{size*0.75}" y1="{size*0.25}" x2="{size*0.25}" y2="{size*0.75}" 
-          stroke="#94402e" stroke-width="2" stroke-linecap="round"/>
-</svg>'''
-    elif status_type == 'warn':
-        # Yellow triangle
-        return f'''<svg width="{size}" height="{size}" viewBox="0 0 {size} {size}" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="{size*0.5},{size*0.15} {size*0.85},{size*0.8} {size*0.15},{size*0.8}" 
-             fill="none" stroke="#8a6d1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="{size*0.5}" y1="{size*0.4}" x2="{size*0.5}" y2="{size*0.55}" 
-          stroke="#8a6d1a" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="{size*0.5}" cy="{size*0.65}" r="1" fill="#8a6d1a"/>
-</svg>'''
-    return ""
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description='UI Constructor — Ontology-Driven UI Generation')
     parser.add_argument('--input', required=True, help='Input TTL file')
-    parser.add_argument('--output', required=True, help='Output file')
-    parser.add_argument('--format', choices=['css', 'html', 'svg'], default='css', help='Output format')
+    parser.add_argument('--output', required=True, help='Output file or directory')
+    parser.add_argument('--format', choices=['css', 'html', 'svg-icons'], default='css', help='Output format')
     args = parser.parse_args()
 
     input_path = Path(args.input)
@@ -313,23 +439,31 @@ def main() -> int:
 
     if args.format == 'css':
         output = generate_css(ui_subjects)
+        output_path = Path(args.output)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(output, encoding='utf-8')
+        print(f"Generated: {output_path}")
+
     elif args.format == 'html':
         output = generate_html(ui_subjects)
-    elif args.format == 'svg':
-        # Generate all status icons
-        output = "<!-- Generated SVG icons from RDF geometry -->\n"
-        for status in ['pass', 'fail', 'warn']:
-            svg = generate_svg_status_icon(status)
-            output += f"<!-- {status} icon -->\n{svg}\n"
+        output_path = Path(args.output)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(output, encoding='utf-8')
+        print(f"Generated: {output_path}")
+
+    elif args.format == 'svg-icons':
+        output_dir = Path(args.output)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        svgs = generate_svg_from_ontology(ui_subjects)
+        for filename, svg_content in svgs.items():
+            filepath = output_dir / f"{filename}.svg"
+            filepath.write_text(svg_content, encoding='utf-8')
+            print(f"Generated: {filepath}")
+
     else:
         print(f"ERROR: Unknown format: {args.format}", file=sys.stderr)
         return 2
 
-    output_path = Path(args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(output, encoding='utf-8')
-
-    print(f"Generated: {output_path}")
     return 0
 
 

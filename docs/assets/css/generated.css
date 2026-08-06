@@ -8,6 +8,10 @@
     --color-accent: #8b7355; /* Accent color: muted bronze. */
 }
 
+/* Typography */
+body { font-family: 'Source Serif 4', Georgia, serif; }
+code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
+
 /* Build status bar */
 .build-status-bar {
     display: flex;
@@ -26,36 +30,10 @@
     border-radius: 2px;
 }
 .build-status.pass { color: #4a6b3a; background: rgba(74, 107, 58, 0.1); }
-.build-status.fail { color: #94402e; background: rgba(148, 64, 46, 0.1); }
+.build-status.pass { color: #4a6b3a; background: rgba(74, 107, 58, 0.1); }
 .build-status.warn { color: #8a6d1a; background: rgba(138, 109, 26, 0.1); }
 .build-status .status-icon {
     flex-shrink: 0;
     width: 14px;
     height: 14px;
-}
-
-body { font-family: 'Source Serif 4', Georgia, serif; }
-code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
-
-/* Layout regions from RDF geometry */
-.sitenavigation {
-    position: absolute;
-    left: 0.0rem;
-    top: 0.0rem;
-    width: 100.0rem;
-    height: 3.0rem;
-}
-.pagehero {
-    position: absolute;
-    left: 0.0rem;
-    top: 3.0rem;
-    width: 100.0rem;
-    height: 20.0rem;
-}
-.pipelinegrid {
-    position: absolute;
-    left: 0.0rem;
-    top: 23.0rem;
-    width: 100.0rem;
-    height: 40.0rem;
 }
