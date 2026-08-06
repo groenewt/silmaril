@@ -1,12 +1,14 @@
-
 # Silmaril GeoSPARQL Query Library
 # NOTE: The current Silmaril substrate does not contain explicit geospatial
 # data, but these queries are ready for when location-aware concrete anchors
-# are added (e.g., Tartu Animal Clinic coordinates).
+# are added (e.g., Tartu Animal Clinic coordinates). They are parse-valid
+# SPARQL (gated by scripts/validate-sparql.py); EXECUTING the geof: filter
+# functions requires a GeoSPARQL-capable engine (e.g. Apache Jena GeoSPARQL),
+# not plain rdflib.
 
 # GQ1: Find all entities within a bounding box (when geo data is added)
-# PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-# PREFIX sf: <http://www.opengis.net/ont/sf#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 SELECT ?entity ?wkt WHERE {
     ?entity geo:hasGeometry ?geom .
     ?geom geo:asWKT ?wkt .
@@ -15,7 +17,8 @@ SELECT ?entity ?wkt WHERE {
 }
 
 # GQ2: Find entities near a point (buffer search)
-# PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 SELECT ?entity ?wkt WHERE {
     ?entity geo:hasGeometry ?geom .
     ?geom geo:asWKT ?wkt .

@@ -1,0 +1,10 @@
+# Silmaril signing-key trust manifest.
+# GENERATED from basicttl/commit_signing_trust.ttl by scripts/generate-trust-manifest.py — regenerate, do not hand-edit.
+#
+# Columns: FINGERPRINT(40 hex, no spaces)  POLICY  KEYFILE(relative to this dir)  COMMENT...
+# POLICY classes: release (maintainer/openclaw agent) | web-flow (GitHub web UI) | agent (session agents).
+# A listed fingerprint whose KEYFILE is absent is "attested": commits by it are
+# acknowledged but cryptographically unverifiable until the key file lands.
+77481DD960B9CBE52BEC60CFC998590FAEA8530A  release   herodotus.asc        Herodotus <herodotus@silmaril.internal>
+968479A1AFF927E37D1A566BB5690EEEBB952194  web-flow  github-web-flow.asc  GitHub <noreply@github.com>
+27044DC503CD3A5EE470CE4E15B79D364040C858  agent     claude.asc           Claude <claude@silmaril.internal>

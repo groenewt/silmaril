@@ -46,3 +46,14 @@ Gemfile.lock
 *.zip
 *.tar.gz
 *.rar
+
+# Private key material — never commit (armored PUBLIC keys in keys/*.asc ARE tracked)
+.gnupg/
+secring*
+*.p12
+*.pfx
+*.pem
+*secret*.asc
+*private*.asc
+id_rsa*
+id_ed25519*
