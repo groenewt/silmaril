@@ -7,10 +7,12 @@
 
 # Commit-signing trust model — the authoritative source for the repository's
 # signing identities ("drivers"), their keys, and the policy class each key
-# carries. keys/trust-manifest.txt is GENERATED from this file by
-# scripts/generate-trust-manifest.py; editing this file (and regenerating) is
+# carries. keys/trust-manifest.txt is GENERATED from this file by the typed
+# provenance pipeline (make -C scripts/python/pylib
+# morphism-provenance-trust-manifest); editing this file and regenerating is
 # the only supported way to change trust. SHACL shapes guarding this model
-# live in generate_shacl_shapes() in scripts/consolidate-ontology.py.
+# live in the typed consolidation constants under
+# scripts/python/pylib/src/config/constants/morphism/ontology/consolidation/.
 
 silm:signingidentity a owl:Class ;
     rdfs:label "SigningIdentity" ;
@@ -24,6 +26,10 @@ silm:trustpolicyclass a owl:Class ;
     rdfs:label "TrustPolicyClass" ;
     rdfs:comment "The policy role a SigningKey plays when scripts/verify-signatures.sh classifies commits: release (maintainer/openclaw agent), web-flow (GitHub web UI commits), or agent (session-scoped autonomous agent keys)." .
 
+silm:agentmodel a owl:Class ;
+    rdfs:label "AgentModel" ;
+    rdfs:comment "The language model an agent identity runs on. Recorded so that an autonomous signing identity names not only its key material but the model that animates the session behind the signature." .
+
 silm:signsWith a owl:ObjectProperty ;
     rdfs:label "signsWith" ;
     rdfs:domain silm:signingidentity ;
@@ -35,6 +41,12 @@ silm:hasPolicyClass a owl:ObjectProperty ;
     rdfs:domain silm:signingkey ;
     rdfs:range silm:trustpolicyclass ;
     rdfs:comment "Links a SigningKey to the TrustPolicyClass it carries in the verifier's policy table." .
+
+silm:hasAgentModel a owl:ObjectProperty ;
+    rdfs:label "hasAgentModel" ;
+    rdfs:domain silm:signingidentity ;
+    rdfs:range silm:agentmodel ;
+    rdfs:comment "Links a SigningIdentity to the AgentModel it runs on. Only autonomous agent identities carry this arrow; human and platform identities have no model." .
 
 silm:hasFingerprint a owl:DatatypeProperty ;
     rdfs:label "hasFingerprint" ;
@@ -68,6 +80,10 @@ silm:trust_policy_agent a owl:NamedIndividual, silm:trustpolicyclass ;
     rdfs:label "TrustPolicyAgent" ;
     rdfs:comment "Session-agent trust: keys minted by autonomous agent sessions. Secret halves are session-ephemeral by design; superseded keys stay listed so historical commits keep verifying." .
 
+silm:agent_model_fable_5 a owl:NamedIndividual, silm:agentmodel ;
+    rdfs:label "Fable5" ;
+    rdfs:comment "Fable 5 (Anthropic) — the language model behind the Claude session identity. The identity names the agent; this individual names the model the agent runs on." .
+
 silm:signing_identity_herodotus a owl:NamedIndividual, silm:signingidentity ;
     rdfs:label "Herodotus" ;
     silm:hasEmail "herodotus@silmaril.internal" ;
@@ -84,6 +100,7 @@ silm:signing_identity_claude a owl:NamedIndividual, silm:signingidentity ;
     rdfs:label "Claude" ;
     silm:hasEmail "claude@silmaril.internal" ;
     silm:signsWith silm:signing_key_claude_2026 ;
+    silm:hasAgentModel silm:agent_model_fable_5 ;
     rdfs:comment "The Claude session agent — a signing identity deliberately distinct from the openclaw agent (Herodotus)." .
 
 silm:signing_key_herodotus_2026 a owl:NamedIndividual, silm:signingkey ;

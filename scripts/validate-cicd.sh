@@ -10,6 +10,12 @@
 #
 #   scripts/validate-cicd.sh
 set -uo pipefail
+# This matrix pushes throwaway branches and expects a local fake remote with a
+# server update hook. Refuse to run against a real (non-local) origin.
+case "$(git remote get-url origin 2>/dev/null || printf none)" in
+  /*|file://*) ;;
+  *) printf '%s\n' 'refusing: origin is not a local fake remote (run scripts/init-fake-remote.sh first)' >&2; exit 64 ;;
+esac
 cd "$(dirname "$0")/.."
 ROOT=$(pwd)
 REMOTE=$(git remote get-url origin)

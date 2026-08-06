@@ -1,0 +1,77 @@
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Folklore: the provenance story of this repository, told as a fable. The
+# figures are the signing identities of basicttl/commit_signing_trust.ttl and
+# the visitors the verifier has turned away; the moral is the trust model
+# itself. Folklore is not decoration here — it is the memorable projection of
+# the typed provenance graph, so the story and the ontology must never
+# disagree. The ontology is the thing.
+
+silm:fable a owl:Class ;
+    rdfs:label "Fable" ;
+    rdfs:comment "A short provenance story with named figures and a moral, grounded in the repository's actual trust evidence. A Fable narrates what the typed graph already asserts; it never asserts anything the graph cannot back with evidence." .
+
+silm:fablemoral a owl:Class ;
+    rdfs:label "FableMoral" ;
+    rdfs:comment "The lesson a Fable carries: a compressed, quotable statement of a policy that the repository enforces mechanically. The moral is only honest if a verifier, a shape, or a manifest actually enforces it." .
+
+silm:fablefigure a owl:Class ;
+    rdfs:label "FableFigure" ;
+    rdfs:comment "A character in a Fable. Each figure personifies one node or one failure mode of the provenance graph: an identity that signs, a service that seals, an intruder that is refused, or a teacher of naming discipline." .
+
+silm:hasFableFigure a owl:ObjectProperty ;
+    rdfs:label "hasFableFigure" ;
+    rdfs:domain silm:fable ;
+    rdfs:range silm:fablefigure ;
+    rdfs:comment "Links a Fable to a FableFigure that appears in it. A typed arrow, not a mention: the figure must resolve to a declared individual." .
+
+silm:hasFableMoral a owl:ObjectProperty ;
+    rdfs:label "hasFableMoral" ;
+    rdfs:domain silm:fable ;
+    rdfs:range silm:fablemoral ;
+    rdfs:comment "Links a Fable to the FableMoral it teaches. A typed arrow, not a mention: the moral must resolve to a declared individual." .
+
+silm:fable_figure_historian_herodotus a owl:NamedIndividual, silm:fablefigure ;
+    rdfs:label "HerodotusTheHistorian" ;
+    rdfs:comment "The historian who signed his chronicles. Herodotus, the openclaw maintainer identity, writes the repository's history and puts his own seal on every entry, so that a reader a thousand commits later can ask not merely 'what was written?' but 'who vouches for it?'. His seal is an ed25519 key whose public half lives in the repository he chronicles." ;
+    silm:hasExample "silm:signing_identity_herodotus signsWith silm:signing_key_herodotus_2026 (keys/herodotus.asc, policy class release); the verifier reports GOOD for his chronicle entries." .
+
+silm:fable_figure_web_scribe a owl:NamedIndividual, silm:fablefigure ;
+    rdfs:label "WebScribeAtThePortal" ;
+    rdfs:comment "The web scribe who seals what passes through the portal. When a change enters through GitHub's web gate rather than a traveler's own hand, the portal's scribe — the web-flow service — affixes the house seal. The seal does not say who composed the words; it says the words passed through this portal unaltered. A different kind of witness, honestly labeled as such." ;
+    silm:hasExample "silm:signing_identity_github_web_flow signsWith silm:signing_key_github_web_flow (keys/github-web-flow.asc, policy class web-flow); merge commits made in the web UI verify GOOD under this seal." .
+
+silm:fable_figure_fable_agent a owl:NamedIndividual, silm:fablefigure ;
+    rdfs:label "FableAgentWithItsOwnName" ;
+    rdfs:comment "The fable-agent who was given its own name and key rather than wearing the historian's. When the Claude session agent came to write in the chronicle, the easy path was to borrow Herodotus's seal and pass unremarked. Instead it was named — Claude, running on the model Fable 5 — and minted its own session key, so the record distinguishes the historian's hand from the agent's hand forever. An identity that hides inside another identity is a lie the graph would have to carry." ;
+    silm:hasExample "silm:signing_identity_claude signsWith silm:signing_key_claude_2026 (keys/claude.asc, policy class agent) and hasAgentModel silm:agent_model_fable_5." .
+
+silm:fable_figure_nameless_wolf a owl:NamedIndividual, silm:fablefigure ;
+    rdfs:label "NamelessWolfAtTheGate" ;
+    rdfs:comment "The nameless wolf whose tampered commit was turned away at the gate. It arrived wearing a stolen signature over altered words, and the gatekeeper did not argue with it, did not weigh its story, did not ask it to explain. The mathematics of the seal simply failed to close — BADSIG — and the gate stayed shut. The wolf has no name in the trust model, which is exactly the point: the model enumerates who is trusted, and everyone else is the wolf." ;
+    silm:hasExample "The tampered-commit fixture fails signature verification in every policy mode; gpg classifies the forged seal as BADSIG and the verifier refuses the commit." .
+
+silm:fable_figure_praeriehund a owl:NamedIndividual, silm:fablefigure ;
+    rdfs:label "PraeriehundOfProvisionalNames" ;
+    rdfs:comment "The prairie dog who teaches provisional naming. The expedition that first met the little barking digger coined a name on the spot — 'prairie dog' — and the name stuck, though the animal is no dog. The praeriehund teaches the repository's naming humility: a coordinate you coin yourself is provisional until the registry that owns the namespace admits it. Write Provisional, never Accepted, on your own inventions; you cannot self-admit." ;
+    silm:hasExample "The shell gate binding URNs carry Admission 'Provisional' by law, and coined coordinates in this repository stay marked PROVISIONAL until externally admitted." .
+
+silm:fable_moral_typed_arrow_with_evidence a owl:NamedIndividual, silm:fablemoral ;
+    rdfs:label "TrustIsATypedArrowWithEvidence" ;
+    rdfs:comment "Trust is a typed arrow with evidence, not a claim. Nobody in this repository is trusted because a comment says so: an identity signsWith a key, the key hasFingerprint forty hex characters, hasKeyFile an armored public half committed under keys/, hasPolicyClass one of three enumerated roles, and the manifest the verifier consults is generated from these arrows — never written by hand. Remove the evidence and the arrow fails to typecheck; the ontology is the thing." ;
+    silm:hasExample "keys/trust-manifest.txt is generated from basicttl/commit_signing_trust.ttl and byte-checked against it in CI; a trust claim with no arrow and no key file cannot enter the manifest." .
+
+silm:fable_provenance_of_silmaril a owl:NamedIndividual, silm:fable ;
+    rdfs:label "ProvenanceOfSilmaril" ;
+    rdfs:comment "The provenance fable of this repository. A historian signed his chronicles with his own seal; a web scribe sealed whatever passed lawfully through the portal; a fable-agent, offered the historian's cloak, was given its own name and key instead; a nameless wolf presented tampered words under a broken seal and was turned away at the gate without discussion; and a prairie dog reminded everyone that self-coined names stay provisional until the namespace owner admits them. Nothing in the story is allegory alone: every figure resolves to an identity, a key, a refusal, or a rule that the repository enforces." ;
+    silm:hasFableFigure silm:fable_figure_historian_herodotus ;
+    silm:hasFableFigure silm:fable_figure_web_scribe ;
+    silm:hasFableFigure silm:fable_figure_fable_agent ;
+    silm:hasFableFigure silm:fable_figure_nameless_wolf ;
+    silm:hasFableFigure silm:fable_figure_praeriehund ;
+    silm:hasFableMoral silm:fable_moral_typed_arrow_with_evidence .

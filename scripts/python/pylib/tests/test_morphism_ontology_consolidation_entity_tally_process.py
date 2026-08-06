@@ -48,7 +48,7 @@ def test_entity_tally_process_matches_committed_manifest_estimate() -> None:
 
     assert completed.returncode == 0
     assert completed.stderr == b""
-    assert completed.stdout == b"59786\n"
+    assert completed.stdout == b"59794\n"
 
 
 def test_entity_tally_process_is_one_total_child_application() -> None:
