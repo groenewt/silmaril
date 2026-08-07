@@ -1,0 +1,363 @@
+# Layout of the Jungle
+
+Orientation document for any session picking up this work. Read this FIRST,
+then PLAN_FREEZE.md, TRANSCRIPT_VERBATIM.md, STRICTNESS_RULES.md, and
+SUBAGENT_FINDINGS.md.
+
+---
+
+## Repository Identity
+
+- Repo: `groenewt/silmaril`
+- Branch: `claude/custom-pgp-sign-git-ozh8th`
+- HEAD: `597d3076` (plan freeze files on top of `8a563e34` submodule rebase)
+- PR: #3 (CI red — Ontology Validation + Script Gates; pre-existing on rebase)
+- Agent key: ed25519, fingerprint `27044DC503CD3A5EE470CE4E15B79D364040C858`
+- Three trust identities: Herodotus (release), GitHub web-flow, Claude (agent)
+
+---
+
+## Top-Level Directory Map
+
+```
+silmaril/
+├── basicttl/              83 top-level .ttl files + _verb/ (1 legacy file)
+│                          THE ONTOLOGY SOURCE. Every class, individual,
+│                          property lives here. Consolidation merges these
+│                          into ontology/silmaril-consolidated.ttl
+│
+├── ontology/              Generated artifacts (COMMITTED but should be CI-only per plan):
+│   ├── silmaril-consolidated.ttl   315,302 lines — the full graph
+│   ├── shapes.ttl                  SHACL shapes (128 lines)
+│   ├── ui-shapes.ttl               ORPHANED — nothing consumes it (104 lines)
+│   ├── manifest.ttl                Consolidation manifest (18 lines)
+│   ├── queries.sparql              5 SPARQL queries (Q1-Q5)
+│   └── geosparql.sparql            GeoSPARQL queries (27 lines)
+│
+├── docs/                  Jekyll site (COMMITTED but should be CI-only per plan):
+│   ├── _config.yml        Jekyll config
+│   ├── _layouts/          Jekyll layout templates
+│   ├── _includes/         Jekyll includes (build-status.html is generated)
+│   ├── assets/            CSS/images (generated.css is generated from ontology)
+│   ├── index.html         Landing page
+│   ├── architecture.html  Architecture page
+│   ├── provenance.html    Trust system page
+│   ├── folklore.html      Fable/folklore page
+│   └── *.md               Design docs (pr2-review-addendum, socratic-followup, etc.)
+│
+├── forge/                 SUBMODULES (4 forged components):
+│   ├── base_templates/    Jinja2 HEEx typed component grammar
+│   ├── base_agents/       Reference skills, golden/, r1_staging/
+│   ├── base/              LaTeX foundations, category-theory contracts
+│   └── example_gippidy_01/  v17 corpus: 12 ZIP slices (6 consolidated + 6 semantic-formats)
+│
+├── hooks/                 Git hooks (3: pre-commit, pre-push, remote-update)
+├── keys/                  PGP public keys (3 .asc) + trust-manifest.txt
+├── scripts/               Python pylib + shell scripts + ui-constructor.py
+│
+├── PLAN_FREEZE.md         Plan state + five workflows + what's next
+├── TRANSCRIPT_VERBATIM.md Complete verbatim user transcript (19 messages + 8 QA)
+├── STRICTNESS_RULES.md    15 binding precision rules
+├── SUBAGENT_FINDINGS.md   Full findings from 5 mapping agents
+└── JUNGLE_MAP.md          This file
+```
+
+---
+
+## The Typed Processing Engine: scripts/python/pylib/
+
+This is the heart. 2,277 Python files + 1,885 config constants.
+
+### Directory Structure
+```
+scripts/python/pylib/
+├── Makefile               Master include file (26 .mk includes)
+├── make/                  Make envelope recipes:
+│   ├── lambda_blotto/     File/directory capture envelopes (2 .mk)
+│   ├── morphism/          Processing pipeline envelopes:
+│   │   ├── codebase/volume/   40+ .mk files — the volume codebase analysis
+│   │   ├── contract/validation/  Schema/format validation envelopes (8 .mk)
+│   │   ├── ontology/      consolidation.mk + validation.mk
+│   │   ├── provenance/    commit.mk + trust.mk
+│   │   └── ...
+│   └── quality/           python.mk (lint/compile gates)
+│
+├── src/
+│   ├── config/            1,885 value.py constants + library.py dependencies
+│   │   ├── constants/     Pure VALUE = <bytes|str|tuple> constants
+│   │   └── gate/          External dependency gates (rdflib, sys, os, etc.)
+│   │
+│   └── silmaril/sparky/   2,277 process files in 5 families:
+│       ├── contract/      File capture static (1 file)
+│       ├── lambda/        Byte-frame substrate (10 files)
+│       ├── lambda_/       Lambda variant (7 files)
+│       ├── lambda_blotto/ File/dir capture engine (220 files)
+│       └── morphism/      THE MAIN PIPELINE (2,039 files):
+│           ├── codebase/  Volume analysis pipeline
+│           ├── contract/  Validation schema pipeline
+│           ├── ontology/  Consolidation + validation + chart + queries
+│           ├── provenance/ Trust + commit signature pipeline
+│           ├── resource/  RDF/Turtle subject aggregation
+│           └── specification/  Paper atom grounding
+│
+├── tests/                 ~100 test files (pytest)
+│   ├── fixtures/          CSV fixtures (process ledger, tallies)
+│   └── test_*.py          Each test invokes subprocess, checks exit+stdout+stderr
+│
+└── build/                 Build artifacts (gitignored, generated by make)
+```
+
+### The Unary Pattern (CRITICAL — every new process must follow this)
+
+Each process family has this exact structure:
+```
+morphism/<domain>/<concern>/
+├── process.py       MAIN: imports constants + deps, one function, raise SystemExit(MAIN())
+├── input/value.py   Input specification
+├── output/value.py  Output specification
+├── frame/value.py   Frame type
+└── effect/value.py  Side-effect specification
+```
+
+Concrete example — `morphism/ontology/document/parse/process.py`:
+```python
+from config.constants.morphism.ontology.document.parse.evidence.prefix.value import VALUE as _PREFIX
+from config.constants.morphism.ontology.document.parse.evidence.terminator.value import VALUE as _TERMINATOR
+from config.constants.morphism.ontology.document.parse.format.value import VALUE as _FORMAT
+from config.gate.external.python.resource_description_framework_library.graph.library import DEPENDENCY as _GRAPH
+from config.gate.external.python.stdlib.sys.library import DEPENDENCY as _SYS
+
+def MAIN() -> int:
+    _SYS.stdout.buffer.write(
+        _PREFIX
+        + str(len(_GRAPH().parse(data=_SYS.stdin.buffer.read(), format=_FORMAT.decode()))).encode()
+        + _TERMINATOR
+    )
+    return 0
+
+raise SystemExit(MAIN())
+```
+
+Rules: No try/except. No loops. No print. One function. One input (stdin or
+single arg). One frame result (stdout). Effects on stderr. Constants are
+VALUE in value.py. Dependencies are DEPENDENCY in library.py.
+
+### The Make Envelope Pattern
+
+Every make target follows:
+```makefile
+$(TARGET): $(DEPS)
+	@test -n "$(SILMARIL_PYTHON)" || { printf '%s\n' 'SILMARIL_PYTHON is required' >&2; exit 64; }
+	@mkdir -p "$(@D)"
+	@set +e; PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(SRC)" "$(SILMARIL_PYTHON)" -m <module> <args> \
+	    >"$@.pending" 2>"$@.stderr"; STATUS=$$?; \
+	    printf '%s\n' "$$STATUS" >"$@.status"; set -e; \
+	    if [ "$$STATUS" -ne 0 ]; then cat "$@.stderr" >&2; exit "$$STATUS"; fi; \
+	    mv "$@.pending" "$@"
+```
+
+SILMARIL_PYTHON guard (exit 64). stdout->$@.pending. stderr->$@.stderr.
+status->$@.status. Atomic mv on success.
+
+---
+
+## Morphism Subfamilies (What Exists)
+
+### morphism/ontology/ (the consolidation + validation pipeline)
+
+```
+ontology/
+├── chart/                 Coordinate derivation pipeline (from prior session, NOT on branch)
+│   ├── coordinate/derivation/
+│   ├── identity/digest/
+│   ├── identity/enumeration/
+│   ├── membership/scoring/
+│   └── rebinding/render/
+│
+├── consolidation/         Source discovery -> normalize -> render consolidated.ttl
+│   ├── consolidated/render/
+│   ├── corpus/tally/
+│   ├── document/normalization/
+│   ├── entity/tally/
+│   ├── geographic/query/   GeoSPARQL document emission
+│   ├── manifest/render/
+│   ├── namespace/union/
+│   ├── query/protocol/    SPARQL document emission
+│   ├── shapes/constraint/ SHACL document render
+│   ├── source/discovery/
+│   └── statement/tally/
+│
+├── document/parse/        Parse consolidated TTL, count triples
+├── queries/
+│   ├── execution/         Execute queries against consolidated graph
+│   ├── law/               Query-law gate (every query references geo vocabulary)
+│   └── parse/             Parse-validate SPARQL syntax
+└── shapes/conformance/    pyshacl validation against shapes.ttl
+```
+
+### morphism/provenance/ (the trust + signature pipeline)
+
+```
+provenance/
+└── commit/
+    ├── classification/    6 verdict classifiers (attested/bad/good/secure/unknown/unsigned)
+    ├── keyring/construction/  Ephemeral GNUPGHOME from keys/*.asc
+    ├── observation/       Header + GPG verification capture
+    │   ├── header/
+    │   └── verification/
+    ├── policy/            3 policy modes (default/report/strict)
+    │   ├── default/
+    │   ├── report/
+    │   └── strict/
+    └── record/merge/      Combine observation + classification records
+```
+
+### morphism/codebase/ (volume analysis — large, self-contained)
+
+2000+ files. Analyzes the codebase itself. 40+ make targets. Has its own
+ring/dunbar/phase14 algebra. Self-contained; the ontology rebuild does not
+need to modify this unless explicitly instructed.
+
+---
+
+## Forge Submodules (What's Inside)
+
+### forge/base_templates
+```
+templates/
+├── _universal_macros.j2       Hub — imports all registries
+├── _registries/               Per-concern macro files
+├── _urn/identity.j2           URN identity stamping
+├── _urn/stamps.j2             Provenance stamps
+├── _canon/dewey_template_contract.j2   Path law
+├── _dispatch/                 Typed dispatch seams (NOT macros)
+├── heex/_anchors/_macros/_spine.heex.j2   THE component grammar
+│   macros: header / section / table / svg / mount
+└── semantic_render_target.j2  Provenance-row contract
+```
+StrictUndefined. Composition only (no inheritance).
+
+### forge/base_agents
+```
+├── golden/                    Universal base generics
+│   ├── base.zip               Compressed base
+│   ├── research/              (empty)
+│   ├── specs/README.md
+│   └── _audit_*.yml           Audit contracts
+├── r1_staging/forge/          Staging area
+│   ├── _cpgplan/              CPG generation contracts + ETL DAG
+│   ├── _joern/manifest.yaml   Joern manifest
+│   ├── _spark/                Spark catalog + engine identity + core files
+│   └── _specspec/ + _tools/
+├── agents/                    Agent skill families:
+│   ├── closure/ dunbar/ gates/ setup/ wire/ codex/
+├── bin/                       CLI tools (fuseki-sparql etc. — BROKEN)
+└── corpus/ docs/ config/
+```
+NO working GeoSPARQL runner. Reference only.
+
+### forge/example_gippidy_01
+v17 corpus. 12 ZIP slices:
+- 6x `graphatlas-epistemic0-consolidated-v17-*` (part-001 through part-006 + control)
+- 6x `graphatlas-epistemic0-semantic-formats-v17-*` (same split)
+Reassembly: unzip control -> read manifest -> unzip+cat parts -> zstd decompress.
+Contains: ttl/, geosparql/, shacl/, linkml/, ossie/, xml/, sparql/, metadata/.
+Native runners pinned to Apache Jena 6.2.0.
+
+### forge/base
+```
+├── docs/                      LaTeX foundations
+│   └── I-fundamenta, II-en, IV-turtles, V-polysemy
+├── external/                  External references
+└── forge/                     Category-theory contracts (sheaf/semiring/lens)
+```
+
+---
+
+## CI Pipeline (.github/workflows/ci.yml)
+
+Six jobs, all triggered on push to master/main and PRs:
+
+| Job | What it does | Status |
+|-----|-------------|--------|
+| `ui-constructor` | Generates CSS+HTML from `basicttl/ui_constructor.ttl`, diffs against committed | Will be removed (generated artifacts leave the branch) |
+| `site` | Jekyll build of docs/ | Will be rebuilt as GeoSPARQL-driven generation |
+| `ontology` | `morphism-ontology-consolidation-check` — regenerate and compare committed consolidated TTL | Will change once consolidated.ttl leaves the branch |
+| `semantics` | `morphism-ontology-validation` — parse, shapes conformance, query parse+execute | **Currently failing** (TTL parse error line 315004) |
+| `provenance` | Trust manifest check + commit policy default | Green |
+| `scripts` | compileall + bash -n + pytest morphism tests | **Currently failing** (depends on semantics) |
+
+### Current CI Failure
+
+`semantics` fails at the document-parse step: `rdflib.plugins.parsers.notation3.BadSyntax`
+at line 315004 of the consolidated TTL. Error: "newline found in string literal" near
+`basicttl/olog_box.ttl` boundary. The consolidated file was generated on master before the
+rebase — a pre-existing issue that needs investigation as Workflow 4.
+
+---
+
+## The Ontology (basicttl/*.ttl)
+
+83 top-level files. Each follows this pattern:
+```turtle
+@prefix silm: <urn:silmaril:entity#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix cceo: <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+silm:entityname a owl:Class ;
+    rdfs:label "EntityName" ;
+    rdfs:comment ">=200 char comment describing..." .
+```
+
+Many legacy files have empty labels/comments (`""`) — these are depth
+violations that the plan requires remediation with real content.
+
+Key files to know:
+- `commit_signing_trust.ttl` — the trust model (3 identities, properties, keys)
+- `identity_construction.ttl` — agent identity ontology
+- `ui_constructor.ttl` — UI labels (but NOT visual values; those are hardcoded in Python)
+- `00_whitepaper.ttl` through `21_ologs_and_typed_english.ttl` — numbered sequence
+- `*_atom.ttl` — atom-pattern files (preferred_term, replacement, shape, synonym, translation)
+
+---
+
+## Key Scripts Outside pylib
+
+- `scripts/ui-constructor.py` — THE VIOLATION. Hardcodes palette/typography in Python.
+  Reads basicttl/ui_constructor.ttl but only for labels. Must be replaced with
+  GeoSPARQL-driven renderer using forge/base_templates.
+- `scripts/ontology-depth-check.py` — Checks rdfs:comment length >= 200 chars.
+  Currently advisory (|| true in CI). Plan makes it blocking for basicttl/*.ttl.
+- `scripts/install-git-hook.sh` — Symlinks hooks/ into .git/hooks/
+
+---
+
+## Trust System (Quick Reference)
+
+| Identity | Policy | Fingerprint |
+|----------|--------|-------------|
+| Herodotus | release | `77481DD960B9CBE52BEC60CFC998590FAEA8530A` |
+| GitHub | web-flow | `968479A1AFF927E37D1A566BB5690EEEBB952194` |
+| Claude | agent | `27044DC503CD3A5EE470CE4E15B79D364040C858` |
+
+Classification verdicts: GOOD / ATTESTED / SSH / UNSIGNED / UNKNOWN / BADSIG.
+Pre-push hook runs commit policy before push leaves machine.
+Trust manifest (`keys/trust-manifest.txt`) derived from `basicttl/commit_signing_trust.ttl`.
+
+---
+
+## What the Next Session Must Do
+
+Read these files in order:
+1. This file (JUNGLE_MAP.md) — understand the terrain
+2. STRICTNESS_RULES.md — internalize the 15 binding rules
+3. TRANSCRIPT_VERBATIM.md — the requirements ledger (every user word matters)
+4. PLAN_FREEZE.md — the five workflows and what's next
+5. SUBAGENT_FINDINGS.md — what's already been mapped
+
+Then execute: discovery (obra/superpowers + base_agents golden/r1_staging +
+sparky substrate) -> full DAG plan in SHACL+GeoSPARQL -> ultracode build.
+CI fix is Workflow 4, separate from everything else.
