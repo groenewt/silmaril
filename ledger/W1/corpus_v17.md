@@ -22,7 +22,7 @@ unzip graphatlas-epistemic0-consolidated-v17-2026-08-06-control.zip -d graphatla
 cd graphatlas-epistemic0-full-control/ && ./reassemble.sh    ..   ./reassembled
 ```
 
-The target dir holds `README.md` + `.git` gitlink + **12 split ZIP slices** (two families × 6 numbered parts) plus **two `-control.zip`** archives (13 zip files total, not counting numbering):
+The target dir holds `README.md` + `.git` gitlink + **12 split ZIP slices** (two families × 6 numbered parts) plus **two `-control.zip`** archives (**14** zip files total — 12 numbered slices + 2 `-control.zip`; verified `find forge/example_gippidy_01 -name '*.zip' | wc -l` = 14, matching the tree/census Row 7):
 - `graphatlas-epistemic0-consolidated-v17-2026-08-06-{control, part-001..006-of-006}.zip`
 - `graphatlas-epistemic0-semantic-formats-v17-2026-08-06-{control, part-001..006-of-006}.zip`
 
@@ -189,7 +189,9 @@ Empirical confirmation over the full `terms` table (recomputed x/y/z from `exact
 
 ---
 
-## 6. The AOB (Atom-of-Being) — atom-yml schema, base_templates, projection derivation
+## 6. The AOB — atom-yml schema, base_templates, projection derivation
+
+> Note on the expansion. "AOB" is used throughout this corpus, but its expansion is **not stated anywhere in `forge/example_gippidy_01`**: `grep -rE 'Atom.of.Being' forge/example_gippidy_01` = 0 hits. [inference] plausibly *Atom-of-Being* (consistent with the paper's atom / ontic0-carrier framing), marked as inference — **not asserted as fact**. Census gap 30 holds the cross-map disagreement open: `ledger/W1/base_templates.md` §Orientation reads the same acronym as *Atom-Oriented-Bundle*, itself unsourced in its own corpus.
 
 ### 6.1 Physical AOB normal form (paper §"Complete AOB Normal Form and Projection Closure")
 Every new exact identity gets a content-addressed directory keyed by SHA-256 nibbles:

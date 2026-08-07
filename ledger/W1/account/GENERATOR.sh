@@ -39,21 +39,50 @@ HEADER='path,component_family,disposition,successor_hint,inverse_evidence,provis
 read -r -d '' CLASSIFY <<'AWK' || true
 function pre(s){ return index(p,s)==1 }        # true iff p starts with s
 function emit(fam,disp,succ,inv,gap){ print p "," fam "," disp "," succ "," inv "," gap; done_=1 }
+BEGIN {
+  # Load the 38 tracked mode-120000 symlinks into SL[path]=target (both passes).
+  # getline-into-variable does not field-split, and paths/targets are comma-free
+  # (verified), so the '\t' split is exact and CSV integrity is preserved.
+  while ((getline __sl < SLFILE) > 0) {
+    __t = index(__sl, "\t")
+    if (__t > 0) SL[substr(__sl, 1, __t-1)] = substr(__sl, __t+1)
+  }
+  close(SLFILE)
+}
 {
   p=$0; done_=0
+
+  # ======================= SYMLINK DECLARATIONS (FIRST RULE) ================
+  # Every physical mode-120000 symlink emits its own row BEFORE any file-family
+  # match, so a tracked link can never fold silently into a file family. The
+  # row carries the real link target as inverse evidence. 37 links live under
+  # forge/base_agents, 1 under external/skills/superpowers (=38 total).
+  if (p in SL) {
+    slroot="external/superpowers/symlink-declaration"
+    if (pre("forge/base_agents/")) slroot="forge/base_agents/symlink-declaration"
+    emit(slroot,"reuse","resolve to link target on consolidation", \
+         "git-tracked mode-120000 symlink -> " SL[p],""); next }
 
   # ======================= SILMARIL TREE (paths start with ./) ==============
   if (pre("./")) {
 
-    # --- Reserved-keyword `lambda` twins (LIVE, under src/) -> PROVISIONAL ---
-    # sparky_substrate.md 1.4/5.3: Python-invalid keyword spelling; live-reach
-    # via importlib vs orphaned unresolved; migrate->lambda_ or retire pending
-    # byte-complete inverse. (lawful `lambda_` sibling is reuse, below.)
+    # --- Reserved-keyword `lambda` twins (LIVE package) -> MIGRATE ----------
+    # RESOLVED (was provisional): the reserved-keyword `lambda` package is live-
+    # wired into the engine by importlib -- 37 call-sites in scripts/python/pylib/
+    # src (excl reference/) resolve 5 distinct entrypoint modules of the three twin
+    # roots (12 direct IMPORTLIB.import_module(...) + 25 via the _value wrapper
+    # whose body is IMPORTLIB.import_module(module_name).VALUE); every referenced
+    # entrypoint exists on disk. So the prior "orphaned/unresolved" gap is DODGE-
+    # DISSOLVED at the package level. Disposition is MIGRATE (not reuse): the
+    # Python-invalid `lambda` spelling folds onto the lawful `lambda_` sibling
+    # under the unary refactor (X) -- a transformation, matching successor_hint.
+    # Per-row evidence is stated at PACKAGE granularity (each row is a member of
+    # the live-wired package), NOT as if every row were itself a call-site.
     if (pre("./scripts/python/pylib/src/silmaril/sparky/lambda/") \
      || pre("./scripts/python/pylib/src/config/constants/lambda/") \
      || pre("./scripts/python/pylib/src/config/gate/external/python/lambda/")) {
-      emit("silmaril/engine/sparky-reserved-keyword-lambda-twin","provisional","migrate->lambda_ OR retire keyword twin","", \
-           "reserved-keyword lambda module (Python-invalid spelling); live-reachability via importlib vs orphaned unresolved (sparky_substrate.md 1.4/5.3); byte-complete inverse required before any retire"); next }
+      emit("silmaril/engine/sparky-reserved-keyword-lambda-twin","migrate","fold onto the lawful lambda_ sibling under the unary refactor (X)", \
+           "member of the reserved-keyword lambda package that is live-wired into the engine via 37 importlib call-sites resolving 5 entrypoint modules in scripts/python/pylib/src excl reference (e.g. .../frame/library.py import_module silmaril.sparky.lambda...); transforms to the lambda_ sibling under X",""); next }
 
     # --- Legacy reference/ copy: aob/layout hyphenated constants -> PROVISIONAL
     if (pre("./scripts/python/pylib/reference/pylib/reference/config/constants/aob/layout/")) {
@@ -194,16 +223,21 @@ function emit(fam,disp,succ,inv,gap){ print p "," fam "," disp "," succ "," inv 
 }
 AWK
 
+# The 38 tracked mode-120000 symlinks (path<TAB>target). Loaded into the awk
+# classifier so every physical symlink gets an explicit symlink-declaration row
+# carrying its real link target as inverse evidence (BOTH csv passes).
+SLFILE="$OUT/symlinks.tsv"
+
 # ---- silmaril.csv : silmaril.tree + basicttl.tree --------------------------
 {
   printf '%s\n' "$HEADER"
-  awk "$CLASSIFY" "$TREES/silmaril.tree" "$TREES/basicttl.tree"
+  awk -v SLFILE="$SLFILE" "$CLASSIFY" "$TREES/silmaril.tree" "$TREES/basicttl.tree"
 } > "$OUT/silmaril.csv"
 
 # ---- forge.csv : the five forge trees -------------------------------------
 {
   printf '%s\n' "$HEADER"
-  awk "$CLASSIFY" \
+  awk -v SLFILE="$SLFILE" "$CLASSIFY" \
     "$TREES/base_agents.tree" \
     "$TREES/base_templates.tree" \
     "$TREES/base_tower.tree" \

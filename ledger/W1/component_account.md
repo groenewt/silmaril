@@ -5,6 +5,34 @@ seven frozen whole trees in `ledger/W1/trees/`, the Task-3 census
 (`ledger/W1/taxonomy_census.md`), the five committed W1 maps, and the three beacon rulings
 (`JUNGLE_MAP.md`, `PLAN_FREEZE.md`, `STRICTNESS_RULES.md`).
 
+> **R1 revision (this session).** Two panel-confirmed defects are dissolved here:
+> **(1) the 38 tracked `mode-120000` symlinks** — 37 under `forge/base_agents` (incl.
+> `.twin` and the `bin/telephone/*`, `bin/kimi/*`, `bin/cheese/*` link families) and 1 at
+> `external/skills/superpowers/AGENTS.md` — were dropped by an earlier `find -type f` and had
+> no honest row. The seven trees were regenerated **with** them (total `317,601` → `317,647`),
+> and every symlink now emits an explicit `*/symlink-declaration` row carrying its real link
+> target as inverse evidence (`account/symlinks.tsv` = `path<TAB>target`, 38 lines).
+> **(2) the reserved-keyword `lambda`-twin family (66 rows) was a provisional *dodge***: it
+> cited "importlib-reachability unresolved" when the resolving evidence is a live grep the map
+> itself named. That grep finds **37 importlib call-sites** in `scripts/python/pylib/src`
+> (excl. `reference/`) that wire the twin **package** — resolving **5 entrypoint modules** — and
+> every referenced target module exists on disk. The reachability question is thereby answered at
+> **package level**; the family left provisional in R1. Provisional rows therefore drop from
+> **93 → 27** (only the genuinely-unresolvable `aob/layout` family remains open).
+>
+> **R2 revision (this session).** Two round-2 corrections land on top of R1:
+> **(a)** the `lambda`-twin family (66) is re-ruled **migrate** (not reuse): the package is live
+> — so it is not retired — **but its `lambda/` spelling is a Python reserved keyword** that must
+> fold onto the lawful `lambda_` sibling under the unary refactor (**X**), which is a `migrate`
+> destination, not reuse-in-place. Its per-row `inverse_evidence` states the live-wiring at
+> **package granularity** (each row is a *member* of the package live-wired via 37 importlib
+> call-sites resolving 5 entrypoint modules) — it does **not** stamp any single row as itself a
+> call-site. **(b)** the silmaril tree now also carries the **2 post-freeze audit files**
+> `ledger/W1/account/symlinks.tsv` and `ledger/W1/checks/tree-disk-check.sh` (committed corpus,
+> family `silmaril/ledger/audit-record`, `reuse`), taking silmaril `6,341 → 6,343` and the grand
+> total `317,647 → 317,649`. The machine projection is the same `account/GENERATOR.sh`; the
+> acceptance gate `ledger/W1/checks/account-check.sh` passes at **`317,649`** rows.
+
 Doctrine read in full first, per Global Constraint 1:
 `docs/praeriehund-demokratie-der-kategorien.md` (129 lines) +
 `docs/unary-byte-frame-law.md` (765 lines).
@@ -48,12 +76,15 @@ for per-file lifecycle. Every row therefore carries one of
 ## 1. Method
 
 1. **Row universe = the seven frozen trees, whole.** Cardinalities computed this session by
-   `wc -l` and cross-checked against the census: `silmaril` 6,333 · `basicttl` 30,234 ·
-   `base_agents` 279,670 · `base_templates` 1,118 · `base_tower` 50 · `example_gippidy_01` 16
-   · `superpowers` 180 = **317,601**. No path is read into context to be classified; the
-   committed tree file **is** the complete transcription, and classification is a
-   prefix-keyed projection computed over the entire file (`sed`/`cut`/`grep`/`awk`), never a
-   capped or sampled read.
+   `wc -l` and cross-checked against the census: `silmaril` 6,343 · `basicttl` 30,234 ·
+   `base_agents` 279,707 · `base_templates` 1,118 · `base_tower` 50 · `example_gippidy_01` 16
+   · `superpowers` 181 = **317,649**. The trees were regenerated to include the **38 tracked
+   `mode-120000` symlinks** (37 in `base_agents`, 1 in `superpowers`) that a prior `find
+   -type f` had dropped, and the 8 committed W1 ledger artifacts **plus the 2 post-freeze audit
+   files** (`account/symlinks.tsv`, `checks/tree-disk-check.sh`) added this session (all under
+   `./ledger/`). No path is read into context to be classified; the committed tree file **is**
+   the complete transcription, and classification is a prefix-keyed projection computed over
+   the entire file (`sed`/`cut`/`grep`/`awk`), never a capped or sampled read.
 
 2. **CSV split matches the acceptance check.**
    `silmaril.csv` ← `silmaril.tree` (paths start `./`) + `basicttl.tree` (paths start
@@ -72,10 +103,15 @@ for per-file lifecycle. Every row therefore carries one of
 
 5. **Generation is programmatic.** One `awk` classifier keyed on the verbatim path prefix
    emits one row per tree line, so no path can be dropped and every path appears exactly
-   once. CSV safety: tree paths contain **no commas** (verified, §2) and the generator emits
-   no comma inside any field (uses `;` `/` `+`), so `cut -d, -f1` recovers the path verbatim
-   and every row has exactly 6 fields (verified, §2). Because no path contains a comma, no
-   switch to tab-delimited was needed.
+   once. Its **first rule** is a symlink test: `account/symlinks.tsv` (`path<TAB>target`, 38
+   lines) is loaded in `BEGIN` into `SL[path]=target` and, before any file-family match, any
+   path that is a symlink key emits an explicit `*/symlink-declaration` row whose
+   `inverse_evidence` is `git-tracked mode-120000 symlink -> <real target>`. This guarantees a
+   tracked link can never fold silently into a file family. CSV safety: tree paths **and**
+   symlink targets contain **no commas** (both verified, §2) and the generator emits no comma
+   inside any field (uses `;` `/` `+` `->`), so `cut -d, -f1` recovers the path verbatim and
+   every row has exactly 6 fields (verified, §2). Because no path or target contains a comma,
+   no switch to tab-delimited was needed.
 
 6. **`retire` ⇒ inverse.** Per Präriehund "no delete without inverse", every `retire` family
    fills `inverse_evidence` with the byte-complete inverse that *exists or must exist* before
@@ -93,16 +129,21 @@ Computed this session over the whole files:
 
 | file | data rows | = tree lines |
 |---|---:|---|
-| `account/silmaril.csv` | **36,567** | 6,333 + 30,234 |
-| `account/forge.csv` | **281,034** | 279,670 + 1,118 + 50 + 16 + 180 |
-| **total** | **317,601** | `cat trees/*.tree \| wc -l` |
+| `account/silmaril.csv` | **36,577** | 6,343 + 30,234 |
+| `account/forge.csv` | **281,072** | 279,707 + 1,118 + 50 + 16 + 181 |
+| **total** | **317,649** | `cat trees/*.tree \| wc -l` |
 
-- Comma scan across all seven trees: **zero** lines contain a comma.
+- Comma scan across all seven trees **and** the 38 `symlinks.tsv` targets: **zero** lines/fields
+  contain a comma.
 - Field-count scan: **zero** rows with `NF != 6` in either CSV.
 - Disposition column (`cut -d, -f3 | sort -u`): exactly `{merge, migrate, provisional, retire,
-  reuse}` — all inside the closed vocabulary; **no `UNCLASSIFIED`, no `conflict`**.
+  reuse}` — all inside the closed vocabulary; **no `UNCLASSIFIED`, no `conflict`**
+  (`awk -F, '$2=="UNCLASSIFIED"||$3=="conflict"' *.csv` is empty).
 - `account-check.sh` diff of CSV column-1 (sorted) against the sorted tree paths: **empty**
   (every tree path has exactly one row; every row maps to a real tree path).
+- Symlink coverage: all 38 `symlinks.tsv` paths appear as CSV rows
+  (`comm -23 <(cut -f1 symlinks.tsv|sort) <(cut -d, -f1 *.csv|sort)` is empty), and all 38
+  carry family `*/symlink-declaration` with disposition `reuse`.
 
 ---
 
@@ -112,15 +153,27 @@ Computed this session over the whole files:
 
 | disposition | silmaril.csv | forge.csv | total |
 |---|---:|---:|---:|
-| reuse | 35,695 | 277,626 | **313,321** |
-| migrate | 68 | 3,408 | **3,476** |
+| reuse | 35,705 | 277,664 | **313,369** |
+| migrate | 134 | 3,408 | **3,542** |
 | retire | 710 | 0 | **710** |
-| provisional | 93 | 0 | **93** |
+| provisional | 27 | 0 | **27** |
 | merge | 1 | 0 | **1** |
 | conflict | 0 | 0 | **0** |
-| **total** | **36,567** | **281,034** | **317,601** |
+| **total** | **36,577** | **281,072** | **317,649** |
 
-### 3.2 Rows per family (37 families: 29 silmaril + 8 forge)
+The current totals reconcile through two revisions. **R1** (over the pre-R1 seed of `317,601`
+rows): **reuse +112** = +8 committed ledger artifacts (`./ledger/**` audit-record) + 38 new
+`symlink-declaration` rows + 66 `lambda`-twin rows moved out of provisional; **provisional −66**
+(only the 27 `aob/layout` rows remain), reaching `317,647`. **R2** (this task, over the `317,647`
+R1 seed): **total +2** = the 2 post-freeze audit files (`account/symlinks.tsv` +
+`checks/tree-disk-check.sh`), both landing in silmaril `reuse`/`audit-record`; and the **66
+`lambda`-twin rows re-ruled reuse → migrate** (§4.1a). Net effect on silmaril: `reuse`
+35,769 + 2 − 66 = **35,705**; `migrate` 68 + 66 = **134**; total 36,575 + 2 = **36,577**.
+`retire`/`provisional`/`merge` and all of `forge.csv` are unchanged (the 9 symlinks that sit
+under `golden/`+`r1_staging/` were *never* in the old count — `find -type f` had dropped them —
+so carving them to `symlink-declaration` leaves `universal-base-generics` at its prior 3,394).
+
+### 3.2 Rows per family (39 families: 29 silmaril + 10 forge)
 
 **silmaril.csv (29):**
 
@@ -129,7 +182,7 @@ Computed this session over the whole files:
 | basicttl/ontology-source | reuse | 30,233 |
 | silmaril/engine/sparky-live-src | reuse | 5,193 |
 | silmaril/engine/build-and-verification | reuse | 223 |
-| silmaril/ledger/audit-record | reuse | 16 |
+| silmaril/ledger/audit-record | reuse | 26 |
 | silmaril/engine/live-receipts-config | reuse | 7 |
 | silmaril/root/governance-doc | reuse | 6 |
 | silmaril/keys/pgp-trust-root | reuse | 4 |
@@ -145,8 +198,8 @@ Computed this session over the whole files:
 | silmaril/ontology-dir/generated-artifact | retire | 5 |
 | silmaril/ontology-dir/orphaned-generated | retire | 1 |
 | silmaril/keys/generated-manifest | retire | 1 |
-| silmaril/engine/sparky-reserved-keyword-lambda-twin | provisional | 66 |
 | silmaril/engine/legacy-reference-aob-layout | provisional | 27 |
+| silmaril/engine/sparky-reserved-keyword-lambda-twin | migrate | 66 |
 | silmaril/engine/outside-pylib-python | migrate | 50 |
 | silmaril/shell/top-level-violator | migrate | 9 |
 | silmaril/hooks/git-hook | migrate | 3 |
@@ -156,7 +209,7 @@ Computed this session over the whole files:
 | silmaril/scripts/depth-check | migrate | 1 |
 | basicttl/fable-dissolve | merge | 1 |
 
-**forge.csv (8):**
+**forge.csv (10):**
 
 | family | disp | rows |
 |---|---|---:|
@@ -165,15 +218,21 @@ Computed this session over the whole files:
 | forge/base_templates/render-engine | reuse | 1,118 |
 | external/superpowers/planning-methodology | reuse | 180 |
 | forge/base/structural-tower-and-foundations | reuse | 50 |
+| forge/base_agents/symlink-declaration | reuse | 37 |
 | forge/example_gippidy_01/transport-wrapper | reuse | 2 |
+| external/superpowers/symlink-declaration | reuse | 1 |
 | forge/base_agents/universal-base-generics | migrate | 3,394 |
 | forge/example_gippidy_01/v17-corpus-transport | migrate | 14 |
 
 Every family total reconciles against a census cardinality: e.g. `sparky-live-src` 5,193 =
-`src` 5,259 − 66 keyword-`lambda` twins; `legacy-reference-copy` 692 = `reference` 719 − 27
-`aob/layout`; `build-and-verification` 223 = `make` 69 + `tests` 154; `upstream-reference`
-268,377 = `base_agents` 279,670 − `golden` 2,094 − `r1_staging` 1,300 − `corpus` 7,899;
-`fable-dissolve` 1 + `ontology-source` 30,233 = `basicttl` 30,234.
+`src` 5,259 − 66 keyword-`lambda` twins (the twins keep their own **migrate** family, §4.1a);
+`legacy-reference-copy` 692 = `reference` 719 − 27 `aob/layout`; `build-and-verification` 223 =
+`make` 69 + `tests` 154; `audit-record` 26 = 16 prior + 8 committed W1 ledger artifacts + 2
+post-freeze audit files (`account/symlinks.tsv` + `checks/tree-disk-check.sh`);
+`upstream-reference` 268,377 = `base_agents` 279,707 − `golden` 2,094 − `r1_staging` 1,300 −
+`corpus` 7,899 − **37 base_agents symlinks**; `fable-dissolve` 1 + `ontology-source` 30,233 =
+`basicttl` 30,234; `symlink-declaration` 37 + 1 = the 38 tracked `mode-120000` links;
+`planning-methodology` 180 + `superpowers` symlink 1 = `superpowers` 181.
 
 ---
 
@@ -211,10 +270,13 @@ three `*-routing.json` / `*-manifest.json` receipts). Disposition **reuse**. Gov
 JUNGLE_MAP *"Makefile Master include file (26 .mk includes)"*; these are the engine's live
 top-level receipts and master build entry.
 
-**`silmaril/ledger/audit-record`** — covers `./ledger/**` (16 files). Disposition **reuse**.
+**`silmaril/ledger/audit-record`** — covers `./ledger/**` (26 files). Disposition **reuse**.
 This W1 ledger (census, maps, manifests, trees, checks, and **this account**) is the audit
 record consumed by W3/W5/the panel; it is preserved (STRICTNESS Rule 15 *"Preserve Agent
-Work"*).
+Work"*). This family includes the **2 post-freeze audit files** committed this round —
+`account/symlinks.tsv` (38-row link-target evidence) and `checks/tree-disk-check.sh` (the
+tree↔disk binding gate, run with no self-exclusion) — both first-class `reuse` audit records,
+the `24 → 26` step that takes silmaril `6,341 → 6,343`.
 
 **`silmaril/root/governance-doc`** — covers the six root handoff docs (`README.md`,
 `JUNGLE_MAP.md`, `PLAN_FREEZE.md`, `STRICTNESS_RULES.md`, `SUBAGENT_FINDINGS.md`,
@@ -257,6 +319,70 @@ Hand-authored directory README, not a generated render target (contrast the five
 
 **`silmaril/hooks/readme`** — covers `./hooks/README.md`. Disposition **reuse**. Hand-authored
 doc; the three hook scripts themselves migrate (§4.4).
+
+### 4.1a RESOLVED — reserved-keyword `lambda` twins (was provisional → left provisional in R1; MIGRATE in R2)
+
+**`silmaril/engine/sparky-reserved-keyword-lambda-twin`** — 66 rows across
+`src/silmaril/sparky/lambda/` (10), `src/config/constants/lambda/` (55),
+`src/config/gate/external/python/lambda/` (1). Disposition **migrate** (successor_hint:
+*"fold onto the lawful lambda_ sibling under the unary refactor (X)"*; `provisional_gap` empty).
+
+The prior seed marked this family **provisional**, citing *"live-reachability via importlib vs
+orphaned unresolved … byte-complete inverse required before any retire."* That was a **dodge**,
+not an honest Präriehund gap: importlib reachability is not a runtime probe — it is a **static,
+grep-decidable** fact over the frozen source, and the grep the map itself named settles it.
+Running it this session:
+
+```
+grep -rEn "silmaril\.sparky\.lambda\.|config\.constants\.lambda\.|config\.gate\.external\.python\.lambda\." \
+     scripts/python/pylib/src | grep -v /reference/
+```
+
+returns **37 importlib call-sites** (matching `\.lambda\.` — the reserved-keyword package, *not*
+the lawful `lambda_`/`lambda_blotto` siblings) that wire the three twin roots from live
+production code, **resolving 5 entrypoint modules** of the twin package. The 37 call-sites live
+across **9 `src` files**, and by shape are:
+
+- **25 via the `_value` wrapper** whose one-line body is literally
+  `return IMPORTLIB.import_module(module_name).VALUE` — e.g.
+  `…/invocation/process/file/input/library.py:10`
+  `BINDING_IDENTITY = _value("config.constants.lambda.invocation.process.file.request.binding.identity.value")`.
+- **9 direct** `IMPORTLIB.import_module("…")` call expressions — e.g.
+  `…/invocation/process/file/frame/library.py`
+  `Effect = IMPORTLIB.import_module("silmaril.sparky.lambda.invocation.process.file.effect.value").Value`.
+- **3 module-name string arguments** fed to a multi-line `import_module(...)` — e.g.
+  `…/substrate/byte/vector/library.py:4` `"silmaril.sparky.lambda.substrate.byte.vector.value"`.
+
+Every referenced target module **exists on disk** (spot-verified:
+`…/silmaril/sparky/lambda/invocation/process/file/effect/value.py`,
+`…/config/constants/lambda/invocation/frame/lineage/identity/value.py`,
+`…/config/gate/external/python/lambda/substrate/byte/frame/library.py`). The twins are the
+live `sparky` engine's Value/Frame/Input/Output/Effect carriers, loaded by name because
+`lambda` is a Python reserved word and cannot be `import`-ed with a `from … import` statement —
+hence the importlib indirection. That is *why they are wired dynamically*, not evidence that
+they are orphaned.
+
+**The resolution is PACKAGE-LEVEL, and the disposition is MIGRATE.** The 37-call-site /
+5-entrypoint evidence establishes that the *package* is live-imported — so it can never be
+`retire`-d — but it does **not** make each of the 66 member files a call-site. Accordingly each
+row's `inverse_evidence` records the wiring at **package granularity**: *"member of the
+reserved-keyword lambda package that is live-wired into the engine via 37 importlib call-sites
+resolving 5 entrypoint modules in `scripts/python/pylib/src` excl `reference/` … transforms to
+the `lambda_` sibling under X"* — a per-row statement of package membership, **not** a claim
+that the row is itself one of the 37 call-sites. The disposition is **migrate** (not reuse):
+the package is live, but its `lambda/` spelling is a **Python reserved keyword** that must be
+renamed — it folds onto the lawful `lambda_` sibling (which already exists in parallel and is
+`reuse` inside `sparky-live-src`, §4.1) under the unary refactor (**X**). A live module whose
+very name is unlawful and whose successor identity is a different path is a `migrate`
+destination, not a `reuse`-in-place; that is the R2 correction over R1's `reuse`.
+
+> Honest reconciliation with the R1 brief: the brief estimated *"36 call-sites."* The exact
+> measured count this session is **37** (25 `_value`-wrapped `import_module` + 9 direct
+> `import_module` + 3 module-name string arguments), resolving **5 entrypoint modules** of the
+> twin package. Per verbatim-then-interpret honesty the CSV and this block carry the **measured
+> 37** at **package granularity**, not the estimate and not a per-row call-site claim. The
+> conclusion is strengthened: the dodge is dissolved and the lifecycle destination (migrate →
+> `lambda_` under X) is named.
 
 ### 4.2 RETIRE families — see §6 for full inverse evidence
 
@@ -302,9 +428,13 @@ basicttl/commit_signing_trust.ttl"*. Inverse in §6.
 
 ### 4.3 PROVISIONAL families — see §7
 
-**`silmaril/engine/sparky-reserved-keyword-lambda-twin`** (66) and
-**`silmaril/engine/legacy-reference-aob-layout`** (27) — both inherited from the census
-Honest-gap register; gaps stated in §7.
+**`silmaril/engine/legacy-reference-aob-layout`** (27) — the **only** remaining provisional
+family, inherited from the census Honest-gap register; gap stated in §7. The former second
+provisional family, `sparky-reserved-keyword-lambda-twin` (66), left provisional in R1 and is
+ruled **migrate** in R2 (§4.1a): its only cited gap — importlib reachability — is answered live
+at **package level** (37 call-sites resolving 5 entrypoint modules), so it no longer qualifies as
+an unresolved meaning; being a live-but-reserved-keyword package, it migrates onto `lambda_`
+under X rather than remaining provisional.
 
 ### 4.4 MIGRATE families
 
@@ -415,6 +545,47 @@ category-theory foundations corpus, pinned `c4e82818`). Consumed as the foundati
 `forge/example_gippidy_01/README.md` (2). Disposition **reuse**. The gitlink pointer and the
 transport README are retained as the package wrapper; only the 14 ZIP slices migrate (§5.2).
 
+### 5.1a SYMLINK-DECLARATION families (the 38 tracked `mode-120000` links)
+
+**`forge/base_agents/symlink-declaration`** (37) and
+**`external/superpowers/symlink-declaration`** (1). Disposition **reuse** for all 38. Governing
+source: the doctrine's *Complete Component Account* requires *"a content-addressed
+predecessor/successor account for every in-scope physical entry … including tracked, untracked,
+ignored, generated, cached, and control-plane surfaces"* with *"physical device, inode or
+file-node … observation"* — a symlink is a distinct physical file-node (`mode-120000`), so it
+gets its own row rather than being swept into the file family of its enclosing directory. Each
+row's `inverse_evidence` is `git-tracked mode-120000 symlink -> <real link target>` read
+verbatim from `git`-tracked link content (`find … -printf '%p\t%l\n'`, frozen into
+`account/symlinks.tsv`), and `successor_hint` is *"resolve to link target on consolidation"* —
+i.e. the link is honoured as a pointer whose target is the semantic identity; the consolidated
+render seal resolves it against that target rather than duplicating bytes.
+
+The 38 links, by shape (all inside immutable forge/upstream provenance, hence **reuse** — none
+is owned owned-callable surface the law would mobilize):
+
+- **`forge/base_agents/.twin`** → `/home/tristan/site_stage/cpg-highway/` — an absolute
+  out-of-tree link into the author's working stage (a dangling pointer inside this checkout);
+  recorded honestly with its literal target, not silently dropped.
+- **`bin/` command shims (23)** — relative links wiring the `telephone/*`, `kimi/*`,
+  `cheese/*`, `fuseki/*`, `tool/*` command surfaces (e.g. `bin/telephone_emit ->
+  telephone/emit`, `bin/kimi_query -> kimi/query`, `bin/bootstrap -> ../scripts/bootstrap`).
+- **`.demo/bootstrap/sildemo/{silctl,silmaril}` (2)** → `silmarilctl` — demo launcher aliases.
+- **`golden/research` (1)** → `/home/tristan/Downloads`, **`r1_staging/forge/_joern/apache__jena/*`
+  (8)** and **`research/…/shadow/agents` (1)**, **`tmp/…/checkpoint.json` (1)** — absolute
+  links into the author's out-of-tree evidence/agents/Joern-CPG artifacts. The 9 under
+  `golden/`+`r1_staging/` were previously (silently) absent from the account entirely; they are
+  now carved from `universal-base-generics` into `symlink-declaration` (they are links, not
+  generic-carrying source files).
+- **`external/skills/superpowers/AGENTS.md` (1)** → `CLAUDE.md` — a same-dir alias so the
+  superpowers harness answers to either filename; the underlying `CLAUDE.md` is the real
+  planning doc (already `reuse` under `planning-methodology`).
+
+Recorded judgment (§9): a symlink's disposition follows its host region — all 38 live inside
+immutable upstream/forge provenance, so all are **reuse**; none is retired or migrated on its
+own account. Whether any specific dangling absolute target (`.twin`, `golden/research`) should
+be repaired is a downstream forge-hygiene question, not a W1 disposition — the account's duty is
+to give each link an honest row with its real target, which it now does.
+
 ### 5.2 MIGRATE families
 
 **`forge/base_agents/universal-base-generics`** — covers `forge/base_agents/golden/**` (2,094)
@@ -460,23 +631,25 @@ consumer closure and a concrete inverse, per the doctrine.
 
 ---
 
-## 7. Provisional rows — the gaps (genuinely undecidable-before-W2)
+## 7. Provisional rows — the gap (genuinely undecidable-before-W2)
 
-Both provisional families are **inherited verbatim from the frozen census Honest-gap
-register** (Task 3), not minted here. Each names a gap whose resolution is a W2-design /
-live-probe activity, not tedious bookkeeping.
+**One** provisional family remains (27 rows). It is **inherited verbatim from the frozen census
+Honest-gap register** (Task 3), not minted here, and names a gap whose resolution is a
+W2-design activity, not tedious bookkeeping.
 
-**`silmaril/engine/sparky-reserved-keyword-lambda-twin`** — 66 rows across
-`src/silmaril/sparky/lambda/` (10), `src/config/constants/lambda/` (55),
-`src/config/gate/external/python/lambda/` (1). `provisional_gap`: *reserved-keyword `lambda`
-module (Python-invalid spelling); live-reachability via importlib vs orphaned unresolved
-(sparky_substrate.md §1.4/5.3); byte-complete inverse required before any retire.* Why
-genuinely undecidable now: the disposition is a two-valued fork — **migrate→`lambda_`** if the
-module is live-reachable via importlib, **retire** if it is orphaned dead weight — and the
-deciding evidence is a live importlib reachability probe against the running engine, which is
-out of scope for a read-only account over frozen trees and is a W2 activity. The lawful
-`lambda_/` sibling (7 files) is **not** provisional — it is `reuse` inside
-`sparky-live-src`; only the keyword-invalid spelling is held open. (Census gap 3.)
+**RESOLVED and removed from this section: `sparky-reserved-keyword-lambda-twin` (66).** The
+prior seed listed it here as provisional, claiming the migrate-vs-retire fork turned on an
+"importlib reachability probe against the running engine [that] is out of scope for a read-only
+account." That was the **dodge** the panel flagged: importlib reachability is not a runtime
+probe at all — it is a **static, grep-decidable** fact over the frozen source, and the grep the
+map named settles it (37 live call-sites resolving 5 entrypoint modules; targets exist; §4.1a).
+A read-only account over
+frozen trees is *exactly* the surface on which that grep runs. Holding it open was the
+Sykophant move the doctrine warns against — *"eine bessere Visualisierung der bestehenden
+Käfigstruktur"* instead of resolving the resolvable. It is now **migrate** (§4.1a) — a live
+package (so not retired) whose reserved-keyword `lambda/` spelling folds onto the lawful
+`lambda_` sibling under X (so not reuse-in-place). The genuine
+Präriehund case is `aob/layout` below, whose *denotation* — not its reachability — is unknown.
 
 **`silmaril/engine/legacy-reference-aob-layout`** — 27 rows under
 `reference/pylib/reference/config/constants/aob/layout/`. `provisional_gap`: *aob/layout
@@ -530,10 +703,20 @@ enclosing region, enumerated individually per the brief:
 21. `./scripts/ontology-depth-check.py` — **migrate** (named advisory→blocking).
 22. `./hooks/pre-commit`, `./hooks/pre-push`, `./hooks/remote-update` — **migrate** (git-hook
     shells; README carved to reuse).
-23. The reserved-keyword `lambda` twins (66) and `aob/layout` constants (27) — **provisional**
-    carve-outs from their enclosing `reuse`/`retire` engine families (§7).
+23. The reserved-keyword `lambda` twins (66) — **migrate** carve-out from `sparky-live-src`,
+    keeping their own family so the package-level importlib live-wiring evidence rides with them
+    (§4.1a); the `aob/layout` constants (27) — **provisional** carve-out from the enclosing
+    `reference/` retire family (§7). (Pre-R1 both were provisional; the twins left provisional in
+    R1 and are ruled migrate in R2.)
 24. `forge/example_gippidy_01/.git`, `forge/example_gippidy_01/README.md` — **reuse** (wrapper)
     vs the 14 `*.zip` slices — **migrate**.
+25. The **38 tracked `mode-120000` symlinks** — **reuse** in their own `*/symlink-declaration`
+    families (37 `forge/base_agents/symlink-declaration` + 1 `external/superpowers/
+    symlink-declaration`), each carved from the file family of its enclosing directory so the
+    link gets an honest row with its real target (§5.1a). Nine of them (`golden/research`,
+    `r1_staging/forge/_joern/apache__jena/*`) were carved out of the `migrate`
+    `universal-base-generics` region; `AGENTS.md` out of `planning-methodology`; the rest out of
+    `upstream-reference`.
 
 ---
 
@@ -562,19 +745,45 @@ enclosing region, enumerated individually per the brief:
   authored-to-be-replaced) is recorded here rather than split into two families, since the
   disposition and the regeneration successor are the same.
 
+- **Symlink disposition = reuse (not conflict/provisional).** A tracked `mode-120000` link is a
+  distinct physical file-node, so it earns its own row (§5.1a) — but its *disposition* follows
+  its host region, and all 38 sit inside immutable forge/upstream provenance, so all are
+  **reuse**. Two links (`.twin` → `/home/tristan/site_stage/cpg-highway/`, `golden/research` →
+  `/home/tristan/Downloads`) are **dangling** absolute out-of-tree targets in this checkout;
+  that is recorded honestly as their literal `inverse_evidence` and flagged as forge-hygiene,
+  but a dangling target is not a W1 lifecycle disposition — the account's duty is the honest row
+  with the real target, which every link now has.
+
+- **`lambda`-twin = the resolvable-mistaken-for-unresolvable seam.** R1's central correction:
+  a gap is only Präriehund-honest if it is *genuinely* undecidable. "Reachable via importlib?"
+  is statically grep-decidable over the frozen trees (§4.1a), so parking it as provisional was a
+  Sykophant dodge, not honesty. R2's follow-on correction: reachability answered *affirmatively*
+  is not a licence for `reuse` — the reachability is **package-level** (37 call-sites → 5
+  entrypoint modules), and a live package whose `lambda/` name is a reserved keyword has a
+  distinct successor identity (`lambda_` under X), so its lifecycle disposition is **migrate**,
+  not reuse-in-place. The contrast with `aob/layout` — where the *denotation* really
+  is unknown and has no live analogue — is the line between decidable-and-migrated and
+  genuinely-unresolved-and-provisional.
+
 ---
 
 ## 10. What the seed hands downstream
 
-- **W5 (reconciliation):** every one of 317,601 physical entries now has exactly one account
-  row; the 37 family rulings and the two open provisional gaps are the reconciliation surface.
+- **W5 (reconciliation):** every one of **317,649** physical entries — now including the 38
+  tracked `mode-120000` symlinks and the 2 post-freeze audit files — has exactly one account row;
+  the **39** family rulings and the **one** remaining open provisional gap (`aob/layout`, 27) are
+  the reconciliation surface.
 - **W3 (retire-with-inverse):** the six retire families in §6, with their consumer-closure and
   byte-complete-inverse grades (regeneration vs recovery vs must-exist), are W3's work list.
   The two **must-exist** inverses (`ui-shapes.ttl` render step; the `reference/`
   predecessor/successor content-addressed account) are the hard gates — no deletion until they
   exist.
+- **Forge hygiene:** the two dangling absolute symlinks (`.twin`, `golden/research`) and any
+  repair of out-of-tree link targets are handed downstream as forge-hygiene notes, recorded with
+  their literal targets in `account/symlinks.tsv` (§5.1a).
 - **The panel:** §9 records every seam where a disposition is a judgment rather than a
-  beacon-forced value, so nothing is presented as more settled than it is.
+  beacon-forced value, so nothing is presented as more settled than it is; R1 additionally
+  dissolves the one provisional row that was a dodge rather than a genuine gap (§7).
 
 ---
 

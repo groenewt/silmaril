@@ -9,8 +9,8 @@ Scope: read-only census. Nothing modified outside `ledger/W1/`.
 
 | Required file | Status |
 |---|---|
-| `docs/praeriehund-demokratie-der-kategorien.md` | **READ IN FULL** (130 lines) |
-| `docs/unary-byte-frame-law.md` | **READ IN FULL** (766 lines) |
+| `docs/praeriehund-demokratie-der-kategorien.md` | **READ IN FULL** (129 lines) |
+| `docs/unary-byte-frame-law.md` | **READ IN FULL** (765 lines) |
 | `docs/unary-byte-frame-law-enforcement-proof.md` | **MISSING — DOES NOT EXIST.** `find` over the whole repo returns nothing. The index doc names it as a continuation, but the file was never created (or not yet). |
 | `docs/unary-byte-frame-law-receipts.md` | **MISSING — DOES NOT EXIST.** Same: named in the index topology, absent on disk. |
 
@@ -107,15 +107,27 @@ skips).
   Many *import statements*, but still exactly one semantic thing (one frozen
   dataclass) per file — the law's "one precise semantic thing per file" holds;
   the preamble length is cosmetic, not a cardinality violation.
-- **Reserved-keyword `lambda/` twin (migrate/duplicate):** `sparky/lambda/`
-  (10 files) is the Python-**invalid** spelling of `sparky/lambda_/` (7 files);
-  mirrored in `config/constants/lambda` vs `lambda_` and
-  `config/gate/external/python/lambda`. `lambda` is a Python keyword, so those
-  modules cannot be reached by a normal `import` — check.py's own final loop
-  rejects surviving `.lambda.` imports. **PROVISIONAL:** whether `lambda/` is
-  live-reachable (via importlib) or orphaned dead weight was not resolved;
-  disposition candidate = **migrate→`lambda_` / retire the keyword twin**
-  (byte-complete inverse required first).
+- **Reserved-keyword `lambda/` twin — LIVE-WIRED via importlib (RESOLVED, not
+  orphaned):** `sparky/lambda/` (10 files) is the Python-**invalid** spelling of
+  `sparky/lambda_/` (7 files); mirrored in `config/constants/lambda` vs
+  `lambda_` and `config/gate/external/python/lambda`. `lambda` is a Python
+  keyword, so those modules cannot be reached by a normal `import` **statement**
+  — but they ARE reached, live, through `importlib.import_module(<string>)`,
+  which a keyword cannot block. Measured today in `scripts/python/pylib/src`
+  (excluding `reference/`): **26** `importlib.import_module(` call-sites across
+  **19** gate leaves, of which **9 name the keyword-twin path by string
+  literal** — e.g.
+  `config/gate/external/project/sparky/invocation/process/file/library.py:3` does
+  `IMPORTLIB.import_module("silmaril.sparky.lambda.invocation.process.file.frame.value").Value`.
+  The target modules exist (`silmaril/sparky/lambda/invocation/process/file/{apply.py,
+  frame/value.py, input/value.py, output/value.py, effect/value.py}` all
+  present). So `lambda/` is a **live production module reached through the gate
+  (disposition: reuse)**, not orphaned dead weight; the reserved-keyword
+  `lambda → lambda_` rename belongs to the unary refactor (X), not a retirement.
+  (check.py's `compile()`-time loop still rejects a surviving *bare* `.lambda.`
+  token in `import`-statement form; the importlib string-literal reach is a
+  different physical surface and is the current live wiring until the rename
+  lands.)
 
 ---
 
@@ -361,8 +373,12 @@ target list* but re-census before claiming any line green.
    may exist outside this checkout. All §4 numbers rest on the single index doc.
 2. Exact pickle de-mux count: **5 observed, brief said 3** — either brief is
    stale or counts one family (equality vs mutation).
-3. `sparky/lambda/` (keyword twin) live-reachability vs orphaned — unresolved;
-   disposition = migrate/retire pending inverse.
+3. `sparky/lambda/` (keyword twin) live-reachability — **RESOLVED (§1.4):
+   live-wired via `importlib.import_module` string-literal reaches** (9 of the
+   26 `import_module(` call-sites in `src` name the `silmaril.sparky.lambda.*`
+   path; the target modules are present). Disposition = **reuse** (live
+   production module); the `lambda → lambda_` reserved-keyword rename belongs to
+   the unary refactor (X), not a retirement.
 4. The sbt Scala engine (`modules/`, `build.sbt`, `cli/`) referenced by `ci.sh`
    and the build-bootstrap receipt is **not in this working tree** — likely a
    submodule/sibling repo.

@@ -18,6 +18,7 @@ external/skills/superpowers/.opencode/plugins/superpowers.js
 external/skills/superpowers/.pi/extensions/superpowers.ts
 external/skills/superpowers/.pre-commit-config.yaml
 external/skills/superpowers/.version-bump.json
+external/skills/superpowers/AGENTS.md
 external/skills/superpowers/CLAUDE.md
 external/skills/superpowers/CODE_OF_CONDUCT.md
 external/skills/superpowers/GEMINI.md

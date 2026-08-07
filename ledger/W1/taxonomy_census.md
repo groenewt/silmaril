@@ -14,26 +14,51 @@ Honest-gap register as **PROVISIONAL** with a documented gap and a resolution pa
 force-fit, nothing fabricated. Global Constraint 9 (capture, don't conclude): every row
 carries a source citation; no axis is asserted without quoted evidence.
 
-**Tree cardinalities (computed `wc -l` over the whole tree files, this session):**
+**Tree cardinalities (computed `wc -l` over the whole tree files, this session — the trees
+were regenerated to include tracked `mode-120000` symlinks and current silmaril state, so
+every count below is symlink-inclusive):**
 
-| tree file | lines (= files) | verified |
+| tree file | lines (= files+symlinks) | verified |
 |---|---:|---|
-| `trees/silmaril.tree` | **6,333** | `wc -l` |
+| `trees/silmaril.tree` | **6,343** | `wc -l` |
 | `trees/basicttl.tree` | **30,234** | `wc -l` |
-| `trees/base_agents.tree` | **279,670** | `wc -l` |
+| `trees/base_agents.tree` | **279,707** | `wc -l` |
 | `trees/base_templates.tree` | **1,118** | `wc -l` |
 | `trees/base_tower.tree` | **50** | `wc -l` |
 | `trees/example_gippidy_01.tree` | **16** | `wc -l` |
-| `trees/superpowers.tree` | **180** | `wc -l` |
-| **total (7 trees)** | **317,601** | `cat trees/*.tree | wc -l` |
+| `trees/superpowers.tree` | **181** | `wc -l` |
+| **total (7 trees)** | **317,649** | `cat trees/*.tree | wc -l` |
 
-The seven trees are a **partition** of the physical universe (task brief Step 2: repo root
-excludes `basicttl/`, `forge/`, `external/`, each of which owns its own tree — every file
-appears in exactly one tree). The census below is therefore an enumeration of the *distinct
-taxonomies* that live inside that partition, some of which co-reside within one tree
-(e.g. `base_agents` hosts at least four distinct taxonomies: its corpus file-tree, the
-`.aob.dir` atom taxonomy, the `corpus/*.shacl.ttl` CorpusAtom taxonomy, and the `_specspec`
-W3C taxonomy).
+The seven trees are a **partition of a precisely-scoped set** — not of "the physical
+universe". The partitioned set is the **tracked-and-physical file-and-symlink set of the six
+mapped corpus roots plus the silmaril repository tree**: (i) the silmaril superproject working
+tree (`trees/silmaril.tree`), plus the six mapped roots (ii) `basicttl/`, (iii)
+`forge/base_agents/`, (iv) `forge/base_templates/`, (v) `forge/base/` (the base tower),
+(vi) `forge/example_gippidy_01/`, and (vii) `external/skills/superpowers/`. Each maps to
+exactly one tree; the silmaril tree excludes `basicttl/`, `forge/`, and `external/` because
+those subtrees own their own trees. Within this scope **every physical file or tracked
+`mode-120000` symlink appears in exactly one tree**. The partition **explicitly excludes** two
+surfaces: `.git` plumbing (control-plane, not corpus) and the gitignored `.superpowers/` SDD
+scratch (session tooling, not corpus — correctly out of scope). **Included, not excluded:** the
+silmaril tree now also carries the **two post-freeze audit files** — `ledger/W1/account/symlinks.tsv`
+(the 38-row link-target evidence) and `ledger/W1/checks/tree-disk-check.sh` (the tree↔disk
+binding gate, run with no self-exclusion). Both are committed corpus, so they are **in** the
+tree and **in** the account (family `silmaril/ledger/audit-record`, disposition `reuse`), not
+carved out; they are the exact `6,341 → 6,343` silmaril delta (ledger region `24 → 26`). The census below is therefore
+an enumeration of the *distinct taxonomies* that live inside that scoped partition, some of
+which co-reside within one tree (e.g. `base_agents` hosts at least four distinct taxonomies:
+its corpus file-tree, the `.aob.dir` atom taxonomy, the `corpus/*.shacl.ttl` CorpusAtom
+taxonomy, and the `_specspec` W3C taxonomy).
+
+**Symlinks are now INCLUDED (no longer excluded).** The regenerated trees, census, and
+`account/` all carry the **38 tracked `mode-120000` symlinks** — **37 in `base_agents`**
+(including the `.twin` symlink `forge/base_agents/.twin → /home/tristan/site_stage/cpg-highway/`,
+23 `bin/*` operator-command links, 2 `.demo/bootstrap/sildemo/*` links, and the `golden/research`,
+`research/…/shadow/agents`, `tmp/…/checkpoint.json`, and 8 `r1_staging/forge/_joern/apache__jena/*`
+links) and **1 in `superpowers`** (`external/skills/superpowers/AGENTS.md → CLAUDE.md`). Each
+symlink's resolved link-target is recorded with evidence in `ledger/W1/account/symlinks.tsv`
+(`<link_path>\t<target>`, 38 rows). These are the exact `+37` / `+1` deltas over the earlier
+symlink-excluded pin (base_agents `279,670 → 279,707`; superpowers `180 → 181`).
 
 ---
 
@@ -53,12 +78,19 @@ manifest.
   engine plus its docs, ledger, ontology, keys, hooks and CI, minus the three submodule /
   corpus subtrees that own their own census rows.
 - **Ordered axes (evidenced):** (1) top-level region —
-  `scripts` **6,274** · `docs` **17** · `ledger` **16** · `ontology` **7** · `keys` **5** ·
-  `hooks` **4** · `.github` **2** · 8 root files `[tree]`; (2) under `scripts/`, the
+  `scripts` **6,274** · `docs` **17** · `ledger` **26** · `ontology` **7** · `keys` **5** ·
+  `hooks` **4** · `.github` **2** · 8 root files `[tree]` (the `ledger` region grew `16 → 26`,
+  the whole `+10` of the silmaril delta — the 8 committed W1 ledger artifacts
+  (`account/{GENERATOR.sh,forge.csv,silmaril.csv}`, `checks/{account-check.sh,census-check.sh,
+  coverage.sh}`, and the added ledger maps/verification) **plus the 2 post-freeze audit files**
+  `account/symlinks.tsv` and `checks/tree-disk-check.sh`, both now committed corpus IN the tree;
+  no symlinks live in the silmaril tree); (2) under `scripts/`, the
   `python/pylib` engine dominates (6,208 of 6,274) `[tree]`; (3) the `ontology/` leaf is a
   small standalone RDF taxonomy — `manifest.ttl, shapes.ttl, silmaril-consolidated.ttl,
   ui-shapes.ttl, queries.sparql, geosparql.sparql, README.md` `[tree]`.
-- **Cardinality:** **6,333 files** `[tree]` = `wc -l trees/silmaril.tree`.
+- **Cardinality:** **6,343 files** `[tree]` = `wc -l trees/silmaril.tree` (was `6,333` before W1;
+  `+10`, all in `ledger/` = the 8 committed W1 ledger artifacts **plus** the 2 post-freeze audit
+  files `account/symlinks.tsv` + `checks/tree-disk-check.sh` — the `6,341 → 6,343` step this round).
 - **Source:** `trees/silmaril.tree`; `ledger/W1/sparky_substrate.md` (the engine census).
 
 ### Row 2 — Sparky / pylib substrate taxonomy
@@ -105,16 +137,19 @@ manifest.
 - **What it is:** the deep SHACL/OWL/RDF/SPARQL AOB research forge — two fused things (the
   `silmaril_wire` BEAM daemon + a shard-based research catalog mirroring external repos into
   AOB atoms), the BEAM twin of the Scala `cpg-highway` repo.
-- **Ordered axes (evidenced):** (1) region axis `[tree]` — `research` **155,250** ·
+- **Ordered axes (evidenced):** (1) region axis `[tree]` — `research` **155,251** ·
   `r1_site` **100,352** · `corpus` **7,899** · `lib` **3,258** · `vendor` **2,907** ·
-  `golden` **2,094** · `specs` **1,974** · `r1_staging` **1,300** · `config` **1,000** ·
-  `.claude` 870 · `.workflows` 729 · `test` 628 · `scripts` 378 · … ; (2) three co-existing
+  `golden` **2,095** · `specs` **1,974** · `r1_staging` **1,308** · `config` **1,000** ·
+  `.claude` 870 · `.workflows` 729 · `test` 628 · `scripts` 378 · … (symlink-inclusive: the
+  `+37` tracked symlinks land as `research +1`, `golden +1`, `r1_staging +8`, `bin +23`,
+  `.demo +2`, `tmp +1`, and the top-level `.twin +1`) ; (2) three co-existing
   AOB representations (map §A: *"There are THREE co-existing AOB representations"*) — the
   `.aob.dir` dense-node (Row 9), the `corpus/*.shacl.ttl` CorpusAtom (Row 11), the
   `_specspec` spec-of-specs (Row 10); (3) four sorts `type|instance|value|process`
   (map §A.1).
-- **Cardinality:** **279,670 files** `[tree]` = `wc -l trees/base_agents.tree` (map header:
-  *"279,670 files"*).
+- **Cardinality:** **279,707 files** `[tree]` = `wc -l trees/base_agents.tree` (was `279,670`
+  at the earlier symlink-excluded pin, cf. map header *"279,670 files"*; `+37` = the 37 tracked
+  `mode-120000` symlinks now included, itemized in `account/symlinks.tsv` and above).
 - **Source:** `ledger/W1/base_agents.md`; `trees/base_agents.tree`.
 
 ### Row 5 — base_templates corpus taxonomy
@@ -183,8 +218,10 @@ manifest.
   `.claude-plugin` `.codex-plugin` `.cursor-plugin` `.kimi-plugin` `.pi` `.opencode`
   `.agents/plugins` marketplace/plugin manifests `[tree]`; (3) region axis — `skills/`,
   `tests/`, `docs/`, `hooks/`, `scripts/`, `assets/` `[tree]`.
-- **Cardinality:** **180 files** `[tree]` = `wc -l trees/superpowers.tree`; **14** skill
-  directories `[tree]`.
+- **Cardinality:** **181 files** `[tree]` = `wc -l trees/superpowers.tree` (was `180` at the
+  earlier symlink-excluded pin; `+1` = the tracked `mode-120000` symlink
+  `external/skills/superpowers/AGENTS.md → CLAUDE.md`, recorded in `account/symlinks.tsv`);
+  **14** skill directories `[tree]`.
 - **Source:** `trees/superpowers.tree`.
 
 ### Row 9 — AOB `.aob.dir` dense-node taxonomy (inside base_agents golden)
@@ -202,8 +239,11 @@ manifest.
   (see Axes); (4) FORM-3 curried relation axis `subject@predicate@object` with the is:a spine
   to `urn:silmaril:type:type` (see Axes).
 - **Cardinality:** **golden `.aob.dir` atom-directories = 217** `[tree]`
-  (`grep -oE 'golden/.*\.aob\.dir' | sort -u | wc -l`), spanning **2,094 golden files**
-  `[tree]`/`[map §0]`; **repo-wide distinct `.aob.dir` = 458** `[tree]` (+ `.aob.dir.staged`
+  (`grep -oE 'golden/.*\.aob\.dir' | sort -u | wc -l`), spanning **2,095 golden files**
+  `[tree]` (the map §0 / earlier pin counted `2,094` regular files; the `+1` on the
+  symlink-inclusive tree is the tracked `golden/research → /home/tristan/Downloads` symlink,
+  not a new atom — the `217` atom-directory and `458` distinct-`.aob.dir` counts are
+  unaffected); **repo-wide distinct `.aob.dir` = 458** `[tree]` (+ `.aob.dir.staged`
   staged atoms). **[inference]** the map's prose "2,094 sealed atoms" (§0 table) counts the
   golden *file* total, not the atom-*directory* count; the computed atom-directory count is
   217. Golden audits are RED: `_audit_sparql.yml` VERDICT **FAIL** (`isa_reaching_type_type
@@ -571,9 +611,28 @@ resolvable work.
    in another checkout, or confirm they were planned-not-written.
 2. **Pickle de-mux count 5 vs brief 3** — 5 two-load de-mux processes observed, brief said 3
    (§1.4). *Resolve:* reconcile whether the brief counts one family (equality vs mutation).
-3. **`sparky/lambda/` keyword twin reachability** — 10-file Python-invalid `lambda/` vs the
-   lawful 7-file `lambda_/`; live-reachable via importlib or orphaned dead weight unresolved
-   (§1.4). *Resolve:* importlib reachability probe + byte-complete inverse before retire.
+3. **`sparky/lambda/` keyword twin — RESOLVED (live package; disposition MIGRATE, not a census gap).**
+   The 66-row reserved-keyword `lambda` twin (the `src/silmaril/sparky/lambda/`,
+   `src/config/constants/lambda/`, `src/config/gate/external/python/lambda/` package) is
+   **live-wired at PACKAGE level**, not orphaned dead weight. Because `lambda` is a Python
+   reserved keyword, a static `import silmaril.sparky.lambda…` is a `SyntaxError`, so the package
+   is loaded *only* dynamically via `importlib`, e.g.
+   `IMPORTLIB.import_module("silmaril.sparky.lambda.invocation.process.file.frame.value").Value`.
+   Verified over `pylib/src` (excluding `reference/`) this session: the keyword-`lambda` package
+   is reached from **37 `importlib` call-sites** (matching `\.lambda\.` — i.e. excluding the
+   lawful `lambda_`/`lambda_blotto` siblings) **that resolve 5 entrypoint modules** of the twin
+   package; the 37 call-sites live across 9 `src` files. **The resolution is package-level:** the
+   evidence establishes that the *package* is live-imported — it does **not** make each of the 66
+   member files a call-site. The `component_account.md` therefore states the per-row
+   `inverse_evidence` at **package granularity** ("member of the reserved-keyword lambda package
+   … live-wired via 37 importlib call-sites resolving 5 entrypoint modules"), never claiming the
+   individual row is itself one of the 37 call-sites. Because the package is live (so cannot be
+   retired) **but its `lambda/` spelling is Python-invalid** (a reserved keyword that must be
+   renamed), its disposition is **MIGRATE**: fold each member onto the lawful `lambda_` sibling
+   under the unary refactor (**X**). This is a lifecycle destination, not an open census gap; the
+   importlib-reachability question the earlier pin parked is answered live and affirmatively at
+   package level. *(The distinct `reference/aob/layout` hyphenated-projection-constants gap
+   remains genuinely unresolved — see gap 5 below, still PROVISIONAL.)*
 4. **sbt Scala engine not in tree** — `ci.sh` targets an sbt engine (`modules/`, `build.sbt`,
    `cli/`) with no such directory in this checkout (§3.4 note, §5.4). *Resolve:* confirm the
    engine lives in the `cpg-highway` twin / a sibling repo.
@@ -694,6 +753,15 @@ resolvable work.
     only; no W1 map covers the superpowers corpus. The 14-skill flat axis is a tree observation,
     not a narrated taxonomy. *Resolve:* n/a for the census (structure is fully captured); a
     content map would be a separate task if downstream needs skill semantics.
+35. **Tracked `mode-120000` symlinks — RESOLVED (now INCLUDED, formerly excluded).** The
+    earlier pin's trees dropped tracked symlinks; the regenerated (this-session) trees, this
+    census, and the `account/` CSVs now **include all 38 tracked `mode-120000` symlinks** — 37
+    in `base_agents` (incl. the `.twin → …/cpg-highway/` link) and 1 in `superpowers`
+    (`AGENTS.md → CLAUDE.md`) — with each link's resolved target recorded in
+    `ledger/W1/account/symlinks.tsv` (38 rows, `<link_path>\t<target>`). These are the exact
+    `base_agents +37` and `superpowers +1` cardinality deltas above; a symlink appears in
+    exactly one tree, so the scoped partition still holds. *Resolve:* n/a — no longer a gap;
+    symlinks are now first-class members of the trees/census/account with link-target evidence.
 
 ---
 
