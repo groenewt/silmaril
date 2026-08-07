@@ -1,0 +1,76 @@
+# =============================================================================
+# The DAG's schedule and coverage, derived by query (Message 12: understood in
+# SHACL and GeoSPARQL). These are authored, executable SPARQL over
+# dag_instances.ttl. NOTE (Praeriehund, no fabrication): the GeoSPARQL
+# projection of the DAG over the S/O/P-tower coordinate geometry is PROVISIONAL
+# and intentionally absent here — the tower coordinates do not exist until W2
+# materializes crs_law.ttl. Authoring a GeoSPARQL query over geometry that does
+# not yet exist would be a force-fit; it is deferred, not faked.
+# =============================================================================
+
+# DAG-Q1 — every workflow with its in-degree (number of direct prerequisites)
+# and ordinal. A root has in-degree 0. Ascending in-degree then ordinal is a
+# human-readable proxy for the topological schedule.
+PREFIX silm: <urn:silmaril:entity#>
+SELECT ?workflow ?ordinal (COUNT(?prereq) AS ?inDegree) WHERE {
+  ?workflow a silm:Workflow .
+  OPTIONAL { ?workflow silm:hasOrdinal ?ordinal }
+  OPTIONAL { ?workflow silm:dependsOn ?prereq }
+} GROUP BY ?workflow ?ordinal ORDER BY ?inDegree ?ordinal
+
+# DAG-Q2 — ready roots: workflows with no unmet prerequisite. At genesis these
+# are the only workflows that may start; the scheduler re-runs this as
+# workflows complete (completion recorded out-of-band in the ledger).
+PREFIX silm: <urn:silmaril:entity#>
+SELECT ?workflow ?ordinal WHERE {
+  ?workflow a silm:Workflow .
+  OPTIONAL { ?workflow silm:hasOrdinal ?ordinal }
+  FILTER NOT EXISTS { ?workflow silm:dependsOn ?anyPrereq }
+} ORDER BY ?ordinal
+
+# DAG-Q3 — transitive prerequisite closure of every workflow (property path).
+# The full chain that must complete before a workflow may begin.
+PREFIX silm: <urn:silmaril:entity#>
+SELECT ?workflow ?prerequisite WHERE {
+  ?workflow a silm:Workflow ;
+            silm:dependsOn+ ?prerequisite .
+} ORDER BY ?workflow ?prerequisite
+
+# DAG-Q4 — goal coverage. MUST return zero rows: any Goal with no realizing
+# Workflow is a dropped requirement (the failure mode the transcript rails at).
+PREFIX silm: <urn:silmaril:entity#>
+SELECT ?goal WHERE {
+  ?goal a silm:Goal .
+  FILTER NOT EXISTS { ?w a silm:Workflow ; silm:realizesGoal ?goal }
+}
+
+# DAG-Q5 — ruling coverage. MUST return zero rows: any Ruling not honored by a
+# Workflow means a documented maintainer answer was treated as a slight.
+PREFIX silm: <urn:silmaril:entity#>
+SELECT ?ruling WHERE {
+  ?ruling a silm:Ruling .
+  FILTER NOT EXISTS { ?w a silm:Workflow ; silm:honorsRuling ?ruling }
+}
+
+# DAG-Q6 — doctrine binding. MUST return zero rows: any Workflow not bound to
+# both doctrines has an agent that could analyze without reading the required
+# Praeriehund and Unary law.
+PREFIX silm: <urn:silmaril:entity#>
+SELECT ?workflow WHERE {
+  ?workflow a silm:Workflow .
+  FILTER NOT EXISTS { ?workflow silm:honorsDoctrine silm:doctrine_praeriehund }
+}
+
+# DAG-Q7 — phase enumeration per workflow, ordinal-ordered: the explicit depth
+# of each workflow, proving it is not shortcutting the 1000-agent mandate.
+PREFIX silm: <urn:silmaril:entity#>
+SELECT ?workflow ?phase ?ordinal WHERE {
+  ?workflow a silm:Workflow ;
+            silm:hasPhase ?phase .
+  ?phase silm:hasOrdinal ?ordinal .
+} ORDER BY ?workflow ?ordinal
+
+# DAG-Q8 — self-dependency detector. MUST return zero rows (local acyclicity),
+# mirroring the SHACL sh:sparql constraint so the query layer proves it too.
+PREFIX silm: <urn:silmaril:entity#>
+SELECT ?workflow WHERE { ?workflow silm:dependsOn ?workflow . }
