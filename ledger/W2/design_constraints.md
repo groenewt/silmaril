@@ -60,3 +60,69 @@ Binding W2 constraints:
 
 Status: Directive 6's concrete `agents/telephone` + "twin mention" location is being
 captured now by the W1 base_agents deep-AOB agent; PROVISIONAL until that map lands.
+
+---
+
+## Directive 3 — the depth floor: subatomic dual-grounding ("what's a number")
+
+> "Corpus agnostic shape with basic ttl depth remediation especially bc we literally
+> have to be as anal as 'whats a number' (understand real, natural, imaginary as well
+> as properly through the ISA/UEFI perspective BC DONT FORGET OUR 'base unit' is still
+> bit and byte vectors ...)"  — maintainer, 2026-08-07
+
+Binding W2 constraints (in addition to Directives 1–2):
+
+7. **W2 scope = corpus-AGNOSTIC ontology shape + basicttl depth remediation.** No new-corpus
+   binding in W2 (2 more gippidy corpuses, sparky/agent/BLS-notebook updates are incoming and
+   we "will probably relaunch all later"); all live-corpus binding stays in a **re-runnable W5**.
+   The basicttl depth remediation IS in W2 because it is cleanup of already-present corpus, not
+   new-corpus binding — hence relaunch-safe.
+
+8. **Every primitive is DUAL-GROUNDED — formal facet AND physical facet, simultaneously.**
+   The remediation may not stop at a flat `xsd:` type. Worked example, "what is a number":
+   - **Formal facet** — the full type-tower: **ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ**, plus **imaginary**; the ISA
+     *of the mathematics* (Boolean, Char, etc. get their own towers). Not `xsd:integer` and done.
+   - **Physical facet (ISA/UEFI lens)** — the same value as its exact-width machine type
+     (**UINT8/16/32/64, INT8..64, float32/64** → IEEE-754 for reals, two's-complement for ints),
+     with **bit-width, byte-vector layout, endianness**. UEFI exact-width types (UINT16 …) are the
+     naming precedent; ISA is the operational/representation precedent.
+
+9. **The base unit remains bit- and byte-vectors.** The dual-grounding descent bottoms out at the
+   unary law's carrier closure — **Bit → Octet → ByteVector** (Byte ≠ Octet; width 1..128;
+   stream → block → container → value; the RGB/256 colour code space). This floor is the JEPA
+   computational substrate (Directive 2), authored ONCE as the shared primitive floor that every
+   other basicttl concept grounds into by reference — not re-derived per concept.
+
+Status: captured verbatim + interpreted this session; the interpretation (formal-tower + ISA/UEFI
+machine-type + bit/byte floor, established once and referenced) is being confirmed with the
+maintainer in the W2 brainstorming gate before any authoring.
+
+### Directive 3 refinement — the taiji is a colimit; realization is monadic (maintainer, 2026-08-07)
+
+> "TAIJI BUT LITERALLY Algebraically a colimit and TWIN OLOGS WITH REALIZATION FUNCTORS
+> (extremely monadic)"
+
+10. **The AOB primitive = the taiji = literally, algebraically, a COLIMIT** of the twin-olog
+    diagram (Formal olog ⟷ Physical olog + the realization morphisms). Mutual-colimit (each facet
+    a colimit involving the other; yin contains yang) — same shape as the unary law's Atlas & Graph
+    colimit and the OSSIE YIN/YANG taiji twin. The atom simultaneously *is* its formal type and its
+    physical encoding, glued at the realization — not two linked things, one colimit object.
+11. **Twin ologs with realization functors, EXTREMELY MONADIC.** ρ: Formal → Physical is a
+    **Kleisli arrow of a monad**, not a bare functor. Realizing ℝ→bytes carries an effect (float32
+    vs float64 choice, IEEE-754 rounding, endianness) — which is EXACTLY the unary law's
+    `Frame(output:X, error|effect:Y)`. So the realization monad ≡ the Frame monad: the depth floor
+    and the unary law's Yoneda-point Frame are one structure. Byte-descent = Kleisli composition
+    down to the Bit/Octet/ByteVector floor; unit = trivial realization; join = compose descents.
+
+### Q3 ruling — decomposition approved; iteration-not-final (maintainer, 2026-08-07)
+
+> "Approve and agnostic ... we will fundamentally challenge it anyway later so stay
+> committed/oriented on completion on this 'iteration' of workflows"
+
+12. W2 = 9 sub-projects (Primitive Floor → AOB meta-ontology → S/O/P CRS → projection packet
+    → file+format taxonomy → glossary polysemy → SHACL law → basicttl depth remediation →
+    render seal); each its own spec→plan→build. **Primitive Floor designed FIRST** (bottom-up).
+13. This is THIS ITERATION's v1: it WILL be fundamentally challenged/relaunched later. Design
+    for completeness-of-this-iteration and clean re-runnability, NOT for permanence. Stay oriented
+    on COMPLETING the workflow chain; do not seek an unchallengeable final form. Corpus-agnostic
+    throughout (no live-corpus binding until the re-runnable W5).
