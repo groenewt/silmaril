@@ -32,6 +32,18 @@ silm:ruling_fable_dissolve a owl:NamedIndividual, silm:Ruling ;
 silm:ruling_depth_gate a owl:NamedIndividual, silm:Ruling ;
     rdfs:label "Aggressive depth gate with absolute remediation" .
 
+# ---- W2 brainstorming rulings (design_constraints.md Directives 1-13, 2026-08-07) ----
+silm:ruling_corpus_agnostic_iteration a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "W2 = corpus-agnostic ontology shape + basicttl depth remediation; no new-corpus binding (that is the re-runnable W5); this iteration is a v1 to be fundamentally challenged and relaunched" .
+silm:ruling_dual_grounding_floor a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "Subatomic dual-grounding: every primitive is BOTH its formal type-tower (real/natural/imaginary ...) AND its physical bit/byte reality through the ISA/UEFI lens ('what is a number'); the base unit remains bit- and byte-vectors" .
+silm:ruling_colimit_taiji_monadic a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "The AOB primitive is literally a colimit taiji of twin ologs (formal <-> physical) whose realization functor is monadic (Kleisli) and IS the unary law's Frame(output, effect)" .
+silm:ruling_aob_sauce_glossary_polysemy a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "Ground the AOB in the real base_agents WIP AOB; hold structured AND unstructured types as synonyms AND antonyms through the mole of glossaries, each encapsulating a distinct epistemology (OSSIE mime the arbiter)" .
+silm:ruling_unary_grammar_jepa_twin a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "Leave first-class room for the unary grammar + bit/byte/colour vectors (the JEPA data-engineering substrate) and realize the agents/telephone twin as a tighter Yoneda realization of ologs-of-ologs" .
+
 ### ---- Goals -----------------------------------------------------------------
 silm:goal_corpus_bound_morph a owl:NamedIndividual, silm:Goal ;
     rdfs:label "Corpus bound/morph into definitive v1 AOB buildout" .
@@ -62,7 +74,8 @@ silm:skill_writing_skills a owl:NamedIndividual, silm:GoverningSkill ; rdfs:labe
 silm:artifact_superpowers_os a owl:NamedIndividual, silm:Artifact ; rdfs:label "external/skills/superpowers submodule" .
 silm:artifact_dag_ontology a owl:NamedIndividual, silm:Artifact ; rdfs:label "basicttl/dag/* (this DAG authored as ontology)" .
 silm:artifact_taxonomy_census a owl:NamedIndividual, silm:Artifact ; rdfs:label "Full-capture taxonomy census + Complete Component Account seed" .
-silm:artifact_aob_meta_ontology a owl:NamedIndividual, silm:Artifact ; rdfs:label "AOB meta-ontology + projection packet + CRS/S-O-P-tower law + format taxonomy" .
+silm:artifact_primitive_floor a owl:NamedIndividual, silm:Artifact ; rdfs:label "basicttl/primitives/* — the twin-olog colimit-taiji Primitive Floor (formal type-towers <-> physical bit/byte/ISA-UEFI carriers + Frame-monad realization); W2 sub-project 1" .
+silm:artifact_aob_meta_ontology a owl:NamedIndividual, silm:Artifact ; rdfs:label "AOB meta-ontology + projection packet + CRS/S-O-P-tower law + format taxonomy + glossary polysemy" .
 silm:artifact_render_pipelines a owl:NamedIndividual, silm:Artifact ; rdfs:label "GeoSPARQL render pipelines + Split/Consolidated seal (artifact-free branch)" .
 silm:artifact_cicd_engine a owl:NamedIndividual, silm:Artifact ; rdfs:label "Multi-engine gated CI/CD (rdflib/Jena/SIS/Sedona), blocking gates" .
 silm:artifact_v1_buildout a owl:NamedIndividual, silm:Artifact ; rdfs:label "Definitive v1 AOB buildout (all 11 projections, reversible)" .
@@ -78,6 +91,7 @@ silm:dag_v1 a owl:NamedIndividual, silm:DirectedAcyclicGraph ;
 
 silm:wf_s0 a owl:NamedIndividual, silm:Workflow ;
     rdfs:label "S0 — Install superpowers as the external skills OS" ;
+    silm:hasStatus "completed" ;
     silm:hasOrdinal 0 ;
     silm:governedBySkill silm:skill_using_superpowers, silm:skill_writing_skills ;
     silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
@@ -87,6 +101,7 @@ silm:wf_s0 a owl:NamedIndividual, silm:Workflow ;
 
 silm:wf_g a owl:NamedIndividual, silm:Workflow ;
     rdfs:label "G — Genesis: the DAG is ontology" ;
+    silm:hasStatus "completed" ;
     silm:hasOrdinal 1 ;
     silm:dependsOn silm:wf_s0 ;
     silm:governedBySkill silm:skill_brainstorming, silm:skill_writing_plans, silm:skill_verification_before_completion ;
@@ -99,6 +114,7 @@ silm:wf_g a owl:NamedIndividual, silm:Workflow ;
 
 silm:wf_w1 a owl:NamedIndividual, silm:Workflow ;
     rdfs:label "W1 — Discovery & full-capture taxonomy mapping" ;
+    silm:hasStatus "completed" ;
     silm:hasOrdinal 2 ;
     silm:hasAgentBudget 1000 ;
     silm:dependsOn silm:wf_g ;
@@ -113,18 +129,20 @@ silm:wf_w1 a owl:NamedIndividual, silm:Workflow ;
 silm:wf_w2 a owl:NamedIndividual, silm:Workflow ;
     rdfs:label "W2 — Ontology design (taxonomy x AOB x projection-packet x S/O/P-tower CRS)" ;
     silm:hasOrdinal 3 ;
+    silm:hasStatus "in-progress" ;
     silm:hasAgentBudget 1000 ;
     silm:dependsOn silm:wf_w1 ;
     silm:governedBySkill silm:skill_brainstorming, silm:skill_writing_plans, silm:skill_test_driven_development, silm:skill_subagent_driven_development ;
     silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
-    silm:honorsRuling silm:ruling_file_axis_taxonomy, silm:ruling_ndim_crs, silm:ruling_fable_dissolve, silm:ruling_depth_gate ;
+    silm:honorsRuling silm:ruling_file_axis_taxonomy, silm:ruling_ndim_crs, silm:ruling_fable_dissolve, silm:ruling_depth_gate, silm:ruling_corpus_agnostic_iteration, silm:ruling_dual_grounding_floor, silm:ruling_colimit_taiji_monadic, silm:ruling_aob_sauce_glossary_polysemy, silm:ruling_unary_grammar_jepa_twin ;
     silm:realizesGoal silm:goal_render_everything ;
     silm:consumesArtifact silm:artifact_taxonomy_census ;
-    silm:producesArtifact silm:artifact_aob_meta_ontology ;
-    silm:hasPhase silm:phase_w2_1, silm:phase_w2_2, silm:phase_w2_3, silm:phase_w2_4, silm:phase_w2_5, silm:phase_w2_6, silm:phase_w2_7, silm:phase_w2_8, silm:phase_w2_9, silm:phase_w2_10, silm:phase_w2_11 .
+    silm:producesArtifact silm:artifact_primitive_floor, silm:artifact_aob_meta_ontology ;
+    silm:hasPhase silm:phase_w2_sp1, silm:phase_w2_sp2, silm:phase_w2_sp3, silm:phase_w2_sp4, silm:phase_w2_sp5, silm:phase_w2_sp6, silm:phase_w2_sp7, silm:phase_w2_sp8, silm:phase_w2_sp9 .
 
 silm:wf_w3 a owl:NamedIndividual, silm:Workflow ;
     rdfs:label "W3 — Render pipeline(s): GeoSPARQL codegen + render seal" ;
+    silm:hasStatus "pending" ;
     silm:hasOrdinal 4 ;
     silm:hasAgentBudget 1000 ;
     silm:dependsOn silm:wf_w2 ;
@@ -138,6 +156,7 @@ silm:wf_w3 a owl:NamedIndividual, silm:Workflow ;
 
 silm:wf_w4 a owl:NamedIndividual, silm:Workflow ;
     rdfs:label "W4 — CI/CD engine architecture (its own goal)" ;
+    silm:hasStatus "pending" ;
     silm:hasOrdinal 5 ;
     silm:hasAgentBudget 1000 ;
     silm:dependsOn silm:wf_w3 ;
@@ -150,6 +169,7 @@ silm:wf_w4 a owl:NamedIndividual, silm:Workflow ;
 
 silm:wf_w5 a owl:NamedIndividual, silm:Workflow ;
     rdfs:label "W5 — Corpus consolidation -> definitive v1 AOB buildout" ;
+    silm:hasStatus "pending" ;
     silm:hasOrdinal 6 ;
     silm:hasAgentBudget 1000 ;
     silm:dependsOn silm:wf_w1, silm:wf_w2 ;
@@ -163,6 +183,7 @@ silm:wf_w5 a owl:NamedIndividual, silm:Workflow ;
 
 silm:wf_x a owl:NamedIndividual, silm:Workflow ;
     rdfs:label "X — Unary-law refactor (threads W2-W5)" ;
+    silm:hasStatus "pending" ;
     silm:hasOrdinal 7 ;
     silm:hasAgentBudget 1000 ;
     silm:dependsOn silm:wf_w2 ;
@@ -195,17 +216,18 @@ silm:phase_w1_8 a owl:NamedIndividual, silm:Phase ; rdfs:label "Taxonomy census 
 silm:phase_w1_9 a owl:NamedIndividual, silm:Phase ; rdfs:label "Complete Component Account seed (per-entry disposition + inverse)" ; silm:hasOrdinal 9 .
 silm:phase_w1_10 a owl:NamedIndividual, silm:Phase ; rdfs:label "Write findings to distinct ledger files" ; silm:hasOrdinal 10 .
 
-silm:phase_w2_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Full-lexical-identity normalization scheme" ; silm:hasOrdinal 1 .
-silm:phase_w2_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "AOB meta-ontology (atom carriers with byte descent + URN + S/O/P towers)" ; silm:hasOrdinal 2 .
-silm:phase_w2_3 a owl:NamedIndividual, silm:Phase ; rdfs:label "FULL projection packet (atlas_projection_packet.ttl, 11 projections)" ; silm:hasOrdinal 3 .
-silm:phase_w2_4 a owl:NamedIndividual, silm:Phase ; rdfs:label "File-axis virtual taxonomy (repo/tree/dir/module/file + fd/inode)" ; silm:hasOrdinal 4 .
-silm:phase_w2_5 a owl:NamedIndividual, silm:Phase ; rdfs:label "Subatomic file-format taxonomy (owl:Class per format + components)" ; silm:hasOrdinal 5 .
-silm:phase_w2_6 a owl:NamedIndividual, silm:Phase ; rdfs:label "N-dim CRS law = S/O/P towers (co-existing CRSs; coordinates derived)" ; silm:hasOrdinal 6 .
-silm:phase_w2_7 a owl:NamedIndividual, silm:Phase ; rdfs:label "SHACL executable law (coord-count==dimension; composition; ancestry; depth)" ; silm:hasOrdinal 7 .
-silm:phase_w2_8 a owl:NamedIndividual, silm:Phase ; rdfs:label "Absolute depth remediation (156 stubs, ~59777 individuals, 6 predicates)" ; silm:hasOrdinal 8 .
-silm:phase_w2_9 a owl:NamedIndividual, silm:Phase ; rdfs:label "Fable dissolve-and-absorb" ; silm:hasOrdinal 9 .
-silm:phase_w2_10 a owl:NamedIndividual, silm:Phase ; rdfs:label "Map every owl:Class -> base_templates macro" ; silm:hasOrdinal 10 .
-silm:phase_w2_11 a owl:NamedIndividual, silm:Phase ; rdfs:label "Split<->Consolidated render-seal ontology (inverse pair, digest equality)" ; silm:hasOrdinal 11 .
+# W2 decomposed into 9 sub-projects (brainstorming, 2026-08-07); every original W2
+# concern preserved and regrouped. Each sub-project runs its own spec->plan->build cycle.
+# SP1 subsumes the old full-lexical-identity scheme (via its Identifier URN tower).
+silm:phase_w2_sp1 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP1 Primitive Floor — twin-olog colimit taiji (formal type-towers <-> physical bit/byte/ISA-UEFI carriers) + monadic realization = Frame; grounds full-lexical-identity via the Identifier URN tower" ; silm:hasStatus "in-progress" ; silm:hasOrdinal 1 .
+silm:phase_w2_sp2 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP2 AOB meta-ontology — colimit-taiji atom (byte descent + URN + S/O/P towers), lifted from the real base_agents WIP AOB" ; silm:hasOrdinal 2 .
+silm:phase_w2_sp3 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP3 N-dim CRS law = S/O/P towers (co-existing CRSs; coordinates derived; z grounded in the byte descent)" ; silm:hasOrdinal 3 .
+silm:phase_w2_sp4 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP4 FULL projection packet + algebra (11+ projections; pi_L cata / retraction; 5 loss classes; every owl:Class -> base_templates macro)" ; silm:hasOrdinal 4 .
+silm:phase_w2_sp5 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP5 File + format taxonomy (repo/tree/dir/module/file + fd/inode; subatomic owl:Class per format + components)" ; silm:hasOrdinal 5 .
+silm:phase_w2_sp6 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP6 Glossary polysemy layer (mole of glossaries; >=4 distinct epistemologies; 21-col Atlas ring; paired synonym/antonym; OSSIE YIN/YANG taiji)" ; silm:hasOrdinal 6 .
+silm:phase_w2_sp7 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP7 SHACL executable law (coord-count==dimension; AOB composition; semantic ancestry; depth gate)" ; silm:hasOrdinal 7 .
+silm:phase_w2_sp8 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP8 basicttl depth remediation — dual-grounded (156 stubs, ~59777 individuals, 6 predicates; fable dissolve-and-absorb) grounded into the Primitive Floor" ; silm:hasOrdinal 8 .
+silm:phase_w2_sp9 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP9 Split<->Consolidated render-seal ontology (colimit; inverse pair, digest equality)" ; silm:hasOrdinal 9 .
 
 silm:phase_w3_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Remove committed generated artifacts (with inverse evidence)" ; silm:hasOrdinal 1 .
 silm:phase_w3_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "Move visual values into ontology; retire ui-constructor.py" ; silm:hasOrdinal 2 .

@@ -150,3 +150,9 @@ silm:isProvisional a owl:DatatypeProperty ;
     rdfs:domain owl:Thing ;
     rdfs:range xsd:boolean ;
     rdfs:comment "The Praeriehund flag: true marks a coordinate, mapping, or classification as honestly provisional — named because it must be named, but not yet admitted by an external registry, and not to be force-fit into an existing taxon. A provisional individual is a first-class citizen of the graph, not an error; it is the structural refusal of the sykophantic move of pretending certainty where there is none." .
+
+silm:hasStatus a owl:DatatypeProperty ;
+    rdfs:label "hasStatus" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The live execution state of a Workflow or Phase as the rebuild advances — one of 'completed' (its gate passed and its artifacts committed), 'in-progress' (currently under its superpowers cycle), or 'pending' (prerequisites not yet all met, not started). The domain is owl:Thing, not Workflow, deliberately: under RDFS inference a Workflow-domained property would retype every Phase that carries a status as a Workflow and trip the Workflow shape, so status — like hasOrdinal, consumes/producesArtifact, provenByGate — is a cross-cutting property. This is what keeps the authored DAG from drifting from reality: the graph is not merely a plan of intent but the running record of where the end-to-end build actually stands, so a reader — or the scheduler's ready-set query — sees at a glance which node is live and which prerequisites remain. It is deliberately coarse; the fine-grained recovery map lives in the per-plan superpowers ledger, while this records the workflow-and-phase-granularity taiji of intent-and-actuality." .
