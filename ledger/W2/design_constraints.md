@@ -143,3 +143,38 @@ maintainer in the W2 brainstorming gate before any authoring.
     firing after each build. One design checkpoint for the eight, not eight. The maintainer's
     design input is preserved (they review every design before any of the eight is built); only
     the per-project ceremony/interruptions are removed.
+
+### Helios intake + the polysemy resolution of our own vocabulary (maintainer, 2026-08-08)
+
+> "Polysemy!" — maintainer's answer when asked to resolve the "colimit" divergence
+> (SP1 says "colimit taiji"; Helios's node-arrow monograph authors the artifact as an
+> honest cocone W = ObservedProjection(ColimCandidate(D)), "not literally colim").
+
+15. **The Polysemy Helios Library is the authored SOURCE-OF-TRUTH** (34 categorical papers,
+    ~17k AOB atom yamls, source witnesses, executable specs/contracts). Added to the base
+    submodule main; git-ignored under `/helios/` (maintainer resolves it into submodules).
+    W2 designs LIFT its structures, never invent (Directive 1). It answers the cross-cutting
+    decisions from the source: the agnostic **byte_order progenitor** (little/big/host/none
+    children) + ISA/UEFI layer tower; **three independent S/O/P tower categories** K_S/K_O/K_P
+    with NO positional maps to R/G/B and **disjoint Atlas/Graph carriers** (Q_A ∩ Q_G = ∅, a
+    forgetful map, not a colimit); **load-bearing CCO/BFO** via `universal_anchors` (every node
+    atom one `cco:ont########`, every arrow one `cceo:` process, resolved against the merged CCO
+    2.x TTL, pattern-by-anchor never inline); the **full projection family** `triad_fibration`
+    (7 render legs × 3 fibres) + Vol 06's five carrier projections + an nth-dim loss progenitor
+    tree; the **telephone twin** (`telephone_events` + `telephone_supervision_tree`, fields
+    pinned to Layer-0 anchors = Yoneda-point tightness); and the `_aob_*` atom envelope to lift.
+
+16. **Our own vocabulary is subject to our own polysemy law.** The "colimit" divergence is NOT
+    resolved by earning-vs-renaming-vs-deferring — "colimit" is a **polysemous term** whose sense
+    is **glossary-scoped**, and the mole-of-glossaries (SP6) carries it reflexively:
+    - **local / per-primitive glossary:** the finite two-object twin-olog gluing IS a genuine
+      colimit — its universal property is provable — so SP1 EARNS the word there via a
+      `q_colimit_universal` tooth (teeth-not-trust; enrich-not-strip).
+    - **corpus / artifact glossary:** the same lexeme denotes `ObservedProjection(ColimCandidate)`
+      — the monograph's honest cocone — which is SP9's sense.
+    - **SP6 holds "colimit" as one lexeme with both glossary-scoped senses simultaneously**, with
+      a biting polysemy tooth, exactly as Directive 1 requires for every polysemous term. SP2/SP6
+      reference "colimit" through the glossary layer, not bare; SP9 keeps the honest-cocone sense.
+    The SP1 universality tooth (D1), the frame-sort fence (D2), and the corrected Atlas/Graph
+    analogy (D3) are the SP1↔Helios reconciliation items; D4 (independent S/O/P towers) is already
+    faithful. Whether D1–D3 land now or at the W2 relaunch (Directive 13) is a build-time call.
