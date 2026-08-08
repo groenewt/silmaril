@@ -165,3 +165,57 @@ No live-corpus binding (W5). No new corpuses (2 more gippidy / sparky / agent / 
 No algebraic-vs-transcendental number facets, no mixed/PDP endianness, no non-IEEE float
 formats — deferred until a concrete consumer needs them (YAGNI). The floor is expected to be
 challenged and relaunched; it is built to be re-run, not to be final.
+
+## 9. Panel-forced law corrections (2026-08-08)
+
+The first SP1 build (`wf_77f87831-c4f`) was structurally sound (all 12 towers, all ladder carriers
+and ISA/UEFI machine types present; every `owl:Class` carries a genuine ≥200-char comment) but the
+between-sub-project adversarial triple panel returned **NO-GO**: the binding dual-grounding law was
+met for only **9 of 59** formal-type classes, and the SHACL "teeth" targeted `prim:FormalType`
+*instances* (9 punned nodes) rather than the 59 `rdfs:subClassOf+ prim:FormalType` *classes*, so
+"green" was produced by scoping the teeth away from the cases that would bite. These corrections make
+§1 and §6 **precise and enforceable** (they do not change scope — they close the gap between the
+stated law and the delivered artifact). They are binding on the remediation.
+
+- **9a. Dual-grounding is universal over the tower, direct-for-concrete + transitive-for-abstract.**
+  Every one of the 59 formal-type classes must be dual-grounded. A **concrete** type (String,
+  DateTime, Hash, Rational, Complex, Tensor, …) carries its **own** `prim:Realization`. A type is
+  also dual-grounded if it inherits one from a **realized ancestor** (e.g. `NaturalWithZero ⊂ Natural`)
+  or, for a genuine **abstract supertype**, is covered by a **realized descendant**. The SHACL law
+  MUST bite on the *class* form: a `sh:sparql` constraint that walks `rdfs:subClassOf*` and flags any
+  tower class with no realization on itself, an ancestor, or a descendant. Probe of record: injecting
+  `ex:Orphan a owl:Class ; rdfs:subClassOf prim:FormalType` (the form every real tower uses) MUST make
+  `pyshacl` report `conforms=False`.
+
+- **9b. `Bignum → ByteVector(≤128 bytes)` is realized, not provisional.** It is named in §5/§6 and is
+  not in §8; the `isProvisional`-dodge to `Uint128` is removed. `Rational → Product(numerator:Integer,
+  denominator:Integer)`, `Complex → Product(real:Real, imaginary:Real)`, and `Imaginary → Real` are
+  realized so the "what's a number" litmus reproduces in full (ℕ⊂ℤ⊂ℚ⊂ℝ⊂ℂ + imaginary, each with a
+  correct-width ISA/UEFI or composite realization). `isProvisional` is reserved for genuinely
+  undecidable gaps (Praeriehund), never for resolvable in-scope work.
+
+- **9c. Two distinct width caps.** Fixed-width **scalar** encodings are capped at **bitWidth ≤ 128**
+  (`EncodingShape`). **ByteVector** encodings are capped at **byteCount ≤ 128** (= up to 1024 bits) by
+  a separate `ByteVectorEncodingShape` on a `prim:byteCount` datatype property. `q_bytevector_cap` MUST
+  test the *enforced* cap (a 129-byte vector, or a scalar bitWidth > 128, is caught); the README and
+  the ASK comment are reconciled to these two caps. `Byte ≠ Octet` gets an explicit guard.
+
+- **9d. The colimit round-trip is a true identity.** For **every** primitive,
+  `physicalFacet → interpretAs` MUST equal `formalFacet` (reflexive). The three non-reflexive atoms
+  are bugs, fixed at the source: `Bignum→ByteVector→Bignum`, `Instant→INT64(epoch)→Instant`,
+  `Decimal→(decimal encoding)→Decimal`. A new `q_colimit_reflexive` ASK enforces identity, not mere
+  non-danglingness.
+
+- **9e. The monad is proven, not decorated.** A Kleisli composition operation (`prim:compose` /
+  `prim:byteDescendsTo`) is modeled, and the monad laws are checked as real SPARQL ASKs: **left/right
+  unit** (`η >=> f ≡ f ≡ f >=> η`) and **associativity** (`(f >=> g) >=> h ≡ f >=> (g >=> h)`) over a
+  concrete byte-descent chain. `q_monad_unit` tests the unit law, not a boolean flag.
+
+- **9f. Honesty pass.** Every `formal.ttl` prose claim that asserts a realization must correspond to a
+  real `prim:Realization` in the graph (or be hedged); the false universal enforcement claim is
+  removed. `Void` (initial/uninhabited) is the one honest edge — realized as the empty (0-byte)
+  encoding with a `uninhabited` effect, so universality stays total without a dodge.
+
+- **9g. Minor physical additions** flagged by the panel and cheap to close now (were not in §8):
+  IEEE-754 `Sign`/`Exponent`/`Mantissa` field breakdown, `Alignment`/`Padding` facets, and the
+  `UTF-16 LE`/`UTF-16 BE` split.
