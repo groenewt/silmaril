@@ -126,3 +126,20 @@ maintainer in the W2 brainstorming gate before any authoring.
     for completeness-of-this-iteration and clean re-runnability, NOT for permanence. Stay oriented
     on COMPLETING the workflow chain; do not seek an unchallengeable final form. Corpus-agnostic
     throughout (no live-corpus binding until the re-runnable W5).
+
+### Cadence ruling — batch the SP2–SP9 designs, one review (maintainer, 2026-08-08)
+
+> "Batch designs, one review" — maintainer's answer when asked how much to steer each of
+> the remaining 8 W2 sub-projects before building.
+
+14. **SP1 (Primitive Floor) keeps its own full design gate** (already run; it produced the
+    colimit/monadic/expand-the-towers rulings). For **SP2 (AOB meta-ontology) through SP9
+    (render seal)**: do NOT open a separate brainstorming gate per sub-project. Instead, once
+    SP1 is committed and green, author **short design docs for all 8 up front** (each still a
+    real design — twin-olog/colimit/monadic grounding, file map, verification plan, interfaces
+    Consumes/Produces, non-goals — just written without a per-project Socratic exchange), and
+    present the whole batch for **one maintainer review pass**. On approval, write the plans and
+    build straight through SP2→SP9, with the between-sub-project adversarial triple panel still
+    firing after each build. One design checkpoint for the eight, not eight. The maintainer's
+    design input is preserved (they review every design before any of the eight is built); only
+    the per-project ceremony/interruptions are removed.
