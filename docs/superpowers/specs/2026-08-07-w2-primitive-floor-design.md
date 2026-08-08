@@ -49,20 +49,35 @@ decimal), and each realization carries an effect. That is exactly a Kleisli arro
 floor. **The realization monad ≡ the Frame monad** — the depth floor and the unary law's
 Yoneda-point Frame are one structure, not an analogy.
 
+**As delivered — ρ is a genuine functor on arrows, closed as literal Yoneda.** The colimit is not
+merely two ologs and an object-map ρ: the formal olog is materialised as a genuine **thin category**
+(subtyping made first-class arrows), ρ is materialised as a **functor on morphisms** (each formal
+arrow's image is a `prim:RealizationTransport`, with the identity and composition laws as real edges
+and teeth), and the whole is closed as the **literal Yoneda embedding** `yo: FormalOlog →
+PSh(FormalOlog)`, `A ↦ Hom(−, A)`, with ρ promoted to a **natural transformation** `yo ⇒ R`. Per the
+unary law the **Frame(output, effect) IS the Yoneda point**, so realization = Yoneda evaluation at the
+representable; per Directive 2 each representable is itself an olog object ("ologs of ologs, turtles
+all the way"). This turns the panel residual "X is also grounded through its ancestor" from prose into
+a resolvable edge (`prim:AncestralGroundingPath`): a subtype is dual-grounded **two ways** — directly
+on its own reflexive carrier and transported up into the realization of its ancestor. Delivered
+detail is in §5 (on-arrows action) and §9h (as-delivered counts + teeth).
+
 ## 2. File layout
 
 | file | responsibility |
 |------|----------------|
-| `basicttl/primitives/formal.ttl` | Formal olog: all type-towers + subtyping arrows |
+| `basicttl/primitives/formal.ttl` | Formal olog **as a thin category**: type-towers + subtyping arrows, plus first-class `SubtypeArrow`/`IdentityArrow`/`CompositeArrow` morphisms and the `RepresentablePresheaf` hook (STEP A) |
 | `basicttl/primitives/physical.ttl` | Physical olog: Bit→ByteVector, ISA/UEFI types, facets, encodings, RGB |
-| `basicttl/primitives/realization.ttl` | `ρ` realizations as Frame-monad Kleisli arrows + effects |
-| `basicttl/primitives/taiji.ttl` | the colimit gluing (primitive = colimit(formal, physical); mutual back-pointer) |
-| `basicttl/primitives/primitives.shapes.ttl` | SHACL law for the floor (§6) |
-| `basicttl/primitives/primitives.queries.sparql` | monad-law + round-trip + "what's a number" queries |
+| `basicttl/primitives/realization.ttl` | `ρ` realizations as Frame-monad Kleisli arrows + effects, **and ρ as a functor on arrows** (`RealizationTransport` + `AncestralGroundingPath`) (STEP B) |
+| `basicttl/primitives/taiji.ttl` | the colimit gluing (primitive = colimit(formal, physical); mutual back-pointer) **and the literal Yoneda layer** (`yonedaObject`, `YonedaArrow`, `RhoComponent`, `NaturalitySquare`, Frame = Yoneda point) (STEP C) |
+| `basicttl/primitives/primitives.shapes.ttl` | SHACL law for the floor (§6) **+ `FunctorTransportShape` + `YonedaShape`** (STEP D) **+ `FrameYonedaPointShape` + `YonedaEvaluationShape` + `CompositeTransportCoverageShape`** (STEP E) — 13 `sh:NodeShape`s |
+| `basicttl/primitives/primitives.queries.sparql` | monad-law + round-trip + "what's a number" queries **+ the 6 functor/Yoneda probes** (STEP D) **+ the 3 residual-teeth ASKs** (STEP E) — 21 EXPECT-TRUE ASKs |
 | `basicttl/primitives/README.md` | the floor, its consumers, how to re-run |
 
-One file per responsibility (STRICTNESS Rule 14). Namespace: `urn:silmaril:prim:…`
-(full-lexical URN idiom, unary law).
+One file per responsibility (STRICTNESS Rule 14) — the categorical enrichment (STEPS A–D) and the
+residual-teeth pass (STEP E) added **no new file**: both land in the existing four data files plus the
+shapes and queries files, so the layout above stays exactly seven entries. Namespace:
+`urn:silmaril:prim:…` (full-lexical URN idiom, unary law).
 
 ## 3. Formal olog — the towers (this iteration)
 
@@ -130,6 +145,22 @@ typed effects:
 - **Polymorphism** — one formal type → many encodings is the whole point of the monad; the
   chosen realization is part of the colimit-taiji instance, the effect is its `Frame.effect`.
 
+**As delivered — ρ's on-arrows action.** Above, ρ acts on *objects* (type → encoding). The
+enrichment materialises ρ's action on *morphisms* so it is a **genuine functor**, not a bare object
+map. `prim:rhoObject` pins each type's single canonical carrier (the reflexive carrier whose
+`interpretAs` closes back to that type; the apex `FormalType` maps to the generic `ByteVector`). For
+every arrow of the thin formal category, a `prim:RealizationTransport` records its image ρ(A) → ρ(B)
+via `prim:transportDom`/`prim:transportCod` (= `rhoObject` of the arrow's dom/cod). The **functor
+laws are real edges with teeth**: `ρ(id_A) = id` on ρ(A) (identity transports, `isTransportIdentity
+true`, dom = cod — `q_functor_identity` + `FunctorTransportShape`), and `ρ(g ∘ f) = ρ(g) ∘ ρ(f)`
+(composite transports reifying `transportComposeFirst`/`Second`/`Into` edge-for-edge from the formal
+`CompositeArrow` — `q_functor_composition`). Because the category is thin, this composition is
+associative on the nose. The panel residual "grounded through ancestor" is then the resolvable edge
+`prim:AncestralGroundingPath` (one per realized-proper-ancestor pair): `ancestralViaTransport`
+resolves via `transportCod` onto ρ(ancestor) = `ancestralLandsIn`, so a subtype is **dual-grounded
+two ways** — its own direct grounding untouched, plus the transported path up the tower
+(`q_ancestral_transport_resolves`, complete coverage). Counts and teeth: §9h.
+
 ## 6. Verification — the epistemology emerges from the checks
 
 Evidence-first (`verification-before-completion`); each is RED before authoring, GREEN after.
@@ -177,15 +208,29 @@ met for only **9 of 59** formal-type classes, and the SHACL "teeth" targeted `pr
 §1 and §6 **precise and enforceable** (they do not change scope — they close the gap between the
 stated law and the delivered artifact). They are binding on the remediation.
 
-- **9a. Dual-grounding is universal over the tower, direct-for-concrete + transitive-for-abstract.**
-  Every one of the 59 formal-type classes must be dual-grounded. A **concrete** type (String,
-  DateTime, Hash, Rational, Complex, Tensor, …) carries its **own** `prim:Realization`. A type is
-  also dual-grounded if it inherits one from a **realized ancestor** (e.g. `NaturalWithZero ⊂ Natural`)
-  or, for a genuine **abstract supertype**, is covered by a **realized descendant**. The SHACL law
-  MUST bite on the *class* form: a `sh:sparql` constraint that walks `rdfs:subClassOf*` and flags any
-  tower class with no realization on itself, an ancestor, or a descendant. Probe of record: injecting
+- **9a. Dual-grounding is universal over the tower; the SHACL law accepts self-or-ancestor-or-descendant,
+  but the delivered floor grounds all 59 classes DIRECTLY.**
+  Every one of the 59 formal-type classes must be dual-grounded. The SHACL law is deliberately
+  *permissive about where* the grounding sits: a class counts as dual-grounded if a `prim:Realization`
+  is present on **itself**, on a **realized ancestor**, or on a **realized descendant**. The law MUST
+  bite on the *class* form — a `sh:sparql` constraint that walks `rdfs:subClassOf*` and flags any tower
+  class with no realization on itself, an ancestor, or a descendant. Probe of record: injecting
   `ex:Orphan a owl:Class ; rdfs:subClassOf prim:FormalType` (the form every real tower uses) MUST make
-  `pyshacl` report `conforms=False`.
+  `pyshacl` report `conforms=False`. **What the delivered floor actually does is the strong case, not the
+  slack one:** the per-type build made grounding *fully direct*. Verified over the merged 4-file data
+  graph — 59 tower classes (`rdfs:subClassOf+ prim:FormalType`), 59 direct-grounded, 0 transitive-only —
+  **every one of the 59 carries its OWN** `prim:Realization` (a `prim:realizesFrom` that exact class), its
+  OWN reflexive carrier (an encoding whose `prim:interpretAs` is that exact class), and its OWN
+  `prim:Primitive` (a `prim:formalFacet` on that exact class). Concrete types (String, DateTime, Hash,
+  Rational, Complex, Tensor, …) are directly realized, and so are the named sub-objects and the abstract
+  supertypes: e.g. `NaturalWithZero` (a subtype of `Natural`) does **not** inherit `Natural`'s
+  realization — it carries its own `prim:realize_NaturalWithZero_Canonical` onto its own reflexive carrier
+  `prim:NaturalWithZeroCanonicalEncoding`, glued by its own `prim:primitive_NaturalWithZero`; the
+  `⊂ Natural` relationship is taxonomic subtyping only (an additional coverage path the law would accept),
+  **not** the grounding mechanism the graph relies on. The self/ancestor/descendant acceptance is retained
+  in the SHACL law as headroom for future re-runs — an abstract supertype could in principle be covered by
+  a realized descendant — but no class in this iteration's floor depends on ancestral or descendant
+  coverage; all 59 stand on their own direct realization, reflexive carrier, and primitive.
 
 - **9b. `Bignum → ByteVector(≤128 bytes)` is realized, not provisional.** It is named in §5/§6 and is
   not in §8; the `isProvisional`-dodge to `Uint128` is removed. `Rational → Product(numerator:Integer,
@@ -208,8 +253,22 @@ stated law and the delivered artifact). They are binding on the remediation.
 
 - **9e. The monad is proven, not decorated.** A Kleisli composition operation (`prim:compose` /
   `prim:byteDescendsTo`) is modeled, and the monad laws are checked as real SPARQL ASKs: **left/right
-  unit** (`η >=> f ≡ f ≡ f >=> η`) and **associativity** (`(f >=> g) >=> h ≡ f >=> (g >=> h)`) over a
-  concrete byte-descent chain. `q_monad_unit` tests the unit law, not a boolean flag.
+  unit** and **associativity** (`(f >=> g) >=> h ≡ f >=> (g >=> h)`) over a concrete byte-descent
+  chain. `q_monad_unit` tests the unit law, not a boolean flag.
+  **The unit law is typed correctly.** For a Kleisli arrow `f: A ⤳ B`, the LEFT unit is
+  `η_A >=> f ≡ f` where `η_A` is the Kleisli identity at the **domain** A, and the RIGHT unit is
+  `f >=> η_B ≡ f` where `η_B` is the Kleisli identity at the **codomain** B — NOT at the domain. Every
+  Kleisli arrow individual carries `prim:kDom`/`prim:kCod`, and there is one identity arrow
+  `prim:k_id_<T>` (`prim:isMonadUnit true`, `kDom = kCod = T`) per object a unit witness needs — in
+  particular `prim:k_id_Float64` so the right-unit witness of `f: Real ⤳ Float64` is well-typed
+  (`f.kCod = Float64 = η_B.kDom`). A composition is well-typed exactly when
+  `composeFirst.kCod = composeSecond.kDom`, `composeInto.kDom = composeFirst.kDom`, and
+  `composeInto.kCod = composeSecond.kCod`; this is enforced by a `sh:sparql` **`KleisliCompositionShape`**
+  (targeting `prim:Composition`, `conforms=False` on any ill-typed composition) and mirrored by the
+  EXPECT-TRUE `q_kleisli_welltyped`. `q_monad_unit` witnesses BOTH unit laws over well-typed
+  compositions, referencing `kDom`/`kCod`. (The originally shipped `prim:comp_rightUnit` was
+  ill-typed — its `composeSecond` was `η` at the domain `Real` instead of the codomain `Float64` — so
+  it was decorative; it is corrected here and the teeth now bite on that exact defect.)
 
 - **9f. Honesty pass.** Every `formal.ttl` prose claim that asserts a realization must correspond to a
   real `prim:Realization` in the graph (or be hedged); the false universal enforcement claim is
@@ -219,3 +278,64 @@ stated law and the delivered artifact). They are binding on the remediation.
 - **9g. Minor physical additions** flagged by the panel and cheap to close now (were not in §8):
   IEEE-754 `Sign`/`Exponent`/`Mantissa` field breakdown, `Alignment`/`Padding` facets, and the
   `UTF-16 LE`/`UTF-16 BE` split.
+
+- **9h. The categorical enrichment — ρ made a functor on arrows, closed as literal Yoneda (delivered
+  2026-08-08).** The panel residual "X is also grounded through its ancestor" was true categorically
+  but *unmaterialised*: ρ acted only on objects. The enrichment makes it a real, inspectable,
+  teeth-proven graph fact — nothing stripped, structure ADDED. **STEP A (`formal.ttl`, thin category):**
+  59 `prim:SubtypeArrow` generators (one per `rdfs:subClassOf` cover edge, each in exact agreement with
+  a real triple), 60 `prim:IdentityArrow` id_T (59 tower classes + `FormalType` apex), 45
+  `prim:CompositeArrow` reifying canonical left-nested decompositions; thin ⇒ associative on the nose.
+  **STEP B (`realization.ttl`, ρ as functor on arrows):** `prim:rhoObject` pins the canonical carrier;
+  164 `prim:RealizationTransport` (60 identity + 59 subtype + 45 composite) with matching
+  `transportDom`/`transportCod`; functor identity (`isTransportIdentity true`) and composition
+  (`transportComposeFirst/Second/Into`) laws as edges; 45 `prim:AncestralGroundingPath` resolving each
+  realized-ancestor pair onto ρ(ancestor) — "dual-grounded two ways", both materialised and resolvable.
+  **STEP C (`taiji.ttl`, literal Yoneda):** `yo: A ↦ Hom(−,A)` as 60 `prim:RepresentablePresheaf`
+  linked by injective `prim:yonedaObject` (faithfulness); 59 `prim:YonedaArrow` giving the bijection
+  Hom(A,B) ↔ Nat(yo A, yo B) in thin form (fullness); ρ made a natural transformation `yo ⇒ R` via 60
+  `prim:RhoComponent` and 59 `prim:NaturalitySquare` (`natCommutes true`); the **Frame IS the Yoneda
+  point** (realization = Yoneda evaluation at the representable), and per Directive 2 each representable
+  is itself an olog object. **STEP D (teeth):** SHACL `prim:FunctorTransportShape` (every SubtypeArrow
+  has a transport with dom/cod = ρ(arrowDom)/ρ(arrowCod)) and `prim:YonedaShape` (every tower class has
+  a representable-with-Yoneda-point and a ρ-component); six EXPECT-TRUE probes `q_functor_identity`,
+  `q_functor_composition`, `q_ancestral_transport_resolves`, `q_yoneda_faithful`, `q_yoneda_full`,
+  `q_naturality_commutes`. **As-delivered verification (STEP-D milestone; superseded by §9i STEP E below,
+  which brings the suite to 21 ASKs / 13 shapes):** the graph grew from 3,123 to **8,346 triples**
+  and the ASK suite from 12 to **18**; `run-floor-checks.sh` exits 0 (parse OK 8346 triples · SHACL
+  conforms=True · 18/18 ASKs PASS · depth gate PASSED, 5 files). Each new tooth was proven to **bite**
+  (`True → False`) by injection — including the closed vacuous-match escape on `q_naturality_commutes`
+  (a dangling `natComponentCod` is now caught by an added well-formedness conjunct), so green reflects
+  the graph holding the law, never scoping the teeth away. The morphism/presheaf classes are
+  deliberately NOT `rdfs:subClassOf prim:FormalType`, so the dual-grounding law never demands a physical
+  realization of an arrow; only objects are dual-grounded. No new file was added (STRICTNESS Rule 14):
+  the enrichment lands in the existing four data files plus shapes and queries.
+
+- **9i. STEP E — the two decorative residuals given real teeth (delivered 2026-08-08).** STEP C
+  *materialised* two facts that STEP D never *enforced*, so the floor stayed green even when they were
+  broken. **RESIDUAL 1 — Frame = Yoneda-point / Yoneda-evaluation soundness:** `prim:Frame
+  prim:isYonedaPoint true` and the 60 `prim:YonedaEvaluation` edges (`evalPresheaf`/`evalAtPoint`/
+  `evalYields`/`evalComponent`) were read by no ASK and no shape, so injecting `isYonedaPoint=false` or a
+  wrong `evalYields` left the floor GREEN. **RESIDUAL 2 — composite-transport existence/coverage:**
+  `q_functor_composition` + `prim:FunctorTransportShape` catch a MIS-WIRED composite transport but not a
+  MISSING one, and nothing forced a composable subtype pair to actually HAVE a composite arrow. STEP E
+  closes both, ADDING structure and stripping none. **Three EXPECT-TRUE ASKs:** `q_yoneda_point` (holds
+  iff `prim:Frame prim:isYonedaPoint true` and not `false`); `q_yoneda_evaluation_sound` (holds iff every
+  `prim:YonedaEvaluation`'s `evalYields` equals ρ of the type whose representable it evaluates —
+  `prim:rhoObject` of the `?t` with `?t prim:yonedaObject` = the evaluation's `evalPresheaf`);
+  `q_functor_composition_total` (holds iff (a) every `prim:CompositeArrow` has a `prim:RealizationTransport`
+  `transportOf` it AND (b) every composable `prim:SubtypeArrow` pair `f: A→B, g: B→C` has a
+  `prim:CompositeArrow` with `composeArrowFirst = f`, `composeArrowSecond = g`). **Three SHACL shapes:**
+  `prim:FrameYonedaPointShape` (targets `prim:Frame`, `sh:hasValue true` on `isYonedaPoint`),
+  `prim:YonedaEvaluationShape` (every `prim:YonedaEvaluation` carries all four `eval*` coordinates AND
+  `evalYields` = the type realization), `prim:CompositeTransportCoverageShape` (every `prim:CompositeArrow`
+  is the target of a `transportOf` transport). **As-delivered verification (final):** STEP E added ASKs
+  and shapes only — the data graph is unchanged at **8,346 triples**; the ASK suite grew from 18 to **21**
+  and the SHACL law to **13 `sh:NodeShape`s**; `run-floor-checks.sh` exits 0 (parse OK 8346 triples · SHACL
+  conforms=True · **21/21 ASKs PASS** · depth gate PASSED, 5 files). Each new tooth was proven to **bite**
+  (`True → False`) by injection: (a) `isYonedaPoint=false` → `q_yoneda_point` + `prim:FrameYonedaPointShape`;
+  (b) a wrong `evalYields` → `q_yoneda_evaluation_sound` + `prim:YonedaEvaluationShape`; (c) a deleted
+  composite transport → `q_functor_composition_total` + `prim:CompositeTransportCoverageShape`; (d) a
+  deleted composite arrow for a still-composable pair → `q_functor_composition_total` (coverage,
+  ASK-enforced). The full prior teeth set was re-confirmed intact — **20/20** probes bite (16 prior + 4
+  STEP E). No new file was added (STRICTNESS Rule 14): STEP E lands in the shapes and queries files only.

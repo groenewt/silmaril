@@ -219,7 +219,67 @@ silm:phase_w1_10 a owl:NamedIndividual, silm:Phase ; rdfs:label "Write findings 
 # W2 decomposed into 9 sub-projects (brainstorming, 2026-08-07); every original W2
 # concern preserved and regrouped. Each sub-project runs its own spec->plan->build cycle.
 # SP1 subsumes the old full-lexical-identity scheme (via its Identifier URN tower).
-silm:phase_w2_sp1 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP1 Primitive Floor — twin-olog colimit taiji (formal type-towers <-> physical bit/byte/ISA-UEFI carriers) + monadic realization = Frame; grounds full-lexical-identity via the Identifier URN tower" ; silm:hasStatus "in-progress" ; silm:hasOrdinal 1 .
+#
+# SP1 COMPLETED 2026-08-08 (remediation wf, panel NO-GO -> GREEN; then categorical enrichment
+# STEPS A-D: rho made a genuine FUNCTOR ON ARROWS, closed as LITERAL YONEDA; then STEP E gave the two
+# decorative residuals real teeth — Frame=Yoneda-point + Yoneda-evaluation soundness, and composite-
+# transport existence/coverage — ENRICH, never strip).
+# Green evidence, captured verbatim from a fresh run of
+# basicttl/primitives/checks/run-floor-checks.sh + the STEP-D/E probe battery:
+#   parse OK: 4 data ttl, 8346 triples (was 3123 pre-enrichment; STEP E added ASKs+shapes, NOT data
+#     triples, so the data graph stays 8346); pyshacl conforms=True (0 results) over 13 sh:NodeShapes.
+#   21/21 EXPECT-TRUE ASKs PASS (0 failed): the original 12 — q_number_tower, q_number_realized,
+#     q_universality, q_colimit_roundtrip, q_colimit_reflexive, q_frame_effect, q_bytevector_cap,
+#     q_kleisli_welltyped, q_monad_unit, q_monad_assoc, q_byte_descent, q_rgb — PLUS the 6 STEP-D
+#     functor/Yoneda probes: q_functor_identity, q_functor_composition,
+#     q_ancestral_transport_resolves, q_yoneda_faithful, q_yoneda_full, q_naturality_commutes — PLUS
+#     the 3 STEP-E residual-teeth ASKs: q_yoneda_point, q_yoneda_evaluation_sound,
+#     q_functor_composition_total. Depth gate PASSED (5 files, every owl:Class >=200-char).
+#   Universal dual-grounding: 59 tower classes, UNGROUNDED count = 0 (spec §9a); 59/59 direct
+#     (realizesFrom + own reflexive carrier + own Primitive) — PRESERVED across the enrichment.
+#   Categorical enrichment materialised (spec §9h): 59 prim:SubtypeArrow + 60 prim:IdentityArrow +
+#     45 prim:CompositeArrow (thin category, formal.ttl); 164 prim:RealizationTransport (60 id + 59
+#     subtype + 45 composite) with matching transportDom/Cod = rho(dom)/rho(cod), every SubtypeArrow
+#     well-typed-transported (0 missing); 45 prim:AncestralGroundingPath over 45 realized-proper-
+#     ancestor pairs (0 uncovered) = "dual-grounded two ways" (realization.ttl); 60
+#     prim:RepresentablePresheaf (injective yonedaObject: 60 objs -> 60 distinct reprs = faithful),
+#     59 prim:YonedaArrow (bijection with 59 SubtypeArrows = full), 60 prim:RhoComponent, 59
+#     prim:NaturalitySquare (all natCommutes true), 60 prim:YonedaEvaluation (evalYields = rho(A), now
+#     ENFORCED by q_yoneda_evaluation_sound + prim:YonedaEvaluationShape); Frame = Yoneda point
+#     (prim:Frame prim:isYonedaPoint true, now ENFORCED by q_yoneda_point + prim:FrameYonedaPointShape);
+#     every prim:CompositeArrow transported + every composable subtype pair covered (ENFORCED by
+#     q_functor_composition_total + prim:CompositeTransportCoverageShape) (taiji.ttl).
+#   Teeth proven by probe injection (each CAUGHT, SHACL conforms or ASK flips True->False):
+#     (1) class-form orphan `ex:OrphanB a owl:Class ; rdfs:subClassOf prim:FormalType`
+#         -> prim:DualGroundingShape fires; q_universality True->False.
+#     (2) over-wide ByteVector `prim:byteCount 129` -> prim:ByteVectorEncodingShape fires;
+#         q_bytevector_cap True->False.
+#     (3) wrong-type interpretAs (escapes FormalType tower) -> EncodingShape sh:sparql fires;
+#         q_colimit_roundtrip True->False. (Also: wrong-facet Primitive -> ColimitReflexivityShape
+#         fires; q_colimit_reflexive True->False.)
+#     (4) ill-typed Kleisli composition (composeFirst=k_Real_Float64 kCod=Float64,
+#         composeSecond=k_id_Real kDom=Real) -> prim:KleisliCompositionShape fires;
+#         q_kleisli_welltyped True->False.
+#     (5) broken subtype transportCod (rt_sub_Bignum_Integer transportCod->Bit) ->
+#         prim:FunctorTransportShape fires; q_functor_composition True->False (broken leg).
+#     (6) removed ancestral path (agp_Bignum_Integer) -> q_ancestral_transport_resolves True->False.
+#     (7) collided representables (Bool yonedaObject->repr_Bag) -> q_yoneda_faithful True->False;
+#         removed yonedaObject -> prim:YonedaShape fires.
+#     (8) broken naturality corner (natComponentCod->wrong/dangling) -> q_naturality_commutes
+#         True->False (both wrong-but-valid and dangling-malformed cases caught).
+#     (9) violated functor identity (rt_id_Bignum transportCod->Bit) -> q_functor_identity
+#         True->False; broken composite reify -> q_functor_composition True->False; removed
+#         SubtypeArrow YonedaArrow -> q_yoneda_full True->False.
+#     (10) STEP-E residual teeth: prim:Frame isYonedaPoint false -> prim:FrameYonedaPointShape fires;
+#         q_yoneda_point True->False. Wrong evalYields (yeval_Bag evalYields Boolean) ->
+#         prim:YonedaEvaluationShape fires; q_yoneda_evaluation_sound True->False. Deleted composite
+#         transport (rt_comp_Bignum_Rational) -> prim:CompositeTransportCoverageShape fires;
+#         q_functor_composition_total True->False. Deleted composite arrow for a still-composable pair
+#         -> q_functor_composition_total True->False (coverage, ASK-enforced). Battery: 20/20 CAUGHT
+#         (16 prior + 4 STEP-E residual-teeth injections).
+#   No ASK is vacuous (positive ASKs FAIL on empty graph; NOT-EXISTS ASKs FAIL under injection).
+#   0 actual silm:isProvisional triples in the floor (the string appears only in comment prose).
+silm:phase_w2_sp1 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP1 Primitive Floor — twin-olog colimit taiji (formal type-towers <-> physical bit/byte/ISA-UEFI carriers) + monadic realization = Frame, rho closed as a genuine functor on arrows and literal Yoneda (representables + rho-as-natural-transformation, Frame = Yoneda point); grounds full-lexical-identity via the Identifier URN tower" ; silm:hasStatus "completed" ; silm:hasOrdinal 1 .
 silm:phase_w2_sp2 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP2 AOB meta-ontology — colimit-taiji atom (byte descent + URN + S/O/P towers), lifted from the real base_agents WIP AOB" ; silm:hasOrdinal 2 .
 silm:phase_w2_sp3 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP3 N-dim CRS law = S/O/P towers (co-existing CRSs; coordinates derived; z grounded in the byte descent)" ; silm:hasOrdinal 3 .
 silm:phase_w2_sp4 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP4 FULL projection packet + algebra (11+ projections; pi_L cata / retraction; 5 loss classes; every owl:Class -> base_templates macro)" ; silm:hasOrdinal 4 .

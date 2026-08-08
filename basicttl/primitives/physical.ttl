@@ -1,0 +1,817 @@
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# physical.ttl — the PHYSICAL olog of the Primitive Floor (W2 · SP1, plan Task 3).
+# =====================================================================================
+# The yang facet of the twin-olog colimit taiji: the byte-stream carrier closure plus
+# the ISA/UEFI machine types, representation facets, text encodings, and the RGB colour
+# code space. The carrier ladder Bit → Nibble → Octet → ByteVector → Word → Block →
+# Stream → Container descends by prim:byteDescendsTo to the width-1 prim:Bit floor.
+# Every prim:PhysicalEncoding declares prim:bitWidth, prim:byteWidth, prim:byteOrder and
+# the mutual-colimit back-pointer prim:interpretAs to the FormalType it realizes; that
+# back-pointer is how yang holds yin, closing the round-trip seal (q_colimit_roundtrip).
+# Byte ≠ Octet (unary law); ByteVector width is 1..128. Corpus-agnostic: pure shape.
+#
+# Design spec: docs/superpowers/specs/2026-08-07-w2-primitive-floor-design.md (§4)
+# Plan:        docs/superpowers/plans/2026-08-07-w2-sp1-primitive-floor.md (Task 3)
+# Formal olog (interpretAs targets): basicttl/primitives/formal.ttl
+# Acceptance:  q_bytevector_cap, q_byte_descent, q_rgb GREEN; q_colimit_roundtrip stays GREEN.
+# =====================================================================================
+
+
+# =====================================================================================
+# Properties introduced by the physical olog
+# =====================================================================================
+
+prim:byteDescendsTo a owl:ObjectProperty ;
+    rdfs:label "byteDescendsTo" ;
+    rdfs:domain prim:PhysicalCarrier ;
+    rdfs:range prim:PhysicalCarrier ;
+    rdfs:comment "The physical descent edge of the carrier ladder: a source carrier is composed of, and therefore descends to, a narrower carrier, transitively bottoming at prim:Bit. Byte-descent is the Kleisli composition of carriers down to the width-1 floor; the acceptance ASK q_byte_descent asserts prim:ByteVector prim:byteDescendsTo+ prim:Bit." .
+
+prim:interpretAs a owl:ObjectProperty ;
+    rdfs:label "interpretAs" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range prim:FormalType ;
+    rdfs:comment "The mutual-colimit back-pointer: from a physical encoding to the FormalType it realizes, so yang (physical) holds yin (formal) and the round-trip physical → interpretAs → formal closes. Every PhysicalEncoding MUST carry exactly this back-pointer; an encoding with no interpretAs is a dangling carrier the SHACL law and q_colimit_roundtrip reject." .
+
+prim:byteOrder a owl:ObjectProperty ;
+    rdfs:label "byteOrder" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range prim:ByteOrder ;
+    rdfs:comment "The endianness facet of a physical encoding: the order in which constituent octets serialize (prim:LE / prim:BE), or prim:EndianNeutral for single-octet and sub-octet encodings where ordering is not applicable. An independent coordinate from bit width per the unary law; mixed/PDP-endian is deferred (spec §8)." .
+
+prim:signedness a owl:ObjectProperty ;
+    rdfs:label "signedness" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range prim:Signedness ;
+    rdfs:comment "The signedness facet of an integer encoding: prim:Signed (domain straddles zero, interpreting as prim:Integer) or prim:Unsigned (non-negative domain, interpreting as prim:Natural). Orthogonal to width and byte-order; it fixes the ordinal floor of the encoding and selects which number-tower formal type the encoding interprets as." .
+
+prim:integerRepresentation a owl:ObjectProperty ;
+    rdfs:label "integerRepresentation" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range prim:IntegerRepresentation ;
+    rdfs:comment "The negative-value scheme of a signed integer encoding: prim:TwosComplement, prim:OnesComplement, or prim:SignMagnitude. This floor's INT8..128 encodings use two's-complement; the alternatives are modelled so historical and exotic encodings can be interpreted without a force-fit (Präriehund honesty)." .
+
+prim:ieee754Field a owl:ObjectProperty ;
+    rdfs:label "ieee754Field" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range prim:IEEE754Field ;
+    rdfs:comment "Relates a floating-point encoding to the IEEE-754 structural fields it partitions its bits into: prim:IEEE754Sign, prim:IEEE754Exponent, prim:IEEE754Mantissa. The exponent and mantissa widths of these fields are what distinguish half, single, double, x87 double-extended, and quad precision." .
+
+prim:hasChannel a owl:ObjectProperty ;
+    rdfs:label "hasChannel" ;
+    rdfs:domain prim:ColourSpace ;
+    rdfs:range prim:Octet ;
+    rdfs:comment "Relates a colour code space to its component channels, each an octet-valued carrier. For prim:RGB the channels are exactly prim:Red, prim:Green, prim:Blue, each one prim:Octet of cardinality 256 and ordinal range 0..255 — the JEPA colour substrate grounding colour into the physical byte carrier." .
+
+prim:bitWidth a owl:DatatypeProperty ;
+    rdfs:label "bitWidth" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of bits one occurrence of a physical encoding occupies. Bounded by the unary-law ByteVector ceiling; the acceptance ASK q_bytevector_cap rejects any encoding whose bitWidth exceeds the 1024-bit vector cap. Distinct from stream ordinal, block start/end/length, which count byte occurrences, not bits." .
+
+prim:byteWidth a owl:DatatypeProperty ;
+    rdfs:label "byteWidth" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of whole octets one occurrence of a physical encoding occupies (bitWidth divided by eight for octet-aligned encodings). For variable-width text encodings this records the maximum occurrence width. Byte width is a cardinality distinct from the 1..128 bit-width bound of a single byte occurrence." .
+
+prim:ordinalMin a owl:DatatypeProperty ;
+    rdfs:label "ordinalMin" ;
+    rdfs:domain prim:Octet ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The inclusive lower bound of the ordinal value range of an octet-valued carrier occurrence — 0 for an unsigned octet channel. The ordinal (0..255) is a distinct coordinate from the octet's cardinality (256) and from bit width, per the unary law's three-coordinate distinction." .
+
+prim:ordinalMax a owl:DatatypeProperty ;
+    rdfs:label "ordinalMax" ;
+    rdfs:domain prim:Octet ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The inclusive upper bound of the ordinal value range of an octet-valued carrier occurrence — 255 for an unsigned octet channel, whose code space has cardinality 256. Ordinal 255, count 256, and bit width 128 remain three navigable coordinates that must never be collapsed into one another." .
+
+prim:uefiName a owl:DatatypeProperty ;
+    rdfs:label "uefiName" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The exact-width UEFI/EDK2 spelling for a machine-type encoding (for example UINT32, INT8, CHAR16, BOOLEAN), recorded as immutable external evidence of the exact-width naming precedent. The literal no-UEFI-exact-name marks widths and formats the UEFI core does not name (128-bit integers, IEEE-754 floats)." .
+
+prim:ieee754 a owl:DatatypeProperty ;
+    rdfs:label "ieee754" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "True for a floating-point encoding that follows the IEEE-754 binary interchange (or x87 double-extended) format, marking that its bit layout is the sign/exponent/mantissa partition and that its realization Frame carries an IEEE754-rounding effect. Non-IEEE float formats are deferred this iteration (spec §8)." .
+
+prim:byteCount a owl:DatatypeProperty ;
+    rdfs:label "byteCount" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of whole byte occurrences a variable-length ByteVector-family encoding may span — the SECOND, independent width cap of the two-cap model (spec §9c): fixed-width scalar encodings are ceilinged by prim:bitWidth ≤ 128, whereas a ByteVector encoding is ceilinged by prim:byteCount ≤ 128 (= up to 1024 bits). byteCount counts byte OCCURRENCES in the ordered vector, a cardinality distinct from prim:bitWidth (which records the per-occurrence granule width, 8 for an octet-granular ByteVector). A Bignum, Blob, or Hash realizes into such a vector; the 129th byte occurrence is the enforced overflow the ByteVectorEncodingShape rejects." .
+
+prim:alignment a owl:DatatypeProperty ;
+    rdfs:label "alignment" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The memory-alignment facet of a physical encoding (spec §9g): the byte boundary a whole occurrence must start on (1, 2, 4, 8, …), typically the width of the widest scalar component of a composite/product encoding. Alignment is an independent coordinate from prim:bitWidth and prim:byteOrder — two encodings of equal width may demand different alignment — and together with prim:padding it fixes the exact in-memory footprint of a Product encoding whose components would otherwise straddle a natural boundary." .
+
+prim:padding a owl:DatatypeProperty ;
+    rdfs:label "padding" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The padding facet of a physical encoding (spec §9g): the number of unused filler bytes inserted between or after a composite/product encoding's components so each component lands on its required prim:alignment boundary. Padding bytes carry no value; they are the honest cost of alignment, distinct from the payload width recorded by prim:bitWidth. A tightly packed encoding declares prim:padding 0; a naturally aligned Product may declare a non-zero pad." .
+
+prim:exponentBits a owl:DatatypeProperty ;
+    rdfs:label "exponentBits" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The width in bits of the IEEE-754 biased-exponent field (prim:IEEE754Exponent) of a floating-point encoding — the per-format breakdown spec §9g asks for: half=5, single=8, double=11, x87 double-extended=15, quad=15. The exponent width sets the encoding's dynamic range; together with prim:mantissaBits and the single implicit sign bit it accounts for every bit of the format (1 + exponentBits + mantissaBits = bitWidth, with the x87 explicit-integer-bit exception noted on Float80)." .
+
+prim:mantissaBits a owl:DatatypeProperty ;
+    rdfs:label "mantissaBits" ;
+    rdfs:domain prim:PhysicalEncoding ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The width in bits of the IEEE-754 significand/mantissa field (prim:IEEE754Mantissa) of a floating-point encoding — the per-format breakdown spec §9g asks for: half=10, single=23, double=52, x87 double-extended=64 (explicit integer bit included), quad=112. The mantissa width sets the encoding's precision; with prim:exponentBits and the sign bit it partitions the whole float, and it is why a Float32 narrowed from a Float64 source loses low-order mantissa bits (the prim:NarrowingLoss effect)." .
+
+
+# =====================================================================================
+# The physical carrier ladder — owl:Class tower, Bit floor to Container top
+# =====================================================================================
+
+prim:PhysicalCarrier a owl:Class ;
+    rdfs:label "PhysicalCarrier" ;
+    rdfs:comment "The yang facet of the twin-olog colimit taiji: a physical byte-stream carrier considered independently of the mathematical meaning it carries. PhysicalCarriers form the descent ladder Bit → Nibble → Octet → ByteVector → Word → Block → Stream → Container, related by prim:byteDescendsTo, every rung of which bottoms out at the width-1 prim:Bit floor. Each carrier is the physical home into which a formal type is realized; the mutual back-pointer prim:interpretAs closes the colimit from encoding back to its formal type, so yang holds yin." .
+
+prim:Bit a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "Bit" ;
+    rdfs:comment "The width-1 floor of the physical carrier ladder: a single binary digit taking exactly one of two values, the eigenvalue trust root of the byte-frame law from which every wider carrier is composed. Bit carries no byte-order (a single bit has no multi-unit ordering) and is the terminal target of prim:byteDescendsTo — no carrier descends below it. Bit and Byte deliberately do not inherit from one another (unary law): a Byte is a composite of Bits, not a kind of Bit, and the bit/schema bootstrap is a constructor-free initial algebra rather than a hidden ancestry cycle." .
+
+prim:Nibble a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "Nibble" ;
+    rdfs:comment "A 4-bit carrier — half an octet, the unit that addresses a single hexadecimal digit (ordinal 0..15) and the natural rung between Bit and Octet on the descent ladder. A Nibble byteDescendsTo Bit (it is composed of four bits) and is itself the descent target of Octet (an octet is two nibbles). It is a convenience carrier for the hex-oriented interpretation of opaque Blob content; below the octet boundary it carries no independent byte-order because ordering only becomes meaningful across whole octets." .
+
+prim:Octet a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "Octet" ;
+    rdfs:comment "An exactly-8-bit carrier and the unit of the 256-cardinality byte and colour code space: an Octet takes ordinal values 0..255 (cardinality 256). It is kept strictly distinct from prim:Byte, which this floor models as a possibly-non-8-bit addressable unit — Byte ≠ Octet, per the unary law. Octets compose into a prim:ByteVector and byteDescendsTo Nibble then Bit; the colour channels Red/Green/Blue are each exactly one Octet, and the atom z-coordinate is the uint16 of a source digest's first two Octets. Count 256, ordinal 255 and bit width 128 remain three distinct coordinates." .
+
+prim:Byte a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "Byte" ;
+    rdfs:comment "The addressable-unit carrier — the smallest independently addressable storage cell of a machine, which the unary law refuses to hardwire to eight bits: Byte ≠ Octet. On virtually all modern hardware a Byte is an Octet, but historical and DSP architectures use 6-, 7-, 9-, or wider byte cells, so this floor keeps Byte as its own carrier that byteDescendsTo Bit without asserting a fixed width. When a Byte is known to be eight bits it is realized as an Octet; that identification is a typed relation between two carriers, not a definitional collapse of one into the other." .
+
+prim:ByteVector a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "ByteVector" ;
+    rdfs:comment "The bounded ordered byte-vector carrier — a sequence of 1..128 byte occurrences, the unary-law cap that ceilings every registered physical encoding (a single scalar encoding stays ≤128 bits, and no vector may exceed 128 byte occurrences). ByteVector is the ordered algebraic carrier with schema-qualified Empty and Link alternatives, a Link carrying one admitted head byte and a tail of the same schema. A Bignum realizes into it, meeting an unbounded mathematical value with a bounded physical carrier — exactly the may-overflow effect. It byteDescendsTo Octet → Nibble → Bit, closing to the floor." .
+
+prim:Word a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "Word" ;
+    rdfs:comment "A machine word carrier — a fixed group of octets sized to the host architecture's natural register width (16, 32, or 64 bits), the unit of aligned arithmetic and addressing. Word byteDescendsTo Octet: it is a composite of octets whose count is the architecture's word size, and its byte-order (little- or big-endian) is the load-bearing facet governing how its constituent octets serialize on the wire and in memory. It sits above ByteVector-scale addressing and below Block-scale organization on the carrier ladder." .
+
+prim:Block a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "Block" ;
+    rdfs:comment "A block carrier — a bounded, complete or explicitly-incomplete span over one stable stream revision, the organizational unit above the raw ByteVector. A Block is not identified by a bare offset or a host slice (unary law): it carries explicit start, end, and length coordinates counted in byte occurrences, cardinalities that use their own non-negative generation-sized carriers distinct from the 1..128 bit-width bound. Block byteDescendsTo ByteVector and aggregates upward into a Stream; it is where bounded reads and framing decisions physically attach." .
+
+prim:Stream a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "Stream" ;
+    rdfs:comment "A stream carrier — an ordered, potentially unbounded sequence of schema-qualified byte occurrences, the layer above Block on the carrier ladder. A Stream supplies the ordering that Blocks bound and that Containers organize; its ordinal, block-start, block-end, and block-length coordinates are non-negative generation-sized carriers separate from the bit-width carrier, and remain valid at Avogadro-scale partition counts. Stream byteDescendsTo Block and is the physical substrate a String, RDFGraph, or serialized value is laid into." .
+
+prim:Container a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "Container" ;
+    rdfs:comment "A container carrier — an admitted organization of one or more Blocks (or Streams) with explicit schema and boundary evidence, the top rung of the physical carrier ladder. A Container is where a file, archive, or message envelope lives: it groups lower carriers under one boundary and schema so their bytes can be navigated as a whole. Container byteDescendsTo Stream, and through the transitive descent chain every Container ultimately bottoms out at the prim:Bit floor, so no carrier organization escapes the byte substrate." .
+
+# ---- Composite / Product carrier kind (reusable; spec §9g, plan Task R1) -------------
+#      The reusable physical home for pairs, tuples, and every categorical product. Per-type
+#      Product encodings (Rational num·den, Complex re·im, Interval start·end, Quantity
+#      magnitude·unit, Measurement value·uncertainty, DateTime epoch·tz, the Frame output·effect,
+#      the general TupleConcat) reference THIS carrier kind rather than re-deriving the notion of
+#      "several heterogeneous components laid contiguously". It is authored here as a shared piece,
+#      not a per-type encoding.
+prim:CompositeCarrier a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier ;
+    rdfs:label "CompositeCarrier (Product / composite physical carrier)" ;
+    rdfs:comment "The composite/product physical carrier — a fixed-arity, heterogeneous, ordered concatenation of component carriers laid out contiguously, the reusable physical home of the Aggregate-tower Tuple and of every categorical product this floor realizes: a Rational's numerator·denominator pair, a Complex's real·imaginary pair, an Interval's start·end pair, a Quantity's magnitude·unit pair, a Measurement's value·uncertainty pair, a zoned DateTime's epoch·offset pair, and the unary law's Frame output·effect product. It is a subclass of prim:PhysicalCarrier but deliberately NOT of prim:ByteVector: a ByteVector is a homogeneous variable-length run of equal-schema byte occurrences counted by prim:byteCount, whereas a CompositeCarrier's components may each be a different width, encoding, and byte-order, so its arity — part of its identity — is fixed and carries no length prefix. Because heterogeneous components would otherwise straddle natural boundaries, its exact in-memory footprint is fixed by the prim:alignment and prim:padding facets that pack each component onto its required boundary. It byteDescendsTo prim:Octet and thence transitively to the width-1 prim:Bit floor, so no product escapes the byte substrate; the mutual-colimit back-pointer prim:interpretAs on a Product encoding over this carrier still closes the round-trip to the formal product type it realizes." .
+
+# ---- The byte-descent ladder edges (byteDescendsTo+ reaches Bit) ---------------------
+prim:Nibble          prim:byteDescendsTo prim:Bit .
+prim:Octet           prim:byteDescendsTo prim:Nibble .
+prim:Byte            prim:byteDescendsTo prim:Bit .
+prim:ByteVector      prim:byteDescendsTo prim:Octet .
+prim:Word            prim:byteDescendsTo prim:Octet .
+prim:Block           prim:byteDescendsTo prim:ByteVector .
+prim:Stream          prim:byteDescendsTo prim:Block .
+prim:Container       prim:byteDescendsTo prim:Stream .
+prim:CompositeCarrier prim:byteDescendsTo prim:Octet .
+
+
+# =====================================================================================
+# Representation facet families (owl:Class) + their individuals
+# =====================================================================================
+
+prim:ByteOrder a owl:Class ;
+    rdfs:label "ByteOrder" ;
+    rdfs:comment "The byte-order (endianness) facet family — the ordering in which the constituent octets of a multi-octet encoding are laid down in memory or on the wire. Its individuals are prim:LE (little-endian, least-significant octet first), prim:BE (big-endian, most-significant octet first), and prim:EndianNeutral (single-octet or sub-octet encodings, for which ordering is not applicable). Mixed / PDP-endian orderings are deliberately deferred this iteration (spec §8, YAGNI) and named here rather than silently dropped." .
+
+prim:LE a prim:ByteOrder ; rdfs:label "LittleEndian (least-significant octet first)" .
+prim:BE a prim:ByteOrder ; rdfs:label "BigEndian (most-significant octet first)" .
+prim:EndianNeutral a prim:ByteOrder ; rdfs:label "EndianNeutral (single-octet / sub-octet; ordering not applicable)" .
+
+prim:Signedness a owl:Class ;
+    rdfs:label "Signedness" ;
+    rdfs:comment "The signedness facet family — whether an integer encoding admits negative values. Its individuals are prim:Signed (the value domain straddles zero, using one of the integer-representation schemes) and prim:Unsigned (the value domain is non-negative, 0..2ⁿ−1). Signedness is orthogonal to width and to byte-order: it selects which formal number type an integer encoding interprets as — signed widths back prim:Integer, unsigned widths back prim:Natural — and it fixes the ordinal floor of the encoding." .
+
+prim:Signed a prim:Signedness ; rdfs:label "Signed (domain straddles zero → prim:Integer)" .
+prim:Unsigned a prim:Signedness ; rdfs:label "Unsigned (non-negative domain → prim:Natural)" .
+
+prim:IntegerRepresentation a owl:Class ;
+    rdfs:label "IntegerRepresentation" ;
+    rdfs:comment "The integer-representation facet family — how a signed integer encoding maps bit patterns to negative values. Its individuals are prim:TwosComplement (the ubiquitous modern scheme, a single zero and an asymmetric range), prim:OnesComplement (bitwise negation, carrying a negative zero), and prim:SignMagnitude (a dedicated sign bit plus magnitude, also with a negative zero). This floor's INT8..128 encodings use two's-complement; the alternatives are modelled so historical and exotic encodings can be interpreted without a force-fit." .
+
+prim:TwosComplement a prim:IntegerRepresentation ; rdfs:label "Two's complement (single zero, asymmetric range)" .
+prim:OnesComplement a prim:IntegerRepresentation ; rdfs:label "One's complement (negative zero)" .
+prim:SignMagnitude a prim:IntegerRepresentation ; rdfs:label "Sign-magnitude (sign bit + magnitude, negative zero)" .
+
+prim:IEEE754Field a owl:Class ;
+    rdfs:label "IEEE754Field" ;
+    rdfs:comment "The IEEE-754 field family — the three structural fields into which a floating-point encoding partitions its bits: prim:IEEE754Sign (one bit selecting the ± sign), prim:IEEE754Exponent (a biased exponent field whose width sets the dynamic range), and prim:IEEE754Mantissa (the significand/fraction field whose width sets the precision). Every Float16/32/64/80/128 encoding is composed of exactly these three fields; their exponent and mantissa widths are what distinguish half, single, double, x87 double-extended, and quad precision." .
+
+prim:IEEE754Sign a prim:IEEE754Field ; rdfs:label "IEEE-754 sign bit" .
+prim:IEEE754Exponent a prim:IEEE754Field ; rdfs:label "IEEE-754 biased exponent field" .
+prim:IEEE754Mantissa a prim:IEEE754Field ; rdfs:label "IEEE-754 significand/mantissa field" .
+
+
+# =====================================================================================
+# The physical-encoding supertype — owl:Class, sibling of prim:PhysicalCarrier
+# =====================================================================================
+
+prim:PhysicalEncoding a owl:Class ;
+    rdfs:label "PhysicalEncoding" ;
+    rdfs:comment "The interpretation facet of the twin-olog colimit taiji, sibling to prim:PhysicalCarrier: a concrete bit-layout scheme that fixes how a span of bits over a carrier is read as a value. Its individuals are the ISA/UEFI machine types (BOOLEAN, UINT8..128, INT8..128, CHAR8/16, Float16/32/64/80/128) and the text encodings (ASCII, Latin-1, UTF-8/16/32) — the concrete formats into which a formal type is realized. Where PhysicalCarrier answers 'how wide is the cell', PhysicalEncoding answers 'how are those bits to be read'. Every PhysicalEncoding declares prim:bitWidth, prim:byteWidth and prim:byteOrder, and carries the mutual-colimit back-pointer prim:interpretAs to the FormalType it realizes, so yang holds yin and the round-trip physical → interpretAs → formal closes (q_colimit_roundtrip). It is the rdfs:domain of every encoding-facet property in this file (bitWidth, byteWidth, byteOrder, signedness, integerRepresentation, ieee754Field, uefiName, ieee754) and the sh:targetClass of the SHACL EncodingShape; an encoding lacking bitWidth, byteOrder, or interpretAs is a dangling carrier the law rejects." .
+
+
+# =====================================================================================
+# Punning witnesses — the formal types that physical encodings interpret back to are
+# here also asserted as INDIVIDUALS of prim:FormalType (OWL 2 punning), so the mutual-
+# colimit round-trip q_colimit_roundtrip (?e interpretAs ?f . ?f a prim:FormalType)
+# closes under the runner's non-inference SPARQL. The classes, their tower arrows, and
+# their ≥200-char comments are authored in formal.ttl; these are additive type facts.
+# =====================================================================================
+
+prim:Bool      a prim:FormalType .
+prim:Natural   a prim:FormalType .
+prim:Integer   a prim:FormalType .
+prim:Real      a prim:FormalType .
+prim:Codepoint a prim:FormalType .
+
+
+# =====================================================================================
+# ISA / UEFI machine-type encodings — each interpretAs a formal type (back-pointer)
+# =====================================================================================
+
+# ---- BOOLEAN (UEFI 1-byte boolean) --------------------------------------------------
+prim:Boolean a prim:PhysicalEncoding ;
+    rdfs:label "BOOLEAN (UEFI 1-byte boolean, 0/1)" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Bool ; prim:uefiName "BOOLEAN" ;
+    rdfs:comment "The Boolean physical encoding: 8 bits / 1 bytes, endian-neutral. It interpretAs Bool — the two-valued Boolean type, a subclass of Kleene3 with the unknown value forbidden — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). UEFI exact-width naming precedent: BOOLEAN. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+# ---- Unsigned integers UINT8..128 → Natural -----------------------------------------
+prim:Uint8 a prim:PhysicalEncoding ;
+    rdfs:label "UINT8" ; prim:bitWidth 8 ; prim:byteWidth 1 ;
+    prim:byteOrder prim:EndianNeutral ; prim:interpretAs prim:Natural ;
+    prim:signedness prim:Unsigned ; prim:uefiName "UINT8" ;
+    rdfs:comment "The Uint8 physical encoding: 8 bits / 1 bytes, endian-neutral. It interpretAs Natural — the natural numbers ℕ, a subclass of Integer, the counting floor of the number tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is unsigned (non-negative). UEFI exact-width naming precedent: UINT8. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Uint16 a prim:PhysicalEncoding ;
+    rdfs:label "UINT16" ; prim:bitWidth 16 ; prim:byteWidth 2 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Natural ;
+    prim:signedness prim:Unsigned ; prim:uefiName "UINT16" ;
+    rdfs:comment "The Uint16 physical encoding: 16 bits / 2 bytes, little-endian. It interpretAs Natural — the natural numbers ℕ, a subclass of Integer, the counting floor of the number tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is unsigned (non-negative). UEFI exact-width naming precedent: UINT16. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Uint32 a prim:PhysicalEncoding ;
+    rdfs:label "UINT32" ; prim:bitWidth 32 ; prim:byteWidth 4 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Natural ;
+    prim:signedness prim:Unsigned ; prim:uefiName "UINT32" ;
+    rdfs:comment "The Uint32 physical encoding: 32 bits / 4 bytes, little-endian. It interpretAs Natural — the natural numbers ℕ, a subclass of Integer, the counting floor of the number tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is unsigned (non-negative). UEFI exact-width naming precedent: UINT32. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Uint64 a prim:PhysicalEncoding ;
+    rdfs:label "UINT64" ; prim:bitWidth 64 ; prim:byteWidth 8 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Natural ;
+    prim:signedness prim:Unsigned ; prim:uefiName "UINT64" ;
+    rdfs:comment "The Uint64 physical encoding: 64 bits / 8 bytes, little-endian. It interpretAs Natural — the natural numbers ℕ, a subclass of Integer, the counting floor of the number tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is unsigned (non-negative). UEFI exact-width naming precedent: UINT64. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Uint128 a prim:PhysicalEncoding ;
+    rdfs:label "UINT128" ; prim:bitWidth 128 ; prim:byteWidth 16 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Natural ;
+    prim:signedness prim:Unsigned ; prim:uefiName "no-UEFI-exact-name" ;
+    rdfs:comment "The Uint128 physical encoding: 128 bits / 16 bytes, little-endian. It interpretAs Natural — the natural numbers ℕ, a subclass of Integer, the counting floor of the number tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is unsigned (non-negative). As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+# ---- Signed integers INT8..128 → Integer (two's-complement) -------------------------
+prim:Int8 a prim:PhysicalEncoding ;
+    rdfs:label "INT8" ; prim:bitWidth 8 ; prim:byteWidth 1 ;
+    prim:byteOrder prim:EndianNeutral ; prim:interpretAs prim:Integer ;
+    prim:signedness prim:Signed ; prim:integerRepresentation prim:TwosComplement ;
+    prim:uefiName "INT8" ;
+    rdfs:comment "The Int8 physical encoding: 8 bits / 1 bytes, endian-neutral. It interpretAs Integer — the integers ℤ, a subclass of Rational and superclass of Natural — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is signed (straddling zero). UEFI exact-width naming precedent: INT8. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Int16 a prim:PhysicalEncoding ;
+    rdfs:label "INT16" ; prim:bitWidth 16 ; prim:byteWidth 2 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Integer ;
+    prim:signedness prim:Signed ; prim:integerRepresentation prim:TwosComplement ;
+    prim:uefiName "INT16" ;
+    rdfs:comment "The Int16 physical encoding: 16 bits / 2 bytes, little-endian. It interpretAs Integer — the integers ℤ, a subclass of Rational and superclass of Natural — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is signed (straddling zero). UEFI exact-width naming precedent: INT16. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Int32 a prim:PhysicalEncoding ;
+    rdfs:label "INT32" ; prim:bitWidth 32 ; prim:byteWidth 4 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Integer ;
+    prim:signedness prim:Signed ; prim:integerRepresentation prim:TwosComplement ;
+    prim:uefiName "INT32" ;
+    rdfs:comment "The Int32 physical encoding: 32 bits / 4 bytes, little-endian. It interpretAs Integer — the integers ℤ, a subclass of Rational and superclass of Natural — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is signed (straddling zero). UEFI exact-width naming precedent: INT32. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Int64 a prim:PhysicalEncoding ;
+    rdfs:label "INT64" ; prim:bitWidth 64 ; prim:byteWidth 8 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Integer ;
+    prim:signedness prim:Signed ; prim:integerRepresentation prim:TwosComplement ;
+    prim:uefiName "INT64" ;
+    rdfs:comment "The Int64 physical encoding: 64 bits / 8 bytes, little-endian. It interpretAs Integer — the integers ℤ, a subclass of Rational and superclass of Natural — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is signed (straddling zero). UEFI exact-width naming precedent: INT64. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Int128 a prim:PhysicalEncoding ;
+    rdfs:label "INT128" ; prim:bitWidth 128 ; prim:byteWidth 16 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Integer ;
+    prim:signedness prim:Signed ; prim:integerRepresentation prim:TwosComplement ;
+    prim:uefiName "no-UEFI-exact-name" ;
+    rdfs:comment "The Int128 physical encoding: 128 bits / 16 bytes, little-endian. It interpretAs Integer — the integers ℤ, a subclass of Rational and superclass of Natural — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). It is signed (straddling zero). As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+# ---- Character encodings CHAR8/16 → Codepoint ---------------------------------------
+prim:Char8 a prim:PhysicalEncoding ;
+    rdfs:label "CHAR8 (UEFI 8-bit character)" ; prim:bitWidth 8 ; prim:byteWidth 1 ;
+    prim:byteOrder prim:EndianNeutral ; prim:interpretAs prim:Codepoint ;
+    prim:uefiName "CHAR8" ;
+    rdfs:comment "The Char8 physical encoding: 8 bits / 1 bytes, endian-neutral. It interpretAs Codepoint — a Unicode scalar value, the atom of the text tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). UEFI exact-width naming precedent: CHAR8. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Char16 a prim:PhysicalEncoding ;
+    rdfs:label "CHAR16 (UEFI 16-bit UCS-2 character)" ; prim:bitWidth 16 ; prim:byteWidth 2 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Codepoint ;
+    prim:uefiName "CHAR16" ;
+    rdfs:comment "The Char16 physical encoding: 16 bits / 2 bytes, little-endian. It interpretAs Codepoint — a Unicode scalar value, the atom of the text tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). UEFI exact-width naming precedent: CHAR16. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+# ---- IEEE-754 floats Float16/32/64/80/128 → Real ------------------------------------
+prim:Float16 a prim:PhysicalEncoding ;
+    rdfs:label "Float16 (IEEE-754 half)" ; prim:bitWidth 16 ; prim:byteWidth 2 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Real ; prim:ieee754 true ;
+    prim:ieee754Field prim:IEEE754Sign , prim:IEEE754Exponent , prim:IEEE754Mantissa ;
+    prim:exponentBits 5 ; prim:mantissaBits 10 ;
+    prim:uefiName "no-UEFI-exact-name" ;
+    rdfs:comment "The Float16 physical encoding: 16 bits / 2 bytes, little-endian. It interpretAs Real — the real numbers ℝ, a subclass of Complex and superclass of Rational — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). Its bits partition into the IEEE-754 sign, 5-bit biased exponent (dynamic range) and 10-bit significand (precision) fields. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Float32 a prim:PhysicalEncoding ;
+    rdfs:label "Float32 (IEEE-754 single)" ; prim:bitWidth 32 ; prim:byteWidth 4 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Real ; prim:ieee754 true ;
+    prim:ieee754Field prim:IEEE754Sign , prim:IEEE754Exponent , prim:IEEE754Mantissa ;
+    prim:exponentBits 8 ; prim:mantissaBits 23 ;
+    prim:uefiName "no-UEFI-exact-name" ;
+    rdfs:comment "The Float32 physical encoding: 32 bits / 4 bytes, little-endian. It interpretAs Real — the real numbers ℝ, a subclass of Complex and superclass of Rational — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). Its bits partition into the IEEE-754 sign, 8-bit biased exponent (dynamic range) and 23-bit significand (precision) fields. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Float64 a prim:PhysicalEncoding ;
+    rdfs:label "Float64 (IEEE-754 double)" ; prim:bitWidth 64 ; prim:byteWidth 8 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Real ; prim:ieee754 true ;
+    prim:ieee754Field prim:IEEE754Sign , prim:IEEE754Exponent , prim:IEEE754Mantissa ;
+    prim:exponentBits 11 ; prim:mantissaBits 52 ;
+    prim:uefiName "no-UEFI-exact-name" ;
+    rdfs:comment "The Float64 physical encoding: 64 bits / 8 bytes, little-endian. It interpretAs Real — the real numbers ℝ, a subclass of Complex and superclass of Rational — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). Its bits partition into the IEEE-754 sign, 11-bit biased exponent (dynamic range) and 52-bit significand (precision) fields. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Float80 a prim:PhysicalEncoding ;
+    rdfs:label "Float80 (x87 double-extended)" ; prim:bitWidth 80 ; prim:byteWidth 10 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Real ; prim:ieee754 true ;
+    prim:ieee754Field prim:IEEE754Sign , prim:IEEE754Exponent , prim:IEEE754Mantissa ;
+    prim:exponentBits 15 ; prim:mantissaBits 64 ;
+    prim:uefiName "no-UEFI-exact-name" ;
+    rdfs:comment "The Float80 physical encoding: 80 bits / 10 bytes, little-endian. It interpretAs Real — the real numbers ℝ, a subclass of Complex and superclass of Rational — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). Its bits partition into the IEEE-754 sign, 15-bit biased exponent (dynamic range) and 64-bit significand (precision) fields. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Float128 a prim:PhysicalEncoding ;
+    rdfs:label "Float128 (IEEE-754 quad)" ; prim:bitWidth 128 ; prim:byteWidth 16 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Real ; prim:ieee754 true ;
+    prim:ieee754Field prim:IEEE754Sign , prim:IEEE754Exponent , prim:IEEE754Mantissa ;
+    prim:exponentBits 15 ; prim:mantissaBits 112 ;
+    prim:uefiName "no-UEFI-exact-name" ;
+    rdfs:comment "The Float128 physical encoding: 128 bits / 16 bytes, little-endian. It interpretAs Real — the real numbers ℝ, a subclass of Complex and superclass of Rational — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). Its bits partition into the IEEE-754 sign, 15-bit biased exponent (dynamic range) and 112-bit significand (precision) fields. As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+
+# =====================================================================================
+# Text encodings (Codepoint → byte). Variable-width encodings record their MAXIMUM
+# occurrence width in bitWidth/byteWidth; the variability is a realization facet.
+# =====================================================================================
+
+prim:Ascii a prim:PhysicalEncoding ;
+    rdfs:label "ASCII (7-bit code stored in one octet)" ; prim:bitWidth 8 ; prim:byteWidth 1 ;
+    prim:byteOrder prim:EndianNeutral ; prim:interpretAs prim:Codepoint ;
+    rdfs:comment "The Ascii physical encoding: 8 bits / 1 bytes, endian-neutral. It interpretAs Codepoint — a Unicode scalar value, the atom of the text tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Latin1 a prim:PhysicalEncoding ;
+    rdfs:label "Latin-1 / ISO-8859-1 (single-octet code)" ; prim:bitWidth 8 ; prim:byteWidth 1 ;
+    prim:byteOrder prim:EndianNeutral ; prim:interpretAs prim:Codepoint ;
+    rdfs:comment "The Latin1 physical encoding: 8 bits / 1 bytes, endian-neutral. It interpretAs Codepoint — a Unicode scalar value, the atom of the text tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Utf8 a prim:PhysicalEncoding ;
+    rdfs:label "UTF-8 (variable 1..4 octets; max width recorded)" ; prim:bitWidth 32 ; prim:byteWidth 4 ;
+    prim:byteOrder prim:EndianNeutral ; prim:interpretAs prim:Codepoint ;
+    rdfs:comment "The Utf8 physical encoding: 32 bits / 4 bytes, endian-neutral. It interpretAs Codepoint — a Unicode scalar value, the atom of the text tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+prim:Utf16 a prim:PhysicalEncoding ;
+    rdfs:label "UTF-16 (variable 2 or 4 octets; max width recorded)" ; prim:bitWidth 32 ; prim:byteWidth 4 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Codepoint ;
+    rdfs:comment "The Utf16 physical encoding: 32 bits / 4 bytes, little-endian. It interpretAs Codepoint — a Unicode scalar value, the atom of the text tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+# ---- UTF-16 LE / BE split (spec §9g): the byte-order variants of UTF-16, split out as
+#      distinct encodings because for a multi-octet code unit the endianness is load-bearing
+#      (the same code unit serializes to opposite octet order), so a single LE-defaulted
+#      prim:Utf16 hid a real distinction. Both interpretAs prim:Codepoint (already punned).
+prim:Utf16LE a prim:PhysicalEncoding ;
+    rdfs:label "UTF-16LE (little-endian code units)" ; prim:bitWidth 32 ; prim:byteWidth 4 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Codepoint ;
+    rdfs:comment "The little-endian byte-order variant of UTF-16: each 16-bit code unit (and the two units of a surrogate pair) serialize least-significant octet first. Split from the neutral prim:Utf16 per spec §9g because endianness is a genuine coordinate for multi-octet code units — a byte stream is not decodable as UTF-16 without knowing LE from BE, and a byte-order-mark or an out-of-band declaration selects between this and prim:Utf16BE. interpretAs prim:Codepoint; its realization carries the same surrogate/normalization prim:EncodingLoss as the neutral form." .
+
+prim:Utf16BE a prim:PhysicalEncoding ;
+    rdfs:label "UTF-16BE (big-endian code units)" ; prim:bitWidth 32 ; prim:byteWidth 4 ;
+    prim:byteOrder prim:BE ; prim:interpretAs prim:Codepoint ;
+    rdfs:comment "The big-endian byte-order variant of UTF-16: each 16-bit code unit (and the two units of a surrogate pair) serialize most-significant octet first — the network/wire order and the form a byte-order-mark-less UTF-16 stream defaults to under the Unicode standard. Split from the neutral prim:Utf16 per spec §9g so the LE/BE distinction is a first-class carrier fact, not a hidden default. interpretAs prim:Codepoint; its realization carries the same surrogate/normalization prim:EncodingLoss as the neutral form." .
+
+prim:Utf32 a prim:PhysicalEncoding ;
+    rdfs:label "UTF-32 (fixed 4 octets)" ; prim:bitWidth 32 ; prim:byteWidth 4 ;
+    prim:byteOrder prim:LE ; prim:interpretAs prim:Codepoint ;
+    rdfs:comment "The Utf32 physical encoding: 32 bits / 4 bytes, little-endian. It interpretAs Codepoint — a Unicode scalar value, the atom of the text tower — the mutual-colimit back-pointer that closes the round-trip physical → interpretAs → formal reflexively onto its own formal type (spec §9d). As a concrete bit-layout it fixes how a span of bits over the carrier is read as a value, and it byte-descends through the physical carrier ladder to the width-1 prim:Bit floor of the byte substrate." .
+
+
+# =====================================================================================
+# RGB colour code space — three octet channels, ordinal 0..255 (JEPA colour substrate)
+# =====================================================================================
+
+prim:ColourSpace a owl:Class ;
+    rdfs:label "ColourSpace" ;
+    rdfs:comment "A colour code space — an organization of octet-valued channels that together denote a colour, the JEPA colour substrate of the unary law. Its canonical member here is prim:RGB, whose three channels Red, Green, and Blue are each exactly one prim:Octet of cardinality 256 and ordinal range 0..255. A ColourSpace relates its channels by prim:hasChannel; the channels' octet identity is what grounds colour into the physical byte carrier and, downstream, into the atom colour coordinates that ride the byte substrate." .
+
+prim:RGB a prim:ColourSpace ;
+    rdfs:label "RGB (Red/Green/Blue octet channels)" ;
+    prim:hasChannel prim:Red , prim:Green , prim:Blue .
+
+prim:Red a prim:Octet ;
+    rdfs:label "Red channel (one Octet, ordinal 0..255)" ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 .
+
+prim:Green a prim:Octet ;
+    rdfs:label "Green channel (one Octet, ordinal 0..255)" ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 .
+
+prim:Blue a prim:Octet ;
+    rdfs:label "Blue channel (one Octet, ordinal 0..255)" ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 .
+
+
+# =====================================================================================
+# R1 remediation — full-coverage physical carriers (spec §9a/§9b/§9c/§9g, plan Task R1).
+# =====================================================================================
+# The panel NO-GO recorded that 50 of 59 tower classes were ungrounded because the physical
+# olog exposed no carrier for the composite, variable-length, opaque, or temporal formal
+# types. This block adds a dedicated prim:PhysicalEncoding for every concrete tower type
+# realization.ttl now grounds, each carrying the mutual-colimit back-pointer prim:interpretAs
+# to its OWN formal type (so the round-trip physicalFacet → interpretAs → formalFacet is
+# reflexive per spec §9d) with prim:bitWidth ≤ 128 (scalar cap) or prim:byteCount ≤ 128
+# (ByteVector cap, spec §9c). The former ancestry cases (URI/IRI/QName taxonomically under URN;
+# Latitude/Longitude under Coordinate; Ordinal/Categorical under Enumeration) are now each grounded
+# DIRECTLY: every one carries its OWN prim:realizesFrom arrow, its OWN reflexive prim:interpretAs
+# carrier and its OWN prim:Primitive (authored in realization.ttl / taiji.ttl). The supertype link
+# is taxonomic subtyping only, NOT the grounding mechanism (spec §9a). Corpus-agnostic: pure shape.
+#
+# Two width caps (spec §9c): a fixed-width SCALAR/PRODUCT encoding declares prim:bitWidth
+# (≤ 128, the widest being the 128-bit Complex/Interval/Measurement products of two 64-bit
+# components). A variable-length BYTEVECTOR-family or serialized encoding is octet-granular:
+# prim:bitWidth 8 records the per-occurrence granule (one octet) and prim:byteCount records
+# the occurrence-count ceiling (≤ 128). The 0-byte prim:VoidEmpty is the honest edge —
+# bitWidth 0, byteCount 0 — the uninhabited empty product.
+
+
+# ---- Punning witnesses (OWL 2): every FormalType a dedicated encoding below interprets
+#      back to is asserted as an INDIVIDUAL a prim:FormalType, so the non-inference round-trip
+#      ASK q_colimit_roundtrip (?e interpretAs ?f . ?f a prim:FormalType) closes for each new
+#      encoding. The classes, tower arrows and ≥200-char comments are authored in formal.ttl;
+#      these are additive type facts (as physical.ttl already does for Bool/Natural/Integer/
+#      Real/Codepoint). Every punned type here carries its own prim:realizesAs in realization.ttl.
+prim:Rational      a prim:FormalType .
+prim:Complex       a prim:FormalType .
+prim:Imaginary     a prim:FormalType .
+prim:Bignum        a prim:FormalType .
+prim:Decimal       a prim:FormalType .
+prim:String        a prim:FormalType .
+prim:Grapheme      a prim:FormalType .
+prim:Date          a prim:FormalType .
+prim:Time          a prim:FormalType .
+prim:DateTime      a prim:FormalType .
+prim:Duration      a prim:FormalType .
+prim:Interval      a prim:FormalType .
+prim:URN           a prim:FormalType .
+prim:BlankNode     a prim:FormalType .
+prim:Literal       a prim:FormalType .
+prim:Triple        a prim:FormalType .
+prim:Quad          a prim:FormalType .
+prim:RDFGraph      a prim:FormalType .
+prim:Tuple         a prim:FormalType .
+prim:List          a prim:FormalType .
+prim:Set           a prim:FormalType .
+prim:Bag           a prim:FormalType .
+prim:Map           a prim:FormalType .
+prim:Vector        a prim:FormalType .
+prim:Tensor        a prim:FormalType .
+prim:Sum           a prim:FormalType .
+prim:Optional      a prim:FormalType .
+prim:Frame         a prim:FormalType .
+prim:Void          a prim:FormalType .
+prim:Quantity      a prim:FormalType .
+prim:Dimension     a prim:FormalType .
+prim:UnitOfMeasure a prim:FormalType .
+prim:Currency      a prim:FormalType .
+prim:Measurement   a prim:FormalType .
+prim:Coordinate    a prim:FormalType .
+prim:Point         a prim:FormalType .
+prim:Line          a prim:FormalType .
+prim:Polygon       a prim:FormalType .
+prim:CRS           a prim:FormalType .
+prim:Enumeration   a prim:FormalType .
+prim:Kleene3       a prim:FormalType .
+prim:Blob          a prim:FormalType .
+prim:Hash          a prim:FormalType .
+
+
+# ---- Number tower composites -------------------------------------------------------
+prim:ProductRationalIntInt a prim:PhysicalEncoding ;
+    rdfs:label "Product(INT32 numerator, INT32 denominator) → Rational" ;
+    prim:bitWidth 64 ; prim:byteWidth 8 ; prim:byteOrder prim:LE ;
+    prim:alignment 4 ; prim:padding 0 ; prim:interpretAs prim:Rational ;
+    rdfs:comment "The canonical rational carrier: a categorical product of two two's-complement INT32 components — numerator then non-zero denominator — laid contiguously little-endian for a total bitWidth 64, aligned to the 4-byte component boundary with no padding. Unlike a lossy float realization of ℚ this pair holds the ratio exactly in value; the typed cost is that each component is width-bounded, so a numerator or denominator outside the INT32 window overflows (prim:OverflowDomain). interpretAs prim:Rational closes the mutual colimit reflexively." .
+
+prim:ProductComplexFloat64 a prim:PhysicalEncoding ;
+    rdfs:label "Product(Float64 real, Float64 imaginary) → Complex" ;
+    prim:bitWidth 128 ; prim:byteWidth 16 ; prim:byteOrder prim:LE ;
+    prim:alignment 8 ; prim:padding 0 ; prim:interpretAs prim:Complex ;
+    rdfs:comment "The canonical complex carrier: a product of two IEEE-754 Float64 components — real part then imaginary part — contiguous little-endian for the maximum scalar bitWidth 128 (the two-64-bit-component ceiling of the scalar cap), 8-byte aligned with no padding. Each component carries the finite-grid IEEE-754 rounding of a Real, so the product's realization Frame carries prim:RoundingIEEE754. interpretAs prim:Complex makes the round-trip reflexive; Complex is the join of the real and imaginary axes this pair encodes." .
+
+prim:ImaginaryFloat64 a prim:PhysicalEncoding ;
+    rdfs:label "Float64 (imaginary coordinate) → Imaginary" ;
+    prim:bitWidth 64 ; prim:byteWidth 8 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Imaginary ;
+    rdfs:comment "The imaginary-number carrier: a single IEEE-754 Float64 holding the real multiple of the imaginary unit i (the coefficient of a zero-real-part complex), 8 bytes little-endian. It is structurally a Float64 but interprets back to prim:Imaginary rather than prim:Real, witnessing that the top of the number tower is the join of a real axis and an imaginary axis; its realization carries the finite-grid prim:RoundingIEEE754 effect of any IEEE-754 real." .
+
+prim:ByteVectorBignum a prim:PhysicalEncoding ;
+    rdfs:label "ByteVector(≤128 bytes, two's-complement magnitude) → Bignum" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:BE ;
+    prim:interpretAs prim:Bignum ;
+    rdfs:comment "The arbitrary-precision-integer carrier that replaces the removed UINT128 isProvisional dodge (spec §9b): an ordered prim:ByteVector of up to 128 byte occurrences holding a two's-complement magnitude big-endian. It is octet-granular — prim:bitWidth 8 is the per-occurrence granule, prim:byteCount 128 the occurrence-count ceiling of the second width cap (spec §9c, up to 1024 bits). A mathematically unbounded Bignum meets this bounded carrier, so the realization Frame carries prim:MayOverflow. interpretAs prim:Bignum closes the colimit reflexively — the round-trip lands back on Bignum, not on Natural as the old Uint128 proxy did." .
+
+
+# ---- Text tower --------------------------------------------------------------------
+prim:StringUtf8 a prim:PhysicalEncoding ;
+    rdfs:label "UTF-8 octet stream → String" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:String ;
+    rdfs:comment "The string carrier: the ordered UTF-8 octet stream that a finite sequence of Codepoints serializes into, octet-granular (bitWidth 8 per occurrence, byteCount the vector ceiling) and endian-neutral because UTF-8 code units are single octets with no cross-octet ordering. It interprets back to prim:String (the whole sequence) rather than to a single prim:Codepoint, so the round-trip is reflexive at the String level; its realization carries prim:EncodingLoss for surrogate/normalization edge cases inherited from the codepoint encoding." .
+
+prim:GraphemeUtf8 a prim:PhysicalEncoding ;
+    rdfs:label "UTF-8 octet stream (one cluster) → Grapheme" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Grapheme ;
+    rdfs:comment "The grapheme-cluster carrier: the UTF-8 octet run of one user-perceived character — a base codepoint plus any combining marks — octet-granular and endian-neutral. It interprets back to prim:Grapheme rather than prim:Codepoint precisely because a cluster is a sequence of codepoints, not one; the reflexive round-trip therefore lands at the human-visible unit. Its realization carries prim:EncodingLoss (normalization-form differences change the cluster's byte run)." .
+
+
+# ---- Temporal tower ----------------------------------------------------------------
+prim:DateInt32Days a prim:PhysicalEncoding ;
+    rdfs:label "INT32 (days since epoch) → Date" ;
+    prim:bitWidth 32 ; prim:byteWidth 4 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Date ;
+    rdfs:comment "The calendar-date carrier: a signed two's-complement INT32 count of whole days from a fixed epoch (proleptic Gregorian 1970-01-01), little-endian, 32 bits. A day count rather than an instant tick because a Date is a timezone-free civil coordinate naming a whole day; the signed 32-bit window spans roughly ±5.8 million years so the typed cost is the width-bounded prim:OverflowDomain. interpretAs prim:Date closes the colimit reflexively at the Date level, not at prim:Integer as a bare INT32 would." .
+
+prim:TimeInt64Nanos a prim:PhysicalEncoding ;
+    rdfs:label "INT64 (nanoseconds since midnight) → Time" ;
+    prim:bitWidth 64 ; prim:byteWidth 8 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Time ;
+    rdfs:comment "The time-of-day carrier: a signed INT64 count of nanoseconds since midnight within an unspecified day, little-endian, 64 bits — enough to name any instant of the daily cycle to nanosecond resolution with room for leap-second overrun. A Time alone names no absolute instant (it needs a Date and zone), so this interprets back to prim:Time, not prim:Instant; the width-bounded tick count carries prim:OverflowDomain." .
+
+prim:DateTimeInt64Tz a prim:PhysicalEncoding ;
+    rdfs:label "Product(INT64 epoch, INT16 tz-offset-minutes) → DateTime" ;
+    prim:bitWidth 80 ; prim:byteWidth 10 ; prim:byteOrder prim:LE ;
+    prim:alignment 8 ; prim:padding 0 ; prim:interpretAs prim:DateTime ;
+    rdfs:comment "The civil date-and-time carrier: a product of a signed INT64 epoch-tick component and a signed INT16 timezone-offset-in-minutes component, little-endian, total bitWidth 80. The offset component is the load-bearing timezone facet that pins the civil naming to an absolute Instant; its presence is what distinguishes a zoned DateTime from a floating local one. interpretAs prim:DateTime reflexively; the epoch tick's finite window carries prim:OverflowDomain." .
+
+prim:DurationInt64 a prim:PhysicalEncoding ;
+    rdfs:label "INT64 (signed tick count) → Duration" ;
+    prim:bitWidth 64 ; prim:byteWidth 8 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Duration ;
+    rdfs:comment "The duration carrier: a signed INT64 count of a fixed tick unit (nanoseconds), little-endian, 64 bits, denoting an unanchored length of time with no position on the time line — the difference of two Instants. Distinct from prim:Interval (anchored, a start-plus-end product) and prim:Instant (a point); it interprets back to prim:Duration. The finite tick window and any conversion between tick granularities carry the width-bounded prim:OverflowDomain effect." .
+
+prim:ProductIntervalInstant a prim:PhysicalEncoding ;
+    rdfs:label "Product(INT64 start-epoch, INT64 end-epoch) → Interval" ;
+    prim:bitWidth 128 ; prim:byteWidth 16 ; prim:byteOrder prim:LE ;
+    prim:alignment 8 ; prim:padding 0 ; prim:interpretAs prim:Interval ;
+    rdfs:comment "The anchored-span carrier: a product of two signed INT64 epoch-tick Instant components — start then end — little-endian, total bitWidth 128, the two-64-bit-component ceiling of the scalar cap. Unlike an unanchored prim:Duration this pair pins both endpoints on the time line; the half-open [start,end) inclusivity is a facet recorded on the realization rather than assumed. interpretAs prim:Interval reflexively; each epoch component's finite window carries prim:OverflowDomain." .
+
+
+# ---- Identifier tower: URN root here; URI/IRI/QName each grounded DIRECTLY (own carrier) --------
+prim:UrnUtf8 a prim:PhysicalEncoding ;
+    rdfs:label "UTF-8 octet stream (interpreted name) → URN" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:URN ;
+    rdfs:comment "The Uniform-Resource-Name carrier and, transitively, the whole identifier tower's grounding: an interpreted UTF-8 octet stream over a byte carrier, octet-granular and endian-neutral. URN is the load-bearing root of the identifier tower (S/O/P are URN towers); URI, IRI and QName are taxonomic subtypes of it but are each grounded DIRECTLY by their own prim:realizesFrom arrow and their own reflexive carrier (UriUtf8, IriUtf8, QNameUtf8 in realization.ttl), not through this URN carrier (spec §9a). interpretAs prim:URN closes the colimit reflexively; percent-encoding/normalization of non-ASCII octets is the prim:EncodingLoss the realization carries." .
+
+prim:BlankNodeLabel a prim:PhysicalEncoding ;
+    rdfs:label "UTF-8 graph-local label → BlankNode" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:BlankNode ;
+    rdfs:comment "The blank-node carrier: an interpreted UTF-8 graph-local label (for example _:b0), octet-granular and endian-neutral. Modelled separately from prim:UrnUtf8 because a BlankNode is precisely the identifier that has no Uniform Resource Name — it is not under URN in the formal tower — so it needs its own carrier. Its scope is a single graph/document and the label must be freshened on merge; that graph-local re-labelling is the prim:EncodingLoss the realization carries. interpretAs prim:BlankNode reflexively." .
+
+
+# ---- RDF-term tower ----------------------------------------------------------------
+prim:LiteralUtf8 a prim:PhysicalEncoding ;
+    rdfs:label "UTF-8 lexical form + datatype/lang coordinate → Literal" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Literal ;
+    rdfs:comment "The RDF-literal carrier: the UTF-8 octet stream of a lexical form paired with a datatype-IRI or language-tag coordinate, octet-granular and endian-neutral. A typed literal is dual-natured — an RDF term whose datatype grounds it into the Number/Text/Temporal towers via the W3C datatype algebra — and this carrier holds the lexical bytes from which that value is parsed. interpretAs prim:Literal reflexively; lexical-to-value canonicalization (e.g. '1.0' vs '1.00') is the prim:EncodingLoss the realization carries." .
+
+prim:TripleNTriples a prim:PhysicalEncoding ;
+    rdfs:label "N-Triples UTF-8 line → Triple" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Triple ;
+    rdfs:comment "The RDF-triple carrier: one N-Triples UTF-8 line serializing an ordered subject-predicate-object statement — a product of three independently typed URN/term coordinates, not a flat row. Octet-granular and endian-neutral. interpretAs prim:Triple reflexively; the N-Triples serialization's whitespace/escaping variance and its round-trip fidelity against the abstract triple are the prim:EncodingLoss the realization carries." .
+
+prim:QuadNQuads a prim:PhysicalEncoding ;
+    rdfs:label "N-Quads UTF-8 line → Quad" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Quad ;
+    rdfs:comment "The RDF-quad carrier: one N-Quads UTF-8 line serializing a triple extended with a fourth graph-name coordinate — a wider product than a Triple, not a subtype of it. Octet-granular and endian-neutral. interpretAs prim:Quad reflexively; the graph coordinate is itself an identifier-tower value, and the serialization's escaping/whitespace variance is the prim:EncodingLoss the realization carries." .
+
+prim:RDFGraphTurtle a prim:PhysicalEncoding ;
+    rdfs:label "Turtle UTF-8 document → RDFGraph" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:RDFGraph ;
+    rdfs:comment "The RDF-graph carrier: a Turtle UTF-8 document serializing a set of Triples — the composite top of the RDF-term tower and the very shape this whole ontology is expressed in. Octet-granular and endian-neutral. interpretAs prim:RDFGraph reflexively; the choice of concrete syntax (Turtle vs N-Triples), prefix/blank-node relabelling and statement ordering mean the byte round-trip is not the identity on the abstract graph without a canonicalization discipline — the prim:EncodingLoss the realization carries." .
+
+
+# ---- Aggregate tower ---------------------------------------------------------------
+prim:TupleConcat a prim:PhysicalEncoding ;
+    rdfs:label "ordered component concatenation → Tuple" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:alignment 1 ; prim:padding 0 ; prim:interpretAs prim:Tuple ;
+    rdfs:comment "The tuple/finite-product carrier: the in-order concatenation of the byte encodings of a fixed-arity, heterogeneous component list, octet-granular. Its arity is fixed and part of its identity, so no length prefix is needed; alignment and padding between components are facets. This is the general shape behind the Rational and Complex pairs and the Frame product. interpretAs prim:Tuple reflexively; a faithful in-order concatenation is lossless framing, so the realization carries prim:NoEffect." .
+
+prim:ListLenPrefixed a prim:PhysicalEncoding ;
+    rdfs:label "length-prefixed homogeneous run → List" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:List ;
+    rdfs:comment "The list/sequence carrier: a length prefix followed by that many contiguous element encodings of one element type, octet-granular little-endian. Order is part of identity, so unlike Set and Bag it never reorders and duplicate elements are positionally significant. It is the parent shape of the fixed-length prim:Vector. interpretAs prim:List reflexively; a faithful length-prefixed run preserves order and multiplicity exactly, so the realization carries prim:NoEffect." .
+
+prim:SetSortedLenPrefixed a prim:PhysicalEncoding ;
+    rdfs:label "canonically sorted length-prefixed distinct run → Set" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Set ;
+    rdfs:comment "The set carrier: a length prefix followed by the distinct element encodings laid in a canonical sort order chosen only for byte-level determinism, not for identity — a Set is unordered and duplicate-free. Because the abstract Set has no order, imposing the canonical serialization order is a real, typed transformation: the realization carries prim:OrderingCanonicalization (a different input element order yields the same bytes, so the mapping is not the identity on presentation order). interpretAs prim:Set reflexively." .
+
+prim:BagLenCounts a prim:PhysicalEncoding ;
+    rdfs:label "length-prefixed element+multiplicity run → Bag" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Bag ;
+    rdfs:comment "The bag/multiset carrier: a length prefix followed by (element, multiplicity-count) pairs, octet-granular little-endian, where the per-element count is significant but position is not. A Bag is the parent of Set (a Set is a Bag whose every multiplicity is at most one). interpretAs prim:Bag reflexively; storing the counts explicitly preserves multiplicity exactly and any serialization order of the pairs is an arbitrary facet, so the realization carries prim:NoEffect on value (multiplicities are exact)." .
+
+prim:MapLenKv a prim:PhysicalEncoding ;
+    rdfs:label "length-prefixed key-value pair run → Map" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Map ;
+    rdfs:comment "The map/associative-array carrier: a length prefix followed by that many (key, value) encoding pairs with unique keys, octet-granular little-endian — a partial function from a key type to a value type. Any hashing or key-ordering is a realization facet, not identity. interpretAs prim:Map reflexively; a faithful key-value run preserves the finite function exactly (unique keys, paired values), so the realization carries prim:NoEffect." .
+
+prim:VectorFixedArray a prim:PhysicalEncoding ;
+    rdfs:label "dense fixed-length equal-width array → Vector" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Vector ;
+    rdfs:comment "The vector carrier: a dense contiguous run of a fixed count of equal-width numeric element encodings with a stated component order and endianness, octet-granular so its byte layout is directly index-addressable. Vector is the rank-1 case of Tensor and the pinned-length subtype of List; it feeds the AOB tensor block. interpretAs prim:Vector reflexively; a dense equal-width array preserves the components and their order exactly, so the framing realization carries prim:NoEffect (the components' own encodings carry any rounding)." .
+
+prim:TensorRowMajor a prim:PhysicalEncoding ;
+    rdfs:label "shape descriptor + row-major dense block → Tensor" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Tensor ;
+    rdfs:comment "The tensor carrier and the AOB tensor block's physical home: a shape descriptor (a tuple of per-axis extents) plus a dense row-major block of the numeric components, octet-granular little-endian. The explicit shape-and-stride metadata is what distinguishes a rank-n Tensor from a flat List. interpretAs prim:Tensor reflexively; a faithful shape-plus-row-major block preserves rank, shape and every component in order, so the framing realization carries prim:NoEffect." .
+
+
+# ---- Algebraic-constructor tower ---------------------------------------------------
+prim:SumTagPayload a prim:PhysicalEncoding ;
+    rdfs:label "UINT8 tag + selected payload → Sum" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Sum ;
+    rdfs:comment "The sum/coproduct/tagged-union carrier: a discriminating UINT8 tag selecting the active alternative followed by that alternative's payload encoding, octet-granular little-endian. Sum is the categorical dual of the Tuple product and the shape behind the byte-vector Empty|Link and the admission Accepted|Rejected states. interpretAs prim:Sum reflexively; a faithful tag-plus-payload names exactly one alternative and preserves its payload, so the framing realization carries prim:NoEffect (the tag width is a facet)." .
+
+prim:OptionalPresence a prim:PhysicalEncoding ;
+    rdfs:label "presence tag (0|1) + optional payload → Optional" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Optional ;
+    rdfs:comment "The optional/maybe carrier: a one-byte presence tag (0 = none, 1 = some) followed, when present, by the payload encoding — the two-alternative tagged union none|some(value), a subtype of Sum. This is how the floor represents nullability structurally without conflating it with Kleene3 unknown: absence is a structural fact, not a third truth value. interpretAs prim:Optional reflexively; a faithful presence-plus-payload distinguishes absent from present exactly, so the realization carries prim:NoEffect." .
+
+prim:FrameProduct a prim:PhysicalEncoding ;
+    rdfs:label "Product(output encoding, effect coordinate) → Frame" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:alignment 1 ; prim:padding 0 ; prim:interpretAs prim:Frame ;
+    rdfs:comment "The Frame carrier — the physical home of the unary law's Yoneda point: a product of an output-coordinate encoding and exactly one error-or-effect coordinate, octet-granular. It is a Tuple whose two coordinates are fixed as output (X) and effect (Y), the T → Frame(output: X, error|effect: Y) shape the realization monad is the Kleisli category of. interpretAs prim:Frame reflexively; a faithful two-coordinate product preserves both the output and its typed effect exactly, so the framing realization carries prim:NoEffect." .
+
+prim:VoidEmpty a prim:PhysicalEncoding ;
+    rdfs:label "empty 0-byte encoding (uninhabited) → Void" ;
+    prim:bitWidth 0 ; prim:byteWidth 0 ; prim:byteCount 0 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Void ;
+    rdfs:comment "The void/initial-type carrier: the empty 0-byte encoding — zero bits, zero bytes, zero occurrences — the physical nothing of the empty coproduct. It is the honest edge that keeps universality total without a dodge (spec §9f): Void has no values, so a value of Void can never be constructed, and this carrier's realization Frame carries the prim:Uninhabited effect (not prim:NoEffect — a lossless map of nothing is still the map of an impossible value). Distinct from the zero-width prim:UnitEncoding, which is inhabited by exactly one value; VoidEmpty is inhabited by none. interpretAs prim:Void reflexively." .
+
+
+# ---- Quantity tower ----------------------------------------------------------------
+prim:ProductQuantity a prim:PhysicalEncoding ;
+    rdfs:label "Product(Float64 magnitude, UINT16 unit index) → Quantity" ;
+    prim:bitWidth 80 ; prim:byteWidth 10 ; prim:byteOrder prim:LE ;
+    prim:alignment 8 ; prim:padding 0 ; prim:interpretAs prim:Quantity ;
+    rdfs:comment "The quantity carrier: a product of a Float64 magnitude component and a UINT16 unit-of-measure index component, little-endian, total bitWidth 80. A Quantity is a magnitude tagged with a unit (5 kilograms, 300 kelvin); unit conversions are typed arrows carrying a rescaling effect. It is the parent of Measurement (a Quantity plus an uncertainty). interpretAs prim:Quantity reflexively; the Float64 magnitude carries the finite-grid prim:RoundingIEEE754 the realization Frame reports." .
+
+prim:DimensionExponents a prim:PhysicalEncoding ;
+    rdfs:label "UINT8 dimensional index → Dimension" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Dimension ;
+    rdfs:comment "The physical-dimension carrier: a UINT8 index into the registry of base-dimension exponent vectors (length, mass, time and their products such as length·time⁻¹ for velocity), one octet. A Dimension classifies which units are mutually convertible — quantities add or compare only when their Dimensions match — and reduces dimensional analysis to integer-vector arithmetic on the indexed exponent formula. interpretAs prim:Dimension reflexively; a small-integer index is an exact, lossless label, so the realization carries prim:NoEffect." .
+
+prim:UnitOfMeasureIndex a prim:PhysicalEncoding ;
+    rdfs:label "UINT16 unit registry index → UnitOfMeasure" ;
+    prim:bitWidth 16 ; prim:byteWidth 2 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:UnitOfMeasure ;
+    rdfs:comment "The unit-of-measure carrier: a UINT16 index into a registry of named reference magnitudes (metre, second, kilogram, and derived units such as newton), each entry carrying a conversion factor and offset to the SI base of its Dimension. Named UnitOfMeasure to avoid colliding with the type-theoretic terminal prim:Unit. It is the taxonomic parent of Currency, but Currency is grounded DIRECTLY by its own ISO-4217 carrier (CurrencyIso4217) and its own prim:realizesFrom arrow (spec §9a), not through this UnitOfMeasure carrier. interpretAs prim:UnitOfMeasure reflexively; an exact registry index is lossless, so the realization carries prim:NoEffect." .
+
+prim:CurrencyIso4217 a prim:PhysicalEncoding ;
+    rdfs:label "3×CHAR8 ISO-4217 alphabetic code → Currency" ;
+    prim:bitWidth 24 ; prim:byteWidth 3 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Currency ;
+    rdfs:comment "The currency carrier: three CHAR8 octets holding an ISO-4217 alphabetic code (USD, EUR, JPY), bitWidth 24, a subtype grounding of UnitOfMeasure for the dimension of monetary value. Unlike physical units a currency's conversion factors are time-varying exchange rates, a documented facet of any conversion realization; a monetary Quantity is a magnitude tagged with this code. interpretAs prim:Currency reflexively; the fixed three-letter code is an exact, lossless label, so the realization carries prim:NoEffect." .
+
+prim:ProductMeasurement a prim:PhysicalEncoding ;
+    rdfs:label "Product(Float64 value, Float64 uncertainty) → Measurement" ;
+    prim:bitWidth 128 ; prim:byteWidth 16 ; prim:byteOrder prim:LE ;
+    prim:alignment 8 ; prim:padding 0 ; prim:interpretAs prim:Measurement ;
+    rdfs:comment "The measurement carrier: a product of two Float64 components — the value and its paired uncertainty (error bar / standard deviation) in the same unit — little-endian, total bitWidth 128. Measurement is a Quantity that additionally records how well it is known: a bare Quantity asserts an exact magnitude, a Measurement admits its own imprecision so error propagation is explicit. interpretAs prim:Measurement reflexively; both Float64 components carry the finite-grid prim:RoundingIEEE754 the realization Frame reports." .
+
+
+# ---- Geospatial tower: Coordinate root here; Latitude/Longitude each grounded DIRECTLY ---------
+prim:CoordinateFloat64 a prim:PhysicalEncoding ;
+    rdfs:label "Float64 (axis position) → Coordinate" ;
+    prim:bitWidth 64 ; prim:byteWidth 8 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Coordinate ;
+    rdfs:comment "The coordinate carrier: a single IEEE-754 Float64 scalar position along one axis of a coordinate reference system, 8 bytes little-endian. Latitude and Longitude are taxonomic subtypes of Coordinate but are each grounded DIRECTLY by their own prim:realizesFrom arrow and their own reflexive carrier (LatitudeFloat64, LongitudeFloat64), not through this Coordinate carrier (spec §9a). A Coordinate has meaning only relative to its CRS and axis order, which travel with it as facets. interpretAs prim:Coordinate reflexively; the Float64 axis value carries the finite-grid prim:RoundingIEEE754 effect." .
+
+prim:PointWkb a prim:PhysicalEncoding ;
+    rdfs:label "Well-Known-Binary point geometry → Point" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Point ;
+    rdfs:comment "The point-geometry carrier: a Well-Known-Binary (WKB) encoding of a single location — an ordered tuple of Float64 coordinates (longitude, latitude, optional elevation) with a byte-order flag and geometry-type header, octet-granular. The axis order (lon-lat vs lat-lon) is a load-bearing facet recorded on the realization, not guessed. interpretAs prim:Point reflexively; because the embedded coordinates are IEEE-754 Float64 the realization carries prim:RoundingIEEE754." .
+
+prim:LineWkb a prim:PhysicalEncoding ;
+    rdfs:label "Well-Known-Binary linestring geometry → Line" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Line ;
+    rdfs:comment "The line/linestring-geometry carrier: a WKB encoding of an ordered sequence of two or more Points describing a one-dimensional path, octet-granular; its identity includes vertex order and count, and all vertices share one CRS. interpretAs prim:Line reflexively; because the embedded vertex coordinates are IEEE-754 Float64 the realization carries prim:RoundingIEEE754 (the same axis-order facet as its points is recorded once for the whole geometry)." .
+
+prim:PolygonWkb a prim:PhysicalEncoding ;
+    rdfs:label "Well-Known-Binary polygon geometry → Polygon" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Polygon ;
+    rdfs:comment "The polygon-geometry carrier: a WKB encoding of a two-dimensional area bounded by one closed exterior ring of Points and zero or more interior rings (holes), octet-granular. Ring closure (first vertex equals last) and winding order are part of well-formedness and are recorded so exterior and holes are unambiguous. interpretAs prim:Polygon reflexively; because the embedded ring coordinates are IEEE-754 Float64 the realization carries prim:RoundingIEEE754." .
+
+prim:CrsEpsg a prim:PhysicalEncoding ;
+    rdfs:label "UINT32 EPSG code → CRS" ;
+    prim:bitWidth 32 ; prim:byteWidth 4 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:CRS ;
+    rdfs:comment "The coordinate-reference-system carrier: a UINT32 EPSG code (for example 4326 for WGS-84) identifying the datum, coordinate system and axis order that give Coordinates and geometries their meaning, 32 bits little-endian. Every Point, Line and Polygon must reference a CRS; it seeds the S/O/P-tower CRS sub-project. interpretAs prim:CRS reflexively; a registry code is an exact, lossless identifier (the projection parameters it names are looked up, not lost), so the realization carries prim:NoEffect." .
+
+
+# ---- Enum tower: Enumeration root here; Ordinal/Categorical each grounded DIRECTLY -------------
+prim:EnumerationIndex a prim:PhysicalEncoding ;
+    rdfs:label "UINT32 member code → Enumeration" ;
+    prim:bitWidth 32 ; prim:byteWidth 4 ; prim:byteOrder prim:LE ;
+    prim:interpretAs prim:Enumeration ;
+    rdfs:comment "The enumeration carrier: a UINT32 code assigned to each member of a finite, explicitly named set, 32 bits little-endian. Ordinal and Categorical are taxonomic subtypes of Enumeration but are each grounded DIRECTLY by their own prim:realizesFrom arrow and their own reflexive carrier (Ordinal_Uint32Index, Categorical_Uint32Index), not through this Enumeration carrier (spec §9a). The code-to-member mapping is part of the enumeration's identity, not an arbitrary realization choice; Ordinal further requires order-preserving codes and Categorical treats codes as bare labels. interpretAs prim:Enumeration reflexively; an exact member code is a lossless label, so the realization carries prim:NoEffect." .
+
+
+# ---- Boolean tower (Kleene3; Bool already realized via BOOLEAN) ---------------------
+prim:Kleene3Uint8 a prim:PhysicalEncoding ;
+    rdfs:label "UINT8 (0=false, 1=true, 2=unknown) → Kleene3" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Kleene3 ;
+    rdfs:comment "The three-valued-logic carrier: a UINT8 holding 0 (false), 1 (true) or 2 (unknown) — three states that do not fit one bit, which is why Kleene3 realizes in a byte rather than a Bit. Kleene3 is the supertype of Bool (Boolean logic is Kleene logic with the unknown value forbidden) and the formal home of the SQL NULL and structured/unstructured indeterminacy. interpretAs prim:Kleene3 reflexively; the three-value code is exact and lossless, so the realization carries prim:NoEffect." .
+
+
+# ---- Binary/opaque tower -----------------------------------------------------------
+prim:ByteVectorBlob a prim:PhysicalEncoding ;
+    rdfs:label "ByteVector(≤128 bytes, opaque) → Blob" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 128 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Blob ;
+    rdfs:comment "The opaque-binary carrier: an ordered prim:ByteVector of up to 128 raw octets with no interpreted internal structure — the hexadecimal/serialized-binary payload a format leaves uninterpreted, the root of the binary/opaque tower. Octet-granular (bitWidth 8 per occurrence, byteCount the vector ceiling), endian-neutral because the bytes are uninterpreted. interpretAs prim:Blob reflexively; storing raw octets verbatim is exact, so the realization carries prim:NoEffect (any structure the bytes may have is deferred to a more specific type)." .
+
+prim:ByteVectorHash a prim:PhysicalEncoding ;
+    rdfs:label "ByteVector(32 bytes fixed, sha256) → Hash" ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteCount 32 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:Hash ;
+    rdfs:comment "The digest carrier that grounds the SP3 z-coordinate: a fixed-length prim:ByteVector of exactly 32 opaque octets (the sha256 width), a subtype of Blob adding the fixed-width and producing-algorithm invariants. The atom z-coordinate is derived as the UINT16 of the first two octets of such a digest. Octet-granular, byteCount pinned to 32, endian-neutral. interpretAs prim:Hash reflexively; storing the digest octets verbatim is exact, so the realization carries prim:NoEffect (the algorithm identity is a recorded facet)." .
