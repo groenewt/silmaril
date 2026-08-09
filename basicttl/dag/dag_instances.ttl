@@ -280,7 +280,68 @@ silm:phase_w1_10 a owl:NamedIndividual, silm:Phase ; rdfs:label "Write findings 
 #   No ASK is vacuous (positive ASKs FAIL on empty graph; NOT-EXISTS ASKs FAIL under injection).
 #   0 actual silm:isProvisional triples in the floor (the string appears only in comment prose).
 silm:phase_w2_sp1 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP1 Primitive Floor — twin-olog colimit taiji (formal type-towers <-> physical bit/byte/ISA-UEFI carriers) + monadic realization = Frame, rho closed as a genuine functor on arrows and literal Yoneda (representables + rho-as-natural-transformation, Frame = Yoneda point); grounds full-lexical-identity via the Identifier URN tower" ; silm:hasStatus "completed" ; silm:hasOrdinal 1 .
-silm:phase_w2_sp2 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP2 AOB meta-ontology — colimit-taiji atom (byte descent + URN + S/O/P towers), lifted from the real base_agents WIP AOB" ; silm:hasOrdinal 2 .
+# SP2 COMPLETED 2026-08-08 (AOB meta-ontology, W2 · SP2). LIFTED the real WIP AOB from the Helios
+# source-of-truth (Directive 1; git-ignored /helios/, mapped in ledger/W2/helios/*.md), grounded onto the
+# committed green SP1 primitive floor. Authored ONLY under basicttl/aob/ (this completion flip is the sole
+# edit outside it; MD1 = NO phase-level silm:dependsOn edge minted — SP2<=SP1 stays carried by hasOrdinal +
+# the SP1 README consumer list). Six MAINTAINER DECISIONS taken at their recommended defaults: MD1 keep the
+# ordinal DAG; MD2 MergedAllCoreOntology.ttl via SIL_CCO_TTL_FILE (cco-merged/cco.ttl recorded as the honest
+# divergence on the anchor node + README); MD3 open-enum aob:typeNode (22/25 families are instances, not
+# hardwired classes); MD4 compressed avd_tree aob:ObservationContract; MD5 provisional telephone seam
+# declared; MD6 card-1..1 + pattern-by-anchor CCO tooth, live external TTL resolution deferred to W5.
+# Green evidence, REFRESHED after the Defect-1..4 + R1/R3 hardening pass (counts reproduce on disk),
+# captured verbatim from a fresh run of basicttl/aob/checks/run-aob-checks.sh:
+#   parse OK: 7 data ttl (meta/upper_anchor/octet_descent/tensor_block/value_colimit/group_law/
+#     evidence_glossary), 1079 triples; pyshacl SHACL conforms=True (0 results) over the 13 sh:NodeShapes in
+#     aob.shapes.ttl (loaded ONLY as the shapes graph, never mixed into the data), inference="rdfs".
+#   13/13 EXPECT-TRUE ASKs PASS (0 failed): q_progenitor_split, q_sop_carrier, q_cco_bfo_anchor,
+#     q_octet_descent, q_tensor_byte_order, q_interpret_as_bridge, q_aob_value_is_taiji, q_group_law,
+#     q_group_associativity, q_colimit_universal, q_seal_honesty, q_synonym_antonym_dual, q_telephone_seam.
+#     Depth gate PASSED (8 files, every owl:Class >=200-char rdfs:comment of real content; every
+#     hardening-minted individual also carries a >=200-char rdfs:comment).
+#   Teeth proven by PROBE INJECTION, not by absence of violations: the full probe-of-record battery
+#     (Tasks 1-11 + the Defect-1..4 + R1 + C1 hardening) = 31/31 CAUGHT, each flipping the SHACL mirror
+#     (conforms True->False): T1 crammed-both + T1 neither-family (ProgenitorSplitShape); T2 arrow-missing-O
+#     (SopCarrierShape); T3 two-CCO-IRIs + T3 cco:BOGUS-fails-pattern (UpperAnchorShape); T4 33rd-octet +
+#     T4 octet-ordinalMax-256 (OctetDescentShape); T5 byte_order-not-from-progenitor + T5 bit_width-7 +
+#     T5 second-rogue-byte-order (TensorByteOrderShape); T6 interpretBridge->Int32!=String
+#     (InterpretAsBridgeShape); T7 aobValue-lacks-physicalFacet + T7 second-malformed-value (AtomValueShape);
+#     T8 companion-composes-onto-non-identity + T8 self-retract (GroupLawShape); assoc perturbed-compResult
+#     (GroupAssociativityShape); colimit two-apexes + bare-no-glossary-scope + no-mediating-morphism +
+#     second-mediating-morphism + non-factoring-target + R1 bare-group-no-test-cocone + R1 legless-test-cocone
+#     + C1 companion-less-empty-diagram (cl.10+11) + C1 spurious-non-companion-leg (cl.11) + C1c
+#     covered-leg-no-legTarget (delete only aob:witnessLegEx aob:legTarget -> cl.13)
+#     (ColimitUniversalShape cl.1-13); T9 staged-atom-no-provisional + gated-atom-no-evidence (SealHonestyShape);
+#     T10 syn+ant-collapsed-one-scope (GlossarySeamShape); T11 seam-not-provisional + T11
+#     seam-missing-tensorSpaceUrn (TelephoneSeamShape). Review probe T3c: inline sh:pattern cco/cceo
+#     constraint literals in aob.shapes.ttl = 0 (pattern lives only on the lifted anchor node, read via SPARQL
+#     REGEX). R1 (Directive 16): the colimit universal property is now UNCONDITIONALLY earned — a colimit
+#     -claiming SealedGroup with NO aob:TestCocone (cl.7), a legless aob:TestCocone (cl.8), and a companion
+#     with no compatible leg (cl.9) each go RED, so the word colimit is no longer earned vacuously. C1
+#     (Directive 16 crux): the WHOLE degenerate/empty-diagram class is closed — a colimit-claiming group with
+#     ZERO aob:companionAtom (cl.10, an empty-diagram colimit is forbidden), a test-cocone leg whose
+#     aob:legFrom is a non-companion (cl.11, no spurious leg), and two legs sharing one companion (cl.12) each
+#     go RED, so companion<->leg coverage is a genuine BIJECTION and "colimit" cannot be earned by a
+#     degenerate/empty diagram. C1c FACTORING CLOSURE (cl.13): clause (6) reads "?leg aob:legTarget ?lt .
+#     FILTER(?lt != ?mt)", so a covered leg (aob:legFrom a genuine companion) with NO aob:legTarget never
+#     binds ?lt and was silently skipped by factoring while coverage (cl.9/11/12, which read only aob:legFrom)
+#     still counted it — deleting only aob:witnessLegEx aob:legTarget used to leave SHACL conforms=True AND
+#     q_colimit_universal=True; cl.13 (COVERED LEG MUST FACTOR) flags any aob:coconeLeg of a testing cocone
+#     lacking aob:legTarget, so FACTORING ranges over EXACTLY the covered legs and no covered leg escapes it.
+#   No ASK is vacuous: every positive EXPECT-TRUE ASK returns FALSE on an empty graph (13/13 confirmed).
+#   silm:isProvisional true is carried by exactly FOUR nodes in the AOB graph (verified on disk), each an
+#     honest Praeriehund declaration, never a dodge: the THREE genuinely-undecidable gaps — aob:byteOrderHost
+#     (host-endianness is runtime-resolved, no SP1 sibling), aob:witnessTelephone (the telephone twin's render
+#     mechanism is a later sub-project, MD5), aob:contentShaAtGraduation (content_sha256-at-graduation declared
+#     not computed, design s6 non-goal) — PLUS the staged-atom honesty witness aob:witnessStaged, which
+#     aob:SealHonestyShape's staged branch MANDATES carry the flag (an ungraduated aob:sealState aob:staged
+#     atom is not conformant-green and MUST be silm:isProvisional true; the witness inhabits that law
+#     non-vacuously, so its flag is required evidence, not a dodge). SPARQL count of ?s silm:isProvisional
+#     true over the 7 merged AOB data TTLs = 4 (aob:byteOrderHost, aob:contentShaAtGraduation,
+#     aob:witnessStaged, aob:witnessTelephone).
+#   SP2 authored NO new prim:Realization / prim:Effect (SP1's RealizationShape sh:in kept intact) and NO
+#     inline anchor regex; the SP1 floor stays untouched + green (21/21 ASKs, run-floor-checks.sh).
+silm:phase_w2_sp2 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP2 AOB meta-ontology — colimit-taiji atom (byte descent + URN + S/O/P towers), lifted from the real base_agents WIP AOB" ; silm:hasStatus "completed" ; silm:hasOrdinal 2 .
 silm:phase_w2_sp3 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP3 N-dim CRS law = S/O/P towers (co-existing CRSs; coordinates derived; z grounded in the byte descent)" ; silm:hasOrdinal 3 .
 silm:phase_w2_sp4 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP4 FULL projection packet + algebra (11+ projections; pi_L cata / retraction; 5 loss classes; every owl:Class -> base_templates macro)" ; silm:hasOrdinal 4 .
 silm:phase_w2_sp5 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP5 File + format taxonomy (repo/tree/dir/module/file + fd/inode; subatomic owl:Class per format + components)" ; silm:hasOrdinal 5 .

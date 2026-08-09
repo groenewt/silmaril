@@ -1,0 +1,353 @@
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# evidence_glossary.ttl — the avd_tree observation contract + CircuitImprintTensor (witness-not-inferred)
+#                         + the CheeseTrapImmunity discipline + the Synonym/Antonym simultaneity seam
+#                         (W2 · SP2, Task 10).
+# =====================================================================================
+# LIFTS four real Helios structures (Directive 1: lift, do not invent):
+#
+# (1) The avd_tree OBSERVATION/EVIDENCE contract, lifted verbatim from the _aob_* envelope
+#     (helios/srcy/appendices/39_appendix_e_research_source_mirror/sections/specs/atoms/dag/
+#     _aob_dag_engine_run.yaml.tex: avd_tree = 9 keys — 1.0_SPACE.description / 1.A_RANGE{min,max,step,
+#     distribution} / 2.INSTRUCTION-AWARENESS / 2.SINK{description,points_at} / 2.SMOOTHNESS / 2.SOURCE{
+#     description,points_at} / 3.DEPTH{description,integer_value} / 4.E2E / 5.UNIT-TEST-GENERATION{
+#     description,test_cases[]}). Per MD4 (design Q4) it is COMPRESSED into a single aob:ObservationContract
+#     coordinate whose eight sub-facets are properties (aob:obsSpace / aob:obsARange / aob:obsDepth /
+#     aob:obsE2E / aob:obsSource / aob:obsSink / aob:obsSmoothness / aob:obsUnitTest) — the meta-TBox needs
+#     the CONTRACT SHAPE (that every atom carries an observation/evidence witness), not the full ~30-slot
+#     instance matrix (that expansion is a corpus-instance concern, SP8/W5). One witness carries a fully
+#     populated contract so the shape is non-vacuous.
+#
+# (2) The CircuitImprintTensor as WITNESS, NOT INFERENCE (lifted verbatim from helios/00_src_specs/types/
+#     silmaril_wave8/circuit_imprint_tensor + papers_atoms_map.md s5): the Leary 8-circuit multi-hot support
+#     (aob:activeCircuitUrn) bound into SP1's realization Frame (aob:nativeFrameUrn -> the prim:Realization
+#     rho Frame = the Frame=Yoneda-point the CircuitImprintTensor's support must witness), with a readback
+#     receipt (aob:witnessReadback). The load-bearing discipline verbatim: "Binary axes, cube/Hamming
+#     adjacency, and inferred relations are rejected. Additional support and every directed relation require
+#     native-Frame witnesses and readback" — recorded as aob:cheeseTrapGuard. This is already SP1-shaped: it
+#     refuses coordinate-INFERRED relations exactly as the unary law refuses a scalar-triple substitute for
+#     S/O/P towers, so SP2 realizes it by BINDING support into SP1's Frame, not re-inventing a tensor.
+#
+# (3) The CheeseTrapImmunity "don't collapse the category" discipline as a FIRST-CLASS atom (lifted, not
+#     paraphrased, from helios/00_src_specs/types/silmaril_wave8/cheese_trap_immunity: failure_mode +
+#     immunity_mechanism + guard clause): the Praeriehund immunity to identity-collapse made explicit.
+#
+# (4) The SYNONYM + ANTONYM SIMULTANEITY SEAM (the mole-of-glossaries seam DECLARED here; mechanism is SP6),
+#     lifted from the Helios Synonym (Atlas col 10, cceo:SemanticComparing) / Antonym (Atlas col 17,
+#     cceo:IsomorphicComparing) relational atoms (papers_atoms_map.md s4) + Directive 1/3: the SAME term is
+#     held as a synonym under ONE glossary AND as an antonym under a DISTINCT glossary, SIMULTANEOUSLY and
+#     without contradiction, because each glossary encapsulates a DISTINCT epistemology (polysemy is literal;
+#     OSSIE mime is the anchor, aob:ossieMimeAnchor). SP2 declares aob:heldAsSynonym / aob:heldAsAntonym /
+#     aob:glossaryScope / aob:ossieMimeAnchor; the collision-resolution MECHANISM is SP6's.
+#
+# Task 11 (the telephone twin seam, PROVISIONAL, MD5) grows THIS file further; Task 10 authors only (1)-(4).
+# Grows the ONE lifted witness (aob:witnessAnchor from meta.ttl) with an observation contract, a circuit
+# imprint and a cheese-trap immunity, and mints one glossary term held simultaneously as synonym+antonym.
+# Zero live-corpus data (corpus-agnostic v1, Directive 13). Consumed by: SP6 (the Synonym+Antonym
+# simultaneity seam + the OSSIE-mime hook -> the mole-of-glossaries mechanism). Namespace: aob:.
+# =====================================================================================
+
+
+# =====================================================================================
+# (1) The avd_tree observation/evidence contract (compressed to one aob:ObservationContract, MD4).
+# =====================================================================================
+
+aob:ObservationContract a owl:Class ;
+    rdfs:label "ObservationContract" ;
+    rdfs:comment "The avd_tree observation/evidence contract of an AOB atom, lifted from the _aob_* envelope (helios/srcy/appendices/39_appendix_e_research_source_mirror/sections/specs/atoms/dag/_aob_dag_engine_run.yaml.tex: avd_tree, a 9-key rule-of-three evidence matrix — 0_SPACE, A_RANGE{min,max,step,distribution}, INSTRUCTION-AWARENESS, SOURCE{description,points_at}, SINK{description,points_at}, SMOOTHNESS, DEPTH{description,integer_value}, E2E, UNIT-TEST-GENERATION{description,test_cases[]}). Per MD4 (design Q4) it is COMPRESSED into a single contract coordinate whose eight sub-facets are properties (aob:obsSpace, aob:obsARange, aob:obsDepth, aob:obsE2E, aob:obsSource, aob:obsSink, aob:obsSmoothness, aob:obsUnitTest): the meta-TBox fixes the CONTRACT SHAPE — that every atom carries an observation/evidence witness naming its output space, its numeric range, its call depth, its end-to-end story, its source and sink, its smoothness, and its mechanically-generable unit tests — not the full ~30-slot instance matrix, which is a corpus-instance concern deferred to SP8/W5. The witness aob:witnessObsContract carries one fully populated contract so the meta-TBox is proven non-vacuous rather than an empty shape." .
+
+aob:ObservationARange a owl:Class ;
+    rdfs:label "ObservationARange" ;
+    rdfs:comment "The A_RANGE sub-record of an avd_tree observation contract, lifted verbatim from the _aob_* envelope's avd_tree.1.A_RANGE mapping (min / max / step / distribution — e.g. min 1, max 1, step 1, distribution 'terminal-state-deterministic-once-scheduling-fixed' in _aob_dag_engine_run.yaml). It is the numeric range facet of the rule-of-three evidence matrix: aob:arMin and aob:arMax bound the observed value range, aob:arStep is the discretization increment, and aob:arDistribution names the distribution/regime over that range. It is modeled as its own small record class (reached by aob:obsARange from the contract) rather than flattened, because A_RANGE genuinely carries four coordinated coordinates that only make sense together; the witness contract carries one populated A_RANGE so the compressed observation contract is non-vacuous and audit-traceable back to the source avd_tree." .
+
+aob:hasObservationContract a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:ObservationContract ;
+    rdfs:label "hasObservationContract" ;
+    rdfs:comment "Relates an AOB atom to its avd_tree observation/evidence contract (aob:ObservationContract), lifted from the _aob_* envelope's avd_tree coordinate. It is the behaviour witness of the atom: the contract names the atom's observed output SPACE, its numeric A_RANGE, its call DEPTH, its end-to-end (E2E) story, its SOURCE and SINK, its SMOOTHNESS, and its mechanically-generable UNIT-TEST cases. SP2 carries the contract SHAPE (compressed, MD4); the full instance matrix and any test-generation runtime are deferred (SP8/W5). The witness base atom aob:witnessAnchor carries aob:witnessObsContract, so at least one atom's evidence contract is populated." .
+
+aob:obsSpace a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationContract ; rdfs:range xsd:string ;
+    rdfs:label "obsSpace" ;
+    rdfs:comment "The 0_SPACE facet of the avd_tree observation contract (lifted from avd_tree.1.0_SPACE.description in the _aob_* envelope): a prose description of the observed OUTPUT SPACE of the atom — the set/cartesian-product of states or values the atom can produce (e.g. 'the set of terminal aggregate states the engine can return given a loaded DAG and a max_parallel cap; SPACE is the cartesian product of (loaded-DAG-shape, max_parallel cap in 1..256) crossed with the discrete state alphabet SUCCESS/FAILED/TIMEDOUT/CANCELLED'). Carried full-lexically as a string coordinate; it is the space axis of the rule-of-three evidence matrix." .
+
+aob:obsARange a owl:ObjectProperty ;
+    rdfs:domain aob:ObservationContract ; rdfs:range aob:ObservationARange ;
+    rdfs:label "obsARange" ;
+    rdfs:comment "Relates an avd_tree observation contract to its A_RANGE sub-record (aob:ObservationARange), lifted from avd_tree.1.A_RANGE in the _aob_* envelope. The A_RANGE record carries the numeric range facet of the rule-of-three evidence matrix as four coordinated coordinates (aob:arMin, aob:arMax, aob:arStep, aob:arDistribution), which is why it is reached as a sub-record rather than flattened onto the contract. It is the numeric-range axis complementing the prose SPACE axis: where aob:obsSpace describes the qualitative output space, aob:obsARange bounds and discretizes the quantitative one." .
+
+aob:arMin a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationARange ; rdfs:range xsd:integer ;
+    rdfs:label "arMin" ;
+    rdfs:comment "The minimum of an avd_tree A_RANGE sub-record (lifted from avd_tree.1.A_RANGE.min in the _aob_* envelope, e.g. 1): the lower bound of the observed numeric range over which the atom's behaviour is characterized. Together with aob:arMax, aob:arStep and aob:arDistribution it forms the numeric-range facet of the rule-of-three evidence matrix." .
+
+aob:arMax a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationARange ; rdfs:range xsd:integer ;
+    rdfs:label "arMax" ;
+    rdfs:comment "The maximum of an avd_tree A_RANGE sub-record (lifted from avd_tree.1.A_RANGE.max in the _aob_* envelope, e.g. 1): the upper bound of the observed numeric range over which the atom's behaviour is characterized. Together with aob:arMin, aob:arStep and aob:arDistribution it forms the numeric-range facet of the rule-of-three evidence matrix." .
+
+aob:arStep a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationARange ; rdfs:range xsd:integer ;
+    rdfs:label "arStep" ;
+    rdfs:comment "The step of an avd_tree A_RANGE sub-record (lifted from avd_tree.1.A_RANGE.step in the _aob_* envelope, e.g. 1): the discretization increment of the observed numeric range, i.e. the granularity at which the range between aob:arMin and aob:arMax is sampled. Together with aob:arDistribution it fixes the regime over the range." .
+
+aob:arDistribution a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationARange ; rdfs:range xsd:string ;
+    rdfs:label "arDistribution" ;
+    rdfs:comment "The distribution of an avd_tree A_RANGE sub-record (lifted from avd_tree.1.A_RANGE.distribution in the _aob_* envelope, e.g. 'terminal-state-deterministic-once-scheduling-fixed'): a named characterization of how observed values are distributed / what regime governs them over the range bounded by aob:arMin..aob:arMax at increment aob:arStep. Carried full-lexically as a string coordinate; it is the qualitative regime label of the numeric-range facet." .
+
+aob:obsDepth a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationContract ; rdfs:range xsd:integer ;
+    rdfs:label "obsDepth" ;
+    rdfs:comment "The DEPTH facet of the avd_tree observation contract (lifted from avd_tree.3.DEPTH.integer_value in the _aob_* envelope, e.g. 4): the integer call/composition DEPTH the atom is observed at — how many layers of the atom's own machinery the behaviour reaches through (for _aob_dag_engine_run this is 4, the DAG-engine layer depth). It is the depth axis of the rule-of-three evidence matrix and is carried as a plain xsd:integer, distinct from the physical byte-descent depth that octet_descent.ttl models." .
+
+aob:obsE2E a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationContract ; rdfs:range xsd:string ;
+    rdfs:label "obsE2E" ;
+    rdfs:comment "The E2E (end-to-end) facet of the avd_tree observation contract (lifted from avd_tree.4.E2E.description in the _aob_* envelope): a prose description of the atom's end-to-end behaviour story — how a full invocation flows from its SOURCE through the atom to its SINK, tying the SPACE / A_RANGE / DEPTH / SOURCE / SINK / SMOOTHNESS facets into one narrated round trip. Carried full-lexically as a string coordinate; it is the end-to-end axis of the rule-of-three evidence matrix." .
+
+aob:obsSource a owl:ObjectProperty ;
+    rdfs:domain aob:ObservationContract ; rdfs:range prim:URI ;
+    rdfs:label "obsSource" ;
+    rdfs:comment "The SOURCE.points_at facet of the avd_tree observation contract (lifted from avd_tree.2.SOURCE.points_at in the _aob_* envelope, e.g. file://$ENV_DIR_SIL_BA_WIP/app/(callers)): the URI the atom's inputs/invocations flow IN from — the upstream endpoint of the end-to-end story. It grounds into the SP1 Identifier tower as a prim:URI (the file:// caller locus). Together with aob:obsSink it makes the observation contract a directed source->sink evidence edge rather than an undirected description. Carried full-lexically (unary law)." .
+
+aob:obsSink a owl:ObjectProperty ;
+    rdfs:domain aob:ObservationContract ; rdfs:range prim:URN ;
+    rdfs:label "obsSink" ;
+    rdfs:comment "The SINK.points_at facet of the avd_tree observation contract (lifted from avd_tree.2.SINK.points_at in the _aob_* envelope, e.g. urn:avogadro:integration#StreamPublish): the URN the atom's outputs/effects flow OUT to — the downstream endpoint of the end-to-end story (for _aob_dag_engine_run, the streaming substrate that receives one StreamPublish per node-state transition). It grounds into the SP1 Identifier URN tower as a prim:URN. Together with aob:obsSource it makes the observation contract a directed source->sink evidence edge. Carried full-lexically (unary law)." .
+
+aob:obsSmoothness a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationContract ; rdfs:range xsd:string ;
+    rdfs:label "obsSmoothness" ;
+    rdfs:comment "The SMOOTHNESS facet of the avd_tree observation contract (lifted from avd_tree.2.SMOOTHNESS.description in the _aob_* envelope): a prose characterization of how CONTINUOUS/DISCONTINUOUS the atom's behaviour is across its input space — whether small input perturbations produce small output changes or discrete jumps between states. It is the smoothness axis of the rule-of-three evidence matrix, distinguishing an atom whose output varies smoothly from one that snaps between a discrete state alphabet. Carried full-lexically as a string coordinate." .
+
+aob:obsUnitTest a owl:DatatypeProperty ;
+    rdfs:domain aob:ObservationContract ; rdfs:range xsd:string ;
+    rdfs:label "obsUnitTest" ;
+    rdfs:comment "A UNIT-TEST-GENERATION test-case slug of the avd_tree observation contract (lifted from avd_tree.5.UNIT-TEST-GENERATION.test_cases[] in the _aob_* envelope, e.g. 'empty_dag_returns_SUCCESS_emits_one_StreamPublish', 'single_node_FAIL_dag_returns_FAILED_triggers_rollback'): one mechanically-generable unit test the atom's behaviour must satisfy. An observation contract carries several aob:obsUnitTest slugs at once (the multi-valued test-case list). SP2 carries the slugs as the test-generation SEED; the mechanical test-generation runtime (which would emit tests under $ENV_DIR_SIL_BA_WIP/tests/...) is a deferred later concern, not built this iteration. It is the unit-test axis of the rule-of-three evidence matrix." .
+
+
+# =====================================================================================
+# (2) CircuitImprintTensor — WITNESS, NOT INFERENCE (bound into SP1's realization Frame).
+# =====================================================================================
+
+aob:CircuitImprintTensor a owl:Class ;
+    rdfs:label "CircuitImprintTensor" ;
+    rdfs:comment "The S/O/P evidence tensor of an AOB atom realized as the Leary 8-circuit MULTI-HOT imprint, lifted verbatim from helios/00_src_specs/types/silmaril_wave8/circuit_imprint_tensor (papers_atoms_map.md s5: fields imprinted_atom_urn / imprinted_field_name / native_frame_urn / active_circuit_urns[] / circuit_name_readback[] / declared_relation_witness_urns[] / cheese_trap_guard). Its load-bearing discipline is WITNESS, NOT INFERENCE (verbatim from grounding): 'Binary axes, cube/Hamming adjacency, and inferred relations are rejected. Additional support and every directed relation require native-Frame witnesses and readback' — i.e. the tensor is an explicit SPARSE support over an 8-dimensional basis (aob:activeCircuitUrn is the multi-hot support), and adjacency/relations may NOT be inferred from coordinates; they must be WITNESSED. SP2 realizes this by BINDING the support into SP1's realization Frame (aob:nativeFrameUrn -> the prim:Realization rho Frame = Frame-as-Yoneda-point) with a readback receipt (aob:witnessReadback), exactly because this is already SP1-shaped: it refuses coordinate-inferred relations as the unary law refuses a scalar-triple substitute for independently-typed S/O/P towers. The refusal itself is recorded as aob:cheeseTrapGuard, so the no-inferred-adjacency rule is documented on every imprint rather than assumed." .
+
+aob:hasCircuitImprint a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:CircuitImprintTensor ;
+    rdfs:label "hasCircuitImprint" ;
+    rdfs:comment "Relates an AOB atom to its CircuitImprintTensor (the Leary 8-circuit multi-hot S/O/P evidence imprint). The imprint is a WITNESS decoration, not an inference: it binds the atom's active-circuit support into SP1's realization Frame via aob:nativeFrameUrn and records the no-inferred-adjacency discipline via aob:cheeseTrapGuard. The witness base atom aob:witnessAnchor carries aob:witnessCircuit, so at least one atom's circuit imprint is populated and bound to the floor's Frame rather than free-floating." .
+
+aob:nativeFrameUrn a owl:ObjectProperty ;
+    rdfs:domain aob:CircuitImprintTensor ; rdfs:range prim:Realization ;
+    rdfs:label "nativeFrameUrn" ;
+    rdfs:comment "Binds a CircuitImprintTensor's support into the SP1 realization Frame that MUST witness it (lifted from the CircuitImprintTensor native_frame_urn field). Its value is an EXISTING SP1 prim:Realization rho Frame (Frame-as-Yoneda-point) — on this floor prim:realize_String_Utf8ByteVector, the same gluing Frame value_colimit.ttl selected for the witness atom's value — NOT a newly minted frame (SP2 authors no new prim:Realization, Consumes contract). This is the load-bearing 'no inferred adjacency' realization: additional support and every directed relation require a native-Frame witness + readback, so the tensor's active-circuit support is anchored to a real SP1 Frame rather than read off coordinate geometry. The binding is what makes the CircuitImprintTensor a witness (Frame-anchored) rather than an inference (coordinate-derived)." .
+
+aob:activeCircuitUrn a owl:ObjectProperty ;
+    rdfs:domain aob:CircuitImprintTensor ; rdfs:range prim:URN ;
+    rdfs:label "activeCircuitUrn" ;
+    rdfs:comment "One active circuit of a CircuitImprintTensor's MULTI-HOT support (lifted verbatim from the CircuitImprintTensor active_circuit_urns[] field, e.g. urn:silmaril:leary-circuit:c3_symbolic_neurosemantic): an explicit sparse coordinate on the 8-dimensional Leary-circuit basis that the atom is WITNESSED to activate. A tensor carries several aob:activeCircuitUrn values at once (the multi-hot support). Crucially the support is DECLARED, never inferred from cube/Hamming adjacency: the tensor is an explicit sparse support, so activation on one axis licenses NO inference about neighbouring axes. It grounds into the SP1 Identifier URN tower as a prim:URN. Carried full-lexically (unary law)." .
+
+aob:witnessReadback a owl:DatatypeProperty ;
+    rdfs:domain aob:CircuitImprintTensor ; rdfs:range xsd:string ;
+    rdfs:label "witnessReadback" ;
+    rdfs:comment "The readback receipt of a CircuitImprintTensor (lifted from the CircuitImprintTensor circuit_name_readback[] / support_readback_receipt_urn fields): the human-and-machine-checkable name of an activated circuit axis read back from the multi-hot support (e.g. 'C3: Symbolic/Neurosemantic' from the 8-axis basis C1 Bio-Survival .. C8 Quantum Non-Local Integration). The readback is the second half of the witness-not-inference discipline: support is admitted only with a native-Frame witness AND a readback, so the activated axis can be verified rather than assumed. Carried full-lexically as a string coordinate." .
+
+aob:cheeseTrapGuard a owl:DatatypeProperty ;
+    rdfs:domain aob:CircuitImprintTensor ; rdfs:range xsd:string ;
+    rdfs:label "cheeseTrapGuard" ;
+    rdfs:comment "The recorded refusal clause of a CircuitImprintTensor (lifted verbatim from the CircuitImprintTensor cheese_trap_guard field): the prose statement of WHY the naive binary-cube / Hamming-adjacency reading of the imprint is REJECTED — 'Binary axes, cube/Hamming adjacency, and inferred relations are rejected; additional support and every directed relation require native-Frame witnesses and readback.' Recording the guard on every imprint is what makes the no-inferred-adjacency discipline first-class rather than tacit: the tensor is an explicit sparse support over a basis, and adjacency/relations may never be inferred from coordinates. Carried full-lexically as a string coordinate." .
+
+
+# =====================================================================================
+# (3) CheeseTrapImmunity — the 'don't collapse the category' discipline as a first-class atom.
+# =====================================================================================
+
+aob:CheeseTrapImmunity a owl:Class ;
+    rdfs:label "CheeseTrapImmunity" ;
+    rdfs:comment "The 'don't collapse the category' immunity discipline as a FIRST-CLASS atom, lifted (not paraphrased) from helios/00_src_specs/types/silmaril_wave8/cheese_trap_immunity (papers_atoms_map.md: fields failure_mode, failure_quote_local, failure_quote_witness, immunity_mechanism, immunity_guard_clause, cheese_trap_resistance_score — 320 instances). A cheese trap is an identity-collapse failure mode: the tempting shortcut of collapsing a genuine categorical distinction (e.g. Byte into Octet, synonym into antonym, structured into unstructured, an inferred adjacency into a witnessed relation) into one node because it looks convenient — the mouse taking the cheese. The immunity is the explicit guard that keeps the category uncollapsed: aob:failureMode names the collapse that would occur and aob:immunityMechanism names the guard that prevents it. This is the Praeriehund 'demokratie der kategorien' made a first-class atom rather than a tacit convention: every section that risks a collapse carries an explicit failure-mode + immunity-mechanism witness, so the discipline is auditable. The witness aob:witnessCheese carries one populated immunity so the class is non-vacuous." .
+
+aob:hasCheeseTrapImmunity a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:CheeseTrapImmunity ;
+    rdfs:label "hasCheeseTrapImmunity" ;
+    rdfs:comment "Relates an AOB atom to its CheeseTrapImmunity witness — the explicit failure-mode + immunity-mechanism guard against identity-collapse (lifted from the cheese_trap_immunity atom family). It records that the atom has been checked for the tempting shortcut of collapsing a genuine categorical distinction into one node, and names both the collapse (aob:failureMode) and the guard that prevents it (aob:immunityMechanism). The witness base atom aob:witnessAnchor carries aob:witnessCheese, so at least one atom's immunity is populated." .
+
+aob:failureMode a owl:DatatypeProperty ;
+    rdfs:domain aob:CheeseTrapImmunity ; rdfs:range xsd:string ;
+    rdfs:label "failureMode" ;
+    rdfs:comment "The identity-collapse failure mode a CheeseTrapImmunity guards against (lifted verbatim from the cheese_trap_immunity failure_mode field): the prose statement of the categorical collapse that would occur if the tempting shortcut were taken — e.g. 'collapsing the two disjoint top_kind families (node|arrow) into one crammed atom', or 'reading an inferred cube/Hamming adjacency as a witnessed relation'. Naming the failure mode explicitly is the first half of the immunity: a collapse that is named can be guarded. Carried full-lexically as a string coordinate." .
+
+aob:immunityMechanism a owl:DatatypeProperty ;
+    rdfs:domain aob:CheeseTrapImmunity ; rdfs:range xsd:string ;
+    rdfs:label "immunityMechanism" ;
+    rdfs:comment "The guard clause that confers immunity to a cheese-trap failure mode (lifted verbatim from the cheese_trap_immunity immunity_mechanism / immunity_guard_clause fields): the prose statement of the mechanism that keeps the category uncollapsed — e.g. 'the progenitor-split shape enforces exactly-one-of node|arrow with owl:disjointWith', or 'every relation requires a native-Frame witness + readback before admission'. Naming the mechanism is the second half of the immunity: paired with aob:failureMode it makes the 'don't collapse the category' discipline auditable rather than tacit. Carried full-lexically as a string coordinate." .
+
+
+# =====================================================================================
+# (4) The Synonym + Antonym simultaneity seam (mole-of-glossaries; declared here, mechanism is SP6).
+# =====================================================================================
+
+aob:GlossaryTerm a owl:Class ;
+    rdfs:label "GlossaryTerm" ;
+    rdfs:comment "A lexeme/term held across the mole of glossaries, lifted from the Helios Synonym/Antonym relational atoms (helios/00_src_specs/types/papers/relational/{synonym,antonym}.spec.yaml: left_term / right_term / synonym_term / antonym_atom_urn). A glossary term is the subject that can be held SIMULTANEOUSLY as a synonym of one term under ONE glossary AND as an antonym of another under a DISTINCT glossary, without contradiction — the literal realization of Directive 1/3's 'structured AND unstructured types held as synonyms AND antonyms simultaneously, reconciled only through the mole of glossaries wherein we encapsulate distinct epistemologies'. It carries aob:heldAsSynonym and aob:heldAsAntonym edges to aob:GlossaryHold records, each scoped to a distinct aob:Glossary. SP2 declares the term + the two hold edges (the SEAM); resolving collisions across glossaries is SP6's mole-of-glossaries mechanism. The witness aob:witnessTerm is held as a synonym under aob:glossaryA and an antonym under aob:glossaryB, satisfying the simultaneity tooth." .
+
+aob:Glossary a owl:Class ;
+    rdfs:label "Glossary" ;
+    rdfs:comment "One glossary in the MOLE OF GLOSSARIES, lifted from Directive 1/3: each glossary encapsulates a DISTINCT EPISTEMOLOGY, so a term's meaning is glossary-relative and collisions across glossaries are intentional (polysemy is literal; OSSIE mime is the anchor). A single term may be held as a synonym under one glossary and as an antonym under another WITHOUT contradiction precisely because the two glossaries are different epistemologies — the contradiction only arises if both senses are collapsed under ONE glossary (the collapse aob:GlossarySeamShape catches). SP2 declares two distinct glossaries (aob:glossaryA, aob:glossaryB) as the minimal witness of distinct epistemologies; the mechanism that encapsulates/emerges each epistemology and resolves cross-glossary collisions is SP6's mole-of-glossaries build, not SP2's. This class is the SP2 pole of the seam SP6 consumes." .
+
+aob:GlossaryHold a owl:Class ;
+    rdfs:label "GlossaryHold" ;
+    rdfs:comment "A record of a term being HELD in a particular relational sense (synonym or antonym) under a particular glossary, lifted from the Helios Synonym (Atlas col 10, cpo_process_iri cceo:SemanticComparing) and Antonym (Atlas col 17, cpo_process_iri cceo:IsomorphicComparing) relational atoms. A hold carries aob:glossaryScope (which glossary/epistemology this sense holds under), aob:holdCpoProcess (the CPO/CCEO process that grounds the sense — SemanticComparing for a synonym, IsomorphicComparing for an antonym), and aob:ossieMimeAnchor (the OSSIE-mime anchor that pins the polysemous collision). Modeling the hold as its own record — rather than a bare edge to a glossary — is what lets ONE term carry a synonym-hold and an antonym-hold under DISTINCT glossary scopes simultaneously, each with its own CPO grounding and OSSIE-mime anchor. aob:GlossarySeamShape flags only the collapse where a term holds BOTH senses under the SAME scope; distinct scopes are lawful and required. The two witness holds on aob:witnessTerm populate this class non-vacuously." .
+
+aob:heldAsSynonym a owl:ObjectProperty ;
+    rdfs:domain aob:GlossaryTerm ; rdfs:range aob:GlossaryHold ;
+    rdfs:label "heldAsSynonym" ;
+    rdfs:comment "Relates a glossary term to a synonym-HOLD (aob:GlossaryHold) under some glossary scope, lifted from the Helios Synonym relational atom (Atlas col 10, cpo_process_iri cceo:SemanticComparing): the term is held as a SYNONYM of another term under the epistemology of that hold's aob:glossaryScope. The same term may ALSO be held as an antonym (aob:heldAsAntonym) under a DISTINCT glossary scope, simultaneously and without contradiction — that simultaneity is the literal realization of Directive 1/3 and the q_synonym_antonym_dual tooth. The contradiction the aob:GlossarySeamShape catches is holding a term as synonym AND antonym under the SAME scope; distinct scopes are lawful. SP2 declares this seam edge; the mole-of-glossaries collision mechanism is SP6's." .
+
+aob:heldAsAntonym a owl:ObjectProperty ;
+    rdfs:domain aob:GlossaryTerm ; rdfs:range aob:GlossaryHold ;
+    rdfs:label "heldAsAntonym" ;
+    rdfs:comment "Relates a glossary term to an antonym-HOLD (aob:GlossaryHold) under some glossary scope, lifted from the Helios Antonym relational atom (Atlas col 17, cpo_process_iri cceo:IsomorphicComparing): the term is held as an ANTONYM of another term under the epistemology of that hold's aob:glossaryScope. The same term may ALSO be held as a synonym (aob:heldAsSynonym) under a DISTINCT glossary scope, simultaneously and without contradiction — the mole-of-glossaries reconciliation whereby distinct epistemologies license opposite relational senses of one lexeme. aob:GlossarySeamShape flags only the collapse where a term holds both senses under the SAME glossary scope. SP2 declares this seam edge; the mechanism is SP6's." .
+
+aob:glossaryScope a owl:ObjectProperty ;
+    rdfs:domain aob:GlossaryHold ; rdfs:range aob:Glossary ;
+    rdfs:label "glossaryScope" ;
+    rdfs:comment "Pins a glossary hold (synonym or antonym) to the aob:Glossary (distinct epistemology) it holds UNDER, lifted from Directive 1/3's mole of glossaries. The scope is the load-bearing coordinate of the simultaneity seam: a term held as a synonym under one scope and an antonym under a DISTINCT scope is lawful (distinct epistemologies license opposite senses of one lexeme), whereas a term held as BOTH senses under the SAME scope is the identity-collapse aob:GlossarySeamShape catches (conforms=True->False). So the glossary scope is exactly what turns a would-be contradiction into a literal polysemy, and exactly what the tooth checks for distinctness. SP2 declares the scope edge; SP6 builds the mechanism that encapsulates each epistemology." .
+
+aob:holdCpoProcess a owl:DatatypeProperty ;
+    rdfs:domain aob:GlossaryHold ; rdfs:range xsd:string ;
+    rdfs:label "holdCpoProcess" ;
+    rdfs:comment "The CPO/CCEO process that grounds a glossary hold's relational sense (lifted verbatim from the Synonym/Antonym cpo_process_iri fields): cceo:SemanticComparing for a synonym-hold (Atlas col 10) and cceo:IsomorphicComparing for an antonym-hold (Atlas col 17). Carried full-lexically as a string coordinate (the single external cceo: spelling survives only as immutable bridge evidence per STRICTNESS Rule 3, never as an internal namespace). It records WHY the hold is a synonym vs an antonym at the process level: the two senses are grounded by two DIFFERENT comparison processes, which is what makes holding both simultaneously (under distinct glossaries) a genuine polysemy rather than an inconsistency. A distinct property from aob:cpoProcessIri (the arrow-family P coordinate, whose domain is aob:YonedaHomLeg), so a hold is never mistyped as a Yoneda leg." .
+
+aob:ossieMimeAnchor a owl:ObjectProperty ;
+    rdfs:domain aob:GlossaryHold ; rdfs:range prim:URN ;
+    rdfs:label "ossieMimeAnchor" ;
+    rdfs:comment "The OSSIE-mime anchor hook of a glossary hold, lifted from Directive 1/3 ('collisions are intentional; polysemy is literal; OSSIE mime is the anchor') and design s2's OSSIE YIN/YANG taiji twin. It is the anchor that PINS a polysemous collision — the fixed point across glossaries against which a term's synonym-sense and antonym-sense are both measured, so the mole of glossaries can hold both without either dissolving the other. SP2 provides the HOOK only (a prim:URN naming the OSSIE-mime anchor for this hold); the mechanism that uses the anchor to encapsulate/emerge distinct epistemologies and resolve collisions is SP6's mole-of-glossaries build. Grounds into the SP1 Identifier URN tower as a prim:URN, carried full-lexically (unary law)." .
+
+
+# ---- The two distinct glossaries (distinct epistemologies, the minimal mole witness) --------------
+
+aob:glossaryA a aob:Glossary ;
+    rdfs:label "glossaryA" ;
+    rdfs:comment "The first witness glossary — one distinct epistemology in the mole of glossaries (Directive 1/3). Under glossaryA the witness term aob:witnessTerm is held as a SYNONYM (grounded cceo:SemanticComparing, Atlas col 10). It is a distinct epistemology from aob:glossaryB, which is exactly what lets one lexeme be a synonym here and an antonym there without contradiction; collapsing both senses under glossaryA alone is the identity-collapse aob:GlossarySeamShape catches. SP2 mints it as a minimal witness of a distinct epistemology; SP6 builds the mechanism that encapsulates it." .
+
+aob:glossaryB a aob:Glossary ;
+    rdfs:label "glossaryB" ;
+    rdfs:comment "The second witness glossary — a distinct epistemology from aob:glossaryA in the mole of glossaries (Directive 1/3). Under glossaryB the witness term aob:witnessTerm is held as an ANTONYM (grounded cceo:IsomorphicComparing, Atlas col 17). Because glossaryB is a distinct epistemology from glossaryA, holding the one term as a synonym under A and an antonym under B is a literal polysemy rather than an inconsistency — the simultaneity the q_synonym_antonym_dual tooth requires. SP2 mints it as a minimal witness of a distinct epistemology; SP6 builds the mechanism that emerges it." .
+
+
+# =====================================================================================
+# Grow the ONE lifted witness with evidence + mint the simultaneity witness term (non-vacuity).
+# =====================================================================================
+# aob:witnessAnchor (the base atom from meta.ttl) gains an observation contract, a circuit imprint and a
+# cheese-trap immunity. aob:witnessTerm is a glossary term held simultaneously as synonym (glossaryA) and
+# antonym (glossaryB). Corpus-agnostic v1 (Directive 13): the avd_tree values are the illustrative
+# _aob_dag_engine_run coordinates, not live-corpus data; no atom identity is bound to real bytes.
+
+aob:witnessObsContract a aob:ObservationContract ;
+    rdfs:label "witnessObsContract" ;
+    rdfs:comment "The ONE lifted, fully-populated avd_tree observation contract (non-vacuity; corpus-agnostic v1, Directive 13), transcribed from the _aob_dag_engine_run.yaml avd_tree so every one of the eight compressed sub-facets carries a real illustrative coordinate: the output SPACE prose, the A_RANGE sub-record (min/max/step/distribution), the DEPTH integer, the E2E story, the SOURCE and SINK endpoints, the SMOOTHNESS prose, and several UNIT-TEST-GENERATION test-case slugs. It witnesses that the aob:ObservationContract shape is inhabited by a genuine, source-traceable evidence matrix rather than an empty coordinate, keeping the meta-TBox non-vacuous exactly as SP1's litmus witnesses do." ;
+    aob:obsSpace "The set of terminal aggregate states the engine can return given a loaded DAG and a max_parallel cap; SPACE is the cartesian product of (loaded-DAG-shape, max_parallel cap in 1..256) crossed with the discrete state alphabet (SUCCESS, FAILED, TIMEDOUT, CANCELLED)." ;
+    aob:obsARange [
+        a aob:ObservationARange ;
+        aob:arMin 1 ;
+        aob:arMax 1 ;
+        aob:arStep 1 ;
+        aob:arDistribution "terminal-state-deterministic-once-scheduling-fixed"
+    ] ;
+    aob:obsDepth 4 ;
+    aob:obsE2E "A full invocation flows from the caller (SOURCE) through dag_engine::run — which walks the loaded DAG in topological order under the parallelism cap — to the streaming substrate (SINK), returning the final aggregate state end to end." ;
+    aob:obsSource <file://ENV_DIR_SIL_BA_WIP/app/callers> ;
+    aob:obsSink <urn:avogadro:integration#StreamPublish> ;
+    aob:obsSmoothness "Discontinuous: the output snaps between the discrete state alphabet (SUCCESS/FAILED/TIMEDOUT/CANCELLED) rather than varying smoothly with the input DAG shape." ;
+    aob:obsUnitTest "empty_dag_returns_SUCCESS_emits_one_StreamPublish" ,
+                    "single_node_SUCCESS_dag_returns_SUCCESS" ,
+                    "single_node_FAIL_dag_returns_FAILED_triggers_rollback" ,
+                    "downstream_of_FAILED_node_is_marked_SKIPPED" .
+
+aob:witnessCircuit a aob:CircuitImprintTensor ;
+    rdfs:label "witnessCircuit" ;
+    rdfs:comment "The ONE lifted CircuitImprintTensor witness (non-vacuity; corpus-agnostic v1, Directive 13): a Leary 8-circuit multi-hot imprint whose active-circuit support (aob:activeCircuitUrn) is BOUND into the SP1 realization Frame prim:realize_String_Utf8ByteVector (aob:nativeFrameUrn) — the same rho Frame value_colimit.ttl selected for the witness atom's value, so the imprint is Frame-anchored (witnessed) rather than coordinate-derived (inferred). It carries a readback receipt (aob:witnessReadback) and the recorded refusal clause (aob:cheeseTrapGuard) that rejects the naive binary-cube / Hamming-adjacency reading, so the witness-not-inference discipline is documented on the imprint itself." ;
+    aob:nativeFrameUrn prim:realize_String_Utf8ByteVector ;
+    aob:activeCircuitUrn <urn:silmaril:leary-circuit:c3_symbolic_neurosemantic> ;
+    aob:witnessReadback "C3: Symbolic/Neurosemantic" ;
+    aob:cheeseTrapGuard "Binary axes, cube/Hamming adjacency, and inferred relations are rejected. Additional support and every directed relation require native-Frame witnesses and readback." .
+
+aob:witnessCheese a aob:CheeseTrapImmunity ;
+    rdfs:label "witnessCheese" ;
+    rdfs:comment "The ONE lifted CheeseTrapImmunity witness (non-vacuity; corpus-agnostic v1, Directive 13): the explicit 'don't collapse the category' guard on the witness atom, naming the identity-collapse failure mode it resists and the mechanism that confers immunity. It makes the Praeriehund demokratie-der-kategorien discipline a first-class, auditable atom on the floor rather than a tacit convention." ;
+    aob:failureMode "Collapsing the two disjoint top_kind families (node|arrow) into one crammed atom, or reading an inferred cube/Hamming adjacency of the circuit imprint as a witnessed relation." ;
+    aob:immunityMechanism "The progenitor-split shape enforces exactly-one-of node|arrow with owl:disjointWith, and every relation requires a native-Frame witness plus readback before admission — so no category is collapsed for convenience." .
+
+aob:witnessAnchor
+    aob:hasObservationContract aob:witnessObsContract ;
+    aob:hasCircuitImprint aob:witnessCircuit ;
+    aob:hasCheeseTrapImmunity aob:witnessCheese .
+
+aob:witnessTerm a aob:GlossaryTerm ;
+    rdfs:label "witnessTerm" ;
+    rdfs:comment "The ONE lifted glossary-term witness of the Synonym+Antonym simultaneity seam (non-vacuity; corpus-agnostic v1, Directive 13): a single lexeme held SIMULTANEOUSLY as a SYNONYM under aob:glossaryA (grounded cceo:SemanticComparing, Atlas col 10) AND as an ANTONYM under aob:glossaryB (grounded cceo:IsomorphicComparing, Atlas col 17), each hold carrying its own OSSIE-mime anchor. Because glossaryA and glossaryB are DISTINCT epistemologies this is a literal polysemy, not a contradiction — the exact simultaneity the q_synonym_antonym_dual tooth requires and the Task 10 probe of record collapses (by moving the antonym-hold's scope onto glossaryA) to prove aob:GlossarySeamShape bites (conforms=True->False)." ;
+    aob:heldAsSynonym [
+        a aob:GlossaryHold ;
+        aob:glossaryScope aob:glossaryA ;
+        aob:holdCpoProcess "cceo:SemanticComparing" ;
+        aob:ossieMimeAnchor <urn:silmaril:ossie-mime:anchor:structured-unstructured>
+    ] ;
+    aob:heldAsAntonym [
+        a aob:GlossaryHold ;
+        aob:glossaryScope aob:glossaryB ;
+        aob:holdCpoProcess "cceo:IsomorphicComparing" ;
+        aob:ossieMimeAnchor <urn:silmaril:ossie-mime:anchor:structured-unstructured>
+    ] .
+
+
+# =====================================================================================
+# (5) The byte/substrate <-> telephone TWIN seam (PROVISIONAL, MD5 / design Q5 / Directive 6), Task 11.
+# =====================================================================================
+# LIFTS the fifth real Helios structure (Directive 1: lift, do not invent): the telephone twin —
+# helios/01_data_src_specs/telephone_events.spec.yaml (the agent-lifecycle emit ARROWS: agent_start /
+# agent_progress / agent_complete / agent_failure, top_kind: arrow) <-> telephone_supervision_tree.spec.yaml
+# (the parent-repo supervision NODES: switchboard, ocf_appender, port, gossip_propagator, cross, dial, ...,
+# top_kind: node). Directive 6 asks the byte/substrate <-> telephone "twin mention" be realized at
+# Yoneda-point TIGHTNESS: in the Helios source EVERY telephone_events field carries a tensor_space_urn
+# pinning it to a Layer-0 universal_anchors anchor (literal Yoneda-point tightness — a field IS a point of a
+# representable presheaf onto the Layer-0 anchor space). SP2 DECLARES the seam only: aob:TelephoneSeam
+# carries aob:telephoneTwinUrn (the paired supervision-tree twin URN) + one aob:tensorSpaceUrn pin per lifted
+# field, and the whole seam is silm:isProvisional true — the gossip/supervision RENDER mechanism (Cross,
+# GossipPropagator, Dial) is a later sub-project (MD5 recommended default), not over-built here. This is a
+# genuinely-provisional declaration (Praeriehund honesty), never a dodge and never counted conformant-green.
+
+
+aob:TelephoneSeam a owl:Class ;
+    rdfs:label "TelephoneSeam" ;
+    rdfs:comment "The byte/substrate <-> telephone TWIN seam, lifted (Directive 1) from the Helios telephone twin: helios/01_data_src_specs/telephone_events.spec.yaml (the agent-lifecycle emit ARROWS agent_start/agent_progress/agent_complete/agent_failure, top_kind: arrow) paired with telephone_supervision_tree.spec.yaml (the parent-repo supervision NODES switchboard/ocf_appender/port/gossip_propagator/cross/dial/..., top_kind: node). A TelephoneSeam declares that twin at the Yoneda-point tightness Directive 6 requires: each seam field carries an aob:tensorSpaceUrn that pins it to a Layer-0 universal_anchors anchor (a field IS a point of a representable presheaf onto the Layer-0 anchor space), and aob:telephoneTwinUrn names the paired supervision-tree twin. Per MD5 (design Q5) SP2 declares the seam ONLY — the gossip/supervision RENDER mechanism (Telephone.Cross, Telephone.GossipPropagator, Telephone.Dial) is a later sub-project — so the whole seam is silm:isProvisional true (genuinely provisional, never a dodge). aob:TelephoneSeamShape enforces the twin URN, at least one tensor-space pin, and the provisional flag; the witness aob:witnessTelephone inhabits it non-vacuously." .
+
+aob:telephoneTwinUrn a owl:ObjectProperty ;
+    rdfs:domain aob:TelephoneSeam ; rdfs:range prim:URN ;
+    rdfs:label "telephoneTwinUrn" ;
+    rdfs:comment "Relates an aob:TelephoneSeam to the paired supervision-tree TWIN URN, lifted from the Helios telephone twin (telephone_events.spec.yaml <-> telephone_supervision_tree.spec.yaml). The events side is the emit-ARROW catalog (agent lifecycle); the twin URN names the supervision-NODE catalog (telephone_supervision_tree, the parent-repo supervision.ex application module and its children). Carrying the twin URN as a first-class edge — rather than an implicit pairing — is what makes the byte/substrate <-> telephone mention an addressable seam a later sub-project can consume. Its value grounds into the SP1 prim:URN identifier tower (every *_urn coordinate is a URN-tower term). The provisional status of the whole seam (silm:isProvisional true on the aob:TelephoneSeam) makes clear that only the DECLARATION lands in SP2; the render mechanism is deferred (MD5)." .
+
+aob:tensorSpaceUrn a owl:ObjectProperty ;
+    rdfs:domain aob:TelephoneSeam ; rdfs:range prim:URN ;
+    rdfs:label "tensorSpaceUrn" ;
+    rdfs:comment "Pins a telephone-seam field to a Layer-0 universal_anchors anchor URN, lifted VERBATIM from the Helios telephone_events.spec.yaml fields[].tensor_space_urn (e.g. agent_progress:milestone -> urn:silmaril:universal-anchor:node:enum:milestone; agent_start:slug -> ...:node:identifier:paper_slug; agent_progress:atom_count_so_far -> ...:node:counter:cardinality). This IS the Yoneda-point tightness Directive 6 requires: a seam field is not a loose string but a point of a representable presheaf Hom(-, anchor) onto the Layer-0 anchor space, so the byte/substrate <-> telephone twin is realized at literal Yoneda tightness rather than a scalar mention. Its value grounds into the SP1 prim:URN identifier tower. At least one such pin is mandatory on every aob:TelephoneSeam (aob:TelephoneSeamShape); removing the pin drops the Yoneda tightness and is the Task 11 probe of record that makes the shape bite." .
+
+# The ONE lifted telephone-seam witness (non-vacuity; corpus-agnostic v1, Directive 13).
+# The seam pairs the telephone_events emit-arrow catalog with its supervision-tree twin, pins three real
+# lifted event fields to their Layer-0 anchors (Yoneda tightness), and is honestly PROVISIONAL (MD5).
+aob:witnessTelephone a aob:TelephoneSeam ;
+    rdfs:label "witnessTelephone" ;
+    rdfs:comment "The ONE lifted TelephoneSeam witness (non-vacuity; corpus-agnostic v1, Directive 13): the telephone_events emit-arrow catalog paired with its telephone_supervision_tree twin (aob:telephoneTwinUrn), with three real event fields pinned to their Layer-0 universal_anchors anchors at Yoneda-point tightness — agent_progress:milestone -> node:enum:milestone, agent_start:slug -> node:identifier:paper_slug, agent_progress:atom_count_so_far -> node:counter:cardinality — all transcribed verbatim from helios/01_data_src_specs/telephone_events.spec.yaml. It is silm:isProvisional true because SP2 declares the seam only; the gossip/supervision render mechanism is a later sub-project (MD5). It witnesses the aob:TelephoneSeamShape non-vacuously; the Task 11 probe of record (remove the provisional flag, or remove the tensor-space pin) makes the shape bite (conforms=True->False)." ;
+    aob:telephoneTwinUrn <urn:silmaril:telephone:supervision_tree> ;
+    aob:tensorSpaceUrn <urn:silmaril:universal-anchor:node:enum:milestone> ,
+                       <urn:silmaril:universal-anchor:node:identifier:paper_slug> ,
+                       <urn:silmaril:universal-anchor:node:counter:cardinality> ;
+    silm:isProvisional true .

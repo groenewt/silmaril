@@ -1,0 +1,111 @@
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# value_colimit.ttl — the gluing: the atom's VALUE is an SP1 colimit-taiji prim:Primitive (W2 · SP2, Task 7).
+# =====================================================================================
+# Authors the meta-functor into the committed SP1 floor: aob:aobValue : AOBAtom -> prim:Primitive maps
+# every AOB atom onto an EXISTING SP1 colimit-taiji primitive. This is the ologs-of-ologs edge (Directive
+# 2/6, design s6): an AOB olog OBJECT is itself a glued SP1 taiji atom — a prim:Primitive whose formal yin
+# (prim:formalFacet, a FormalType) is bound to its physical yang (prim:physicalFacet, a byte-descending
+# prim:PhysicalEncoding) by SP1's realization monad rho (prim:gluedBy, the Frame arrow). So aob:aobValue
+# does NOT re-materialise a second presheaf category (YAGNI); it realizes the meta-layer "turtles all the
+# way" edge into SP1's ALREADY-Yoneda-closed floor, whose gluing SP1 already sealed as a literal colimit.
+#
+# SELECT-NOT-MINT (Consumes contract): SP2 authors NO new prim:Realization and NO new prim:Effect — it
+# SELECTS an existing SP1 primitive (prim:prim_String, the Text-tower colimit atom, since every AOB prose
+# atom is a UTF-8 sequence), keeping SP1's RealizationShape sh:in enumeration intact. The grounding-claim
+# aob:groundingClaim points at the SELECTED SP1 realization Frame (prim:realize_String_Utf8ByteVector),
+# whose prim:frameOutput is the physical encoding (= the tensor's byte carrier) and whose prim:frameEffect
+# is a LIFTED member of SP1's prim:Effect family (prim:EncodingLoss, the surrogate/normalization cost of
+# UTF-8) — selected, never minted. aob:ologObjectIsTaiji true records the meta-assertion on each atom.
+#
+# GROUNDING BRIDGE (runner scope): checks/run-aob-checks.sh loads ONLY the 7 aob DATA TTLs, never the
+# committed SP1 floor (basicttl/primitives/). So this file ECHOES the exact SP1 facts the AtomValueShape
+# and q_aob_value_is_taiji resolve against — prim:prim_String and its three facets, prim:String on the
+# FormalType tower, the prim:StringUtf8ByteVector carrier (prim:bitWidth 8) and the realization Frame
+# (prim:frameOutput) — transcribed VERBATIM from basicttl/primitives/taiji.ttl (line 679), formal.ttl
+# (line 96), and realization.ttl (lines 2387, 2399): SP1's vocabulary and SP1's exact values, NOT invented
+# shape. So prim:prim_String a prim:Primitive with its glued taiji signature is verifiable inside the aob
+# graph the runner actually loads. Corpus-agnostic v1 (Directive 13): both witnesses take one selected
+# floor primitive, only enough to keep the ASK suite non-vacuous. This value closes Task 6's joint
+# q_interpret_as_bridge tooth (once aobValue is present, the interpretBridge coverage clause activates and
+# prim:StringUtf8 interpretAs prim:String covers the atom's prim:String formalFacet reflexively).
+# Consumed by: SP4 (grounding-Frame effects seed the 5 loss classes), SP9 (the per-atom taiji sealed).
+# =====================================================================================
+
+
+# ---- The meta-functor into the SP1 floor: aob:aobValue : AOBAtom -> prim:Primitive -------------
+
+aob:aobValue a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range prim:Primitive ;
+    rdfs:label "aobValue" ;
+    rdfs:comment "The meta-functor into the committed SP1 floor: relates an AOB atom to the EXISTING SP1 colimit-taiji prim:Primitive that IS its value. This is the ologs-of-ologs edge (design s6): the AOB olog object is not merely associated with a floor primitive, it IS one — a glued taiji atom whose formal yin (prim:formalFacet) is bound to its physical yang (prim:physicalFacet) by SP1's realization rho (prim:gluedBy). SP2 SELECTS an existing SP1 primitive here (prim:prim_String for a UTF-8 prose atom), authoring NO new prim:Realization or prim:Effect so SP1's RealizationShape sh:in enumeration stays intact. aob:AtomValueShape enforces that the value carries the full defang-proof colimit-taiji signature (formalFacet on the FormalType tower + physicalFacet a prim:PhysicalEncoding with a prim:bitWidth + gluedBy a prim:Realization with a prim:frameOutput), so the value is proven to be a glued SP1 atom rather than a loose reference." .
+
+aob:groundingClaim a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range prim:Realization ;
+    rdfs:label "groundingClaim" ;
+    rdfs:comment "Relates an AOB atom to the SP1 realization Frame (prim:Realization) that licenses its grounding — the observed grounding prose (aob:grounding on the envelope) reified as the specific rho Kleisli/Frame arrow whose prim:frameOutput / prim:encoding IS the atom's physical carrier (the tensor block's byte encoding) and whose prim:frameEffect is the typed cost. The effect is a LIFTED member of SP1's prim:Effect family (prim:EncodingLoss for a UTF-8 prose atom — the surrogate/normalization cost of mapping abstract Unicode scalars through UTF-8), SELECTED from the floor, never minted here. So the atom's grounding claim is not free prose but a pinned Frame in the realization monad: the same rho that glues the value's formal facet into its physical facet. This is the seed SP4 lifts to populate its 5 loss classes." .
+
+aob:ologObjectIsTaiji a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:boolean ;
+    rdfs:label "ologObjectIsTaiji" ;
+    rdfs:comment "The ologs-of-ologs meta-assertion (Directive 2/6, design s6): true iff the AOB olog OBJECT is itself an SP1 colimit-taiji atom — i.e. its aob:aobValue IS a glued prim:Primitive whose formal yin and physical yang SP1 already sealed as a literal Yoneda colimit — rather than a fresh presheaf object that would re-derive a second category (which SP2 deliberately does NOT do, YAGNI). Carried as an explicit boolean witness on each atom so the 'turtles all the way' claim is an inspectable graph fact, cross-checked by aob:AtomValueShape (which structurally verifies the value is a glued taiji atom), not a bare marginal note. It records that the SP2 meta-layer grounds DOWNWARD into the already-closed SP1 floor, never sideways into a duplicated presheaf construction." .
+
+
+# =====================================================================================
+# SP1 GROUNDING BRIDGE — the exact SP1 facts the teeth resolve against (runner loads no SP1 floor).
+# Transcribed VERBATIM from the committed SP1 floor (SP1's vocabulary + values, not invented shape):
+#   - prim:prim_String, the Text-tower colimit primitive (basicttl/primitives/taiji.ttl line 679):
+#       formalFacet prim:String / physicalFacet prim:StringUtf8ByteVector / gluedBy the realization Frame;
+#   - prim:String on the FormalType tower (basicttl/primitives/formal.ttl line 96);
+#   - prim:StringUtf8ByteVector, the UTF-8 octet ByteVector carrier, prim:bitWidth 8
+#     (basicttl/primitives/realization.ttl line 2387);
+#   - prim:realize_String_Utf8ByteVector, the gluing rho Frame with prim:frameOutput + prim:frameEffect
+#     prim:EncodingLoss (basicttl/primitives/realization.ttl line 2399).
+# These make prim:prim_String's glued colimit-taiji signature verifiable in the aob graph the runner loads.
+# =====================================================================================
+
+# prim:String is an SP1 FormalType-tower class (basicttl/primitives/formal.ttl line 96); echoed here
+# ONLY as its subClassOf edge (NOT re-typed owl:Class — it is not a new SP2 class) so the AtomValueShape's
+# `?f rdfs:subClassOf* prim:FormalType` clause resolves inside the aob graph the runner loads.
+prim:String rdfs:subClassOf prim:FormalType .
+
+prim:prim_String a prim:Primitive ;
+    prim:formalFacet   prim:String ;
+    prim:physicalFacet prim:StringUtf8ByteVector ;
+    prim:gluedBy       prim:realize_String_Utf8ByteVector .
+
+prim:StringUtf8ByteVector a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteWidth 1 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:String .
+
+prim:realize_String_Utf8ByteVector a prim:Realization ;
+    prim:realizesFrom prim:String ;
+    prim:encoding     prim:StringUtf8ByteVector ;
+    prim:frameOutput  prim:StringUtf8ByteVector ;
+    prim:frameEffect  prim:EncodingLoss .
+
+
+# ---- The witnesses take their selected SP1 value + grounding claim (non-vacuity; corpus-agnostic v1) ---
+# Both witness atoms (the node aob:witnessAnchor and the arrow aob:witnessLeg) are UTF-8 prose atoms, so
+# each SELECTS the same Text-tower floor primitive prim:prim_String as its value. The node witness carries
+# the joint Task6<->Task7 closure: its tensor block's interpretBridge (prim:StringUtf8, interpretAs
+# prim:String) now covers this value's prim:String formalFacet reflexively (q_interpret_as_bridge GREEN).
+
+aob:witnessAnchor
+    aob:aobValue prim:prim_String ;
+    aob:groundingClaim prim:realize_String_Utf8ByteVector ;
+    aob:ologObjectIsTaiji true .
+
+aob:witnessLeg
+    aob:aobValue prim:prim_String ;
+    aob:groundingClaim prim:realize_String_Utf8ByteVector ;
+    aob:ologObjectIsTaiji true .

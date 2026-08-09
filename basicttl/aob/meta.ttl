@@ -1,0 +1,185 @@
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# meta.ttl — the AOB meta-TBox (W2 · SP2, plan Task 1 & Task 2).
+# =====================================================================================
+# Fixes, with teeth, exactly what an AOB atom IS, by LIFTING the real WIP AOB authored in the
+# Helios library (Directive 1: lift, do not invent) — never inventing a shape Helios already
+# authored. The primordial bifurcation observed in every Helios facet is `top_kind: node | arrow`
+# (helios/00_src_specs/types/silmaril_wave8/concrete_anchor.spec.yaml -> top_kind: node;
+# .../yoneda_hom_leg.spec.yaml -> top_kind: arrow): aob:ConcreteAnchor (node) and aob:YonedaHomLeg
+# (arrow) are the two disjoint, total, individually-addressable seed families. The envelope
+# coordinates (aob:atomUrn, aob:displayName, aob:layer, aob:kindUrn, aob:typeNode, aob:typeUrn,
+# aob:grounding, aob:version, aob:hasAncestry, aob:citation, aob:atomFamilyUrn) are lifted verbatim
+# from the per-paper entity register (helios/papers_00_data_src_specs/) and the _aob_* atom register
+# (helios/srcy/.../specs/atoms/core/entity/_aob_entity_register.yaml, kind: u:AtomicObject). One
+# lifted witness pair (aob:witnessAnchor + aob:witnessLeg) is authored purely to keep the ASK suite
+# non-vacuous (corpus-agnostic v1, Directive 13), grown across later tasks; zero live-corpus data.
+# Grounds onto the SP1 floor (prim:) via aob:aobValue (Task 7); the S/O/P arrow carrier (Task 2) is
+# the seed SP3 lifts into the CRS. Namespace: aob: <urn:silmaril:aob:#> (full-lexical URN idiom).
+# =====================================================================================
+
+
+# ---- The meta-TBox root and the two-family top_kind progenitor split --------------------------
+
+aob:AOBAtom a owl:Class ;
+    rdfs:label "AOBAtom" ;
+    rdfs:comment "An AOB atom is the unit of the Silmaril meta-ontology: a colimit-taiji prim:Primitive-valued node lifted from the Helios _aob_* / per-paper atom envelope (Directive 1, lift not invent). It is EXACTLY ONE top_kind — a aob:ConcreteAnchor (node) grounded by one cco:ont######## IRI, or a aob:YonedaHomLeg (arrow) grounded by one cceo: process IRI — never both and never neither (nothing crammed into one node). It carries the full lifted envelope (atomUrn, displayName, layer, kindUrn=u:AtomicObject, typeNode, typeUrn, grounding prose, semver version, ancestry [{axis,via}], citation) and an addressable aob:atomFamilyUrn. Its VALUE (aob:aobValue, Task 7) IS an SP1 prim:Primitive whose formal facet is glued to its physical tensor facet by SP1's realization rho — so an AOB olog object is itself an SP1 taiji atom (ologs-of-ologs, turtles all the way). Its identity is a sha256 over 32 prim:Octets (Task 4); its byte/tensor field grounds into SP1's physical carriers and the byte_order progenitor (Task 5). This root is the shape the whole SP2 floor tests." .
+
+aob:ConcreteAnchor a owl:Class ;
+    rdfs:subClassOf aob:AOBAtom ;
+    owl:disjointWith aob:YonedaHomLeg ;
+    rdfs:label "ConcreteAnchor" ;
+    rdfs:comment "The NODE family of the progenitor split (top_kind: node), lifted verbatim from helios/00_src_specs/types/silmaril_wave8/concrete_anchor.spec.yaml (atom_family_urn: urn:silmaril:atom-family:node:concrete_anchor). A ConcreteAnchor is an addressable object node of the AOB category: in the seed schema it records one bare-placeholder->real-world-example mapping (bare_symbol, anchor_node, anchor_text, cco_grounding_iri), grounding the neurosomatic 'bodily-felt anchor that prevents purely semantic reading'. As an AOB atom it grounds via EXACTLY ONE cco:ont######## upper-anchor IRI (Task 3, the load-bearing CCO/BFO node law) and its value is an SP1 prim:Primitive over the physical carrier ladder. It is owl:disjointWith aob:YonedaHomLeg: a node is not an arrow, and the two-family bifurcation is total and disjoint — the addressable object pole of the Yoneda hom-profile whose leg is the arrow family." .
+
+aob:YonedaHomLeg a owl:Class ;
+    rdfs:subClassOf aob:AOBAtom ;
+    owl:disjointWith aob:ConcreteAnchor ;
+    rdfs:label "YonedaHomLeg" ;
+    rdfs:comment "The ARROW family of the progenitor split (top_kind: arrow), lifted verbatim from helios/00_src_specs/types/silmaril_wave8/yoneda_hom_leg.spec.yaml (atom_family_urn: urn:silmaril:atom-family:arrow:yoneda_hom_leg). A YonedaHomLeg is a single typed leg of a Yoneda hom-profile Hom(-, A) attached to a central object — hence the family name; SP1 already materialised the profile as prim:RepresentablePresheaf + prim:YonedaArrow. It carries the S/O/P carrier (Task 2): aob:sourceNodeUrn = S (source_node_urn), aob:targetNodeUrn = O (target_node_urn), aob:cpoProcessIri = P (cpo_process_iri) — the exact seed SP3 lifts into the CRS. As an AOB atom it grounds via EXACTLY ONE cceo: process IRI (Task 3, the arrow upper-anchor law). It is owl:disjointWith aob:ConcreteAnchor: an arrow is not an object, and the two poles never collapse into one crammed node." .
+
+aob:Ancestry a owl:Class ;
+    rdfs:label "Ancestry" ;
+    rdfs:comment "A reified ancestry edge of an AOB atom, lifted from the Helios envelope's ancestry: [{axis, via}] list (concrete_anchor.spec.yaml -> ancestry: [{axis: prelude, via: urn:silmaril:entity#types.prelude.node}]; per-paper entities -> {axis: paper, via: <paper URN>}). Each aob:Ancestry node pins one axis of provenance for its atom: aob:ancestryAxis names the axis (e.g. prelude, paper) and aob:ancestryVia names the URN the atom descends through on that axis. Reifying the {axis, via} pair as its own node (rather than an inline literal blob) keeps each provenance coordinate addressable and multi-valued — an atom may have several ancestry axes at once — and lets a later task walk provenance as a first-class graph rather than parse a packed string. It is a lifted structure, not an invented one; the axis/via vocabulary is the Helios vocabulary." .
+
+
+# ---- The lifted envelope coordinates (datatype properties; the _aob_* / per-paper register) ----
+
+aob:atomUrn a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "atomUrn" ;
+    rdfs:comment "The atom's own URN (entity.urn in the Helios envelope), carried full-lexically as a string coordinate; in Task 3+ it is read against the prim:URN identifier tower." .
+
+aob:displayName a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "displayName" ;
+    rdfs:comment "The atom's display_name (entity.display_name), the human-facing CamelCase name lifted verbatim from the Helios envelope." .
+
+aob:layer a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "layer" ;
+    rdfs:comment "The atom's layer (entity.layer, e.g. papers), the stratification coordinate lifted from the Helios envelope." .
+
+aob:kindUrn a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "kindUrn" ;
+    rdfs:comment "The atom's kind_urn (entity.kind_urn, e.g. urn:silmaril:entity#types.prelude.kind_node_type_def / kind_node_instance) bridging the Helios kind: u:AtomicObject discipline." .
+
+aob:typeNode a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "typeNode" ;
+    rdfs:comment "The atom's type_node (entity.type_node) — an OPEN ENUM (MD3): the 22/25 type_node families are corpus-supplied instances of this coordinate, not hardwired owl:Classes, so a family appearing/disappearing at relaunch is a datum, not a schema change." .
+
+aob:typeUrn a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "typeUrn" ;
+    rdfs:comment "The atom's type_urn (entity.type_urn), its position on the Helios Linnaean type tower, lifted full-lexically from the envelope." .
+
+aob:grounding a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "grounding" ;
+    rdfs:comment "The atom's grounding prose (entity.grounding): what the atom asserts plus the CPO/CCO process that licenses it — the observed grounding that Task 7 recognises as the realization Frame's claim." .
+
+aob:version a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "version" ;
+    rdfs:comment "The atom's semver version (the _aob_* register's version field, e.g. 0.1.0), lifted as a semver string coordinate for relaunch-safe provenance." .
+
+aob:citation a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "citation" ;
+    rdfs:comment "A citation of the atom (entity.citations / the _aob_* swe_as_dag_accounting.cites), the source witness the atom traces to, lifted verbatim from the Helios envelope." .
+
+aob:atomFamilyUrn a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "atomFamilyUrn" ;
+    rdfs:comment "The atom's atom_family_urn — urn:silmaril:atom-family:node:concrete_anchor for a node, urn:silmaril:atom-family:arrow:yoneda_hom_leg for an arrow — the addressable family coordinate that makes the progenitor split total and per-atom identifiable (nothing crammed)." .
+
+aob:ancestryAxis a owl:DatatypeProperty ;
+    rdfs:domain aob:Ancestry ; rdfs:range xsd:string ;
+    rdfs:label "ancestryAxis" ;
+    rdfs:comment "The axis of one ancestry edge (ancestry[i].axis, e.g. prelude / paper), lifted from the Helios envelope's ancestry list." .
+
+aob:ancestryVia a owl:DatatypeProperty ;
+    rdfs:domain aob:Ancestry ; rdfs:range xsd:string ;
+    rdfs:label "ancestryVia" ;
+    rdfs:comment "The URN one ancestry edge descends through (ancestry[i].via, e.g. urn:silmaril:entity#types.prelude.node), lifted from the Helios envelope's ancestry list." .
+
+aob:hasAncestry a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:Ancestry ;
+    rdfs:label "hasAncestry" ;
+    rdfs:comment "Links an AOB atom to one reified aob:Ancestry provenance edge, lifted from the Helios envelope's ancestry: [{axis, via}] list; an atom may carry several." .
+
+
+# ---- The arrow's S/O/P carrier (Task 2; lifted from the yoneda_hom_leg seed) -------------------
+# The three coordinates of a Yoneda hom-leg arrow, lifted verbatim from the seed schema
+# (helios/01_data_src_specs/products/users/atoms.spec.yaml: source_node_urn / target_node_urn /
+# cpo_process_iri under atom_family_urn: urn:silmaril:atom-family:arrow:yoneda_hom_leg, top_kind: arrow;
+# and helios/00_src_specs/types/silmaril_wave8/yoneda_hom_leg.spec.yaml). S=source_node_urn and
+# O=target_node_urn are the two object endpoints (URN-tower terms, prim:URN); P=cpo_process_iri is the
+# process morphism (a cceo: CURIE, prim:QName). The (S,O,P) triple is the arrow's prim:Triple S/O/P
+# carrier — the exact seed SP3 lifts into the CRS. Domain is aob:YonedaHomLeg (the arrow family only):
+# a node has no S/O/P, only a cco_grounding_iri (Task 3), which is why the split is disjoint.
+
+aob:sourceNodeUrn a owl:DatatypeProperty ;
+    rdfs:domain aob:YonedaHomLeg ; rdfs:range xsd:string ;
+    rdfs:label "sourceNodeUrn" ;
+    rdfs:comment "The arrow's SOURCE object endpoint (S), lifted verbatim from the yoneda_hom_leg seed's source_node_urn (helios/01_data_src_specs/products/users/atoms.spec.yaml). It is a URN-tower term (prim:URN) naming the aob:ConcreteAnchor node the leg departs from — the domain object of the typed hom-leg Hom(S, -). Together with aob:targetNodeUrn (O) and aob:cpoProcessIri (P) it forms the arrow's S/O/P carrier, the prim:Triple that SP3 lifts into the categorical reference system (CRS) as the arrow's positioned edge. Carried full-lexically (unary law); a node atom never carries it — S/O/P is the arrow family's exclusive signature, which is what makes aob:ConcreteAnchor and aob:YonedaHomLeg disjoint rather than merely distinct." .
+
+aob:targetNodeUrn a owl:DatatypeProperty ;
+    rdfs:domain aob:YonedaHomLeg ; rdfs:range xsd:string ;
+    rdfs:label "targetNodeUrn" ;
+    rdfs:comment "The arrow's TARGET object endpoint (O), lifted verbatim from the yoneda_hom_leg seed's target_node_urn (helios/01_data_src_specs/products/users/atoms.spec.yaml). It is a URN-tower term (prim:URN) naming the aob:ConcreteAnchor node the leg arrives at — the codomain object of the typed hom-leg Hom(-, O). Together with aob:sourceNodeUrn (S) and aob:cpoProcessIri (P) it forms the arrow's S/O/P carrier, the prim:Triple that SP3 lifts into the CRS as the arrow's positioned edge. Carried full-lexically (unary law). This is the coordinate the Task 2 probe of record deletes to prove the SopCarrierShape bites: an arrow missing O is an incomplete leg and must be caught (conforms=True->False)." .
+
+aob:cpoProcessIri a owl:DatatypeProperty ;
+    rdfs:domain aob:YonedaHomLeg ; rdfs:range xsd:string ;
+    rdfs:label "cpoProcessIri" ;
+    rdfs:comment "The arrow's PROCESS morphism (P), lifted verbatim from the yoneda_hom_leg seed's cpo_process_iri (helios/01_data_src_specs/products/users/atoms.spec.yaml, e.g. cceo:ModelingProcess). It is the cceo: CPO process CURIE (a prim:QName on the prim:IRI tower) that licenses the leg — the third leg of the arrow's S/O/P carrier and, in Task 3, the load-bearing arrow upper anchor (exactly one cceo: process IRI per arrow, matched via a referenced aob:patternAnchorUrn, never inline regex). Together with aob:sourceNodeUrn (S) and aob:targetNodeUrn (O) it completes the prim:Triple S/O/P carrier that SP3 lifts into the CRS. The single external cceo: spelling survives only as immutable bridge evidence (STRICTNESS Rule 3), never as an internal namespace." .
+
+
+# ---- The ONE lifted witness pair (non-vacuity; corpus-agnostic v1, grown across later tasks) ---
+
+aob:witnessAnchor a aob:AOBAtom, aob:ConcreteAnchor ;
+    rdfs:label "witnessAnchor" ;
+    aob:atomUrn "urn:silmaril:entity#types.papers.silmaril_wave8.concrete_anchor" ;
+    aob:displayName "ConcreteAnchor" ;
+    aob:layer "papers" ;
+    aob:kindUrn "urn:silmaril:entity#types.prelude.kind_node_type_def" ;
+    aob:typeNode "Atom" ;
+    aob:typeUrn "urn:silmaril:entity#types.papers.atom" ;
+    aob:grounding "Wave-8 rule: every bare math placeholder (X, Y, Z, T, U, A, B) in a diagram or theorem MUST be a concrete real-world example from the paper Mittens/cat/cheese domain; ConcreteAnchor records one such mapping (the neurosomatic bodily-felt anchor that prevents purely semantic reading, per cannon/cheese.md). CCO process licenses the grounding." ;
+    aob:version "0.1.0" ;
+    aob:citation "cannon/cheese.md" ;
+    aob:atomFamilyUrn "urn:silmaril:atom-family:node:concrete_anchor" ;
+    aob:hasAncestry aob:witnessAnchorAncestry .
+
+aob:witnessAnchorAncestry a aob:Ancestry ;
+    aob:ancestryAxis "prelude" ;
+    aob:ancestryVia "urn:silmaril:entity#types.prelude.node" .
+
+aob:witnessLeg a aob:AOBAtom, aob:YonedaHomLeg ;
+    rdfs:label "witnessLeg" ;
+    aob:atomUrn "urn:silmaril:entity#types.papers.silmaril_wave8.yoneda_hom_leg" ;
+    aob:displayName "YonedaHomLeg" ;
+    aob:layer "papers" ;
+    aob:kindUrn "urn:silmaril:entity#types.prelude.kind_node_type_def" ;
+    aob:typeNode "Atom" ;
+    aob:typeUrn "urn:silmaril:entity#types.papers.atom" ;
+    aob:grounding "A single typed leg (incoming probe arrow OR outgoing cocone arrow) attached to the central object of a paper; carries the witness quote that grounds the leg in the source. The cceo: CPO process licenses the leg (Task 3)." ;
+    aob:version "0.1.0" ;
+    aob:citation "helios/00_src_specs/types/silmaril_wave8/yoneda_hom_leg.spec.yaml" ;
+    aob:atomFamilyUrn "urn:silmaril:atom-family:arrow:yoneda_hom_leg" ;
+    aob:sourceNodeUrn "urn:silmaril:atom:users:concrete_anchor:admin_create_parse" ;
+    aob:targetNodeUrn "urn:silmaril:atom:users:concrete_anchor:actor" ;
+    aob:cpoProcessIri "cceo:ModelingProcess" ;
+    aob:hasAncestry aob:witnessLegAncestry .
+
+aob:witnessLegAncestry a aob:Ancestry ;
+    aob:ancestryAxis "prelude" ;
+    aob:ancestryVia "urn:silmaril:entity#types.prelude.node" .
