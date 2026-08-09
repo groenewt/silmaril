@@ -1,0 +1,232 @@
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# tensor_block.ttl - the three-axis tensor block + the byte_order agnostic progenitor (W2 . SP2, Task 5).
+# =====================================================================================
+# Lifts the wave8 tensor: block VERBATIM from the Helios seed schema
+# (helios/00_src_specs/types/silmaril_wave8/yoneda_hom_leg.spec.yaml, tensor:), the three-axis
+# space/time/value witness of an atom's physical facet (Directive 1: lift, do not invent). The block's
+# space axis (cardinality, dimensions, bounded, max_size, bit_width, byte_width, alignment) is the
+# extent of the carrier; the time axis (dynamics, ordering, monotonic, lifetime, byte_order, arithmetic)
+# is its dynamics; the value axis (interpret_as - authored by Task 6 - and domain.kind) is its meaning.
+# Two grounding claims give the block teeth into the SP1 floor: (1) time.byte_order grounds into the
+# byte_order AGNOSTIC PROGENITOR (aob:ByteOrderProgenitor), lifted from the four prelude siblings
+# types.prelude.byte_order_{little,big,host,none}, each child of which aob:groundsInByteOrder a SP1
+# prim:ByteOrder individual; (2) space.bit_width grounds into a SP1 prim:PhysicalEncoding carrying that
+# exact prim:bitWidth via aob:groundsInEncoding - so the tensor's byte field is not a free integer but a
+# coordinate pinned to the floor's physical ladder + endianness family.
+#
+# GROUNDING BRIDGE (runner scope): checks/run-aob-checks.sh loads ONLY the 7 aob DATA TTLs, never the
+# committed SP1 floor (basicttl/primitives/). So this file ECHOES the exact SP1 facts the teeth resolve
+# against - the three prim:ByteOrder individuals (prim:LE / prim:BE / prim:EndianNeutral) and the
+# octet-granular UTF-8 prose carrier prim:StringUtf8 (prim:bitWidth 8, prim:byteWidth 1, endian-neutral,
+# interpretAs prim:String) transcribed VERBATIM from basicttl/primitives/physical.ttl - SP1's vocabulary
+# and SP1's exact values, NOT invented shape - so prim:StringUtf8 a prim:PhysicalEncoding ; prim:bitWidth 8
+# and prim:EndianNeutral a prim:ByteOrder are verifiable within the aob graph the runner actually loads.
+# The witness block is an endian-neutral UTF-8 prose coordinate (byte_order_none, bit_width 8), corpus-
+# agnostic v1 (Directive 13): one populated block, only enough to keep the ASK suite non-vacuous.
+# Consumed by: Task 6 (value.interpret_as bridge), Task 7 (physicalFacet for aobValue), SP4 (tensor block).
+# =====================================================================================
+
+
+# ---- The three-axis tensor block class (lifted verbatim from the wave8 tensor: block) ----------
+
+aob:TensorBlock a owl:Class ;
+    rdfs:label "TensorBlock" ;
+    rdfs:comment "The three-axis tensor block that witnesses an AOB atom's physical facet, lifted verbatim from the wave8 seed schema (helios/00_src_specs/types/silmaril_wave8/yoneda_hom_leg.spec.yaml, tensor:). A TensorBlock records the atom's carrier along three orthogonal axes: SPACE (cardinality, dimensions, bounded, max_size, bit_width, byte_width, alignment) fixes how wide the cell is; TIME (dynamics, ordering, monotonic, lifetime, byte_order, arithmetic) fixes how it evolves and in what endianness its octets serialize; VALUE (interpret_as - supplied by Task 6 - and domain.kind) fixes how its bits are read. It is the physicalFacet half of the atom's colimit-taiji value (Task 7 glues it to the formalFacet via SP1's realization). Its teeth: time.byte_order MUST ground into the byte_order agnostic progenitor (aob:ByteOrderProgenitor) whose child in turn grounds a SP1 prim:ByteOrder individual, and space.bit_width MUST ground into a SP1 prim:PhysicalEncoding carrying that exact prim:bitWidth - the tensor's byte field is a coordinate pinned to the floor's physical ladder, never a free integer. aob:TensorByteOrderShape enforces both groundings; each aob:AOBAtom relates to its block via aob:hasTensorBlock." .
+
+aob:hasTensorBlock a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:TensorBlock ;
+    rdfs:label "hasTensorBlock" ;
+    rdfs:comment "Relates an AOB atom to its three-axis tensor block (aob:TensorBlock) - the physical-facet witness lifted from the wave8 tensor: block. The block's space.bit_width and time.byte_order are the coordinates that ground the atom's physical carrier into the SP1 floor (the physical ladder + the byte_order progenitor)." .
+
+
+# ---- SPACE axis sub-facets (extent of the carrier) ---------------------------------------------
+
+aob:tsCardinality a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:string ;
+    rdfs:label "tsCardinality" ;
+    rdfs:comment "The space.cardinality type_urn coordinate (e.g. types.prelude.cardinality_one) - how many occurrences the carrier holds, lifted from the wave8 tensor block's space.cardinality node." .
+
+aob:tsDimensions a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:integer ;
+    rdfs:label "tsDimensions" ;
+    rdfs:comment "The space.dimensions rank of the carrier (0 for a scalar prose atom), lifted from the wave8 tensor block's space.dimensions field - the tensor rank of the atom's physical extent." .
+
+aob:tsBounded a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:boolean ;
+    rdfs:label "tsBounded" ;
+    rdfs:comment "Whether the carrier's extent is bounded (space.bounded), lifted from the wave8 tensor block - true for a finite prose atom whose max_size caps its octet run, false for an unbounded stream." .
+
+aob:tsMaxSize a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:integer ;
+    rdfs:label "tsMaxSize" ;
+    rdfs:comment "The space.max_size cap on the carrier's occurrence count (e.g. 128 octets for a prose_short atom), lifted from the wave8 tensor block - the ceiling above which the carrier overflows its bounded extent." .
+
+aob:tsBitWidth a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:integer ;
+    rdfs:label "tsBitWidth" ;
+    rdfs:comment "The space.bit_width per-occurrence granule width of the carrier (8 for an octet-granular prose atom), lifted from the wave8 tensor block. This is the load-bearing coordinate aob:TensorByteOrderShape grounds via aob:groundsInEncoding into a SP1 prim:PhysicalEncoding carrying that exact prim:bitWidth." .
+
+aob:tsByteWidth a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:integer ;
+    rdfs:label "tsByteWidth" ;
+    rdfs:comment "The space.byte_width per-occurrence byte width of the carrier (1 for an octet-granular prose atom), lifted from the wave8 tensor block - the whole-byte companion of space.bit_width, matching the SP1 encoding's prim:byteWidth." .
+
+aob:tsAlignment a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:integer ;
+    rdfs:label "tsAlignment" ;
+    rdfs:comment "The space.alignment byte boundary a whole occurrence must start on (1 for an octet-granular prose atom), lifted from the wave8 tensor block - the memory-alignment coordinate independent of bit_width." .
+
+
+# ---- TIME axis sub-facets (dynamics of the carrier) --------------------------------------------
+
+aob:ttDynamics a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:string ;
+    rdfs:label "ttDynamics" ;
+    rdfs:comment "The time.dynamics type_urn coordinate (e.g. types.prelude.dynamics_snapshot) - whether the carrier is a static snapshot or an evolving signal, lifted from the wave8 tensor block's time.dynamics node." .
+
+aob:ttOrdering a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:string ;
+    rdfs:label "ttOrdering" ;
+    rdfs:comment "The time.ordering type_urn coordinate (e.g. types.prelude.ordering_positional) - how the carrier's occurrences are ordered, lifted from the wave8 tensor block's time.ordering node." .
+
+aob:ttMonotonic a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:boolean ;
+    rdfs:label "ttMonotonic" ;
+    rdfs:comment "Whether the carrier's time evolution is monotonic (time.monotonic), lifted from the wave8 tensor block - true for an append-only immutable prose atom whose octets never rewrite in place." .
+
+aob:ttLifetime a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:string ;
+    rdfs:label "ttLifetime" ;
+    rdfs:comment "The time.lifetime type_urn coordinate (e.g. types.prelude.lifetime_immutable) - the mutability lifetime of the carrier, lifted from the wave8 tensor block's time.lifetime node." .
+
+aob:ttArithmetic a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:string ;
+    rdfs:label "ttArithmetic" ;
+    rdfs:comment "The time.arithmetic type_urn coordinate (e.g. types.prelude.arithmetic_none) - what arithmetic the carrier admits (none for opaque prose), lifted from the wave8 tensor block's time.arithmetic node." .
+
+aob:ttByteOrder a owl:ObjectProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range aob:ByteOrderProgenitor ;
+    rdfs:label "ttByteOrder" ;
+    rdfs:comment "The time.byte_order coordinate of the carrier, lifted from the wave8 tensor block's time.byte_order node. Its value is a child of the byte_order agnostic progenitor (aob:ByteOrderProgenitor) - one of aob:byteOrderLittle / aob:byteOrderBig / aob:byteOrderHost / aob:byteOrderNone - which in turn aob:groundsInByteOrder a SP1 prim:ByteOrder individual. aob:TensorByteOrderShape rejects any byte_order not descended from the progenitor and grounded in the floor." .
+
+
+# ---- VALUE axis sub-facets (meaning of the carrier; interpret_as bridge is Task 6) --------------
+
+aob:tvDomainKind a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:string ;
+    rdfs:label "tvDomainKind" ;
+    rdfs:comment "The value.domain.kind type_urn coordinate (e.g. types.prelude.domain_kind_opaque) - the domain kind the carrier's bits are read into, lifted from the wave8 tensor block's value.domain.kind node. The companion value.interpret_as bridge into the SP1 physical encoding is authored by Task 6 (aob:tvInterpretAs / aob:interpretBridge)." .
+
+# ---- The value.interpret_as bridge (Task 6): the tensor's yang held by the atom's yin -----------
+# aob:tvInterpretAs names the interpret_as type_urn coordinate lifted from the wave8 tensor block's
+# value.interpret_as node; aob:interpretBridge pins that coordinate to a concrete SP1 prim:PhysicalEncoding
+# whose prim:interpretAs is a superclass-or-equal of the owning atom's formal facet (Task 7's aob:aobValue
+# -> prim:formalFacet). Together they close the value axis onto the SP1 floor: the physical yang (how the
+# octets are read) is held by the atom's formal yin (what type it IS). aob:InterpretAsBridgeShape enforces
+# the coverage the moment an atom carries an aob:aobValue.
+
+aob:tvInterpretAs a owl:DatatypeProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range xsd:string ;
+    rdfs:label "tvInterpretAs" ;
+    rdfs:comment "The value.interpret_as type_urn coordinate of the tensor block (e.g. urn:silmaril:entity#types.prelude.interpret_as_utf8), lifted verbatim from the wave8 tensor block's value.interpret_as node (helios/00_src_specs/types/silmaril_wave8/yoneda_hom_leg.spec.yaml, value.interpret_as). It names HOW the carrier's octets are to be read into a value - the meaning half of the tensor's VALUE axis, companion to aob:tvDomainKind. This string coordinate is a Helios type_urn onto the prelude interpret_as family; its concrete grounding into the SP1 physical ladder is carried by aob:interpretBridge, which pins it to the prim:PhysicalEncoding whose prim:interpretAs must cover the owning atom's formal facet. On its own it is a nominal coordinate; only paired with aob:interpretBridge does it acquire teeth (aob:InterpretAsBridgeShape)." .
+
+aob:interpretBridge a owl:ObjectProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range prim:PhysicalEncoding ;
+    rdfs:label "interpretBridge" ;
+    rdfs:comment "Relates a tensor block's value.interpret_as coordinate (aob:tvInterpretAs) to the concrete SP1 prim:PhysicalEncoding it grounds into - the load-bearing bridge that pins the VALUE axis to the floor. The bridge encoding's prim:interpretAs MUST be a superclass-or-equal of the owning atom's formal facet (the atom's aob:aobValue -> prim:formalFacet, supplied by Task 7), read transitively via prim:formalFacet rdfs:subClassOf* prim:interpretAs so a subtype text facet still bridges - the tensor's physical yang held by the atom's formal yin. For the endian-neutral UTF-8 prose witness the bridge is prim:StringUtf8 (prim:interpretAs prim:String, the octet-granular prose carrier Task 5 already grounded tsBitWidth 8 into), NOT prim:Utf8/prim:Codepoint: a String is a sequence OF codepoints (String is not a subclass of Codepoint), so only prim:StringUtf8 lets a text/String formalFacet close the bridge. aob:InterpretAsBridgeShape rejects any interpretBridge whose interpretAs fails to cover the atom's formalFacet (probe of record: prim:Int32, interpretAs prim:Integer)." .
+
+
+# ---- The byte_order AGNOSTIC PROGENITOR + its four children (lifted from types.prelude.byte_order_*) --
+
+aob:ByteOrderProgenitor a owl:Class ;
+    rdfs:label "ByteOrderProgenitor" ;
+    rdfs:comment "The byte_order agnostic progenitor - the endianness-neutral parent from which the four concrete byte-order children descend, lifted from the Helios prelude family types.prelude.byte_order_{little,big,host,none} (Directive 1: lift, do not invent). It is the agnostic top of the endianness axis: an atom's tensor time.byte_order names one of its four children (aob:byteOrderLittle / aob:byteOrderBig / aob:byteOrderHost / aob:byteOrderNone), each of which aob:groundsInByteOrder a SP1 prim:ByteOrder individual so the AOB endianness coordinate is pinned to the floor's endianness family rather than restated. The progenitor itself grounds nothing (it is deliberately order-agnostic, the categorical join of the concrete orders); only its children carry a floor grounding. aob:TensorByteOrderShape requires every tensor block's byte_order to be a child of this progenitor grounded in a prim:ByteOrder." .
+
+aob:byteOrderLittle a owl:Class ;
+    rdfs:subClassOf aob:ByteOrderProgenitor ;
+    aob:groundsInByteOrder prim:LE ;
+    rdfs:label "byteOrderLittle" ;
+    rdfs:comment "The little-endian child of the byte_order agnostic progenitor, lifted from types.prelude.byte_order_little: a multi-octet carrier whose least-significant octet serializes first. It aob:groundsInByteOrder the SP1 floor individual prim:LE (little-endian, least-significant octet first), so the AOB little-endian coordinate is pinned to the floor's endianness family and not restated. A tensor block whose time.byte_order is this child inherits prim:LE serialization; aob:TensorByteOrderShape accepts it because it descends from aob:ByteOrderProgenitor and grounds a prim:ByteOrder." .
+
+aob:byteOrderBig a owl:Class ;
+    rdfs:subClassOf aob:ByteOrderProgenitor ;
+    aob:groundsInByteOrder prim:BE ;
+    rdfs:label "byteOrderBig" ;
+    rdfs:comment "The big-endian child of the byte_order agnostic progenitor, lifted from types.prelude.byte_order_big: a multi-octet carrier whose most-significant octet serializes first (the network/wire order). It aob:groundsInByteOrder the SP1 floor individual prim:BE (big-endian, most-significant octet first), so the AOB big-endian coordinate is pinned to the floor's endianness family and not restated. A tensor block whose time.byte_order is this child inherits prim:BE serialization; aob:TensorByteOrderShape accepts it because it descends from aob:ByteOrderProgenitor and grounds a prim:ByteOrder." .
+
+aob:byteOrderNone a owl:Class ;
+    rdfs:subClassOf aob:ByteOrderProgenitor ;
+    aob:groundsInByteOrder prim:EndianNeutral ;
+    rdfs:label "byteOrderNone" ;
+    rdfs:comment "The endian-neutral child of the byte_order agnostic progenitor, lifted from types.prelude.byte_order_none: a single-octet or sub-octet carrier (a UTF-8 prose atom, whose code units are single octets) for which octet ordering is simply not applicable. It aob:groundsInByteOrder the SP1 floor individual prim:EndianNeutral (single-octet / sub-octet; ordering not applicable), so the AOB endian-neutral coordinate is pinned to the floor's endianness family and not restated. This is the byte_order the witness prose atom carries; aob:TensorByteOrderShape accepts it because it descends from aob:ByteOrderProgenitor and grounds a prim:ByteOrder." .
+
+aob:byteOrderHost a owl:Class ;
+    rdfs:subClassOf aob:ByteOrderProgenitor ;
+    silm:isProvisional true ;
+    rdfs:label "byteOrderHost" ;
+    rdfs:comment "The host-endianness child of the byte_order agnostic progenitor, lifted from types.prelude.byte_order_host: a carrier whose octet ordering is whatever the running host's native endianness happens to be, resolved only at runtime. It is marked silm:isProvisional true and carries NO aob:groundsInByteOrder edge because there is genuinely NO fixed SP1 prim:ByteOrder sibling to ground into - host-endianness is not a static fact but a deferred runtime resolution (Praeriehund honesty: an honest gap, not a dodge, not a force-fit onto prim:LE or prim:BE). A tensor block SHOULD NOT name this child in the corpus-agnostic v1 floor; when a later pass resolves host endianness at build time it will ground into whichever concrete order the host selects. This gap is recorded here rather than silently collapsed." .
+
+
+# ---- The two floor-grounding claim properties (the teeth of the tensor block) ------------------
+
+aob:groundsInByteOrder a owl:ObjectProperty ;
+    rdfs:domain aob:ByteOrderProgenitor ; rdfs:range prim:ByteOrder ;
+    rdfs:label "groundsInByteOrder" ;
+    rdfs:comment "Relates a byte_order progenitor child to the SP1 floor prim:ByteOrder individual it grounds into (little->prim:LE, big->prim:BE, none->prim:EndianNeutral). This is the grounding claim that pins the AOB endianness axis to the committed floor's endianness family; aob:byteOrderHost deliberately carries no such edge (runtime-resolved, provisional)." .
+
+aob:groundsInEncoding a owl:ObjectProperty ;
+    rdfs:domain aob:TensorBlock ; rdfs:range prim:PhysicalEncoding ;
+    rdfs:label "groundsInEncoding" ;
+    rdfs:comment "Relates a tensor block to the SP1 floor prim:PhysicalEncoding its space.bit_width grounds into - the encoding MUST carry a prim:bitWidth equal to the block's aob:tsBitWidth. This pins the tensor's byte field to the floor's physical ladder rather than leaving it a free integer; aob:TensorByteOrderShape rejects a bit_width with no matching SP1 encoding." .
+
+
+# =====================================================================================
+# SP1 GROUNDING BRIDGE - the exact SP1 facts the teeth resolve against (runner loads no SP1 floor).
+# Transcribed VERBATIM from basicttl/primitives/physical.ttl (SP1's vocabulary + values, not invented):
+#   - the three prim:ByteOrder individuals (physical.ttl lines 215-217);
+#   - the octet-granular UTF-8 prose carrier prim:StringUtf8 (physical.ttl lines 571-575), the honest
+#     bitWidth-8 encoding for a UTF-8 prose atom (prim:Utf8's bitWidth 32 is the single-codepoint
+#     max-width form, not the octet-granular prose stream - so grounding tsBitWidth 8 into prim:StringUtf8
+#     is the faithful lift, not prim:Utf8).
+# =====================================================================================
+
+prim:LE            a prim:ByteOrder .
+prim:BE            a prim:ByteOrder .
+prim:EndianNeutral a prim:ByteOrder .
+
+prim:StringUtf8 a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ; prim:byteWidth 1 ; prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs prim:String .
+
+
+# ---- The ONE lifted witness tensor block (endian-neutral UTF-8 prose atom) + its atom linkage ---
+
+aob:witnessAnchor aob:hasTensorBlock aob:witnessTensorBlock .
+
+aob:witnessTensorBlock a aob:TensorBlock ;
+    rdfs:label "witnessTensorBlock (endian-neutral UTF-8 prose coordinate, bit_width 8)" ;
+    aob:tsCardinality "urn:silmaril:entity#types.prelude.cardinality_one" ;
+    aob:tsDimensions 0 ;
+    aob:tsBounded true ;
+    aob:tsMaxSize 128 ;
+    aob:tsBitWidth 8 ;
+    aob:tsByteWidth 1 ;
+    aob:tsAlignment 1 ;
+    aob:ttDynamics "urn:silmaril:entity#types.prelude.dynamics_snapshot" ;
+    aob:ttOrdering "urn:silmaril:entity#types.prelude.ordering_positional" ;
+    aob:ttMonotonic true ;
+    aob:ttLifetime "urn:silmaril:entity#types.prelude.lifetime_immutable" ;
+    aob:ttByteOrder aob:byteOrderNone ;
+    aob:ttArithmetic "urn:silmaril:entity#types.prelude.arithmetic_none" ;
+    aob:tvDomainKind "urn:silmaril:entity#types.prelude.domain_kind_opaque" ;
+    aob:tvInterpretAs "urn:silmaril:entity#types.prelude.interpret_as_utf8" ;
+    aob:interpretBridge prim:StringUtf8 ;
+    aob:groundsInEncoding prim:StringUtf8 .

@@ -1,0 +1,224 @@
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# octet_descent.ttl - the sha256 atom identity, subatomic to the octet + the z-seed (W2 . SP2, Task 4).
+# =====================================================================================
+# Lifts the source_sha256 identity Helios names in the AtomCommon Avro record (the atom-content
+# hash) but the papers facet lacks - the delta SP2 ADDS on lift (Directive 1: lift, do not invent;
+# the identity is real Helios structure, the descent grounding is SP2's contribution). The digest is
+# NOT an opaque literal: it is a prim:ByteVector of EXACTLY 32 prim:Octets (each ordinal 0..255) that
+# byte-descends through SP1's carrier ladder (prim:byteDescendsTo+) to the width-1 prim:Bit floor, so
+# atom identity is navigable all the way down to the byte substrate (unary-byte-frame-law). The
+# z-coordinate seed (aob:zSeed) is a prim:Uint16 - the SP1 encoding, OWL-punned here as a type - of
+# the first two octets (octetPosition 0,1), read little-endian per prim:Uint16's prim:byteOrder prim:LE;
+# it is the EXACT seed SP1's README names for SP3's categorical reference system (CRS).
+#
+# GROUNDING BRIDGE (runner scope): checks/run-aob-checks.sh loads ONLY the 7 aob DATA TTLs, never the
+# committed SP1 floor (basicttl/primitives/). So this file ECHOES SP1's exact carrier-ladder descent
+# edges (ByteVector -> Octet -> Nibble -> Bit) and types its octets with SP1's prim:Octet - SP1's
+# vocabulary and SP1's exact edges, NOT invented shape - so the grounding claim prim:ByteVector
+# prim:byteDescendsTo+ prim:Bit is verifiable within the aob graph the runner actually loads. The
+# witness digest is a FIXED ILLUSTRATIVE 32-octet vector (the ASCII of "SILMARIL-AOB-SP2-WITNESS-DIGEST!"),
+# corpus-agnostic v1 (Directive 13): it is NOT a real sha256 over live bytes, only enough to keep the
+# ASK suite non-vacuous. Consumed by: SP3 (aob:zSeed z-coordinate seed).
+# =====================================================================================
+
+
+# ---- The HashDigest class (the source_sha256 identity SP2 adds on lift) ------------------------
+
+aob:HashDigest a owl:Class ;
+    rdfs:label "HashDigest" ;
+    rdfs:comment "The source_sha256 atom-identity carrier - the AtomCommon Avro content hash Helios names in its identity record but the papers facet omits, the delta SP2 ADDS on lift (Directive 1). A HashDigest is a prim:ByteVector of EXACTLY 32 prim:Octets (a sha256 is 256 bits = 32 octets), each octet ordinal 0..255, grounding into SP1's prim:Blob/prim:Hash tower and byte-descending through the SP1 carrier ladder (prim:byteDescendsTo+ Octet -> Nibble -> Bit) to the width-1 prim:Bit floor, so an atom's identity is not an opaque literal but a navigable byte carrier all the way to the substrate. It exposes the z-coordinate seed aob:zSeed (a prim:Uint16 of the first two octets, little-endian) that SP1's README names as the seed SP3 lifts into the categorical reference system. Each aob:AOBAtom relates to at most one HashDigest via aob:hasHashDigest; the digest's 32-octet cardinality and 0..255 ordinal bounds are the teeth aob:OctetDescentShape enforces." .
+
+
+# ---- Properties: the digest linkage, its octets, positions, values, and the z-seed -------------
+
+aob:hasHashDigest a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:HashDigest ;
+    rdfs:label "hasHashDigest" ;
+    rdfs:comment "Relates an AOB atom to its source_sha256 identity digest (aob:HashDigest) - the content hash that identifies the atom, lifted from the Helios AtomCommon identity record. The digest byte-descends to the prim:Bit floor, so atom identity is grounded in the byte substrate, not an opaque token." .
+
+aob:digestOctet a owl:ObjectProperty ;
+    rdfs:domain aob:HashDigest ; rdfs:range prim:Octet ;
+    rdfs:label "digestOctet" ;
+    rdfs:comment "Relates a HashDigest to one of its EXACTLY 32 constituent prim:Octets (each ordinal 0..255). The 32-fold cardinality is the sha256 = 256-bit = 32-octet identity; aob:OctetDescentShape counts them and rejects a 31st-missing or 33rd-extra octet, so the digest is a navigable byte carrier rather than an opaque literal." .
+
+aob:octetPosition a owl:DatatypeProperty ;
+    rdfs:domain prim:Octet ; rdfs:range xsd:integer ;
+    rdfs:label "octetPosition" ;
+    rdfs:comment "The 0-based position (0..31) of an octet within its HashDigest byte vector - the ordering coordinate that makes the digest a prim:ByteVector (an ordered sequence) rather than an unordered set, and that selects octetPosition 0,1 as the two octets feeding the little-endian aob:zSeed." .
+
+aob:octetValue a owl:DatatypeProperty ;
+    rdfs:domain prim:Octet ; rdfs:range xsd:integer ;
+    rdfs:label "octetValue" ;
+    rdfs:comment "The illustrative byte value (0..255) carried at one octet position of the witness digest. Corpus-agnostic v1 (Directive 13): these are the ASCII codes of a fixed banner string, NOT a real sha256 over live bytes - only enough to make the z-seed and the 32-octet identity concrete for the non-vacuous ASK." .
+
+aob:zSeed a owl:ObjectProperty ;
+    rdfs:domain aob:HashDigest ; rdfs:range prim:Uint16 ;
+    rdfs:label "zSeed" ;
+    rdfs:comment "The z-coordinate seed of an atom's HashDigest: a prim:Uint16 (the SP1 encoding, OWL-punned as a type) formed from the first two octets (octetPosition 0 and 1) read little-endian per prim:Uint16's prim:byteOrder prim:LE. This is the EXACT seed SP1's README names for SP3, which lifts it into the z-axis of the categorical reference system (CRS); it makes the atom's spatial coordinate a deterministic function of its content hash rather than an arbitrary assignment." .
+
+
+# ---- SP1 grounding bridge: the carrier-ladder descent edges (SP1's exact edges, echoed) --------
+#      The runner does not load basicttl/primitives/physical.ttl, so the ByteVector -> Octet ->
+#      Nibble -> Bit descent edges are echoed here (SP1's exact prim:byteDescendsTo edges, not
+#      invented) so prim:ByteVector prim:byteDescendsTo+ prim:Bit resolves in the aob graph the
+#      runner loads. These are grounding facts INTO SP1, using SP1's vocabulary verbatim.
+prim:ByteVector prim:byteDescendsTo prim:Octet .
+prim:Octet      prim:byteDescendsTo prim:Nibble .
+prim:Nibble     prim:byteDescendsTo prim:Bit .
+
+
+# ---- The z-seed individual (prim:Uint16, OWL-punned as a type) ---------------------------------
+aob:witnessZSeed a prim:Uint16 ;
+    rdfs:label "witnessZSeed (uint16 of digest octets 0,1, little-endian)" ;
+    aob:zSeedValue 18771 .
+
+aob:zSeedValue a owl:DatatypeProperty ;
+    rdfs:domain prim:Uint16 ; rdfs:range xsd:integer ;
+    rdfs:label "zSeedValue" ;
+    rdfs:comment "The little-endian uint16 numeric value of a z-seed, computed as octetValue(position 0) + 256 * octetValue(position 1) per prim:Uint16's prim:byteOrder prim:LE. For the witness digest whose first two octets are 83 and 73 this is 83 + 256*73 = 18771 - the deterministic z-coordinate seed SP3 consumes." .
+
+
+# ---- The ONE lifted witness digest (32 illustrative octets) + its atom linkage ------------------
+
+aob:witnessAnchor aob:hasHashDigest aob:witnessDigest .
+
+aob:witnessDigest a aob:HashDigest, prim:ByteVector ;
+    rdfs:label "witnessDigest (fixed illustrative 32-octet source_sha256 identity)" ;
+    aob:zSeed aob:witnessZSeed ;
+    aob:digestOctet aob:witnessDigestOctet00 ,
+        aob:witnessDigestOctet01 ,
+        aob:witnessDigestOctet02 ,
+        aob:witnessDigestOctet03 ,
+        aob:witnessDigestOctet04 ,
+        aob:witnessDigestOctet05 ,
+        aob:witnessDigestOctet06 ,
+        aob:witnessDigestOctet07 ,
+        aob:witnessDigestOctet08 ,
+        aob:witnessDigestOctet09 ,
+        aob:witnessDigestOctet10 ,
+        aob:witnessDigestOctet11 ,
+        aob:witnessDigestOctet12 ,
+        aob:witnessDigestOctet13 ,
+        aob:witnessDigestOctet14 ,
+        aob:witnessDigestOctet15 ,
+        aob:witnessDigestOctet16 ,
+        aob:witnessDigestOctet17 ,
+        aob:witnessDigestOctet18 ,
+        aob:witnessDigestOctet19 ,
+        aob:witnessDigestOctet20 ,
+        aob:witnessDigestOctet21 ,
+        aob:witnessDigestOctet22 ,
+        aob:witnessDigestOctet23 ,
+        aob:witnessDigestOctet24 ,
+        aob:witnessDigestOctet25 ,
+        aob:witnessDigestOctet26 ,
+        aob:witnessDigestOctet27 ,
+        aob:witnessDigestOctet28 ,
+        aob:witnessDigestOctet29 ,
+        aob:witnessDigestOctet30 ,
+        aob:witnessDigestOctet31 .
+
+aob:witnessDigestOctet00 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 0 ; aob:octetValue 83 .
+aob:witnessDigestOctet01 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 1 ; aob:octetValue 73 .
+aob:witnessDigestOctet02 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 2 ; aob:octetValue 76 .
+aob:witnessDigestOctet03 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 3 ; aob:octetValue 77 .
+aob:witnessDigestOctet04 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 4 ; aob:octetValue 65 .
+aob:witnessDigestOctet05 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 5 ; aob:octetValue 82 .
+aob:witnessDigestOctet06 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 6 ; aob:octetValue 73 .
+aob:witnessDigestOctet07 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 7 ; aob:octetValue 76 .
+aob:witnessDigestOctet08 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 8 ; aob:octetValue 45 .
+aob:witnessDigestOctet09 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 9 ; aob:octetValue 65 .
+aob:witnessDigestOctet10 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 10 ; aob:octetValue 79 .
+aob:witnessDigestOctet11 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 11 ; aob:octetValue 66 .
+aob:witnessDigestOctet12 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 12 ; aob:octetValue 45 .
+aob:witnessDigestOctet13 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 13 ; aob:octetValue 83 .
+aob:witnessDigestOctet14 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 14 ; aob:octetValue 80 .
+aob:witnessDigestOctet15 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 15 ; aob:octetValue 50 .
+aob:witnessDigestOctet16 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 16 ; aob:octetValue 45 .
+aob:witnessDigestOctet17 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 17 ; aob:octetValue 87 .
+aob:witnessDigestOctet18 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 18 ; aob:octetValue 73 .
+aob:witnessDigestOctet19 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 19 ; aob:octetValue 84 .
+aob:witnessDigestOctet20 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 20 ; aob:octetValue 78 .
+aob:witnessDigestOctet21 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 21 ; aob:octetValue 69 .
+aob:witnessDigestOctet22 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 22 ; aob:octetValue 83 .
+aob:witnessDigestOctet23 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 23 ; aob:octetValue 83 .
+aob:witnessDigestOctet24 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 24 ; aob:octetValue 45 .
+aob:witnessDigestOctet25 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 25 ; aob:octetValue 68 .
+aob:witnessDigestOctet26 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 26 ; aob:octetValue 73 .
+aob:witnessDigestOctet27 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 27 ; aob:octetValue 71 .
+aob:witnessDigestOctet28 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 28 ; aob:octetValue 69 .
+aob:witnessDigestOctet29 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 29 ; aob:octetValue 83 .
+aob:witnessDigestOctet30 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 30 ; aob:octetValue 84 .
+aob:witnessDigestOctet31 a prim:Octet ;
+    prim:ordinalMin 0 ; prim:ordinalMax 255 ;
+    aob:octetPosition 31 ; aob:octetValue 33 .

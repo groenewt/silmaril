@@ -1,0 +1,15 @@
+[submodule "forge/base_templates"]
+	path = forge/base_templates
+	url = https://github.com/groenewt/base_templates
+[submodule "forge/base_agents"]
+	path = forge/base_agents
+	url = https://github.com/groenewt/base_agents
+[submodule "forge/base"]
+	path = forge/base
+	url = https://github.com/groenewt/base
+[submodule "forge/example_gippidy_01"]
+	path = forge/example_gippidy_01
+	url = https://github.com/groenewt/example_gippidy_01
+[submodule "external/skills/superpowers"]
+	path = external/skills/superpowers
+	url = https://github.com/groenewt/superpowers_temp

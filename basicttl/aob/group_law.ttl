@@ -1,0 +1,407 @@
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# group_law.ttl — the sealed-group colimit + the LOCAL-sense universal-property tooth (W2 · SP2, Task 8).
+# =====================================================================================
+# LIFTS the group structure of an AOB atom + its companions (Directive 1: lift, do not invent) from two
+# real Helios structures: (1) the PaperSection APEX carrying companion_atoms[] — the cocone — lifted
+# from helios/papers_00_data_src_specs/19_mereology_as_colimit/chapters/07_index_category_anatomy/
+# sections/02_cocone_compatibility_inventory.spec.yaml (entity.type_node: PaperSection; type_urn
+# ...types.papers.silmaril_wave8.paper_section; fields.companion_atoms = [olog_box, decomposition_step,
+# concrete_anchor, yoneda_hom_leg, cheese_trap_immunity, circuit_imprint_tensor] — one section IS a
+# colimit of ~6 companions); and (2) the Replacement arrow lifted from helios/00_src_specs/types/papers/
+# relational/replacement.spec.yaml (an arrow from a deprecated term to its canonical replacement, five
+# fields, grounded cceo:Classification) — the superseded/Replacement witness that is the group INVERSE.
+#
+# The sealed group is a MONOID/GROUP OBJECT whose colimit apex is the atom: the BASE atom IS the group
+# identity (aob:groupIdentity); every companion COMPOSES ONTO it (aob:composesOnto, associative — the
+# cocone legs); RETRACT is the INVERSE (aob:retracts — the Replacement/superseded witness). This is the
+# same colimit shape as SP1's taiji and the unary-law Atlas<->Graph colimit, REUSED one level up, not
+# re-derived (design s2). The apex is ONE atom (aob:colimitApex = the aob:groupIdentity).
+#
+# POLYSEMY (Directive 16, plan MD): the word "colimit" here is the LOCAL / per-primitive glossary sense of
+# the polysemous lexeme — the finite companion-cocone whose UNIVERSAL PROPERTY IS PROVABLE — so the word is
+# EARNED BY A TOOTH (q_colimit_universal, mirroring SP1's per-primitive taiji universality ASK), never a
+# bare assertion. Every companion cocone factors through the apex via a UNIQUE mediating morphism
+# (aob:universalFactor); the group carries an aob:colimitGlossaryScope pinning the LOCAL-sense glossary URN
+# (the seam SP6 consumes), so SP2 references "colimit" THROUGH the SP6 glossary layer, never bare. The
+# CORPUS/artifact sense of the same lexeme is SP9's; SP6 holds both glossary-scoped senses simultaneously.
+#
+# Task 9 (the graduation_target seal state + Praeriehund seal honesty) grows THIS file further; Task 8
+# authors only the group law + the universal-property tooth. Grows the ONE lifted witness (aob:witnessAnchor
+# from meta.ttl) into a witness group with two companion atoms + one retract; zero live-corpus data
+# (corpus-agnostic v1, Directive 13). Consumed by: SP9 (the sealed-group colimit + the group-law inverse
+# aob:retracts = the per-atom instance of the split<->consolidated reversibility). Namespace: aob:.
+# =====================================================================================
+
+
+# ---- The sealed group class (the PaperSection apex + companion_atoms[] cocone, lifted) -----------
+
+aob:SealedGroup a owl:Class ;
+    rdfs:label "SealedGroup" ;
+    rdfs:comment "The sealed group of an AOB atom and its companions — a monoid/group OBJECT whose colimit apex is the atom, lifted from the Helios PaperSection apex carrying companion_atoms[] (helios/papers_00_data_src_specs/.../07_index_category_anatomy/sections/02_cocone_compatibility_inventory.spec.yaml: type_node PaperSection, fields.companion_atoms = [olog_box, decomposition_step, concrete_anchor, yoneda_hom_leg, cheese_trap_immunity, circuit_imprint_tensor] — one section IS a colimit of ~6 companion atom-type instances) and the _aob_* graduation_target seal. Its BASE atom IS the group identity (aob:groupIdentity): each companion COMPOSES ONTO the identity (aob:composesOnto, associative — the cocone legs), and RETRACT is the INVERSE (aob:retracts, the Replacement/superseded witness lifted from helios/00_src_specs/types/papers/relational/replacement.spec.yaml). The colimit apex is ONE atom (aob:colimitApex = the identity). This is the SAME colimit shape as SP1's twin-olog taiji and the unary-law Atlas<->Graph colimit, reused one level up rather than re-derived. The word colimit here is the LOCAL / per-primitive glossary sense of the polysemous lexeme (Directive 16): the finite companion-cocone whose universal property is PROVABLE and hence earned by the q_colimit_universal tooth, referenced through the SP6 glossary layer (aob:colimitGlossaryScope), never bare." .
+
+
+# ---- The group-law object properties (identity / compose / retract / companion / apex) -----------
+
+aob:groupIdentity a owl:ObjectProperty ;
+    rdfs:domain aob:SealedGroup ; rdfs:range aob:AOBAtom ;
+    rdfs:label "groupIdentity" ;
+    rdfs:comment "Relates a sealed group to its BASE atom, which IS the group identity — the neutral element onto which every companion composes (aob:composesOnto) and which equals the colimit apex (aob:colimitApex). Lifted from the PaperSection base whose companion_atoms[] are the cocone legs; the base atom is the identity of the monoid/group object exactly as SP1's taiji base is the colimit apex of its formal<->physical diagram. aob:GroupLawShape enforces that every companion composes onto THIS identity (not onto another companion) and that the identity equals the apex, so the group law is closed and the apex is one atom." .
+
+aob:composesOnto a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:AOBAtom ;
+    rdfs:label "composesOnto" ;
+    rdfs:comment "The associative composition of the sealed group: a companion atom (a cocone leg — a Description, Example, OlogBox, DecompositionStep, CheeseTrapImmunity, CircuitImprintTensor, ...) composes ONTO the group identity (the base atom). Lifted from the PaperSection companion_atoms[] cocone (helios/.../02_cocone_compatibility_inventory.spec.yaml): each companion is a leg of the colimit whose apex is the base atom, so composition targets the identity. aob:GroupLawShape flags any companion that composes onto a NON-identity (e.g. onto another companion) — the Task 8 probe of record — so the associativity/identity law is proven with teeth, not asserted." .
+
+aob:retracts a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:AOBAtom ;
+    rdfs:label "retracts" ;
+    rdfs:comment "The INVERSE of the sealed group: a replacement/superseding atom RETRACTS the atom it replaces, lifted verbatim from the Replacement arrow (helios/00_src_specs/types/papers/relational/replacement.spec.yaml: an arrow from a deprecated term to its canonical replacement, grounded cceo:Classification, populating the ReplacedBy Atlas column). Retract is the group inverse: where aob:composesOnto builds the colimit up (companion -> identity), aob:retracts is the reversible superseding edge (replacement -> deprecated) that SP9 consumes as the per-atom instance of the split<->consolidated reversibility. aob:GroupLawShape enforces that every aob:retracts has a target that is a real aob:AOBAtom (no dangling inverse), so the inverse is well-formed." .
+
+aob:companionAtom a owl:ObjectProperty ;
+    rdfs:domain aob:SealedGroup ; rdfs:range aob:AOBAtom ;
+    rdfs:label "companionAtom" ;
+    rdfs:comment "Relates a sealed group to one of its cocone legs — a companion atom of the base, lifted verbatim from the PaperSection fields.companion_atoms[] list (helios/.../02_cocone_compatibility_inventory.spec.yaml: olog_box, decomposition_step, concrete_anchor, yoneda_hom_leg, cheese_trap_immunity, circuit_imprint_tensor). Each companion composes onto the group identity (aob:composesOnto) and factors through the colimit apex via a unique aob:universalFactor. A group may carry several companion atoms at once; aob:GroupLawShape walks every one, and aob:ColimitUniversalShape requires each to carry its unique mediating morphism onto the apex, so the cocone is a genuine colimit and not a loose bag of legs." .
+
+aob:colimitApex a owl:ObjectProperty ;
+    rdfs:domain aob:SealedGroup ; rdfs:range aob:AOBAtom ;
+    rdfs:label "colimitApex" ;
+    rdfs:comment "Relates a sealed group to its colimit APEX — the ONE atom through which every companion cocone leg factors, which equals the group identity (aob:groupIdentity). The apex is unique: aob:ColimitUniversalShape flags any group carrying two distinct aob:colimitApex values (the Task 8 probe of record), so the colimit is a genuine terminal cocone and not an ambiguous one. This is the LOCAL / per-primitive glossary sense of colimit (Directive 16): the apex whose universal property is earned by the q_colimit_universal tooth (every companion carries a unique aob:universalFactor onto it), referenced through SP6 via aob:colimitGlossaryScope, never bare." .
+
+aob:universalFactor a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:AOBAtom ;
+    rdfs:label "universalFactor" ;
+    rdfs:comment "The UNIQUE mediating morphism of the colimit universal property (the LOCAL / per-primitive glossary sense of colimit, Directive 16): every companion cocone leg factors through the colimit apex via exactly this arrow, mirroring SP1's per-primitive taiji universality ASK one level up. It is what makes the word colimit EARNED BY A TOOTH rather than a bare assertion: aob:ColimitUniversalShape requires that every aob:companionAtom of a group carry an aob:universalFactor onto that group's aob:colimitApex, so the cocone genuinely satisfies the universal property. Domain and range are aob:AOBAtom (companion -> apex, both atoms). The uniqueness/factoring discipline is the tooth SP6 references through the glossary layer as the LOCAL-sense colimit." .
+
+aob:colimitGlossaryScope a owl:ObjectProperty ;
+    rdfs:domain aob:SealedGroup ; rdfs:range prim:URN ;
+    rdfs:label "colimitGlossaryScope" ;
+    rdfs:comment "Pins the sealed group's use of the polysemous word colimit to a LOCAL-sense glossary URN (Directive 16, design s2), so SP2 references colimit THROUGH the SP6 glossary layer and NEVER bare. The value is a prim:URN naming the local / per-primitive glossary sense (urn:silmaril:glossary:local:colimit) — the finite companion-cocone whose universal property is provable (the q_colimit_universal tooth). aob:ColimitUniversalShape flags any sealed group lacking this scope (a bare colimit — the Task 8 probe of record), so the polysemy law is enforced with teeth: the CORPUS/artifact sense of the same lexeme (ObservedProjection(ColimCandidate(D))) is SP9's, and SP6 holds both glossary-scoped senses of the one lexeme simultaneously; this predicate is the SP2 pole of that seam." .
+
+
+# ---- Grow the ONE lifted witness into a sealed group (non-vacuity; corpus-agnostic v1) ------------
+# aob:witnessAnchor (the node atom, declared in meta.ttl, valued in value_colimit.ttl) is the BASE atom =
+# the group identity = the colimit apex. Two companion atoms (aob:witnessDescription a Description leg,
+# aob:witnessExample an Example leg) compose onto it and factor through it via a unique aob:universalFactor.
+# One retract (aob:witnessReplacement) supersedes aob:witnessDescription — the group inverse. Each new atom
+# is a full aob:ConcreteAnchor (typed, atom_family_urn'd, CCO-grounded via the lifted upper anchor, and
+# valued onto the SP1 floor primitive prim:prim_String) so it satisfies the three universal shapes that
+# target aob:AOBAtom (ProgenitorSplitShape, UpperAnchorShape, AtomValueShape) — the SP2 floor stays green.
+
+aob:witnessGroup a aob:SealedGroup ;
+    rdfs:label "witnessGroup" ;
+    rdfs:comment "The ONE lifted witness sealed group (non-vacuity; corpus-agnostic v1, Directive 13): its base atom / group identity / colimit apex is aob:witnessAnchor (the node witness from meta.ttl), its cocone legs are aob:witnessDescription and aob:witnessExample (each composing onto and factoring through the identity), and its glossary scope is the LOCAL-sense colimit URN. It witnesses the full group law + the earned universal-property tooth without binding any live corpus — exactly the litmus discipline SP1 uses to keep its ASK suite non-vacuous." ;
+    aob:groupIdentity aob:witnessAnchor ;
+    aob:colimitApex aob:witnessAnchor ;
+    aob:companionAtom aob:witnessDescription, aob:witnessExample ;
+    aob:colimitGlossaryScope <urn:silmaril:glossary:local:colimit> .
+
+aob:witnessDescription a aob:AOBAtom, aob:ConcreteAnchor ;
+    rdfs:label "witnessDescription" ;
+    rdfs:comment "A Description companion cocone leg of aob:witnessGroup (lifted from the PaperSection companion_atoms[] pattern): it composes onto the base atom aob:witnessAnchor (the group identity) and factors through the colimit apex via a unique aob:universalFactor. As a node atom it carries the minimal full envelope (atom_family_urn, CCO grounding via the lifted upper anchor, and its value onto the SP1 floor primitive prim:prim_String) so it satisfies every universal AOBAtom shape while grounding the group law non-vacuously." ;
+    aob:atomUrn "urn:silmaril:entity#instances.papers.witness.section.description" ;
+    aob:displayName "WitnessDescription" ;
+    aob:layer "papers" ;
+    aob:kindUrn "urn:silmaril:entity#types.prelude.kind_node_instance" ;
+    aob:typeNode "Description" ;
+    aob:typeUrn "urn:silmaril:entity#types.papers.atom" ;
+    aob:grounding "A prose Description companion of the witness section, composing onto the base atom as a cocone leg; the CCO process licenses the grounding of the description as a classification of the base." ;
+    aob:version "0.1.0" ;
+    aob:citation "helios/papers_00_data_src_specs/.../02_cocone_compatibility_inventory.spec.yaml" ;
+    aob:atomFamilyUrn "urn:silmaril:atom-family:node:concrete_anchor" ;
+    aob:ccoGroundingIri "cco:ont00000371" ;
+    aob:patternAnchorUrn aob:anchor_cco_grounding_iri ;
+    aob:aobValue prim:prim_String ;
+    aob:composesOnto aob:witnessAnchor ;
+    aob:universalFactor aob:witnessAnchor .
+
+aob:witnessExample a aob:AOBAtom, aob:ConcreteAnchor ;
+    rdfs:label "witnessExample" ;
+    rdfs:comment "An Example companion cocone leg of aob:witnessGroup (lifted from the PaperSection companion_atoms[] pattern): it composes onto the base atom aob:witnessAnchor (the group identity) and factors through the colimit apex via a unique aob:universalFactor. It carries the minimal full node envelope (atom_family_urn, CCO grounding via the lifted upper anchor, value onto prim:prim_String) so it satisfies every universal AOBAtom shape; it is the companion the Task 8 probe-of-record (a) rewires to compose onto a non-identity to prove aob:GroupLawShape bites." ;
+    aob:atomUrn "urn:silmaril:entity#instances.papers.witness.section.example" ;
+    aob:displayName "WitnessExample" ;
+    aob:layer "papers" ;
+    aob:kindUrn "urn:silmaril:entity#types.prelude.kind_node_instance" ;
+    aob:typeNode "Example" ;
+    aob:typeUrn "urn:silmaril:entity#types.papers.atom" ;
+    aob:grounding "A concrete Example companion of the witness section, composing onto the base atom as a cocone leg; the CCO process licenses the grounding of the example as a classification of the base." ;
+    aob:version "0.1.0" ;
+    aob:citation "helios/papers_00_data_src_specs/.../02_cocone_compatibility_inventory.spec.yaml" ;
+    aob:atomFamilyUrn "urn:silmaril:atom-family:node:concrete_anchor" ;
+    aob:ccoGroundingIri "cco:ont00000473" ;
+    aob:patternAnchorUrn aob:anchor_cco_grounding_iri ;
+    aob:aobValue prim:prim_String ;
+    aob:composesOnto aob:witnessAnchor ;
+    aob:universalFactor aob:witnessAnchor .
+
+aob:witnessReplacement a aob:AOBAtom, aob:ConcreteAnchor ;
+    rdfs:label "witnessReplacement" ;
+    rdfs:comment "The Replacement/superseding witness (lifted verbatim from helios/00_src_specs/types/papers/relational/replacement.spec.yaml): it RETRACTS aob:witnessDescription — the group INVERSE, the reversible superseding edge (replacement -> deprecated) grounded as a cceo:Classification act. As a node atom it carries the minimal full envelope (atom_family_urn, CCO grounding via the lifted upper anchor, value onto prim:prim_String) so it satisfies every universal AOBAtom shape while witnessing that aob:retracts has a real aob:AOBAtom target (no dangling inverse) — the group law's inverse leg SP9 consumes as split<->consolidated reversibility." ;
+    aob:atomUrn "urn:silmaril:entity#instances.papers.witness.replacement" ;
+    aob:displayName "WitnessReplacement" ;
+    aob:layer "papers" ;
+    aob:kindUrn "urn:silmaril:entity#types.prelude.kind_node_instance" ;
+    aob:typeNode "Replacement" ;
+    aob:typeUrn "urn:silmaril:entity#types.papers.atom" ;
+    aob:grounding "An arrow from a deprecated atom to its canonical replacement, superseding aob:witnessDescription; the cceo:Classification process grounds the act of replacement as a classification (Replacement spec, ReplacedBy column)." ;
+    aob:version "0.1.0" ;
+    aob:citation "helios/00_src_specs/types/papers/relational/replacement.spec.yaml" ;
+    aob:atomFamilyUrn "urn:silmaril:atom-family:node:concrete_anchor" ;
+    aob:ccoGroundingIri "cco:ont00000556" ;
+    aob:patternAnchorUrn aob:anchor_cco_grounding_iri ;
+    aob:aobValue prim:prim_String ;
+    aob:retracts aob:witnessDescription .
+
+
+# =====================================================================================
+# Task 9 — the graduation_target seal state + Praeriehund seal honesty (grows group_law.ttl).
+# =====================================================================================
+# LIFTS the seal discipline (Directive 1: lift, do not invent) from the _aob_* envelope coordinate
+# swe_as_dag_accounting.graduation_target (helios/srcy/appendices/39_appendix_e_research_source_mirror/
+# sections/specs/glue/fa-to-u.linkml.yaml + .../specs/engine/exec.{local,slurm,airflow}.yaml:
+# swe_as_dag_accounting.graduation_target -> $ENV_DIR_SIL_BA_WIP/specs/... — the target an atom graduates
+# INTO) and the staged / gated lanes visible across the srcy appendices (37_appendix_c: "the staged lanes
+# do not instantiate"; 36_appendix_b: "gated invariant preservation", "gated promotion"). An atom's seal
+# state is one of aob:staged (ungraduated: not yet promoted through its aob:graduationTarget, its
+# invariants not yet gate-preserved) or aob:gated (graduated: promoted, invariant-preserving). The
+# Praeriehund HONESTY SPINE (praeriehund-demokratie-der-kategorien.md; design s2): a STAGED atom is NOT
+# YET conformant-green and therefore MUST carry silm:isProvisional true — an ungraduated atom asserted
+# green with no provisional flag is exactly the dodge the discipline forbids. content_sha256-at-graduation
+# is itself an honest-gap coordinate (aob:contentShaAtGraduation, the property marked silm:isProvisional
+# true), DECLARED not COMPUTED: design s6 non-goal makes clear SP2 models the seal STATE + the honest-gap
+# discipline, not the sealing/graduation RUNTIME that would compute a content hash at promotion time.
+# =====================================================================================
+
+
+# ---- The seal-state kind + its two states (staged | gated), lifted from the graduation discipline ----
+
+aob:SealState a owl:Class ;
+    rdfs:label "SealState" ;
+    rdfs:comment "The graduation seal state of an AOB atom, lifted from the Helios seal discipline (the _aob_* coordinate swe_as_dag_accounting.graduation_target in helios/srcy/appendices/39_appendix_e_research_source_mirror/.../specs/glue/fa-to-u.linkml.yaml and the staged / gated lanes named across the srcy appendices — 'the staged lanes do not instantiate', 'gated invariant preservation', 'gated promotion'). It has exactly two members: aob:staged (an ungraduated atom that has not yet been promoted through its aob:graduationTarget and whose invariants are not yet gate-preserved) and aob:gated (a graduated atom that has been promoted and whose invariants the gate preserves). The seal state is the honesty spine of the meta-ontology: a staged atom is NOT counted conformant-green and MUST carry silm:isProvisional true, so the aob:SealHonestyShape can flag any ungraduated atom asserted green without the provisional flag. SP2 models the seal STATE and the honest-gap discipline only; the sealing/graduation RUNTIME that would actually promote a staged atom (and compute its content hash at graduation) is a deferred later render/CI concern (design s6 non-goal)." .
+
+aob:staged a aob:SealState ;
+    rdfs:label "staged" ;
+    rdfs:comment "The STAGED (ungraduated) seal state, lifted from the srcy 'staged lanes' discipline (37_appendix_c: the staged lanes do not instantiate; 38_appendix_d: relation candidates staged for schema normalization before merge): an atom that has NOT yet been promoted through its aob:graduationTarget and whose invariants are not yet gate-preserved. A staged atom is not conformant-green — the Praeriehund honesty spine requires it to carry silm:isProvisional true (aob:SealHonestyShape flags any staged atom lacking the flag)." .
+
+aob:gated a aob:SealState ;
+    rdfs:label "gated" ;
+    rdfs:comment "The GATED (graduated) seal state, lifted from the srcy 'gated promotion' discipline (36_appendix_b: gated invariant preservation, gated promotion): an atom that HAS been promoted through its aob:graduationTarget and whose invariants the gate preserves. A gated atom is exempt from the staged-provisional obligation (it is not staged), so aob:SealHonestyShape does not flag it; the witness base atom aob:witnessAnchor carries aob:sealState aob:gated." .
+
+
+# ---- The seal-state properties (sealState / graduationTarget / contentShaAtGraduation) --------------
+
+aob:sealState a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:SealState ;
+    rdfs:label "sealState" ;
+    rdfs:comment "Relates an AOB atom to its graduation seal state (aob:staged | aob:gated), lifted from the Helios staged/gated graduation discipline. The value discriminates an ungraduated atom (aob:staged — not yet promoted through aob:graduationTarget, invariants not yet gate-preserved) from a graduated one (aob:gated — promoted, invariant-preserving). aob:SealHonestyShape (targeting aob:AOBAtom) enforces the honesty spine: any atom whose aob:sealState is aob:staged MUST also carry silm:isProvisional true, so a staged atom can never be counted conformant-green without its honest provisional flag — the Task 9 probe of record removes that flag and the shape bites (conforms=True->False)." .
+
+aob:graduationTarget a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    rdfs:label "graduationTarget" ;
+    rdfs:comment "The target an AOB atom graduates INTO, lifted verbatim from the _aob_* envelope coordinate swe_as_dag_accounting.graduation_target (helios/srcy/appendices/39_appendix_e_research_source_mirror/sections/specs/glue/fa-to-u.linkml.yaml and .../specs/engine/exec.{local,slurm,airflow}.yaml, where graduation_target resolves to $ENV_DIR_SIL_BA_WIP/specs/...). Carried full-lexically as a string coordinate (the promotion destination path/URN), it records WHERE a staged atom is promoted to when it graduates from aob:staged to aob:gated. SP2 records the coordinate only; the graduation runtime that performs the promotion is a deferred later concern (design s6 non-goal)." .
+
+aob:contentShaAtGraduation a owl:DatatypeProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range xsd:string ;
+    silm:isProvisional true ;
+    rdfs:label "contentShaAtGraduation" ;
+    rdfs:comment "The content_sha256 an AOB atom carries at the moment of graduation — an HONEST-GAP coordinate (Praeriehund honesty): the REAL hash is NOT COMPUTED this iteration (computing a content hash at promotion time requires the sealing/graduation RUNTIME that design s6 defers as a non-goal), so the property itself is marked silm:isProvisional true. It is nonetheless REQUIRED as graduation EVIDENCE on any atom that self-declares aob:sealState aob:gated (paired with aob:graduationTarget): a gated atom must name WHERE it graduated to AND carry this content-sha coordinate, so a bare self-declared gated atom with no graduation evidence cannot be counted conformant-green (aob:SealHonestyShape enforces both on gated atoms). To keep the gap honest the gated witness carries an explicit DEFERRAL SENTINEL string (urn:silmaril:content-sha256:deferred-until-w5-graduation-gate) — a value that is transparently NOT a hash, so no fabricated 64-hex digest is ever mistaken for a real graduation hash. An honest declared gap that is still load-bearing evidence, not a dodge and not a force-fit." .
+
+
+# ---- Grow the witnesses with seal state (a gated base atom + a staged, honestly-provisional atom) ----
+# aob:witnessAnchor (the graduated base atom = group identity = colimit apex) carries aob:sealState
+# aob:gated: it is promoted, invariant-preserving, and needs no provisional flag. aob:witnessStaged is the
+# non-vacuity case: a STAGED (ungraduated) node atom that honestly carries silm:isProvisional true — the
+# staged atom the q_seal_honesty tooth requires to exist and the Task 9 probe of record strips the flag
+# from. Like the other companions it carries the minimal full node envelope (atom_family_urn, CCO grounding
+# via the lifted upper anchor, value onto prim:prim_String) so it satisfies every universal AOBAtom shape
+# (ProgenitorSplitShape, UpperAnchorShape, AtomValueShape) while grounding the seal-honesty law non-vacuously.
+
+aob:witnessAnchor aob:sealState aob:gated ;
+    aob:graduationTarget "urn:silmaril:graduation-target:sil-ba-wip:specs/glue/fa-to-u.linkml.yaml" ;
+    aob:contentShaAtGraduation "urn:silmaril:content-sha256:deferred-until-w5-graduation-gate" .
+
+aob:witnessStaged a aob:AOBAtom, aob:ConcreteAnchor ;
+    rdfs:label "witnessStaged" ;
+    rdfs:comment "The ONE lifted STAGED witness atom (non-vacuity; corpus-agnostic v1, Directive 13): an ungraduated node atom carrying aob:sealState aob:staged and, honestly, silm:isProvisional true — the Praeriehund honesty spine made concrete. It is the staged atom the q_seal_honesty tooth requires to exist (its non-vacuity anchor) and the atom the Task 9 probe of record strips the provisional flag from to prove aob:SealHonestyShape bites (conforms=True->False). As a node atom it carries the minimal full envelope (atom_family_urn, CCO grounding via the lifted upper anchor, value onto the SP1 floor primitive prim:prim_String) so it satisfies every universal AOBAtom shape while it is still staged; its aob:graduationTarget records where it would graduate to, and its content_sha256-at-graduation stays an unpopulated honest gap." ;
+    aob:atomUrn "urn:silmaril:entity#instances.papers.witness.staged" ;
+    aob:displayName "WitnessStaged" ;
+    aob:layer "papers" ;
+    aob:kindUrn "urn:silmaril:entity#types.prelude.kind_node_instance" ;
+    aob:typeNode "StagedAtom" ;
+    aob:typeUrn "urn:silmaril:entity#types.papers.atom" ;
+    aob:grounding "An ungraduated node atom awaiting promotion through its graduation target; the CCO process licenses the grounding of the atom as a staged classification not yet gate-preserved." ;
+    aob:version "0.1.0" ;
+    aob:citation "helios/srcy/appendices/39_appendix_e_research_source_mirror/.../specs/glue/fa-to-u.linkml.yaml" ;
+    aob:atomFamilyUrn "urn:silmaril:atom-family:node:concrete_anchor" ;
+    aob:ccoGroundingIri "cco:ont00000648" ;
+    aob:patternAnchorUrn aob:anchor_cco_grounding_iri ;
+    aob:aobValue prim:prim_String ;
+    aob:sealState aob:staged ;
+    aob:graduationTarget "urn:silmaril:graduation-target:sil-ba-wip:specs/glue/fa-to-u.linkml.yaml" ;
+    silm:isProvisional true .
+
+
+# =====================================================================================
+# Defect-1 hardening — the GENUINE finite-colimit universal property (test cocone + mediating map).
+# =====================================================================================
+# The bare aob:universalFactor edge (companion -> apex) is NOT the universal property: it is identical
+# in content to aob:composesOnto (companion -> apex) and witnesses nothing beyond existence. A genuine
+# colimit apex C over the companion diagram D satisfies: for ANY competing cocone (a TEST vertex T with
+# a compatible leg f_c : c -> T from every companion c), there exists a UNIQUE mediating morphism
+# u : C -> T such that u . iota_c = f_c for every leg (the triangle commutes; iota_c = the companion's
+# injection into the apex, i.e. aob:composesOnto). This block models one such test cocone and its
+# mediating morphism so the universal property is EARNED by teeth (aob:ColimitUniversalShape:
+# EXISTENCE of u, UNIQUENESS of u, and FACTORING of every leg), not asserted. The word "colimit" thus
+# remains the LOCAL / per-primitive glossary sense (Directive 16) whose universal property is provable,
+# referenced through SP6 via aob:colimitGlossaryScope, never bare.
+# =====================================================================================
+
+aob:TestCocone a owl:Class ;
+    rdfs:label "TestCocone" ;
+    rdfs:comment "A competing cocone over a sealed group's companion diagram — the arbitrary test object T of the colimit universal property (the LOCAL / per-primitive glossary sense of colimit, Directive 16). A TestCocone node IS its own test vertex T: via aob:testsGroup it names the sealed group whose colimit apex it competes with; via aob:coconeLeg it carries a compatible leg (aob:CoconeLeg) from EACH companion of that group into T; and via aob:mediatedBy it names the UNIQUE mediating morphism (aob:MediatingMorphism) u : apex -> T that the colimit's universal property must supply. The universal property is EARNED, not asserted: aob:ColimitUniversalShape flags a test cocone with no mediating morphism from the apex (existence fails), a test cocone with two distinct mediating morphisms (uniqueness fails), and a mediating morphism whose target differs from a cocone leg's target so the factoring triangle u . iota_c = f_c does not commute (factoring fails). Modelling at least one genuine test cocone is what makes the sealed-group apex a real colimit rather than a decorative one; the witness aob:witnessTestCocone inhabits it so the q_colimit_universal tooth is non-vacuous." .
+
+aob:MediatingMorphism a owl:Class ;
+    rdfs:label "MediatingMorphism" ;
+    rdfs:comment "The UNIQUE mediating morphism u : apex -> T of the colimit universal property (Directive 16, LOCAL glossary sense of colimit): for a competing test cocone (aob:TestCocone T over a sealed group's companion diagram), u is the single arrow from the group's colimit apex to T through which every companion's injection factors, i.e. u . iota_c = f_c for each companion leg. It carries aob:medFrom (the apex it departs from — the group's aob:colimitApex) and aob:medTarget (the test vertex T it arrives at). Its defining discipline is enforced by aob:ColimitUniversalShape: it must EXIST for every test cocone (from the apex to that cocone), be UNIQUE (at most one mediating morphism per test cocone — the functional/maxCount-1 tooth), and FACTOR every leg (its aob:medTarget must equal each leg's aob:legTarget, so the mediating triangle commutes). A second mediating morphism, a missing one, or one whose target does not match the legs each makes aob:ColimitUniversalShape bite (conforms=True->False), so the universal property is proven with teeth rather than asserted. The witness aob:witnessMediating inhabits it non-vacuously." .
+
+aob:CoconeLeg a owl:Class ;
+    rdfs:label "CoconeLeg" ;
+    rdfs:comment "A reified compatible leg f_c : c -> T of a competing test cocone (aob:TestCocone T) over a sealed group's companion diagram — one leg per companion c, the data a colimit's universal property quantifies over. It carries aob:legFrom (the companion atom c the leg departs from — the same companion that aob:composesOnto the group identity / injects into the apex) and aob:legTarget (the test vertex T the leg arrives at). Reifying the leg as its own node (rather than a bare edge) is what lets aob:ColimitUniversalShape check FACTORING with teeth: the mediating morphism u : apex -> T must have aob:medTarget equal to every leg's aob:legTarget, so the triangle u . iota_c = f_c commutes; a leg whose target the mediating morphism fails to reproduce makes the factoring tooth bite (conforms=True->False). The witnesses aob:witnessLegDesc and aob:witnessLegEx are the two compatible legs of aob:witnessTestCocone, one from each companion of aob:witnessGroup." .
+
+aob:testsGroup a owl:ObjectProperty ;
+    rdfs:domain aob:TestCocone ; rdfs:range aob:SealedGroup ;
+    rdfs:label "testsGroup" ;
+    rdfs:comment "Relates a competing test cocone (aob:TestCocone) to the sealed group whose colimit apex it competes with — the sealed group over whose companion diagram the test cocone is a competing cocone. aob:ColimitUniversalShape walks, for each sealed group, the test cocones that aob:testsGroup it, and requires each to be mediated by a unique factoring morphism from the group's aob:colimitApex; so this edge is what binds the universal-property teeth to the group under test." .
+
+aob:coconeLeg a owl:ObjectProperty ;
+    rdfs:domain aob:TestCocone ; rdfs:range aob:CoconeLeg ;
+    rdfs:label "coconeLeg" ;
+    rdfs:comment "Relates a competing test cocone (aob:TestCocone) to one of its reified compatible legs (aob:CoconeLeg) — the leg f_c : c -> T from a companion c into the test vertex T. A test cocone carries one leg per companion of the group it tests; aob:ColimitUniversalShape reads each leg's aob:legTarget and requires the mediating morphism's aob:medTarget to equal it, so the factoring triangle commutes for every leg." .
+
+aob:legFrom a owl:ObjectProperty ;
+    rdfs:domain aob:CoconeLeg ; rdfs:range aob:AOBAtom ;
+    rdfs:label "legFrom" ;
+    rdfs:comment "The companion atom c a reified cocone leg (aob:CoconeLeg) departs from — the domain of the compatible leg f_c : c -> T. It is the same companion that aob:composesOnto the sealed group's identity (injects into the apex, iota_c), so the mediating morphism u : apex -> T composed with iota_c must reproduce this leg. Lifted so the universal property genuinely quantifies over each companion of the diagram, not a bare apex reference." .
+
+aob:legTarget a owl:ObjectProperty ;
+    rdfs:domain aob:CoconeLeg ; rdfs:range aob:TestCocone ;
+    rdfs:label "legTarget" ;
+    rdfs:comment "The test vertex T a reified cocone leg (aob:CoconeLeg) arrives at — the codomain of the compatible leg f_c : c -> T. The test cocone node IS its own test vertex, so a leg's aob:legTarget is the aob:TestCocone that carries it. FACTORING requires the mediating morphism's aob:medTarget to equal this value for every leg (u . iota_c = f_c commutes); aob:ColimitUniversalShape flags any leg whose target the mediating morphism fails to reproduce (conforms=True->False), which is the non-factoring probe of record." .
+
+aob:mediatedBy a owl:ObjectProperty ;
+    rdfs:domain aob:TestCocone ; rdfs:range aob:MediatingMorphism ;
+    rdfs:label "mediatedBy" ;
+    rdfs:comment "Relates a competing test cocone (aob:TestCocone) to THE mediating morphism (aob:MediatingMorphism) u : apex -> T the colimit universal property supplies for it. This edge is the load-bearing carrier of both the EXISTENCE tooth (a test cocone with no aob:mediatedBy from the apex fails) and the UNIQUENESS tooth (a test cocone with two distinct aob:mediatedBy values fails — the functional / maxCount-1 discipline: at most one mediating morphism per test cocone). aob:ColimitUniversalShape enforces both; a missing mediating morphism or a second, contradictory one each makes it bite (conforms=True->False)." .
+
+aob:medFrom a owl:ObjectProperty ;
+    rdfs:domain aob:MediatingMorphism ; rdfs:range aob:AOBAtom ;
+    rdfs:label "medFrom" ;
+    rdfs:comment "The apex a mediating morphism (aob:MediatingMorphism) departs from — the domain of u : apex -> T, which must be the sealed group's aob:colimitApex (the group identity / colimit object). aob:ColimitUniversalShape's existence tooth requires, for each test cocone of a group, a mediating morphism whose aob:medFrom is exactly that group's apex; a mediating morphism not rooted at the apex does not witness the universal property." .
+
+aob:medTarget a owl:ObjectProperty ;
+    rdfs:domain aob:MediatingMorphism ; rdfs:range aob:TestCocone ;
+    rdfs:label "medTarget" ;
+    rdfs:comment "The test vertex T a mediating morphism (aob:MediatingMorphism) arrives at — the codomain of u : apex -> T. FACTORING requires this to equal every cocone leg's aob:legTarget of the mediated test cocone, so the triangle u . iota_c = f_c commutes for each companion; a mediating morphism whose aob:medTarget differs from a leg's target does NOT factor the cocone and makes aob:ColimitUniversalShape bite (conforms=True->False) — the non-factoring probe of record." .
+
+
+# ---- The ONE lifted witness test cocone + its mediating morphism (non-vacuity; corpus-agnostic v1) ----
+# aob:witnessTestCocone is a competing cocone over aob:witnessGroup's companion diagram (the two legs
+# aob:witnessDescription and aob:witnessExample). Its test vertex is the cocone node itself. Each companion
+# has a compatible leg into it (aob:witnessLegDesc / aob:witnessLegEx). The UNIQUE mediating morphism
+# aob:witnessMediating goes from the apex aob:witnessAnchor to the test vertex, and its aob:medTarget equals
+# both legs' aob:legTarget (the cocone), so the factoring triangle commutes: existence + uniqueness +
+# factoring all hold, and q_colimit_universal + aob:ColimitUniversalShape are non-vacuous and biting.
+
+aob:witnessTestCocone a aob:TestCocone ;
+    rdfs:label "witnessTestCocone" ;
+    rdfs:comment "The ONE lifted witness test cocone (non-vacuity; corpus-agnostic v1, Directive 13): the arbitrary competing cocone T over aob:witnessGroup's companion diagram that makes the colimit universal property biting rather than decorative. It aob:testsGroup aob:witnessGroup, carries one compatible aob:coconeLeg per companion (aob:witnessLegDesc from aob:witnessDescription, aob:witnessLegEx from aob:witnessExample) into its own test vertex, and is aob:mediatedBy the unique mediating morphism aob:witnessMediating. Without this inhabitant the R1 non-vacuity clause (7) would fire on aob:witnessGroup; with it, existence + uniqueness + factoring of the mediating map are all genuinely exercised, so aob:ColimitUniversalShape and q_colimit_universal are non-vacuous and the word colimit is unconditionally earned (Directive 16)." ;
+    aob:testsGroup aob:witnessGroup ;
+    aob:coconeLeg aob:witnessLegDesc , aob:witnessLegEx ;
+    aob:mediatedBy aob:witnessMediating .
+
+aob:witnessLegDesc a aob:CoconeLeg ;
+    rdfs:label "witnessLegDesc" ;
+    rdfs:comment "The reified compatible leg f_Description : aob:witnessDescription -> aob:witnessTestCocone of the witness test cocone — one of the two legs the colimit universal property quantifies over. Its aob:legFrom is the companion aob:witnessDescription (the same companion that aob:composesOnto the group identity, i.e. injects into the apex as iota_Description) and its aob:legTarget is the test vertex aob:witnessTestCocone. It is what the R1 non-degeneracy clause (9) requires to exist for the Description companion, and the leg whose aob:legTarget the mediating morphism aob:witnessMediating must reproduce (aob:medTarget = aob:legTarget) so the factoring triangle u . iota_Description = f_Description commutes; perturbing its target makes the FACTORING tooth bite." ;
+    aob:legFrom aob:witnessDescription ;
+    aob:legTarget aob:witnessTestCocone .
+
+aob:witnessLegEx a aob:CoconeLeg ;
+    rdfs:label "witnessLegEx" ;
+    rdfs:comment "The reified compatible leg f_Example : aob:witnessExample -> aob:witnessTestCocone of the witness test cocone — the second of the two legs the colimit universal property quantifies over. Its aob:legFrom is the companion aob:witnessExample (which aob:composesOnto the group identity, injecting into the apex as iota_Example) and its aob:legTarget is the test vertex aob:witnessTestCocone. It is what the R1 non-degeneracy clause (9) requires to exist for the Example companion, and the leg whose aob:legTarget the mediating morphism aob:witnessMediating must reproduce (aob:medTarget = aob:legTarget) so the factoring triangle u . iota_Example = f_Example commutes; together with aob:witnessLegDesc it makes the test cocone a full competitor with one leg per companion." ;
+    aob:legFrom aob:witnessExample ;
+    aob:legTarget aob:witnessTestCocone .
+
+aob:witnessMediating a aob:MediatingMorphism ;
+    rdfs:label "witnessMediating" ;
+    rdfs:comment "The UNIQUE mediating morphism u : apex -> vertex of the witness test cocone — the single arrow the colimit universal property supplies from aob:witnessGroup's colimit apex (aob:witnessAnchor, via aob:medFrom) to the test vertex aob:witnessTestCocone (via aob:medTarget) through which every companion's injection factors. It is the sole aob:mediatedBy of aob:witnessTestCocone, so it satisfies EXISTENCE (clause 4) and UNIQUENESS (clause 5, maxCount 1), and its aob:medTarget equals both legs' aob:legTarget so it satisfies FACTORING (clause 6): the triangles u . iota_c = f_c commute for each companion c. A second mediating morphism (uniqueness probe) or a mismatched aob:medTarget (non-factoring probe) each makes aob:ColimitUniversalShape bite, so this individual is the load-bearing witness that the universal property holds non-vacuously." ;
+    aob:medFrom aob:witnessAnchor ;
+    aob:medTarget aob:witnessTestCocone .
+
+
+# =====================================================================================
+# Defect-2 hardening — the ASSOCIATIVITY of the sealed-group composition (reified composite operation).
+# =====================================================================================
+# aob:composesOnto witnesses that a companion is absorbed into the identity, but associativity of the
+# group operation was never testable from it. This block models the group operation as a reified
+# composite (aob:Composition: compLeft x compRight -> compResult) so the associativity law
+# (a . b) . c == a . (b . c) is a checkable graph fact. The witness supplies a small associative table
+# on the group elements (identity aob:witnessAnchor = e, and the three companions), so both bracketings
+# of the triple (aob:witnessDescription, aob:witnessExample, aob:witnessReplacement) evaluate equal.
+# aob:GroupAssociativityShape flags any triple whose two bracketings disagree (conforms=True->False):
+# the non-associative-triple probe of record. The retract INVERSE genuineness (a self-retract, or a
+# retract that does not undo a real composition) is enforced by aob:GroupLawShape, not here.
+# =====================================================================================
+
+aob:Composition a owl:Class ;
+    rdfs:label "Composition" ;
+    rdfs:comment "A reified application of the sealed group's binary composition operation: aob:compLeft composed with aob:compRight yields aob:compResult, all three AOB atoms (group elements). Reifying the operation as its own node — rather than leaving aob:composesOnto as a bare companion->identity edge — is what makes the ASSOCIATIVITY law testable: (a . b) . c must equal a . (b . c). aob:GroupAssociativityShape walks the composition table, forms both bracketings of a triple (compose a,b then that result with c; compose b,c then a with that result), and flags any triple whose two bracketing results disagree (conforms=True->False) — the non-associative-triple probe of record. The witness compositions supply a small associative table on the identity aob:witnessAnchor and the three companions so both bracketings of (witnessDescription, witnessExample, witnessReplacement) evaluate equal, keeping the associativity tooth non-vacuous while proving it bites the moment a result is perturbed." .
+
+aob:compLeft a owl:ObjectProperty ;
+    rdfs:domain aob:Composition ; rdfs:range aob:AOBAtom ;
+    rdfs:label "compLeft" ;
+    rdfs:comment "The left operand of a reified sealed-group composition (aob:Composition): the first group element in aob:compLeft composed with aob:compRight yielding aob:compResult. Together with aob:compRight and aob:compResult it records one row of the group's composition table, over which aob:GroupAssociativityShape checks (a . b) . c == a . (b . c)." .
+
+aob:compRight a owl:ObjectProperty ;
+    rdfs:domain aob:Composition ; rdfs:range aob:AOBAtom ;
+    rdfs:label "compRight" ;
+    rdfs:comment "The right operand of a reified sealed-group composition (aob:Composition): the second group element in aob:compLeft composed with aob:compRight yielding aob:compResult. Together with aob:compLeft and aob:compResult it records one row of the group's composition table, over which aob:GroupAssociativityShape checks associativity." .
+
+aob:compResult a owl:ObjectProperty ;
+    rdfs:domain aob:Composition ; rdfs:range aob:AOBAtom ;
+    rdfs:label "compResult" ;
+    rdfs:comment "The result of a reified sealed-group composition (aob:Composition): the group element aob:compLeft composed with aob:compRight evaluates to. aob:GroupAssociativityShape reads the results of the two bracketings of a triple ((a . b) . c and a . (b . c)) and flags any triple whose two results disagree (conforms=True->False), so a single perturbed aob:compResult breaks associativity with teeth." .
+
+
+# ---- The ONE lifted associative composition table for the triple (a,b,c) (non-vacuity) ----------------
+# Group elements: e = aob:witnessAnchor (identity), a = aob:witnessDescription, b = aob:witnessExample,
+# c = aob:witnessReplacement. The table below is the constant-to-identity operation restricted to the
+# rows the associativity check needs for the triple (a,b,c): a.b = e, e.c = e, b.c = e, a.e = e. Then
+# (a.b).c = e.c = e and a.(b.c) = a.e = e, so both bracketings agree — an associative witness. Perturbing
+# any single aob:compResult (the probe of record) makes the two bracketings disagree and the tooth bite.
+
+aob:comp_ab a aob:Composition ;      # a . b = e
+    rdfs:label "comp_ab" ;
+    rdfs:comment "The reified group-composition row a . b = e over aob:witnessGroup's elements: aob:compLeft a = aob:witnessDescription composed with aob:compRight b = aob:witnessExample yields aob:compResult e = aob:witnessAnchor (the identity). It is the inner product of the LEFT bracketing (a . b) . c that aob:GroupAssociativityShape forms; supplying it (rather than leaving aob:composesOnto untested) is what makes associativity a checkable graph fact. Perturbing its aob:compResult is the probe that drives (a . b) . c away from a . (b . c) so the associativity tooth bites (conforms=True->False)." ;
+    aob:compLeft aob:witnessDescription ; aob:compRight aob:witnessExample ; aob:compResult aob:witnessAnchor .
+
+aob:comp_ab_c a aob:Composition ;    # (a.b) . c = e . c = e
+    rdfs:label "comp_ab_c" ;
+    rdfs:comment "The reified group-composition row (a . b) . c = e . c = e over aob:witnessGroup's elements: aob:compLeft = the result of a . b (e = aob:witnessAnchor) composed with aob:compRight c = aob:witnessReplacement yields aob:compResult e = aob:witnessAnchor. It is the OUTER step of the LEFT bracketing (a . b) . c that aob:GroupAssociativityShape reads as ?lhsr; together with aob:comp_ab it evaluates the left association of the triple (a,b,c) to the identity e, which must equal the right bracketing a . (b . c) or the associativity tooth bites." ;
+    aob:compLeft aob:witnessAnchor ; aob:compRight aob:witnessReplacement ; aob:compResult aob:witnessAnchor .
+
+aob:comp_bc a aob:Composition ;      # b . c = e
+    rdfs:label "comp_bc" ;
+    rdfs:comment "The reified group-composition row b . c = e over aob:witnessGroup's elements: aob:compLeft b = aob:witnessExample composed with aob:compRight c = aob:witnessReplacement yields aob:compResult e = aob:witnessAnchor (the identity). It is the inner product of the RIGHT bracketing a . (b . c) that aob:GroupAssociativityShape forms; together with aob:comp_a_bc it evaluates the right association of the triple (a,b,c). Perturbing its aob:compResult breaks the equality of the two bracketings so the associativity tooth bites (conforms=True->False)." ;
+    aob:compLeft aob:witnessExample ; aob:compRight aob:witnessReplacement ; aob:compResult aob:witnessAnchor .
+
+aob:comp_a_bc a aob:Composition ;    # a . (b.c) = a . e = e
+    rdfs:label "comp_a_bc" ;
+    rdfs:comment "The reified group-composition row a . (b . c) = a . e = e over aob:witnessGroup's elements: aob:compLeft a = aob:witnessDescription composed with aob:compRight = the result of b . c (e = aob:witnessAnchor) yields aob:compResult e = aob:witnessAnchor. It is the OUTER step of the RIGHT bracketing a . (b . c) that aob:GroupAssociativityShape reads as ?rhsr; together with aob:comp_bc it evaluates the right association of the triple (a,b,c) to the identity e, matching the left bracketing (a . b) . c so the witness table is associative. Changing its aob:compResult to aob:witnessDescription is the probe of record that flips q_group_associativity True->False." ;
+    aob:compLeft aob:witnessDescription ; aob:compRight aob:witnessAnchor ; aob:compResult aob:witnessAnchor .
