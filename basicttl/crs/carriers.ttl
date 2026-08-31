@@ -1,0 +1,155 @@
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# carriers.ttl — the disjoint Atlas/Graph byte carriers of the CRS floor (W2 · SP3, Task T2).
+# =====================================================================================
+# LIFTED (Directive 1: lift, do not invent) from the Helios carrier source
+# helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex
+# (§"Disjoint Carriers" + Def. "Project-authored five-factor Helios carrier"). The whitepaper
+# constructs, over the SP1 byte floor:
+#     Oct       = {0..255}                 -- SP1 prim:Octet (ordinal 0..255)
+#     RGB       = {R,G,B}                  -- SP1 RGB code space (three NOMINAL channels, NOT roles)
+#     Vec(Oct)  = ∐_{n≥0} Oct^n            -- SP1 prim:ByteVector (finite octet-vector, retains length)
+#     Q_A       = {aTag} × RGB × Vec(Oct)  -- the Atlas byte carrier
+#     Q_G       = {gTag} × RGB × Vec(Oct)  -- the Graph byte carrier
+#     Q_A ∩ Q_G = ∅                        -- distinct nominal outer tags ⇒ DISJOINT carriers
+# even though the untagged payloads are ISOMORPHIC. "Erasing the outer tag is a many-to-one
+# forgetful operation, not an equality of carriers"; "an object modeled on Q_A is not an object
+# modeled on Q_G merely because their payload sets are isomorphic." The inner colour tag is "a
+# constructor carried with a vectorized byte stream; it is not a semantic role" (the S/O/P role
+# towers live elsewhere — towers.ttl — with NO positional map S→R/O→G/P→B).
+#
+# Directive 17 (be MORE agnostic/progenitor on ALL): rather than mint the two concrete tagged
+# carriers bare and privilege one, this file mints the AGNOSTIC PROGENITOR crs:TaggedByteCarrier
+# (= the shared RGB byte-carrier category B_rgb, which grounds NO outer tag) with crs:AtlasByteCarrier
+# and crs:GraphByteCarrier as its two SYMMETRIC composable children — the byte_order-progenitor
+# pattern applied to the carrier tag. The many-to-one tag erasure is carried by crs:ForgetfulTagFrame,
+# a Kleisli arrow of the SP1 realization/Frame monad (prim:Realization: prim:frameOutput X +
+# prim:frameEffect Y), reusing the SP1 Frame law rather than re-deriving it — both tag children
+# forget to ONE shared untagged payload (that shared image IS the many-to-one collapse).
+#
+# GROUNDING: Oct/RGB/Vec(Oct) are consumed from the committed SP1 floor (prim:Octet, prim:RGB /
+# prim:Red/prim:Green/prim:Blue, prim:ByteVector); the forgetful frame's output is the SP1
+# byte-vector encoding prim:ByteVectorBlob (bitWidth 8, interpretAs prim:Blob) and its effect the
+# SP1 typed prim:EncodingLoss (the honest loss of the erased outer tag). SP3 does NOT redefine the
+# RGB code space — it consumes SP1's (q_rgb). Corpus-agnostic v1 (Directive 13): the only individuals
+# are floor WITNESSES (two tagged carriers over one isomorphic payload + their two erasure frames),
+# minted only to keep crs:CarrierDisjointnessShape and q_carriers_disjoint non-vacuous — zero corpus
+# instances. The reused SP1 dual-grounding of each new crs OBJECT class (crs:TaggedByteCarrier /
+# crs:AtlasByteCarrier / crs:GraphByteCarrier / crs:UntaggedBytePayload) IS added in Task T11
+# (basicttl/crs/dual_grounding.ttl), not here; crs:ForgetfulTagFrame is a physical Frame
+# (rdfs:subClassOf prim:Realization) that SP1's YonedaShape doctrine keeps OUTSIDE prim:FormalType,
+# so it is deliberately NOT grounded by T11 (prim:RealizationShape governs it instead).
+#
+# TOOTH (this task): crs:CarrierDisjointnessShape (crs.shapes.ttl) + q_carriers_disjoint
+# (crs.queries.sparql). Probe of record (conforms/ASK True→False): inject one object typed BOTH
+# crs:AtlasByteCarrier and crs:GraphByteCarrier (payload-isomorphism smuggled in as carrier equality).
+# Produces (for SP4): the tag-erasure forgetful Frames (one loss class seed).
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (§2.2)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T2)
+# =====================================================================================
+
+
+# ---- The agnostic tagged-byte-carrier progenitor (= B_rgb) + its two symmetric children ----------
+
+crs:TaggedByteCarrier a owl:Class ;
+    rdfs:label "TaggedByteCarrier (agnostic byte-carrier progenitor B_rgb)" ;
+    rdfs:comment "The AGNOSTIC byte-carrier progenitor, lifted from the whitepaper's typed RGB-carrier category B_rgb (05_carrier_towers_triad.tex, Def. 'Project-authored five-factor Helios carrier'): the shared shape {outer-tag} × RGB × Vec(Oct) that carries a nominally-tagged, vectorized byte stream over the SP1 byte floor (RGB = the SP1 prim:RGB code space of three NOMINAL channels Red/Green/Blue, each one prim:Octet 0..255; Vec(Oct) = the SP1 prim:ByteVector finite octet-vector). Per Directive 17 (be more agnostic on all) this progenitor grounds NO concrete outer tag — it is the endianness-neutral join of the two concrete carriers, exactly the byte_order-progenitor pattern applied to the carrier tag — and its two SYMMETRIC composable children crs:AtlasByteCarrier ({aTag}) and crs:GraphByteCarrier ({gTag}) supply the concrete tags, neither privileged. The inner colour tag is a constructor carried WITH the byte stream, NOT a semantic role: the Subject/Object/Predicate role towers live in towers.ttl with no positional map S→R/O→G/P→B. crs:CarrierDisjointnessShape targets this progenitor so both tag children are covered symmetrically." .
+
+crs:AtlasByteCarrier a owl:Class ;
+    rdfs:subClassOf crs:TaggedByteCarrier ;
+    owl:disjointWith crs:GraphByteCarrier ;
+    rdfs:label "AtlasByteCarrier (Q_A = {aTag} × RGB × Vec(Oct))" ;
+    rdfs:comment "The Atlas byte carrier Q_A = {aTag} × RGB × Vec(Oct), lifted verbatim from the whitepaper (05_carrier_towers_triad.tex): a nominally-tagged copy of the shared RGB byte-carrier progenitor crs:TaggedByteCarrier (B_rgb) whose outer constructor is the distinct Atlas tag aTag. It is one of the two SYMMETRIC composable children of the agnostic progenitor (Directive 17), a co-equal sibling of crs:GraphByteCarrier with neither privileged. Its payload — RGB (the SP1 prim:RGB code space) over Vec(Oct) (the SP1 prim:ByteVector) — is ISOMORPHIC to the Graph carrier's untagged payload, yet it is declared owl:disjointWith crs:GraphByteCarrier because the distinct nominal outer tags make the two DISJOINT carriers: 'an object modeled on Q_A is not an object modeled on Q_G merely because their payload sets are isomorphic'. Erasing the aTag down to the shared untagged payload is a many-to-one crs:ForgetfulTagFrame (crs:forgetAtlasTag), a Kleisli arrow of the SP1 Frame monad, never an equality of carriers. The disjointness is enforced (not merely declared) by crs:CarrierDisjointnessShape." .
+
+crs:GraphByteCarrier a owl:Class ;
+    rdfs:subClassOf crs:TaggedByteCarrier ;
+    owl:disjointWith crs:AtlasByteCarrier ;
+    rdfs:label "GraphByteCarrier (Q_G = {gTag} × RGB × Vec(Oct))" ;
+    rdfs:comment "The Graph byte carrier Q_G = {gTag} × RGB × Vec(Oct), lifted verbatim from the whitepaper (05_carrier_towers_triad.tex): a nominally-tagged copy of the shared RGB byte-carrier progenitor crs:TaggedByteCarrier (B_rgb) whose outer constructor is the distinct Graph tag gTag. It is one of the two SYMMETRIC composable children of the agnostic progenitor (Directive 17), a co-equal sibling of crs:AtlasByteCarrier with neither privileged. Its payload — RGB (the SP1 prim:RGB code space) over Vec(Oct) (the SP1 prim:ByteVector) — is ISOMORPHIC to the Atlas carrier's untagged payload, yet it is declared owl:disjointWith crs:AtlasByteCarrier because the distinct nominal outer tags make the two DISJOINT carriers: payload-isomorphism must never sneak back in as carrier equality. Erasing the gTag down to the shared untagged payload is a many-to-one crs:ForgetfulTagFrame (crs:forgetGraphTag), a Kleisli arrow of the SP1 Frame monad, never an equality of carriers. The disjointness is enforced (not merely declared) by crs:CarrierDisjointnessShape." .
+
+crs:UntaggedBytePayload a owl:Class ;
+    rdfs:label "UntaggedBytePayload (the shared RGB × Vec(Oct) payload, outer tag erased)" ;
+    rdfs:comment "The untagged byte payload RGB × Vec(Oct) — the whitepaper's shared payload obtained by ERASING the outer tag from either tagged carrier (05_carrier_towers_triad.tex: 'Erasing the outer tag is a many-to-one forgetful operation, not an equality of carriers'). It is the common codomain of the two crs:ForgetfulTagFrame Kleisli arrows: because the Atlas and Graph untagged payloads are ISOMORPHIC, both tag children forget onto ONE shared crs:UntaggedBytePayload witness, and that single shared image is precisely the MANY-TO-ONE collapse the forgetful map witnesses — two distinct tagged carriers, one untagged payload. It grounds into the SP1 byte floor: its physical realization is the SP1 byte-vector encoding prim:ByteVectorBlob (an ordered prim:ByteVector of octets, bitWidth 8 per occurrence, interpretAs prim:Blob), the frameOutput of both forgetful frames. It is deliberately NOT declared disjoint from the tagged carriers: it is the shared quotient they map ONTO, not a third sibling tag." .
+
+crs:ForgetfulTagFrame a owl:Class ;
+    rdfs:subClassOf prim:Realization ;
+    rdfs:label "ForgetfulTagFrame (many-to-one tag-erasure Kleisli/Frame arrow)" ;
+    rdfs:comment "The tag-erasure forgetful Frame — the whitepaper's 'many-to-one forgetful operation' that erases a carrier's outer tag down to its shared untagged payload (05_carrier_towers_triad.tex). It is authored as an rdfs:subClassOf prim:Realization so every instance IS a Frame / Kleisli arrow of the SP1 realization monad (the unary law's Yoneda point T → Frame(output: X, error|effect: Y)), reusing the SP1 Frame law rather than re-deriving it: each instance carries exactly one prim:frameOutput (X = the SP1 byte-vector encoding prim:ByteVectorBlob, the untagged Vec(Oct) payload read) and a prim:frameEffect (Y = the SP1 typed prim:EncodingLoss, the honest loss of the erased outer tag), so SP1's prim:RealizationShape governs it directly. It relates its source tagged carrier (crs:forgetsFrom) to the one shared crs:UntaggedBytePayload (crs:forgetsTo); because BOTH the Atlas and Graph frames forget to the SAME payload witness, the map is genuinely many-to-one — the concrete graph fact that erasure is a forgetful quotient, not a carrier equality. It is NOT rdfs:subClassOf* prim:FormalType, so the SP1 dual-grounding / Yoneda class laws do not target it; this is a physical Frame, not a formal tower class. It seeds SP4's loss classes (the tag-erasure loss)." .
+
+
+# ---- The forgetful-frame relations (the erasure's source and shared image) -----------------------
+
+crs:forgetsFrom a owl:ObjectProperty ;
+    rdfs:domain crs:ForgetfulTagFrame ;
+    rdfs:range crs:TaggedByteCarrier ;
+    rdfs:label "forgetsFrom" ;
+    rdfs:comment "Relates a crs:ForgetfulTagFrame to the tagged byte carrier whose outer tag it erases — the source (domain) of the many-to-one forgetful map, a child of crs:TaggedByteCarrier (crs:AtlasByteCarrier or crs:GraphByteCarrier). Paired with crs:forgetsTo, it records the whitepaper's tag-erasure Q_A → Vec(Oct) / Q_G → Vec(Oct) as a typed Frame arrow rather than an equality of carriers." .
+
+crs:forgetsTo a owl:ObjectProperty ;
+    rdfs:domain crs:ForgetfulTagFrame ;
+    rdfs:range crs:UntaggedBytePayload ;
+    rdfs:label "forgetsTo" ;
+    rdfs:comment "Relates a crs:ForgetfulTagFrame to the shared crs:UntaggedBytePayload it erases the outer tag down to — the codomain (image) of the many-to-one forgetful map. Because BOTH the Atlas and Graph forgetful frames point crs:forgetsTo the SAME untagged payload witness, this property makes the many-to-one collapse a literal graph fact: two distinct tagged carriers, one shared untagged image. It is the CRS counterpart of the whitepaper's 'erasing the outer tag is a many-to-one forgetful operation, not an equality of carriers'." .
+
+crs:carriesPayload a owl:ObjectProperty ;
+    rdfs:domain crs:TaggedByteCarrier ;
+    rdfs:range crs:UntaggedBytePayload ;
+    rdfs:label "carriesPayload" ;
+    rdfs:comment "Relates a tagged byte carrier to the untagged RGB × Vec(Oct) payload it wraps under its outer tag. Both the Atlas and Graph witness carriers crs:carriesPayload the SAME shared crs:UntaggedBytePayload witness — the concrete statement that their untagged payloads are ISOMORPHIC (indeed identical as a payload node) while the carriers themselves stay DISJOINT because their outer tags differ. This is the whitepaper's 'isomorphic untagged payloads' made a graph fact, the exact condition that must not be mistaken for carrier equality." .
+
+
+# ---- The outer nominal tag coordinate (aTag / gTag) ---------------------------------------------
+
+crs:hasOuterTag a owl:DatatypeProperty ;
+    rdfs:domain crs:TaggedByteCarrier ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasOuterTag" ;
+    rdfs:comment "The nominal outer-tag constructor a tagged byte carrier carries — 'aTag' for an Atlas carrier, 'gTag' for a Graph carrier (lifted from the whitepaper's distinct nominal constructors aTag/gTag). It is the coordinate that makes two carriers over an isomorphic payload DISJOINT: distinct outer tags, distinct carriers. A nominal (categorical display-name-style) constructor, not a numeric or perceptual coordinate." .
+
+
+# =====================================================================================
+# The floor WITNESSES (corpus-agnostic v1: two tagged carriers over ONE shared isomorphic
+# payload + their two many-to-one erasure frames). Minted only to keep
+# crs:CarrierDisjointnessShape and q_carriers_disjoint non-vacuous. Zero corpus instances.
+# =====================================================================================
+
+crs:sharedRgbPayloadWitness a crs:UntaggedBytePayload ;
+    rdfs:label "sharedRgbPayloadWitness (one untagged RGB × Vec(Oct) payload)" ;
+    rdfs:comment "The single shared untagged RGB × Vec(Oct) payload witness that BOTH the Atlas and Graph carrier witnesses wrap (crs:carriesPayload) and that BOTH forgetful frames erase onto (crs:forgetsTo) — the concrete node that makes the two carriers' untagged payloads isomorphic (here, literally the same payload) and the tag-erasure many-to-one. It grounds into the SP1 byte floor as the byte-vector encoding prim:ByteVectorBlob (an ordered prim:ByteVector of octets), the frameOutput of both forgetful frames; the explicit prim:Realization dual-grounding edge for this crs class is added in Task T11." .
+
+crs:atlasCarrierWitness a crs:AtlasByteCarrier ;
+    rdfs:label "atlasCarrierWitness (Q_A witness: aTag over the shared payload)" ;
+    crs:hasOuterTag "aTag" ;
+    crs:carriesPayload crs:sharedRgbPayloadWitness ;
+    rdfs:comment "The Atlas byte-carrier witness: the shared RGB × Vec(Oct) payload (crs:sharedRgbPayloadWitness) under the Atlas outer tag 'aTag'. It exists only as the non-vacuity anchor of q_carriers_disjoint and the positive side of crs:CarrierDisjointnessShape; it wraps the SAME payload as crs:graphCarrierWitness yet is a DISJOINT carrier because its outer tag differs. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:graphCarrierWitness a crs:GraphByteCarrier ;
+    rdfs:label "graphCarrierWitness (Q_G witness: gTag over the shared payload)" ;
+    crs:hasOuterTag "gTag" ;
+    crs:carriesPayload crs:sharedRgbPayloadWitness ;
+    rdfs:comment "The Graph byte-carrier witness: the shared RGB × Vec(Oct) payload (crs:sharedRgbPayloadWitness) under the Graph outer tag 'gTag'. It exists only as the non-vacuity anchor of q_carriers_disjoint and the positive side of crs:CarrierDisjointnessShape; it wraps the SAME payload as crs:atlasCarrierWitness yet is a DISJOINT carrier because its outer tag differs — payload-isomorphism that must never become carrier equality. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:forgetAtlasTag a crs:ForgetfulTagFrame ;
+    rdfs:label "forgetAtlasTag (Q_A → Vec(Oct) many-to-one tag erasure)" ;
+    crs:forgetsFrom crs:atlasCarrierWitness ;
+    crs:forgetsTo crs:sharedRgbPayloadWitness ;
+    prim:frameOutput prim:ByteVectorBlob ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:comment "The tag-erasure forgetful Frame for the Atlas carrier: it erases the aTag outer constructor of crs:atlasCarrierWitness down to the shared crs:sharedRgbPayloadWitness. As an instance of crs:ForgetfulTagFrame it IS a Frame / Kleisli arrow of the SP1 realization monad — prim:frameOutput prim:ByteVectorBlob (X = the untagged Vec(Oct) payload read) and prim:frameEffect prim:EncodingLoss (Y = the honest loss of the erased tag) — so SP1's prim:RealizationShape governs it directly. Together with crs:forgetGraphTag it forgets to the SAME payload witness, making the erasure genuinely many-to-one." .
+
+crs:forgetGraphTag a crs:ForgetfulTagFrame ;
+    rdfs:label "forgetGraphTag (Q_G → Vec(Oct) many-to-one tag erasure)" ;
+    crs:forgetsFrom crs:graphCarrierWitness ;
+    crs:forgetsTo crs:sharedRgbPayloadWitness ;
+    prim:frameOutput prim:ByteVectorBlob ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:comment "The tag-erasure forgetful Frame for the Graph carrier: it erases the gTag outer constructor of crs:graphCarrierWitness down to the shared crs:sharedRgbPayloadWitness. As an instance of crs:ForgetfulTagFrame it IS a Frame / Kleisli arrow of the SP1 realization monad — prim:frameOutput prim:ByteVectorBlob (X = the untagged Vec(Oct) payload read) and prim:frameEffect prim:EncodingLoss (Y = the honest loss of the erased tag) — so SP1's prim:RealizationShape governs it directly. Together with crs:forgetAtlasTag it forgets to the SAME payload witness, making the erasure genuinely many-to-one (two distinct tagged carriers, one untagged image)." .

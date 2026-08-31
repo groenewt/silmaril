@@ -1,0 +1,784 @@
+# =====================================================================================
+# crs.shapes.ttl — the SHACL law of the S/O/P-tower CRS floor (W2 · SP3).
+# =====================================================================================
+# The single shapes graph for SP3. Loaded ONLY as the shapes graph by
+# basicttl/crs/checks/run-crs-checks.sh (never mixed into the merged data graph) and validated
+# against the merged SP1 + SP2 + SP3 graph with inference="rdfs".
+#
+# T1 SCAFFOLD: no sh:NodeShape is declared yet, so the runner skips this file
+# ("no shapes declared yet (skipped)") and the floor is GREEN on the empty crs graph with
+# SP1 + SP2 still green. Each later task adds exactly one biting shape here, RED-before /
+# GREEN-after, proven to bite by a documented probe injection (conforms True -> False):
+#
+#   T2  crs:CarrierDisjointnessShape     Q_A and Q_G share no object; no cross-tag hom
+#   T3  crs:AxisUrnTowerShape            every role-tower axis is a URN tower, never a scalar
+#   T4  crs:NoPositionalMapShape         no edge identifies a role tower with a colour channel
+#   T5  crs:DimensionCountShape          per-geometer count(crs:hasAxis) == crs:hasDimension
+#   T6  crs:PlaneProgenitorShape         agnostic plane progenitor grounds nothing; symmetric family
+#   T7  crs:FiveProjectionShape          five pi_j jointly faithful; none lands in a colour component
+#   T8  crs:FrameDerivationShape         every derivation carries prim:frameOutput + prim:frameEffect
+#   T8  crs:DerivedNotStoredShape        no atom/point carries a stored literal coordinate
+#   T9  crs:ZGroundingShape              the exact z chain; permits the agnostic byte-order progenitor
+#   T10 crs:OrderProjectionShape         every S:P:O<->S:O:P reorder carries a typed crs:RoleOrderEffect
+#   T12 crs:NoCrossTagTransitionShape    no edge asserts an Atlas<->Graph hom / transition
+#
+# Value-type checks use sh:in / sh:sparql, never a range-inference-vacuous sh:class (SP1 defang
+# discipline). The reused SP1 tooth prim:DualGroundingShape (re-run over the merged graph by the
+# runner) catches an ungrounded crs class — that is T11's tooth, not authored here.
+# =====================================================================================
+
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+
+# =====================================================================================
+# T2 — crs:CarrierDisjointnessShape (the disjoint-carriers law Q_A ∩ Q_G = ∅).
+# =====================================================================================
+# Lifts the whitepaper's carrier disjointness (05_carrier_towers_triad.tex): Q_A =
+# {aTag}×RGB×Vec(Oct) and Q_G = {gTag}×RGB×Vec(Oct) are nominally-tagged copies of one RGB
+# byte-carrier category B_rgb whose untagged payloads are ISOMORPHIC — yet distinct outer tags
+# make them DISJOINT carriers, so payload-isomorphism must never sneak back in as carrier
+# equality ("an object modeled on Q_A is not an object modeled on Q_G merely because their
+# payload sets are isomorphic"). This shape targets the agnostic progenitor crs:TaggedByteCarrier
+# (so BOTH tag children are covered symmetrically, no tag privileged — Directive 17) and flags any
+# instance that is simultaneously a crs:AtlasByteCarrier AND a crs:GraphByteCarrier. It is a
+# sh:sparql constraint reading the genuine rdf:type edges (defang-proof: rdfs range-inference adds
+# rdf:type via subClassOf but never fabricates the two SIBLING leaf types on one node, which are
+# disjoint by owl:disjointWith and never in a subClassOf relation). The owl:disjointWith triple in
+# carriers.ttl is the DECLARATION; this shape is the enforceable TOOTH (pyshacl runs inference=rdfs,
+# which does not process owl:disjointWith into violations, so the teeth cannot rely on it).
+# Probe of record (conforms True->False): inject one object typed both crs:AtlasByteCarrier and
+# crs:GraphByteCarrier -> conforms=False; q_carriers_disjoint flips True->False on the same probe.
+# =====================================================================================
+
+crs:CarrierDisjointnessShape a sh:NodeShape ;
+    rdfs:label "CarrierDisjointnessShape" ;
+    rdfs:comment "The disjoint-carriers law with teeth (T2), lifting the whitepaper's Q_A ∩ Q_G = ∅ (05_carrier_towers_triad.tex): the Atlas byte carrier Q_A = {aTag}×RGB×Vec(Oct) and the Graph byte carrier Q_G = {gTag}×RGB×Vec(Oct) are nominally-tagged copies of ONE shared RGB byte-carrier category B_rgb (the agnostic progenitor crs:TaggedByteCarrier), so their untagged payloads are isomorphic — yet the distinct nominal outer tags make them DISJOINT carriers, and erasing a tag is a many-to-one forgetful operation, never an equality of carriers. The load-bearing prohibition the whitepaper states is that payload-isomorphism must NOT sneak back in as carrier equality: 'an object modeled on Q_A is not an object modeled on Q_G merely because their payload sets are isomorphic'. This node shape targets the agnostic progenitor crs:TaggedByteCarrier so both tag children are covered symmetrically with neither privileged (Directive 17), and its sh:sparql constraint flags any instance that is simultaneously a crs:AtlasByteCarrier and a crs:GraphByteCarrier. It reads the genuine rdf:type edges so it is defang-proof under inference=rdfs (which materialises rdf:type along subClassOf but never fabricates the two disjoint sibling leaf types on one node); the owl:disjointWith triple in carriers.ttl is the declaration while THIS shape is the enforceable tooth, because pyshacl's rdfs inference does not turn owl:disjointWith into violations. Injecting one object typed both carriers makes pyshacl report conforms=False (and flips q_carriers_disjoint True->False), proving the teeth on the case that bites." ;
+    sh:targetClass crs:TaggedByteCarrier ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "carrier disjointness law (Q_A ∩ Q_G = ∅, spec §2.2): this tagged byte carrier is typed BOTH crs:AtlasByteCarrier and crs:GraphByteCarrier — payload-isomorphism has been smuggled in as carrier equality. Distinct outer tags make the Atlas and Graph carriers disjoint; no object may inhabit both." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#AtlasByteCarrier> .
+              $this a <urn:silmaril:crs:#GraphByteCarrier> .
+            }
+        """ ;
+    ] .
+
+# =====================================================================================
+# T3 — crs:AxisUrnTowerShape (the URN-tower law: every role-tower axis is a URN tower, never a scalar).
+# =====================================================================================
+# Lifts the whitepaper's three independent role towers (05_carrier_towers_triad.tex): "Subject,
+# Object, and Predicate live in three other typed towers K_S, K_O, K_P" and "It does not support a
+# scalar RGB-to-S/O/P identification"; the unary law (docs/unary-byte-frame-law.md) forbids "a scalar
+# triple, raw tuple, or three unrelated URN strings" standing in for those towers. A role tower is a
+# URN TOWER: a functor prim:Ordinal -> prim:URN whose nth-dim composite is an SP1 prim:Vector/prim:Tensor
+# of URN components, NEVER a prim:Real scalar. This shape targets crs:UrnTowerAxis (every tower axis
+# position) and flags any axis that (a) lacks a crs:axisComponentType on the prim:URN line, OR (b) lacks
+# a crs:axisComposite drawn from {prim:Vector, prim:Tensor}. Both checks are sh:sparql/closed FILTER IN
+# (never a range-inference-vacuous sh:class, SP1 defang discipline): rdfs inference materialises rdf:type
+# and subClassOf but never fabricates a prim:Real rdfs:subClassOf* prim:URN edge nor puts prim:Real in
+# the closed Vector/Tensor set, so a scalar axis still fails the walk.
+# Probe of record (conforms True->False): inject crs:probeScalarAxis a crs:UrnTowerAxis ;
+# crs:axisComponentType prim:Real -> conforms=False; q_towers_independent flips True->False on the same probe.
+# =====================================================================================
+
+crs:AxisUrnTowerShape a sh:NodeShape ;
+    rdfs:label "AxisUrnTowerShape" ;
+    rdfs:comment "The URN-tower law with teeth (T3), lifting the whitepaper's three independent role towers K_S/K_O/K_P (05_carrier_towers_triad.tex: 'Subject, Object, and Predicate live in three other typed towers'; 'It does not support a scalar RGB-to-S/O/P identification') and the unary law's prohibition (docs/unary-byte-frame-law.md) on 'a scalar triple, raw tuple, or three unrelated URN strings' substituting for those towers. Each role tower is a URN TOWER: a functor prim:Ordinal -> prim:URN whose nth-dim composite is an SP1 prim:Vector/prim:Tensor of URN components, never a prim:Real scalar. This node shape targets crs:UrnTowerAxis (every tower axis position, so all three role towers' axes are covered symmetrically) and its sh:sparql constraint flags any axis that either lacks a crs:axisComponentType on the prim:URN line (prim:URN itself or its taxonomic descendants prim:URI/prim:IRI/prim:QName, read via rdfs:subClassOf* prim:URN) OR lacks a crs:axisComposite drawn from the closed set {prim:Vector, prim:Tensor}. Both value-type checks are defang-proof under inference=rdfs: the component check reads the genuine value type via a subClassOf* walk to prim:URN (rdfs inference never fabricates a prim:Real rdfs:subClassOf* prim:URN edge), and the composite check uses a closed FILTER IN set rather than a range-inference-vacuous sh:class (membership survives inference). Injecting one axis crs:axisComponentType prim:Real (a scalar tower position) makes pyshacl report conforms=False (and flips q_towers_independent True->False), proving the teeth on the case that bites." ;
+    sh:targetClass crs:UrnTowerAxis ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "URN-tower law (spec §2.3): this crs:UrnTowerAxis is not a URN tower — it lacks a crs:axisComponentType on the prim:URN line (prim:URN/prim:URI/prim:IRI/prim:QName) or a crs:axisComposite in {prim:Vector, prim:Tensor}. A role tower is a functor prim:Ordinal->prim:URN with a Vector/Tensor composite, never a prim:Real scalar; a scalar triple or three unrelated URN strings is not an admissible substitute." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#UrnTowerAxis> .
+              FILTER (
+                NOT EXISTS {
+                  $this <urn:silmaril:crs:#axisComponentType> ?c .
+                  ?c <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:prim:#URN> .
+                }
+                ||
+                NOT EXISTS {
+                  $this <urn:silmaril:crs:#axisComposite> ?k .
+                  FILTER ( ?k = <urn:silmaril:prim:#Vector> || ?k = <urn:silmaril:prim:#Tensor> )
+                }
+              )
+            }
+        """ ;
+    ] .
+
+# =====================================================================================
+# T4 — crs:NoPositionalMapShape (the positional-collapse obstruction: S=R / O=G / P=B forbidden).
+# =====================================================================================
+# Lifts the whitepaper Prop. "TOWERS positional-collapse obstruction" (05_carrier_towers_triad.tex,
+# prop:whitepaper-towers-positional-collapse + proof): the three-colour payload projection
+# c : D_tower -> R x G x B is NON-INJECTIVE, so the positional maps S->R, O->G, P->B are UNDERIVABLE
+# and the equations S=R, O=G, P=B "cannot be derived from the independently typed terminal carrier
+# factors". towers.ttl materialises the WHY (crs:colourOnly crs:isNonInjective true) and mints the
+# colour channels crs:RedChannel/GreenChannel/BlueChannel under the agnostic crs:ColourChannel; THIS
+# shape is the enforceable TOOTH that encodes the forbidden maps as asserted-absent negative space:
+# NO edge may IDENTIFY a role tower (crs:UrnRoleTower or a child, targeted by sh:targetNode) with a
+# colour channel (any node rdfs:subClassOf* crs:ColourChannel) via owl:sameAs, owl:equivalentClass,
+# or rdfs:subClassOf — in EITHER direction (role->colour and colour->role), so the reverse map is
+# forbidden symmetrically too. Every forbidden edge has a role-tower endpoint (that is what
+# "identifies a role tower with a colour" means), so targeting the four role-tower nodes and reading
+# both directions of the identity predicates catches all of them.
+#
+# It is a sh:sparql constraint reading the GENUINE identity edges (defang-proof under inference=rdfs:
+# rdfs entailment never converts an owl:sameAs / owl:equivalentClass into a subClassOf, never
+# fabricates a subClassOf edge between the two disjoint hierarchies, and the ?cc subClassOf* walk to
+# crs:ColourChannel reads only real colour-line membership). On the clean graph the four role-tower
+# classes carry no such edge -> conforms=True.
+# Probe of record (conforms/ASK True->False): inject crs:SubjectTower owl:sameAs crs:RedChannel (S=R
+# smuggled in) -> conforms=True->False; q_towers_independent's extended no-colour-map clause also
+# flips True->False on the same probe.
+# =====================================================================================
+
+crs:NoPositionalMapShape a sh:NodeShape ;
+    rdfs:label "NoPositionalMapShape" ;
+    rdfs:comment "The positional-collapse obstruction with teeth (T4), lifting the whitepaper Prop. 'TOWERS positional-collapse obstruction' (05_carrier_towers_triad.tex): 'There are no implicit positional maps S->R, O->G, P->B', and the assignments S=R, O=G, P=B 'cannot be derived from the independently typed terminal carrier factors' because the three-colour payload projection c : D_tower -> R x G x B is non-injective (two inputs differing only in a forgotten role-tower or Atlas/Graph coordinate have equal colour images, so colour position cannot recover the five-factor input). The role towers K_S/K_O/K_P (crs:UrnRoleTower children) and the RGB colour channels (crs:ColourChannel children, the inner colour tag of a byte carrier, a constructor NOT a role) are INDEPENDENTLY typed factors that must never be identified. This node shape targets the four role-tower nodes (the agnostic progenitor crs:UrnRoleTower and its three symmetric children crs:SubjectTower/crs:ObjectTower/crs:PredicateTower, so all are covered with none privileged, Directive 17) and its sh:sparql constraint flags any that is IDENTIFIED with a node on the colour-channel line (rdfs:subClassOf* crs:ColourChannel) via owl:sameAs, owl:equivalentClass, or rdfs:subClassOf in EITHER direction — the role->colour AND colour->role maps forbidden symmetrically. It reads the genuine identity edges so it is defang-proof under inference=rdfs (which never turns owl:sameAs/owl:equivalentClass into subClassOf, and never fabricates a subClassOf edge across the two disjoint hierarchies): the forbidden maps are encoded as asserted-absent negative space, GREEN on the clean graph where no such edge exists. Injecting the probe of record crs:SubjectTower owl:sameAs crs:RedChannel (the forbidden S=R) makes pyshacl report conforms=False (and flips q_towers_independent's no-colour-map clause True->False), proving the tooth on the case that bites." ;
+    sh:targetNode crs:UrnRoleTower , crs:SubjectTower , crs:ObjectTower , crs:PredicateTower ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "positional-collapse obstruction (spec §2.3): this role tower (crs:UrnRoleTower or a child K_S/K_O/K_P) is IDENTIFIED with an RGB colour channel (crs:ColourChannel) — the forbidden positional map S=R / O=G / P=B. The three-colour projection c is non-injective, so colour position cannot recover a role; there is no positional map S->R/O->G/P->B nor colour->role. A role tower is a URN tower, never a colour channel." ;
+        sh:select """
+            SELECT $this WHERE {
+              ?cc <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:crs:#ColourChannel> .
+              {
+                $this <http://www.w3.org/2002/07/owl#sameAs> ?cc .
+              } UNION {
+                ?cc <http://www.w3.org/2002/07/owl#sameAs> $this .
+              } UNION {
+                $this <http://www.w3.org/2002/07/owl#equivalentClass> ?cc .
+              } UNION {
+                ?cc <http://www.w3.org/2002/07/owl#equivalentClass> $this .
+              } UNION {
+                $this <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?cc .
+              } UNION {
+                ?cc <http://www.w3.org/2000/01/rdf-schema#subClassOf> $this .
+              }
+            }
+        """ ;
+    ] .
+
+# =====================================================================================
+# T5 — crs:DimensionCountShape (the headline per-geometer dimension law: count(hasAxis)==hasDimension).
+# =====================================================================================
+# Lifts the whitepaper's per-geometer dimension (05_carrier_towers_triad.tex: the S/O/P tower files
+# "each own a separate dimension value"; def:whitepaper-frame-perceptual-tessellation: dimension is
+# per-Frame/per-geometer) and the design's W4 blocking gate "chart coord-count==dimension" (spec 2.4,
+# 4). Directive 17 Q2 (pinned): crs:hasDimension counts TOWER-AXES (crs:hasAxis arity), NEVER scalar
+# ordinals — the scalar reading is the forbidden positional-collapse. This shape targets the agnostic
+# progenitor crs:Geometer, but the two COUNT/DIMENSION-PRESENT arms are CONCRETENESS-SCOPED (E1) to the seven
+# CONCRETE geometer leaves (crs:RoleGeometer, crs:QuarkGridGeometer, crs:HoneycombPlaneGeometer,
+# crs:GeographicPlaneGeometer, crs:SubjectObjectPlane, crs:SubjectPredicatePlane, crs:ObjectPredicatePlane)
+# via the EXACT concrete-leaf enumeration mechanism crs:PlaneProgenitorShape constraint B uses — so the
+# agnostic progenitors crs:Geometer / crs:PlaneGeometer / crs:RolePairProjectionPlane, which per Q3 GROUND
+# NOTHING (no concrete crs:hasAxis, no crs:hasDimension triple of their own), are EXEMPT from those two arms
+# and stay GREEN even when instantiated at zero axes. This closes the round-1 regression: the unscoped
+# minCount + aggregate (which targeted crs:Geometer directly) FALSELY rejected a bare crs:PlaneGeometer /
+# crs:RolePairProjectionPlane progenitor instance (0 axes -> minCount fired; dim 2 over 0 axes -> aggregate
+# 0 != 2), contradicting Q3.
+#
+# THIRD ARM (G1b, top-progenitor grounds-nothing DIMENSION clause) closes the OTHER side of that round-1
+# tradeoff — the residual it opened: concreteness-scoping the count/dimension-present arms EXEMPTED the TOP
+# crs:Geometer, but the top progenitor then had NO compensating grounds-nothing tooth for a dimension (unlike
+# the plane branch, whose grounds-nothing axis tooth crs:PlaneProgenitorShape-A covered it), so a node typed
+# BARE crs:Geometer carrying a concrete crs:hasDimension was falsely GREEN. Per its own doctrine the top
+# crs:Geometer 'declares NO concrete dimension' (geometers.ttl:76): this third sh:sparql arm flags any node
+# typed crs:Geometer that carries crs:hasDimension but is typed at NONE of the seven concrete leaves, EXCEPT a
+# plane progenitor (crs:PlaneGeometer / crs:RolePairProjectionPlane) declaring EXACTLY its rank-2 FAMILY ARITY
+# crs:hasDimension 2. The plane-progenitor exemption is VALUE-SCOPED to the value 2 (geometers.ttl:280/:295: the
+# plane progenitors 'may declare their rank-2 FAMILY ARITY crs:hasDimension 2', the value 2 SPECIFICALLY) via a
+# second FILTER NOT EXISTS carrying a FILTER ( ?d = 2 ) value guard, NOT a class-blanket exclusion: a bare
+# crs:Geometer carrying ANY dimension -> RED; a plane progenitor at crs:hasDimension 2 (or no dimension) -> GREEN;
+# a plane progenitor at a NON-2 dimension (crs:p7 dim 7, crs:rp3 dim 3, crs:p0 dim 0) -> RED, closing the H1
+# plane-progenitor dimension-value gap the earlier class-blanket exemption left falsely GREEN. Together with the generalised axis tooth
+# crs:PlaneProgenitorShape-A (now guarded on crs:Geometer), grounds-nothing is SYMMETRIC across EVERY
+# progenitor level (Directive 17 no-privilege): no level is exempted with no compensating tooth.
+#
+# TWO CONCRETENESS-SCOPED sh:sparql arms (COUNT over $this, GROUP BY $this — NOT a range-inference-vacuous
+# sh:class, SP1 defang discipline): (i) a dimension-present clause flagging a CONCRETE geometer that declares
+# no crs:hasDimension (the min-cardinality obligation, now enumerated over concrete leaves instead of an
+# unscoped sh:property so the progenitors are not caught); and (ii) a per-geometer aggregate: $this is
+# pre-bound by pyshacl, the inner subquery counts ONLY this concrete geometer's distinct axes (row-anchored
+# on concrete-leaf membership, OPTIONAL over crs:hasAxis so a zero-axis concrete geometer yields ?n=0), and
+# FILTER (?n != ?dim) bites the mismatch. Reading rdf:type / crs:hasAxis edges is defang-proof under
+# inference=rdfs (rdfs materialises rdf:type along subClassOf so a concrete leaf still matches its own type,
+# but never fabricates a concrete-leaf type on a bare progenitor nor adds/removes a crs:hasAxis edge). On the
+# clean graph the role geometer has 3 axes / dimension 3, the quark-grid geometer 2 axes / dimension 2, and
+# the five plane witnesses 2 axes / dimension 2 each, so conforms=True.
+# Probe of record (conforms/ASK True->False): inject one crs:probeXyGeometer a crs:QuarkGridGeometer ;
+# crs:hasDimension 2 ; crs:hasAxis (three axes) — an (x,y) geometer with 3 axes, OR a S-O-P geometer
+# declaring dimension 2 -> conforms=True->False, and q_dimension_equals_count True->False on the same probe.
+# Concrete degeneracies also bite: crs:isoA a crs:QuarkGridGeometer ; crs:hasDimension 5 (0 axes) -> clause
+# (ii); crs:isoB a crs:QuarkGridGeometer ; crs:hasAxis (no dim) -> clause (i); a crs:HoneycombPlaneGeometer
+# leaf with 0 axes -> clause (i)/(ii). G1 top-progenitor probes ALSO bite the third arm: crs:evilGeo a
+# crs:Geometer ; crs:hasAxis crs:a,crs:b,crs:c ; crs:hasDimension 2 -> RED (dimension clause iii + the
+# generalised axis tooth crs:PlaneProgenitorShape-A); crs:evilGeo4 a crs:Geometer ; crs:hasDimension 7 ->
+# RED (clause iii). REGRESSION CONTROLS stay GREEN: crs:pA a crs:PlaneGeometer (0 axes, no dim),
+# crs:probeBareProg a crs:PlaneGeometer ; crs:hasDimension 2 (0 axes), the same two for
+# crs:RolePairProjectionPlane, and a bare crs:Geometer at 0 axes + 0 dimension — the agnostic progenitors
+# ground nothing (Q3) and the plane progenitors may declare family arity 2 (round-2), so they are exempt.
+# =====================================================================================
+
+crs:DimensionCountShape a sh:NodeShape ;
+    rdfs:label "DimensionCountShape" ;
+    rdfs:comment "The headline per-geometer dimension law with teeth (T5, the W4 blocking gate 'chart coord-count==dimension'), lifting the whitepaper's per-geometer dimension (05_carrier_towers_triad.tex: the S/O/P tower files 'each own a separate dimension value'; def:whitepaper-frame-perceptual-tessellation: dimension is per-Frame/per-geometer) and Directive 17 Q2 (pinned): crs:hasDimension counts TOWER-AXES (crs:hasAxis arity), NEVER scalar ordinals — the scalar reading is the forbidden positional-collapse of T4. This node shape targets the agnostic progenitor crs:Geometer so every concrete geometer child is covered symmetrically under inference=rdfs with none privileged (Directive 17). BOTH enforcement arms are CONCRETENESS-SCOPED (E1): they apply ONLY to the seven CONCRETE geometer leaves — crs:RoleGeometer, crs:QuarkGridGeometer, crs:HoneycombPlaneGeometer, crs:GeographicPlaneGeometer, crs:SubjectObjectPlane, crs:SubjectPredicatePlane, crs:ObjectPredicatePlane — via the EXACT concrete-leaf enumeration mechanism crs:PlaneProgenitorShape constraint B uses, so the agnostic progenitors crs:Geometer / crs:PlaneGeometer / crs:RolePairProjectionPlane (which per Q3 GROUND NOTHING: no concrete crs:hasAxis and no crs:hasDimension triple of their own) are EXEMPT and stay GREEN even when instantiated at zero concrete axes — closing the round-1 regression where the unscoped minCount + aggregate falsely rejected a bare crs:PlaneGeometer / crs:RolePairProjectionPlane progenitor instance. The two arms are: (i) a dimension-present sh:sparql clause — a CONCRETE geometer (row-anchored on concrete-leaf class membership) that carries NO crs:hasDimension is flagged, so every concrete geometer MUST declare its OWN per-geometer dimension (Q2) and cannot escape the count aggregate through an unbound $this crs:hasDimension ?dim join; and (ii) a PER-GEOMETER count==dimension aggregate sh:sparql clause: for a CONCRETE $this, the inner subquery SELECT $this (COUNT(DISTINCT ?ax) AS ?n) WHERE { $this a ?leaf2 (concrete) . OPTIONAL { $this crs:hasAxis ?ax } } GROUP BY $this counts ONLY this geometer's distinct axes — the OPTIONAL with the concrete-leaf membership as the mandatory row anchor keeps a ZERO-AXIS CONCRETE geometer yielding exactly one group with ?n = 0 (rather than the empty GROUP-BY that silently produced no row and let a declared dimension over zero grounded axes escape), and FILTER (?n != ?dim) flags any concrete geometer whose axis-arity does not equal its declared crs:hasDimension, the MAXIMAL mismatch (declared dimension 5 vs 0 grounded axes — the forbidden 'jump to a dimension grounded in no axis') included. Both read the genuine rdf:type / crs:hasAxis / crs:hasDimension edges so they are defang-proof under inference=rdfs (which materialises rdf:type along subClassOf so a concrete leaf still matches its own type in the enumeration, but never fabricates a concrete-leaf type on a bare progenitor, nor adds or removes a crs:hasAxis edge); a COUNT aggregate is used rather than a range-inference-vacuous sh:class. On the clean graph the role geometer (3 tower axes / dimension 3), the quark-grid geometer (2 axes / dimension 2), and the five plane witnesses (2 axes / dimension 2 each) all satisfy count==dimension and all declare a dimension, so conforms=True. Injecting the probe of record crs:probeXyGeometer a crs:QuarkGridGeometer ; crs:hasDimension 2 ; crs:hasAxis (three axes) — an (x,y) geometer with 3 axes (equally a S-O-P geometer declaring dimension 2) — makes pyshacl report conforms=False (and flips q_dimension_equals_count True->False); the zero-axis CONCRETE probe crs:isoA a crs:QuarkGridGeometer ; crs:hasDimension 5 (no crs:hasAxis) yields ?n=0 != 5 and is flagged by clause (ii) (the D1 crux), the no-dimension CONCRETE probe crs:isoB a crs:QuarkGridGeometer ; crs:hasAxis (four axes) with no crs:hasDimension is flagged by clause (i) (the D2 crux), and a zero-axis CONCRETE plane leaf (crs:HoneycombPlaneGeometer with 0 axes) is flagged too; while the REGRESSION CONTROLS crs:pA a crs:PlaneGeometer (0 axes, no dim), crs:probeBareProg a crs:PlaneGeometer ; crs:hasDimension 2 (0 axes), and the same two for crs:RolePairProjectionPlane stay GREEN (the agnostic progenitors ground nothing, Q3), proving all the concrete teeth bite and the progenitor exemption holds. THIRD ARM (G1b, top-progenitor grounds-nothing DIMENSION clause, closing the round-1 residual AND the H1 plane-progenitor dimension-value gap): a node typed at the AGNOSTIC TOP progenitor crs:Geometer, at NONE of the seven concrete leaves, that carries a concrete crs:hasDimension is flagged UNLESS it is a plane progenitor (crs:PlaneGeometer / crs:RolePairProjectionPlane) declaring EXACTLY its rank-2 FAMILY ARITY crs:hasDimension 2 — the plane-progenitor exemption is VALUE-SCOPED to the value 2 (geometers.ttl:280/:295: the plane progenitors 'may declare their rank-2 FAMILY ARITY crs:hasDimension 2', the value 2 SPECIFICALLY), NOT a class-blanket pass on any value. So a plane progenitor declaring a NON-2 dimension (crs:p7 a crs:PlaneGeometer ; crs:hasDimension 7 -> RED; crs:rp3 a crs:RolePairProjectionPlane ; crs:hasDimension 3 -> RED; crs:p0 a crs:PlaneGeometer ; crs:hasDimension 0 -> RED) is now caught, closing the gap where a class-blanket exemption left it falsely GREEN; a plane progenitor at crs:hasDimension 2 (or carrying no dimension) stays GREEN; and the top crs:Geometer 'declares NO concrete dimension' (geometers.ttl:76) so a bare crs:Geometer carrying ANY dimension value (crs:evilGeo4 a crs:Geometer ; crs:hasDimension 7) is RED. Mechanically the exemption is a second FILTER NOT EXISTS reading the genuine rdf:type edges with the value guard FILTER ( ?d = 2 ) inside it (defang-proof under inference=rdfs: rdfs materialises the plane-progenitor rdf:type via subClassOf but never fabricates a crs:hasDimension value nor the concrete-leaf types). This makes the grounds-nothing dimension enforcement SYMMETRIC across every progenitor level with no value-blind privilege (Directive 17 no-privilege): the top crs:Geometer is no longer the one progenitor exempted with no compensating tooth, and the two plane progenitors are exempt only at their declared family arity, never for an arbitrary dimension." ;
+    sh:targetClass crs:Geometer ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "per-geometer dimension law (Q2, dimension-present clause, spec 2.4 / 4): this CONCRETE crs:Geometer declares NO crs:hasDimension. Every concrete geometer MUST declare its OWN dimension (the per-geometer axis-arity, Q2) — a concrete geometer carrying crs:hasAxis edges but no crs:hasDimension escapes the count==dimension aggregate (whose $this crs:hasDimension ?dim join is then unbound); this clause forces the dimension to exist so the aggregate always has a declared arity to compare against. It is CONCRETENESS-SCOPED (the exact concrete-leaf enumeration crs:PlaneProgenitorShape constraint B uses): only a $this typed as one of the seven concrete geometer leaves is required to declare a dimension, so the agnostic progenitors crs:Geometer / crs:PlaneGeometer / crs:RolePairProjectionPlane — which GROUND NOTHING and declare no concrete dimension (Q3) — are exempt and stay GREEN at zero axes." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a ?leaf .
+              FILTER ( ?leaf = <urn:silmaril:crs:#RoleGeometer>
+                    || ?leaf = <urn:silmaril:crs:#QuarkGridGeometer>
+                    || ?leaf = <urn:silmaril:crs:#HoneycombPlaneGeometer>
+                    || ?leaf = <urn:silmaril:crs:#GeographicPlaneGeometer>
+                    || ?leaf = <urn:silmaril:crs:#SubjectObjectPlane>
+                    || ?leaf = <urn:silmaril:crs:#SubjectPredicatePlane>
+                    || ?leaf = <urn:silmaril:crs:#ObjectPredicatePlane> )
+              FILTER NOT EXISTS { $this <urn:silmaril:crs:#hasDimension> ?anydim }
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "per-geometer dimension law (Q2, count==dimension clause, spec 2.4 / 4): this CONCRETE crs:Geometer's axis-arity count(DISTINCT crs:hasAxis) does not equal its declared crs:hasDimension. Dimension counts TOWER-axes (the crs:hasAxis arity), never scalar ordinals; a geometer with an (x,y) axis system must declare dimension 2, a S-O-P role geometer must declare dimension 3. The count is taken via OPTIONAL, anchored on concrete-leaf class membership, so a CONCRETE geometer grounded in NO axis yields count 0 (e.g. a declared dimension 5 over 0 grounded axes — the forbidden jump to a dimension no axis supports) and is flagged, never silently passed by an empty aggregate group; and because the count is scoped by concrete-leaf membership (the exact mechanism crs:PlaneProgenitorShape constraint B uses), the agnostic progenitors crs:Geometer / crs:PlaneGeometer / crs:RolePairProjectionPlane never enter the count and stay GREEN at zero axes (they ground nothing, Q3)." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a ?leaf .
+              FILTER ( ?leaf = <urn:silmaril:crs:#RoleGeometer>
+                    || ?leaf = <urn:silmaril:crs:#QuarkGridGeometer>
+                    || ?leaf = <urn:silmaril:crs:#HoneycombPlaneGeometer>
+                    || ?leaf = <urn:silmaril:crs:#GeographicPlaneGeometer>
+                    || ?leaf = <urn:silmaril:crs:#SubjectObjectPlane>
+                    || ?leaf = <urn:silmaril:crs:#SubjectPredicatePlane>
+                    || ?leaf = <urn:silmaril:crs:#ObjectPredicatePlane> )
+              $this <urn:silmaril:crs:#hasDimension> ?dim .
+              {
+                SELECT $this (COUNT(DISTINCT ?ax) AS ?n) WHERE {
+                  $this a ?leaf2 .
+                  FILTER ( ?leaf2 = <urn:silmaril:crs:#RoleGeometer>
+                        || ?leaf2 = <urn:silmaril:crs:#QuarkGridGeometer>
+                        || ?leaf2 = <urn:silmaril:crs:#HoneycombPlaneGeometer>
+                        || ?leaf2 = <urn:silmaril:crs:#GeographicPlaneGeometer>
+                        || ?leaf2 = <urn:silmaril:crs:#SubjectObjectPlane>
+                        || ?leaf2 = <urn:silmaril:crs:#SubjectPredicatePlane>
+                        || ?leaf2 = <urn:silmaril:crs:#ObjectPredicatePlane> )
+                  OPTIONAL { $this <urn:silmaril:crs:#hasAxis> ?ax }
+                } GROUP BY $this
+              }
+              FILTER ( ?n != ?dim )
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "per-geometer dimension law (Q2, top-progenitor grounds-nothing clause, spec 2.4 / geometers.ttl:76 / :280 / :295): this node carries a concrete crs:hasDimension that no progenitor level licenses. The exemption is VALUE-SCOPED, not class-blanket: the two plane progenitors crs:PlaneGeometer / crs:RolePairProjectionPlane are exempt ONLY when the declared value is their rank-2 FAMILY ARITY crs:hasDimension 2 (the value 2 specifically, geometers.ttl:280/:295), so a plane progenitor declaring a NON-2 dimension (e.g. 7, 3, 0) is RED exactly like a concrete leaf whose count != dimension. The AGNOSTIC TOP crs:Geometer 'declares NO concrete dimension' (geometers.ttl:76) so it is RED for ANY dimension value it carries; only the seven concrete geometer leaves declare a dimension (checked count==dimension above). A node carrying a dimension that is neither a concrete leaf under the count law nor a plane progenitor at the family arity 2 is the forbidden jump to a dimension no level grounds; this closes the plane-progenitor dimension-value gap (a plane progenitor at a non-2 dimension was falsely GREEN) and the round-1 D1-crux hole (a bare crs:Geometer carrying a dimension was falsely GREEN), making the grounds-nothing law SYMMETRIC across every progenitor level with no value-blind privilege (Directive 17 no-privilege)." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#Geometer> .
+              $this <urn:silmaril:crs:#hasDimension> ?d .
+              FILTER NOT EXISTS {
+                $this a ?leaf .
+                FILTER ( ?leaf = <urn:silmaril:crs:#RoleGeometer>
+                      || ?leaf = <urn:silmaril:crs:#QuarkGridGeometer>
+                      || ?leaf = <urn:silmaril:crs:#HoneycombPlaneGeometer>
+                      || ?leaf = <urn:silmaril:crs:#GeographicPlaneGeometer>
+                      || ?leaf = <urn:silmaril:crs:#SubjectObjectPlane>
+                      || ?leaf = <urn:silmaril:crs:#SubjectPredicatePlane>
+                      || ?leaf = <urn:silmaril:crs:#ObjectPredicatePlane> )
+              }
+              FILTER NOT EXISTS {
+                $this a ?prog .
+                FILTER ( ?prog = <urn:silmaril:crs:#PlaneGeometer>
+                      || ?prog = <urn:silmaril:crs:#RolePairProjectionPlane> )
+                FILTER ( ?d = 2 )
+              }
+            }
+        """ ;
+    ] .
+
+# =====================================================================================
+# T6 — crs:PlaneProgenitorShape (the agnostic plane-geometer progenitor family law, Q3).
+# =====================================================================================
+# Lifts the whitepaper's per-geometer dimension (05_carrier_towers_triad.tex: a plane geometer has
+# dimension 2 WITHOUT touching the towers) + the source-attested Honeycomb (x,y) plane
+# (source_dimension_planes.tex) + SP1's geospatial pair (prim:CRS/prim:Longitude/prim:Latitude), and
+# Directive 17 Q3 (pinned, "do all, be more agnostic on all; no privilege"): an agnostic crs:PlaneGeometer
+# progenitor (dim 2, grounds NOTHING) with ALL planes minted as composable children — crs:HoneycombPlaneGeometer
+# (x,y), crs:GeographicPlaneGeometer (lon,lat), and an agnostic crs:RolePairProjectionPlane sub-progenitor
+# (also grounds nothing) carrying the FULL SYMMETRIC role-pair family (S,O)/(S,P)/(O,P), each a lawful rank-2
+# pi-projection off the rank-3 S-O-P role geometer dropping exactly one role.
+#
+# This node shape targets crs:Geometer (so EVERY geometer instance — including a node typed at the bare TOP
+# progenitor — is covered under inference=rdfs) plus crs:PlaneGeometer and crs:RoleGeometer (the symmetry
+# anchor) explicitly. Its three sh:sparql constraints are each SELF-GUARDED by $this's relevant type so they
+# no-op on irrelevant targets:
+#   (A) EVERY agnostic progenitor at EVERY level GROUNDS NOTHING (G1a, generalised from the round-1
+#       crs:PlaneGeometer-only tooth, Directive 17 no-privilege): a $this that is a crs:Geometer and carries
+#       crs:hasAxis but is NOT typed as any of the SEVEN concrete geometer LEAVES (crs:RoleGeometer /
+#       crs:QuarkGridGeometer / the two non-role planes / the three role-pair planes) is a bare progenitor
+#       instance — top crs:Geometer, plane crs:PlaneGeometer, or sub-progenitor crs:RolePairProjectionPlane —
+#       smuggling in a concrete axis -> violation (the seven concrete leaves are excluded, so a legitimate
+#       role/quark/plane leaf carrying its axes stays GREEN); the top crs:Geometer is no longer privileged;
+#   (B) every concrete plane child has EXACTLY 2 axes: a $this typed as a concrete plane leaf whose
+#       count(DISTINCT crs:hasAxis) != 2 -> violation (a per-target COUNT aggregate, GROUP BY $this, like
+#       crs:DimensionCountShape — NOT a range-inference-vacuous sh:class);
+#   (C) the role-pair family is SYMMETRIC: for the role geometer $this, every one of the three role tower
+#       witnesses must be dropped (crs:dropsRole) by some plane projecting off it (crs:projectsFromRoleGeometer)
+#       -> a role left undropped (a missing/privileged role pair) is a violation.
+# All three read GENUINE rdf:type / crs:hasAxis / crs:projectsFromRoleGeometer / crs:dropsRole edges, so they
+# are defang-proof under inference=rdfs (which materialises rdf:type along subClassOf but never fabricates a
+# concrete-leaf type on a bare progenitor, an extra crs:hasAxis edge, or a crs:dropsRole edge).
+# Probe of record (conforms True->False): inject crs:probePlaneProgenitorAxis a crs:PlaneGeometer ;
+# crs:hasAxis crs:honeycombXAxis (the agnostic progenitor carrying a concrete axis) -> constraint (A) fires,
+# conforms=True->False, and q_plane_progenitor_symmetric True->False. The G1a generalisation makes the SAME
+# constraint (A) bite the TOP progenitor: crs:evilGeo a crs:Geometer ; crs:hasAxis crs:a (a bare top
+# crs:Geometer carrying a concrete axis) and crs:evilGeo3 a crs:Geometer ; crs:hasAxis crs:a -> constraint
+# (A) fires -> conforms=False, symmetrically with the bare crs:PlaneGeometer. Two further variants also bite:
+# a concrete plane child with 3 axes (constraint B), and a role-pair family missing one plane (constraint C).
+# =====================================================================================
+
+crs:PlaneProgenitorShape a sh:NodeShape ;
+    rdfs:label "PlaneProgenitorShape" ;
+    rdfs:comment "The agnostic plane-geometer progenitor family law with teeth (T6, Q3), lifting the whitepaper's per-geometer dimension (05_carrier_towers_triad.tex: a plane geometer has dimension 2 WITHOUT touching the towers), the source-attested Honeycomb (x,y) plane (source_dimension_planes.tex), SP1's geospatial pair (prim:CRS/prim:Longitude/prim:Latitude), and Directive 17 Q3 (pinned, 'do all, be more agnostic on all; no privilege'): an agnostic crs:PlaneGeometer progenitor (dim 2, grounds NOTHING) with ALL planes as composable children — crs:HoneycombPlaneGeometer (x,y), crs:GeographicPlaneGeometer (lon,lat), and the agnostic crs:RolePairProjectionPlane sub-progenitor (also grounds nothing) carrying the FULL SYMMETRIC family (S,O)/(S,P)/(O,P), each a lawful rank-2 pi-projection off the rank-3 S-O-P role geometer dropping one role. This node shape targets crs:Geometer (covering EVERY geometer instance under inference=rdfs, including a node typed at the bare TOP progenitor), plus crs:PlaneGeometer and crs:RoleGeometer (the symmetry anchor) explicitly, with three SELF-GUARDED sh:sparql constraints: (A) EVERY agnostic progenitor at EVERY level GROUNDS NOTHING (G1a, generalised from the round-1 crs:PlaneGeometer-only tooth to the whole progenitor stack, Directive 17 no-privilege) — a crs:Geometer $this carrying crs:hasAxis but NOT typed as any of the SEVEN concrete geometer leaves (crs:RoleGeometer / crs:QuarkGridGeometer / crs:HoneycombPlaneGeometer / crs:GeographicPlaneGeometer / crs:SubjectObjectPlane / crs:SubjectPredicatePlane / crs:ObjectPredicatePlane) is a bare progenitor — the TOP crs:Geometer, the plane crs:PlaneGeometer, or the sub-progenitor crs:RolePairProjectionPlane — smuggling in a concrete axis, and is flagged (the seven concrete leaves ARE excluded, so a legitimate crs:RoleGeometer with three axes or a plane witness with two stays GREEN); the top crs:Geometer is no longer privileged over the plane progenitor, closing the round-1 residual where a bare crs:Geometer carrying a concrete axis was falsely GREEN; (B) every concrete plane child has EXACTLY 2 axes — a $this typed as a concrete plane leaf whose count(DISTINCT crs:hasAxis) != 2 is flagged (a per-target COUNT aggregate, GROUP BY $this, not a range-inference-vacuous sh:class); the count is taken via OPTIONAL { $this crs:hasAxis ?ax } with the concrete-leaf membership as the mandatory row anchor, so a concrete plane leaf grounded in ZERO axes yields ?n = 0 (!= 2) and is flagged RED rather than silently escaping through an empty GROUP-BY group — and because the count is scoped by concrete-leaf class membership (NOT by 'has an axis'), the agnostic progenitor crs:PlaneGeometer and sub-progenitor crs:RolePairProjectionPlane never enter this count and stay GREEN at zero axes (they ground nothing, Q3); (C) the role-pair family is SYMMETRIC — for the role geometer $this, every one of the three role tower witnesses (crs:subjectTowerWitness / crs:objectTowerWitness / crs:predicateTowerWitness) must be dropped by some plane projecting off it, so a role left undropped (a privileged/missing pair) is flagged. All read genuine rdf:type / crs:hasAxis / crs:projectsFromRoleGeometer / crs:dropsRole edges (defang-proof under inference=rdfs). On the clean graph the two non-role planes and the three symmetric role-pair planes each carry exactly 2 axes, no bare progenitor carries an axis, and all three roles are dropped, so conforms=True. Injecting the probe of record crs:probePlaneProgenitorAxis a crs:PlaneGeometer ; crs:hasAxis crs:honeycombXAxis (the progenitor carrying a concrete axis) fires constraint (A) -> conforms=False (and flips q_plane_progenitor_symmetric True->False); a 3-axis plane child fires (B); the zero-axis concrete leaf crs:probeGhostPlane a crs:HoneycombPlaneGeometer (no axis) now yields ?n=0 != 2 and fires (B) — the D3 crux, where the agnostic progenitor crs:PlaneGeometer and sub-progenitor crs:RolePairProjectionPlane instances carrying zero axes stay GREEN as the regression control; a role-pair family missing one plane fires (C), proving the teeth on the cases that bite." ;
+    sh:targetClass crs:Geometer , crs:PlaneGeometer , crs:RoleGeometer ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "progenitor 'grounds nothing' law (A), SYMMETRIC across ALL progenitor levels (Q3, Directive 17 no-privilege, spec 2.4 / geometers.ttl:76): this node is typed at an AGNOSTIC geometer progenitor — the TOP crs:Geometer, or the plane progenitor crs:PlaneGeometer, or the role-pair sub-progenitor crs:RolePairProjectionPlane — but NOT at any of the seven concrete geometer leaves, yet it carries a concrete crs:hasAxis. NO agnostic progenitor at ANY level grounds a concrete axis; only the seven concrete geometer leaves (crs:RoleGeometer / crs:QuarkGridGeometer / the two non-role planes / the three role-pair planes) carry axes. The top crs:Geometer is no longer privileged over the plane progenitor: a bare crs:Geometer carrying a concrete axis bites exactly as a bare crs:PlaneGeometer does." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#Geometer> .
+              $this <urn:silmaril:crs:#hasAxis> ?a .
+              FILTER NOT EXISTS {
+                $this a ?leaf .
+                FILTER ( ?leaf = <urn:silmaril:crs:#RoleGeometer>
+                      || ?leaf = <urn:silmaril:crs:#QuarkGridGeometer>
+                      || ?leaf = <urn:silmaril:crs:#HoneycombPlaneGeometer>
+                      || ?leaf = <urn:silmaril:crs:#GeographicPlaneGeometer>
+                      || ?leaf = <urn:silmaril:crs:#SubjectObjectPlane>
+                      || ?leaf = <urn:silmaril:crs:#SubjectPredicatePlane>
+                      || ?leaf = <urn:silmaril:crs:#ObjectPredicatePlane> )
+              }
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "plane progenitor law (B) 'exactly 2 axes' (Q3, spec 2.4): this concrete plane child does not carry exactly 2 crs:hasAxis. A plane geometer is rank-2 by definition; a concrete plane with 3 axes (or 1, or ZERO) is not a plane. The count is taken via OPTIONAL so a concrete plane LEAF grounded in NO axis yields count 0 (!= 2) and is flagged, never silently passed by an empty aggregate group; the agnostic progenitors crs:PlaneGeometer / crs:RolePairProjectionPlane are NOT concrete leaves, so they never enter this count and stay green with zero axes." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a ?leaf .
+              FILTER ( ?leaf = <urn:silmaril:crs:#HoneycombPlaneGeometer>
+                    || ?leaf = <urn:silmaril:crs:#GeographicPlaneGeometer>
+                    || ?leaf = <urn:silmaril:crs:#SubjectObjectPlane>
+                    || ?leaf = <urn:silmaril:crs:#SubjectPredicatePlane>
+                    || ?leaf = <urn:silmaril:crs:#ObjectPredicatePlane> )
+              {
+                SELECT $this (COUNT(DISTINCT ?ax) AS ?n) WHERE {
+                  $this a ?leaf2 .
+                  FILTER ( ?leaf2 = <urn:silmaril:crs:#HoneycombPlaneGeometer>
+                        || ?leaf2 = <urn:silmaril:crs:#GeographicPlaneGeometer>
+                        || ?leaf2 = <urn:silmaril:crs:#SubjectObjectPlane>
+                        || ?leaf2 = <urn:silmaril:crs:#SubjectPredicatePlane>
+                        || ?leaf2 = <urn:silmaril:crs:#ObjectPredicatePlane> )
+                  OPTIONAL { $this <urn:silmaril:crs:#hasAxis> ?ax }
+                } GROUP BY $this
+              }
+              FILTER ( ?n != 2 )
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "plane progenitor law (C) 'symmetric role-pair family' (Q3, spec 2.4): a role tower witness is dropped by NO role-pair plane projecting off this role geometer — the role-pair family is missing a plane or privileges a pair. The three symmetric planes (S,O)/(S,P)/(O,P) must drop each of Subject/Object/Predicate exactly once, none missing." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#RoleGeometer> .
+              $this <urn:silmaril:crs:#hasAxis> ?role .
+              FILTER NOT EXISTS {
+                ?plane <urn:silmaril:crs:#projectsFromRoleGeometer> $this .
+                ?plane <urn:silmaril:crs:#dropsRole> ?role .
+              }
+            }
+        """ ;
+    ] .
+
+# =====================================================================================
+# T7 — crs:FiveProjectionShape (the five-factor product joint-faithfulness + never-in-colour law).
+# =====================================================================================
+# Lifts the whitepaper's five-factor Helios product K = K_A x K_G x K_S x K_O x K_P
+# (05_carrier_towers_triad.tex, Def. "Project-authored five-factor Helios carrier") with its five product
+# projections pi_j, j in {A,G,S,O,P}, and the Thm. "Five projections are jointly faithful"
+# (thm:whitepaper-five-projections): u = v <=> pi_j u = pi_j v for every j; proof: "an arrow in a product
+# category is exactly its five-tuple of component arrows, so equality is componentwise". Two laws in one shape:
+#   (A) JOINT FAITHFULNESS / reversibility round-trip: no two DISTINCT crs:ProductArrow may carry an identical
+#       five-tuple of component images (crs:piAComponent/piGComponent/piSComponent/piOComponent/piPComponent) —
+#       because a product arrow IS its five-tuple, a duplicate tuple on a distinct arrow is a faithfulness break;
+#   (B) NEVER IN A COLOUR COMPONENT: no crs:FactorProjection's crs:landsInFactor is on the crs:ColourChannel
+#       line ("pi_S K, pi_O K, pi_P K ... never in a color component"), the type distinction the T4 obstruction turns on.
+# This node shape targets BOTH crs:ProductArrow (constraint A) and crs:FactorProjection (constraint B), each
+# sh:sparql constraint SELF-GUARDED by $this's relevant type so it no-ops on the other target (mirroring
+# crs:PlaneProgenitorShape). Both read GENUINE rdf:type / crs:piXComponent / crs:landsInFactor / rdfs:subClassOf
+# edges, so they are defang-proof under inference=rdfs (which materialises rdf:type along subClassOf so the
+# projection children crs:CarrierTagProjection/crs:RoleTowerProjection are targeted, but never fabricates an extra
+# component edge, a crs:landsInFactor edge, nor a prim/colour subClassOf edge). Value-membership on the colour line
+# is a real subClassOf* walk to crs:ColourChannel, not a range-inference-vacuous sh:class (SP1 defang discipline).
+# Probe of record (conforms True->False): (A) inject crs:probeFaithlessArrow a crs:ProductArrow duplicating
+# crs:productArrowWitnessU's five-tuple -> constraint (A) fires; (B) inject crs:piSubject crs:landsInFactor
+# crs:RedChannel -> constraint (B) fires; q_five_projections_faithful flips True->False on either.
+# =====================================================================================
+
+crs:FiveProjectionShape a sh:NodeShape ;
+    rdfs:label "FiveProjectionShape" ;
+    rdfs:comment "The five-factor product joint-faithfulness + never-in-colour law with teeth (T7), lifting the whitepaper's five-factor Helios product K = K_A x K_G x K_S x K_O x K_P (05_carrier_towers_triad.tex, Def. 'Project-authored five-factor Helios carrier') with product projections pi_j (j in {A,G,S,O,P}) and the Thm. 'Five projections are jointly faithful' (thm:whitepaper-five-projections): u = v <=> pi_j u = pi_j v for every j, proved because 'an arrow in a product category is exactly its five-tuple of component arrows, so equality is componentwise'. It encodes TWO laws: (A) JOINT FAITHFULNESS (the reversibility round-trip) — no two DISTINCT crs:ProductArrow may carry an identical five-tuple of component images crs:piAComponent/crs:piGComponent/crs:piSComponent/crs:piOComponent/crs:piPComponent, since a product arrow IS its five-tuple; and (B) NEVER IN A COLOUR COMPONENT — no crs:FactorProjection's crs:landsInFactor lies on the crs:ColourChannel line, the whitepaper's 'pi_S/pi_O/pi_P ... never in a color component' (the T4 role/colour type distinction). This node shape targets BOTH crs:ProductArrow (for constraint A) and crs:FactorProjection (for constraint B), each sh:sparql constraint SELF-GUARDED by $this's relevant type so it no-ops on the irrelevant target (mirroring crs:PlaneProgenitorShape). Both read genuine rdf:type / crs:piXComponent / crs:landsInFactor / rdfs:subClassOf edges, so they are defang-proof under inference=rdfs (which materialises rdf:type along subClassOf so the projection children crs:CarrierTagProjection/crs:RoleTowerProjection are targeted, but never fabricates a component edge, a crs:landsInFactor edge, nor a colour subClassOf edge); the colour-line check is a real rdfs:subClassOf* walk to crs:ColourChannel, not a range-inference-vacuous sh:class. On the clean graph the two product arrows carry DISTINCT five-tuples (they differ in the Predicate component) and every projection lands in a byte-carrier or role-tower factor (never colour), so conforms=True. Injecting the probe of record crs:probeFaithlessArrow (a second crs:ProductArrow duplicating crs:productArrowWitnessU's five-tuple) fires constraint (A), and injecting crs:piSubject crs:landsInFactor crs:RedChannel fires constraint (B) — either makes pyshacl report conforms=False (and flips q_five_projections_faithful True->False), proving the teeth on the cases that bite." ;
+    sh:targetClass crs:ProductArrow , crs:FactorProjection ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "five-projection joint-faithfulness (A) (spec 2.1 / 4): this crs:ProductArrow shares an identical five-tuple of pi_j component images (piA/piG/piS/piO/piP) with a DISTINCT crs:ProductArrow. An arrow of the five-factor product K is exactly its five-tuple of component arrows (u = v <=> pi_j u = pi_j v for every j); two distinct arrows with one five-tuple is a joint-faithfulness break." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#ProductArrow> .
+              $this <urn:silmaril:crs:#piAComponent> ?a ;
+                    <urn:silmaril:crs:#piGComponent> ?g ;
+                    <urn:silmaril:crs:#piSComponent> ?s ;
+                    <urn:silmaril:crs:#piOComponent> ?o ;
+                    <urn:silmaril:crs:#piPComponent> ?p .
+              ?other a <urn:silmaril:crs:#ProductArrow> ;
+                    <urn:silmaril:crs:#piAComponent> ?a ;
+                    <urn:silmaril:crs:#piGComponent> ?g ;
+                    <urn:silmaril:crs:#piSComponent> ?s ;
+                    <urn:silmaril:crs:#piOComponent> ?o ;
+                    <urn:silmaril:crs:#piPComponent> ?p .
+              FILTER ( $this != ?other )
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "five-projection never-in-colour (B) (spec 2.1 / 4): this crs:FactorProjection lands in a crs:ColourChannel component (crs:landsInFactor on the RGB colour line). The five product projections land in their byte-carrier (pi_A/pi_G) or role-tower (pi_S/pi_O/pi_P) factor categories and NEVER in a colour component; a role tower is not a colour channel (the T4 positional-collapse obstruction)." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#FactorProjection> .
+              $this <urn:silmaril:crs:#landsInFactor> ?f .
+              ?f <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:crs:#ColourChannel> .
+            }
+        """ ;
+    ] .
+
+# =====================================================================================
+# T8 — crs:FrameDerivationShape (coordinatization = a Frame / Kleisli arrow: frameOutput + frameEffect).
+# =====================================================================================
+# Lifts the SP3 design (2.5): "A crs:CoordinateDerivation is a Frame in the exact SP1 sense
+# (prim:frameOutput + prim:frameEffect), hence a Kleisli arrow of the SP1 realization monad -- not a
+# bare function", and design §4: "every crs:CoordinateDerivation ... carries a prim:frameOutput AND a
+# prim:frameEffect (SP1 Frame law)". derivation.ttl authors crs:CoordinateDerivation rdfs:subClassOf
+# prim:Realization so SP1's prim:RealizationShape ALSO governs its instances; THIS shape is the SP3-side
+# tooth of record, targeting crs:CoordinateDerivation directly and requiring both Frame coordinates so
+# the tooth is stated and biting inside the SP3 law rather than relying only on the re-run SP1 shape.
+# It uses sh:property sh:minCount (edge-count, not a range-inference-vacuous sh:class, so defang-proof
+# under inference=rdfs): a crs:CoordinateDerivation missing prim:frameOutput or missing prim:frameEffect
+# is not a Frame / Kleisli arrow of the unary law T -> Frame(output: X, error|effect: Y) and is flagged.
+# On the clean graph crs:zCoordinateDerivation carries prim:frameOutput prim:Uint16 + prim:frameEffect
+# prim:EncodingLoss, so conforms=True.
+# Probe of record (conforms/ASK True->False): inject crs:probeEffectlessDerivation a
+# crs:CoordinateDerivation ; prim:frameOutput prim:Uint16 (a derivation missing prim:frameEffect) ->
+# conforms=True->False, and q_coordinates_derived True->False on the same probe.
+# =====================================================================================
+
+crs:FrameDerivationShape a sh:NodeShape ;
+    rdfs:label "FrameDerivationShape" ;
+    rdfs:comment "The coordinatization = Frame / Kleisli-arrow law with teeth (T8), lifting the SP3 design (2.5): 'A crs:CoordinateDerivation is a Frame in the exact SP1 sense (prim:frameOutput + prim:frameEffect), hence a Kleisli arrow of the SP1 realization monad -- not a bare function', and design §4: 'every crs:CoordinateDerivation carries a prim:frameOutput AND a prim:frameEffect (SP1 Frame law)'. A coordinate derivation IS a Frame -- the unary law's Yoneda point T -> Frame(output: X, error|effect: Y) -- its domain an SP2 aob:AOBAtom identity and its codomain a tower position / prim:Ordinal, and coordinatization is Yoneda evaluation at the geometer's representable reusing SP1's prim:Frame prim:isYonedaPoint true, not a re-derived construct. Because derivation.ttl authors crs:CoordinateDerivation rdfs:subClassOf prim:Realization, SP1's prim:RealizationShape (re-run over the merged graph) ALSO governs its instances; THIS node shape is the SP3-side tooth of record so the Frame law is stated and enforced inside the SP3 law itself, targeting crs:CoordinateDerivation directly and requiring via sh:property sh:minCount 1 that each carries at least one prim:frameOutput (the Frame output coordinate X) AND at least one prim:frameEffect (the typed error|effect coordinate Y). Both are edge-count constraints (sh:minCount), not a range-inference-vacuous sh:class, so they are defang-proof under inference=rdfs (which materialises rdf:type along subClassOf so subclass derivations are targeted, but never fabricates or removes a prim:frameOutput/prim:frameEffect edge). On the clean graph crs:zCoordinateDerivation carries prim:frameOutput prim:Uint16 + prim:frameEffect prim:EncodingLoss, so conforms=True. Injecting the probe of record crs:probeEffectlessDerivation a crs:CoordinateDerivation ; prim:frameOutput prim:Uint16 (a derivation missing prim:frameEffect) makes pyshacl report conforms=False (and flips q_coordinates_derived True->False), proving the tooth on the case that bites. Per design §4 ('every crs:CoordinateDerivation/crs:OrderProjection carries a prim:frameOutput AND a prim:frameEffect') the shape also targets the T10 crs:OrderProjection Frame (the S:P:O<->S:O:P reorder), so the Frame law is stated SP3-side for both derivation kinds; the reorder witness crs:orderProjectionWitness carries prim:frameOutput prim:TripleNTriples + prim:frameEffect prim:OrderingCanonicalization and passes, while the T10-specific crs:RoleOrderEffect obligation is the separate crs:OrderProjectionShape tooth." ;
+    sh:targetClass crs:CoordinateDerivation , crs:OrderProjection ;
+    sh:property [
+        sh:path prim:frameOutput ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "coordinatization = Frame law (T8, design §2.5 / §4): this crs:CoordinateDerivation carries no prim:frameOutput (the Frame output coordinate X). A coordinate derivation IS a Frame / Kleisli arrow of the SP1 realization monad; a mapping without an output coordinate is not a Frame and cannot be the frameOutput of a derived coordinate." ;
+    ] ;
+    sh:property [
+        sh:path prim:frameEffect ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "coordinatization = Frame law (T8, design §2.5 / §4): this crs:CoordinateDerivation carries no prim:frameEffect (the typed error|effect coordinate Y). A coordinate derivation IS a Frame / Kleisli arrow; a bare mapping without a typed effect is not a Kleisli arrow of the Frame monad (unary law T -> Frame(output: X, error|effect: Y))." ;
+    ] .
+
+# =====================================================================================
+# T8 — crs:DerivedNotStoredShape (coordinates are DERIVED, never STORED: no literal coordinate).
+# =====================================================================================
+# Lifts the SP3 design constraint 4 ("Coordinates are derived, never stored. Every coordinate is the
+# frameOutput of a derivation Frame") and design §4 ("crs:DerivedNotStoredShape -- no atom/point carries
+# a literal (xsd) coordinate; every coordinate is the prim:frameOutput of a crs:CoordinateDerivation").
+# The coordinate slot crs:atCoordinate (derivation.ttl) MUST point at a crs:CoordinateDerivation object
+# (whose prim:frameOutput IS the coordinate) and must NEVER carry a literal (xsd) value; a stored
+# xsd:double/xsd:decimal coordinate has smuggled a materialised coordinate onto the point instead of
+# deriving it. This node shape targets BOTH crs:CoordinatePoint AND aob:AOBAtom ("no atom/point"), and
+# its sh:sparql constraint flags any target whose crs:atCoordinate value isLiteral(). It reads the
+# genuine crs:atCoordinate edge and the SPARQL isLiteral() function, so it is defang-proof under
+# inference=rdfs (which can add an rdf:type edge but can NEVER turn a literal into a non-literal, and
+# never fabricate a crs:atCoordinate edge). On the clean graph crs:coordinatePointWitness crs:atCoordinate
+# crs:zCoordinateDerivation (an OBJECT, isLiteral=false), so conforms=True.
+# Probe of record (conforms/ASK True->False): inject crs:probeStoredPoint a crs:CoordinatePoint ;
+# crs:atCoordinate "3.14"^^xsd:double (a point carrying a stored literal coordinate) ->
+# conforms=True->False, and q_coordinates_derived True->False on the same probe.
+# =====================================================================================
+
+crs:DerivedNotStoredShape a sh:NodeShape ;
+    rdfs:label "DerivedNotStoredShape" ;
+    rdfs:comment "The derived-not-stored law with teeth (T8), lifting the SP3 design constraint 4 ('Coordinates are derived, never stored. Every coordinate is the frameOutput of a derivation Frame') and design §4 ('no atom/point carries a literal (xsd) coordinate; every coordinate is the prim:frameOutput of a crs:CoordinateDerivation'). The coordinate slot crs:atCoordinate (derivation.ttl) MUST point at a crs:CoordinateDerivation object -- the Frame whose prim:frameOutput IS the coordinate -- and must NEVER carry a literal (xsd) value: a point asserting a stored xsd:double/xsd:decimal coordinate has smuggled a materialised, potentially-drifting coordinate onto the point instead of deriving it as the frameOutput of a Kleisli arrow re-runnable from the atom identity, exactly the anti-pattern the design forbids. This node shape targets BOTH crs:CoordinatePoint AND aob:AOBAtom (the design's 'no atom/point'), so a stored coordinate is caught whether it sits on a coordinatised point or directly on an SP2 atom, neither privileged. Its sh:sparql constraint flags any target whose crs:atCoordinate value satisfies isLiteral(). It reads the genuine crs:atCoordinate edge and the SPARQL isLiteral() function, so it is defang-proof under inference=rdfs (which can add an rdf:type edge but can NEVER turn a literal into a non-literal, and never fabricate a crs:atCoordinate edge); isLiteral over the real value is used rather than a range-inference-vacuous sh:datatype/sh:class. On the clean graph crs:coordinatePointWitness crs:atCoordinate crs:zCoordinateDerivation (an OBJECT, isLiteral=false), so conforms=True. Injecting the probe of record crs:probeStoredPoint a crs:CoordinatePoint ; crs:atCoordinate \"3.14\"^^xsd:double (a point carrying a stored literal coordinate) makes pyshacl report conforms=False (and flips q_coordinates_derived True->False), proving the tooth on the case that bites." ;
+    sh:targetClass crs:CoordinatePoint , aob:AOBAtom ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "derived-not-stored law (T8, design constraint 4 / §4): this atom/point carries a crs:atCoordinate whose value is a LITERAL -- a stored coordinate. Coordinates are derived, never stored: crs:atCoordinate must point at a crs:CoordinateDerivation whose prim:frameOutput IS the coordinate, never carry an xsd literal that could drift from the atom it coordinatises." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <urn:silmaril:crs:#atCoordinate> ?v .
+              FILTER ( isLiteral(?v) )
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# T9 — crs:ZGroundingShape (the exact z chain; the AGNOSTIC byte-order progenitor, Q1).
+# =====================================================================================
+# Lifts the SP3 design (2.5, "The z derivation, grounded end-to-end") and design §4
+# ("crs:ZGroundingShape -- the z derivation's chain is exactly prim:URN -> encodeUtf8 -> prim:ByteVector
+# -> sha256 -> prim:Hash -> takesOctetPrefix 2 -> prim:Uint16 (bitWidth 16, interpretAs prim:Natural,
+# byteOrder a byte_order child) -> prim:Bit descent. Probe: a z reading 4 octets, interpreting as
+# non-Natural, or omitting the byte_order child -> conforms=False"). Q1 PINNED (Directive 17): the
+# endianness coordinate is the AGNOSTIC aob:ByteOrderProgenitor with NO concrete leaf in v1; this shape
+# PERMITS the ungrounded progenitor as the v1 default and REJECTS a none/big/concrete-leaf default (a
+# corpus-agnostic floor has no basis to fix endianness) as well as a 4-octet read and a non-prim:Natural
+# interpretation. It targets crs:ZDerivation and enforces four clauses, each DEFANG-PROOF under
+# inference=rdfs (edge-count sh:minCount and node/literal-identity sh:sparql, never a range-inference-
+# vacuous sh:class): (A) crs:takesOctetPrefix minCount 1 AND == 2 (a uint16 is exactly two octets);
+# (B) crs:zByteOrderCoordinate minCount 1 (the coordinate is present) AND == aob:ByteOrderProgenitor
+# (the agnostic progenitor, no concrete leaf -- rdfs subClassOf can add an rdf:type edge but never
+# rewrite the object node of the edge, so a concrete leaf value stays caught); (C) crs:zInterpretsAs
+# minCount 1 AND == prim:Natural (0..65535, never a signed/real interpretation); (D) the crs:zFromDigest
+# source is present (the z reads a real aob:HashDigest, not a free literal). On the clean graph
+# crs:zDerivationWitness satisfies all four (takesOctetPrefix 2, zByteOrderCoordinate the progenitor,
+# zInterpretsAs prim:Natural, zFromDigest aob:witnessDigest), so conforms=True.
+# Probes of record (conforms/ASK True->False): (P1) crs:probeZFourOctets a crs:ZDerivation ;
+# crs:takesOctetPrefix 4 -> clause A bites, conforms=True->False; (P2) crs:probeZNoByteOrder a
+# crs:ZDerivation with NO crs:zByteOrderCoordinate -> clause B minCount bites, conforms=True->False;
+# (P3) crs:probeZBigEndian a crs:ZDerivation ; crs:zByteOrderCoordinate aob:byteOrderBig -> clause B
+# node-identity bites, conforms=True->False. Each flips q_z_from_urn True->False on the same probe.
+# =====================================================================================
+
+crs:ZGroundingShape a sh:NodeShape ;
+    rdfs:label "ZGroundingShape" ;
+    rdfs:comment "The z-descent grounding law with teeth (T9), lifting the SP3 design (2.5, 'The z derivation, grounded end-to-end') and design §4: the z layering coordinate is a prim:Uint16 over the FIRST TWO OCTETS of an atom's source_sha256 (aob:HashDigest, 32 prim:Octet), interpreting as prim:Natural (0..65535), its endianness the AGNOSTIC byte_order progenitor. Q1 PINNED (Directive 17): the endianness coordinate is aob:ByteOrderProgenitor with NO concrete leaf in v1 (concrete endianness deferred to W5); THIS shape PERMITS the ungrounded progenitor as the v1 default and REJECTS a none/big/concrete-leaf default (category error / no floor basis), a 4-octet read, and a non-prim:Natural interpretation. It targets crs:ZDerivation with four DEFANG-PROOF clauses (edge-count sh:minCount + node/literal-identity sh:sparql, never a range-inference-vacuous sh:class -- rdfs inference can add an rdf:type edge but can never change the numeric literal on crs:takesOctetPrefix nor rewrite the object node of crs:zByteOrderCoordinate / crs:zInterpretsAs): (A) crs:takesOctetPrefix present and exactly 2 (a uint16 read is two octets, never four); (B) crs:zByteOrderCoordinate present (so a z omitting it is caught) and exactly aob:ByteOrderProgenitor (so a concrete leaf -- none/big/little/host -- asserted as the v1 default is caught); (C) crs:zInterpretsAs present and exactly prim:Natural (never a signed prim:Integer or prim:Real reading of the prefix); (D) crs:zFromDigest present (the z reads a real aob:HashDigest identity, not a free value). On the clean graph crs:zDerivationWitness satisfies all four, so conforms=True. Injecting the probes of record -- crs:probeZFourOctets crs:takesOctetPrefix 4 (clause A), crs:probeZNoByteOrder with no crs:zByteOrderCoordinate (clause B minCount), crs:probeZBigEndian crs:zByteOrderCoordinate aob:byteOrderBig (clause B node-identity) -- each makes pyshacl report conforms=False and flips q_z_from_urn True->False, proving the teeth on the cases that bite." ;
+    sh:targetClass crs:ZDerivation ;
+    sh:property [
+        sh:path crs:takesOctetPrefix ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "z-descent grounding law (T9, clause A, design §2.5/§4): this crs:ZDerivation carries no crs:takesOctetPrefix. The z coordinate is a prim:Uint16 read of the source_sha256's FIRST TWO OCTETS; a z with no prefix count is not a grounded uint16 read of the digest." ;
+    ] ;
+    sh:property [
+        sh:path crs:zByteOrderCoordinate ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "z-descent grounding law (T9, clause B / Q1, design §2.5/§4): this crs:ZDerivation omits its byte-order coordinate entirely. The z read's endianness MUST be named (Q1: the AGNOSTIC aob:ByteOrderProgenitor in v1); a z with no crs:zByteOrderCoordinate is silently endian-implicit and is rejected." ;
+    ] ;
+    sh:property [
+        sh:path crs:zInterpretsAs ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "z-descent grounding law (T9, clause C, design §2.5/§4): this crs:ZDerivation carries no crs:zInterpretsAs. The z read MUST interpret as prim:Natural (0..65535); a z with no interpretation coordinate is ungrounded." ;
+    ] ;
+    sh:property [
+        sh:path crs:zFromDigest ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "z-descent grounding law (T9, clause D, design §2.5/§4): this crs:ZDerivation carries no crs:zFromDigest. The z coordinate MUST read a real aob:HashDigest (source_sha256) identity, not a free value; a z with no source digest is not grounded in the atom's identity floor." ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "z-descent grounding law (T9, clause A, design §2.5/§4): this crs:ZDerivation reads a prefix count other than 2 octets. A prim:Uint16 is exactly 16 bits = 2 octets; a 4-octet (or other) read is not the canonical z. crs:takesOctetPrefix must be exactly 2." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#ZDerivation> ;
+                    <urn:silmaril:crs:#takesOctetPrefix> ?n .
+              FILTER ( ?n != 2 )
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "z-descent grounding law (T9, clause B / Q1, design §2.5/§4): this crs:ZDerivation's byte-order coordinate is a CONCRETE LEAF, not the AGNOSTIC aob:ByteOrderProgenitor. Q1 PINNED: v1 permits ONLY the ungrounded progenitor (concrete endianness deferred to W5); a none/big/little/host default is a category error with no floor basis and is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#ZDerivation> ;
+                    <urn:silmaril:crs:#zByteOrderCoordinate> ?bo .
+              FILTER ( ?bo != <urn:silmaril:aob:#ByteOrderProgenitor> )
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "z-descent grounding law (T9, clause C, design §2.5/§4): this crs:ZDerivation interprets its uint16 read as something other than prim:Natural. The z coordinate is a non-negative 0..65535 layering ordinal; a signed prim:Integer or prim:Real interpretation of the digest prefix is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#ZDerivation> ;
+                    <urn:silmaril:crs:#zInterpretsAs> ?interp .
+              FILTER ( ?interp != <urn:silmaril:prim:#Natural> )
+            }
+        """ ;
+    ] .
+
+# =====================================================================================
+# T10 — crs:OrderProjectionShape (the S:P:O <-> S:O:P reorder is a typed loss, never free).
+# =====================================================================================
+# Lifts the Helios projection diagram
+# helios/srcy/shared/components/diagrams/patterns/projection/source_dimension_planes.tex (the reified
+# arrow-node "first-class content-addressed atom that carries one subject predicate and object relation"
+# carrying its two "declared orders": SilDiagramRankZeroOrder S:P:O = "external relation coordinate ordered
+# as subject then predicate then object" and SilDiagramInternalRoleOrder S:O:P = "source-declared internal
+# role vector ordered as subject then object then predicate") and the SP3 design (2.6, "The S:P:O <-> S:O:P
+# order effect"): "Re-ordering between them is a materialised effect/loss between projections ... SP3 models
+# the reorder as a typed crs:OrderProjection Frame with a crs:RoleOrderEffect -- the projection packet (SP4)
+# consumes it as one loss class." The load-bearing discipline is that reordering the roles between the
+# external S:P:O and internal S:O:P orders is NEVER a free relabelling: it MUST carry a typed crs:RoleOrderEffect
+# (the SP3-specific loss seeding SP4, a bare owl:Class NOT a prim:frameEffect value and NOT under prim:FormalType).
+# The Frame law (prim:frameOutput + prim:frameEffect) is enforced separately by crs:FrameDerivationShape /
+# SP1's prim:RealizationShape; THIS shape is the T10 tooth of record for the reorder-specific obligations.
+# It targets crs:OrderProjection with four DEFANG-PROOF clauses (edge-count sh:minCount + a literal-identity
+# sh:sparql, never a range-inference-vacuous sh:class): (A) crs:hasRoleOrderEffect present (a reorder omitting
+# its typed loss is caught -- the probe of record); (B) crs:reordersArrowNode present (the reorder acts on a
+# real content-addressed reified arrow-node, not free-floating); (C) crs:externalOrder present AND (D)
+# crs:internalOrder present with the two declared orders DISTINCT (a reorder whose two orders coincide is not
+# a reorder). On the clean graph crs:orderProjectionWitness satisfies all four, so conforms=True.
+# Probe of record (conforms/ASK True->False): inject crs:probeOrderNoEffect a crs:OrderProjection ;
+# crs:reordersArrowNode aob:witnessLeg ; crs:externalOrder "S:P:O" ; crs:internalOrder "S:O:P" ;
+# prim:frameOutput prim:TripleNTriples ; prim:frameEffect prim:OrderingCanonicalization (a reorder missing its
+# crs:RoleOrderEffect) -> clause A bites, conforms=True->False, and q_order_effect True->False on the same probe.
+# =====================================================================================
+
+crs:OrderProjectionShape a sh:NodeShape ;
+    rdfs:label "OrderProjectionShape" ;
+    rdfs:comment "The S:P:O <-> S:O:P order-effect law with teeth (T10), lifting the Helios projection diagram (source_dimension_planes.tex: the reified arrow-node -- a 'first-class content-addressed atom that carries one subject predicate and object relation' -- carries its two 'declared orders', the rank-zero external S:P:O 'external relation coordinate ordered as subject then predicate then object' and the internal role S:O:P 'source-declared internal role vector ordered as subject then object then predicate') and the SP3 design (2.6, 'The S:P:O <-> S:O:P order effect'): 'Re-ordering between them is a materialised effect/loss between projections ... SP3 models the reorder as a typed crs:OrderProjection Frame with a crs:RoleOrderEffect -- the projection packet (SP4) consumes it as one loss class'. The load-bearing discipline is that re-ordering the three roles between the external S:P:O and the internal S:O:P order on one content-addressed reified arrow-node (the SP2 aob:YonedaHomLeg whose S/O/P triple aob:sourceNodeUrn/aob:targetNodeUrn/aob:cpoProcessIri SP3 lifts, its identity the sha256 content-address descent of §2.5) is NEVER a free relabelling: it MUST carry a typed crs:RoleOrderEffect -- the SP3-specific loss seeding SP4 alongside crs:RoleDropEffect (T6) and crs:HashPrefixTruncation (T9), a bare owl:Class that is NOT a prim:frameEffect value (SP1's prim:RealizationShape closes that family) and NOT under prim:FormalType. The SP1 Frame law (prim:frameOutput + prim:frameEffect) is enforced separately by crs:FrameDerivationShape and SP1's re-run prim:RealizationShape; THIS node shape is the T10 tooth of record for the reorder-specific obligations, targeting crs:OrderProjection with four DEFANG-PROOF clauses (edge-count sh:minCount + a literal-identity sh:sparql, never a range-inference-vacuous sh:class -- rdfs inference can add an rdf:type edge but can never fabricate a crs:hasRoleOrderEffect / crs:reordersArrowNode edge nor change the declared-order string literals): (A) crs:hasRoleOrderEffect present, so a reorder omitting its typed loss is caught -- the probe of record; (B) crs:reordersArrowNode present, so the reorder acts on a real reified arrow-node; (C) crs:externalOrder present and (D) crs:internalOrder present with the two declared orders DISTINCT, so a degenerate reorder whose two orders coincide is caught. On the clean graph crs:orderProjectionWitness (crs:reordersArrowNode aob:witnessLeg, crs:externalOrder \"S:P:O\", crs:internalOrder \"S:O:P\", crs:hasRoleOrderEffect crs:roleOrderEffectWitness, prim:frameOutput prim:TripleNTriples, prim:frameEffect prim:OrderingCanonicalization) satisfies all four, so conforms=True. Injecting the probe of record crs:probeOrderNoEffect a crs:OrderProjection ; crs:reordersArrowNode aob:witnessLeg ; crs:externalOrder \"S:P:O\" ; crs:internalOrder \"S:O:P\" ; prim:frameOutput prim:TripleNTriples ; prim:frameEffect prim:OrderingCanonicalization (a reorder missing its crs:RoleOrderEffect) fires clause A -> conforms=False (and flips q_order_effect True->False), proving the tooth on the case that bites." ;
+    sh:targetClass crs:OrderProjection ;
+    sh:property [
+        sh:path crs:hasRoleOrderEffect ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "order-effect law (T10, clause A, design §2.6): this crs:OrderProjection carries no crs:hasRoleOrderEffect. Re-ordering the roles between the external S:P:O and internal S:O:P orders is a materialised loss (seeding SP4), never a free relabelling; a reorder Frame without its typed crs:RoleOrderEffect is rejected." ;
+    ] ;
+    sh:property [
+        sh:path crs:reordersArrowNode ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "order-effect law (T10, clause B, design §2.6): this crs:OrderProjection carries no crs:reordersArrowNode. The reorder acts on ONE content-addressed reified arrow-node (an SP2 aob:YonedaHomLeg carrying the S/O/P triple); a reorder with no arrow-node is free-floating and is rejected." ;
+    ] ;
+    sh:property [
+        sh:path crs:externalOrder ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "order-effect law (T10, clause C, design §2.6): this crs:OrderProjection carries no crs:externalOrder. The reorder is between the rank-zero external order S:P:O and the internal role order S:O:P; a reorder missing its external declared order is not a reorder." ;
+    ] ;
+    sh:property [
+        sh:path crs:internalOrder ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "order-effect law (T10, clause D, design §2.6): this crs:OrderProjection carries no crs:internalOrder. The reorder is between the rank-zero external order S:P:O and the internal role order S:O:P; a reorder missing its internal declared order is not a reorder." ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "order-effect law (T10, clause D, design §2.6): this crs:OrderProjection's crs:externalOrder and crs:internalOrder COINCIDE. A reorder whose two declared orders are identical reorders nothing; the external S:P:O and internal S:O:P orders must differ." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:crs:#OrderProjection> ;
+                    <urn:silmaril:crs:#externalOrder> ?ext ;
+                    <urn:silmaril:crs:#internalOrder> ?int .
+              FILTER ( str(?ext) = str(?int) )
+            }
+        """ ;
+    ] .
+
+# =====================================================================================
+# T12 — crs:NoCrossTagTransitionShape (the guard tooth: no Atlas<->Graph hom / transition).
+# =====================================================================================
+# Lifts Directive 17 Q4 (pinned) and the whitepaper's carrier disjointness
+# (05_carrier_towers_triad.tex): the Atlas byte carrier Q_A and the Graph byte carrier Q_G are
+# DISJOINT carriers with NO cross-tag hom-set ("a Q_A object is never a Q_G object merely because
+# payloads are isomorphic"), and the cross-framework comparison map chi : Ob(K) -> W (Atlas<->Graph
+# vs an external world tuple) is left an EXPLICIT deferred obligation, "not forced by shared
+# cardinality 5" -- SP3 v1 models NO Atlas<->Graph transition at all (disjointness alone is the whole
+# v1 story; chi is recorded only as the honest-red deferral marker crs:chiComparisonObligation in
+# derivation.ttl, carrying no component map and no tooth, silm:isProvisional true). Where T2's
+# crs:CarrierDisjointnessShape forbids ONE node inhabiting BOTH carriers (payload-isomorphism smuggled
+# in as carrier IDENTITY), THIS T12 guard tooth REINFORCES disjointness from the other side: it
+# forbids any EDGE/hom directly relating a (distinct) Atlas-carrier object to a Graph-carrier object
+# -- a cross-tag transition/hom that would sneak the deferred chi comparison in as a v1 graph fact.
+# It targets BOTH concrete carrier leaves crs:AtlasByteCarrier and crs:GraphByteCarrier (so both
+# witnesses are covered symmetrically, neither privileged -- Directive 17) and its single sh:sparql
+# constraint flags any target that carries ANY predicate edge, in EITHER direction, to a DISTINCT
+# node of the opposite carrier type (the tag-erasure forgetful Frames legitimately forget to the
+# SHARED crs:UntaggedBytePayload -- a payload, NOT a carrier -- so no lawful Atlas<->Graph edge exists,
+# and the clean merged graph carries none: conforms=True). It reads the genuine rdf:type edges and the
+# genuine relating edge, so it is defang-proof under inference=rdfs (which materialises rdf:type along
+# subClassOf so both leaves are targeted, but never fabricates a relating edge between the two witness
+# individuals, and an rdf:type edge cannot bind ?other -- an individual, not a class -- as its object).
+# Probe of record (conforms True->False): inject the Atlas->Graph transition edge
+# crs:atlasCarrierWitness crs:crossTagTransition crs:graphCarrierWitness -> conforms=False.
+# =====================================================================================
+
+crs:NoCrossTagTransitionShape a sh:NodeShape ;
+    rdfs:label "NoCrossTagTransitionShape" ;
+    rdfs:comment "The no-cross-tag-transition guard law with teeth (T12, Q4), lifting Directive 17 Q4 (pinned) and the whitepaper's carrier disjointness (05_carrier_towers_triad.tex): the Atlas byte carrier Q_A and the Graph byte carrier Q_G are DISJOINT carriers with NO cross-tag hom-set, and the cross-framework comparison map chi : Ob(K) -> W (Atlas<->Graph versus an external world tuple W) is left an EXPLICIT deferred obligation 'not forced by shared cardinality 5' -- so SP3 v1 models NO Atlas<->Graph transition at all: disjointness alone is the whole v1 story, and chi is recorded ONLY as the honest-red deferral marker crs:chiComparisonObligation in derivation.ttl (carrying no component map and no tooth, silm:isProvisional true). This node shape is the enforcement counterpart of that deferral and the second face of disjointness: where T2's crs:CarrierDisjointnessShape forbids ONE node inhabiting BOTH carriers (payload-isomorphism smuggled in as carrier IDENTITY), THIS guard forbids any EDGE/hom directly relating a DISTINCT Atlas-carrier object to a Graph-carrier object -- a cross-tag transition/hom that would sneak the deferred chi comparison in as a premature v1 graph fact. It targets BOTH concrete carrier leaves crs:AtlasByteCarrier and crs:GraphByteCarrier so both witnesses are covered symmetrically with neither privileged (Directive 17), and its single sh:sparql constraint flags any target that carries ANY predicate edge, in EITHER direction, to a DISTINCT node of the opposite carrier type. The tag-erasure forgetful Frames (crs:forgetAtlasTag / crs:forgetGraphTag) legitimately forget DOWN to the SHARED crs:UntaggedBytePayload witness -- a payload, NOT a carrier -- so no lawful Atlas<->Graph edge exists and the clean merged graph carries none (conforms=True). It reads the genuine rdf:type edges and the genuine relating edge so it is defang-proof under inference=rdfs (which materialises rdf:type along subClassOf so both disjoint leaves are targeted, but never fabricates a relating edge between the two witness individuals, and an rdf:type edge can never bind ?other -- an individual, not a class -- as its object; the FILTER ?other != $this keeps a hypothetical doubly-typed node, T2's concern, from self-matching without an edge). On the clean graph the only Atlas node (crs:atlasCarrierWitness) and Graph node (crs:graphCarrierWitness) share no direct edge, so conforms=True. Injecting the probe of record crs:atlasCarrierWitness crs:crossTagTransition crs:graphCarrierWitness (an Atlas->Graph transition/hom edge) makes pyshacl report conforms=False, proving the tooth on the case that bites." ;
+    sh:targetClass crs:AtlasByteCarrier , crs:GraphByteCarrier ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "no-cross-tag-transition guard (T12 / Q4, spec §2.2, design §6 Q4): this byte carrier is directly related by an edge to a node of the OPPOSITE carrier tag (an Atlas<->Graph hom / transition). Q_A and Q_G are DISJOINT carriers with no cross-tag hom-set; the cross-framework comparison chi : Ob(K) -> W is DEFERRED (the honest-red crs:chiComparisonObligation marker, SP4/W5), so no Atlas<->Graph transition edge may be asserted in v1. The lawful tag-erasure Frames forget down to the shared untagged payload, never across to the sibling carrier." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                $this a <urn:silmaril:crs:#AtlasByteCarrier> .
+                ?other a <urn:silmaril:crs:#GraphByteCarrier> .
+              } UNION {
+                $this a <urn:silmaril:crs:#GraphByteCarrier> .
+                ?other a <urn:silmaril:crs:#AtlasByteCarrier> .
+              }
+              FILTER ( ?other != $this )
+              {
+                $this ?p ?other .
+                FILTER ( ?p != <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> )
+              } UNION {
+                ?other ?p $this .
+                FILTER ( ?p != <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> )
+              }
+            }
+        """ ;
+    ] .

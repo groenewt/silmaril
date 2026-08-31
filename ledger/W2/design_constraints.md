@@ -178,3 +178,84 @@ maintainer in the W2 brainstorming gate before any authoring.
     The SP1 universality tooth (D1), the frame-sort fence (D2), and the corrected Atlas/Graph
     analogy (D3) are the SP1↔Helios reconciliation items; D4 (independent S/O/P towers) is already
     faithful. Whether D1–D3 land now or at the W2 relaunch (Directive 13) is a build-time call.
+
+17. **Be MORE agnostic/progenitor in definitions — on ALL of them** (maintainer voice, SP3
+    Q3 ruling, general going forward). Whenever a concept has variants, do NOT mint the bare
+    concrete case and do NOT privilege one variant: mint an **agnostic progenitor parent that
+    grounds nothing** + explicit **composable children**, symmetric across the variants — the
+    `byte_order` progenitor pattern applied everywhere. "Do all" + "not crammed" + "no reductive
+    either/or" simultaneously. This resolves the **SP3 open questions (Q0–Q4)**, recorded here as
+    gospel for the build:
+    - **Q0 (pinned from committed SP2):** SP3 coordinatises `aob:AOBAtom` (→`aob:ConcreteAnchor`/
+      `aob:YonedaHomLeg`); value bridge `aob:aobValue → prim:Primitive`; content address is the
+      **class** `aob:HashDigest` reached via `aob:hasHashDigest` (32 `prim:Octet`, with
+      `aob:zSeed → prim:Uint16` already materialised); S/O/P triple = `aob:sourceNodeUrn` (S) /
+      `aob:targetNodeUrn` (O) / `aob:cpoProcessIri` (P), all `xsd:string` full-lexical — **SP3
+      bridges string→`prim:URN` itself** (does not expect SP2 to hand typed URN objects).
+    - **Q1 + z byte-order (maintainer choice: agnostic progenitor, no leaf):** SP3's `z`
+      derivation types its byte-order coordinate at `aob:ByteOrderProgenitor` with **no** concrete
+      `little/big/host` child committed in this corpus-agnostic v1; concrete endianness is deferred
+      to the consumer at the re-runnable W5. `z` is pure-shape (no numeric value yet); SP2's
+      already-materialised LE `aob:zSeed` is the eventual `byteOrderLittle` realisation that
+      composes **under** the progenitor. `none` is NOT the default (it means "ordering not
+      applicable / single-octet", a category error for a 2-octet `z`); `big` is rejected (no floor
+      basis — SP1 `prim:Uint16` is LE). SP3 must author a `z`-local grounding allowance so the
+      deliberately-ungrounded progenitor is accepted (SP2's `TensorByteOrderShape` demands a
+      grounded child; SP3's `crs:ZGroundingShape` permits the agnostic parent as the v1 default).
+    - **Q2 (lifted from Helios):** `crs:hasDimension` counts **tower-axes** (`crs:hasAxis` arity),
+      never scalar ordinals — the scalar reading is the forbidden positional-collapse. The S-O-P
+      role geometer is dimension 3 (three tower projections). Each counted axis is a URN tower
+      (`crs:AxisUrnTowerShape`); the per-geometer axis-arity dimension is kept DISTINCT from each
+      tower's own internal nth.
+    - **Q3 (maintainer choice: do all, be more agnostic — no privilege):** an agnostic
+      `crs:PlaneGeometer` progenitor (dim 2, grounds nothing) with **all** planes minted as
+      composable children — `crs:HoneycombPlaneGeometer` (x,y, source-attested) +
+      `crs:GeographicPlaneGeometer` (lon,lat, SP1 `prim:CRS`/`prim:Latitude`/`prim:Longitude`) +
+      an agnostic `crs:RolePairProjectionPlane` sub-progenitor carrying the **full symmetric**
+      role-pair family (S,O)/(S,P)/(O,P), each a lawful `π`-projection off the rank-3 S-O-P role
+      geometer (each drops one role — a documented SP4 loss). No role pair is privileged; the
+      S-O-P role geometer stays a rank-3 sibling. This dissolves the D1 asymmetry worry by making
+      the role-pair plane a symmetric composable family, not a special-cased (S,O).
+    - **Q4 (lifted from Helios):** SP3 does **NOT** model χ (a cross-*framework* map `Ob(K)→W` to
+      an external `.yur` proposal tuple, declared unsupplied in the source) and models **no**
+      Atlas↔Graph transition/hom — carrier disjointness (`Q_A∩Q_G=∅`, no cross-tag hom) + the
+      many-to-one forgetful tag-erasure Frame is the complete v1 Atlas/Graph story. χ is recorded
+      only as an **honest-red deferral marker** (an `rdfs:comment`/annotation naming it a deferred
+      obligation to SP4/W5, no component map, no tooth). SP3 keeps the **internal** product
+      projections `π_j: K→K_j` (in scope, the joint-faithfulness seal) distinct from the
+      **external** χ (deferred).
+
+18. **Ontology-first means anchored on ALGEBRA, and algebra itself anchors on SET THEORY**
+    (maintainer voice, verbatim: *"we need everything to be ontology first — or more precisely we
+    anchor on algebra (the css and html artifacts are violations but this should be realized within
+    your workflow as is!) `<<<<` Set theory (magma → abelian groups and all in between, as well as
+    space constructs!)"*). This is the foundation the whole ontology stands on:
+    - **The anchor stack (bedrock → surface):** **Set theory** (sets, elements, functions,
+      relations, products/coproducts/disjoint unions, power sets, ordinals/cardinals) — *including
+      the* **space constructs** *(topological / metric / vector / normed spaces)* — is the deepest
+      anchor. **Algebra** sits ON set theory: the full **magma tower** `Magma → Semigroup → Monoid
+      → Group → AbelianGroup` with **"all in between"** as first-class citizens (Quasigroup, Loop,
+      CommutativeMonoid, and the semiring/ring/module/field line where a corpus needs it), each its
+      own atom under an agnostic progenitor (Directive 17), NEVER crammed. **Everything else** —
+      SP1 primitives, SP2's AOB (its `group_law` sealed group IS a group in this hierarchy), SP3's
+      CRS carriers/towers/products (a byte-vector carrier is a monoid under concatenation; the
+      five-factor `K` is a product; the role towers are graded structures), and onward — **grounds
+      in this algebraic–set-theoretic foundation.**
+    - **A foundational floor must exist and be anchored to.** The algebra/set-theory foundation is
+      an explicit floor that sits **beneath** SP1 (or beside it as the deepest ground) and that
+      SP1/SP2/SP3 **re-anchor onto**. It gets its OWN superpowers design gate (brainstorming HARD
+      GATE) — its depth (how far the set-theory + algebra + space hierarchy goes for v1), and the
+      **sequencing** (re-anchor the existing floors after it lands vs. rebuild on it) are that
+      gate's central questions, resolved with the maintainer, LIFTED from the Helios categorical
+      papers (34 `.tex`: sheaf/semiring/lens/category-theory foundations), never invented.
+    - **CSS/HTML (and hand-authored render) artifacts are VIOLATIONS.** They violate the
+      ontology-first / algebra-anchored law (hardcoded, not derived from the ground). The workflow
+      must **REALIZE them as violations** — surface and model them AS violations in the ontology
+      (the active-RED state), never legitimize or hardcode them. W3 (render seal, artifacts
+      generated-not-committed) and W4 (blocking CI) are where the violation is driven RED→GREEN;
+      until then it is named honestly, not hidden.
+    - **Immediate application:** SP3 finishes on the SP1/SP2 grounding as planned (auto-resume after
+      the Aug-10 usage reset); its panel now also checks that its carriers/towers/products/groups
+      are **algebra-SHAPED and ready to re-anchor** (magma/monoid/group-recognizable) and that no
+      render artifact is legitimized. The algebra/set-theory foundation is then the **next
+      design-gate sub-project**, after which SP1–SP3 re-anchor onto it.

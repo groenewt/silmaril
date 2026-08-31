@@ -1,0 +1,1852 @@
+# =====================================================================================
+# dual_grounding.ttl — the REUSED SP1 dual-grounding of the crs coordinate-chart classes (W2 · SP3, Task T11).
+# =====================================================================================
+# Plan Task T11 ("Every new crs: carrier/tower/geometer/plane/product owl:Class carries its own
+# prim:Realization (aob:groundingClaim-style) + reflexive carrier + prim:Primitive so SP1's
+# prim:DualGroundingShape / q_universality stays green on the merged graph. Tooth:
+# q_chart_dual_grounded (reuses SP1). Probe: strip one crs class's realization -> SP1 q_universality
+# flips false.") and design §3/§4 ("SP3 adds owl:Classes that fall under SP1's prim:DualGroundingShape /
+# q_universality ... every new carrier/tower/geometer class carries its own prim:Realization + reflexive
+# carrier + prim:Primitive"; "Reused SP1 tooth: each new carrier/tower/geometer owl:Class is under
+# prim:DualGroundingShape; an ungrounded class flips SP1's q_universality false").
+#
+# WHAT THIS FILE FULFILS (the committed T2–T10 contract). The plan Task T11 scope is "Every new crs:
+# carrier/tower/geometer/plane/product owl:Class". This file brings EVERY such coordinate-chart OBJECT
+# class UNDER the SP1 dual-grounding law — all 23 of them, not merely five — by giving each the SAME
+# grounding cluster SP1's realization.ttl / taiji.ttl give each of the 59 tower classes. The full set:
+#   CARRIERS (carriers.ttl T2):  crs:TaggedByteCarrier (B_rgb progenitor), crs:AtlasByteCarrier (Q_A),
+#       crs:GraphByteCarrier (Q_G), crs:UntaggedBytePayload (shared untagged RGB x Vec(Oct) payload).
+#   TOWERS (towers.ttl T3):      crs:UrnRoleTower (K_* progenitor), crs:SubjectTower (K_S),
+#       crs:ObjectTower (K_O), crs:PredicateTower (K_P), crs:UrnTowerAxis (a URN-tower axis position).
+#   GEOMETERS (geometers.ttl T5/T6):  crs:Geometer (progenitor), crs:RoleGeometer (rank-3 S-O-P),
+#       crs:QuarkGridGeometer (rank-2 quark grid), crs:GeometerAxis (a geometer axis), crs:QuarkGrid
+#       (the 3x3 grid).
+#   PLANES (geometers.ttl T6, Q3):  crs:PlaneGeometer (progenitor), crs:HoneycombPlaneGeometer (x,y),
+#       crs:GeographicPlaneGeometer (lon,lat), crs:RolePairProjectionPlane (sub-progenitor),
+#       crs:SubjectObjectPlane, crs:SubjectPredicatePlane, crs:ObjectPredicatePlane (the symmetric family).
+#   PRODUCT (geometers.ttl T7):  crs:CarrierProduct (K = K_A x K_G x K_S x K_O x K_P).
+#   POINT (derivation.ttl T8):   crs:CoordinatePoint (the derived-not-stored coordinatised point).
+# These are the crs formal OBJECTS. What is DELIBERATELY LEFT OUTSIDE prim:FormalType (so NOT grounded
+# here) is exactly the non-object machinery SP1's own doctrine keeps out — YonedaShape's comment: "The
+# arrow and presheaf classes ... are deliberately NOT rdfs:subClassOf* prim:FormalType": (a) the physical
+# Frames / Kleisli arrows (crs:ForgetfulTagFrame, crs:LexToUrnBridge, crs:ColourOnlyProjection,
+# crs:CoordinateDerivation, crs:ZDerivation, crs:OrderProjection — each rdfs:subClassOf prim:Realization,
+# a bare owl:Class NOT under prim:FormalType, governed instead by prim:RealizationShape); (b) the arrows /
+# projections of the product (crs:ProductArrow, crs:FactorComponentArrow, crs:FactorProjection and its
+# children crs:CarrierTagProjection / crs:RoleTowerProjection); (c) the crs-minted SP4-seeding effect
+# losses (crs:RoleDropEffect, crs:HashPrefixTruncation, crs:RoleOrderEffect — bare owl:Class, never a
+# prim:frameEffect value, never under prim:FormalType); (d) the RGB colour channels (crs:ColourChannel /
+# crs:RedChannel / crs:GreenChannel / crs:BlueChannel — SP1's prim:RGB code space RE-VIEWED, already
+# floor-grounded via crs:groundsColourOctet -> prim:Red/Green/Blue, the T4 positional-collapse negative
+# space, not a new SP3 formal chart object); (e) the provisional SP6 atlas-glossary forward reference
+# (crs:AtlasGlossary, silm:isProvisional true — its grounding belongs to SP6, honestly deferred in v1).
+# For each grounded object T11 reuses SP1's vocabulary WHOLESALE (prim:Realization / prim:PhysicalEncoding
+# / prim:Primitive / prim:RepresentablePresheaf / prim:RhoComponent / prim:IdentityArrow /
+# prim:RealizationTransport / prim:EncodingLoss / prim:presheafOlog), SELECT-not-mint (the SP2
+# aob:groundingClaim discipline), never authoring a new prim:Effect member nor a new law. The five
+# clusters authored first below (crs:CarrierProduct / crs:CoordinatePoint / crs:UrnTowerAxis /
+# crs:GeometerAxis / crs:QuarkGrid) and the eighteen appended after them share one identical shape.
+#
+# THE PER-CLASS CLUSTER (identical shape for all 23 grounded objects, so the merged SP1 law stays green end to end):
+#   (1) the pun + subtype edge :  <C> a prim:FormalType ; rdfs:subClassOf prim:FormalType
+#         — <C> is ALREADY `a owl:Class` in its home file (carriers/towers/geometers/derivation.ttl); this file
+#           adds ONLY the prim:FormalType pun + the subtype edge (so the per-file depth gate does not re-demand
+#           the >=200-char class comment here — it lives with the class's original definition). Over the MERGED
+#           graph <C> is then a genuine owl:Class + FormalType-tower class, so SP1's prim:DualGroundingShape AND
+#           q_universality now TARGET it (the reused tooth) and its carrier's prim:interpretAs closes q_colimit_roundtrip.
+#   (2) dual-grounding forward edges on <C> :  prim:realizesAs crs:realize_<C> ; prim:rhoObject crs:carrier_<C>
+#   (3) the realization rho (Frame/Kleisli arrow) :  crs:realize_<C> a prim:Realization ; prim:realizesFrom <C> ;
+#           prim:encoding + prim:frameOutput crs:carrier_<C> ; prim:frameEffect prim:EncodingLoss
+#         — satisfies prim:DualGroundingShape (the self arm) + prim:RealizationShape (frameOutput+frameEffect).
+#   (4) the reflexive byte carrier :  crs:carrier_<C> a prim:PhysicalEncoding ; prim:bitWidth 8 ;
+#           prim:byteOrder prim:EndianNeutral ; prim:interpretAs <C>
+#         — the octet-vector floor every crs carrier/tower descends into (design §2.2/§2.3: "descend from the
+#           octet-vector floor"; bitWidth 8 / EndianNeutral is the SP2 prim:StringUtf8ByteVector idiom);
+#           satisfies prim:EncodingShape (bitWidth 0..128, byteOrder in {LE,BE,EndianNeutral}, interpretAs ->
+#           a FormalType) and closes q_colimit_reflexive (physicalFacet --interpretAs--> formalFacet).
+#   (5) the glued taiji primitive :  crs:prim_<C> a prim:Primitive ; prim:formalFacet <C> ;
+#           prim:physicalFacet crs:carrier_<C> ; prim:gluedBy crs:realize_<C>
+#         — the colimit object binding <C>'s yin to its yang by rho (q_colimit_reflexive / q_colimit_universal).
+#   (6) the literal-Yoneda apparatus (keeps SP1's prim:YonedaShape green, since (1) also makes <C> a target of
+#       it): crs:repr_<C> a prim:RepresentablePresheaf , prim:OlogObject ; prim:representableOf <C> ;
+#           prim:yonedaPoint crs:id_<C> ; prim:homSetHasArrow crs:id_<C> ; prim:inPresheafOlog prim:presheafOlog ,
+#       with <C> prim:yonedaObject crs:repr_<C> ; the reflexive Yoneda point crs:id_<C> a prim:IdentityArrow
+#       (prim:arrowDom = prim:arrowCod = <C>) and its identity realization-transport crs:rt_id_<C> a
+#       prim:RealizationTransport (prim:transportOf crs:id_<C>, prim:isTransportIdentity true, transportDom =
+#       transportCod = crs:carrier_<C>) so SP1's q_functor_identity stays total; and the natural-transformation
+#       component crs:rhoNat_<C> a prim:RhoComponent ; prim:rhoComponentAt <C> (prim:rhoComponentSource
+#       crs:repr_<C>, prim:rhoComponentTarget crs:carrier_<C>) so YonedaShape's naturality clause holds.
+#
+# THE T11 TOOTH + PROBE (see crs.queries.sparql q_chart_dual_grounded). q_chart_dual_grounded REUSES SP1's
+# q_universality logic scoped to crs: it is FALSE on the pre-T11 graph (no crs class was prim:FormalType) and
+# TRUE here. Probe of record (reusing SP1 prim:DualGroundingShape's OrphanB teeth exactly): injecting
+# `crs:probeOrphanChart a owl:Class ; rdfs:subClassOf prim:FormalType` (an ungrounded crs FormalType class)
+# flips SP1 prim:DualGroundingShape conforms True->False over the merged graph, SP1 q_universality True->False,
+# and q_chart_dual_grounded True->False; equivalently, STRIPPING crs:realize_CarrierProduct (its
+# prim:realizesAs / prim:realizesFrom edges) leaves crs:CarrierProduct rdfs:subClassOf+ prim:FormalType with
+# no grounding on its line and flips the same three — proving the grounding is load-bearing, not decorative.
+#
+# Corpus-agnostic v1 (Directive 13): zero corpus instances — pure grounding structure over the 23 coordinate-
+# chart object classes. Author-scope: basicttl/crs/ only. Consumed by: SP1's re-run prim:DualGroundingShape / q_universality
+# / q_colimit_* / q_yoneda_* / prim:YonedaShape / prim:EncodingShape over the merged graph.
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (§3, §4)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T11)
+# =====================================================================================
+
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+
+# =====================================================================================
+# (1) crs:CarrierProduct — the five-factor Helios product K = K_A x K_G x K_S x K_O x K_P (the PRODUCT).
+# =====================================================================================
+crs:CarrierProduct a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_CarrierProduct ;
+    prim:rhoObject  crs:carrier_CarrierProduct ;
+    prim:yonedaObject crs:repr_CarrierProduct .
+
+crs:carrier_CarrierProduct a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:CarrierProduct ;
+    rdfs:label "K carrier: five-factor product as an octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of the five-factor Helios product K = K_A x K_G x K_S x K_O x K_P: the octet-vector (Vec(Oct)) layout into which the flattened five-tuple of factor payloads serialises, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:CarrierProduct so the physical yang closes back onto its own formal yin (q_colimit_reflexive). It is the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, not re-minted." .
+
+crs:realize_CarrierProduct a prim:Realization ;
+    prim:realizesFrom crs:CarrierProduct ;
+    prim:encoding    crs:carrier_CarrierProduct ;
+    prim:frameOutput crs:carrier_CarrierProduct ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: CarrierProduct |-> octet-vector layout (five-tuple flatten; EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:CarrierProduct — a Frame / Kleisli arrow of the SP1 realization monad gluing the product object to its octet-vector carrier: prim:frameOutput crs:carrier_CarrierProduct (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, the honest loss of flattening the five-factor tuple into one linear octet stream — a SELECTED member of SP1's closed prim:Effect family, never a new effect). This is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:CarrierProduct), the reused SP1 tooth Task T11 owes the product class." .
+
+crs:prim_CarrierProduct a prim:Primitive ;
+    prim:formalFacet   crs:CarrierProduct ;
+    prim:physicalFacet crs:carrier_CarrierProduct ;
+    prim:gluedBy       crs:realize_CarrierProduct ;
+    rdfs:label "Primitive CarrierProduct (taiji: K (+) octet-vector layout)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:CarrierProduct — the glued object of the twin-olog diagram binding its formal yin (prim:formalFacet crs:CarrierProduct) to its physical yang (prim:physicalFacet crs:carrier_CarrierProduct) by the realization rho (prim:gluedBy crs:realize_CarrierProduct). Its presence makes the product a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_CarrierProduct a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:CarrierProduct ;
+    prim:yonedaPoint     crs:id_CarrierProduct ;
+    prim:homSetHasArrow  crs:id_CarrierProduct ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, CarrierProduct)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:CarrierProduct) = the image of the product object under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_CarrierProduct (the identity element of Hom(K, K)). It puts crs:CarrierProduct in the object image of yo so SP1's prim:YonedaShape (which now targets it, since T11 makes it rdfs:subClassOf* prim:FormalType) stays green." .
+
+crs:id_CarrierProduct a prim:IdentityArrow ;
+    prim:arrowDom crs:CarrierProduct ;
+    prim:arrowCod crs:CarrierProduct ;
+    rdfs:label "id_CarrierProduct" ;
+    rdfs:comment "The identity morphism id at crs:CarrierProduct (prim:arrowDom = prim:arrowCod = crs:CarrierProduct), the unit of arrow composition at the product object and the reflexive Yoneda point of Hom(-, crs:CarrierProduct). Its presence keeps SP1's thin formal category total over the new object." .
+
+crs:rt_id_CarrierProduct a prim:RealizationTransport ;
+    prim:transportOf crs:id_CarrierProduct ;
+    prim:transportDom crs:carrier_CarrierProduct ;
+    prim:transportCod crs:carrier_CarrierProduct ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_CarrierProduct) = id on the K octet-vector carrier" ;
+    rdfs:comment "The realization functor rho applied to id_CarrierProduct: the identity RealizationTransport at rho(CarrierProduct) = crs:carrier_CarrierProduct (prim:transportDom = prim:transportCod = crs:carrier_CarrierProduct, prim:isTransportIdentity true), so rho preserves identities at the new object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_CarrierProduct a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:CarrierProduct ;
+    prim:rhoComponentSource crs:repr_CarrierProduct ;
+    prim:rhoComponentTarget crs:carrier_CarrierProduct ;
+    rdfs:label "rho component at CarrierProduct: yo(K) -> rho(K)" ;
+    rdfs:comment "The component at crs:CarrierProduct of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_CarrierProduct = yo(K), prim:rhoComponentTarget crs:carrier_CarrierProduct = rho(K)). Its presence at the object is the prerequisite for naturality, so SP1's prim:YonedaShape naturality clause and q_naturality_commutes stay green with the product added." .
+
+
+# =====================================================================================
+# (2) crs:CoordinatePoint — the coordinatised point (coordinates DERIVED, never stored) (the POINT).
+# =====================================================================================
+crs:CoordinatePoint a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_CoordinatePoint ;
+    prim:rhoObject  crs:carrier_CoordinatePoint ;
+    prim:yonedaObject crs:repr_CoordinatePoint .
+
+crs:carrier_CoordinatePoint a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:CoordinatePoint ;
+    rdfs:label "point carrier: coordinate tuple as an octet-vector" ;
+    rdfs:comment "The reflexive byte carrier of a crs:CoordinatePoint: the octet-vector serialisation of the point's derived coordinate tuple, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral, prim:interpretAs crs:CoordinatePoint (physical yang closes onto formal yin). The coordinates themselves remain DERIVED (each a crs:CoordinateDerivation frameOutput, T8); this carrier is only the byte floor the point's identity descends into, reusing the SP1 octet-vector idiom." .
+
+crs:realize_CoordinatePoint a prim:Realization ;
+    prim:realizesFrom crs:CoordinatePoint ;
+    prim:encoding    crs:carrier_CoordinatePoint ;
+    prim:frameOutput crs:carrier_CoordinatePoint ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: CoordinatePoint |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:CoordinatePoint — the Frame gluing the point object to its octet-vector carrier: prim:frameOutput crs:carrier_CoordinatePoint and prim:frameEffect prim:EncodingLoss (the SELECTED SP1 closed-family loss of serialising the point identity to bytes). It is the self arm prim:DualGroundingShape reads (prim:realizesFrom crs:CoordinatePoint), the reused SP1 grounding T11 owes the point class per its comment 'T11 adds the reused dual-grounding'." .
+
+crs:prim_CoordinatePoint a prim:Primitive ;
+    prim:formalFacet   crs:CoordinatePoint ;
+    prim:physicalFacet crs:carrier_CoordinatePoint ;
+    prim:gluedBy       crs:realize_CoordinatePoint ;
+    rdfs:label "Primitive CoordinatePoint (taiji: point (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:CoordinatePoint binding its formal yin (prim:formalFacet crs:CoordinatePoint) to its physical yang (prim:physicalFacet crs:carrier_CoordinatePoint) by rho (prim:gluedBy crs:realize_CoordinatePoint), making the coordinatised point a dual-grounded prim:Primitive over the merged floor (q_colimit_reflexive / q_colimit_universal)." .
+
+crs:repr_CoordinatePoint a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:CoordinatePoint ;
+    prim:yonedaPoint     crs:id_CoordinatePoint ;
+    prim:homSetHasArrow  crs:id_CoordinatePoint ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, CoordinatePoint)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:CoordinatePoint), the image of the point object under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_CoordinatePoint. It keeps crs:CoordinatePoint in the object image of yo so SP1's prim:YonedaShape stays green with the point brought under prim:FormalType by T11." .
+
+crs:id_CoordinatePoint a prim:IdentityArrow ;
+    prim:arrowDom crs:CoordinatePoint ;
+    prim:arrowCod crs:CoordinatePoint ;
+    rdfs:label "id_CoordinatePoint" ;
+    rdfs:comment "The identity morphism id at crs:CoordinatePoint (prim:arrowDom = prim:arrowCod = crs:CoordinatePoint), the unit of composition at the point object and the reflexive Yoneda point of Hom(-, crs:CoordinatePoint), keeping the thin formal category total over the new object." .
+
+crs:rt_id_CoordinatePoint a prim:RealizationTransport ;
+    prim:transportOf crs:id_CoordinatePoint ;
+    prim:transportDom crs:carrier_CoordinatePoint ;
+    prim:transportCod crs:carrier_CoordinatePoint ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_CoordinatePoint) = id on the point octet-vector carrier" ;
+    rdfs:comment "rho applied to id_CoordinatePoint: the identity RealizationTransport at rho(CoordinatePoint) = crs:carrier_CoordinatePoint (transportDom = transportCod = crs:carrier_CoordinatePoint, prim:isTransportIdentity true), so rho preserves identities and SP1's q_functor_identity stays total." .
+
+crs:rhoNat_CoordinatePoint a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:CoordinatePoint ;
+    prim:rhoComponentSource crs:repr_CoordinatePoint ;
+    prim:rhoComponentTarget crs:carrier_CoordinatePoint ;
+    rdfs:label "rho component at CoordinatePoint" ;
+    rdfs:comment "The component at crs:CoordinatePoint of rho: yo => R (source crs:repr_CoordinatePoint = yo(point), target crs:carrier_CoordinatePoint = rho(point)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green." .
+
+
+# =====================================================================================
+# (3) crs:UrnTowerAxis — a role-tower axis position (the per-index prim:URN coordinate) (the TOWER axis).
+# =====================================================================================
+crs:UrnTowerAxis a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_UrnTowerAxis ;
+    prim:rhoObject  crs:carrier_UrnTowerAxis ;
+    prim:yonedaObject crs:repr_UrnTowerAxis .
+
+crs:carrier_UrnTowerAxis a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:UrnTowerAxis ;
+    rdfs:label "tower-axis carrier: URN as a UTF-8 octet stream" ;
+    rdfs:comment "The reflexive byte carrier of a crs:UrnTowerAxis: the UTF-8 octet stream a prim:URN tower term reads as (the byte floor of the Identifier tower), prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral, prim:interpretAs crs:UrnTowerAxis. A tower axis value is a URN-tower term (never a scalar, per T3 crs:AxisUrnTowerShape); this carrier is its octet-vector descent, the same UTF-8 idiom SP2 uses for aob:sourceNodeUrn." .
+
+crs:realize_UrnTowerAxis a prim:Realization ;
+    prim:realizesFrom crs:UrnTowerAxis ;
+    prim:encoding    crs:carrier_UrnTowerAxis ;
+    prim:frameOutput crs:carrier_UrnTowerAxis ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: UrnTowerAxis |-> URN UTF-8 octet stream (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:UrnTowerAxis — the Frame gluing the tower-axis object to its UTF-8 octet carrier: prim:frameOutput crs:carrier_UrnTowerAxis and prim:frameEffect prim:EncodingLoss (the SELECTED SP1 closed-family Unicode-normalisation/UTF-8 loss). It is the self arm prim:DualGroundingShape reads (prim:realizesFrom crs:UrnTowerAxis) — the reused dual-grounding of the tower classes T11 owes per crs:UrnTowerAxis's comment." .
+
+crs:prim_UrnTowerAxis a prim:Primitive ;
+    prim:formalFacet   crs:UrnTowerAxis ;
+    prim:physicalFacet crs:carrier_UrnTowerAxis ;
+    prim:gluedBy       crs:realize_UrnTowerAxis ;
+    rdfs:label "Primitive UrnTowerAxis (taiji: URN axis (+) UTF-8 octets)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:UrnTowerAxis binding its formal yin (prim:formalFacet crs:UrnTowerAxis) to its physical yang (prim:physicalFacet crs:carrier_UrnTowerAxis) by rho (prim:gluedBy crs:realize_UrnTowerAxis), making the URN tower axis a dual-grounded prim:Primitive over the merged floor (q_colimit_reflexive / q_colimit_universal)." .
+
+crs:repr_UrnTowerAxis a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:UrnTowerAxis ;
+    prim:yonedaPoint     crs:id_UrnTowerAxis ;
+    prim:homSetHasArrow  crs:id_UrnTowerAxis ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, UrnTowerAxis)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:UrnTowerAxis), the image of the tower-axis object under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_UrnTowerAxis, keeping the axis in the object image of yo so SP1's prim:YonedaShape stays green under T11's prim:FormalType wiring." .
+
+crs:id_UrnTowerAxis a prim:IdentityArrow ;
+    prim:arrowDom crs:UrnTowerAxis ;
+    prim:arrowCod crs:UrnTowerAxis ;
+    rdfs:label "id_UrnTowerAxis" ;
+    rdfs:comment "The identity morphism id at crs:UrnTowerAxis (prim:arrowDom = prim:arrowCod = crs:UrnTowerAxis), the unit of composition at the tower-axis object and the reflexive Yoneda point of Hom(-, crs:UrnTowerAxis), keeping the thin formal category total over the new object." .
+
+crs:rt_id_UrnTowerAxis a prim:RealizationTransport ;
+    prim:transportOf crs:id_UrnTowerAxis ;
+    prim:transportDom crs:carrier_UrnTowerAxis ;
+    prim:transportCod crs:carrier_UrnTowerAxis ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_UrnTowerAxis) = id on the URN octet carrier" ;
+    rdfs:comment "rho applied to id_UrnTowerAxis: the identity RealizationTransport at rho(UrnTowerAxis) = crs:carrier_UrnTowerAxis (transportDom = transportCod = crs:carrier_UrnTowerAxis, prim:isTransportIdentity true), so rho preserves identities and SP1's q_functor_identity stays total." .
+
+crs:rhoNat_UrnTowerAxis a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:UrnTowerAxis ;
+    prim:rhoComponentSource crs:repr_UrnTowerAxis ;
+    prim:rhoComponentTarget crs:carrier_UrnTowerAxis ;
+    rdfs:label "rho component at UrnTowerAxis" ;
+    rdfs:comment "The component at crs:UrnTowerAxis of rho: yo => R (source crs:repr_UrnTowerAxis = yo(axis), target crs:carrier_UrnTowerAxis = rho(axis)), the naturality prerequisite keeping SP1's prim:YonedaShape naturality clause and q_naturality_commutes green." .
+
+
+# =====================================================================================
+# (4) crs:GeometerAxis — a per-geometer axis, one coordinate dimension of a geometer (the GEOMETER axis).
+# =====================================================================================
+crs:GeometerAxis a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_GeometerAxis ;
+    prim:rhoObject  crs:carrier_GeometerAxis ;
+    prim:yonedaObject crs:repr_GeometerAxis .
+
+crs:carrier_GeometerAxis a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:GeometerAxis ;
+    rdfs:label "geometer-axis carrier: coordinate value as an octet-vector" ;
+    rdfs:comment "The reflexive byte carrier of a crs:GeometerAxis: the octet-vector serialisation of one geometer coordinate value (a URN-tower term, a prim:Coordinate, or an ordinal, per the geometer's axis system), prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral, prim:interpretAs crs:GeometerAxis (physical yang closes onto formal yin). It is the octet-vector floor the per-geometer axis descends into, reusing the SP1 idiom." .
+
+crs:realize_GeometerAxis a prim:Realization ;
+    prim:realizesFrom crs:GeometerAxis ;
+    prim:encoding    crs:carrier_GeometerAxis ;
+    prim:frameOutput crs:carrier_GeometerAxis ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: GeometerAxis |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:GeometerAxis — the Frame gluing the geometer-axis object to its octet-vector carrier: prim:frameOutput crs:carrier_GeometerAxis and prim:frameEffect prim:EncodingLoss (a SELECTED SP1 closed-family loss). It is the self arm prim:DualGroundingShape reads (prim:realizesFrom crs:GeometerAxis) — the reused SP1 dual-grounding T11 owes per crs:GeometerAxis's 'does not target it at T5' comment." .
+
+crs:prim_GeometerAxis a prim:Primitive ;
+    prim:formalFacet   crs:GeometerAxis ;
+    prim:physicalFacet crs:carrier_GeometerAxis ;
+    prim:gluedBy       crs:realize_GeometerAxis ;
+    rdfs:label "Primitive GeometerAxis (taiji: axis (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:GeometerAxis binding its formal yin (prim:formalFacet crs:GeometerAxis) to its physical yang (prim:physicalFacet crs:carrier_GeometerAxis) by rho (prim:gluedBy crs:realize_GeometerAxis), making the per-geometer axis a dual-grounded prim:Primitive over the merged floor (q_colimit_reflexive / q_colimit_universal)." .
+
+crs:repr_GeometerAxis a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:GeometerAxis ;
+    prim:yonedaPoint     crs:id_GeometerAxis ;
+    prim:homSetHasArrow  crs:id_GeometerAxis ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, GeometerAxis)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:GeometerAxis), the image of the geometer-axis object under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_GeometerAxis, keeping the axis in the object image of yo so SP1's prim:YonedaShape stays green under T11's prim:FormalType wiring." .
+
+crs:id_GeometerAxis a prim:IdentityArrow ;
+    prim:arrowDom crs:GeometerAxis ;
+    prim:arrowCod crs:GeometerAxis ;
+    rdfs:label "id_GeometerAxis" ;
+    rdfs:comment "The identity morphism id at crs:GeometerAxis (prim:arrowDom = prim:arrowCod = crs:GeometerAxis), the unit of composition at the geometer-axis object and the reflexive Yoneda point of Hom(-, crs:GeometerAxis), keeping the thin formal category total over the new object." .
+
+crs:rt_id_GeometerAxis a prim:RealizationTransport ;
+    prim:transportOf crs:id_GeometerAxis ;
+    prim:transportDom crs:carrier_GeometerAxis ;
+    prim:transportCod crs:carrier_GeometerAxis ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_GeometerAxis) = id on the geometer-axis carrier" ;
+    rdfs:comment "rho applied to id_GeometerAxis: the identity RealizationTransport at rho(GeometerAxis) = crs:carrier_GeometerAxis (transportDom = transportCod = crs:carrier_GeometerAxis, prim:isTransportIdentity true), so rho preserves identities and SP1's q_functor_identity stays total." .
+
+crs:rhoNat_GeometerAxis a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:GeometerAxis ;
+    prim:rhoComponentSource crs:repr_GeometerAxis ;
+    prim:rhoComponentTarget crs:carrier_GeometerAxis ;
+    rdfs:label "rho component at GeometerAxis" ;
+    rdfs:comment "The component at crs:GeometerAxis of rho: yo => R (source crs:repr_GeometerAxis = yo(axis), target crs:carrier_GeometerAxis = rho(axis)), the naturality prerequisite keeping SP1's prim:YonedaShape naturality clause and q_naturality_commutes green." .
+
+
+# =====================================================================================
+# (5) crs:QuarkGrid — the 3x3 quark grid {cat,econ,lang} x {node_or_arrow,shape,color} (the GEOMETER grid).
+# =====================================================================================
+crs:QuarkGrid a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_QuarkGrid ;
+    prim:rhoObject  crs:carrier_QuarkGrid ;
+    prim:yonedaObject crs:repr_QuarkGrid .
+
+crs:carrier_QuarkGrid a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:QuarkGrid ;
+    rdfs:label "quark-grid carrier: 3x3 cells as an octet-vector" ;
+    rdfs:comment "The reflexive byte carrier of the crs:QuarkGrid: the octet-vector serialisation of the 3x3 low-order geometer grid {cat,econ,lang} x {node_or_arrow,shape,color}, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral, prim:interpretAs crs:QuarkGrid (physical yang closes onto formal yin). It is the octet-vector floor the quark grid descends into, reusing the SP1 idiom." .
+
+crs:realize_QuarkGrid a prim:Realization ;
+    prim:realizesFrom crs:QuarkGrid ;
+    prim:encoding    crs:carrier_QuarkGrid ;
+    prim:frameOutput crs:carrier_QuarkGrid ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: QuarkGrid |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:QuarkGrid — the Frame gluing the quark-grid object to its octet-vector carrier: prim:frameOutput crs:carrier_QuarkGrid and prim:frameEffect prim:EncodingLoss (the SELECTED SP1 closed-family loss of flattening the 3x3 grid to a linear octet stream). It is the self arm prim:DualGroundingShape reads (prim:realizesFrom crs:QuarkGrid) — the reused SP1 dual-grounding T11 owes per crs:QuarkGrid's 'does not target it at T5' comment." .
+
+crs:prim_QuarkGrid a prim:Primitive ;
+    prim:formalFacet   crs:QuarkGrid ;
+    prim:physicalFacet crs:carrier_QuarkGrid ;
+    prim:gluedBy       crs:realize_QuarkGrid ;
+    rdfs:label "Primitive QuarkGrid (taiji: 3x3 grid (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:QuarkGrid binding its formal yin (prim:formalFacet crs:QuarkGrid) to its physical yang (prim:physicalFacet crs:carrier_QuarkGrid) by rho (prim:gluedBy crs:realize_QuarkGrid), making the quark grid a dual-grounded prim:Primitive over the merged floor (q_colimit_reflexive / q_colimit_universal)." .
+
+crs:repr_QuarkGrid a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:QuarkGrid ;
+    prim:yonedaPoint     crs:id_QuarkGrid ;
+    prim:homSetHasArrow  crs:id_QuarkGrid ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, QuarkGrid)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:QuarkGrid), the image of the quark-grid object under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_QuarkGrid, keeping the grid in the object image of yo so SP1's prim:YonedaShape stays green under T11's prim:FormalType wiring." .
+
+crs:id_QuarkGrid a prim:IdentityArrow ;
+    prim:arrowDom crs:QuarkGrid ;
+    prim:arrowCod crs:QuarkGrid ;
+    rdfs:label "id_QuarkGrid" ;
+    rdfs:comment "The identity morphism id at crs:QuarkGrid (prim:arrowDom = prim:arrowCod = crs:QuarkGrid), the unit of composition at the quark-grid object and the reflexive Yoneda point of Hom(-, crs:QuarkGrid), keeping the thin formal category total over the new object." .
+
+crs:rt_id_QuarkGrid a prim:RealizationTransport ;
+    prim:transportOf crs:id_QuarkGrid ;
+    prim:transportDom crs:carrier_QuarkGrid ;
+    prim:transportCod crs:carrier_QuarkGrid ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_QuarkGrid) = id on the quark-grid carrier" ;
+    rdfs:comment "rho applied to id_QuarkGrid: the identity RealizationTransport at rho(QuarkGrid) = crs:carrier_QuarkGrid (transportDom = transportCod = crs:carrier_QuarkGrid, prim:isTransportIdentity true), so rho preserves identities and SP1's q_functor_identity stays total." .
+
+crs:rhoNat_QuarkGrid a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:QuarkGrid ;
+    prim:rhoComponentSource crs:repr_QuarkGrid ;
+    prim:rhoComponentTarget crs:carrier_QuarkGrid ;
+    rdfs:label "rho component at QuarkGrid" ;
+    rdfs:comment "The component at crs:QuarkGrid of rho: yo => R (source crs:repr_QuarkGrid = yo(grid), target crs:carrier_QuarkGrid = rho(grid)), the naturality prerequisite keeping SP1's prim:YonedaShape naturality clause and q_naturality_commutes green." .
+
+# =====================================================================================
+# (1+5) crs:TaggedByteCarrier — the agnostic RGB byte-carrier progenitor B_rgb = {outer-tag} x RGB x Vec(Oct) (carriers.ttl T2).
+# =====================================================================================
+crs:TaggedByteCarrier a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_TaggedByteCarrier ;
+    prim:rhoObject  crs:carrier_TaggedByteCarrier ;
+    prim:yonedaObject crs:repr_TaggedByteCarrier .
+
+crs:carrier_TaggedByteCarrier a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:TaggedByteCarrier ;
+    rdfs:label "TaggedByteCarrier carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:TaggedByteCarrier (the agnostic RGB byte-carrier progenitor B_rgb = {outer-tag} x RGB x Vec(Oct) (carriers.ttl T2)): the octet-vector (Vec(Oct)) byte layout of the shared RGB byte-carrier category, the floor into which any tagged carrier's untagged payload serialises, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:TaggedByteCarrier so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_TaggedByteCarrier a prim:Realization ;
+    prim:realizesFrom crs:TaggedByteCarrier ;
+    prim:encoding    crs:carrier_TaggedByteCarrier ;
+    prim:frameOutput crs:carrier_TaggedByteCarrier ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: TaggedByteCarrier |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:TaggedByteCarrier (the agnostic RGB byte-carrier progenitor B_rgb = {outer-tag} x RGB x Vec(Oct) (carriers.ttl T2)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_TaggedByteCarrier (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:TaggedByteCarrier), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_TaggedByteCarrier a prim:Primitive ;
+    prim:formalFacet   crs:TaggedByteCarrier ;
+    prim:physicalFacet crs:carrier_TaggedByteCarrier ;
+    prim:gluedBy       crs:realize_TaggedByteCarrier ;
+    rdfs:label "Primitive TaggedByteCarrier (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:TaggedByteCarrier (the agnostic RGB byte-carrier progenitor B_rgb = {outer-tag} x RGB x Vec(Oct) (carriers.ttl T2)) binding its formal yin (prim:formalFacet crs:TaggedByteCarrier) to its physical yang (prim:physicalFacet crs:carrier_TaggedByteCarrier) by the realization rho (prim:gluedBy crs:realize_TaggedByteCarrier), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_TaggedByteCarrier a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:TaggedByteCarrier ;
+    prim:yonedaPoint     crs:id_TaggedByteCarrier ;
+    prim:homSetHasArrow  crs:id_TaggedByteCarrier ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, TaggedByteCarrier)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:TaggedByteCarrier) — the image of the agnostic RGB byte-carrier progenitor B_rgb = {outer-tag} x RGB x Vec(Oct) (carriers.ttl T2) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_TaggedByteCarrier (the identity element of Hom(crs:TaggedByteCarrier, crs:TaggedByteCarrier)). It puts crs:TaggedByteCarrier in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_TaggedByteCarrier a prim:IdentityArrow ;
+    prim:arrowDom crs:TaggedByteCarrier ;
+    prim:arrowCod crs:TaggedByteCarrier ;
+    rdfs:label "id_TaggedByteCarrier" ;
+    rdfs:comment "The identity morphism id at crs:TaggedByteCarrier (the agnostic RGB byte-carrier progenitor B_rgb = {outer-tag} x RGB x Vec(Oct) (carriers.ttl T2)) — prim:arrowDom = prim:arrowCod = crs:TaggedByteCarrier, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:TaggedByteCarrier), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_TaggedByteCarrier a prim:RealizationTransport ;
+    prim:transportOf crs:id_TaggedByteCarrier ;
+    prim:transportDom crs:carrier_TaggedByteCarrier ;
+    prim:transportCod crs:carrier_TaggedByteCarrier ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_TaggedByteCarrier) = id on the TaggedByteCarrier carrier" ;
+    rdfs:comment "The realization functor rho applied to id_TaggedByteCarrier: the identity RealizationTransport at rho(crs:TaggedByteCarrier) = crs:carrier_TaggedByteCarrier (prim:transportDom = prim:transportCod = crs:carrier_TaggedByteCarrier, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_TaggedByteCarrier a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:TaggedByteCarrier ;
+    prim:rhoComponentSource crs:repr_TaggedByteCarrier ;
+    prim:rhoComponentTarget crs:carrier_TaggedByteCarrier ;
+    rdfs:label "rho component at TaggedByteCarrier" ;
+    rdfs:comment "The component at crs:TaggedByteCarrier (the agnostic RGB byte-carrier progenitor B_rgb = {outer-tag} x RGB x Vec(Oct) (carriers.ttl T2)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_TaggedByteCarrier = yo(crs:TaggedByteCarrier), prim:rhoComponentTarget crs:carrier_TaggedByteCarrier = rho(crs:TaggedByteCarrier)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (2+5) crs:AtlasByteCarrier — the Atlas byte carrier Q_A = {aTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2).
+# =====================================================================================
+crs:AtlasByteCarrier a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_AtlasByteCarrier ;
+    prim:rhoObject  crs:carrier_AtlasByteCarrier ;
+    prim:yonedaObject crs:repr_AtlasByteCarrier .
+
+crs:carrier_AtlasByteCarrier a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:AtlasByteCarrier ;
+    rdfs:label "AtlasByteCarrier carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:AtlasByteCarrier (the Atlas byte carrier Q_A = {aTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)): the octet-vector layout of the Atlas-tagged RGB byte stream, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:AtlasByteCarrier so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_AtlasByteCarrier a prim:Realization ;
+    prim:realizesFrom crs:AtlasByteCarrier ;
+    prim:encoding    crs:carrier_AtlasByteCarrier ;
+    prim:frameOutput crs:carrier_AtlasByteCarrier ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: AtlasByteCarrier |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:AtlasByteCarrier (the Atlas byte carrier Q_A = {aTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_AtlasByteCarrier (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:AtlasByteCarrier), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_AtlasByteCarrier a prim:Primitive ;
+    prim:formalFacet   crs:AtlasByteCarrier ;
+    prim:physicalFacet crs:carrier_AtlasByteCarrier ;
+    prim:gluedBy       crs:realize_AtlasByteCarrier ;
+    rdfs:label "Primitive AtlasByteCarrier (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:AtlasByteCarrier (the Atlas byte carrier Q_A = {aTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)) binding its formal yin (prim:formalFacet crs:AtlasByteCarrier) to its physical yang (prim:physicalFacet crs:carrier_AtlasByteCarrier) by the realization rho (prim:gluedBy crs:realize_AtlasByteCarrier), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_AtlasByteCarrier a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:AtlasByteCarrier ;
+    prim:yonedaPoint     crs:id_AtlasByteCarrier ;
+    prim:homSetHasArrow  crs:id_AtlasByteCarrier ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, AtlasByteCarrier)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:AtlasByteCarrier) — the image of the Atlas byte carrier Q_A = {aTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_AtlasByteCarrier (the identity element of Hom(crs:AtlasByteCarrier, crs:AtlasByteCarrier)). It puts crs:AtlasByteCarrier in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_AtlasByteCarrier a prim:IdentityArrow ;
+    prim:arrowDom crs:AtlasByteCarrier ;
+    prim:arrowCod crs:AtlasByteCarrier ;
+    rdfs:label "id_AtlasByteCarrier" ;
+    rdfs:comment "The identity morphism id at crs:AtlasByteCarrier (the Atlas byte carrier Q_A = {aTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)) — prim:arrowDom = prim:arrowCod = crs:AtlasByteCarrier, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:AtlasByteCarrier), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_AtlasByteCarrier a prim:RealizationTransport ;
+    prim:transportOf crs:id_AtlasByteCarrier ;
+    prim:transportDom crs:carrier_AtlasByteCarrier ;
+    prim:transportCod crs:carrier_AtlasByteCarrier ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_AtlasByteCarrier) = id on the AtlasByteCarrier carrier" ;
+    rdfs:comment "The realization functor rho applied to id_AtlasByteCarrier: the identity RealizationTransport at rho(crs:AtlasByteCarrier) = crs:carrier_AtlasByteCarrier (prim:transportDom = prim:transportCod = crs:carrier_AtlasByteCarrier, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_AtlasByteCarrier a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:AtlasByteCarrier ;
+    prim:rhoComponentSource crs:repr_AtlasByteCarrier ;
+    prim:rhoComponentTarget crs:carrier_AtlasByteCarrier ;
+    rdfs:label "rho component at AtlasByteCarrier" ;
+    rdfs:comment "The component at crs:AtlasByteCarrier (the Atlas byte carrier Q_A = {aTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_AtlasByteCarrier = yo(crs:AtlasByteCarrier), prim:rhoComponentTarget crs:carrier_AtlasByteCarrier = rho(crs:AtlasByteCarrier)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (3+5) crs:GraphByteCarrier — the Graph byte carrier Q_G = {gTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2).
+# =====================================================================================
+crs:GraphByteCarrier a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_GraphByteCarrier ;
+    prim:rhoObject  crs:carrier_GraphByteCarrier ;
+    prim:yonedaObject crs:repr_GraphByteCarrier .
+
+crs:carrier_GraphByteCarrier a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:GraphByteCarrier ;
+    rdfs:label "GraphByteCarrier carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:GraphByteCarrier (the Graph byte carrier Q_G = {gTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)): the octet-vector layout of the Graph-tagged RGB byte stream, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:GraphByteCarrier so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_GraphByteCarrier a prim:Realization ;
+    prim:realizesFrom crs:GraphByteCarrier ;
+    prim:encoding    crs:carrier_GraphByteCarrier ;
+    prim:frameOutput crs:carrier_GraphByteCarrier ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: GraphByteCarrier |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:GraphByteCarrier (the Graph byte carrier Q_G = {gTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_GraphByteCarrier (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:GraphByteCarrier), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_GraphByteCarrier a prim:Primitive ;
+    prim:formalFacet   crs:GraphByteCarrier ;
+    prim:physicalFacet crs:carrier_GraphByteCarrier ;
+    prim:gluedBy       crs:realize_GraphByteCarrier ;
+    rdfs:label "Primitive GraphByteCarrier (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:GraphByteCarrier (the Graph byte carrier Q_G = {gTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)) binding its formal yin (prim:formalFacet crs:GraphByteCarrier) to its physical yang (prim:physicalFacet crs:carrier_GraphByteCarrier) by the realization rho (prim:gluedBy crs:realize_GraphByteCarrier), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_GraphByteCarrier a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:GraphByteCarrier ;
+    prim:yonedaPoint     crs:id_GraphByteCarrier ;
+    prim:homSetHasArrow  crs:id_GraphByteCarrier ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, GraphByteCarrier)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:GraphByteCarrier) — the image of the Graph byte carrier Q_G = {gTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_GraphByteCarrier (the identity element of Hom(crs:GraphByteCarrier, crs:GraphByteCarrier)). It puts crs:GraphByteCarrier in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_GraphByteCarrier a prim:IdentityArrow ;
+    prim:arrowDom crs:GraphByteCarrier ;
+    prim:arrowCod crs:GraphByteCarrier ;
+    rdfs:label "id_GraphByteCarrier" ;
+    rdfs:comment "The identity morphism id at crs:GraphByteCarrier (the Graph byte carrier Q_G = {gTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)) — prim:arrowDom = prim:arrowCod = crs:GraphByteCarrier, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:GraphByteCarrier), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_GraphByteCarrier a prim:RealizationTransport ;
+    prim:transportOf crs:id_GraphByteCarrier ;
+    prim:transportDom crs:carrier_GraphByteCarrier ;
+    prim:transportCod crs:carrier_GraphByteCarrier ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_GraphByteCarrier) = id on the GraphByteCarrier carrier" ;
+    rdfs:comment "The realization functor rho applied to id_GraphByteCarrier: the identity RealizationTransport at rho(crs:GraphByteCarrier) = crs:carrier_GraphByteCarrier (prim:transportDom = prim:transportCod = crs:carrier_GraphByteCarrier, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_GraphByteCarrier a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:GraphByteCarrier ;
+    prim:rhoComponentSource crs:repr_GraphByteCarrier ;
+    prim:rhoComponentTarget crs:carrier_GraphByteCarrier ;
+    rdfs:label "rho component at GraphByteCarrier" ;
+    rdfs:comment "The component at crs:GraphByteCarrier (the Graph byte carrier Q_G = {gTag} x RGB x Vec(Oct), a symmetric child of B_rgb (carriers.ttl T2)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_GraphByteCarrier = yo(crs:GraphByteCarrier), prim:rhoComponentTarget crs:carrier_GraphByteCarrier = rho(crs:GraphByteCarrier)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (4+5) crs:UntaggedBytePayload — the shared untagged RGB x Vec(Oct) payload the two tagged carriers erase onto (carriers.ttl T2).
+# =====================================================================================
+crs:UntaggedBytePayload a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_UntaggedBytePayload ;
+    prim:rhoObject  crs:carrier_UntaggedBytePayload ;
+    prim:yonedaObject crs:repr_UntaggedBytePayload .
+
+crs:carrier_UntaggedBytePayload a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:UntaggedBytePayload ;
+    rdfs:label "UntaggedBytePayload carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:UntaggedBytePayload (the shared untagged RGB x Vec(Oct) payload the two tagged carriers erase onto (carriers.ttl T2)): the octet-vector layout of the untagged RGB payload (the SP1 prim:ByteVectorBlob idiom), the many-to-one image of the forgetful tag-erasure frames, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:UntaggedBytePayload so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_UntaggedBytePayload a prim:Realization ;
+    prim:realizesFrom crs:UntaggedBytePayload ;
+    prim:encoding    crs:carrier_UntaggedBytePayload ;
+    prim:frameOutput crs:carrier_UntaggedBytePayload ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: UntaggedBytePayload |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:UntaggedBytePayload (the shared untagged RGB x Vec(Oct) payload the two tagged carriers erase onto (carriers.ttl T2)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_UntaggedBytePayload (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:UntaggedBytePayload), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_UntaggedBytePayload a prim:Primitive ;
+    prim:formalFacet   crs:UntaggedBytePayload ;
+    prim:physicalFacet crs:carrier_UntaggedBytePayload ;
+    prim:gluedBy       crs:realize_UntaggedBytePayload ;
+    rdfs:label "Primitive UntaggedBytePayload (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:UntaggedBytePayload (the shared untagged RGB x Vec(Oct) payload the two tagged carriers erase onto (carriers.ttl T2)) binding its formal yin (prim:formalFacet crs:UntaggedBytePayload) to its physical yang (prim:physicalFacet crs:carrier_UntaggedBytePayload) by the realization rho (prim:gluedBy crs:realize_UntaggedBytePayload), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_UntaggedBytePayload a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:UntaggedBytePayload ;
+    prim:yonedaPoint     crs:id_UntaggedBytePayload ;
+    prim:homSetHasArrow  crs:id_UntaggedBytePayload ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, UntaggedBytePayload)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:UntaggedBytePayload) — the image of the shared untagged RGB x Vec(Oct) payload the two tagged carriers erase onto (carriers.ttl T2) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_UntaggedBytePayload (the identity element of Hom(crs:UntaggedBytePayload, crs:UntaggedBytePayload)). It puts crs:UntaggedBytePayload in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_UntaggedBytePayload a prim:IdentityArrow ;
+    prim:arrowDom crs:UntaggedBytePayload ;
+    prim:arrowCod crs:UntaggedBytePayload ;
+    rdfs:label "id_UntaggedBytePayload" ;
+    rdfs:comment "The identity morphism id at crs:UntaggedBytePayload (the shared untagged RGB x Vec(Oct) payload the two tagged carriers erase onto (carriers.ttl T2)) — prim:arrowDom = prim:arrowCod = crs:UntaggedBytePayload, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:UntaggedBytePayload), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_UntaggedBytePayload a prim:RealizationTransport ;
+    prim:transportOf crs:id_UntaggedBytePayload ;
+    prim:transportDom crs:carrier_UntaggedBytePayload ;
+    prim:transportCod crs:carrier_UntaggedBytePayload ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_UntaggedBytePayload) = id on the UntaggedBytePayload carrier" ;
+    rdfs:comment "The realization functor rho applied to id_UntaggedBytePayload: the identity RealizationTransport at rho(crs:UntaggedBytePayload) = crs:carrier_UntaggedBytePayload (prim:transportDom = prim:transportCod = crs:carrier_UntaggedBytePayload, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_UntaggedBytePayload a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:UntaggedBytePayload ;
+    prim:rhoComponentSource crs:repr_UntaggedBytePayload ;
+    prim:rhoComponentTarget crs:carrier_UntaggedBytePayload ;
+    rdfs:label "rho component at UntaggedBytePayload" ;
+    rdfs:comment "The component at crs:UntaggedBytePayload (the shared untagged RGB x Vec(Oct) payload the two tagged carriers erase onto (carriers.ttl T2)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_UntaggedBytePayload = yo(crs:UntaggedBytePayload), prim:rhoComponentTarget crs:carrier_UntaggedBytePayload = rho(crs:UntaggedBytePayload)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (5+5) crs:UrnRoleTower — the agnostic role-tower progenitor K_* (a functor prim:Ordinal -> prim:URN) (towers.ttl T3).
+# =====================================================================================
+crs:UrnRoleTower a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_UrnRoleTower ;
+    prim:rhoObject  crs:carrier_UrnRoleTower ;
+    prim:yonedaObject crs:repr_UrnRoleTower .
+
+crs:carrier_UrnRoleTower a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:UrnRoleTower ;
+    rdfs:label "UrnRoleTower carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:UrnRoleTower (the agnostic role-tower progenitor K_* (a functor prim:Ordinal -> prim:URN) (towers.ttl T3)): the UTF-8 octet stream a role-tower URN term reads as (the byte floor of the identifier tower), prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:UrnRoleTower so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_UrnRoleTower a prim:Realization ;
+    prim:realizesFrom crs:UrnRoleTower ;
+    prim:encoding    crs:carrier_UrnRoleTower ;
+    prim:frameOutput crs:carrier_UrnRoleTower ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: UrnRoleTower |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:UrnRoleTower (the agnostic role-tower progenitor K_* (a functor prim:Ordinal -> prim:URN) (towers.ttl T3)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_UrnRoleTower (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:UrnRoleTower), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_UrnRoleTower a prim:Primitive ;
+    prim:formalFacet   crs:UrnRoleTower ;
+    prim:physicalFacet crs:carrier_UrnRoleTower ;
+    prim:gluedBy       crs:realize_UrnRoleTower ;
+    rdfs:label "Primitive UrnRoleTower (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:UrnRoleTower (the agnostic role-tower progenitor K_* (a functor prim:Ordinal -> prim:URN) (towers.ttl T3)) binding its formal yin (prim:formalFacet crs:UrnRoleTower) to its physical yang (prim:physicalFacet crs:carrier_UrnRoleTower) by the realization rho (prim:gluedBy crs:realize_UrnRoleTower), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_UrnRoleTower a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:UrnRoleTower ;
+    prim:yonedaPoint     crs:id_UrnRoleTower ;
+    prim:homSetHasArrow  crs:id_UrnRoleTower ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, UrnRoleTower)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:UrnRoleTower) — the image of the agnostic role-tower progenitor K_* (a functor prim:Ordinal -> prim:URN) (towers.ttl T3) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_UrnRoleTower (the identity element of Hom(crs:UrnRoleTower, crs:UrnRoleTower)). It puts crs:UrnRoleTower in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_UrnRoleTower a prim:IdentityArrow ;
+    prim:arrowDom crs:UrnRoleTower ;
+    prim:arrowCod crs:UrnRoleTower ;
+    rdfs:label "id_UrnRoleTower" ;
+    rdfs:comment "The identity morphism id at crs:UrnRoleTower (the agnostic role-tower progenitor K_* (a functor prim:Ordinal -> prim:URN) (towers.ttl T3)) — prim:arrowDom = prim:arrowCod = crs:UrnRoleTower, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:UrnRoleTower), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_UrnRoleTower a prim:RealizationTransport ;
+    prim:transportOf crs:id_UrnRoleTower ;
+    prim:transportDom crs:carrier_UrnRoleTower ;
+    prim:transportCod crs:carrier_UrnRoleTower ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_UrnRoleTower) = id on the UrnRoleTower carrier" ;
+    rdfs:comment "The realization functor rho applied to id_UrnRoleTower: the identity RealizationTransport at rho(crs:UrnRoleTower) = crs:carrier_UrnRoleTower (prim:transportDom = prim:transportCod = crs:carrier_UrnRoleTower, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_UrnRoleTower a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:UrnRoleTower ;
+    prim:rhoComponentSource crs:repr_UrnRoleTower ;
+    prim:rhoComponentTarget crs:carrier_UrnRoleTower ;
+    rdfs:label "rho component at UrnRoleTower" ;
+    rdfs:comment "The component at crs:UrnRoleTower (the agnostic role-tower progenitor K_* (a functor prim:Ordinal -> prim:URN) (towers.ttl T3)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_UrnRoleTower = yo(crs:UrnRoleTower), prim:rhoComponentTarget crs:carrier_UrnRoleTower = rho(crs:UrnRoleTower)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (6+5) crs:SubjectTower — the Subject role URN tower K_S, a symmetric child of K_* (towers.ttl T3).
+# =====================================================================================
+crs:SubjectTower a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_SubjectTower ;
+    prim:rhoObject  crs:carrier_SubjectTower ;
+    prim:yonedaObject crs:repr_SubjectTower .
+
+crs:carrier_SubjectTower a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:SubjectTower ;
+    rdfs:label "SubjectTower carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:SubjectTower (the Subject role URN tower K_S, a symmetric child of K_* (towers.ttl T3)): the UTF-8 octet stream the Subject URN tower term reads as, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:SubjectTower so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_SubjectTower a prim:Realization ;
+    prim:realizesFrom crs:SubjectTower ;
+    prim:encoding    crs:carrier_SubjectTower ;
+    prim:frameOutput crs:carrier_SubjectTower ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: SubjectTower |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:SubjectTower (the Subject role URN tower K_S, a symmetric child of K_* (towers.ttl T3)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_SubjectTower (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:SubjectTower), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_SubjectTower a prim:Primitive ;
+    prim:formalFacet   crs:SubjectTower ;
+    prim:physicalFacet crs:carrier_SubjectTower ;
+    prim:gluedBy       crs:realize_SubjectTower ;
+    rdfs:label "Primitive SubjectTower (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:SubjectTower (the Subject role URN tower K_S, a symmetric child of K_* (towers.ttl T3)) binding its formal yin (prim:formalFacet crs:SubjectTower) to its physical yang (prim:physicalFacet crs:carrier_SubjectTower) by the realization rho (prim:gluedBy crs:realize_SubjectTower), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_SubjectTower a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:SubjectTower ;
+    prim:yonedaPoint     crs:id_SubjectTower ;
+    prim:homSetHasArrow  crs:id_SubjectTower ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, SubjectTower)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:SubjectTower) — the image of the Subject role URN tower K_S, a symmetric child of K_* (towers.ttl T3) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_SubjectTower (the identity element of Hom(crs:SubjectTower, crs:SubjectTower)). It puts crs:SubjectTower in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_SubjectTower a prim:IdentityArrow ;
+    prim:arrowDom crs:SubjectTower ;
+    prim:arrowCod crs:SubjectTower ;
+    rdfs:label "id_SubjectTower" ;
+    rdfs:comment "The identity morphism id at crs:SubjectTower (the Subject role URN tower K_S, a symmetric child of K_* (towers.ttl T3)) — prim:arrowDom = prim:arrowCod = crs:SubjectTower, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:SubjectTower), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_SubjectTower a prim:RealizationTransport ;
+    prim:transportOf crs:id_SubjectTower ;
+    prim:transportDom crs:carrier_SubjectTower ;
+    prim:transportCod crs:carrier_SubjectTower ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_SubjectTower) = id on the SubjectTower carrier" ;
+    rdfs:comment "The realization functor rho applied to id_SubjectTower: the identity RealizationTransport at rho(crs:SubjectTower) = crs:carrier_SubjectTower (prim:transportDom = prim:transportCod = crs:carrier_SubjectTower, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_SubjectTower a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:SubjectTower ;
+    prim:rhoComponentSource crs:repr_SubjectTower ;
+    prim:rhoComponentTarget crs:carrier_SubjectTower ;
+    rdfs:label "rho component at SubjectTower" ;
+    rdfs:comment "The component at crs:SubjectTower (the Subject role URN tower K_S, a symmetric child of K_* (towers.ttl T3)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_SubjectTower = yo(crs:SubjectTower), prim:rhoComponentTarget crs:carrier_SubjectTower = rho(crs:SubjectTower)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (7+5) crs:ObjectTower — the Object role URN tower K_O, a symmetric child of K_* (towers.ttl T3).
+# =====================================================================================
+crs:ObjectTower a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_ObjectTower ;
+    prim:rhoObject  crs:carrier_ObjectTower ;
+    prim:yonedaObject crs:repr_ObjectTower .
+
+crs:carrier_ObjectTower a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:ObjectTower ;
+    rdfs:label "ObjectTower carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:ObjectTower (the Object role URN tower K_O, a symmetric child of K_* (towers.ttl T3)): the UTF-8 octet stream the Object URN tower term reads as, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:ObjectTower so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_ObjectTower a prim:Realization ;
+    prim:realizesFrom crs:ObjectTower ;
+    prim:encoding    crs:carrier_ObjectTower ;
+    prim:frameOutput crs:carrier_ObjectTower ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: ObjectTower |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:ObjectTower (the Object role URN tower K_O, a symmetric child of K_* (towers.ttl T3)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_ObjectTower (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:ObjectTower), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_ObjectTower a prim:Primitive ;
+    prim:formalFacet   crs:ObjectTower ;
+    prim:physicalFacet crs:carrier_ObjectTower ;
+    prim:gluedBy       crs:realize_ObjectTower ;
+    rdfs:label "Primitive ObjectTower (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:ObjectTower (the Object role URN tower K_O, a symmetric child of K_* (towers.ttl T3)) binding its formal yin (prim:formalFacet crs:ObjectTower) to its physical yang (prim:physicalFacet crs:carrier_ObjectTower) by the realization rho (prim:gluedBy crs:realize_ObjectTower), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_ObjectTower a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:ObjectTower ;
+    prim:yonedaPoint     crs:id_ObjectTower ;
+    prim:homSetHasArrow  crs:id_ObjectTower ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, ObjectTower)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:ObjectTower) — the image of the Object role URN tower K_O, a symmetric child of K_* (towers.ttl T3) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_ObjectTower (the identity element of Hom(crs:ObjectTower, crs:ObjectTower)). It puts crs:ObjectTower in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_ObjectTower a prim:IdentityArrow ;
+    prim:arrowDom crs:ObjectTower ;
+    prim:arrowCod crs:ObjectTower ;
+    rdfs:label "id_ObjectTower" ;
+    rdfs:comment "The identity morphism id at crs:ObjectTower (the Object role URN tower K_O, a symmetric child of K_* (towers.ttl T3)) — prim:arrowDom = prim:arrowCod = crs:ObjectTower, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:ObjectTower), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_ObjectTower a prim:RealizationTransport ;
+    prim:transportOf crs:id_ObjectTower ;
+    prim:transportDom crs:carrier_ObjectTower ;
+    prim:transportCod crs:carrier_ObjectTower ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_ObjectTower) = id on the ObjectTower carrier" ;
+    rdfs:comment "The realization functor rho applied to id_ObjectTower: the identity RealizationTransport at rho(crs:ObjectTower) = crs:carrier_ObjectTower (prim:transportDom = prim:transportCod = crs:carrier_ObjectTower, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_ObjectTower a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:ObjectTower ;
+    prim:rhoComponentSource crs:repr_ObjectTower ;
+    prim:rhoComponentTarget crs:carrier_ObjectTower ;
+    rdfs:label "rho component at ObjectTower" ;
+    rdfs:comment "The component at crs:ObjectTower (the Object role URN tower K_O, a symmetric child of K_* (towers.ttl T3)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_ObjectTower = yo(crs:ObjectTower), prim:rhoComponentTarget crs:carrier_ObjectTower = rho(crs:ObjectTower)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (8+5) crs:PredicateTower — the Predicate role URN tower K_P, a symmetric child of K_* (towers.ttl T3).
+# =====================================================================================
+crs:PredicateTower a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_PredicateTower ;
+    prim:rhoObject  crs:carrier_PredicateTower ;
+    prim:yonedaObject crs:repr_PredicateTower .
+
+crs:carrier_PredicateTower a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:PredicateTower ;
+    rdfs:label "PredicateTower carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:PredicateTower (the Predicate role URN tower K_P, a symmetric child of K_* (towers.ttl T3)): the UTF-8 octet stream the Predicate URN tower term reads as, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:PredicateTower so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_PredicateTower a prim:Realization ;
+    prim:realizesFrom crs:PredicateTower ;
+    prim:encoding    crs:carrier_PredicateTower ;
+    prim:frameOutput crs:carrier_PredicateTower ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: PredicateTower |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:PredicateTower (the Predicate role URN tower K_P, a symmetric child of K_* (towers.ttl T3)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_PredicateTower (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:PredicateTower), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_PredicateTower a prim:Primitive ;
+    prim:formalFacet   crs:PredicateTower ;
+    prim:physicalFacet crs:carrier_PredicateTower ;
+    prim:gluedBy       crs:realize_PredicateTower ;
+    rdfs:label "Primitive PredicateTower (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:PredicateTower (the Predicate role URN tower K_P, a symmetric child of K_* (towers.ttl T3)) binding its formal yin (prim:formalFacet crs:PredicateTower) to its physical yang (prim:physicalFacet crs:carrier_PredicateTower) by the realization rho (prim:gluedBy crs:realize_PredicateTower), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_PredicateTower a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:PredicateTower ;
+    prim:yonedaPoint     crs:id_PredicateTower ;
+    prim:homSetHasArrow  crs:id_PredicateTower ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, PredicateTower)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:PredicateTower) — the image of the Predicate role URN tower K_P, a symmetric child of K_* (towers.ttl T3) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_PredicateTower (the identity element of Hom(crs:PredicateTower, crs:PredicateTower)). It puts crs:PredicateTower in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_PredicateTower a prim:IdentityArrow ;
+    prim:arrowDom crs:PredicateTower ;
+    prim:arrowCod crs:PredicateTower ;
+    rdfs:label "id_PredicateTower" ;
+    rdfs:comment "The identity morphism id at crs:PredicateTower (the Predicate role URN tower K_P, a symmetric child of K_* (towers.ttl T3)) — prim:arrowDom = prim:arrowCod = crs:PredicateTower, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:PredicateTower), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_PredicateTower a prim:RealizationTransport ;
+    prim:transportOf crs:id_PredicateTower ;
+    prim:transportDom crs:carrier_PredicateTower ;
+    prim:transportCod crs:carrier_PredicateTower ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_PredicateTower) = id on the PredicateTower carrier" ;
+    rdfs:comment "The realization functor rho applied to id_PredicateTower: the identity RealizationTransport at rho(crs:PredicateTower) = crs:carrier_PredicateTower (prim:transportDom = prim:transportCod = crs:carrier_PredicateTower, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_PredicateTower a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:PredicateTower ;
+    prim:rhoComponentSource crs:repr_PredicateTower ;
+    prim:rhoComponentTarget crs:carrier_PredicateTower ;
+    rdfs:label "rho component at PredicateTower" ;
+    rdfs:comment "The component at crs:PredicateTower (the Predicate role URN tower K_P, a symmetric child of K_* (towers.ttl T3)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_PredicateTower = yo(crs:PredicateTower), prim:rhoComponentTarget crs:carrier_PredicateTower = rho(crs:PredicateTower)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (9+5) crs:Geometer — the agnostic per-geometer progenitor (geometers.ttl T5).
+# =====================================================================================
+crs:Geometer a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_Geometer ;
+    prim:rhoObject  crs:carrier_Geometer ;
+    prim:yonedaObject crs:repr_Geometer .
+
+crs:carrier_Geometer a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:Geometer ;
+    rdfs:label "Geometer carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:Geometer (the agnostic per-geometer progenitor (geometers.ttl T5)): the octet-vector serialisation of a geometer's glossary-fixed axis-system coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:Geometer so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_Geometer a prim:Realization ;
+    prim:realizesFrom crs:Geometer ;
+    prim:encoding    crs:carrier_Geometer ;
+    prim:frameOutput crs:carrier_Geometer ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: Geometer |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:Geometer (the agnostic per-geometer progenitor (geometers.ttl T5)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_Geometer (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:Geometer), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_Geometer a prim:Primitive ;
+    prim:formalFacet   crs:Geometer ;
+    prim:physicalFacet crs:carrier_Geometer ;
+    prim:gluedBy       crs:realize_Geometer ;
+    rdfs:label "Primitive Geometer (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:Geometer (the agnostic per-geometer progenitor (geometers.ttl T5)) binding its formal yin (prim:formalFacet crs:Geometer) to its physical yang (prim:physicalFacet crs:carrier_Geometer) by the realization rho (prim:gluedBy crs:realize_Geometer), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_Geometer a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:Geometer ;
+    prim:yonedaPoint     crs:id_Geometer ;
+    prim:homSetHasArrow  crs:id_Geometer ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, Geometer)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:Geometer) — the image of the agnostic per-geometer progenitor (geometers.ttl T5) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_Geometer (the identity element of Hom(crs:Geometer, crs:Geometer)). It puts crs:Geometer in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_Geometer a prim:IdentityArrow ;
+    prim:arrowDom crs:Geometer ;
+    prim:arrowCod crs:Geometer ;
+    rdfs:label "id_Geometer" ;
+    rdfs:comment "The identity morphism id at crs:Geometer (the agnostic per-geometer progenitor (geometers.ttl T5)) — prim:arrowDom = prim:arrowCod = crs:Geometer, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:Geometer), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_Geometer a prim:RealizationTransport ;
+    prim:transportOf crs:id_Geometer ;
+    prim:transportDom crs:carrier_Geometer ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_Geometer) = id on the Geometer carrier" ;
+    rdfs:comment "The realization functor rho applied to id_Geometer: the identity RealizationTransport at rho(crs:Geometer) = crs:carrier_Geometer (prim:transportDom = prim:transportCod = crs:carrier_Geometer, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_Geometer a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:Geometer ;
+    prim:rhoComponentSource crs:repr_Geometer ;
+    prim:rhoComponentTarget crs:carrier_Geometer ;
+    rdfs:label "rho component at Geometer" ;
+    rdfs:comment "The component at crs:Geometer (the agnostic per-geometer progenitor (geometers.ttl T5)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_Geometer = yo(crs:Geometer), prim:rhoComponentTarget crs:carrier_Geometer = rho(crs:Geometer)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (10+5) crs:RoleGeometer — the rank-3 S-O-P role-tower geometer, a symmetric child of the geometer progenitor (geometers.ttl T5).
+# =====================================================================================
+crs:RoleGeometer a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_RoleGeometer ;
+    prim:rhoObject  crs:carrier_RoleGeometer ;
+    prim:yonedaObject crs:repr_RoleGeometer .
+
+crs:carrier_RoleGeometer a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:RoleGeometer ;
+    rdfs:label "RoleGeometer carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:RoleGeometer (the rank-3 S-O-P role-tower geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)): the octet-vector serialisation of the S-O-P role geometer's three tower-axis coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:RoleGeometer so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_RoleGeometer a prim:Realization ;
+    prim:realizesFrom crs:RoleGeometer ;
+    prim:encoding    crs:carrier_RoleGeometer ;
+    prim:frameOutput crs:carrier_RoleGeometer ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: RoleGeometer |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:RoleGeometer (the rank-3 S-O-P role-tower geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_RoleGeometer (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:RoleGeometer), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_RoleGeometer a prim:Primitive ;
+    prim:formalFacet   crs:RoleGeometer ;
+    prim:physicalFacet crs:carrier_RoleGeometer ;
+    prim:gluedBy       crs:realize_RoleGeometer ;
+    rdfs:label "Primitive RoleGeometer (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:RoleGeometer (the rank-3 S-O-P role-tower geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)) binding its formal yin (prim:formalFacet crs:RoleGeometer) to its physical yang (prim:physicalFacet crs:carrier_RoleGeometer) by the realization rho (prim:gluedBy crs:realize_RoleGeometer), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_RoleGeometer a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:RoleGeometer ;
+    prim:yonedaPoint     crs:id_RoleGeometer ;
+    prim:homSetHasArrow  crs:id_RoleGeometer ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, RoleGeometer)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:RoleGeometer) — the image of the rank-3 S-O-P role-tower geometer, a symmetric child of the geometer progenitor (geometers.ttl T5) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_RoleGeometer (the identity element of Hom(crs:RoleGeometer, crs:RoleGeometer)). It puts crs:RoleGeometer in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_RoleGeometer a prim:IdentityArrow ;
+    prim:arrowDom crs:RoleGeometer ;
+    prim:arrowCod crs:RoleGeometer ;
+    rdfs:label "id_RoleGeometer" ;
+    rdfs:comment "The identity morphism id at crs:RoleGeometer (the rank-3 S-O-P role-tower geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)) — prim:arrowDom = prim:arrowCod = crs:RoleGeometer, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:RoleGeometer), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_RoleGeometer a prim:RealizationTransport ;
+    prim:transportOf crs:id_RoleGeometer ;
+    prim:transportDom crs:carrier_RoleGeometer ;
+    prim:transportCod crs:carrier_RoleGeometer ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_RoleGeometer) = id on the RoleGeometer carrier" ;
+    rdfs:comment "The realization functor rho applied to id_RoleGeometer: the identity RealizationTransport at rho(crs:RoleGeometer) = crs:carrier_RoleGeometer (prim:transportDom = prim:transportCod = crs:carrier_RoleGeometer, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_RoleGeometer a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:RoleGeometer ;
+    prim:rhoComponentSource crs:repr_RoleGeometer ;
+    prim:rhoComponentTarget crs:carrier_RoleGeometer ;
+    rdfs:label "rho component at RoleGeometer" ;
+    rdfs:comment "The component at crs:RoleGeometer (the rank-3 S-O-P role-tower geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_RoleGeometer = yo(crs:RoleGeometer), prim:rhoComponentTarget crs:carrier_RoleGeometer = rho(crs:RoleGeometer)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (11+5) crs:QuarkGridGeometer — the rank-2 low-order quark-grid geometer, a symmetric child of the geometer progenitor (geometers.ttl T5).
+# =====================================================================================
+crs:QuarkGridGeometer a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_QuarkGridGeometer ;
+    prim:rhoObject  crs:carrier_QuarkGridGeometer ;
+    prim:yonedaObject crs:repr_QuarkGridGeometer .
+
+crs:carrier_QuarkGridGeometer a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:QuarkGridGeometer ;
+    rdfs:label "QuarkGridGeometer carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:QuarkGridGeometer (the rank-2 low-order quark-grid geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)): the octet-vector serialisation of the quark-grid geometer's two grid-axis coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:QuarkGridGeometer so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_QuarkGridGeometer a prim:Realization ;
+    prim:realizesFrom crs:QuarkGridGeometer ;
+    prim:encoding    crs:carrier_QuarkGridGeometer ;
+    prim:frameOutput crs:carrier_QuarkGridGeometer ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: QuarkGridGeometer |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:QuarkGridGeometer (the rank-2 low-order quark-grid geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_QuarkGridGeometer (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:QuarkGridGeometer), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_QuarkGridGeometer a prim:Primitive ;
+    prim:formalFacet   crs:QuarkGridGeometer ;
+    prim:physicalFacet crs:carrier_QuarkGridGeometer ;
+    prim:gluedBy       crs:realize_QuarkGridGeometer ;
+    rdfs:label "Primitive QuarkGridGeometer (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:QuarkGridGeometer (the rank-2 low-order quark-grid geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)) binding its formal yin (prim:formalFacet crs:QuarkGridGeometer) to its physical yang (prim:physicalFacet crs:carrier_QuarkGridGeometer) by the realization rho (prim:gluedBy crs:realize_QuarkGridGeometer), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_QuarkGridGeometer a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:QuarkGridGeometer ;
+    prim:yonedaPoint     crs:id_QuarkGridGeometer ;
+    prim:homSetHasArrow  crs:id_QuarkGridGeometer ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, QuarkGridGeometer)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:QuarkGridGeometer) — the image of the rank-2 low-order quark-grid geometer, a symmetric child of the geometer progenitor (geometers.ttl T5) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_QuarkGridGeometer (the identity element of Hom(crs:QuarkGridGeometer, crs:QuarkGridGeometer)). It puts crs:QuarkGridGeometer in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_QuarkGridGeometer a prim:IdentityArrow ;
+    prim:arrowDom crs:QuarkGridGeometer ;
+    prim:arrowCod crs:QuarkGridGeometer ;
+    rdfs:label "id_QuarkGridGeometer" ;
+    rdfs:comment "The identity morphism id at crs:QuarkGridGeometer (the rank-2 low-order quark-grid geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)) — prim:arrowDom = prim:arrowCod = crs:QuarkGridGeometer, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:QuarkGridGeometer), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_QuarkGridGeometer a prim:RealizationTransport ;
+    prim:transportOf crs:id_QuarkGridGeometer ;
+    prim:transportDom crs:carrier_QuarkGridGeometer ;
+    prim:transportCod crs:carrier_QuarkGridGeometer ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_QuarkGridGeometer) = id on the QuarkGridGeometer carrier" ;
+    rdfs:comment "The realization functor rho applied to id_QuarkGridGeometer: the identity RealizationTransport at rho(crs:QuarkGridGeometer) = crs:carrier_QuarkGridGeometer (prim:transportDom = prim:transportCod = crs:carrier_QuarkGridGeometer, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_QuarkGridGeometer a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:QuarkGridGeometer ;
+    prim:rhoComponentSource crs:repr_QuarkGridGeometer ;
+    prim:rhoComponentTarget crs:carrier_QuarkGridGeometer ;
+    rdfs:label "rho component at QuarkGridGeometer" ;
+    rdfs:comment "The component at crs:QuarkGridGeometer (the rank-2 low-order quark-grid geometer, a symmetric child of the geometer progenitor (geometers.ttl T5)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_QuarkGridGeometer = yo(crs:QuarkGridGeometer), prim:rhoComponentTarget crs:carrier_QuarkGridGeometer = rho(crs:QuarkGridGeometer)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (12+5) crs:PlaneGeometer — the agnostic 2-axis plane-geometer progenitor (geometers.ttl T6, Q3).
+# =====================================================================================
+crs:PlaneGeometer a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_PlaneGeometer ;
+    prim:rhoObject  crs:carrier_PlaneGeometer ;
+    prim:yonedaObject crs:repr_PlaneGeometer .
+
+crs:carrier_PlaneGeometer a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:PlaneGeometer ;
+    rdfs:label "PlaneGeometer carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:PlaneGeometer (the agnostic 2-axis plane-geometer progenitor (geometers.ttl T6, Q3)): the octet-vector serialisation of a plane geometer's two-axis coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:PlaneGeometer so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_PlaneGeometer a prim:Realization ;
+    prim:realizesFrom crs:PlaneGeometer ;
+    prim:encoding    crs:carrier_PlaneGeometer ;
+    prim:frameOutput crs:carrier_PlaneGeometer ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: PlaneGeometer |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:PlaneGeometer (the agnostic 2-axis plane-geometer progenitor (geometers.ttl T6, Q3)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_PlaneGeometer (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:PlaneGeometer), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_PlaneGeometer a prim:Primitive ;
+    prim:formalFacet   crs:PlaneGeometer ;
+    prim:physicalFacet crs:carrier_PlaneGeometer ;
+    prim:gluedBy       crs:realize_PlaneGeometer ;
+    rdfs:label "Primitive PlaneGeometer (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:PlaneGeometer (the agnostic 2-axis plane-geometer progenitor (geometers.ttl T6, Q3)) binding its formal yin (prim:formalFacet crs:PlaneGeometer) to its physical yang (prim:physicalFacet crs:carrier_PlaneGeometer) by the realization rho (prim:gluedBy crs:realize_PlaneGeometer), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_PlaneGeometer a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:PlaneGeometer ;
+    prim:yonedaPoint     crs:id_PlaneGeometer ;
+    prim:homSetHasArrow  crs:id_PlaneGeometer ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, PlaneGeometer)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:PlaneGeometer) — the image of the agnostic 2-axis plane-geometer progenitor (geometers.ttl T6, Q3) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_PlaneGeometer (the identity element of Hom(crs:PlaneGeometer, crs:PlaneGeometer)). It puts crs:PlaneGeometer in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_PlaneGeometer a prim:IdentityArrow ;
+    prim:arrowDom crs:PlaneGeometer ;
+    prim:arrowCod crs:PlaneGeometer ;
+    rdfs:label "id_PlaneGeometer" ;
+    rdfs:comment "The identity morphism id at crs:PlaneGeometer (the agnostic 2-axis plane-geometer progenitor (geometers.ttl T6, Q3)) — prim:arrowDom = prim:arrowCod = crs:PlaneGeometer, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:PlaneGeometer), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_PlaneGeometer a prim:RealizationTransport ;
+    prim:transportOf crs:id_PlaneGeometer ;
+    prim:transportDom crs:carrier_PlaneGeometer ;
+    prim:transportCod crs:carrier_PlaneGeometer ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_PlaneGeometer) = id on the PlaneGeometer carrier" ;
+    rdfs:comment "The realization functor rho applied to id_PlaneGeometer: the identity RealizationTransport at rho(crs:PlaneGeometer) = crs:carrier_PlaneGeometer (prim:transportDom = prim:transportCod = crs:carrier_PlaneGeometer, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_PlaneGeometer a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:PlaneGeometer ;
+    prim:rhoComponentSource crs:repr_PlaneGeometer ;
+    prim:rhoComponentTarget crs:carrier_PlaneGeometer ;
+    rdfs:label "rho component at PlaneGeometer" ;
+    rdfs:comment "The component at crs:PlaneGeometer (the agnostic 2-axis plane-geometer progenitor (geometers.ttl T6, Q3)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_PlaneGeometer = yo(crs:PlaneGeometer), prim:rhoComponentTarget crs:carrier_PlaneGeometer = rho(crs:PlaneGeometer)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (13+5) crs:HoneycombPlaneGeometer — the source-attested (x,y) Honeycomb render-plane geometer (geometers.ttl T6).
+# =====================================================================================
+crs:HoneycombPlaneGeometer a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_HoneycombPlaneGeometer ;
+    prim:rhoObject  crs:carrier_HoneycombPlaneGeometer ;
+    prim:yonedaObject crs:repr_HoneycombPlaneGeometer .
+
+crs:carrier_HoneycombPlaneGeometer a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:HoneycombPlaneGeometer ;
+    rdfs:label "HoneycombPlaneGeometer carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:HoneycombPlaneGeometer (the source-attested (x,y) Honeycomb render-plane geometer (geometers.ttl T6)): the octet-vector serialisation of the Honeycomb (x,y) render coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:HoneycombPlaneGeometer so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_HoneycombPlaneGeometer a prim:Realization ;
+    prim:realizesFrom crs:HoneycombPlaneGeometer ;
+    prim:encoding    crs:carrier_HoneycombPlaneGeometer ;
+    prim:frameOutput crs:carrier_HoneycombPlaneGeometer ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: HoneycombPlaneGeometer |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:HoneycombPlaneGeometer (the source-attested (x,y) Honeycomb render-plane geometer (geometers.ttl T6)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_HoneycombPlaneGeometer (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:HoneycombPlaneGeometer), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_HoneycombPlaneGeometer a prim:Primitive ;
+    prim:formalFacet   crs:HoneycombPlaneGeometer ;
+    prim:physicalFacet crs:carrier_HoneycombPlaneGeometer ;
+    prim:gluedBy       crs:realize_HoneycombPlaneGeometer ;
+    rdfs:label "Primitive HoneycombPlaneGeometer (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:HoneycombPlaneGeometer (the source-attested (x,y) Honeycomb render-plane geometer (geometers.ttl T6)) binding its formal yin (prim:formalFacet crs:HoneycombPlaneGeometer) to its physical yang (prim:physicalFacet crs:carrier_HoneycombPlaneGeometer) by the realization rho (prim:gluedBy crs:realize_HoneycombPlaneGeometer), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_HoneycombPlaneGeometer a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:HoneycombPlaneGeometer ;
+    prim:yonedaPoint     crs:id_HoneycombPlaneGeometer ;
+    prim:homSetHasArrow  crs:id_HoneycombPlaneGeometer ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, HoneycombPlaneGeometer)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:HoneycombPlaneGeometer) — the image of the source-attested (x,y) Honeycomb render-plane geometer (geometers.ttl T6) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_HoneycombPlaneGeometer (the identity element of Hom(crs:HoneycombPlaneGeometer, crs:HoneycombPlaneGeometer)). It puts crs:HoneycombPlaneGeometer in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_HoneycombPlaneGeometer a prim:IdentityArrow ;
+    prim:arrowDom crs:HoneycombPlaneGeometer ;
+    prim:arrowCod crs:HoneycombPlaneGeometer ;
+    rdfs:label "id_HoneycombPlaneGeometer" ;
+    rdfs:comment "The identity morphism id at crs:HoneycombPlaneGeometer (the source-attested (x,y) Honeycomb render-plane geometer (geometers.ttl T6)) — prim:arrowDom = prim:arrowCod = crs:HoneycombPlaneGeometer, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:HoneycombPlaneGeometer), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_HoneycombPlaneGeometer a prim:RealizationTransport ;
+    prim:transportOf crs:id_HoneycombPlaneGeometer ;
+    prim:transportDom crs:carrier_HoneycombPlaneGeometer ;
+    prim:transportCod crs:carrier_HoneycombPlaneGeometer ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_HoneycombPlaneGeometer) = id on the HoneycombPlaneGeometer carrier" ;
+    rdfs:comment "The realization functor rho applied to id_HoneycombPlaneGeometer: the identity RealizationTransport at rho(crs:HoneycombPlaneGeometer) = crs:carrier_HoneycombPlaneGeometer (prim:transportDom = prim:transportCod = crs:carrier_HoneycombPlaneGeometer, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_HoneycombPlaneGeometer a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:HoneycombPlaneGeometer ;
+    prim:rhoComponentSource crs:repr_HoneycombPlaneGeometer ;
+    prim:rhoComponentTarget crs:carrier_HoneycombPlaneGeometer ;
+    rdfs:label "rho component at HoneycombPlaneGeometer" ;
+    rdfs:comment "The component at crs:HoneycombPlaneGeometer (the source-attested (x,y) Honeycomb render-plane geometer (geometers.ttl T6)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_HoneycombPlaneGeometer = yo(crs:HoneycombPlaneGeometer), prim:rhoComponentTarget crs:carrier_HoneycombPlaneGeometer = rho(crs:HoneycombPlaneGeometer)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (14+5) crs:GeographicPlaneGeometer — the (lon,lat) geographic-plane geometer over prim:CRS (geometers.ttl T6).
+# =====================================================================================
+crs:GeographicPlaneGeometer a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_GeographicPlaneGeometer ;
+    prim:rhoObject  crs:carrier_GeographicPlaneGeometer ;
+    prim:yonedaObject crs:repr_GeographicPlaneGeometer .
+
+crs:carrier_GeographicPlaneGeometer a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:GeographicPlaneGeometer ;
+    rdfs:label "GeographicPlaneGeometer carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:GeographicPlaneGeometer (the (lon,lat) geographic-plane geometer over prim:CRS (geometers.ttl T6)): the octet-vector serialisation of the geographic (lon,lat) coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:GeographicPlaneGeometer so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_GeographicPlaneGeometer a prim:Realization ;
+    prim:realizesFrom crs:GeographicPlaneGeometer ;
+    prim:encoding    crs:carrier_GeographicPlaneGeometer ;
+    prim:frameOutput crs:carrier_GeographicPlaneGeometer ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: GeographicPlaneGeometer |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:GeographicPlaneGeometer (the (lon,lat) geographic-plane geometer over prim:CRS (geometers.ttl T6)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_GeographicPlaneGeometer (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:GeographicPlaneGeometer), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_GeographicPlaneGeometer a prim:Primitive ;
+    prim:formalFacet   crs:GeographicPlaneGeometer ;
+    prim:physicalFacet crs:carrier_GeographicPlaneGeometer ;
+    prim:gluedBy       crs:realize_GeographicPlaneGeometer ;
+    rdfs:label "Primitive GeographicPlaneGeometer (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:GeographicPlaneGeometer (the (lon,lat) geographic-plane geometer over prim:CRS (geometers.ttl T6)) binding its formal yin (prim:formalFacet crs:GeographicPlaneGeometer) to its physical yang (prim:physicalFacet crs:carrier_GeographicPlaneGeometer) by the realization rho (prim:gluedBy crs:realize_GeographicPlaneGeometer), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_GeographicPlaneGeometer a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:GeographicPlaneGeometer ;
+    prim:yonedaPoint     crs:id_GeographicPlaneGeometer ;
+    prim:homSetHasArrow  crs:id_GeographicPlaneGeometer ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, GeographicPlaneGeometer)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:GeographicPlaneGeometer) — the image of the (lon,lat) geographic-plane geometer over prim:CRS (geometers.ttl T6) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_GeographicPlaneGeometer (the identity element of Hom(crs:GeographicPlaneGeometer, crs:GeographicPlaneGeometer)). It puts crs:GeographicPlaneGeometer in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_GeographicPlaneGeometer a prim:IdentityArrow ;
+    prim:arrowDom crs:GeographicPlaneGeometer ;
+    prim:arrowCod crs:GeographicPlaneGeometer ;
+    rdfs:label "id_GeographicPlaneGeometer" ;
+    rdfs:comment "The identity morphism id at crs:GeographicPlaneGeometer (the (lon,lat) geographic-plane geometer over prim:CRS (geometers.ttl T6)) — prim:arrowDom = prim:arrowCod = crs:GeographicPlaneGeometer, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:GeographicPlaneGeometer), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_GeographicPlaneGeometer a prim:RealizationTransport ;
+    prim:transportOf crs:id_GeographicPlaneGeometer ;
+    prim:transportDom crs:carrier_GeographicPlaneGeometer ;
+    prim:transportCod crs:carrier_GeographicPlaneGeometer ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_GeographicPlaneGeometer) = id on the GeographicPlaneGeometer carrier" ;
+    rdfs:comment "The realization functor rho applied to id_GeographicPlaneGeometer: the identity RealizationTransport at rho(crs:GeographicPlaneGeometer) = crs:carrier_GeographicPlaneGeometer (prim:transportDom = prim:transportCod = crs:carrier_GeographicPlaneGeometer, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_GeographicPlaneGeometer a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:GeographicPlaneGeometer ;
+    prim:rhoComponentSource crs:repr_GeographicPlaneGeometer ;
+    prim:rhoComponentTarget crs:carrier_GeographicPlaneGeometer ;
+    rdfs:label "rho component at GeographicPlaneGeometer" ;
+    rdfs:comment "The component at crs:GeographicPlaneGeometer (the (lon,lat) geographic-plane geometer over prim:CRS (geometers.ttl T6)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_GeographicPlaneGeometer = yo(crs:GeographicPlaneGeometer), prim:rhoComponentTarget crs:carrier_GeographicPlaneGeometer = rho(crs:GeographicPlaneGeometer)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (15+5) crs:RolePairProjectionPlane — the agnostic role-pair-plane sub-progenitor (geometers.ttl T6, Q3).
+# =====================================================================================
+crs:RolePairProjectionPlane a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_RolePairProjectionPlane ;
+    prim:rhoObject  crs:carrier_RolePairProjectionPlane ;
+    prim:yonedaObject crs:repr_RolePairProjectionPlane .
+
+crs:carrier_RolePairProjectionPlane a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:RolePairProjectionPlane ;
+    rdfs:label "RolePairProjectionPlane carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:RolePairProjectionPlane (the agnostic role-pair-plane sub-progenitor (geometers.ttl T6, Q3)): the octet-vector serialisation of a role-pair plane's two retained-role pi coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:RolePairProjectionPlane so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_RolePairProjectionPlane a prim:Realization ;
+    prim:realizesFrom crs:RolePairProjectionPlane ;
+    prim:encoding    crs:carrier_RolePairProjectionPlane ;
+    prim:frameOutput crs:carrier_RolePairProjectionPlane ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: RolePairProjectionPlane |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:RolePairProjectionPlane (the agnostic role-pair-plane sub-progenitor (geometers.ttl T6, Q3)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_RolePairProjectionPlane (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:RolePairProjectionPlane), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_RolePairProjectionPlane a prim:Primitive ;
+    prim:formalFacet   crs:RolePairProjectionPlane ;
+    prim:physicalFacet crs:carrier_RolePairProjectionPlane ;
+    prim:gluedBy       crs:realize_RolePairProjectionPlane ;
+    rdfs:label "Primitive RolePairProjectionPlane (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:RolePairProjectionPlane (the agnostic role-pair-plane sub-progenitor (geometers.ttl T6, Q3)) binding its formal yin (prim:formalFacet crs:RolePairProjectionPlane) to its physical yang (prim:physicalFacet crs:carrier_RolePairProjectionPlane) by the realization rho (prim:gluedBy crs:realize_RolePairProjectionPlane), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_RolePairProjectionPlane a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:RolePairProjectionPlane ;
+    prim:yonedaPoint     crs:id_RolePairProjectionPlane ;
+    prim:homSetHasArrow  crs:id_RolePairProjectionPlane ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, RolePairProjectionPlane)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:RolePairProjectionPlane) — the image of the agnostic role-pair-plane sub-progenitor (geometers.ttl T6, Q3) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_RolePairProjectionPlane (the identity element of Hom(crs:RolePairProjectionPlane, crs:RolePairProjectionPlane)). It puts crs:RolePairProjectionPlane in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_RolePairProjectionPlane a prim:IdentityArrow ;
+    prim:arrowDom crs:RolePairProjectionPlane ;
+    prim:arrowCod crs:RolePairProjectionPlane ;
+    rdfs:label "id_RolePairProjectionPlane" ;
+    rdfs:comment "The identity morphism id at crs:RolePairProjectionPlane (the agnostic role-pair-plane sub-progenitor (geometers.ttl T6, Q3)) — prim:arrowDom = prim:arrowCod = crs:RolePairProjectionPlane, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:RolePairProjectionPlane), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_RolePairProjectionPlane a prim:RealizationTransport ;
+    prim:transportOf crs:id_RolePairProjectionPlane ;
+    prim:transportDom crs:carrier_RolePairProjectionPlane ;
+    prim:transportCod crs:carrier_RolePairProjectionPlane ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_RolePairProjectionPlane) = id on the RolePairProjectionPlane carrier" ;
+    rdfs:comment "The realization functor rho applied to id_RolePairProjectionPlane: the identity RealizationTransport at rho(crs:RolePairProjectionPlane) = crs:carrier_RolePairProjectionPlane (prim:transportDom = prim:transportCod = crs:carrier_RolePairProjectionPlane, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_RolePairProjectionPlane a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:RolePairProjectionPlane ;
+    prim:rhoComponentSource crs:repr_RolePairProjectionPlane ;
+    prim:rhoComponentTarget crs:carrier_RolePairProjectionPlane ;
+    rdfs:label "rho component at RolePairProjectionPlane" ;
+    rdfs:comment "The component at crs:RolePairProjectionPlane (the agnostic role-pair-plane sub-progenitor (geometers.ttl T6, Q3)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_RolePairProjectionPlane = yo(crs:RolePairProjectionPlane), prim:rhoComponentTarget crs:carrier_RolePairProjectionPlane = rho(crs:RolePairProjectionPlane)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (16+5) crs:SubjectObjectPlane — the (pi_S,pi_O) role-pair plane that drops the Predicate role (geometers.ttl T6).
+# =====================================================================================
+crs:SubjectObjectPlane a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_SubjectObjectPlane ;
+    prim:rhoObject  crs:carrier_SubjectObjectPlane ;
+    prim:yonedaObject crs:repr_SubjectObjectPlane .
+
+crs:carrier_SubjectObjectPlane a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:SubjectObjectPlane ;
+    rdfs:label "SubjectObjectPlane carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:SubjectObjectPlane (the (pi_S,pi_O) role-pair plane that drops the Predicate role (geometers.ttl T6)): the octet-vector serialisation of the (Subject,Object) retained-role coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:SubjectObjectPlane so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_SubjectObjectPlane a prim:Realization ;
+    prim:realizesFrom crs:SubjectObjectPlane ;
+    prim:encoding    crs:carrier_SubjectObjectPlane ;
+    prim:frameOutput crs:carrier_SubjectObjectPlane ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: SubjectObjectPlane |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:SubjectObjectPlane (the (pi_S,pi_O) role-pair plane that drops the Predicate role (geometers.ttl T6)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_SubjectObjectPlane (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:SubjectObjectPlane), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_SubjectObjectPlane a prim:Primitive ;
+    prim:formalFacet   crs:SubjectObjectPlane ;
+    prim:physicalFacet crs:carrier_SubjectObjectPlane ;
+    prim:gluedBy       crs:realize_SubjectObjectPlane ;
+    rdfs:label "Primitive SubjectObjectPlane (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:SubjectObjectPlane (the (pi_S,pi_O) role-pair plane that drops the Predicate role (geometers.ttl T6)) binding its formal yin (prim:formalFacet crs:SubjectObjectPlane) to its physical yang (prim:physicalFacet crs:carrier_SubjectObjectPlane) by the realization rho (prim:gluedBy crs:realize_SubjectObjectPlane), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_SubjectObjectPlane a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:SubjectObjectPlane ;
+    prim:yonedaPoint     crs:id_SubjectObjectPlane ;
+    prim:homSetHasArrow  crs:id_SubjectObjectPlane ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, SubjectObjectPlane)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:SubjectObjectPlane) — the image of the (pi_S,pi_O) role-pair plane that drops the Predicate role (geometers.ttl T6) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_SubjectObjectPlane (the identity element of Hom(crs:SubjectObjectPlane, crs:SubjectObjectPlane)). It puts crs:SubjectObjectPlane in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_SubjectObjectPlane a prim:IdentityArrow ;
+    prim:arrowDom crs:SubjectObjectPlane ;
+    prim:arrowCod crs:SubjectObjectPlane ;
+    rdfs:label "id_SubjectObjectPlane" ;
+    rdfs:comment "The identity morphism id at crs:SubjectObjectPlane (the (pi_S,pi_O) role-pair plane that drops the Predicate role (geometers.ttl T6)) — prim:arrowDom = prim:arrowCod = crs:SubjectObjectPlane, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:SubjectObjectPlane), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_SubjectObjectPlane a prim:RealizationTransport ;
+    prim:transportOf crs:id_SubjectObjectPlane ;
+    prim:transportDom crs:carrier_SubjectObjectPlane ;
+    prim:transportCod crs:carrier_SubjectObjectPlane ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_SubjectObjectPlane) = id on the SubjectObjectPlane carrier" ;
+    rdfs:comment "The realization functor rho applied to id_SubjectObjectPlane: the identity RealizationTransport at rho(crs:SubjectObjectPlane) = crs:carrier_SubjectObjectPlane (prim:transportDom = prim:transportCod = crs:carrier_SubjectObjectPlane, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_SubjectObjectPlane a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:SubjectObjectPlane ;
+    prim:rhoComponentSource crs:repr_SubjectObjectPlane ;
+    prim:rhoComponentTarget crs:carrier_SubjectObjectPlane ;
+    rdfs:label "rho component at SubjectObjectPlane" ;
+    rdfs:comment "The component at crs:SubjectObjectPlane (the (pi_S,pi_O) role-pair plane that drops the Predicate role (geometers.ttl T6)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_SubjectObjectPlane = yo(crs:SubjectObjectPlane), prim:rhoComponentTarget crs:carrier_SubjectObjectPlane = rho(crs:SubjectObjectPlane)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (17+5) crs:SubjectPredicatePlane — the (pi_S,pi_P) role-pair plane that drops the Object role (geometers.ttl T6).
+# =====================================================================================
+crs:SubjectPredicatePlane a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_SubjectPredicatePlane ;
+    prim:rhoObject  crs:carrier_SubjectPredicatePlane ;
+    prim:yonedaObject crs:repr_SubjectPredicatePlane .
+
+crs:carrier_SubjectPredicatePlane a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:SubjectPredicatePlane ;
+    rdfs:label "SubjectPredicatePlane carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:SubjectPredicatePlane (the (pi_S,pi_P) role-pair plane that drops the Object role (geometers.ttl T6)): the octet-vector serialisation of the (Subject,Predicate) retained-role coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:SubjectPredicatePlane so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_SubjectPredicatePlane a prim:Realization ;
+    prim:realizesFrom crs:SubjectPredicatePlane ;
+    prim:encoding    crs:carrier_SubjectPredicatePlane ;
+    prim:frameOutput crs:carrier_SubjectPredicatePlane ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: SubjectPredicatePlane |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:SubjectPredicatePlane (the (pi_S,pi_P) role-pair plane that drops the Object role (geometers.ttl T6)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_SubjectPredicatePlane (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:SubjectPredicatePlane), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_SubjectPredicatePlane a prim:Primitive ;
+    prim:formalFacet   crs:SubjectPredicatePlane ;
+    prim:physicalFacet crs:carrier_SubjectPredicatePlane ;
+    prim:gluedBy       crs:realize_SubjectPredicatePlane ;
+    rdfs:label "Primitive SubjectPredicatePlane (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:SubjectPredicatePlane (the (pi_S,pi_P) role-pair plane that drops the Object role (geometers.ttl T6)) binding its formal yin (prim:formalFacet crs:SubjectPredicatePlane) to its physical yang (prim:physicalFacet crs:carrier_SubjectPredicatePlane) by the realization rho (prim:gluedBy crs:realize_SubjectPredicatePlane), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_SubjectPredicatePlane a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:SubjectPredicatePlane ;
+    prim:yonedaPoint     crs:id_SubjectPredicatePlane ;
+    prim:homSetHasArrow  crs:id_SubjectPredicatePlane ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, SubjectPredicatePlane)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:SubjectPredicatePlane) — the image of the (pi_S,pi_P) role-pair plane that drops the Object role (geometers.ttl T6) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_SubjectPredicatePlane (the identity element of Hom(crs:SubjectPredicatePlane, crs:SubjectPredicatePlane)). It puts crs:SubjectPredicatePlane in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_SubjectPredicatePlane a prim:IdentityArrow ;
+    prim:arrowDom crs:SubjectPredicatePlane ;
+    prim:arrowCod crs:SubjectPredicatePlane ;
+    rdfs:label "id_SubjectPredicatePlane" ;
+    rdfs:comment "The identity morphism id at crs:SubjectPredicatePlane (the (pi_S,pi_P) role-pair plane that drops the Object role (geometers.ttl T6)) — prim:arrowDom = prim:arrowCod = crs:SubjectPredicatePlane, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:SubjectPredicatePlane), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_SubjectPredicatePlane a prim:RealizationTransport ;
+    prim:transportOf crs:id_SubjectPredicatePlane ;
+    prim:transportDom crs:carrier_SubjectPredicatePlane ;
+    prim:transportCod crs:carrier_SubjectPredicatePlane ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_SubjectPredicatePlane) = id on the SubjectPredicatePlane carrier" ;
+    rdfs:comment "The realization functor rho applied to id_SubjectPredicatePlane: the identity RealizationTransport at rho(crs:SubjectPredicatePlane) = crs:carrier_SubjectPredicatePlane (prim:transportDom = prim:transportCod = crs:carrier_SubjectPredicatePlane, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_SubjectPredicatePlane a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:SubjectPredicatePlane ;
+    prim:rhoComponentSource crs:repr_SubjectPredicatePlane ;
+    prim:rhoComponentTarget crs:carrier_SubjectPredicatePlane ;
+    rdfs:label "rho component at SubjectPredicatePlane" ;
+    rdfs:comment "The component at crs:SubjectPredicatePlane (the (pi_S,pi_P) role-pair plane that drops the Object role (geometers.ttl T6)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_SubjectPredicatePlane = yo(crs:SubjectPredicatePlane), prim:rhoComponentTarget crs:carrier_SubjectPredicatePlane = rho(crs:SubjectPredicatePlane)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+# =====================================================================================
+# (18+5) crs:ObjectPredicatePlane — the (pi_O,pi_P) role-pair plane that drops the Subject role (geometers.ttl T6).
+# =====================================================================================
+crs:ObjectPredicatePlane a prim:FormalType ;
+    rdfs:subClassOf prim:FormalType ;
+    prim:realizesAs crs:realize_ObjectPredicatePlane ;
+    prim:rhoObject  crs:carrier_ObjectPredicatePlane ;
+    prim:yonedaObject crs:repr_ObjectPredicatePlane .
+
+crs:carrier_ObjectPredicatePlane a prim:PhysicalEncoding ;
+    prim:bitWidth 8 ;
+    prim:byteOrder prim:EndianNeutral ;
+    prim:interpretAs crs:ObjectPredicatePlane ;
+    rdfs:label "ObjectPredicatePlane carrier: octet-vector layout" ;
+    rdfs:comment "The reflexive byte carrier of crs:ObjectPredicatePlane (the (pi_O,pi_P) role-pair plane that drops the Subject role (geometers.ttl T6)): the octet-vector serialisation of the (Object,Predicate) retained-role coordinates, prim:bitWidth 8 per octet occurrence, prim:byteOrder prim:EndianNeutral (the byte-vector granule carries no multi-unit endianness), prim:interpretAs crs:ObjectPredicatePlane so the physical yang closes back onto its own formal yin (SP1 q_colimit_reflexive). It descends from the SP1 octet-vector floor (design 2.2/2.3), the SP2 prim:StringUtf8ByteVector octet-vector idiom reused, never re-minted." .
+
+crs:realize_ObjectPredicatePlane a prim:Realization ;
+    prim:realizesFrom crs:ObjectPredicatePlane ;
+    prim:encoding    crs:carrier_ObjectPredicatePlane ;
+    prim:frameOutput crs:carrier_ObjectPredicatePlane ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "rho: ObjectPredicatePlane |-> octet-vector carrier (EncodingLoss)" ;
+    rdfs:comment "The dual-grounding realization rho of crs:ObjectPredicatePlane (the (pi_O,pi_P) role-pair plane that drops the Subject role (geometers.ttl T6)) — a Frame / Kleisli arrow of the SP1 realization monad gluing the class to its octet-vector carrier: prim:frameOutput crs:carrier_ObjectPredicatePlane (X, the physical byte layout) and prim:frameEffect prim:EncodingLoss (Y, a SELECTED member of SP1's closed prim:Effect family, never a new effect). It is the self arm SP1's prim:DualGroundingShape reads (prim:realizesFrom crs:ObjectPredicatePlane), the reused SP1 tooth Task T11 owes this coordinate-chart object." .
+
+crs:prim_ObjectPredicatePlane a prim:Primitive ;
+    prim:formalFacet   crs:ObjectPredicatePlane ;
+    prim:physicalFacet crs:carrier_ObjectPredicatePlane ;
+    prim:gluedBy       crs:realize_ObjectPredicatePlane ;
+    rdfs:label "Primitive ObjectPredicatePlane (taiji: formal (+) octet-vector carrier)" ;
+    rdfs:comment "The colimit-taiji primitive of crs:ObjectPredicatePlane (the (pi_O,pi_P) role-pair plane that drops the Subject role (geometers.ttl T6)) binding its formal yin (prim:formalFacet crs:ObjectPredicatePlane) to its physical yang (prim:physicalFacet crs:carrier_ObjectPredicatePlane) by the realization rho (prim:gluedBy crs:realize_ObjectPredicatePlane), so the class is a genuine dual-grounded prim:Primitive over the merged floor, not a bare owl:Class, satisfying SP1's q_colimit_reflexive / q_colimit_universal." .
+
+crs:repr_ObjectPredicatePlane a prim:RepresentablePresheaf , prim:OlogObject ;
+    prim:representableOf crs:ObjectPredicatePlane ;
+    prim:yonedaPoint     crs:id_ObjectPredicatePlane ;
+    prim:homSetHasArrow  crs:id_ObjectPredicatePlane ;
+    prim:inPresheafOlog  prim:presheafOlog ;
+    rdfs:label "Hom(-, ObjectPredicatePlane)" ;
+    rdfs:comment "The representable presheaf Hom(-, crs:ObjectPredicatePlane) — the image of the (pi_O,pi_P) role-pair plane that drops the Subject role (geometers.ttl T6) under the Yoneda embedding yo, carrying its Yoneda point prim:yonedaPoint crs:id_ObjectPredicatePlane (the identity element of Hom(crs:ObjectPredicatePlane, crs:ObjectPredicatePlane)). It puts crs:ObjectPredicatePlane in the object image of yo so SP1's prim:YonedaShape, which targets it once T11 makes it rdfs:subClassOf* prim:FormalType, stays green." .
+
+crs:id_ObjectPredicatePlane a prim:IdentityArrow ;
+    prim:arrowDom crs:ObjectPredicatePlane ;
+    prim:arrowCod crs:ObjectPredicatePlane ;
+    rdfs:label "id_ObjectPredicatePlane" ;
+    rdfs:comment "The identity morphism id at crs:ObjectPredicatePlane (the (pi_O,pi_P) role-pair plane that drops the Subject role (geometers.ttl T6)) — prim:arrowDom = prim:arrowCod = crs:ObjectPredicatePlane, the unit of arrow composition at this object and the reflexive Yoneda point of Hom(-, crs:ObjectPredicatePlane), keeping SP1's thin formal category total over the new object." .
+
+crs:rt_id_ObjectPredicatePlane a prim:RealizationTransport ;
+    prim:transportOf crs:id_ObjectPredicatePlane ;
+    prim:transportDom crs:carrier_ObjectPredicatePlane ;
+    prim:transportCod crs:carrier_ObjectPredicatePlane ;
+    prim:isTransportIdentity true ;
+    rdfs:label "rho(id_ObjectPredicatePlane) = id on the ObjectPredicatePlane carrier" ;
+    rdfs:comment "The realization functor rho applied to id_ObjectPredicatePlane: the identity RealizationTransport at rho(crs:ObjectPredicatePlane) = crs:carrier_ObjectPredicatePlane (prim:transportDom = prim:transportCod = crs:carrier_ObjectPredicatePlane, prim:isTransportIdentity true), so rho preserves identities at this object and SP1's q_functor_identity stays total over the merged graph." .
+
+crs:rhoNat_ObjectPredicatePlane a prim:RhoComponent ;
+    prim:rhoComponentAt     crs:ObjectPredicatePlane ;
+    prim:rhoComponentSource crs:repr_ObjectPredicatePlane ;
+    prim:rhoComponentTarget crs:carrier_ObjectPredicatePlane ;
+    rdfs:label "rho component at ObjectPredicatePlane" ;
+    rdfs:comment "The component at crs:ObjectPredicatePlane (the (pi_O,pi_P) role-pair plane that drops the Subject role (geometers.ttl T6)) of the natural transformation rho: yo => R (prim:rhoComponentSource crs:repr_ObjectPredicatePlane = yo(crs:ObjectPredicatePlane), prim:rhoComponentTarget crs:carrier_ObjectPredicatePlane = rho(crs:ObjectPredicatePlane)), the naturality prerequisite that keeps SP1's prim:YonedaShape naturality clause and q_naturality_commutes green with this object added." .
+
+
+# =====================================================================================
+# T11 — ANCESTRAL GROUNDING PATHS (STEP B completeness, SP1 q_ancestral_transport_resolves).
+# =====================================================================================
+# Grounding the crs progenitor/child hierarchies (carriers B_rgb -> {Q_A,Q_G}; role tower K_* ->
+# {K_S,K_O,K_P}; geometer -> {role, quark, plane}; plane -> {honeycomb, geographic, role-pair};
+# role-pair -> {(S,O),(S,P),(O,P)}) makes each child A a tower subtype below a REALIZED proper
+# ancestor B (both now rdfs:subClassOf+ prim:FormalType and both dual-grounded, so B carries
+# rho(B)=crs:carrier_B with prim:interpretAs closing back to B). SP1's q_ancestral_transport_resolves
+# then REQUIRES, for every such (A,B) pair, a resolvable prim:AncestralGroundingPath carrying A's
+# grounding UP to rho(B) — exactly as SP1's realization.ttl supplies for its 45 tower subtype pairs.
+# This block materialises one per pair: a prim:RealizationTransport (the rho-image of the taxonomic
+# subtyping A -> B, prim:transportDom rho(A)=crs:carrier_A, prim:transportCod rho(B)=crs:carrier_B,
+# prim:isTransportIdentity false) and a prim:AncestralGroundingPath resolving prim:ancestralLandsIn
+# onto rho(B). crs subtyping is asserted directly via rdfs:subClassOf (T2/T3/T5/T6), so — unlike SP1's
+# number tower — SP3 does NOT mint the formal prim:SubtypeArrow/olog apparatus here; the path therefore
+# carries no prim:ancestralViaArrow (q_ancestral_transport_resolves does not read it), and no
+# prim:SubtypeArrow / prim:CompositeArrow is created (so q_yoneda_full / q_functor_composition_total /
+# FunctorTransportShape are untouched). Each child keeps its OWN direct grounding (its cluster above)
+# UNCHANGED; this only ADDS the transported second grounding, honouring the enrich-do-not-strip law.
+# =====================================================================================
+
+crs:rt_sub_AtlasByteCarrier_TaggedByteCarrier a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_AtlasByteCarrier ;
+    prim:transportCod crs:carrier_TaggedByteCarrier ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: AtlasByteCarrier -> TaggedByteCarrier) = transport carrier_AtlasByteCarrier -> carrier_TaggedByteCarrier" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:AtlasByteCarrier rdfs:subClassOf+ crs:TaggedByteCarrier: a non-identity prim:RealizationTransport carrying rho(crs:AtlasByteCarrier) = crs:carrier_AtlasByteCarrier (prim:transportDom) up to rho(crs:TaggedByteCarrier) = crs:carrier_TaggedByteCarrier (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_AtlasByteCarrier_TaggedByteCarrier resolves along so crs:AtlasByteCarrier is grounded a SECOND way — transported into its realized ancestor crs:TaggedByteCarrier's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_AtlasByteCarrier_TaggedByteCarrier a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:AtlasByteCarrier ;
+    prim:ancestralAncestor crs:TaggedByteCarrier ;
+    prim:ancestralViaTransport crs:rt_sub_AtlasByteCarrier_TaggedByteCarrier ;
+    prim:ancestralLandsIn crs:carrier_TaggedByteCarrier ;
+    rdfs:label "AtlasByteCarrier also-grounded-through TaggedByteCarrier" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:AtlasByteCarrier is ALSO grounded through its realized proper ancestor crs:TaggedByteCarrier (crs:AtlasByteCarrier rdfs:subClassOf+ crs:TaggedByteCarrier, both dual-grounded FormalType objects over the merged graph). crs:AtlasByteCarrier keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_AtlasByteCarrier_TaggedByteCarrier is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_TaggedByteCarrier = rho(crs:TaggedByteCarrier) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_GraphByteCarrier_TaggedByteCarrier a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_GraphByteCarrier ;
+    prim:transportCod crs:carrier_TaggedByteCarrier ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: GraphByteCarrier -> TaggedByteCarrier) = transport carrier_GraphByteCarrier -> carrier_TaggedByteCarrier" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:GraphByteCarrier rdfs:subClassOf+ crs:TaggedByteCarrier: a non-identity prim:RealizationTransport carrying rho(crs:GraphByteCarrier) = crs:carrier_GraphByteCarrier (prim:transportDom) up to rho(crs:TaggedByteCarrier) = crs:carrier_TaggedByteCarrier (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_GraphByteCarrier_TaggedByteCarrier resolves along so crs:GraphByteCarrier is grounded a SECOND way — transported into its realized ancestor crs:TaggedByteCarrier's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_GraphByteCarrier_TaggedByteCarrier a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:GraphByteCarrier ;
+    prim:ancestralAncestor crs:TaggedByteCarrier ;
+    prim:ancestralViaTransport crs:rt_sub_GraphByteCarrier_TaggedByteCarrier ;
+    prim:ancestralLandsIn crs:carrier_TaggedByteCarrier ;
+    rdfs:label "GraphByteCarrier also-grounded-through TaggedByteCarrier" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:GraphByteCarrier is ALSO grounded through its realized proper ancestor crs:TaggedByteCarrier (crs:GraphByteCarrier rdfs:subClassOf+ crs:TaggedByteCarrier, both dual-grounded FormalType objects over the merged graph). crs:GraphByteCarrier keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_GraphByteCarrier_TaggedByteCarrier is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_TaggedByteCarrier = rho(crs:TaggedByteCarrier) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_SubjectTower_UrnRoleTower a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_SubjectTower ;
+    prim:transportCod crs:carrier_UrnRoleTower ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: SubjectTower -> UrnRoleTower) = transport carrier_SubjectTower -> carrier_UrnRoleTower" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:SubjectTower rdfs:subClassOf+ crs:UrnRoleTower: a non-identity prim:RealizationTransport carrying rho(crs:SubjectTower) = crs:carrier_SubjectTower (prim:transportDom) up to rho(crs:UrnRoleTower) = crs:carrier_UrnRoleTower (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_SubjectTower_UrnRoleTower resolves along so crs:SubjectTower is grounded a SECOND way — transported into its realized ancestor crs:UrnRoleTower's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_SubjectTower_UrnRoleTower a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:SubjectTower ;
+    prim:ancestralAncestor crs:UrnRoleTower ;
+    prim:ancestralViaTransport crs:rt_sub_SubjectTower_UrnRoleTower ;
+    prim:ancestralLandsIn crs:carrier_UrnRoleTower ;
+    rdfs:label "SubjectTower also-grounded-through UrnRoleTower" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:SubjectTower is ALSO grounded through its realized proper ancestor crs:UrnRoleTower (crs:SubjectTower rdfs:subClassOf+ crs:UrnRoleTower, both dual-grounded FormalType objects over the merged graph). crs:SubjectTower keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_SubjectTower_UrnRoleTower is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_UrnRoleTower = rho(crs:UrnRoleTower) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_ObjectTower_UrnRoleTower a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_ObjectTower ;
+    prim:transportCod crs:carrier_UrnRoleTower ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: ObjectTower -> UrnRoleTower) = transport carrier_ObjectTower -> carrier_UrnRoleTower" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:ObjectTower rdfs:subClassOf+ crs:UrnRoleTower: a non-identity prim:RealizationTransport carrying rho(crs:ObjectTower) = crs:carrier_ObjectTower (prim:transportDom) up to rho(crs:UrnRoleTower) = crs:carrier_UrnRoleTower (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_ObjectTower_UrnRoleTower resolves along so crs:ObjectTower is grounded a SECOND way — transported into its realized ancestor crs:UrnRoleTower's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_ObjectTower_UrnRoleTower a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:ObjectTower ;
+    prim:ancestralAncestor crs:UrnRoleTower ;
+    prim:ancestralViaTransport crs:rt_sub_ObjectTower_UrnRoleTower ;
+    prim:ancestralLandsIn crs:carrier_UrnRoleTower ;
+    rdfs:label "ObjectTower also-grounded-through UrnRoleTower" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:ObjectTower is ALSO grounded through its realized proper ancestor crs:UrnRoleTower (crs:ObjectTower rdfs:subClassOf+ crs:UrnRoleTower, both dual-grounded FormalType objects over the merged graph). crs:ObjectTower keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_ObjectTower_UrnRoleTower is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_UrnRoleTower = rho(crs:UrnRoleTower) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_PredicateTower_UrnRoleTower a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_PredicateTower ;
+    prim:transportCod crs:carrier_UrnRoleTower ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: PredicateTower -> UrnRoleTower) = transport carrier_PredicateTower -> carrier_UrnRoleTower" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:PredicateTower rdfs:subClassOf+ crs:UrnRoleTower: a non-identity prim:RealizationTransport carrying rho(crs:PredicateTower) = crs:carrier_PredicateTower (prim:transportDom) up to rho(crs:UrnRoleTower) = crs:carrier_UrnRoleTower (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_PredicateTower_UrnRoleTower resolves along so crs:PredicateTower is grounded a SECOND way — transported into its realized ancestor crs:UrnRoleTower's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_PredicateTower_UrnRoleTower a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:PredicateTower ;
+    prim:ancestralAncestor crs:UrnRoleTower ;
+    prim:ancestralViaTransport crs:rt_sub_PredicateTower_UrnRoleTower ;
+    prim:ancestralLandsIn crs:carrier_UrnRoleTower ;
+    rdfs:label "PredicateTower also-grounded-through UrnRoleTower" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:PredicateTower is ALSO grounded through its realized proper ancestor crs:UrnRoleTower (crs:PredicateTower rdfs:subClassOf+ crs:UrnRoleTower, both dual-grounded FormalType objects over the merged graph). crs:PredicateTower keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_PredicateTower_UrnRoleTower is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_UrnRoleTower = rho(crs:UrnRoleTower) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_RoleGeometer_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_RoleGeometer ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: RoleGeometer -> Geometer) = transport carrier_RoleGeometer -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:RoleGeometer rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:RoleGeometer) = crs:carrier_RoleGeometer (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_RoleGeometer_Geometer resolves along so crs:RoleGeometer is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_RoleGeometer_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:RoleGeometer ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_RoleGeometer_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "RoleGeometer also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:RoleGeometer is ALSO grounded through its realized proper ancestor crs:Geometer (crs:RoleGeometer rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:RoleGeometer keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_RoleGeometer_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_QuarkGridGeometer_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_QuarkGridGeometer ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: QuarkGridGeometer -> Geometer) = transport carrier_QuarkGridGeometer -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:QuarkGridGeometer rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:QuarkGridGeometer) = crs:carrier_QuarkGridGeometer (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_QuarkGridGeometer_Geometer resolves along so crs:QuarkGridGeometer is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_QuarkGridGeometer_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:QuarkGridGeometer ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_QuarkGridGeometer_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "QuarkGridGeometer also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:QuarkGridGeometer is ALSO grounded through its realized proper ancestor crs:Geometer (crs:QuarkGridGeometer rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:QuarkGridGeometer keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_QuarkGridGeometer_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_PlaneGeometer_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_PlaneGeometer ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: PlaneGeometer -> Geometer) = transport carrier_PlaneGeometer -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:PlaneGeometer rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:PlaneGeometer) = crs:carrier_PlaneGeometer (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_PlaneGeometer_Geometer resolves along so crs:PlaneGeometer is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_PlaneGeometer_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:PlaneGeometer ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_PlaneGeometer_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "PlaneGeometer also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:PlaneGeometer is ALSO grounded through its realized proper ancestor crs:Geometer (crs:PlaneGeometer rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:PlaneGeometer keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_PlaneGeometer_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_HoneycombPlaneGeometer_PlaneGeometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_HoneycombPlaneGeometer ;
+    prim:transportCod crs:carrier_PlaneGeometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: HoneycombPlaneGeometer -> PlaneGeometer) = transport carrier_HoneycombPlaneGeometer -> carrier_PlaneGeometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:HoneycombPlaneGeometer rdfs:subClassOf+ crs:PlaneGeometer: a non-identity prim:RealizationTransport carrying rho(crs:HoneycombPlaneGeometer) = crs:carrier_HoneycombPlaneGeometer (prim:transportDom) up to rho(crs:PlaneGeometer) = crs:carrier_PlaneGeometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_HoneycombPlaneGeometer_PlaneGeometer resolves along so crs:HoneycombPlaneGeometer is grounded a SECOND way — transported into its realized ancestor crs:PlaneGeometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_HoneycombPlaneGeometer_PlaneGeometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:HoneycombPlaneGeometer ;
+    prim:ancestralAncestor crs:PlaneGeometer ;
+    prim:ancestralViaTransport crs:rt_sub_HoneycombPlaneGeometer_PlaneGeometer ;
+    prim:ancestralLandsIn crs:carrier_PlaneGeometer ;
+    rdfs:label "HoneycombPlaneGeometer also-grounded-through PlaneGeometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:HoneycombPlaneGeometer is ALSO grounded through its realized proper ancestor crs:PlaneGeometer (crs:HoneycombPlaneGeometer rdfs:subClassOf+ crs:PlaneGeometer, both dual-grounded FormalType objects over the merged graph). crs:HoneycombPlaneGeometer keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_HoneycombPlaneGeometer_PlaneGeometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_PlaneGeometer = rho(crs:PlaneGeometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_HoneycombPlaneGeometer_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_HoneycombPlaneGeometer ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: HoneycombPlaneGeometer -> Geometer) = transport carrier_HoneycombPlaneGeometer -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:HoneycombPlaneGeometer rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:HoneycombPlaneGeometer) = crs:carrier_HoneycombPlaneGeometer (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_HoneycombPlaneGeometer_Geometer resolves along so crs:HoneycombPlaneGeometer is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_HoneycombPlaneGeometer_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:HoneycombPlaneGeometer ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_HoneycombPlaneGeometer_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "HoneycombPlaneGeometer also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:HoneycombPlaneGeometer is ALSO grounded through its realized proper ancestor crs:Geometer (crs:HoneycombPlaneGeometer rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:HoneycombPlaneGeometer keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_HoneycombPlaneGeometer_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_GeographicPlaneGeometer_PlaneGeometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_GeographicPlaneGeometer ;
+    prim:transportCod crs:carrier_PlaneGeometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: GeographicPlaneGeometer -> PlaneGeometer) = transport carrier_GeographicPlaneGeometer -> carrier_PlaneGeometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:GeographicPlaneGeometer rdfs:subClassOf+ crs:PlaneGeometer: a non-identity prim:RealizationTransport carrying rho(crs:GeographicPlaneGeometer) = crs:carrier_GeographicPlaneGeometer (prim:transportDom) up to rho(crs:PlaneGeometer) = crs:carrier_PlaneGeometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_GeographicPlaneGeometer_PlaneGeometer resolves along so crs:GeographicPlaneGeometer is grounded a SECOND way — transported into its realized ancestor crs:PlaneGeometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_GeographicPlaneGeometer_PlaneGeometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:GeographicPlaneGeometer ;
+    prim:ancestralAncestor crs:PlaneGeometer ;
+    prim:ancestralViaTransport crs:rt_sub_GeographicPlaneGeometer_PlaneGeometer ;
+    prim:ancestralLandsIn crs:carrier_PlaneGeometer ;
+    rdfs:label "GeographicPlaneGeometer also-grounded-through PlaneGeometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:GeographicPlaneGeometer is ALSO grounded through its realized proper ancestor crs:PlaneGeometer (crs:GeographicPlaneGeometer rdfs:subClassOf+ crs:PlaneGeometer, both dual-grounded FormalType objects over the merged graph). crs:GeographicPlaneGeometer keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_GeographicPlaneGeometer_PlaneGeometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_PlaneGeometer = rho(crs:PlaneGeometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_GeographicPlaneGeometer_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_GeographicPlaneGeometer ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: GeographicPlaneGeometer -> Geometer) = transport carrier_GeographicPlaneGeometer -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:GeographicPlaneGeometer rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:GeographicPlaneGeometer) = crs:carrier_GeographicPlaneGeometer (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_GeographicPlaneGeometer_Geometer resolves along so crs:GeographicPlaneGeometer is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_GeographicPlaneGeometer_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:GeographicPlaneGeometer ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_GeographicPlaneGeometer_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "GeographicPlaneGeometer also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:GeographicPlaneGeometer is ALSO grounded through its realized proper ancestor crs:Geometer (crs:GeographicPlaneGeometer rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:GeographicPlaneGeometer keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_GeographicPlaneGeometer_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_RolePairProjectionPlane_PlaneGeometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_RolePairProjectionPlane ;
+    prim:transportCod crs:carrier_PlaneGeometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: RolePairProjectionPlane -> PlaneGeometer) = transport carrier_RolePairProjectionPlane -> carrier_PlaneGeometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:RolePairProjectionPlane rdfs:subClassOf+ crs:PlaneGeometer: a non-identity prim:RealizationTransport carrying rho(crs:RolePairProjectionPlane) = crs:carrier_RolePairProjectionPlane (prim:transportDom) up to rho(crs:PlaneGeometer) = crs:carrier_PlaneGeometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_RolePairProjectionPlane_PlaneGeometer resolves along so crs:RolePairProjectionPlane is grounded a SECOND way — transported into its realized ancestor crs:PlaneGeometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_RolePairProjectionPlane_PlaneGeometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:RolePairProjectionPlane ;
+    prim:ancestralAncestor crs:PlaneGeometer ;
+    prim:ancestralViaTransport crs:rt_sub_RolePairProjectionPlane_PlaneGeometer ;
+    prim:ancestralLandsIn crs:carrier_PlaneGeometer ;
+    rdfs:label "RolePairProjectionPlane also-grounded-through PlaneGeometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:RolePairProjectionPlane is ALSO grounded through its realized proper ancestor crs:PlaneGeometer (crs:RolePairProjectionPlane rdfs:subClassOf+ crs:PlaneGeometer, both dual-grounded FormalType objects over the merged graph). crs:RolePairProjectionPlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_RolePairProjectionPlane_PlaneGeometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_PlaneGeometer = rho(crs:PlaneGeometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_RolePairProjectionPlane_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_RolePairProjectionPlane ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: RolePairProjectionPlane -> Geometer) = transport carrier_RolePairProjectionPlane -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:RolePairProjectionPlane rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:RolePairProjectionPlane) = crs:carrier_RolePairProjectionPlane (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_RolePairProjectionPlane_Geometer resolves along so crs:RolePairProjectionPlane is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_RolePairProjectionPlane_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:RolePairProjectionPlane ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_RolePairProjectionPlane_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "RolePairProjectionPlane also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:RolePairProjectionPlane is ALSO grounded through its realized proper ancestor crs:Geometer (crs:RolePairProjectionPlane rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:RolePairProjectionPlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_RolePairProjectionPlane_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_SubjectObjectPlane_RolePairProjectionPlane a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_SubjectObjectPlane ;
+    prim:transportCod crs:carrier_RolePairProjectionPlane ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: SubjectObjectPlane -> RolePairProjectionPlane) = transport carrier_SubjectObjectPlane -> carrier_RolePairProjectionPlane" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:SubjectObjectPlane rdfs:subClassOf+ crs:RolePairProjectionPlane: a non-identity prim:RealizationTransport carrying rho(crs:SubjectObjectPlane) = crs:carrier_SubjectObjectPlane (prim:transportDom) up to rho(crs:RolePairProjectionPlane) = crs:carrier_RolePairProjectionPlane (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_SubjectObjectPlane_RolePairProjectionPlane resolves along so crs:SubjectObjectPlane is grounded a SECOND way — transported into its realized ancestor crs:RolePairProjectionPlane's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_SubjectObjectPlane_RolePairProjectionPlane a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:SubjectObjectPlane ;
+    prim:ancestralAncestor crs:RolePairProjectionPlane ;
+    prim:ancestralViaTransport crs:rt_sub_SubjectObjectPlane_RolePairProjectionPlane ;
+    prim:ancestralLandsIn crs:carrier_RolePairProjectionPlane ;
+    rdfs:label "SubjectObjectPlane also-grounded-through RolePairProjectionPlane" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:SubjectObjectPlane is ALSO grounded through its realized proper ancestor crs:RolePairProjectionPlane (crs:SubjectObjectPlane rdfs:subClassOf+ crs:RolePairProjectionPlane, both dual-grounded FormalType objects over the merged graph). crs:SubjectObjectPlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_SubjectObjectPlane_RolePairProjectionPlane is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_RolePairProjectionPlane = rho(crs:RolePairProjectionPlane) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_SubjectObjectPlane_PlaneGeometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_SubjectObjectPlane ;
+    prim:transportCod crs:carrier_PlaneGeometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: SubjectObjectPlane -> PlaneGeometer) = transport carrier_SubjectObjectPlane -> carrier_PlaneGeometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:SubjectObjectPlane rdfs:subClassOf+ crs:PlaneGeometer: a non-identity prim:RealizationTransport carrying rho(crs:SubjectObjectPlane) = crs:carrier_SubjectObjectPlane (prim:transportDom) up to rho(crs:PlaneGeometer) = crs:carrier_PlaneGeometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_SubjectObjectPlane_PlaneGeometer resolves along so crs:SubjectObjectPlane is grounded a SECOND way — transported into its realized ancestor crs:PlaneGeometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_SubjectObjectPlane_PlaneGeometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:SubjectObjectPlane ;
+    prim:ancestralAncestor crs:PlaneGeometer ;
+    prim:ancestralViaTransport crs:rt_sub_SubjectObjectPlane_PlaneGeometer ;
+    prim:ancestralLandsIn crs:carrier_PlaneGeometer ;
+    rdfs:label "SubjectObjectPlane also-grounded-through PlaneGeometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:SubjectObjectPlane is ALSO grounded through its realized proper ancestor crs:PlaneGeometer (crs:SubjectObjectPlane rdfs:subClassOf+ crs:PlaneGeometer, both dual-grounded FormalType objects over the merged graph). crs:SubjectObjectPlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_SubjectObjectPlane_PlaneGeometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_PlaneGeometer = rho(crs:PlaneGeometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_SubjectObjectPlane_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_SubjectObjectPlane ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: SubjectObjectPlane -> Geometer) = transport carrier_SubjectObjectPlane -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:SubjectObjectPlane rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:SubjectObjectPlane) = crs:carrier_SubjectObjectPlane (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_SubjectObjectPlane_Geometer resolves along so crs:SubjectObjectPlane is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_SubjectObjectPlane_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:SubjectObjectPlane ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_SubjectObjectPlane_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "SubjectObjectPlane also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:SubjectObjectPlane is ALSO grounded through its realized proper ancestor crs:Geometer (crs:SubjectObjectPlane rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:SubjectObjectPlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_SubjectObjectPlane_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_SubjectPredicatePlane_RolePairProjectionPlane a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_SubjectPredicatePlane ;
+    prim:transportCod crs:carrier_RolePairProjectionPlane ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: SubjectPredicatePlane -> RolePairProjectionPlane) = transport carrier_SubjectPredicatePlane -> carrier_RolePairProjectionPlane" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:SubjectPredicatePlane rdfs:subClassOf+ crs:RolePairProjectionPlane: a non-identity prim:RealizationTransport carrying rho(crs:SubjectPredicatePlane) = crs:carrier_SubjectPredicatePlane (prim:transportDom) up to rho(crs:RolePairProjectionPlane) = crs:carrier_RolePairProjectionPlane (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_SubjectPredicatePlane_RolePairProjectionPlane resolves along so crs:SubjectPredicatePlane is grounded a SECOND way — transported into its realized ancestor crs:RolePairProjectionPlane's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_SubjectPredicatePlane_RolePairProjectionPlane a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:SubjectPredicatePlane ;
+    prim:ancestralAncestor crs:RolePairProjectionPlane ;
+    prim:ancestralViaTransport crs:rt_sub_SubjectPredicatePlane_RolePairProjectionPlane ;
+    prim:ancestralLandsIn crs:carrier_RolePairProjectionPlane ;
+    rdfs:label "SubjectPredicatePlane also-grounded-through RolePairProjectionPlane" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:SubjectPredicatePlane is ALSO grounded through its realized proper ancestor crs:RolePairProjectionPlane (crs:SubjectPredicatePlane rdfs:subClassOf+ crs:RolePairProjectionPlane, both dual-grounded FormalType objects over the merged graph). crs:SubjectPredicatePlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_SubjectPredicatePlane_RolePairProjectionPlane is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_RolePairProjectionPlane = rho(crs:RolePairProjectionPlane) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_SubjectPredicatePlane_PlaneGeometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_SubjectPredicatePlane ;
+    prim:transportCod crs:carrier_PlaneGeometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: SubjectPredicatePlane -> PlaneGeometer) = transport carrier_SubjectPredicatePlane -> carrier_PlaneGeometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:SubjectPredicatePlane rdfs:subClassOf+ crs:PlaneGeometer: a non-identity prim:RealizationTransport carrying rho(crs:SubjectPredicatePlane) = crs:carrier_SubjectPredicatePlane (prim:transportDom) up to rho(crs:PlaneGeometer) = crs:carrier_PlaneGeometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_SubjectPredicatePlane_PlaneGeometer resolves along so crs:SubjectPredicatePlane is grounded a SECOND way — transported into its realized ancestor crs:PlaneGeometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_SubjectPredicatePlane_PlaneGeometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:SubjectPredicatePlane ;
+    prim:ancestralAncestor crs:PlaneGeometer ;
+    prim:ancestralViaTransport crs:rt_sub_SubjectPredicatePlane_PlaneGeometer ;
+    prim:ancestralLandsIn crs:carrier_PlaneGeometer ;
+    rdfs:label "SubjectPredicatePlane also-grounded-through PlaneGeometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:SubjectPredicatePlane is ALSO grounded through its realized proper ancestor crs:PlaneGeometer (crs:SubjectPredicatePlane rdfs:subClassOf+ crs:PlaneGeometer, both dual-grounded FormalType objects over the merged graph). crs:SubjectPredicatePlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_SubjectPredicatePlane_PlaneGeometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_PlaneGeometer = rho(crs:PlaneGeometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_SubjectPredicatePlane_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_SubjectPredicatePlane ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: SubjectPredicatePlane -> Geometer) = transport carrier_SubjectPredicatePlane -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:SubjectPredicatePlane rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:SubjectPredicatePlane) = crs:carrier_SubjectPredicatePlane (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_SubjectPredicatePlane_Geometer resolves along so crs:SubjectPredicatePlane is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_SubjectPredicatePlane_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:SubjectPredicatePlane ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_SubjectPredicatePlane_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "SubjectPredicatePlane also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:SubjectPredicatePlane is ALSO grounded through its realized proper ancestor crs:Geometer (crs:SubjectPredicatePlane rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:SubjectPredicatePlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_SubjectPredicatePlane_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_ObjectPredicatePlane_RolePairProjectionPlane a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_ObjectPredicatePlane ;
+    prim:transportCod crs:carrier_RolePairProjectionPlane ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: ObjectPredicatePlane -> RolePairProjectionPlane) = transport carrier_ObjectPredicatePlane -> carrier_RolePairProjectionPlane" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:ObjectPredicatePlane rdfs:subClassOf+ crs:RolePairProjectionPlane: a non-identity prim:RealizationTransport carrying rho(crs:ObjectPredicatePlane) = crs:carrier_ObjectPredicatePlane (prim:transportDom) up to rho(crs:RolePairProjectionPlane) = crs:carrier_RolePairProjectionPlane (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_ObjectPredicatePlane_RolePairProjectionPlane resolves along so crs:ObjectPredicatePlane is grounded a SECOND way — transported into its realized ancestor crs:RolePairProjectionPlane's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_ObjectPredicatePlane_RolePairProjectionPlane a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:ObjectPredicatePlane ;
+    prim:ancestralAncestor crs:RolePairProjectionPlane ;
+    prim:ancestralViaTransport crs:rt_sub_ObjectPredicatePlane_RolePairProjectionPlane ;
+    prim:ancestralLandsIn crs:carrier_RolePairProjectionPlane ;
+    rdfs:label "ObjectPredicatePlane also-grounded-through RolePairProjectionPlane" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:ObjectPredicatePlane is ALSO grounded through its realized proper ancestor crs:RolePairProjectionPlane (crs:ObjectPredicatePlane rdfs:subClassOf+ crs:RolePairProjectionPlane, both dual-grounded FormalType objects over the merged graph). crs:ObjectPredicatePlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_ObjectPredicatePlane_RolePairProjectionPlane is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_RolePairProjectionPlane = rho(crs:RolePairProjectionPlane) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_ObjectPredicatePlane_PlaneGeometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_ObjectPredicatePlane ;
+    prim:transportCod crs:carrier_PlaneGeometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: ObjectPredicatePlane -> PlaneGeometer) = transport carrier_ObjectPredicatePlane -> carrier_PlaneGeometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:ObjectPredicatePlane rdfs:subClassOf+ crs:PlaneGeometer: a non-identity prim:RealizationTransport carrying rho(crs:ObjectPredicatePlane) = crs:carrier_ObjectPredicatePlane (prim:transportDom) up to rho(crs:PlaneGeometer) = crs:carrier_PlaneGeometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_ObjectPredicatePlane_PlaneGeometer resolves along so crs:ObjectPredicatePlane is grounded a SECOND way — transported into its realized ancestor crs:PlaneGeometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_ObjectPredicatePlane_PlaneGeometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:ObjectPredicatePlane ;
+    prim:ancestralAncestor crs:PlaneGeometer ;
+    prim:ancestralViaTransport crs:rt_sub_ObjectPredicatePlane_PlaneGeometer ;
+    prim:ancestralLandsIn crs:carrier_PlaneGeometer ;
+    rdfs:label "ObjectPredicatePlane also-grounded-through PlaneGeometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:ObjectPredicatePlane is ALSO grounded through its realized proper ancestor crs:PlaneGeometer (crs:ObjectPredicatePlane rdfs:subClassOf+ crs:PlaneGeometer, both dual-grounded FormalType objects over the merged graph). crs:ObjectPredicatePlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_ObjectPredicatePlane_PlaneGeometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_PlaneGeometer = rho(crs:PlaneGeometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
+
+crs:rt_sub_ObjectPredicatePlane_Geometer a prim:RealizationTransport ;
+    prim:transportDom crs:carrier_ObjectPredicatePlane ;
+    prim:transportCod crs:carrier_Geometer ;
+    prim:isTransportIdentity false ;
+    rdfs:label "rho(sub: ObjectPredicatePlane -> Geometer) = transport carrier_ObjectPredicatePlane -> carrier_Geometer" ;
+    rdfs:comment "The rho-image of the taxonomic subtyping arrow crs:ObjectPredicatePlane rdfs:subClassOf+ crs:Geometer: a non-identity prim:RealizationTransport carrying rho(crs:ObjectPredicatePlane) = crs:carrier_ObjectPredicatePlane (prim:transportDom) up to rho(crs:Geometer) = crs:carrier_Geometer (prim:transportCod), prim:isTransportIdentity false. It is the transport crs:agp_ObjectPredicatePlane_Geometer resolves along so crs:ObjectPredicatePlane is grounded a SECOND way — transported into its realized ancestor crs:Geometer's carrier — in ADDITION to its own direct grounding, keeping SP1's q_ancestral_transport_resolves total over the merged graph." .
+
+crs:agp_ObjectPredicatePlane_Geometer a prim:AncestralGroundingPath ;
+    prim:ancestralSubtype crs:ObjectPredicatePlane ;
+    prim:ancestralAncestor crs:Geometer ;
+    prim:ancestralViaTransport crs:rt_sub_ObjectPredicatePlane_Geometer ;
+    prim:ancestralLandsIn crs:carrier_Geometer ;
+    rdfs:label "ObjectPredicatePlane also-grounded-through Geometer" ;
+    rdfs:comment "The materialised ancestral grounding path witnessing that crs:ObjectPredicatePlane is ALSO grounded through its realized proper ancestor crs:Geometer (crs:ObjectPredicatePlane rdfs:subClassOf+ crs:Geometer, both dual-grounded FormalType objects over the merged graph). crs:ObjectPredicatePlane keeps its OWN direct grounding (its own reflexive carrier + prim:Realization + prim:Primitive) UNCHANGED; this ADDS the transported second grounding: prim:ancestralViaTransport crs:rt_sub_ObjectPredicatePlane_Geometer is the rho-image of the taxonomic subtyping, and prim:ancestralLandsIn crs:carrier_Geometer = rho(crs:Geometer) is the ancestor's own realization carrier the transport's prim:transportCod resolves to exactly. SP1's q_ancestral_transport_resolves reads this pair as covered." .
