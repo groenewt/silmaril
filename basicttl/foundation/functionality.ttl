@@ -1,0 +1,292 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# functionality.ttl — Pillar 4: functionality / typing (Curry's F) + variance + the s6 quarantine
+# (W2 · SP0, Task T7; design s5; Directive 19).
+# =====================================================================================
+# The ARROW layer of the four-pillar taiji. Set theory (T3) carries the CARRIERS, the algebra tower
+# (T4/T5) the OBJECTS/OPERATIONS, spaces (T6) the topology/geometry, and THIS pillar the typed ARROWS -
+# Curry's functionality operator F (H. B. Curry, First Properties of Functionality in Combinatory Logic,
+# Tohoku Math. J. 41 (1936) 371-401; jstage handle tmj1911/41/0/41_0_371; CITED, never committed -
+# Directive 19 :265-268). Three teeth-proved structures, per the maximal choice (Directive 20):
+#
+#   (1) fnd:Functionality = Curry's F = the typed arrow F(X,Y) "the type of functions X->Y". The pillar
+#       does NOT rebuild an arrow tower: it RECOGNIZES the committed SP1 prim:Frame as F (Directive 19
+#       :270-273 states the identification verbatim; prim:Frame is the unary law's Yoneda point, the
+#       typed product Frame(output, effect) the whole realization monad rho is the Kleisli category of,
+#       prim:Frame prim:isYonedaPoint true committed at basicttl/primitives/taiji.ttl:1994). Tooth
+#       q_frame_is_functionality / fnd:FrameRecognitionShape make the recognition-onto-the-real-Frame a
+#       graph fact (a functionality recognizing an invented non-Yoneda carrier -> RED).
+#   (2) fnd:VarianceBifunctor = the arrow-type constructor F(dom,cod), CONTRAVARIANT in the domain and
+#       COVARIANT in the codomain (Curry s4: FXY, U subset X, Y subset V => FUV). Directive 19 :279-281
+#       mandates the function-type algebra carry this variance. The COVARIANT codomain leg is the variance
+#       SP1's prim:RealizationTransport already proves as a covariant functor (realization.ttl:2865-2920,
+#       q_functor_composition green); the CONTRAVARIANT domain leg is NEW teeth - the unary law forbids a
+#       Frame input coordinate (docs/unary-byte-frame-law.md:686-687), so F(dom,cod) is a SEPARATE
+#       bifunctor object, not prim:Frame the product (design DF-D Opt 2). Tooth q_functor_variance /
+#       fnd:FunctorVarianceShape reject a domain-widening or a codomain-narrowing.
+#   (3) fnd:SelfApplicationGuard = the Curry s6 paradox-quarantine: the Russell contradiction
+#       (E=WQ, chi=[f]N(ff), |-chi-chi=N(chi-chi)) arises ONLY from applying F OUTSIDE its category; type
+#       discipline is the quarantine (Directive 19 :293 - self-application must be type-disciplined, never
+#       naively self-applicable). A self-application resolves to silm:isProvisional true (the Praeriehund
+#       provisional-naming quarantine), never a naive proposition, UNLESS it is GENUINELY RESOLVED - its
+#       fnd:passedGuard target is a fnd:ContractGate/fnd:QuarantineResolution that fnd:marksProvisional it and
+#       it carries silm:isProvisional true (Fix-C; the mere existence of a fnd:passedGuard edge to an
+#       arbitrary node no longer exempts it). Tooth q_no_untyped_self_apply / fnd:SelfApplicationGuardShape
+#       reject a chi-chi admitted as a proposition behind an arbitrary (non-genuine) passedGuard.
+#
+# HONESTY (design s0 ledger, Praeriehund): EVERY atom here is SYN - cited standard mathematics (Curry
+# 1936), the Directive-19 precedent "the mathematics is fact and liftable; cite the source; do NOT
+# pretend it is a Helios lift". The RECOGNIZED objects (prim:Frame / prim:RealizationTransport / the
+# rho-monad / silm:isProvisional) are LIFTED / committed, but they are NOT authored here - this file
+# authors only the Curry-sourced functionality apparatus that recognizes them, so no T7 atom is a Helios
+# lift and none masquerades as one. Corpus-agnostic v1 (Directive 13): the witnesses bind no live corpus
+# (a two-element Dog subset Animal subtype order for variance; a reified Russell chi-chi for the s6
+# guard). Namespace fnd: <urn:silmaril:fnd:#>. Consumed by T10 (fnd:functionalityOf re-anchors
+# prim:Frame / prim:Realization / crs:CoordinateDerivation as Curry-F-typed arrows) and by T8/T9 (the
+# combinators B/C/W/K/I and the implication taiji build on this Functionality atom).
+# =====================================================================================
+
+
+# =====================================================================================
+# (1) The Functionality atom: Curry's F = the recognized Frame arrow (design s5 F1; 06 s1.A).
+# =====================================================================================
+
+fnd:Functionality a owl:Class ;
+    rdfs:label "Functionality" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Curry's functionality operator F - the typed-arrow constructor whose value F(X,Y) is the type of functions from X to Y (Curry's |-FXYZ = 'Z is a function from X to Y', X/Y categories; Curry 1936 s1). SYN: cited standard mathematics (the Directive-19 precedent - the 1936 mathematics is fact and liftable, cite the source, never pretend it is a Helios lift). The pillar does NOT rebuild a parallel arrow tower: a fnd:Functionality RECOGNIZES the committed SP1 prim:Frame as F via fnd:recognizesFrameCarrier - prim:Frame is the unary law's Yoneda point (prim:Frame prim:isYonedaPoint true, committed at basicttl/primitives/taiji.ttl:1994), the typed product Frame(output, effect) around a byte stream that the whole realization monad rho is the Kleisli category of, so 'the Frame is the Yoneda point' = 'the Frame is Curry's F applied' (Directive 19 :270-273). The effect coordinate fnd:kleisliEffect is the monadic enrichment of Curry's bare 2-place F (rho's Kleisli effect; SYN-FROM Curry s1 + realization.ttl). F(X,X) = the endo-arrows on one object = a Monoid = a one-object category (the seam to the algebra tower's single lifted rung). A callable IS typed by F (fnd:functionalityOf), it is not a subtype of it." .
+
+fnd:ArrowType a owl:Class ;
+    rdfs:label "ArrowType" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A value F(X,Y) of Curry's functionality constructor - the type of functions from a domain type X to a codomain type Y, reified as a first-class object carrying fnd:hasDomainType (X) and fnd:hasCodomainType (Y). SYN: cited standard mathematics (Curry 1936 s1/s4). It is what the fnd:VarianceBifunctor F(-,-) produces at a given (dom, cod) pair, and the node the s4 variance law relates: an fnd:VarianceStep asserts one arrow type is a subtype of another, F(X,Y) <: F(U,V), which is lawful exactly when the domain narrows (U subset-of X, contravariant) and the codomain widens (Y subset-of V, covariant). An fnd:ArrowType fills the function-as-morphism gap the structural Set floor (T3) flagged: F restricted to the no-effect fragment is exactly a Set-morphism X->Y with dom/cod. It is kept DISTINCT from prim:Frame - prim:Frame is the covariant output-times-effect product (a callable's return), whereas an fnd:ArrowType is the constructor's value carrying BOTH a contravariant domain and a covariant codomain (design DF-D Opt 2, the SP6 'Frame' polysemy: product-sense vs constructor-sense)." .
+
+fnd:recognizesFrameCarrier a owl:ObjectProperty ;
+    rdfs:domain fnd:Functionality ; rdfs:range owl:Thing ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "recognizesFrameCarrier" ;
+    rdfs:comment "Relates a fnd:Functionality (Curry's F) to the committed carrier it RECOGNIZES as F - on this floor the SP1 prim:Frame, the unary law's Yoneda point. SYN wiring of Directive 19's identification (:270-273): the recognition is honest only if the recognized carrier IS the Yoneda-point Frame (prim:Frame prim:isYonedaPoint true, committed at taiji.ttl:1994), never an invented parallel object - which is exactly what fnd:FrameRecognitionShape / q_frame_is_functionality enforce (a functionality recognizing a carrier lacking prim:isYonedaPoint true -> RED). It is a recognition edge, not a subtyping edge: the pillar recognizes the already-committed Frame rather than rebuilding an arrow object. Its rdfs:range is the maximal owl:Thing precisely so rdfs inference cannot retype the recognized SP1 carrier into a foundation class (the SP1 defang discipline); the tooth reads prim:isYonedaPoint on the carrier by sh:sparql, never a class range." .
+
+fnd:functionalityOf a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ; rdfs:range fnd:Functionality ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "functionalityOf" ;
+    rdfs:comment "The 'is typed by F' edge: relates a callable / arrow inhabitant to the fnd:Functionality (Curry's F) that types it. SYN wiring (Curry 1936 s1). This is the re-anchor property T10 uses to ground the committed floors onto the arrow pillar additively - prim:Realization (an inhabitant Z of FXY with realizesFrom/frameOutput/frameEffect), prim:Frame (the codomain object), and crs:CoordinateDerivation (a Kleisli arrow extending rho) each fnd:functionalityOf a fnd:Functionality - WITHOUT any rdfs:subClassOf (a callable is typed by F, it is not a subtype of it; the same edge-not-subtype discipline the design s7 re-anchor uses for fnd:groundsIn*). Its rdfs:domain is the maximal owl:Thing (the property applies uniformly to any callable across the committed floors), so rdfs domain-inference stamps only the harmless owl:Thing type and cannot retype an SP1/SP2/SP3 subject into a foundation class and regress a prior tooth." .
+
+fnd:typesAsArrow a owl:ObjectProperty ;
+    rdfs:domain fnd:Functionality ; rdfs:range fnd:ArrowType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "typesAsArrow" ;
+    rdfs:comment "Relates a fnd:Functionality (Curry's F) to the fnd:ArrowType F(X,Y) it denotes for a specific domain/codomain pair - the constructor's application made explicit as a graph edge. SYN (Curry 1936 s1). Where fnd:recognizesFrameCarrier ties F to its committed carrier prim:Frame, fnd:typesAsArrow ties F to the reified arrow-type value on which the s4 variance law is stated: a fnd:Functionality types-as-arrow an fnd:ArrowType carrying fnd:hasDomainType and fnd:hasCodomainType, and the fnd:VarianceBifunctor relates such arrow types by fnd:VarianceStep. It records that Curry's F is not a bare predicate but a constructor whose values are first-class arrow types, the objects the pillar's variance teeth bite on." .
+
+fnd:kleisliEffect a owl:DatatypeProperty ;
+    rdfs:domain fnd:Functionality ; rdfs:range xsd:string ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "kleisliEffect" ;
+    rdfs:comment "The EFFECT coordinate of a fnd:Functionality, carried full-lexically - the monadic enrichment of Curry's bare 2-place F. SYN-FROM Curry 1936 s1 + the committed rho-monad (basicttl/primitives/realization.ttl:9-36): Curry's F(X,Y) is a pure 2-place arrow type; the committed Frame is F(X, effect:Y) with the effect coordinate the typed cost (rounding / loss / endianness) of choosing an encoding, so fnd:Functionality is Curry's F in the Kleisli category of the effect monad rho (the effect coordinate is exactly the unary law's Frame(output:X, error|effect:Y) second coordinate). The pure / NoEffect fragment of F is Curry's original bare F' (the s5 implication face's carrier). It is a documentation coordinate on the recognized arrow, not a teeth-bearing edge; the teeth q_frame_is_functionality / q_functor_variance / q_no_untyped_self_apply bite on the recognition, the variance, and the quarantine respectively." .
+
+fnd:curryFunctionality a fnd:Functionality ;
+    rdfs:label "curryFunctionality" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness fnd:Functionality (non-vacuity anchor for q_frame_is_functionality, FALSE on the pre-T7 graph): Curry's functionality operator F recognized on the committed SP1 carrier. SYN worked example (Curry 1936 s1). It fnd:recognizesFrameCarrier prim:Frame (the unary law's Yoneda point, prim:Frame prim:isYonedaPoint true committed at taiji.ttl:1994) - the honest recognition that 'the Frame is Curry's F applied' (Directive 19 :270-273), not a rebuilt parallel object. It fnd:typesAsArrow the reified fnd:arrowTypeAnimalDog value F(Animal,Dog), and carries the effect coordinate fnd:kleisliEffect. Removing its recognition edge or repointing it at an invented non-Yoneda carrier is the fnd:FrameRecognitionShape probe of record." ;
+    fnd:recognizesFrameCarrier prim:Frame ;
+    fnd:typesAsArrow fnd:arrowTypeAnimalDog ;
+    fnd:kleisliEffect "effect coordinate Y of F(X, effect:Y) = the rho-monad Kleisli cost (rounding / loss / endianness); the NoEffect fragment is Curry's pure F'" .
+
+
+# =====================================================================================
+# (2) The variance bifunctor F(dom,cod): contravariant domain / covariant codomain (design s5 F3/F3';
+# Curry s4; 06b s3.1). A corpus-agnostic witness subtype order (Dog subset-of Animal) carries the
+# variance so the teeth are non-vacuous without any live-corpus binding.
+# =====================================================================================
+
+fnd:VarianceBifunctor a owl:Class ;
+    rdfs:label "VarianceBifunctor" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The arrow-type constructor F(dom, cod) read as a BIFUNCTOR - CONTRAVARIANT in its domain argument and COVARIANT in its codomain argument (Curry 1936 s4: FXY with U subset X and Y subset V implies FUV, so a function X->Y is also a function U->V). SYN: cited standard mathematics; Directive 19 :279-281 mandates the function-type algebra carry this variance. It is a SEPARATE object from prim:Frame the product (which is covariant in both its output and effect coordinates): the unary law deliberately forbids the callable's input from becoming a Frame coordinate (docs/unary-byte-frame-law.md:686-687), so contravariance has nowhere to live on prim:Frame and F(dom,cod) is authored as its own constructor (design DF-D Opt 2). The COVARIANT codomain leg is the variance SP1's prim:RealizationTransport already proves as a covariant functor rho(A)->rho(B) with identity/composition teeth (realization.ttl:2865-2920, q_functor_composition green) - reused, not rebuilt; the CONTRAVARIANT domain leg is the NEW law this pillar contributes (SP1 has no contravariant structure). It fnd:producesArrowType the reified fnd:ArrowType values whose subtyping fnd:VarianceStep asserts, and the tooth q_functor_variance / fnd:FunctorVarianceShape reject any accepted step that widens the domain or narrows the codomain." .
+
+fnd:WitnessType a owl:Class ;
+    rdfs:label "WitnessType" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A witness type node carrying the corpus-agnostic subtype order the s4 variance law is checked over - a deliberately minimal stand-in for a real type so the variance teeth are non-vacuous WITHOUT binding any live corpus (Directive 13). SYN: cited standard mathematics (a subtype/inclusion order, Curry 1936 s4's U subset X / Y subset V). The order is carried by fnd:varSubtypeOf (U fnd:varSubtypeOf X means U subset-of X, the inclusion of the smaller type into the larger); on this floor fnd:typeDog fnd:varSubtypeOf fnd:typeAnimal (every dog is an animal). A fnd:ArrowType's fnd:hasDomainType and fnd:hasCodomainType point at fnd:WitnessType nodes, and the variance clauses read fnd:varSubtypeOf between them to decide whether a fnd:VarianceStep narrows the domain (contravariant, lawful) or widens it (a violation), and whether it widens the codomain (covariant, lawful) or narrows it (a violation). These witness types have no meaning beyond carrying the order - they are the variance tooth's non-vacuity substrate, the Curry-s4 analogue of the engine's fnd:witnessSignature." .
+
+fnd:ArrowTypeSubtyping a owl:Class ;
+    rdfs:label "ArrowTypeSubtyping" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reification of one subtyping assertion between arrow types, F(X,Y) <: F(U,V) - the superclass of fnd:VarianceStep, distinguishing the ACT of asserting an arrow-type subtyping from a lawful vs unlawful one. SYN: cited standard mathematics (Curry 1936 s4). It carries fnd:varianceFrom (the sub-type arrow, F(X,Y)) and fnd:varianceTo (the super-type arrow, F(U,V)). Every such assertion is either well-varied - the domain narrows (U subset-of X, contravariant) AND the codomain widens (Y subset-of V, covariant) - or it violates variance; the fnd:VarianceStep subclass is the concrete assertion the teeth target. Reifying the subtyping as its own node (rather than a bare edge between two arrow types) is what lets the variance clauses read the domain and codomain of BOTH the sub and the super and check the two directions independently, exactly the one-clause-at-a-time discipline the whole floor uses." .
+
+fnd:VarianceStep a owl:Class ;
+    rdfs:subClassOf fnd:ArrowTypeSubtyping ;
+    rdfs:label "VarianceStep" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A concrete accepted subtyping step between arrow types, F(X,Y) <: F(U,V), the node the s4 variance teeth target (design s5 F3/F3'; Curry 1936 s4). SYN: cited standard mathematics. It carries fnd:varianceFrom (the sub arrow type F(X,Y), whose fnd:hasDomainType is X and fnd:hasCodomainType is Y) and fnd:varianceTo (the super arrow type F(U,V), whose domain is U and codomain is V). The step is LAWFUL exactly when the domain is contravariant - U = X or U fnd:varSubtypeOf X (the target domain narrows into the source domain) - AND the codomain is covariant - Y = V or Y fnd:varSubtypeOf V (the source codomain widens into the target codomain). fnd:FunctorVarianceShape / q_functor_variance flag any accepted step that WIDENS the domain (target domain U is neither equal to nor a subtype of source domain X) or NARROWS the codomain (source codomain Y is neither equal to nor a subtype of target codomain V). On this floor fnd:varStepValid (F(Animal,Dog) <: F(Dog,Animal), narrowing the domain and widening the codomain, both lawful) conforms; injecting fnd:probeVarStep (F(Dog,Dog) <: F(Animal,Dog), widening the domain) makes the tooth bite." .
+
+fnd:producesArrowType a owl:ObjectProperty ;
+    rdfs:domain fnd:VarianceBifunctor ; rdfs:range fnd:ArrowType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "producesArrowType" ;
+    rdfs:comment "Relates the fnd:VarianceBifunctor F(-,-) to a fnd:ArrowType value F(X,Y) it produces at a given (domain, codomain) pair. SYN (Curry 1936 s4). It records that the reified arrow types on this floor are the outputs of the one bifunctor constructor, so the variance law (contravariant domain, covariant codomain) is a property of THAT constructor rather than of unrelated ad-hoc types. It is a plumbing edge tying the bifunctor witness fnd:functionTypeBifunctor to the arrow-type witnesses the fnd:VarianceStep nodes relate; the teeth read the arrow types' domain/codomain and the fnd:varSubtypeOf order, not this edge, so it never defangs a tooth." .
+
+fnd:hasDomainType a owl:ObjectProperty ;
+    rdfs:domain fnd:ArrowType ; rdfs:range fnd:WitnessType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasDomainType" ;
+    rdfs:comment "Relates an fnd:ArrowType F(X,Y) to its DOMAIN type X (a fnd:WitnessType) - the type the function accepts. SYN (Curry 1936 s4). It is the CONTRAVARIANT coordinate of the arrow-type constructor: in a lawful subtyping F(X,Y) <: F(U,V) the domain must NARROW (U = X or U fnd:varSubtypeOf X), because a function that accepts all of X certainly accepts the smaller U. The variance teeth read the domain types of both the sub and the super arrow of a fnd:VarianceStep and require U subset-of X; a target domain that is neither equal to nor a subtype of the source domain (a domain WIDENING) is the fnd:FunctorVarianceShape probe of record. Reads by edge existence over the reified arrow type, never a range-inferred class." .
+
+fnd:hasCodomainType a owl:ObjectProperty ;
+    rdfs:domain fnd:ArrowType ; rdfs:range fnd:WitnessType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasCodomainType" ;
+    rdfs:comment "Relates an fnd:ArrowType F(X,Y) to its CODOMAIN type Y (a fnd:WitnessType) - the type the function returns. SYN (Curry 1936 s4). It is the COVARIANT coordinate of the arrow-type constructor: in a lawful subtyping F(X,Y) <: F(U,V) the codomain must WIDEN (Y = V or Y fnd:varSubtypeOf V), because a function that returns something in Y certainly returns something in the larger V. This is exactly the variance SP1's prim:RealizationTransport already proves covariantly (realization.ttl:2865-2920), reused here as the covariant leg. The variance teeth require Y subset-of V; a source codomain that is neither equal to nor a subtype of the target codomain (a codomain NARROWING) fires the fnd:FunctorVarianceShape codomain clause. Reads by edge existence over the reified arrow type, never a range-inferred class." .
+
+fnd:varSubtypeOf a owl:ObjectProperty ;
+    rdfs:domain fnd:WitnessType ; rdfs:range fnd:WitnessType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "varSubtypeOf" ;
+    rdfs:comment "The base subtype (inclusion) order the s4 variance law rides on: U fnd:varSubtypeOf X means U is a subtype of X (U subset-of X, every U is an X). SYN (Curry 1936 s4's U subset X / Y subset V). On this floor fnd:typeDog fnd:varSubtypeOf fnd:typeAnimal is the single generator (every dog is an animal). The variance clauses read this order in BOTH directions: contravariantly on the domain (a lawful step's target domain U must be = or fnd:varSubtypeOf the source domain X) and covariantly on the codomain (a lawful step's source codomain Y must be = or fnd:varSubtypeOf the target codomain V). It is deliberately a bare asserted order (not reflexive-closed), so the variance clauses handle equality explicitly with a FILTER(?u != ?x); this keeps the relation minimal and the teeth reading only asserted edges (the SP1 defang discipline - no inference forges a subtype edge)." .
+
+fnd:varianceFrom a owl:ObjectProperty ;
+    rdfs:domain fnd:ArrowTypeSubtyping ; rdfs:range fnd:ArrowType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "varianceFrom" ;
+    rdfs:comment "Relates a fnd:VarianceStep (an accepted arrow-type subtyping F(X,Y) <: F(U,V)) to its SUB arrow type F(X,Y) - the more specific function type, the one being asserted a subtype. SYN (Curry 1936 s4). Its fnd:hasDomainType X and fnd:hasCodomainType Y are the SOURCE coordinates the variance clauses compare against the target's: the domain clause requires the target domain U to narrow into this X, and the codomain clause requires this Y to widen into the target codomain V. Reifying the step and naming its two endpoints (fnd:varianceFrom / fnd:varianceTo) is what lets a single sh:sparql constraint read all four types (X, Y, U, V) and check contravariance and covariance independently." .
+
+fnd:varianceTo a owl:ObjectProperty ;
+    rdfs:domain fnd:ArrowTypeSubtyping ; rdfs:range fnd:ArrowType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "varianceTo" ;
+    rdfs:comment "Relates a fnd:VarianceStep (an accepted arrow-type subtyping F(X,Y) <: F(U,V)) to its SUPER arrow type F(U,V) - the more general function type, the one asserted a supertype. SYN (Curry 1936 s4). Its fnd:hasDomainType U and fnd:hasCodomainType V are the TARGET coordinates: a lawful step requires U to be = or fnd:varSubtypeOf the source domain X (contravariant domain narrowing) and the source codomain Y to be = or fnd:varSubtypeOf this V (covariant codomain widening). A target domain that is WIDER than the source domain (U not = and not fnd:varSubtypeOf X) or a target codomain that is NARROWER than the source codomain (Y not = and not fnd:varSubtypeOf V) is the variance violation the fnd:FunctorVarianceShape probe of record injects." .
+
+fnd:functionTypeBifunctor a fnd:VarianceBifunctor ;
+    rdfs:label "functionTypeBifunctor" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness fnd:VarianceBifunctor - the one arrow-type constructor F(dom,cod) on this floor, contravariant in the domain and covariant in the codomain (Curry 1936 s4). SYN worked example. It fnd:producesArrowType the three witness arrow types F(Animal,Dog), F(Dog,Animal) and the inert F(Dog,Dog), the values the fnd:VarianceStep nodes relate. It exists so the variance law is a property of a named constructor, matching Directive 19's requirement that the function-type ALGEBRA carry the s4 variance - not that unrelated ad-hoc arrow types happen to obey it." ;
+    fnd:producesArrowType fnd:arrowTypeAnimalDog , fnd:arrowTypeDogAnimal , fnd:arrowTypeDogDog .
+
+fnd:typeAnimal a fnd:WitnessType ;
+    rdfs:label "typeAnimal" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A witness type in the corpus-agnostic subtype order carrying the s4 variance teeth (Directive 13): the LARGER type in the single inclusion fnd:typeDog fnd:varSubtypeOf fnd:typeAnimal (every dog is an animal). SYN. It has no meaning beyond carrying the order for the variance witness; it is the Curry-s4 analogue of the engine's witnessSignature - the non-vacuity substrate the fnd:FunctorVarianceShape bites over. Used as the domain of F(Animal,Dog) and the codomain of F(Dog,Animal)." .
+
+fnd:typeDog a fnd:WitnessType ;
+    rdfs:label "typeDog" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A witness type in the corpus-agnostic subtype order carrying the s4 variance teeth (Directive 13): the SMALLER type in the single inclusion fnd:typeDog fnd:varSubtypeOf fnd:typeAnimal (every dog is an animal). SYN. It has no meaning beyond carrying the order for the variance witness. Used as the codomain of F(Animal,Dog) and the domain of F(Dog,Animal); the lawful witness step F(Animal,Dog) <: F(Dog,Animal) narrows the domain Animal->Dog (contravariant) and widens the codomain Dog->Animal (covariant), both licensed by this single subtype edge." ;
+    fnd:varSubtypeOf fnd:typeAnimal .
+
+fnd:arrowTypeAnimalDog a fnd:ArrowType ;
+    rdfs:label "arrowTypeAnimalDog" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness arrow type F(Animal, Dog) - the type of functions from Animal to Dog - reified with fnd:hasDomainType fnd:typeAnimal and fnd:hasCodomainType fnd:typeDog. SYN (Curry 1936 s4). It is the SUB endpoint of the lawful witness step fnd:varStepValid (F(Animal,Dog) <: F(Dog,Animal)): a function accepting any Animal and returning a Dog is a fortiori a function accepting any Dog (a subset of Animal) and returning any Animal (a superset of Dog), so it lawfully narrows its domain and widens its codomain. curryFunctionality fnd:typesAsArrow this value." ;
+    fnd:hasDomainType fnd:typeAnimal ;
+    fnd:hasCodomainType fnd:typeDog .
+
+fnd:arrowTypeDogAnimal a fnd:ArrowType ;
+    rdfs:label "arrowTypeDogAnimal" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness arrow type F(Dog, Animal) - the type of functions from Dog to Animal - reified with fnd:hasDomainType fnd:typeDog and fnd:hasCodomainType fnd:typeAnimal. SYN (Curry 1936 s4). It is the SUPER endpoint of the lawful witness step fnd:varStepValid (F(Animal,Dog) <: F(Dog,Animal)): its domain Dog is a subtype of the source domain Animal (contravariant narrowing) and its codomain Animal is a supertype of the source codomain Dog (covariant widening), so the step obeys both variance directions and fnd:FunctorVarianceShape does not fire." ;
+    fnd:hasDomainType fnd:typeDog ;
+    fnd:hasCodomainType fnd:typeAnimal .
+
+fnd:arrowTypeDogDog a fnd:ArrowType ;
+    rdfs:label "arrowTypeDogDog" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The inert witness arrow type F(Dog, Dog) - the type of functions from Dog to Dog - reified with fnd:hasDomainType fnd:typeDog and fnd:hasCodomainType fnd:typeDog. SYN (Curry 1936 s4). It is lawful on its own and is NOT the endpoint of any accepted step on the happy path; it exists only so the fnd:FunctorVarianceShape / q_functor_variance probe of record is a single-node injection (the same role fnd:foreignLaw plays in engine.ttl): injecting fnd:probeVarStep a fnd:VarianceStep ; fnd:varianceFrom fnd:arrowTypeDogDog ; fnd:varianceTo fnd:arrowTypeAnimalDog claims F(Dog,Dog) <: F(Animal,Dog), WIDENING the domain Dog->Animal though fnd:typeAnimal is not a subtype of fnd:typeDog, so the domain clause fires and the tooth bites (conforms True->False)." ;
+    fnd:hasDomainType fnd:typeDog ;
+    fnd:hasCodomainType fnd:typeDog .
+
+fnd:varStepValid a fnd:VarianceStep ;
+    rdfs:label "varStepValid" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness accepted variance step (non-vacuity anchor for q_functor_variance, FALSE on the pre-T7 graph): F(Animal,Dog) <: F(Dog,Animal), lawful under Curry s4. SYN worked example. Its fnd:varianceFrom is fnd:arrowTypeAnimalDog (domain Animal, codomain Dog) and its fnd:varianceTo is fnd:arrowTypeDogAnimal (domain Dog, codomain Animal): the domain narrows Animal->Dog (fnd:typeDog fnd:varSubtypeOf fnd:typeAnimal, contravariant, lawful) and the codomain widens Dog->Animal (same edge, covariant, lawful), so both variance clauses of fnd:FunctorVarianceShape pass. It is the positive witness the probe of record (fnd:probeVarStep, a domain-widening step over the inert fnd:arrowTypeDogDog) is contrasted against." ;
+    fnd:varianceFrom fnd:arrowTypeAnimalDog ;
+    fnd:varianceTo fnd:arrowTypeDogAnimal .
+
+
+# =====================================================================================
+# (3) The self-application paradox-quarantine (Curry s6; design s5; Directive 19 :293). An ungated
+# self-application chi-chi resolves to silm:isProvisional, never a naive proposition.
+# =====================================================================================
+
+fnd:SelfApplicationGuard a owl:Class ;
+    rdfs:label "SelfApplicationGuard" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Curry s6 paradox-quarantine gate: the typed frontier through which a self-application f(f) is ADMITTED only when its functional character stays inside its proper category (Curry 1936 s6). SYN: cited standard mathematics (the Curry s6 type-discipline argument) + the Praeriehund / ContractGate admission machinery it wires to. Curry shows the Russell contradiction - E = WQ, chi = [f]N(ff), |- chi-chi = N(chi-chi) - arises ONLY from a tacit, 'not even plausible' assumption about the functional character of negation, i.e. from applying functionality F OUTSIDE the category where it is defined; type/functionality discipline is the quarantine (Directive 19 :293 - self-application must be type-disciplined, never naively self-applicable). A fnd:SelfApplication that fnd:passedGuard a fnd:SelfApplicationGuard is admitted (its self-application is type-checked); one that did NOT pass any guard is UNGATED and must resolve to silm:isProvisional true, never a naive proposition. fnd:guardCategory records the category the gate enforces. This is the arrow-side of the set floor's no-universe-set restraint - the two pillars enforce one discipline from two sides (T3 keeps size an honest hypothesis; T7 keeps self-application type-gated)." .
+
+fnd:SelfApplication a owl:Class ;
+    rdfs:label "SelfApplication" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A reified self-application f(f) / chi-chi - a term applied to itself, the shape the Russell paradox is built from (Curry 1936 s6: chi = [f]N(ff), |- chi-chi = N(chi-chi)). SYN: cited standard mathematics. It carries fnd:selfAppTerm (the term, full-lexically) and is either GATED - fnd:passedGuard a fnd:SelfApplicationGuard, meaning its self-application was type-checked and admitted - or UNGATED - no fnd:passedGuard, meaning no typed frontier admitted it. The DISCIPLINE the teeth enforce (q_no_untyped_self_apply / fnd:SelfApplicationGuardShape), as TWO independent conditions: (a) NO self-application - gated or ungated, genuinely resolved or not - may be fnd:admittedAsProposition true (treated as a naive proposition, the exact move Curry s6 forbids - the UNCONDITIONAL branch); AND (b) an UNGATED / not-genuinely-resolved self-application must resolve to silm:isProvisional true (the Praeriehund provisional-naming quarantine - named because it must be named, but not admitted as a fact). Any self-application admitted as a proposition (including a genuinely-resolved fnd:gatedSelfApplication - the T1 asymmetry the split closes), or an ungated one lacking the provisional resolution, is the shape's probe of record. This makes 'the foundation never naively self-applies' a graph fact rather than a promise." .
+
+fnd:selfAppTerm a owl:DatatypeProperty ;
+    rdfs:domain fnd:SelfApplication ; rdfs:range xsd:string ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "selfAppTerm" ;
+    rdfs:comment "The term of a fnd:SelfApplication, carried full-lexically - the self-application f(f) written out (e.g. Curry's Russell witness 'chi chi where chi = [f]N(f f)', whose reduction |- chi-chi = N(chi-chi) is the contradiction). SYN (Curry 1936 s6). It records WHICH self-application the node reifies; the teeth read the gating (fnd:passedGuard), the provisional resolution (silm:isProvisional) and the proposition flag (fnd:admittedAsProposition), not this string, so it is documentation of the term, not a teeth-bearing edge." .
+
+fnd:passedGuard a owl:ObjectProperty ;
+    rdfs:domain fnd:SelfApplication ; rdfs:range fnd:SelfApplicationGuard ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "passedGuard" ;
+    rdfs:comment "Relates a fnd:SelfApplication to the fnd:SelfApplicationGuard that ADMITTED it - present exactly when the self-application was type-checked through the Curry s6 frontier and admitted as type-disciplined. SYN (Curry 1936 s6). Its ABSENCE is what 'ungated' means: q_no_untyped_self_apply / fnd:SelfApplicationGuardShape fire only on a self-application with NO fnd:passedGuard that is nonetheless treated as a proposition or lacks the provisional resolution. Edge existence (not a range-inferred type) decides gated-vs-ungated, so rdfs inference cannot forge a guard edge and defang the quarantine (the SP1 defang discipline). fnd:gatedSelfApplication carries this edge (admitted); fnd:chiSelfApplication does not (ungated, and so must be silm:isProvisional true)." .
+
+fnd:admittedAsProposition a owl:DatatypeProperty ;
+    rdfs:domain fnd:SelfApplication ; rdfs:range xsd:boolean ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "admittedAsProposition" ;
+    rdfs:comment "Flags a fnd:SelfApplication that has been admitted as a NAIVE PROPOSITION - a truth-bearing statement one may reason with. SYN (Curry 1936 s6). Admission as a naive proposition is forbidden UNCONDITIONALLY - regardless of whether the self-application is ungated or genuinely resolved: treating chi-chi as a proposition is the 'not even plausible' assumption the Russell contradiction rests on, the exact Curry s6 move, and even a genuinely-resolved, type-disciplined self-application may only ever be PROVISIONALLY named (silm:isProvisional true), never admitted as a fact. The discipline q_no_untyped_self_apply / fnd:SelfApplicationGuardShape enforce this as TWO independent violation conditions: (a) UNCONDITIONAL - ANY fnd:SelfApplication carrying fnd:admittedAsProposition true is a violation (conforms True->False), whether or not it passed a genuine fnd:ContractGate / fnd:QuarantineResolution that fnd:marksProvisional it; (b) an UNGATED / not-genuinely-resolved self-application lacking silm:isProvisional true is a violation (the Praeriehund provisional-quarantine clause, still gated behind the genuine-resolution FILTER NOT EXISTS). On the happy path fnd:chiSelfApplication (ungated, silm:isProvisional true) and fnd:gatedSelfApplication (genuinely resolved) both carry NO such flag; injecting fnd:gatedSelfApplication fnd:admittedAsProposition true - a GENUINELY-RESOLVED self-application admitted as a proposition - now flips the shape RED (it passed GREEN before the split), and fnd:chiSelfApplication fnd:admittedAsProposition true stays RED. Read as a literal value (sh:sparql), never a class range." .
+
+fnd:guardCategory a owl:DatatypeProperty ;
+    rdfs:domain fnd:SelfApplicationGuard ; rdfs:range xsd:string ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "guardCategory" ;
+    rdfs:comment "The category a fnd:SelfApplicationGuard enforces, carried full-lexically - the proper category outside which applying functionality F produces the Curry s6 paradox (Curry 1936 s6: the contradiction arises from applying F OUTSIDE its category). SYN. It documents what type discipline the gate checks (e.g. 'admit f(f) only where the functional character of f is defined on its own type'), the frontier that separates an admitted, type-disciplined self-application from an ungated one that must be quarantined to silm:isProvisional. Documentation coordinate, not a teeth-bearing edge." .
+
+fnd:ContractGate a owl:Class ;
+    rdfs:label "ContractGate" ;
+    rdfs:subClassOf fnd:SelfApplicationGuard ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A GENUINE self-application guard: the unary-law ContractGate Accepted|Rejected admission frontier (docs/unary-byte-frame-law.md:752-758) specialised to the Curry s6 paradox-quarantine. SYN: cited standard mathematics (Curry 1936 s6) + the Praeriehund / unary-law ContractGate admission machinery it wires to. A fnd:SelfApplicationGuard is a bare marker that SOMETHING gated a self-application; a fnd:ContractGate is the STRONGER, genuine kind: it admits a self-application f(f) only by RESOLVING it - it fnd:marksProvisional the very self-application it admits, so that even an ADMITTED, type-disciplined self-application is only ever PROVISIONALLY named (silm:isProvisional true), never a naive fact one may reason with. This closes the Fix-C hole: q_no_untyped_self_apply / fnd:SelfApplicationGuardShape now exempt a self-application from the quarantine ONLY when its fnd:passedGuard target is a fnd:ContractGate (or fnd:QuarantineResolution) that fnd:marksProvisional it and it carries silm:isProvisional true - the mere EXISTENCE of a fnd:passedGuard edge to an arbitrary UNCONSTRAINED node (e.g. fnd:passedGuard fnd:propA) no longer admits the Russell witness. It is the admission-by-genuine-resolution reading of Curry s6: the type frontier does not bless self-application as a fact, it quarantines it as provisionally admitted." .
+
+fnd:QuarantineResolution a owl:Class ;
+    rdfs:label "QuarantineResolution" ;
+    rdfs:subClassOf fnd:SelfApplicationGuard ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A GENUINE self-application guard of the Praeriehund provisional-naming kind: a resolution that quarantines a self-application f(f) by RESOLVING it to a provisional name rather than admitting it as a proposition (Curry 1936 s6; the Praeriehund provisional-naming discipline - named because it must be named, but not admitted as a fact). SYN: cited standard mathematics + the Praeriehund quarantine machinery. Like fnd:ContractGate it is a STRONGER kind of fnd:SelfApplicationGuard than the bare marker: it fnd:marksProvisional the self-application it resolves, and only such a genuine resolution (paired with the self-application's own silm:isProvisional true) exempts that self-application from the fnd:SelfApplicationGuardShape / q_no_untyped_self_apply quarantine (Fix-C). Where fnd:ContractGate models admission-by-type-frontier that stays provisional, fnd:QuarantineResolution models the Praeriehund resolution that refuses admission outright and pins the term to a provisional name; both are accepted genuine-resolution kinds, so the tooth's exemption is a real resolution, never the mere presence of an arbitrary fnd:passedGuard edge." .
+
+fnd:marksProvisional a owl:ObjectProperty ;
+    rdfs:domain fnd:SelfApplicationGuard ; rdfs:range fnd:SelfApplication ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "marksProvisional" ;
+    rdfs:comment "Relates a GENUINE self-application guard (a fnd:ContractGate or fnd:QuarantineResolution) to the fnd:SelfApplication it RESOLVES by marking it provisional - the edge that makes a fnd:passedGuard a genuine resolution rather than an arbitrary link (Fix-C). SYN (Curry 1936 s6 + the Praeriehund provisional-naming quarantine). q_no_untyped_self_apply / fnd:SelfApplicationGuardShape exempt a self-application from the s6 quarantine ONLY when its fnd:passedGuard target ?g is a fnd:ContractGate/fnd:QuarantineResolution AND ?g fnd:marksProvisional that self-application AND the self-application carries silm:isProvisional true; the mere existence of a fnd:passedGuard edge to an unconstrained node no longer admits the Russell witness. Edge existence (not a range-inferred type) decides genuine-resolution, so rdfs inference cannot forge it and defang the quarantine (the SP1 defang discipline). fnd:typedSelfAppGate fnd:marksProvisional fnd:gatedSelfApplication, and fnd:gatedSelfApplication carries silm:isProvisional true, so the gated witness is genuinely resolved." .
+
+fnd:typedSelfAppGate a fnd:ContractGate ;
+    rdfs:label "typedSelfAppGate" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness GENUINE self-application guard - a fnd:ContractGate, the typed frontier through which a type-disciplined self-application is admitted BY GENUINE RESOLUTION (Curry 1936 s6; the ContractGate Accepted|Rejected unary gate the unary law authors, docs/unary-byte-frame-law.md:752-758, is the admission machinery this recognizes). SYN worked example. fnd:gatedSelfApplication fnd:passedGuard this gate (admitted), and this gate fnd:marksProvisional fnd:gatedSelfApplication - so the admission is a genuine resolution (the admitted self-application is provisionally named, silm:isProvisional true), NOT the mere presence of a fnd:passedGuard edge to an arbitrary node (Fix-C). Its fnd:guardCategory names the type discipline it enforces. It exists so 'genuinely gated' is a real graph state, distinct from the ungated-but-provisional fnd:chiSelfApplication, and so fnd:passedGuard-to-a-genuine-resolution is non-vacuous - showing the quarantine ADMITS type-disciplined self-application by resolving it, rather than banning self-application outright or admitting it as a naive fact." ;
+    fnd:marksProvisional fnd:gatedSelfApplication ;
+    fnd:guardCategory "admit f(f) only where f's functional character is defined on its own type (F applied inside its proper category); reject application of F outside its category; admission marks the self-application provisional" .
+
+fnd:chiSelfApplication a fnd:SelfApplication ;
+    rdfs:label "chiSelfApplication" ;
+    fnd:authority fnd:SYN ;
+    silm:isProvisional true ;
+    rdfs:comment "The witness UNGATED self-application (non-vacuity anchor for q_no_untyped_self_apply, FALSE on the pre-T7 graph): Curry's Russell witness chi-chi, chi = [f]N(ff), whose reduction |- chi-chi = N(chi-chi) is the s6 contradiction. SYN worked example (Curry 1936 s6). It carries NO fnd:passedGuard (ungated - no typed frontier admitted it), so the quarantine requires it to resolve to silm:isProvisional true (the Praeriehund provisional-naming: named because it must be named, but NOT admitted as a fact) - which it does - and to carry NO fnd:admittedAsProposition true (never treated as a naive proposition) - which it does not. It is thus the honest quarantine of the paradox: the graph names chi-chi but refuses to reason with it. Injecting fnd:chiSelfApplication fnd:admittedAsProposition true (treating the ungated chi-chi as a proposition) is the fnd:SelfApplicationGuardShape probe of record - it makes the tooth bite (conforms True->False); equivalently, removing silm:isProvisional true fires the second clause." ;
+    fnd:selfAppTerm "chi chi where chi = [f]N(f f); reduction |- chi-chi = N(chi-chi) (Curry 1936 s6, the Russell contradiction)" .
+
+fnd:gatedSelfApplication a fnd:SelfApplication ;
+    rdfs:label "gatedSelfApplication" ;
+    fnd:authority fnd:SYN ;
+    silm:isProvisional true ;
+    rdfs:comment "The witness GENUINELY-RESOLVED self-application - a self-application f(f) that DID pass a genuine typed frontier and was admitted BY RESOLUTION (Curry 1936 s6). SYN worked example. It fnd:passedGuard fnd:typedSelfAppGate (a fnd:ContractGate), that gate fnd:marksProvisional this self-application, AND it carries silm:isProvisional true - so it is GENUINELY resolved, not merely linked to some arbitrary node, and the quarantine clause does not constrain it (Fix-C: the exemption requires the fnd:passedGuard target to be a fnd:ContractGate/fnd:QuarantineResolution that marks it provisional, so a self-application whose functional character stays inside its proper category is admitted only as a PROVISIONALLY-named, type-disciplined resolution - never a naive fact). It exists so genuine-resolution-via-fnd:passedGuard is non-vacuous and so the ungated-but-provisional case (fnd:chiSelfApplication) is a genuine contrast rather than the only self-application on the floor. Removing this silm:isProvisional true, or fnd:typedSelfAppGate's fnd:marksProvisional edge, makes the genuine-resolution exemption fail and the quarantine bite." ;
+    fnd:selfAppTerm "f(f) where f's functional character is defined on its own type (admitted through fnd:typedSelfAppGate, a genuine fnd:ContractGate that marks it provisional; F applied inside its proper category)" ;
+    fnd:passedGuard fnd:typedSelfAppGate .

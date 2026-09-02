@@ -259,3 +259,80 @@ maintainer in the W2 brainstorming gate before any authoring.
       are **algebra-SHAPED and ready to re-anchor** (magma/monoid/group-recognizable) and that no
       render artifact is legitimized. The algebra/set-theory foundation is then the **next
       design-gate sub-project**, after which SP1–SP3 re-anchor onto it.
+
+19. **The foundation's FOURTH pillar is FUNCTIONALITY / TYPING over COMBINATORY LOGIC — the
+    Frame IS Curry's functionality** (maintainer-supplied source: H. B. Curry, *First Properties
+    of Functionality in Combinatory Logic*, Tôhoku Mathematical Journal **41** (1936) 371–401;
+    jstage `tmj1911/41/0/41_0_371`. CITE it, do NOT commit the PDF — the mathematics is fact and
+    liftable; the journal scan is not ours to redistribute). Directive 18's stack (set theory →
+    algebra tower → space constructs) is INCOMPLETE without the arrow/typing layer, and this paper
+    supplies it:
+    - **Functionality `F` = the Unary Frame.** Curry's `⊢ FXYZ` ("Z is a function from X to Y",
+      X/Y categories) is exactly `F(x) → Frame(output:X, effect:Y)`. The foundation carries a
+      **functionality/typing pillar** — the algebra of typed ARROWS — over the **combinatory-logic
+      substrate** (the combinators B, C, W, K, I; `F_n` for n-ary functions; the `Γ_m·B…`
+      compositor), which IS the closed-λ "Lambda"/Sparky engine the corpus already names
+      (Lambda-Blotto). Point-free / variable-free = the unary law's "no free variables, closed
+      terms". Set theory carries the CARRIERS, the algebra tower the OBJECTS/OPERATIONS, this
+      pillar the ARROWS; "the Frame is the Yoneda point" = "the Frame is Curry's F applied".
+    - **Subtyping variance (Curry §4).** `FXY` with `U⊆X` and `Y⊆V` ⟹ `FUV` — CONTRAVARIANT in
+      the domain, COVARIANT in the codomain (axioms `(FP)₁`,`(FP)₂` via inclusion `P*`/`⊃`). The
+      function-type algebra MUST carry this variance; it is the law SP1's ρ-functor-on-subtyping-
+      arrows (`RealizationTransport`, functor identity/composition) re-anchors onto.
+    - **Functionality ↔ implication = a taiji (Curry §5, Curry–Howard ancestor).** `F` is
+      DEFINABLE as `F' ≡ [x,y,z](u)(xu ⊃ y(zu))` — a function type is a universally-quantified
+      implication; Thm 5.8 shows every F-theorem holds for `F'` given the K/C/W implication laws.
+      Types-as-propositions is ONE lexeme with two glossary senses (Directive 16 polysemy), not two
+      layers: the arrow pillar and the logical-implication layer are the same object.
+    - **Paradox quarantine by type discipline (Curry §6).** The Russell contradiction
+      (`E≡WQ`; `χ≡[f]N(ff)`, `⊢χχ=N(χχ)`) rests on a tacit, "not even plausible" assumption about
+      the functional character of negation — i.e. it arises ONLY from applying functionality
+      OUTSIDE its proper category. Type/functionality discipline is the quarantine. This is our
+      ContractGate branching-quarantine + Praeriehund provisional-naming + the "a category is a
+      useful servant, dangerous master" warning (srcy paper 41 cheese/progenitor); the foundation
+      must make self-application type-disciplined, never naively self-applicable.
+    - **Design-gate consequence:** the algebra/set-theory foundation design gate (Directive 18) now
+      has a functionality/combinatory-logic pillar as a co-equal fourth strand; its synthesis +
+      maintainer decisions must cover how the arrow/typing layer is lifted (Curry's F + B/C/W/K/I,
+      the §4 variance, the §5 implication taiji, the §6 quarantine) and how SP1's Frame/ρ/Yoneda
+      apparatus re-anchors onto it.
+
+20. **FOUNDATION DESIGN-GATE RESOLVED (SP0 — the deepest floor `basicttl/foundation/`).** After the
+    four-pillar research (ledger/W2/algebra_foundation/00–06) the maintainer chose **MAXIMAL depth,
+    all teeth-proved** across every pillar (overriding the synthesis's YAGNI lean — completeness is
+    the mandate). Gospel for the build:
+    - **Algebra tower (all teeth-proved):** the FULL spine `Magma → Semigroup → Monoid →
+      CommutativeMonoid → Group → AbelianGroup` PLUS the two-operation line `Semiring → Ring →
+      Field`, PLUS `Quasigroup / Loop`, PLUS `Module / VectorSpace` — every rung an agnostic-
+      progenitor `(Σ,E)` presented-algebra atom minted through the LIFTED free⊣forgetful engine
+      `F_E(X)=T_Σ(X)/≡_E`, each adding exactly one law, NEVER crammed (Directive 17), each with a
+      genuine biting SHACL tooth (probe injection).
+    - **Spaces (all teeth-proved):** `TopologicalSpace (X,τ)`, `MetricSpace (X,d)`, `VectorSpace`,
+      `NormedSpace`/`InnerProductSpace` authored NOW as teeth-proved atoms, ALONGSIDE the LIFTED
+      Site/sheaf + `𝔗_f` finite space + the non-Riemannian partition theorem.
+    - **Functionality (all teeth-proved):** the full combinator family `B/C/W/K/I` + the n-ary
+      `F_n` ladder (Def 2.1) + the `Γ` compositor as an agnostic-progenitor family, teeth-proved;
+      the Frame RECOGNIZED as Curry's `F` (not rebuilt); the §4 variance carried via a separate
+      `F(dom,cod)` bifunctor with CONTRAVARIANT-domain teeth (the covariant codomain reuses SP1's
+      proved `RealizationTransport`; the unary-law input-coordinate collision becomes an SP6
+      polysemy tooth).
+    - **Logic (full sub-floor):** a proposition/negation/implication stratum `P_r / N / ⊃` + proof
+      terms (the K/C/W implication laws), teeth-proved — complete Curry–Howard; the
+      functionality↔implication taiji is one lexeme with two glossary senses (Directive 16).
+    - **HONESTY (Praeriehund, load-bearing):** only **Monoid**, the **minting engine**, the
+      **agnostic-progenitor pattern**, **Site/sheaf + 𝔗_f**, and structural **Set** are LIFTED from
+      Helios. Every rung above Monoid, the two-operation line, quasigroup/loop, module/vector, ALL
+      point-set spaces, the combinators/`F_n`, and the logic floor are **SYNTHESIZED as cited
+      standard-mathematical fact** (the Directive-19 Curry precedent: math is fact and liftable, cite
+      the source, do not pretend it is a Helios lift). The group **inverse law** is the one axiom
+      with zero Helios basis — authored as cited math fact. Every atom carries a `DS`/`PD`/`SYN`
+      authority tag; SYN atoms are honest-red where a v1 consumer is absent but STILL teeth-proved
+      per the maximal choice. The corpus's *refusal* of point-set topology (`19/05/03`) is recorded
+      as the reason those space atoms are SYN, not LIFTED.
+    - **PINS adopted:** framing = taiji-via-engine; position = new deepest floor `basicttl/foundation/`
+      BENEATH SP1; re-anchor = ADDITIVE (`foundation:groundsIn*` edges, rebuild nothing — 15/16
+      points additive; the one real build is `aob:SealedGroup`→`foundation:Group` teeth-proven, with
+      SP2 SealedGroup a CHILD of a fresh agnostic `Group` progenitor); set floor = structural/ETCS
+      consolidating SP1 (material/ZFC set theory = honest-red deferral); external appendix-39
+      `compass_artifact` space survey = reference-only (cite, never author-from). Functionality is a
+      co-equal fourth pillar under the same floor.

@@ -1,0 +1,1923 @@
+# =====================================================================================
+# foundation.queries.sparql — the EXPECT-TRUE ASK suite of the Foundation floor (W2 · SP0).
+# =====================================================================================
+# Auto-discovered by basicttl/foundation/checks/run-foundation-checks.sh: the runner splits
+# this file on every "# EXPECT-TRUE <name>" marker and requires each ASK true over the merged
+# SP0 + SP1 + SP2 + SP3 graph. Each ASK is non-vacuous (must return FALSE on the empty graph),
+# carries an inline DATA CONTRACT naming the triples that make it true, and is proven to flip
+# True -> False under a documented probe of record (mirroring its SHACL shape).
+#
+# T1 SCAFFOLD: no ASK is declared yet, so the runner reports "foundation ASKs: 0 run, 0 failed"
+# and the floor is GREEN on the empty foundation graph. Each later task adds its EXPECT-TRUE
+# ASK(s) here:
+#
+#   T2  q_engine_presents            every rung resolves to a (Sigma, E) presented algebra
+#   T3  q_set_carrier                every foundation carrier is a fnd:Set under a grounding
+#   T3  q_membership_typed           each element-of edge is 1->A typed
+#   T3  q_universal_product          each product carries its two projections + factoriser
+#   T3  q_presheaf_not_set           no presheaf is owl:sameAs its set of elements (PIN guard)
+#   T4  q_magma_closure              closure holds on every enumerated-carrier fnd:Magma (op-result in the carrier)
+#   T4  q_semigroup_assoc            associativity holds on the semigroup witness
+#   T4  q_monoid_identity            the two-sided identity holds on the monoid witness
+#   T4  q_commmonoid_comm            commutativity holds on the commutative-monoid witness
+#   T4  q_group_inverse              the two-sided inverse undoes the op (SYN inverse law, cited)
+#   T4  q_abelian_comm               commutativity holds on the abelian-group witness
+#   T4  q_quasigroup_division        Latin-square division holds on the quasigroup family (quasigroup + loop)
+#   T4  q_quasigroup_total           Latin-square division is TOTAL (every a,b has a left AND right solution) (A2)
+#   T4  q_loop_identity              the two-sided identity holds on every fnd:Loop witness (L1 close)
+#   T4  q_monoid_is_endo             Monoid ~= one-object category ~= F(X,X) (Pillar-4 seam)
+#   T5  q_ring_distrib               distributivity holds on the ring witness
+#   T5  q_ring_add_assoc             additive associativity holds on every fnd:Semiring ((a+b)+c=a+(b+c)) (A1)
+#   T5  q_ring_add_comm              additive commutativity holds on every fnd:Semiring (a+b=b+a) (A1)
+#   T5  q_ring_mult_assoc            multiplicative associativity holds on every fnd:Semiring ((a*b)*c=a*(b*c)) (A1)
+#   T5  q_field_mult_inverse         every nonzero field element is multiplicatively invertible
+#   T5  q_module_scalar              the scalar action is well TYPED on every fnd:Module (R x M -> M)
+#   T5  q_module_scalar_law          the FULL module scalar-action law (unitality + scalar-assoc + bi-distrib) (W-SP0-B)
+#   T5  q_vectorspace_axioms         the 8 vector-space axioms hold over a fnd:Field
+#   T6  q_sheaf_glues                agreeing local sections glue to a unique global section
+#   T6  q_topology_axioms            tau closed under finite intersection + arbitrary union
+#   T6  q_metric_triangle            d satisfies identity / symmetry / triangle inequality
+#   T7  q_frame_is_functionality     prim:Frame is recognized as Curry's functionality F
+#   T7  q_functor_variance           the variance bifunctor is contravariant dom / covariant cod
+#   T7  q_no_untyped_self_apply      a chi-chi is provisional unless GENUINELY resolved (Fix-C: passedGuard -> a fnd:ContractGate/fnd:QuarantineResolution marking it provisional)
+#   T8  q_combinator_reduces         each combinator's defining reduction holds
+#   T8  q_fn_ladder                  the F_n recurrence holds across the ladder
+#   T9  q_implication_kcw            the K / C / W implication laws hold
+#   T9  q_curry_howard               exponential B^A and implication A superset B coincide
+#   T10 q_reanchor_additive          every prior-floor grounding is an edge; no prior triple removed
+#   T10 q_sealedgroup_is_group       the SP2 SealedGroup satisfies the full fnd:Group teeth
+# =====================================================================================
+
+
+# EXPECT-TRUE q_engine_presents : every presented algebra is MINTED by the engine (Sigma + E + F_E-carrier).
+#   The minting engine LIFTED from Helios (design s1; ledger/W2/algebra_foundation/02_algebra_tower.md s2):
+#   Helios authors the presented free algebra on a many-sorted signature-with-equations F_E(X)=T_Sigma(X)/=_E
+#   (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/
+#   sections/03_signature_equations_governed.tex:31-42) plus the free-|forgetful adjunction L-|R with
+#   unit eta / counit epsilon (26/sections/01_thesis.tex:93-128) and the GovAlg wrapper (A,op,E,V,l,P)
+#   (26/chapters/04/sections/01_governed_algebra_definition.tex:6-13). A rung is not hand-axiomatised: it
+#   is a fnd:PresentedAlgebra whose carrier is F_E(X)-produced by the LIFTED engine and whose asserted
+#   laws all live in its equation set. This is what makes "the tower is minted, not invented" a graph fact.
+#   DATA CONTRACT (engine.ttl): at least one ?w a fnd:PresentedAlgebra exists (non-vacuity anchor, FALSE on
+#     the empty foundation graph); EVERY ?pa a fnd:PresentedAlgebra carries (1) a fnd:hasSignature (its
+#     Sigma), (2) a fnd:hasEquationSet (its E), (3) a fnd:hasCarrier ?c that is fnd:mintedVia a
+#     fnd:FreeForgetful (the carrier is F_E-produced by the engine, not asserted free by fiat), (4)
+#     every fnd:satisfiesLaw ?law it claims is a fnd:hasEquation member of its own equation set (no law
+#     outside E - the E-must-not-EXCEED direction), and (5, the E-COVERAGE strengthening) every law it
+#     fnd:rungRequiresLaw (a law a class-general tooth enforces on it) is one it fnd:satisfiesLaw (its
+#     presentation COVERS every enforced law - the E-must-COVER direction; clauses 4+5 together pin
+#     fnd:satisfiesLaw == the enforced law set, so E genuinely PRESENTS the rung, matching algebra_spine.ttl).
+#     The witness fnd:witnessPresentedAlgebra (Sigma=fnd:witnessSignature, E=fnd:witnessEquationSet
+#     with member fnd:witnessLaw, carrier fnd:witnessCarrier mintedVia fnd:engineAdjunction, satisfiesLaw
+#     fnd:witnessLaw) satisfies clauses 1-4 and carries no fnd:rungRequiresLaw (clause 5 vacuous); each
+#     two-operation rung fnd:Semiring..fnd:VectorSpace has fnd:rungRequiresLaw a SUBSET of its fnd:satisfiesLaw.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:PresentedAlgebraShape): (a) remove
+#     fnd:witnessCarrier fnd:mintedVia fnd:engineAdjunction (a carrier NOT produced by F_E) -> clause 3
+#     fails; (b) add fnd:witnessPresentedAlgebra fnd:satisfiesLaw fnd:foreignLaw where fnd:foreignLaw is
+#     NOT fnd:hasEquation of fnd:witnessEquationSet (a rung claiming a law not in its E) -> clause 4 fails;
+#     (c) delete fnd:Semiring fnd:satisfiesLaw fnd:lawAddAssoc while fnd:Semiring still fnd:rungRequiresLaw
+#     fnd:lawAddAssoc and fnd:RingAddAssocShape still enforces additive associativity on every fnd:Semiring
+#     (a rung whose presentation OMITS an enforced law) -> clause 5 fails.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?w a fnd:PresentedAlgebra .
+  FILTER NOT EXISTS {
+    ?pa a fnd:PresentedAlgebra .
+    FILTER NOT EXISTS { ?pa fnd:hasSignature ?s }
+  }
+  FILTER NOT EXISTS {
+    ?pa a fnd:PresentedAlgebra .
+    FILTER NOT EXISTS { ?pa fnd:hasEquationSet ?e }
+  }
+  FILTER NOT EXISTS {
+    ?pa a fnd:PresentedAlgebra .
+    FILTER NOT EXISTS { ?pa fnd:hasCarrier ?c . ?c fnd:mintedVia ?ff . ?ff a fnd:FreeForgetful }
+  }
+  FILTER NOT EXISTS {
+    ?pa a fnd:PresentedAlgebra ; fnd:satisfiesLaw ?law ; fnd:hasEquationSet ?e .
+    FILTER NOT EXISTS { ?e fnd:hasEquation ?law }
+  }
+  FILTER NOT EXISTS {
+    ?pa fnd:rungRequiresLaw ?law .
+    FILTER NOT EXISTS { ?pa fnd:satisfiesLaw ?law }
+  }
+}
+
+# EXPECT-TRUE q_set_carrier : every foundation carrier is a fnd:Set under a forgetful grounding.
+#   The structural Set floor (design s2, Pillar 1; ledger/W2/algebra_foundation/03_set_theory.md s1-s4).
+#   Helios takes Set as the AMBIENT codomain of every presheaf P:C^op->Set (LIFTED,
+#   helios/srcy/papers/18_presheaf_semantics/sections/01_thesis.tex:24-31,59-68) but never descends
+#   into it - that descent is the foundation's job, and it is the honest TWO-STEP descent. The engine's
+#   lifted right adjoint R:GovAlg->Graph (engine.ttl fnd:rightAdjoint, DS,
+#   helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-101) forgets
+#   a governed algebra to its underlying GRAPH (Hom_GovAlg(LG,A) ~= Hom_Graph(G,RA)); the Graph->Set
+#   underlying-vertex-set forgetful functor (fnd:graphUnderlyingSet, SYN standard math, NOT a paper-26
+#   lift) THEN sends that graph to the underlying set of the free-algebra carrier F_E(X) - never a single
+#   DS R:GovAlg->Set. This tooth makes that a graph fact: every foundation carrier
+#   (a fnd:FreeAlgebra, the engine's produced carrier object) must carry a fnd:groundsInSet edge into a
+#   fnd:Set - a carrier IS a Set under a forgetful grounding, NOT a subtype (design s7 edge mechanism,
+#   mirroring SP3's crs:ForgetfulTagFrame surjection and SP1's prim:DualGroundingShape realizes-edge
+#   discipline). The grounding is checked by EDGE EXISTENCE on the carrier (never a range-inferred
+#   rdf:type), so inference=rdfs cannot forge it and defang the tooth.
+#   DATA CONTRACT (set_theory.ttl + engine.ttl): at least one ?c a fnd:FreeAlgebra exists (non-vacuity
+#     anchor, FALSE on the empty graph - fnd:witnessCarrier from engine.ttl); and EVERY ?fa a
+#     fnd:FreeAlgebra carries a fnd:groundsInSet ?s edge (fnd:witnessCarrier fnd:groundsInSet
+#     fnd:witnessUnderlyingSet, with fnd:witnessUnderlyingSet a fnd:Set). fnd:groundsInSet declares the
+#     permissive rdfs:range owl:Thing, not the precise fnd:Set (each target is typed rdf:type fnd:Set
+#     EXPLICITLY, so the ReanchorLandingParityShape positive landing test is not defanged by range-forging);
+#     the tooth reads only the carrier's outgoing edge.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:SetCarrierShape): inject a carrier with no
+#     grounding - fnd:probeUngroundedCarrier a fnd:FreeAlgebra (no fnd:groundsInSet edge) - a free-algebra
+#     carrier that is not grounded into any set; the inner FILTER NOT EXISTS finds it and the ASK is FALSE.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?c a fnd:FreeAlgebra .
+  FILTER NOT EXISTS {
+    ?fa a fnd:FreeAlgebra .
+    FILTER NOT EXISTS { ?fa fnd:groundsInSet ?s }
+  }
+}
+
+
+# EXPECT-TRUE q_membership_typed : every membership edge is a global element 1->A (typed, not bare).
+#   Structural membership (design s2, Pillar 1; 03_set_theory.md s2.1). Helios USES membership
+#   operationally (x in P(A), the category of elements Ob(int P)={(c,x)|c in Ob(C), x in P(c)},
+#   18/chapters/04/sections/01_category_of_elements.tex:10-20) but authors NO first-class typed
+#   membership primitive. This tooth fills that gap the structural (ETCS) way: an element x of a set A
+#   is a GLOBAL ELEMENT, a function 1->A from the terminal object fnd:Unit into A. A fnd:elementOf edge
+#   is well typed exactly when its subject is such an arrow: fnd:hasDomain fnd:Unit and fnd:hasCodomain
+#   the very set it is an element of. This keeps membership from collapsing into a bare untyped link.
+#   DATA CONTRACT (set_theory.ttl): at least one ?x fnd:elementOf ?A exists (non-vacuity anchor, FALSE
+#     on the empty graph - fnd:witnessElement fnd:elementOf fnd:witnessSetA); and EVERY ?e fnd:elementOf
+#     ?A satisfies ?e fnd:hasDomain fnd:Unit and ?e fnd:hasCodomain ?A (fnd:witnessElement a
+#     fnd:GlobalElement ; fnd:hasDomain fnd:Unit ; fnd:hasCodomain fnd:witnessSetA).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:MembershipTypedShape): inject an untyped
+#     membership - fnd:probeUntypedElement fnd:elementOf fnd:witnessSetA (with NO fnd:hasDomain fnd:Unit)
+#     - an element that is not the arrow 1->A; the inner FILTER NOT EXISTS finds it and the ASK is FALSE.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?x fnd:elementOf ?A .
+  FILTER NOT EXISTS {
+    ?e fnd:elementOf ?B .
+    FILTER NOT EXISTS { ?e fnd:hasDomain fnd:Unit . ?e fnd:hasCodomain ?B }
+  }
+}
+
+
+# EXPECT-TRUE q_universal_product : every product carries its two projections + a universal factoriser.
+#   The universal-construction product (design s2, Pillar 1; 03_set_theory.md s2.4), held DISTINCT from
+#   the DATA product prim:Tuple (SP6 polysemy, D-SET-5). Products are well covered in Helios as USAGE
+#   (data prim:Tuple + terminal prim:Unit, the ordered pairs (c,x) of the category of elements, the SP3
+#   five-factor product K with its pi_j joint-faithfulness seal, crs/README.md:37-38); this tooth reifies
+#   the UNIVERSAL PROPERTY as a first-class object the same way aob:group_law reifies the colimit: a
+#   fnd:Product must carry its two projections (fnd:hasProjection pi_1, pi_2, distinct) AND the unique
+#   universal factoriser (fnd:hasFactoriser, the mediating <f,g> from any cone). A product missing a
+#   projection or the factoriser is not a genuine categorical product and is rejected.
+#   DATA CONTRACT (set_theory.ttl): at least one ?p a fnd:Product exists (non-vacuity anchor, FALSE on
+#     the empty graph - fnd:witnessProduct); and EVERY ?pr a fnd:Product carries two DISTINCT
+#     fnd:hasProjection and at least one fnd:hasFactoriser (fnd:witnessProduct fnd:hasProjection
+#     fnd:witnessProj1, fnd:witnessProj2 ; fnd:hasFactoriser fnd:witnessFactoriser).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:UniversalProductShape): inject a deficient
+#     product - fnd:probeBadProduct a fnd:Product (no projections, no factoriser) - a product without its
+#     universal property; the inner FILTER NOT EXISTS finds it and the ASK is FALSE.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?p a fnd:Product .
+  FILTER NOT EXISTS {
+    ?pr a fnd:Product .
+    FILTER NOT EXISTS {
+      ?pr fnd:hasProjection ?p1 , ?p2 . FILTER(?p1 != ?p2)
+      ?pr fnd:hasFactoriser ?f .
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_presheaf_not_set : no presheaf is owl:sameAs its own set of elements (the PIN guard).
+#   The load-bearing set-floor LAW, not a caveat (design s2 PIN guard; 03_set_theory.md D-SET-6). Helios
+#   names the "forbidden collapse" explicitly: identifying the presheaf P with the set of elements P(c)
+#   "drops the contravariant action and collapses functoriality into static labelling, which is the
+#   cheese-trap face this volume is most exposed to" (18/sections/01_thesis.tex:65-68). The set floor is
+#   the CARRIER beneath the category layer; it must NOT flatten it (X = Hom(-,X) is shorthand, not
+#   identity - 14/sections/01_thesis.tex:90-102). This tooth makes the guard a graph fact: a presheaf
+#   (fnd:Presheaf, P:C^op->Set) and its element-set P(c) (fnd:presheafElementSet, a fnd:Set) are DISTINCT
+#   objects; asserting fnd:witnessPresheaf owl:sameAs its element-set is precisely the collapse and is RED.
+#   DATA CONTRACT (set_theory.ttl): at least one ?p a fnd:Presheaf with a fnd:presheafElementSet exists
+#     (non-vacuity anchor, FALSE on the empty graph - fnd:witnessPresheaf fnd:presheafElementSet
+#     fnd:witnessPresheafElemSet); and NO presheaf is owl:sameAs its own element-set (on the happy path
+#     the two nodes are deliberately kept distinct - no owl:sameAs between them).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:PresheafNotSetShape): inject the collapse -
+#     fnd:witnessPresheaf owl:sameAs fnd:witnessPresheafElemSet - the presheaf identified with its set of
+#     elements; the inner EXISTS finds it and the ASK is FALSE.
+PREFIX fnd: <urn:silmaril:fnd:#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+ASK {
+  ?p a fnd:Presheaf ; fnd:presheafElementSet ?s0 .
+  FILTER NOT EXISTS {
+    ?pp a fnd:Presheaf ; fnd:presheafElementSet ?s .
+    ?pp owl:sameAs ?s .
+  }
+}
+
+
+# EXPECT-TRUE q_magma_closure : closure/totality holds on every enumerated-carrier fnd:Magma (every op-result is a carrier element).
+#   The one-operation spine, base MAGMA rung (design s3; ledger/W2/algebra_foundation/02_algebra_tower.md
+#   s1 MAGMA). fnd:Magma is a CONCRETE law-bearing rung (fnd:addsLaw fnd:lawClosure), but its
+#   closure/totality law - the binary operation . : S,S -> S is a TOTAL function landing in the carrier S -
+#   previously had NO biting tooth and NO witness model, while every sibling rung (Semigroup..AbelianGroup,
+#   Quasigroup/Loop) carried both (M1 parity defect). SYN, cited standard universal algebra (fnd:Magma is
+#   SYN; the free term-algebra substrate T_Sigma(X) is LIFTED, 26/03/03:13-15). This tooth makes closure a
+#   CHECKABLE graph fact by REUSING the SealedGroup closure idiom (fnd:SealedGroupIsGroupShape /
+#   q_sealedgroup_is_group: a reified product over the op whose fnd:opResult is NOT a fnd:hasElement of the
+#   structure -> violation), generalised CLASS-GENERAL over the fnd:Magma family: for EVERY fnd:Magma that
+#   ENUMERATES its carrier (fnd:hasElement), every reified fnd:opResult over it MUST be one of its
+#   fnd:hasElement. The enumerated-carrier guard is essential - the spine witnesses that do NOT enumerate a
+#   carrier (fnd:semigroupModel..fnd:groupModel, fnd:quasigroupModel..fnd:loopModel) have no fnd:hasElement,
+#   so they are not in scope and are not misread as all-escaping; the enumerated magmas are fnd:magmaModel
+#   (the closed order-2 non-associative witness) and, via rdfs:subClassOf* fnd:Magma, the T10 aob:witnessGroup
+#   (the closed Z/4 SealedGroup), both closed.
+#   CLASS-GENERAL (no witness IRI hardcoded): QUANTIFIES OVER EVERY fnd:Magma instance via the property path
+#   rdf:type/rdfs:subClassOf* fnd:Magma (the ASK suite runs over the RAW, non-inferred merged graph, so the
+#   explicit subClassOf* chain reaches aob:witnessGroup a aob:SealedGroup rdfs:subClassOf fnd:Group ... fnd:Magma
+#   as well as the direct fnd:magmaModel a fnd:Magma). The SHACL fnd:MagmaClosureShape does the same under
+#   inference=rdfs (sh:targetClass fnd:Magma).
+#   DATA CONTRACT (algebra_spine.ttl + reanchor.ttl): at least one fnd:Magma with an enumerated carrier + an
+#     op row exists (non-vacuity anchor, FALSE on the empty graph - fnd:magmaModel fnd:hasElement fnd:elemA,
+#     fnd:elemB with the four rows A.A=B, A.B=B, B.A=A, B.B=B, all landing in {A,B}); and NO fnd:Magma-typed
+#     model that enumerates a carrier has a reified fnd:opResult that is not one of its fnd:hasElement (both
+#     fnd:magmaModel and the Z/4 aob:witnessGroup are closed).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:MagmaClosureShape): inject a fnd:Magma with an
+#     op-result outside its enumerated carrier - fnd:probeMagmaOpenResult a fnd:Magma ; fnd:hasElement
+#     fnd:elemA , fnd:elemB with an op row whose fnd:opResult is fnd:elemC (NOT a fnd:hasElement of the magma)
+#     - the inner EXISTS finds the escaping product and the ASK is FALSE; fnd:magmaModel stays GREEN.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Magma ; fnd:hasElement ?anchorEl .
+  ?anchorRow fnd:opStructure ?mAnchor .
+  FILTER NOT EXISTS {
+    ?m rdf:type/rdfs:subClassOf* fnd:Magma ; fnd:hasElement ?el .
+    ?row fnd:opStructure ?m ; fnd:opResult ?r .
+    FILTER NOT EXISTS { ?m fnd:hasElement ?r }
+  }
+}
+
+
+# EXPECT-TRUE q_semigroup_assoc : associativity holds on the semigroup rung witness ((a.b).c == a.(b.c)).
+#   The one-operation spine, Semigroup rung (design s3; ledger/W2/algebra_foundation/02_algebra_tower.md
+#   s1 SEMIGROUP). Helios NAMES semigroup only once, as a boundary counterexample ("associativity
+#   without a unit gives only a semigroup, not a monoid", helios/srcy/papers/21_ologs_and_typed_english/
+#   chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:138), but the
+#   associativity LAW itself is PROOF-DERIVED (PD): proved for path concatenation (31/chapters/01/sections/
+#   02_free_path_category_construction.tex:51-94) and for the colon product of the ecosystem free monoid
+#   (07/chapters/05/sections/03_ecosystem_free_monoid.tex:51-55). The Semigroup rung is a fnd:Magma + this
+#   one added law (fnd:lawAssociativity, fnd:addsLaw), minted as a fnd:PresentedAlgebra through the LIFTED
+#   engine. This tooth makes associativity a CHECKABLE graph fact over the reified binary-operation table of
+#   the semigroup witness (fnd:semigroupModel, a left-zero semigroup x.y=x on {A,B,C}), mirroring SP2's
+#   q_group_associativity (aob:Composition) one floor down: for any triple (x,y,z) the two bracketings
+#   (x.y).z and x.(y.z) must evaluate to the SAME fnd:opResult.
+#   CLASS-GENERAL (no witness IRI hardcoded): this ASK QUANTIFIES OVER EVERY fnd:Semigroup instance via the
+#   property path rdf:type/rdfs:subClassOf* fnd:Semigroup (the ASK suite runs over the RAW, non-inferred
+#   merged graph, so the explicit subClassOf* chain - not rdfs materialisation - is what reaches the
+#   associative rungs above the base witness: fnd:Monoid/fnd:CommutativeMonoid/fnd:Group/fnd:AbelianGroup and
+#   the SP2 aob:SealedGroup, each subClassOf fnd:Semigroup; the non-associative fnd:Quasigroup/fnd:Loop off
+#   fnd:Magma is excluded). The SHACL fnd:SemigroupAssocShape does the same under inference=rdfs.
+#   DATA CONTRACT (algebra_spine.ttl): at least one op row exists on some ?m a fnd:Semigroup (non-vacuity
+#     anchor, FALSE on the empty graph - the left-zero rows A.B=A, A.C=A, B.C=B); and NO triple (x,y,z) over
+#     ANY fnd:Semigroup-typed model has (x.y).z != x.(y.z) (the base witness, the Z/3 group, the abelian and
+#     commutative-monoid fragments, the Z/4 sealed group, the Z/3 module additive group are all associative).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:SemigroupAssocShape): change fnd:appSgAC
+#     fnd:opResult from fnd:elemA to fnd:elemB (so (A.B).C = A.C = B while A.(B.C) = A.B = A) - the inner
+#     EXISTS finds the non-associative triple, and the ASK is FALSE; a FRESH non-associative fnd:Semigroup
+#     instance flips it the same way (the tooth is class-general, not witness-pinned).
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Semigroup .
+  ?anchor fnd:opStructure ?mAnchor .
+  FILTER NOT EXISTS {
+    ?m rdf:type/rdfs:subClassOf* fnd:Semigroup .
+    ?ab2  fnd:opStructure ?m ; fnd:opLeft ?x ; fnd:opRight ?y ; fnd:opResult ?xyr .
+    ?lhs2 fnd:opStructure ?m ; fnd:opLeft ?xyr ; fnd:opRight ?z ; fnd:opResult ?lr .
+    ?bc2  fnd:opStructure ?m ; fnd:opLeft ?y ; fnd:opRight ?z ; fnd:opResult ?yzr .
+    ?rhs2 fnd:opStructure ?m ; fnd:opLeft ?x ; fnd:opRight ?yzr ; fnd:opResult ?rr .
+    FILTER(?lr != ?rr)
+  }
+}
+
+
+# EXPECT-TRUE q_monoid_identity : the two-sided identity holds on the monoid rung witness (e.x=x, x.e=x).
+#   The one-operation spine, Monoid rung (design s3; 02_algebra_tower.md s1 MONOID) - the ONE genuinely
+#   LIFTED rung (DS): Helios authors the monoid richly and provably (free monoid (E,:,eps) with proved
+#   unit + associativity, 07/chapters/05/sections/03_ecosystem_free_monoid.tex:38-55; endopath monoid
+#   M_X=Hom(X,X), 31/sections/01_thesis.tex:29-32; "monoid = one-object category", 21/05/04:2,16-17). The
+#   two-sided identity/unit LAW is proof-derived (PD, the free-monoid unit proof). The Monoid rung is a
+#   fnd:Semigroup + this one added law (fnd:lawIdentity, fnd:addsLaw), minted as a fnd:PresentedAlgebra.
+#   This tooth makes the two-sided identity a CHECKABLE graph fact: a structure that declares an identity
+#   element (fnd:hasIdentityElement e) must have e.x = x and x.e = x for every reified op row.
+#   DATA CONTRACT (algebra_spine.ttl): at least one structure carries fnd:hasIdentityElement (non-vacuity
+#     anchor, FALSE on the empty graph - fnd:monoidModel fnd:hasIdentityElement fnd:elemE, with rows
+#     E.A=A, A.E=A, E.E=E over fnd:opStructure fnd:monoidModel); and for EVERY structure ?m with
+#     fnd:hasIdentityElement ?e, NO op row of ?m with ?e on the left has a result != its right operand, and
+#     NO op row with ?e on the right has a result != its left operand.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:MonoidIdentityShape): change fnd:appMonEA
+#     fnd:opResult from fnd:elemA to fnd:elemE (so E.A = E != A) - the declared identity fails the left-unit
+#     law, the inner UNION finds the offending row, and the ASK is FALSE.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?m fnd:hasIdentityElement ?e0 .
+  FILTER NOT EXISTS {
+    ?mm fnd:hasIdentityElement ?e .
+    {
+      ?rL fnd:opStructure ?mm ; fnd:opLeft ?e ; fnd:opRight ?x ; fnd:opResult ?rLr .
+      FILTER(?rLr != ?x)
+    } UNION {
+      ?rR fnd:opStructure ?mm ; fnd:opLeft ?x ; fnd:opRight ?e ; fnd:opResult ?rRr .
+      FILTER(?rRr != ?x)
+    }
+  }
+  FILTER NOT EXISTS {
+    ?mono rdf:type/rdfs:subClassOf* fnd:Monoid .
+    FILTER NOT EXISTS { ?mono fnd:hasIdentityElement ?eX }
+  }
+}
+
+
+# EXPECT-TRUE q_commmonoid_comm : commutativity holds on the commutative-monoid rung witness (x.y=y.x).
+#   The one-operation spine, CommutativeMonoid rung (design s3; 02_algebra_tower.md s1 COMMUTATIVE MONOID) -
+#   SYN (the ATOM synthesized; instances lifted: (N0,+,0) as a grading target 31/02/03:10, M_J=N0^J
+#   26/10/01:8; commutativity as a DECLARED congruence in the trace monoid E/=_I, 07/05/03:222-232;
+#   noncommutativity is the explicit corpus default, ba != ab, 31/02/03:12-15). The CommutativeMonoid rung
+#   is a fnd:Monoid + this one added law (fnd:lawCommutativity, fnd:addsLaw), minted as a
+#   fnd:PresentedAlgebra. This tooth makes commutativity a CHECKABLE graph fact over the reified op table of
+#   the commutative-monoid witness (fnd:commMonoidModel): NO pair (x,y) has x.y != y.x.
+#   CLASS-GENERAL (no witness IRI hardcoded): QUANTIFIES OVER EVERY fnd:CommutativeMonoid instance via
+#   rdf:type/rdfs:subClassOf* fnd:CommutativeMonoid (raw-graph property path, mirroring the SHACL
+#   fnd:CommMonoidCommShape under inference=rdfs).
+#   DATA CONTRACT (algebra_spine.ttl): at least one op row exists on some ?m a fnd:CommutativeMonoid
+#     (non-vacuity anchor, FALSE on the empty graph - the symmetric rows A.B=E and B.A=E); and NO pair (x,y)
+#     over ANY fnd:CommutativeMonoid-typed model has x.y != y.x.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:CommMonoidCommShape): change fnd:appCmBA
+#     fnd:opResult from fnd:elemE to fnd:elemA (so B.A = A while A.B = E) - the inner EXISTS finds it, and the
+#     ASK is FALSE; a FRESH non-commutative fnd:CommutativeMonoid instance flips it the same way.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:CommutativeMonoid .
+  ?anchor fnd:opStructure ?mAnchor ; fnd:opLeft ?la ; fnd:opRight ?ra ; fnd:opResult ?resa .
+  FILTER NOT EXISTS {
+    ?m rdf:type/rdfs:subClassOf* fnd:CommutativeMonoid .
+    ?xy fnd:opStructure ?m ; fnd:opLeft ?x ; fnd:opRight ?y ; fnd:opResult ?xyr .
+    ?yx fnd:opStructure ?m ; fnd:opLeft ?y ; fnd:opRight ?x ; fnd:opResult ?yxr .
+    FILTER(?xyr != ?yxr)
+  }
+}
+
+
+# EXPECT-TRUE q_group_inverse : the two-sided inverse undoes the operation on the group rung witness.
+#   The one-operation spine, Group rung (design s3; 02_algebra_tower.md s1 GROUP) - SYN, and the INVERSE
+#   LAW is the ONE tower axiom with ZERO Helios basis (02_algebra_tower.md s1: "the inverse/invertibility
+#   axiom is never defined for any ontology structure"; every corpus 'invertible' hit is cocone-leg /
+#   comparison-map invertibility, not a group inverse). It is authored as CITED STANDARD-MATHEMATICAL FACT
+#   (the Directive-19/20 precedent: math is fact and liftable, cite the source, never pretend a Helios
+#   lift). The Group rung is a fnd:Monoid + this one added law (fnd:lawInverse, fnd:addsLaw), minted as a
+#   fnd:PresentedAlgebra. This tooth reuses the SP2 sealed-group inverse-teeth pattern (a retract that does
+#   not undo -> RED, aob:retracts): a claimed inverse pairing (fnd:InversePairing: element x, inverse y in
+#   a model with identity e) is GENUINE only if x.y = e AND y.x = e (two-sided undo).
+#   DATA CONTRACT (algebra_spine.ttl): at least one fnd:InversePairing exists (non-vacuity anchor, FALSE on
+#     the empty graph - fnd:invPairAB pairs A with B in fnd:groupModel, whose fnd:hasIdentityElement is
+#     fnd:elemE, with rows A.B=E and B.A=E); for EVERY fnd:InversePairing (model ?mdl, element ?x,
+#     inverse ?y) with ?mdl fnd:hasIdentityElement ?e, BOTH ?x.?y = ?e AND ?y.?x = ?e hold (GENUINENESS);
+#     AND (W1b, COMPLETENESS) EVERY fnd:hasGroupElement of a fnd:Group carries an fnd:InversePairing with it
+#     as fnd:pairingElement (fnd:groupModel enumerates E/A/B, each with a pairing).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:GroupInverseShape): (genuineness) change
+#     fnd:appGrAB fnd:opResult from fnd:elemE to fnd:elemA (so A.B = A != e) - the claimed inverse B no
+#     longer undoes A, the inner two-sided-undo FILTER NOT EXISTS fails for fnd:invPairAB, and the ASK is
+#     FALSE; (completeness, W1b) a fnd:Group over {E,A} with A non-invertible and an fnd:InversePairing only
+#     for E - the completeness FILTER NOT EXISTS finds a group element with no pairing, and the ASK is FALSE.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?p a fnd:InversePairing .
+  FILTER NOT EXISTS {
+    ?pp a fnd:InversePairing ; fnd:pairingModel ?mdl ; fnd:pairingElement ?x ; fnd:pairingInverse ?y .
+    ?mdl fnd:hasIdentityElement ?e .
+    FILTER NOT EXISTS {
+      ?xy fnd:opStructure ?mdl ; fnd:opLeft ?x ; fnd:opRight ?y ; fnd:opResult ?e .
+      ?yx fnd:opStructure ?mdl ; fnd:opLeft ?y ; fnd:opRight ?x ; fnd:opResult ?e .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?grp a fnd:Group ; fnd:hasGroupElement ?ge .
+    FILTER NOT EXISTS { ?pc a fnd:InversePairing ; fnd:pairingModel ?grp ; fnd:pairingElement ?ge }
+  }
+  FILTER NOT EXISTS {
+    ?grpC rdf:type/rdfs:subClassOf* fnd:Group .
+    FILTER NOT EXISTS { { ?grpC fnd:hasGroupElement ?gx } UNION { ?grpC fnd:hasElement ?hx } }
+  }
+}
+
+
+# EXPECT-TRUE q_abelian_comm : commutativity holds on the abelian-group rung witness (x.y=y.x).
+#   The one-operation spine, AbelianGroup rung (design s3; 02_algebra_tower.md s1 ABELIAN GROUP) - SYN
+#   (Helios has "abelian group" only as the vol-20 external counterexample where the abelian<->group
+#   inclusion fails to preserve colimits, 20/chapters/09/sections/03_reflect_versus_preserve.tex:61,65;
+#   no definition). The AbelianGroup rung is a fnd:Group + this one added law (fnd:lawCommutativity,
+#   fnd:addsLaw), minted as a fnd:PresentedAlgebra. This tooth makes the abelian (commutativity) law a
+#   CHECKABLE graph fact over the reified op table of the abelian-group witness (fnd:abelianModel): NO pair
+#   (x,y) has x.y != y.x. It is authored SYMMETRIC to q_commmonoid_comm (the same law re-added off Group,
+#   Directive 17 no-cram) but scoped to a DISTINCT witness so a non-commutative "abelian" group is RED.
+#   CLASS-GENERAL (no witness IRI hardcoded): QUANTIFIES OVER EVERY fnd:AbelianGroup instance via
+#   rdf:type/rdfs:subClassOf* fnd:AbelianGroup (raw-graph property path; catches the abelian witness AND the
+#   module additive group fnd:moduleAddGroup, both genuinely commutative Z/3), mirroring the SHACL
+#   fnd:AbelianCommShape under inference=rdfs.
+#   DATA CONTRACT (algebra_spine.ttl): at least one op row exists on some ?m a fnd:AbelianGroup (non-vacuity
+#     anchor, FALSE on the empty graph - the symmetric rows A.B=E and B.A=E); and NO pair (x,y) over ANY
+#     fnd:AbelianGroup-typed model has x.y != y.x.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:AbelianCommShape): change fnd:appAbBA
+#     fnd:opResult from fnd:elemE to fnd:elemB (so B.A = B while A.B = E) - the inner EXISTS finds it, and the
+#     ASK is FALSE; a FRESH non-commutative fnd:AbelianGroup instance flips it the same way.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:AbelianGroup .
+  ?anchor fnd:opStructure ?mAnchor ; fnd:opLeft ?la ; fnd:opRight ?ra ; fnd:opResult ?resa .
+  FILTER NOT EXISTS {
+    ?m rdf:type/rdfs:subClassOf* fnd:AbelianGroup .
+    ?xy fnd:opStructure ?m ; fnd:opLeft ?x ; fnd:opRight ?y ; fnd:opResult ?xyr .
+    ?yx fnd:opStructure ?m ; fnd:opLeft ?y ; fnd:opRight ?x ; fnd:opResult ?yxr .
+    FILTER(?xyr != ?yxr)
+  }
+}
+
+
+# EXPECT-TRUE q_quasigroup_division : Latin-square division holds on the quasigroup rung witness.
+#   The division sub-family, Quasigroup rung (design s3; 02_algebra_tower.md s1 QUASIGROUP/LOOP - fully
+#   ABSENT in Helios, grep zero) - SYN, cited standard math. A quasigroup is a fnd:Magma whose Cayley
+#   table is a LATIN SQUARE: for every a,b the equations a.x=b and y.a=b have UNIQUE solutions (right and
+#   left division). The Quasigroup rung is a fnd:Magma + this one added law (fnd:lawLatinDivision,
+#   fnd:addsLaw), minted as a fnd:PresentedAlgebra. This tooth makes the Latin-square property a CHECKABLE
+#   graph fact over the reified op tables of the fnd:Quasigroup FAMILY (fnd:quasigroupModel, the cyclic Z/3
+#   table on {A,B,C}, AND - generalised at L1 - fnd:loopModel, the order-5 loop, a fnd:Quasigroup by
+#   subclass): within each quasigroup model no row repeats a result (right-division uniqueness) and no column
+#   repeats a result (left-division uniqueness) - the defining property of a quasigroup Cayley table. This is
+#   the tooth that WITNESSES fnd:loopModel's inherited Latin-square/division law (its ADDED-law tooth is the
+#   identity, q_loop_identity).
+#   DATA CONTRACT (algebra_spine.ttl): at least one op row over some ?qg a fnd:Quasigroup exists
+#     (non-vacuity anchor, FALSE on the empty graph - the 9-row cyclic Latin square A.A=A,A.B=B,A.C=C,
+#     B.A=B,B.B=C,B.C=A,C.A=C,C.B=A,C.C=B AND the 25-row order-5 loop Latin square); for EVERY ?qg a
+#     fnd:Quasigroup, NO fixed left operand a yields the same result for two DISTINCT right operands
+#     (right-division uniqueness), and NO fixed right operand a yields the same result for two DISTINCT left
+#     operands (left-division uniqueness). The ?qg a fnd:Quasigroup guard is essential - without it the
+#     non-Latin fnd:semigroupModel / fnd:monoidModel rows would be misread as collisions.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:QuasigroupDivisionShape): change fnd:appQgAC
+#     fnd:opResult from fnd:elemC to fnd:elemB (so the quasigroup A-row has A.B=B AND A.C=B, two right-divisors
+#     of B under A) - right-division is no longer unique, the inner EXISTS finds the collision, ASK is FALSE.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?anchor fnd:opStructure ?qg0 . ?qg0 a fnd:Quasigroup .
+  FILTER NOT EXISTS {
+    ?qg a fnd:Quasigroup .
+    ?r1 fnd:opStructure ?qg ; fnd:opLeft ?a ; fnd:opRight ?x1 ; fnd:opResult ?r .
+    ?r2 fnd:opStructure ?qg ; fnd:opLeft ?a ; fnd:opRight ?x2 ; fnd:opResult ?r .
+    FILTER(?x1 != ?x2)
+  }
+  FILTER NOT EXISTS {
+    ?qg a fnd:Quasigroup .
+    ?l1 fnd:opStructure ?qg ; fnd:opLeft ?y1 ; fnd:opRight ?b ; fnd:opResult ?s .
+    ?l2 fnd:opStructure ?qg ; fnd:opLeft ?y2 ; fnd:opRight ?b ; fnd:opResult ?s .
+    FILTER(?y1 != ?y2)
+  }
+}
+
+
+# EXPECT-TRUE q_quasigroup_total : Latin-square division is TOTAL on the quasigroup family (design s3; Fix-A2).
+#   The division sub-family, Quasigroup rung (design s3; 02_algebra_tower.md s1 QUASIGROUP/LOOP - fully
+#   ABSENT in Helios, grep zero) - SYN, cited standard math. q_quasigroup_division / fnd:QuasigroupDivisionShape
+#   enforce only the UNIQUENESS half of the Latin-square law (no row/column repeats a result); a PARTIAL
+#   division table where some equation a.x=b has NO solution x satisfies uniqueness vacuously and passed GREEN.
+#   A quasigroup Cayley table must be a Latin square: division TOTAL (every a,b has a solution) AND UNIQUE.
+#   This tooth adds the EXISTENCE half over the fnd:Quasigroup FAMILY (fnd:quasigroupModel AND - via
+#   fnd:Loop rdfs:subClassOf fnd:Quasigroup - fnd:loopModel): for every ?qg a fnd:Quasigroup and every pair
+#   of carrier elements (a,b) - the carrier DERIVED as the elements appearing as a fnd:opLeft of some row of
+#   ?qg (in a Latin square every element is some left operand, so this is exact) - there is a LEFT-division
+#   solution x with a.x=b AND a RIGHT-division solution y with y.a=b.
+#   DATA CONTRACT (algebra_spine.ttl): at least one op row over some ?qg a fnd:Quasigroup exists (non-vacuity
+#     anchor, FALSE on the empty graph - the 9-row cyclic Z/3 Latin square AND the 25-row order-5 loop Latin
+#     square, both TOTAL); for EVERY ?qg a fnd:Quasigroup and every pair (a,b) of its carrier elements, EXISTS
+#     x with a.x=b (left-division totality) AND EXISTS y with y.a=b (right-division totality). The ?qg a
+#     fnd:Quasigroup guard is essential - without it the non-Latin fnd:semigroupModel / fnd:monoidModel rows
+#     would be misread as partial-division tables.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:QuasigroupTotalityShape): DELETE the row
+#     fnd:appQgAC (A.C=C) from fnd:quasigroupModel, so the A-row becomes {A.A=A, A.B=B} and A.x never reaches
+#     C - the pair (a=A, b=C) has no left-division solution, the left-totality inner FILTER NOT EXISTS finds
+#     it, and the ASK is FALSE (while q_quasigroup_division stays TRUE - a deleted row adds no duplicate).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?anchor fnd:opStructure ?qg0 . ?qg0 a fnd:Quasigroup .
+  FILTER NOT EXISTS {
+    ?qg a fnd:Quasigroup .
+    ?ra fnd:opStructure ?qg ; fnd:opLeft ?a .
+    ?rb fnd:opStructure ?qg ; fnd:opLeft ?b .
+    FILTER NOT EXISTS { ?rx fnd:opStructure ?qg ; fnd:opLeft ?a ; fnd:opRight ?x ; fnd:opResult ?b }
+  }
+  FILTER NOT EXISTS {
+    ?qg2 a fnd:Quasigroup .
+    ?ra2 fnd:opStructure ?qg2 ; fnd:opLeft ?a2 .
+    ?rb2 fnd:opStructure ?qg2 ; fnd:opLeft ?b2 .
+    FILTER NOT EXISTS { ?ry fnd:opStructure ?qg2 ; fnd:opLeft ?y ; fnd:opRight ?a2 ; fnd:opResult ?b2 }
+  }
+}
+
+
+# EXPECT-TRUE q_loop_identity : the two-sided identity holds on every fnd:Loop witness (design s3; L1 close).
+#   The division sub-family, Loop rung (design s3; 02_algebra_tower.md s1 QUASIGROUP/LOOP - fully ABSENT in
+#   Helios, grep zero) - SYN, cited standard math. A loop is a fnd:Quasigroup (Latin-square division) that
+#   ALSO has a two-sided identity e (e.x=x, x.e=x for all x); a quasigroup that is associative is a group, so
+#   a genuine loop is chosen NON-ASSOCIATIVE (order 5 is the smallest such). The Loop rung is a fnd:Quasigroup
+#   + this one ADDED law (fnd:lawIdentity, fnd:addsLaw), minted as a fnd:PresentedAlgebra. This is the DISTINCT
+#   per-rung tooth for fnd:Loop's added law, at parity with every sibling rung (a SYN witness fnd:loopModel +
+#   this biting tooth), symmetric to q_abelian_comm re-adding commutativity over a distinct witness. It closes
+#   the L1 hole: the lone identity tooth q_monoid_identity anchors on fnd:hasIdentityElement subjects, so an
+#   identity-LESS loop was never checked and passed vacuously. This tooth makes 'every fnd:Loop carries a
+#   two-sided identity' a CHECKABLE graph fact: a fnd:Loop with NO identity element, or whose declared identity
+#   fails the unit law, is RED.
+#   DATA CONTRACT (algebra_spine.ttl): at least one fnd:Loop exists (non-vacuity anchor, FALSE on the empty
+#     graph - fnd:loopModel a fnd:Loop, fnd:hasIdentityElement fnd:elemE, with the 25-row order-5 Latin-square
+#     table whose E-row E.x=x and E-column x.E=x for all x in {E,A,B,C,D}); EVERY fnd:Loop carries a
+#     fnd:hasIdentityElement (EXISTENCE), and for every fnd:Loop with declared identity ?e, NO op row with ?e
+#     on the left has a result != its right operand and NO row with ?e on the right has a result != its left
+#     operand (GENUINENESS of the two-sided unit).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:LoopIdentityShape): a fnd:Loop that is a quasigroup
+#     with NO fnd:hasIdentityElement (fnd:probeLoopNoIdentity, a genuine 3-element Latin square with no unit) -
+#     the EXISTENCE clause finds a loop lacking an identity, and the ASK is FALSE.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?l0 a fnd:Loop .
+  FILTER NOT EXISTS {
+    ?l a fnd:Loop .
+    FILTER NOT EXISTS { ?l fnd:hasIdentityElement ?e0 }
+  }
+  FILTER NOT EXISTS {
+    ?lm a fnd:Loop ; fnd:hasIdentityElement ?e .
+    {
+      ?rL fnd:opStructure ?lm ; fnd:opLeft ?e ; fnd:opRight ?x ; fnd:opResult ?rLr .
+      FILTER(?rLr != ?x)
+    } UNION {
+      ?rR fnd:opStructure ?lm ; fnd:opLeft ?x ; fnd:opRight ?e ; fnd:opResult ?rRr .
+      FILTER(?rRr != ?x)
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_monoid_is_endo : the Monoid rung IS a one-object category / F(X,X) (the Pillar-4 seam).
+#   The interlock tooth (design s3 q_monoid_is_endo; s5 Pillar 4 seam) - LIFTED (DS): Helios authors
+#   "a monoid is a one-object category" (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_
+#   for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:2,16-17, citing Joy of Cats "a monoid as
+#   a one-object category at lines 1001-1014"; End_C(X) with product=composition, unit=id_X, :36-39;
+#   endopath monoid M_X=Hom(X,X), 31/sections/01_thesis.tex:29-32). This is the SEAM to Pillar 4: the
+#   Monoid rung F(X,X) = the endomorphism monoid of one object = Curry's functionality F applied to one
+#   type (design s5; Curry F(X,X), forward to T7 fnd:Functionality). This tooth makes the seam a CHECKABLE
+#   graph fact: a monoid recognized as a one-object category (fnd:monoidAsCategory) must have its monoid
+#   identity element (fnd:hasIdentityElement) be EXACTLY that category's object-identity arrow
+#   (fnd:objectIdentityArrow), an endomorphism X->X (the sole object's id_X).
+#   DATA CONTRACT (algebra_spine.ttl): at least one fnd:monoidAsCategory edge exists (non-vacuity anchor,
+#     FALSE on the empty graph - fnd:endoMonoidWitness fnd:monoidAsCategory fnd:oneObjectCat); and for
+#     EVERY monoid ?mm with fnd:monoidAsCategory ?c and fnd:hasIdentityElement ?id, ?c fnd:objectIdentityArrow
+#     ?id (the monoid identity IS the object identity arrow) and ?id fnd:endoDomain ?x, fnd:endoCodomain ?x
+#     for the category's fnd:soleObject ?x (id is a genuine endomorphism X->X).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:MonoidIsEndoShape): change fnd:endoMonoidWitness
+#     fnd:hasIdentityElement from fnd:idEndoX to fnd:elemA (a non-identity element that is not the object's
+#     id_X endomorphism) - the monoid identity no longer coincides with id_X, the inner
+#     "?c fnd:objectIdentityArrow ?id" fails, and the ASK is FALSE.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?m fnd:monoidAsCategory ?cat0 .
+  FILTER NOT EXISTS {
+    ?mm fnd:monoidAsCategory ?c ; fnd:hasIdentityElement ?id .
+    FILTER NOT EXISTS {
+      ?c fnd:objectIdentityArrow ?id ; fnd:soleObject ?x .
+      ?id fnd:endoDomain ?x ; fnd:endoCodomain ?x .
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_ring_distrib : TWO-SIDED distributivity holds on EVERY fnd:Semiring (x·(y+z)=x·y+x·z AND (y+z)·x=y·x+z·x).
+#   The two-operation line, Semiring rung (design s3; ledger/W2/algebra_foundation/02_algebra_tower.md s "RING /
+#   FIELD / MODULE - SYNTHESIZE (absent as algebra)":134-136). Ring/field/module are FULLY ABSENT from
+#   Helios as algebra ("No algebraic ring, field (only record-field), or module (only code-module)",
+#   02_algebra_tower.md:135); "Semiring" appears only as a valuation-coefficient device in optimization,
+#   never as an axiomatized ring/semiring rung with +/x distributivity axioms (32/chapters/14/...:331,367,
+#   401,473,546; :132 "No +/x distributivity axioms"). So the whole two-operation line is SYN, cited
+#   standard universal algebra (the Directive-19/20 precedent: math is fact and liftable, cite the source,
+#   never pretend a Helios lift). DISTRIBUTIVITY is fnd:Semiring's OWN added law (fnd:Semiring fnd:addsLaw
+#   fnd:lawDistributivity, algebra_rings.ttl:490; fnd:satisfiesLaw :497), NOT a law of the strict subclass
+#   fnd:Ring (which adds fnd:lawAdditiveInverse); so this tooth quantifies over the class where the law is
+#   ADDED, fnd:Semiring - broadening the earlier fnd:Ring anchor that let a fresh, correctly-typed bare
+#   fnd:Semiring with a non-distributive reified table pass GREEN (the sub-population-enforcement escape:
+#   the defining law of a rung enforced only on a proper subclass). Each rung is minted as a
+#   fnd:PresentedAlgebra through the LIFTED engine. CLASS-GENERAL + COMPLETE-LAW: this tooth makes the FULL
+#   TWO-SIDED distributivity law a CHECKABLE graph fact over EVERY fnd:Semiring instance
+#   (rdf:type/rdfs:subClassOf* fnd:Semiring - the raw-graph property path reaching fnd:ringModel AND
+#   fnd:fieldModel, both fnd:Semiring since fnd:Ring subClassOf fnd:Semiring and fnd:Field subClassOf fnd:Ring,
+#   plus any bare fnd:Semiring), for both sides: LEFT x·(y+z) = x·y + x·z AND RIGHT (y+z)·x = y·x + z·x.
+#   The earlier witness-pinned form checked only LEFT distributivity over the single fnd:ringModel, arguing
+#   "commutativity of GF(3) makes right follow" - a witness-specific escape a fresh non-commutative left-only
+#   structure would slip through; right distributivity does NOT follow from left in a non-commutative semiring,
+#   so BOTH sides are required (W-SP0-B). It is the two-operation analogue of q_semigroup_assoc one file up.
+#   DATA CONTRACT (algebra_rings.ttl): at least one two-operation row exists on some ?m a fnd:Semiring (non-vacuity
+#     anchor, FALSE on the empty graph - the full GF(3) + and x tables 0+0=0..2+2=1 and 0·0=0..2·2=1 over
+#     fnd:ringModel/fnd:fieldModel, both fnd:Semiring); and NO triple (x,y,z) over ANY fnd:Semiring-typed model
+#     has x·(y+z) != (x·y)+(x·z) OR (y+z)·x != (y·x)+(z·x).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:RingDistribShape): change the multiplicative row
+#     fnd:appRingMul_1_2 (1·2) fnd:ringResult from fnd:ringTwo to fnd:ringOne (so for the triple (1,1,1):
+#     x·(y+z) = 1·(1+1) = 1·2 = 1 while (x·y)+(x·z) = (1·1)+(1·1) = 1+1 = 2) - the inner LEFT EXISTS finds the
+#     non-distributive triple, and the ASK is FALSE; a symmetric perturbation of an s·x row flips the RIGHT
+#     clause; a FRESH non-distributive bare fnd:Semiring instance (grounding at fnd:Semiring, not fnd:Ring)
+#     flips it the same way (class-general over the class where the law is added, complete law).
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Semiring .
+  ?anchor fnd:ringStructure ?mAnchor ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?la ; fnd:ringRight ?ra ; fnd:ringResult ?resa .
+  FILTER NOT EXISTS {
+    ?ml rdf:type/rdfs:subClassOf* fnd:Semiring .
+    ?ayz fnd:ringStructure ?ml ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?y ; fnd:ringRight ?z ; fnd:ringResult ?s .
+    ?mxs fnd:ringStructure ?ml ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?x ; fnd:ringRight ?s ; fnd:ringResult ?lft .
+    ?mxy fnd:ringStructure ?ml ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?x ; fnd:ringRight ?y ; fnd:ringResult ?p .
+    ?mxz fnd:ringStructure ?ml ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?x ; fnd:ringRight ?z ; fnd:ringResult ?q .
+    ?apq fnd:ringStructure ?ml ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?p ; fnd:ringRight ?q ; fnd:ringResult ?rgt .
+    FILTER(?lft != ?rgt)
+  }
+  FILTER NOT EXISTS {
+    ?mr rdf:type/rdfs:subClassOf* fnd:Semiring .
+    ?ayz2 fnd:ringStructure ?mr ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?y2 ; fnd:ringRight ?z2 ; fnd:ringResult ?s2 .
+    ?msx fnd:ringStructure ?mr ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?s2 ; fnd:ringRight ?x2 ; fnd:ringResult ?lft2 .
+    ?myx fnd:ringStructure ?mr ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?y2 ; fnd:ringRight ?x2 ; fnd:ringResult ?p2 .
+    ?mzx fnd:ringStructure ?mr ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?z2 ; fnd:ringRight ?x2 ; fnd:ringResult ?q2 .
+    ?apq2 fnd:ringStructure ?mr ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?p2 ; fnd:ringRight ?q2 ; fnd:ringResult ?rgt2 .
+    FILTER(?lft2 != ?rgt2)
+  }
+}
+
+
+# EXPECT-TRUE q_ring_add_assoc : additive ASSOCIATIVITY holds on every fnd:Semiring ((a+b)+c = a+(b+c)) (Fix-A1).
+#   The two-operation line (design s3; 02_algebra_tower.md:134-136 - ring FULLY ABSENT as algebra in Helios).
+#   SYN, cited standard ring theory. The Semiring->Ring->Field additive operation (+) must be ASSOCIATIVE
+#   because a ring's additive part is an abelian GROUP and a semiring's a commutative MONOID; but the ring
+#   reifies its operations via fnd:ringStructure/fnd:ringOp/fnd:ringLeft/fnd:ringRight/fnd:ringResult - a
+#   DISTINCT vocabulary from the one-operation spine's fnd:opStructure that q_semigroup_assoc walks - so the
+#   spine associativity tooth NEVER reached the ring additive operation: a fnd:Ring/fnd:Semiring with a
+#   non-associative reified additive table passed GREEN (the Fix-A1 hole). This tooth closes it CLASS-GENERAL
+#   over every fnd:Semiring (rdf:type/rdfs:subClassOf* fnd:Semiring, reaching fnd:ringModel and fnd:fieldModel).
+#   DATA CONTRACT (algebra_rings.ttl): at least one additive row over some ?m a fnd:Semiring (non-vacuity
+#     anchor, FALSE on the empty graph - the full GF(3) additive table 0+0=0..2+2=1 over fnd:ringModel); NO
+#     triple (a,b,c) over ANY fnd:Semiring-typed model has (a+b)+c != a+(b+c).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:RingAddAssocShape): change fnd:appRingAdd_2_2 (2+2)
+#     fnd:ringResult from fnd:ringOne to fnd:ringZero, so for (a,b,c)=(2,2,1): (a+b)+c = (2+2)+1 = 0+1 = 1
+#     while a+(b+c) = 2+(2+1) = 2+0 = 2 - the inner EXISTS finds the non-associative triple, and the ASK is FALSE.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Semiring .
+  ?anchor fnd:ringStructure ?mAnchor ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?la ; fnd:ringRight ?ra ; fnd:ringResult ?resa .
+  FILTER NOT EXISTS {
+    ?m rdf:type/rdfs:subClassOf* fnd:Semiring .
+    ?rab fnd:ringStructure ?m ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?a ; fnd:ringRight ?b ; fnd:ringResult ?ab .
+    ?rabc fnd:ringStructure ?m ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?ab ; fnd:ringRight ?c ; fnd:ringResult ?lhs .
+    ?rbc fnd:ringStructure ?m ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?b ; fnd:ringRight ?c ; fnd:ringResult ?bc .
+    ?rabc2 fnd:ringStructure ?m ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?a ; fnd:ringRight ?bc ; fnd:ringResult ?rhs .
+    FILTER(?lhs != ?rhs)
+  }
+}
+
+
+# EXPECT-TRUE q_ring_add_comm : additive COMMUTATIVITY holds on every fnd:Semiring (a+b = b+a) (Fix-A1).
+#   The two-operation line (design s3; 02_algebra_tower.md:134-136 - ring FULLY ABSENT as algebra in Helios).
+#   SYN, cited standard ring theory. The Semiring->Ring->Field additive operation (+) must COMMUTE because a
+#   semiring's additive part is a COMMUTATIVE monoid and a ring's an ABELIAN group; but the ring reifies via
+#   fnd:ringStructure - DISTINCT from the spine fnd:opStructure that q_commmonoid_comm / q_abelian_comm walk -
+#   so no spine commutativity tooth reached the ring additive operation: a fnd:Semiring/fnd:Ring with a
+#   non-commutative reified additive table passed GREEN (the Fix-A1 hole). This tooth closes it CLASS-GENERAL
+#   over every fnd:Semiring (rdf:type/rdfs:subClassOf* fnd:Semiring, reaching fnd:ringModel and fnd:fieldModel).
+#   DATA CONTRACT (algebra_rings.ttl): at least one additive row over some ?m a fnd:Semiring (non-vacuity
+#     anchor, FALSE on the empty graph - the full GF(3) additive table over fnd:ringModel); NO pair (a,b) over
+#     ANY fnd:Semiring-typed model has a+b != b+a.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:RingAddCommShape): change fnd:appRingAdd_0_2 (0+2)
+#     fnd:ringResult from fnd:ringTwo to fnd:ringZero, so 0+2 = 0 while 2+0 = 2 (fnd:appRingAdd_2_0) - the
+#     pair (0,2) is non-commutative, the inner EXISTS finds it, and the ASK is FALSE.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Semiring .
+  ?anchor fnd:ringStructure ?mAnchor ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?la ; fnd:ringRight ?ra ; fnd:ringResult ?resa .
+  FILTER NOT EXISTS {
+    ?m rdf:type/rdfs:subClassOf* fnd:Semiring .
+    ?rab fnd:ringStructure ?m ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?a ; fnd:ringRight ?b ; fnd:ringResult ?ab .
+    ?rba fnd:ringStructure ?m ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?b ; fnd:ringRight ?a ; fnd:ringResult ?ba .
+    FILTER(?ab != ?ba)
+  }
+}
+
+
+# EXPECT-TRUE q_ring_mult_assoc : multiplicative ASSOCIATIVITY holds on every fnd:Semiring ((a*b)*c = a*(b*c)) (Fix-A1).
+#   The two-operation line (design s3; 02_algebra_tower.md:134-136 - ring FULLY ABSENT as algebra in Helios).
+#   SYN, cited standard ring theory. The Semiring->Ring->Field multiplicative operation (*) must be ASSOCIATIVE
+#   because its multiplicative part is a MONOID (at minimum a semigroup); but the ring reifies via
+#   fnd:ringStructure - DISTINCT from the spine fnd:opStructure that q_semigroup_assoc walks - so the spine
+#   associativity tooth NEVER reached the ring multiplicative operation: a fnd:Ring/fnd:Semiring with a
+#   non-associative reified multiplicative table passed GREEN (the Fix-A1 hole). This tooth closes it
+#   CLASS-GENERAL over every fnd:Semiring (rdf:type/rdfs:subClassOf* fnd:Semiring, reaching fnd:ringModel and
+#   fnd:fieldModel), mirroring q_ring_add_assoc over the fnd:multiplicativeOp rows.
+#   DATA CONTRACT (algebra_rings.ttl): at least one multiplicative row over some ?m a fnd:Semiring (non-vacuity
+#     anchor, FALSE on the empty graph - the full GF(3) multiplicative table 0*0=0..2*2=1 over fnd:ringModel);
+#     NO triple (a,b,c) over ANY fnd:Semiring-typed model has (a*b)*c != a*(b*c).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:RingMultAssocShape): change fnd:appRingMul_2_1 (2*1)
+#     fnd:ringResult from fnd:ringTwo to fnd:ringZero, so for (a,b,c)=(2,1,2): (a*b)*c = (2*1)*2 = 0*2 = 0
+#     while a*(b*c) = 2*(1*2) = 2*2 = 1 - the inner EXISTS finds the non-associative triple, and the ASK is FALSE.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Semiring .
+  ?anchor fnd:ringStructure ?mAnchor ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?la ; fnd:ringRight ?ra ; fnd:ringResult ?resa .
+  FILTER NOT EXISTS {
+    ?m rdf:type/rdfs:subClassOf* fnd:Semiring .
+    ?rab fnd:ringStructure ?m ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?a ; fnd:ringRight ?b ; fnd:ringResult ?ab .
+    ?rabc fnd:ringStructure ?m ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?ab ; fnd:ringRight ?c ; fnd:ringResult ?lhs .
+    ?rbc fnd:ringStructure ?m ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?b ; fnd:ringRight ?c ; fnd:ringResult ?bc .
+    ?rabc2 fnd:ringStructure ?m ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?a ; fnd:ringRight ?bc ; fnd:ringResult ?rhs .
+    FILTER(?lhs != ?rhs)
+  }
+}
+
+
+# EXPECT-TRUE q_ring_additive_inverse : every fnd:Ring element has a two-sided additive inverse (W1a).
+#   The two-operation line, Ring rung (design s3; 02_algebra_tower.md:134-136 - ring FULLY ABSENT as algebra
+#   in Helios). SYN, cited standard ring theory. fnd:Ring's SOLE added law over fnd:Semiring is
+#   fnd:lawAdditiveInverse (the additive monoid (S,+,0) upgraded to an abelian group: every x has -x with
+#   x+(-x)=0), which previously had NO tooth - the ring-family teeth checked only distributivity (Semiring)
+#   and multiplicative inverse (Field), so a semiring-with-no-additive-inverse typed fnd:Ring passed GREEN.
+#   This tooth is the ADDITIVE analogue of q_field_mult_inverse, reusing the genuine-inverse discipline over
+#   the reified fnd:additiveOp table of a ring/field witness (a claimed additive-inverse fnd:AdditiveInversePairing
+#   is GENUINE only if x+y=0 AND y+x=0), AND requiring EVERY fnd:hasRingElement of a fnd:Ring to carry such a
+#   pairing (completeness). fnd:ringModel and fnd:fieldModel (GF(3); Field rdfs:subClassOf Ring) each have
+#   inverses 0<->0, 1<->2, 2<->1.
+#   DATA CONTRACT (algebra_rings.ttl): at least one fnd:AdditiveInversePairing exists (non-vacuity anchor,
+#     FALSE on the empty graph - fnd:aipRingOne pairs 1 with 2 in fnd:ringModel, fnd:aipFieldOne 1 with 2 in
+#     fnd:fieldModel, with the additive rows 1+2=0 and 2+1=0); for EVERY fnd:AdditiveInversePairing (model
+#     ?rng, element ?x, inverse ?y) BOTH ?x+?y = 0 AND ?y+?x = 0 hold; AND EVERY fnd:hasRingElement of a
+#     fnd:Ring carries a fnd:AdditiveInversePairing with it as fnd:aipElement.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:RingAdditiveInverseShape): a Boolean-OR 'ring' on
+#     {0,1} with additive table 1+1=1 (so nothing + 1 = 0 and element 1 has NO additive inverse), carrying an
+#     fnd:AdditiveInversePairing only for 0 - the completeness FILTER NOT EXISTS finds element 1 with no
+#     pairing, and the ASK is FALSE (a semiring-with-no-additive-inverse masquerading as a ring).
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?p0 a fnd:AdditiveInversePairing .
+  FILTER NOT EXISTS {
+    ?pp a fnd:AdditiveInversePairing ; fnd:aipModel ?rng ; fnd:aipElement ?x ; fnd:aipInverse ?y .
+    ?rng fnd:hasZeroElement ?zero .
+    FILTER NOT EXISTS {
+      ?xy fnd:ringStructure ?rng ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?x ; fnd:ringRight ?y ; fnd:ringResult ?zero .
+      ?yx fnd:ringStructure ?rng ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?y ; fnd:ringRight ?x ; fnd:ringResult ?zero .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?rng2 a fnd:Ring ; fnd:hasRingElement ?e .
+    FILTER NOT EXISTS { ?q2 a fnd:AdditiveInversePairing ; fnd:aipModel ?rng2 ; fnd:aipElement ?e }
+  }
+  FILTER NOT EXISTS {
+    ?rngC rdf:type/rdfs:subClassOf* fnd:Ring .
+    { ?rngC rdf:type/rdfs:subClassOf* fnd:Ring . FILTER NOT EXISTS { ?rngC fnd:hasRingElement ?re } }
+    UNION
+    { ?rngC rdf:type/rdfs:subClassOf* fnd:Ring . FILTER NOT EXISTS { ?rngC fnd:hasZeroElement ?rz } }
+  }
+}
+
+
+# EXPECT-TRUE q_field_mult_inverse : every nonzero field element is multiplicatively invertible.
+#   The two-operation line, Field rung (design s3; 02_algebra_tower.md "RING / FIELD / MODULE - SYNTHESIZE
+#   (absent as algebra)":134-136 - field is FULLY ABSENT as algebra in Helios, only record-`field` hits). SYN,
+#   cited standard field theory. The Field rung is a fnd:Ring + this one added law (fnd:lawMultInverse,
+#   fnd:addsLaw): every element x != 0 has a two-sided multiplicative inverse x^-1 with x·x^-1 = 1. This tooth
+#   reuses the SP2/T4 genuine-inverse discipline (a claimed inverse that does not undo -> RED, aob:retracts /
+#   fnd:GroupInverseShape) at the MULTIPLICATIVE level, over the field witness fnd:fieldModel (GF(3) = {0,1,2}
+#   with fnd:hasZeroElement 0 and fnd:hasOneElement 1): a claimed multiplicative-inverse pairing
+#   (fnd:MultInversePairing: element x, inverse y in a field with one-element 1) is GENUINE only if x·y = 1
+#   AND y·x = 1, AND every nonzero field element carries such a pairing. In GF(3): 1^-1 = 1 (1·1=1) and
+#   2^-1 = 2 (2·2 = 4 = 1). It is the two-operation analogue of q_group_inverse.
+#   DATA CONTRACT (algebra_rings.ttl): at least one fnd:MultInversePairing exists (non-vacuity anchor, FALSE
+#     on the empty graph - fnd:mipPairOne pairs 1 with 1, fnd:mipPairTwo pairs 2 with 2, over fnd:fieldModel
+#     whose fnd:hasOneElement is fnd:fieldOne, with the multiplicative rows 1·1=1 and 2·2=1); for EVERY
+#     fnd:MultInversePairing (model ?fld, element ?x, inverse ?y) BOTH ?x·?y = 1 AND ?y·?x = 1 hold; AND EVERY
+#     nonzero fnd:hasRingElement of a fnd:Field (an element != its fnd:hasZeroElement) carries a
+#     fnd:MultInversePairing with it as fnd:mipElement.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:FieldMultInverseShape): change the multiplicative
+#     row fnd:appFieldMul_2_2 (2·2) fnd:ringResult from fnd:fieldOne to fnd:fieldTwo (so 2·2 = 2 != 1) - the
+#     claimed inverse 2 of 2 no longer multiplies to the field's one, the inner two-sided-undo FILTER NOT
+#     EXISTS fails for fnd:mipPairTwo, and the ASK is FALSE (a "field" with a non-invertible nonzero element).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?p0 a fnd:MultInversePairing .
+  FILTER NOT EXISTS {
+    ?pp a fnd:MultInversePairing ; fnd:mipModel ?fld ; fnd:mipElement ?x ; fnd:mipInverse ?y .
+    ?fld fnd:hasOneElement ?one .
+    FILTER NOT EXISTS {
+      ?xy fnd:ringStructure ?fld ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?x ; fnd:ringRight ?y ; fnd:ringResult ?one .
+      ?yx fnd:ringStructure ?fld ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?y ; fnd:ringRight ?x ; fnd:ringResult ?one .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?fld2 a fnd:Field ; fnd:hasRingElement ?e ; fnd:hasZeroElement ?zero .
+    FILTER(?e != ?zero)
+    FILTER NOT EXISTS { ?q2 a fnd:MultInversePairing ; fnd:mipModel ?fld2 ; fnd:mipElement ?e }
+  }
+  FILTER NOT EXISTS {
+    ?fldC a fnd:Field .
+    FILTER NOT EXISTS { ?fldC fnd:hasOneElement ?one }
+  }
+}
+
+
+# EXPECT-TRUE q_module_scalar : the scalar action is well typed on the module witness (R x M -> M).
+#   The algebra-space seam, Module rung (design s3; 02_algebra_tower.md "RING / FIELD / MODULE - SYNTHESIZE
+#   (absent as algebra)":134-136 - module is FULLY ABSENT as algebra in Helios, only code-`module` hits). SYN,
+#   cited standard module theory. The Module rung is a fnd:AlgebraicStructure child (an abelian group of
+#   vectors + a ring acting by scalars) adding one law (fnd:lawScalarAction, fnd:addsLaw), minted as a
+#   fnd:PresentedAlgebra. This tooth makes the scalar action's TYPING a CHECKABLE graph fact (the same
+#   edge-existence discipline as q_membership_typed / q_set_carrier): a module fnd:moduleOverRing a base ring,
+#   with vectors enumerated by fnd:hasModuleVector, and a reified scalar action (fnd:ScalarAction:
+#   fnd:saModule the module, fnd:saScalar r, fnd:saVector m, fnd:saResult r·m) is well typed only when the
+#   scalar r is a fnd:hasRingElement of the base ring AND the result r·m is a fnd:hasModuleVector of the module
+#   (the action lands back in the module, R x M -> M). The witness fnd:moduleModel is the rank-1 free module
+#   {V0,V1,V2} over the ring GF(3), with 1·V1=V1, 2·V1=V2, 2·V2=V1.
+#   DATA CONTRACT (algebra_rings.ttl): at least one ?a a fnd:ScalarAction exists (non-vacuity anchor, FALSE on
+#     the empty graph - fnd:saOneV1 / fnd:saTwoV1 / fnd:saTwoV2 over fnd:moduleModel, and fnd:saUnitLaw over
+#     fnd:vectorSpaceModel); and EVERY fnd:ScalarAction (module ?m over ring ?ring, scalar ?r, result ?res)
+#     has ?ring fnd:hasRingElement ?r AND ?m fnd:hasModuleVector ?res (the action is well typed).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:ModuleScalarShape): inject an escaping action -
+#     fnd:probeEscapingScalarAction a fnd:ScalarAction ; fnd:saModule fnd:moduleModel ; fnd:saScalar
+#     fnd:ringOne ; fnd:saVector fnd:vecV1 ; fnd:saResult fnd:ringZero (a result that is a RING element, not a
+#     fnd:hasModuleVector of the module - the action escapes M) - the inner typing FILTER NOT EXISTS fails and
+#     the ASK is FALSE.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?a0 a fnd:ScalarAction .
+  FILTER NOT EXISTS {
+    ?sa a fnd:ScalarAction ; fnd:saModule ?m ; fnd:saScalar ?r ; fnd:saResult ?res .
+    ?m fnd:moduleOverRing ?ring .
+    FILTER NOT EXISTS {
+      ?ring fnd:hasRingElement ?r .
+      ?m fnd:hasModuleVector ?res .
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_module_scalar_law : the FULL module scalar-action law holds on EVERY fnd:Module (W-SP0-B).
+#   The algebra-space seam, Module rung (design s3; 02_algebra_tower.md:134-136 - module FULLY ABSENT as
+#   algebra in Helios). SYN, cited standard module theory. q_module_scalar checks only the action's TYPING
+#   (R x M -> M); this tooth COMPLETES the module law fnd:lawScalarAction, whose equationBody is exactly
+#   "1.m = m ; (r.s).m = r.(s.m) ; r.(m+n) = r.m + r.n ; (r+s).m = r.m + s.m" - so a well-typed but
+#   NON-UNITAL / non-scalar-associative / non-bi-distributive module no longer passes GREEN (the
+#   sub-clause-only-law defect the hostile review keeps finding variants of). CLASS-GENERAL: QUANTIFIES OVER
+#   EVERY fnd:Module via rdf:type/rdfs:subClassOf* fnd:Module (raw-graph property path reaching the plain
+#   module fnd:moduleModel AND the vector space fnd:vectorSpaceModel, a fnd:VectorSpace subClassOf fnd:Module);
+#   the SHACL fnd:ModuleScalarLawShape does the same under inference=rdfs.
+#   DATA CONTRACT (algebra_rings.ttl): at least one fnd:ScalarAction exists on some ?m a fnd:Module
+#     (non-vacuity anchor, FALSE on the empty graph); and over EVERY fnd:Module: (1) UNITALITY - no action
+#     whose scalar is the base ring's fnd:hasOneElement has result != vector (1.m=m); (2) SCALAR-ASSOCIATIVITY
+#     - no base-ring product r.s=c gives c.m != r.(s.m); (3) LEFT BI-DISTRIBUTIVITY - no vector sum m+n (over
+#     the fnd:moduleAdditiveGroup) gives r.(m+n) != (r.m)+(r.n); (4) RIGHT BI-DISTRIBUTIVITY - no base-ring
+#     sum r+s=c gives c.m != (r.m)+(s.m). fnd:moduleModel (over GF(3) fnd:ringModel, additive group
+#     fnd:moduleAddGroup) and fnd:vectorSpaceModel (over fnd:fieldModel, additive group fnd:abelianModel)
+#     satisfy all four.
+#   PROBE OF RECORD (each flips True->False, mirrored by fnd:ModuleScalarLawShape's four constraints):
+#     unitality - fnd:saOneV1 fnd:saResult -> fnd:vecV2 (1.V1=V2!=V1); scalar-assoc - fnd:saTwoV2 fnd:saResult
+#     -> fnd:vecV0 ((2.2).V1=1.V1=V1 while 2.(2.V1)=2.V2=V0); left bi-distrib - fnd:appMAddV2V2 fnd:opResult
+#     perturbed; right bi-distrib - fnd:appRingAdd_1_1 fnd:ringResult perturbed. A FRESH non-unital or
+#     non-distributive fnd:Module instance flips it the same way (class-general, complete law).
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Module .
+  ?aAnchor fnd:saModule ?mAnchor .
+  FILTER NOT EXISTS {
+    ?m1 rdf:type/rdfs:subClassOf* fnd:Module ; fnd:moduleOverRing ?ring1 .
+    ?ring1 fnd:hasOneElement ?one .
+    ?u fnd:saModule ?m1 ; fnd:saScalar ?one ; fnd:saVector ?v ; fnd:saResult ?rv .
+    FILTER(?rv != ?v)
+  }
+  FILTER NOT EXISTS {
+    ?m2 rdf:type/rdfs:subClassOf* fnd:Module ; fnd:moduleOverRing ?ring2 .
+    ?rs fnd:ringStructure ?ring2 ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?r ; fnd:ringRight ?s ; fnd:ringResult ?c .
+    ?cm fnd:saModule ?m2 ; fnd:saScalar ?c ; fnd:saVector ?mv ; fnd:saResult ?lhs .
+    ?sm fnd:saModule ?m2 ; fnd:saScalar ?s ; fnd:saVector ?mv ; fnd:saResult ?w .
+    ?rw fnd:saModule ?m2 ; fnd:saScalar ?r ; fnd:saVector ?w ; fnd:saResult ?rhs .
+    FILTER(?lhs != ?rhs)
+  }
+  FILTER NOT EXISTS {
+    ?m3 rdf:type/rdfs:subClassOf* fnd:Module ; fnd:moduleAdditiveGroup ?g3 .
+    ?smn fnd:opStructure ?g3 ; fnd:opLeft ?mm ; fnd:opRight ?nn ; fnd:opResult ?mn .
+    ?rmn fnd:saModule ?m3 ; fnd:saScalar ?r3 ; fnd:saVector ?mn ; fnd:saResult ?lhs3 .
+    ?rm fnd:saModule ?m3 ; fnd:saScalar ?r3 ; fnd:saVector ?mm ; fnd:saResult ?pm .
+    ?rn fnd:saModule ?m3 ; fnd:saScalar ?r3 ; fnd:saVector ?nn ; fnd:saResult ?pn .
+    ?sum3 fnd:opStructure ?g3 ; fnd:opLeft ?pm ; fnd:opRight ?pn ; fnd:opResult ?rhs3 .
+    FILTER(?lhs3 != ?rhs3)
+  }
+  FILTER NOT EXISTS {
+    ?m4 rdf:type/rdfs:subClassOf* fnd:Module ; fnd:moduleOverRing ?ring4 ; fnd:moduleAdditiveGroup ?g4 .
+    ?rs4 fnd:ringStructure ?ring4 ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?r4 ; fnd:ringRight ?s4 ; fnd:ringResult ?c4 .
+    ?cm4 fnd:saModule ?m4 ; fnd:saScalar ?c4 ; fnd:saVector ?mv4 ; fnd:saResult ?lhs4 .
+    ?rm4 fnd:saModule ?m4 ; fnd:saScalar ?r4 ; fnd:saVector ?mv4 ; fnd:saResult ?pr4 .
+    ?sm4 fnd:saModule ?m4 ; fnd:saScalar ?s4 ; fnd:saVector ?mv4 ; fnd:saResult ?ps4 .
+    ?sum4 fnd:opStructure ?g4 ; fnd:opLeft ?pr4 ; fnd:opRight ?ps4 ; fnd:opResult ?rhs4 .
+    FILTER(?lhs4 != ?rhs4)
+  }
+  FILTER NOT EXISTS {
+    ?mE rdf:type/rdfs:subClassOf* fnd:Module .
+    FILTER NOT EXISTS { ?aE fnd:saModule ?mE }
+  }
+  FILTER NOT EXISTS {
+    ?mU rdf:type/rdfs:subClassOf* fnd:Module ; fnd:moduleOverRing ?rU .
+    ?rU fnd:hasOneElement ?oneU .
+    FILTER NOT EXISTS { ?aU fnd:saModule ?mU ; fnd:saScalar ?oneU }
+  }
+}
+
+
+# EXPECT-TRUE q_vectorspace_axioms : the vector-space axioms hold over a fnd:Field (scalars a field + unit law).
+#   The algebra-space seam, VectorSpace rung (design s3/s4; 02_algebra_tower.md:136 - vector spaces appear only
+#   incidentally as "ambient vector spaces" in a sheaf-consistency operator, appendices/35/.../00_content.tex:504,
+#   never a defined VectorSpace rung). SYN, cited standard linear algebra. A vector space is a fnd:Module whose
+#   scalar ring is a FIELD; the VectorSpace rung is a fnd:Module + this one added law (fnd:lawFieldScalars,
+#   fnd:addsLaw). Fully teeth-proving all 8 axioms by numeric table is out of scope (design s9: the teeth check
+#   the distinguishing laws, not a proof assistant); this tooth makes the DISTINGUISHING vector-space content a
+#   CHECKABLE graph fact - ALL EIGHT axioms bite (W2 close; the earlier 'axioms 6-8 inherited from
+#   q_module_scalar + q_ring_distrib' claim was FALSE and is removed): axioms 1-4 ((V,+) abelian group) via
+#   the fnd:vectorAdditiveGroup a fnd:AbelianGroup typing (commutativity teeth-proved by q_abelian_comm) plus
+#   the fnd:scalarField a fnd:Field upgrade; axiom 5 (unit scalar 1v=v) via fnd:unitLawAction; axiom 6
+#   (a(u+v)=au+av) via the scalar-over-vector-sum clause; axiom 7 ((a+b)v=av+bv) via the field-sum clause;
+#   axiom 8 ((ab)v=a(bv)) via the field-product clause. The witness fnd:vectorSpaceModel has fnd:scalarField
+#   fnd:fieldModel (GF(3)), fnd:vectorAdditiveGroup fnd:abelianModel ({E=0,A=1,B=2}, sums A+A=B / B+B=A),
+#   fnd:unitLawAction fnd:saUnitLaw (1.A=A), and scalar actions 2.A=B / 2.B=A.
+#   DATA CONTRACT (algebra_rings.ttl / algebra_spine.ttl): at least one ?vs a fnd:VectorSpace exists
+#     (non-vacuity anchor, FALSE on the empty graph - fnd:vectorSpaceModel); EVERY fnd:VectorSpace has a
+#     fnd:scalarField that is a fnd:Field AND a fnd:vectorAdditiveGroup that is a fnd:AbelianGroup; NO unit-law
+#     action breaks 1.v=v; NO scalar a over a vector sum u+v breaks a(u+v)=au+av (axiom 6); NO field sum a+b
+#     over v breaks (a+b)v=av+bv (axiom 7); NO field product ab over v breaks (ab)v=a(bv) (axiom 8).
+#   PROBE OF RECORD (each flips True->False, mirrored by fnd:VectorSpaceAxiomsShape): (axiom 5) fnd:saUnitLaw
+#     fnd:saResult fnd:elemA->fnd:elemB (1.A=B!=A); (axiom 6) fnd:appAbBB fnd:opResult fnd:elemA->fnd:elemE
+#     (a(u+v)!=au+av on a=2,u=v=A); (axiom 7) fnd:appFieldAdd_1_1 fnd:ringResult fnd:fieldTwo->fnd:fieldOne
+#     ((a+b)v!=av+bv on a=b=1,v=A); (axiom 8) fnd:appFieldMul_2_1 fnd:ringResult fnd:fieldTwo->fnd:fieldOne
+#     ((ab)v!=a(bv) on a=2,b=1,v=A) - each makes the matching FILTER NOT EXISTS find a violating witness.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?vs0 a fnd:VectorSpace .
+  FILTER NOT EXISTS {
+    ?vF a fnd:VectorSpace .
+    FILTER NOT EXISTS {
+      ?vF fnd:scalarField ?f . ?f fnd:hasOneElement ?fone . ?f fnd:hasZeroElement ?fzero .
+      ?mp a fnd:MultInversePairing ; fnd:mipModel ?f .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?vG a fnd:VectorSpace .
+    FILTER NOT EXISTS {
+      ?vG fnd:vectorAdditiveGroup ?g . ?g fnd:hasIdentityElement ?gid .
+      ?gp a fnd:InversePairing ; fnd:pairingModel ?g .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?v2 a fnd:VectorSpace ; fnd:scalarField ?f2 ; fnd:unitLawAction ?ula .
+    ?f2 fnd:hasOneElement ?one .
+    ?ula fnd:saScalar ?one ; fnd:saVector ?vec ; fnd:saResult ?r .
+    FILTER(?r != ?vec)
+  }
+  FILTER NOT EXISTS {
+    ?v6 a fnd:VectorSpace ; fnd:vectorAdditiveGroup ?g6 .
+    ?suv fnd:opStructure ?g6 ; fnd:opLeft ?u ; fnd:opRight ?vv ; fnd:opResult ?s .
+    ?as6 fnd:saModule ?v6 ; fnd:saScalar ?a6 ; fnd:saVector ?s ; fnd:saResult ?lhs6 .
+    ?au6 fnd:saModule ?v6 ; fnd:saScalar ?a6 ; fnd:saVector ?u ; fnd:saResult ?pu .
+    ?av6 fnd:saModule ?v6 ; fnd:saScalar ?a6 ; fnd:saVector ?vv ; fnd:saResult ?pv .
+    ?sum6 fnd:opStructure ?g6 ; fnd:opLeft ?pu ; fnd:opRight ?pv ; fnd:opResult ?rhs6 .
+    FILTER(?lhs6 != ?rhs6)
+  }
+  FILTER NOT EXISTS {
+    ?v7 a fnd:VectorSpace ; fnd:vectorAdditiveGroup ?g7 ; fnd:scalarField ?fld7 .
+    ?abr7 fnd:ringStructure ?fld7 ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?a7 ; fnd:ringRight ?b7 ; fnd:ringResult ?c7 .
+    ?cv7 fnd:saModule ?v7 ; fnd:saScalar ?c7 ; fnd:saVector ?vec7 ; fnd:saResult ?lhs7 .
+    ?av7 fnd:saModule ?v7 ; fnd:saScalar ?a7 ; fnd:saVector ?vec7 ; fnd:saResult ?pa7 .
+    ?bv7 fnd:saModule ?v7 ; fnd:saScalar ?b7 ; fnd:saVector ?vec7 ; fnd:saResult ?pb7 .
+    ?sum7 fnd:opStructure ?g7 ; fnd:opLeft ?pa7 ; fnd:opRight ?pb7 ; fnd:opResult ?rhs7 .
+    FILTER(?lhs7 != ?rhs7)
+  }
+  FILTER NOT EXISTS {
+    ?v8 a fnd:VectorSpace ; fnd:scalarField ?fld8 .
+    ?abr8 fnd:ringStructure ?fld8 ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?a8 ; fnd:ringRight ?b8 ; fnd:ringResult ?c8 .
+    ?cv8 fnd:saModule ?v8 ; fnd:saScalar ?c8 ; fnd:saVector ?vec8 ; fnd:saResult ?lhs8 .
+    ?bv8 fnd:saModule ?v8 ; fnd:saScalar ?b8 ; fnd:saVector ?vec8 ; fnd:saResult ?w8 .
+    ?aw8 fnd:saModule ?v8 ; fnd:saScalar ?a8 ; fnd:saVector ?w8 ; fnd:saResult ?rhs8 .
+    FILTER(?lhs8 != ?rhs8)
+  }
+}
+
+
+# =====================================================================================
+# T6 — spaces.ttl EXPECT-TRUE ASKs (design s4; ledger/W2/algebra_foundation/04_space_constructs.md).
+# The LIFTED site/sheaf core (q_sheaf_glues) + the SYN point-set spaces (q_topology_axioms,
+# q_metric_triangle). q_vectorspace_axioms (T5) is SHARED with this pillar (design s4) and is not
+# re-authored here. Each ASK is non-vacuous (FALSE on the pre-T6 graph) and mirrored by a SHACL tooth.
+# =====================================================================================
+
+# EXPECT-TRUE q_sheaf_glues : agreeing local sections glue to a unique global section (sheaf condition).
+#   The LIFTED core space construct (design s4; 04_space_constructs.md s1.1 "the deepest genuine space"):
+#   a fnd:Sheaf is a fnd:Presheaf F:C^op->Set satisfying the equalizer-form sheaf condition on a covering
+#   family {U_i -> U} - F(U) is the equalizer of prod_i F(U_i) => prod_ij F(U_i cap U_j) (LIFTED verbatim
+#   from helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/
+#   02_sheaf_condition_for_part_of.tex:30-52, the equalizer diagram; the site-level descent extension lives
+#   in paper 25, 25/01/00_...tex:30-90). The reified equalizer datum is a fnd:MatchingFamily: two local
+#   sections (fnd:familyOverA / fnd:familyOverB) whose overlap restrictions (fnd:restrictionToOverlapA /
+#   fnd:restrictionToOverlapB) AGREE, together with its unique gluing (fnd:hasGluing) restricting back to
+#   both legs (fnd:glueRestrictsToA / fnd:glueRestrictsToB). The corpus's own honesty caveat is the
+#   presheaf-as-function collapse (19/05/02:151-157): absent the equalizer, the apex is conjectured, not
+#   constructed - so the tooth makes the equalizer (agreement -> unique glue) a graph fact.
+#   DATA CONTRACT (spaces.ttl): at least one fnd:MatchingFamily exists (non-vacuity anchor, FALSE on the
+#     pre-T6 graph - fnd:matchingFamilyWitness); EVERY matching family whose two overlap restrictions AGREE
+#     (fnd:restrictionToOverlapA = fnd:restrictionToOverlapB) HAS a fnd:hasGluing that restricts to exactly
+#     its two legs (fnd:glueRestrictsToA = fnd:familyOverA and fnd:glueRestrictsToB = fnd:familyOverB); and
+#     NO matching family carries two DISTINCT fnd:hasGluing values (uniqueness of the amalgamation).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:SheafGluesShape): repoint fnd:secGlobal
+#     fnd:glueRestrictsToA from fnd:secA to fnd:secB (the glue no longer restricts to the first leg) - the
+#     agreeing family fnd:matchingFamilyWitness then has NO valid gluing, the inner EXISTS fails, and the
+#     ASK is FALSE (local sections agreeing on overlaps with no unique glue -> RED).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?mf0 a fnd:MatchingFamily .
+  FILTER NOT EXISTS {
+    ?mf a fnd:MatchingFamily ;
+        fnd:restrictionToOverlapA ?ra ; fnd:restrictionToOverlapB ?rb ;
+        fnd:familyOverA ?sa ; fnd:familyOverB ?sb .
+    FILTER(?ra = ?rb)
+    FILTER NOT EXISTS {
+      ?mf fnd:hasGluing ?g .
+      ?g fnd:glueRestrictsToA ?sa ; fnd:glueRestrictsToB ?sb .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?mf2 a fnd:MatchingFamily ; fnd:hasGluing ?g1 , ?g2 .
+    FILTER(?g1 != ?g2)
+  }
+}
+
+# EXPECT-TRUE q_topology_axioms : tau contains empty/X and is closed under finite intersection + union.
+#   The SYN point-set topological space (design s4; 04_space_constructs.md s3, D2: the corpus REFUSES
+#   point-set topology on its objects - 19/05/03_cell_complex_pasting.tex:11-13,69-74 "makes no claim about
+#   a point-set topology on Mittens" - so fnd:TopologicalSpace is SYN, cited standard topology, NOT a
+#   Helios lift; the genuine authored space is the fnd:Site). A fnd:TopologicalSpace (X,tau) must satisfy
+#   the open-set axioms: tau contains the empty set and X, and is closed under finite intersection and
+#   arbitrary union. The witness is the discrete topology on X={a,b}: tau={empty,{a},{b},{a,b}}. Closure
+#   is reified as fnd:OpenIntersection / fnd:OpenUnion rows (fnd:intersectResult / fnd:unionResult), each
+#   scoped to its space by fnd:intersectionIn / fnd:unionIn, so the closure axioms are checkable graph facts.
+#   DATA CONTRACT (spaces.ttl): at least one fnd:TopologicalSpace exists (non-vacuity, FALSE pre-T6 -
+#     fnd:topSpaceWitness); EVERY space has its fnd:hasEmptyOpen and fnd:hasTotalOpen both among its
+#     fnd:hasOpenSet; NO reified fnd:OpenIntersection of two opens has a fnd:intersectResult that is not an
+#     open; and NO reified fnd:OpenUnion of two opens has a fnd:unionResult that is not an open.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:TopologyAxiomsShape): repoint fnd:ixAB
+#     (the reified {a} cap {b} = empty row) fnd:intersectResult from fnd:openEmpty to fnd:setNonOpen (a
+#     fnd:Set that is NOT a fnd:hasOpenSet of the space) - tau is then not closed under finite intersection,
+#     the intersection-closure clause fires, and the ASK is FALSE (tau not closed under intersection -> RED).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?ts0 a fnd:TopologicalSpace .
+  FILTER NOT EXISTS {
+    ?ts a fnd:TopologicalSpace .
+    FILTER NOT EXISTS {
+      ?ts fnd:hasEmptyOpen ?e ; fnd:hasOpenSet ?e .
+      ?ts fnd:hasTotalOpen ?x ; fnd:hasOpenSet ?x .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?ix a fnd:OpenIntersection ; fnd:intersectionIn ?ts2 ;
+        fnd:intersectLeft ?l ; fnd:intersectRight ?r ; fnd:intersectResult ?res .
+    ?ts2 fnd:hasOpenSet ?l , ?r .
+    FILTER NOT EXISTS { ?ts2 fnd:hasOpenSet ?res }
+  }
+  FILTER NOT EXISTS {
+    ?un a fnd:OpenUnion ; fnd:unionIn ?ts3 ;
+        fnd:unionLeft ?ul ; fnd:unionRight ?ur ; fnd:unionResult ?ures .
+    ?ts3 fnd:hasOpenSet ?ul , ?ur .
+    FILTER NOT EXISTS { ?ts3 fnd:hasOpenSet ?ures }
+  }
+}
+
+# EXPECT-TRUE q_metric_triangle : d satisfies identity d(x,x)=0, identity of indiscernibles (d(x,y)=0 => x=y),
+#   symmetry, and the triangle inequality.
+#   The SYN point-set metric space (design s4; 04_space_constructs.md s1.4/D4: metric spaces are USAGE in
+#   Helios - metric feature codomains (A_k, delta_k), the tessellation graph metric d_f^T - never an
+#   axiomatized (X,d) atom, so fnd:MetricSpace is SYN, cited standard metric geometry). A fnd:MetricSpace
+#   is enriched over the commutative monoid ([0,inf], >=, +) (D4: the Lawvere-enriched-category reading ties
+#   the space pillar to the algebra pillar's fnd:CommutativeMonoid; fnd:enrichedOver). Distances are reified
+#   as fnd:DistanceAssertion rows (fnd:distFrom / fnd:distTo / fnd:distValue, an xsd:decimal). The witness
+#   is the 3-point space {A,B,C} with d(A,B)=d(B,C)=1, d(A,C)=2, self-distances 0.
+#   DATA CONTRACT (spaces.ttl): at least one fnd:MetricSpace exists (non-vacuity, FALSE pre-T6 -
+#     fnd:metricSpaceWitness); NO self-distance d(p,p) is nonzero (identity); NO two DISTINCT points x!=y
+#     have d(x,y)=0 (identity of indiscernibles - the axiom separating a METRIC from a pseudometric); NO
+#     pair has d(x,y) != d(y,x) (symmetry); and NO triple has d(x,z) > d(x,y) + d(y,z) (triangle inequality).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:MetricTriangleShape): (triangle) change fnd:distAC
+#     (the d(A,C)=2 assertion) fnd:distValue from 2 to 5 - then d(A,C)=5 > d(A,B)+d(B,C)=2 -> FALSE; OR
+#     (indiscernibles) type a pseudometric with two distinct zero-distance points d(x,y)=0, x!=y as a
+#     fnd:MetricSpace - the identity-of-indiscernibles clause fires -> the ASK is FALSE (RED).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?ms0 a fnd:MetricSpace .
+  FILTER NOT EXISTS {
+    ?ms a fnd:MetricSpace ; fnd:hasDistanceAssertion ?d .
+    ?d fnd:distFrom ?p ; fnd:distTo ?p ; fnd:distValue ?v .
+    FILTER(?v != 0)
+  }
+  FILTER NOT EXISTS {
+    ?msI a fnd:MetricSpace ; fnd:hasDistanceAssertion ?dI .
+    ?dI fnd:distFrom ?a ; fnd:distTo ?b ; fnd:distValue ?vI .
+    FILTER(?a != ?b && ?vI = 0)
+  }
+  FILTER NOT EXISTS {
+    ?ms2 a fnd:MetricSpace ; fnd:hasDistanceAssertion ?d1 , ?d2 .
+    ?d1 fnd:distFrom ?x ; fnd:distTo ?y ; fnd:distValue ?v1 .
+    ?d2 fnd:distFrom ?y ; fnd:distTo ?x ; fnd:distValue ?v2 .
+    FILTER(?v1 != ?v2)
+  }
+  FILTER NOT EXISTS {
+    ?ms3 a fnd:MetricSpace ; fnd:hasDistanceAssertion ?dxz , ?dxy , ?dyz .
+    ?dxz fnd:distFrom ?x2 ; fnd:distTo ?z2 ; fnd:distValue ?vxz .
+    ?dxy fnd:distFrom ?x2 ; fnd:distTo ?y2 ; fnd:distValue ?vxy .
+    ?dyz fnd:distFrom ?y2 ; fnd:distTo ?z2 ; fnd:distValue ?vyz .
+    FILTER(?vxz > ?vxy + ?vyz)
+  }
+}
+
+
+# =====================================================================================
+# T7 — functionality.ttl EXPECT-TRUE ASKs (design s5, Pillar 4; Directive 19; H. B. Curry, First
+# Properties of Functionality in Combinatory Logic, Tohoku Math. J. 41 (1936) 371-401, CITED not
+# committed; ledger/W2/algebra_foundation/06_functionality_synthesis.md + 06b_curry_lift.md +
+# 06c_sp1_functionality_reanchor.md). The arrow pillar: the Frame RECOGNIZED as Curry's F (not rebuilt),
+# the F(dom,cod) variance bifunctor (contravariant domain / covariant codomain), and the Curry s6
+# self-application paradox-quarantine. Each ASK is non-vacuous (FALSE on the pre-T7 graph) and mirrored
+# by a SHACL tooth proven to bite under a probe of record.
+# =====================================================================================
+
+# EXPECT-TRUE q_frame_is_functionality : prim:Frame is recognized as Curry's functionality F (not rebuilt).
+#   The pillar's anchor (design s5 F1; 06_functionality_synthesis.md s1.A; Directive 19 :270-273 "Curry's
+#   |-FXYZ ... is exactly F(x)->Frame(output:X, effect:Y)"). Curry's functionality operator F - the typed
+#   arrow F(X,Y) = "the type of functions X->Y" (Curry 1936 s1) - is NOT re-authored as a parallel tower;
+#   the pillar RECOGNIZES the committed SP1 prim:Frame as F. prim:Frame is the unary law's Yoneda point
+#   (the typed product Frame(output, effect) the whole realization monad rho is the Kleisli category of;
+#   prim:Frame prim:isYonedaPoint true, committed at basicttl/primitives/taiji.ttl:1994), and
+#   "Frame is the Yoneda point" = "Frame is Curry's F applied". A fnd:Functionality atom carries the
+#   recognition edge fnd:recognizesFrameCarrier onto the committed carrier; the recognition is honest only
+#   if that carrier IS the Yoneda-point Frame, never an invented parallel object.
+#   DATA CONTRACT (functionality.ttl + SP1): at least one ?f0 a fnd:Functionality exists (non-vacuity
+#     anchor, FALSE on the empty foundation graph - fnd:curryFunctionality); at least one fnd:Functionality
+#     fnd:recognizesFrameCarrier prim:Frame (the recognition is grounded on the committed carrier); the
+#     committed triple prim:Frame prim:isYonedaPoint true holds in the merged graph (SP1); and EVERY
+#     fnd:Functionality that fnd:recognizesFrameCarrier ?c recognizes a ?c that is prim:isYonedaPoint true
+#     (no functionality recognizes an invented non-Yoneda carrier).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:FrameRecognitionShape): inject a functionality
+#     recognizing an invented carrier - fnd:probeBadFunctionality a fnd:Functionality ;
+#     fnd:recognizesFrameCarrier fnd:probeNotAFrame (fnd:probeNotAFrame carries NO prim:isYonedaPoint) -
+#     the inner FILTER NOT EXISTS finds it and the ASK is FALSE (a rebuilt parallel F, not the recognized
+#     Frame -> RED).
+PREFIX fnd:  <urn:silmaril:fnd:#>
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  ?f0 a fnd:Functionality .
+  ?fr a fnd:Functionality ; fnd:recognizesFrameCarrier prim:Frame .
+  prim:Frame prim:isYonedaPoint true .
+  FILTER NOT EXISTS {
+    ?f a fnd:Functionality ; fnd:recognizesFrameCarrier ?c .
+    FILTER NOT EXISTS { ?c prim:isYonedaPoint true }
+  }
+  FILTER NOT EXISTS {
+    ?fN a fnd:Functionality .
+    FILTER NOT EXISTS { ?fN fnd:recognizesFrameCarrier ?cN }
+  }
+}
+
+# EXPECT-TRUE q_functor_variance : the variance bifunctor F(dom,cod) is contravariant in the domain and
+#   covariant in the codomain (Curry s4).
+#   The s4 subtyping-variance law (design s5 F3/F3'; 06b_curry_lift.md s3.1; Curry 1936 s4: FXY, U subset X,
+#   Y subset V => FUV - a function X->Y is also a function U->V). So the arrow type F(X,Y) is a SUBTYPE of
+#   F(U,V) exactly when the domain NARROWS (U subset-of X: CONTRAVARIANT) and the codomain WIDENS (Y subset-of
+#   V: COVARIANT). Directive 19 :279-281 mandates the function-type algebra carry this variance. The covariant
+#   codomain leg is the variance SP1's prim:RealizationTransport already proves as a covariant functor
+#   (basicttl/primitives/realization.ttl:2865-2920, q_functor_composition green); the contravariant domain
+#   leg is NEW teeth (SP1 has no contravariant structure - the unary law forbids a Frame input coordinate,
+#   docs/unary-byte-frame-law.md:686-687 - so F(dom,cod) is a SEPARATE bifunctor object, not prim:Frame the
+#   product; design DF-D Opt 2). Variance is checked over a corpus-agnostic witness subtype order fnd:varSubtypeOf
+#   (Dog subset-of Animal); an accepted fnd:VarianceStep F(X,Y) <: F(U,V) is well-varied iff U=X or U subset-of X
+#   (domain contravariant) AND Y=V or Y subset-of V (codomain covariant).
+#   DATA CONTRACT (functionality.ttl): at least one ?s0 a fnd:VarianceStep exists (non-vacuity anchor, FALSE
+#     on the empty graph - fnd:varStepValid: F(Animal,Dog) <: F(Dog,Animal), which narrows the domain
+#     Animal->Dog and widens the codomain Dog->Animal, both lawful since fnd:typeDog fnd:varSubtypeOf
+#     fnd:typeAnimal); NO accepted step widens the domain (every step's target domain ?u satisfies ?u=?x or
+#     ?u fnd:varSubtypeOf ?x); and NO accepted step narrows the codomain (every step's source codomain ?y
+#     satisfies ?y=?v or ?y fnd:varSubtypeOf ?v).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:FunctorVarianceShape): inject a domain-WIDENING
+#     step - fnd:probeVarStep a fnd:VarianceStep ; fnd:varianceFrom fnd:arrowTypeDogDog ; fnd:varianceTo
+#     fnd:arrowTypeAnimalDog (claims F(Dog,Dog) <: F(Animal,Dog), widening the domain Dog->Animal though
+#     Animal is NOT a subtype of Dog) - the domain clause fires and the ASK is FALSE (a domain-widening
+#     accepted -> RED). Symmetrically, repointing a step to narrow the codomain fires the codomain clause.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?s0 a fnd:VarianceStep .
+  FILTER NOT EXISTS {
+    ?step a fnd:VarianceStep ; fnd:varianceFrom ?sub ; fnd:varianceTo ?sup .
+    ?sub fnd:hasDomainType ?x .
+    ?sup fnd:hasDomainType ?u .
+    FILTER(?u != ?x)
+    FILTER NOT EXISTS { ?u fnd:varSubtypeOf ?x }
+  }
+  FILTER NOT EXISTS {
+    ?step2 a fnd:VarianceStep ; fnd:varianceFrom ?sub2 ; fnd:varianceTo ?sup2 .
+    ?sub2 fnd:hasCodomainType ?y .
+    ?sup2 fnd:hasCodomainType ?v .
+    FILTER(?y != ?v)
+    FILTER NOT EXISTS { ?y fnd:varSubtypeOf ?v }
+  }
+  FILTER NOT EXISTS {
+    ?stF a fnd:VarianceStep .
+    FILTER NOT EXISTS { ?stF fnd:varianceFrom ?sf . ?sf fnd:hasDomainType ?sfd . ?sf fnd:hasCodomainType ?sfc }
+  }
+  FILTER NOT EXISTS {
+    ?stT a fnd:VarianceStep .
+    FILTER NOT EXISTS { ?stT fnd:varianceTo ?st2 . ?st2 fnd:hasDomainType ?std . ?st2 fnd:hasCodomainType ?stc }
+  }
+}
+
+# EXPECT-TRUE q_no_untyped_self_apply : an ungated self-application chi-chi resolves to silm:isProvisional,
+#   never a naive proposition (Curry s6 paradox-quarantine).
+#   The s6 type-discipline quarantine (design s5; 06b_curry_lift.md s5; Curry 1936 s6: the Russell
+#   contradiction E=WQ, chi=[f]N(ff), |-chi-chi=N(chi-chi) arises ONLY from applying functionality F OUTSIDE
+#   its proper category - a tacit, "not even plausible" assumption about the functional character of
+#   negation). Type/functionality discipline is the quarantine: Directive 19 :293 requires self-application
+#   be type-disciplined, never naively self-applicable. A fnd:SelfApplication reifies a self-application
+#   f(f)/chi-chi. The teeth enforce TWO INDEPENDENT violation conditions. (a) UNCONDITIONAL: NO
+#   self-application - gated or ungated, genuinely resolved or not - may be admitted as a naive proposition
+#   (fnd:admittedAsProposition true); admitting chi-chi as a proposition is the exact Curry s6 move, forbidden
+#   even for a genuinely-resolved fnd:gatedSelfApplication (only ever PROVISIONALLY named, never a fact).
+#   (b) an UNGATED / not-genuinely-resolved self-application (exempt only when GENUINELY RESOLVED, Fix-C) must
+#   resolve to silm:isProvisional true (the Praeriehund provisional-naming quarantine: named because it must
+#   be named, but not admitted) - or it is a violation; this branch STAYS gated behind the genuine-resolution
+#   FILTER NOT EXISTS.
+#   FIX-C (genuine resolution, not a mere fnd:passedGuard edge): the earlier tooth exempted a self-application
+#   on the mere EXISTENCE of a fnd:passedGuard edge to ANY node, so fnd:passedGuard fnd:propA (an arbitrary
+#   UNCONSTRAINED node) admitted the Russell witness. A self-application is now GENUINELY RESOLVED only when
+#   its fnd:passedGuard target ?g is a proper gate/quarantine resolution - ?g a fnd:ContractGate OR ?g a
+#   fnd:QuarantineResolution - that itself fnd:marksProvisional the self-application, AND the self-application
+#   carries silm:isProvisional true; only such a real resolution exempts.
+#   DATA CONTRACT (functionality.ttl): at least one ?sa0 a fnd:SelfApplication exists (non-vacuity anchor,
+#     FALSE on the empty graph - fnd:chiSelfApplication, the ungated Russell chi-chi, carrying
+#     silm:isProvisional true and NO fnd:admittedAsProposition, exempt via the provisional path; plus
+#     fnd:gatedSelfApplication which fnd:passedGuard fnd:typedSelfAppGate - a genuine fnd:ContractGate that
+#     fnd:marksProvisional it - and itself carries silm:isProvisional true, so it is GENUINELY resolved); and
+#     NO self-application carries fnd:admittedAsProposition true (the UNCONDITIONAL branch (a)), and NO
+#     not-genuinely-resolved self-application lacks silm:isProvisional true (branch (b)).
+#   PROBE OF RECORD - T1 UNCONDITIONAL branch (a) (must flip True->False, mirrored by
+#     fnd:SelfApplicationGuardShape): inject fnd:gatedSelfApplication fnd:admittedAsProposition true - a
+#     GENUINELY-RESOLVED self-application (it fnd:passedGuard fnd:typedSelfAppGate, a fnd:ContractGate that
+#     fnd:marksProvisional it, and carries silm:isProvisional true) admitted as a proposition - now makes the
+#     ASK FALSE though it passed GREEN before the split (branch (a) is NOT under the genuine-resolution FILTER
+#     NOT EXISTS, so genuine resolution no longer exempts admission-as-a-proposition); this is the Curry s6
+#     asymmetry the split closes. Dropping the flag returns the ASK to TRUE.
+#   PROBE OF RECORD - branch (b) (the prior Fix-C probe, still biting): inject
+#     fnd:chiSelfApplication fnd:passedGuard fnd:propA (an ARBITRARY node, not a fnd:ContractGate /
+#     fnd:QuarantineResolution and with no fnd:marksProvisional edge) + fnd:admittedAsProposition true and
+#     remove silm:isProvisional true - it is NOT genuinely resolved (the genuine-resolution FILTER NOT EXISTS
+#     is satisfied) AND (branch (a)) admitted as a proposition AND (branch (b)) lacks the provisional flag, so
+#     the outer FILTER NOT EXISTS finds it and the ASK is FALSE (an ungated chi-chi behind an arbitrary
+#     passedGuard, admitted as a proposition -> RED); the pre-Fix-C tooth wrongly exempted this. Equivalently,
+#     removing silm:isProvisional true from a non-genuinely-resolved self-application fires branch (b). The
+#     branch (b) group re-binds ?sa
+#     (?sa a fnd:SelfApplication) BEFORE its FILTER NOT EXISTS { ?sa silm:isProvisional true }, so the guard
+#     tests THIS self-application's own provisional flag, per-subject - NOT a lone FILTER over the empty
+#     mapping (which, with ?sa unbound, would only ask whether ANY node carries silm:isProvisional).
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX fnd:  <urn:silmaril:fnd:#>
+PREFIX silm: <urn:silmaril:entity#>
+ASK {
+  ?sa0 a fnd:SelfApplication .
+  FILTER NOT EXISTS {
+    ?sa a fnd:SelfApplication .
+    {
+      # (a) UNCONDITIONAL: admitting a self-application as a NAIVE PROPOSITION is the exact Curry s6 move
+      #     -> a violation REGARDLESS of resolution (this branch is NO LONGER under the genuine-resolution
+      #     FILTER NOT EXISTS): even a genuinely-resolved gatedSelfApplication + admittedAsProposition true
+      #     is RED.
+      { ?sa fnd:admittedAsProposition true }
+      UNION
+      # (b) an UNGATED / not-genuinely-resolved self-application lacking silm:isProvisional true (STILL
+      #     gated behind the genuine-resolution FILTER NOT EXISTS, exactly as before).
+      {
+        FILTER NOT EXISTS {
+          ?sa fnd:passedGuard ?g .
+          ?g fnd:marksProvisional ?sa .
+          ?sa silm:isProvisional true .
+          { ?g rdf:type fnd:ContractGate } UNION { ?g rdf:type fnd:QuarantineResolution }
+        }
+        ?sa a fnd:SelfApplication . FILTER NOT EXISTS { ?sa silm:isProvisional true }
+      }
+    }
+  }
+}
+
+# =====================================================================================
+# T8 — combinators.ttl EXPECT-TRUE ASKs (design s5, Pillar 4; H. B. Curry, First Properties of
+# Functionality in Combinatory Logic, Tohoku Math. J. 41 (1936) 371-401, CITED not committed;
+# ledger/W2/algebra_foundation/06b_curry_lift.md s2 + 06_functionality_synthesis.md s1.B). The
+# combinatory substrate of the arrow pillar: the agnostic fnd:Combinator progenitor with children
+# B/C/W/K/I (each carrying its Curry reduction), the fnd:F_n arity ladder (Def 2.1: F_0=I, F_1=F,
+# F_{n+1}=(C.BB_{n+1})F_1 F_n), and the fnd:Compositor Gamma. SYN, cited-from-Curry (the corpus is a
+# named-variable lambda corpus, NOT a combinatory-logic corpus - B/C/W/K/I grep-verified ABSENT,
+# 06a_functionality_corpus.md s2.3 - so these have no Helios carrier and are honest cited-math atoms).
+# Each ASK is non-vacuous (FALSE on the pre-T8 graph) and mirrored by a SHACL tooth proven to bite
+# under a probe of record.
+# =====================================================================================
+
+# EXPECT-TRUE q_combinator_reduces : each combinator's defining reduction holds (Kxy=x, Ix=x, Wxy=xyy,
+#   Cxyz=xzy, Bxyz=x(yz)).
+#   The five Curry combinators and their defining reductions (design s5; 06b_curry_lift.md s2.1; Curry
+#   1936 combinators B (compose), C (swap), W (duplicate), K (constant), I (identity), axioms (FB)(FC)
+#   (FW)(FK)). Each reduction is reified as a fnd:CombinatorReduction over the shared atomic witness
+#   terms fnd:argX/argY/argZ (fnd:AtomicTerm), with the applied right-hand sides built as reified
+#   fnd:ApplicationTerm nodes (fnd:appFn function part, fnd:appArg argument part, left-associated exactly
+#   as combinatory application associates): I x = x; K x y = x; W x y = ((x y) y); C x y z = ((x z) y);
+#   B x y z = (x (y z)). The tooth reads the reified term structure by EDGE existence, never a range-
+#   inferred rdf:type, so inference=rdfs cannot forge an appFn/appArg edge between two term nodes and
+#   defang it (the SP1 defang discipline).
+#   DATA CONTRACT (combinators.ttl): at least one ?r0 a fnd:CombinatorReduction exists (non-vacuity
+#     anchor, FALSE on the empty foundation graph - fnd:redI/redK/redW/redC/redB); AND no reduction
+#     violates its combinator's canonical form - I's and K's fnd:reducesTo IS its fnd:redArg1; W's
+#     fnd:reducesTo is the application ((x y) y); C's is ((x z) y); B's is (x (y z)).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:CombinatorReducesShape): change fnd:redK
+#     fnd:reducesTo from fnd:argX to fnd:argY (so K x y = y, the wrong projection) - the K branch's
+#     FILTER(?res != ?x) fires and the ASK is FALSE (a wrong reduction -> RED). Equivalently, repointing
+#     any applied RHS breaks its structural branch.
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?r0 a fnd:CombinatorReduction .
+  FILTER NOT EXISTS { ?r fnd:reducesCombinator fnd:I ; fnd:redArg1 ?x ; fnd:reducesTo ?res . FILTER(?res != ?x) }
+  FILTER NOT EXISTS { ?r fnd:reducesCombinator fnd:K ; fnd:redArg1 ?x ; fnd:reducesTo ?res . FILTER(?res != ?x) }
+  FILTER NOT EXISTS {
+    ?r fnd:reducesCombinator fnd:W ; fnd:redArg1 ?x ; fnd:redArg2 ?y ; fnd:reducesTo ?res .
+    FILTER NOT EXISTS { ?res fnd:appFn ?in ; fnd:appArg ?y . ?in fnd:appFn ?x ; fnd:appArg ?y . }
+  }
+  FILTER NOT EXISTS {
+    ?r fnd:reducesCombinator fnd:C ; fnd:redArg1 ?x ; fnd:redArg2 ?y ; fnd:redArg3 ?z ; fnd:reducesTo ?res .
+    FILTER NOT EXISTS { ?res fnd:appFn ?in ; fnd:appArg ?y . ?in fnd:appFn ?x ; fnd:appArg ?z . }
+  }
+  FILTER NOT EXISTS {
+    ?r fnd:reducesCombinator fnd:B ; fnd:redArg1 ?x ; fnd:redArg2 ?y ; fnd:redArg3 ?z ; fnd:reducesTo ?res .
+    FILTER NOT EXISTS { ?res fnd:appFn ?x ; fnd:appArg ?in . ?in fnd:appFn ?y ; fnd:appArg ?z . }
+  }
+  FILTER NOT EXISTS {
+    ?rE fnd:reducesCombinator ?combE .
+    FILTER NOT EXISTS { ?rE fnd:reducesTo ?anyE }
+  }
+}
+
+# EXPECT-TRUE q_fn_ladder : the F_n arity recurrence holds (F_0=I, F_1=F, F_{n+1} folds F_1 and F_n
+#   through the compositor); a broken rung -> RED.
+#   Curry Def 2.1 (design s5; 06b_curry_lift.md s2.2; Curry 1936: F_0 = I, F_1 = F, F_{n+1} =
+#   (C.BB_{n+1}) F_1 F_n) - the n-ary functionality ladder, minted one rung at a time (the corpus's own
+#   "add one clause at a time" discipline, 26/03/04:24-50). Each rung is a fnd:NaryFunctionality carrying
+#   an xsd:integer fnd:fnIndex; the base rungs carry fnd:fnDefinedAs (F_0 = fnd:I the identity combinator,
+#   F_1 = fnd:curryFunctionality the base functionality F of Pillar 4); each successor rung (index >= 2)
+#   carries fnd:fnPredecessor (F_n, whose index is one below), fnd:fnBaseCase fnd:fnRung1 (the recurrence
+#   always folds in F_1) and fnd:composedVia a fnd:Compositor (the Gamma that composes them). The tooth
+#   reads index arithmetic and the recurrence edges, never a range-inferred type, so inference=rdfs
+#   cannot defang it.
+#   DATA CONTRACT (combinators.ttl): at least one ?fn0 a fnd:NaryFunctionality exists (non-vacuity anchor,
+#     FALSE on the empty graph - fnd:fnRung0..fnRung3); the index-0 rung fnd:fnDefinedAs fnd:I and the
+#     index-1 rung fnd:fnDefinedAs fnd:curryFunctionality (the two base cases); AND every successor rung
+#     satisfies the recurrence - its fnd:fnPredecessor's fnd:fnIndex is exactly one below its own, its
+#     fnd:fnBaseCase is fnd:fnRung1, and it is fnd:composedVia a fnd:Compositor.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:FnLadderShape): change fnd:fnRung2
+#     fnd:fnPredecessor from fnd:fnRung1 to fnd:fnRung0 (predecessor index 0, but own index 2, so
+#     0+1 != 2, a broken rung) - the predecessor-index branch fires and the ASK is FALSE (a broken
+#     recurrence rung -> RED).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?fn0 a fnd:NaryFunctionality .
+  FILTER NOT EXISTS { ?a fnd:fnIndex 0 . FILTER NOT EXISTS { ?a fnd:fnDefinedAs fnd:I } }
+  FILTER NOT EXISTS { ?b fnd:fnIndex 1 . FILTER NOT EXISTS { ?b fnd:fnDefinedAs fnd:curryFunctionality } }
+  FILTER NOT EXISTS { ?s fnd:fnPredecessor ?p ; fnd:fnIndex ?i . ?p fnd:fnIndex ?pi . FILTER((?pi + 1) != ?i) }
+  FILTER NOT EXISTS { ?s fnd:fnPredecessor ?p ; fnd:fnIndex ?i . FILTER(?i >= 2) FILTER NOT EXISTS { ?s fnd:fnBaseCase fnd:fnRung1 } }
+  FILTER NOT EXISTS { ?s fnd:fnPredecessor ?p ; fnd:fnIndex ?i . FILTER(?i >= 2) FILTER NOT EXISTS { ?s fnd:composedVia ?g . ?g a fnd:Compositor } }
+  FILTER NOT EXISTS { ?sN fnd:fnIndex ?iN . FILTER(?iN >= 2) FILTER NOT EXISTS { ?sN fnd:fnPredecessor ?pN } }
+  FILTER NOT EXISTS { ?sP fnd:fnPredecessor ?pP ; fnd:fnIndex ?iP . FILTER(?iP >= 2) FILTER NOT EXISTS { ?pP fnd:fnIndex ?piP } }
+}
+
+# =====================================================================================
+# T9 — logic.ttl EXPECT-TRUE ASKs (design s5, Pillar 4 logic sub-floor; H. B. Curry, First Properties
+# of Functionality in Combinatory Logic, Tohoku Math. J. 41 (1936) 371-401, CITED not committed;
+# ledger/W2/algebra_foundation/06b_curry_lift.md s4 + 06_functionality_synthesis.md). The logic
+# stratum of the arrow pillar: propositions P_r / negation N / implication (⊃) + proof terms; the
+# K/C/W implication laws (the exact implication face of the T8 combinators K=weakening, C=exchange,
+# W=contraction); and the functionality<->implication taiji (Curry Thm 5.8: the exponential/arrow sense
+# F(A,B) and the implication sense A⊃B are ONE lexeme with two glossary senses, Directive 16). SYN,
+# cited-from-Curry (the corpus is a named-variable lambda corpus with no propositional-implication
+# calculus - 06a_functionality_corpus.md - so these are honest cited-math atoms with no Helios carrier,
+# never masquerading as a lift). Each ASK is non-vacuous (FALSE on the pre-T9 graph) and mirrored by a
+# SHACL tooth proven to bite under a probe of record.
+# =====================================================================================
+
+# EXPECT-TRUE q_implication_kcw : the K/C/W implication laws hold (weakening / exchange / contraction).
+#   Curry s5's implication laws K/C/W (design s5; 06b_curry_lift.md s4.3; Curry 1936 s5: F is DEFINABLE
+#   from ⊃ given the K/C/W implication laws, Thm 5.8). Each law is the implication-face of one T8
+#   combinator (K = weakening, C = exchange, W = contraction - the structural rules of the implicational
+#   logic, combinators.ttl s2 seam), reified as a fnd:ImplicationLaw carrying fnd:lawCombinator (the T8
+#   fnd:K/fnd:C/fnd:W - the seam made a graph fact) and fnd:lawFormula (a reified fnd:Implication tree
+#   over the witness propositions fnd:propA/propB/propC via fnd:antecedent / fnd:consequent). The three
+#   canonical formulae: K = A ⊃ (B ⊃ A) (weakening: the outer antecedent A reappears as the inner
+#   consequent); W = (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B) (contraction: the doubled A in the antecedent contracts to
+#   one A in the consequent); C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)) (exchange: A and B swap around the
+#   nesting). The tooth walks the reified implication trees by fnd:antecedent / fnd:consequent EDGE
+#   existence, binding the shared propositions by variable identity, never a range-inferred rdf:type, so
+#   inference=rdfs cannot forge an implication edge and defang it (the SP1 defang discipline).
+#   DATA CONTRACT (logic.ttl): at least one ?l0 a fnd:ImplicationLaw exists (non-vacuity anchor, FALSE on
+#     the pre-T9 graph - fnd:lawK / fnd:lawW / fnd:lawC); AND no law departs from its canonical formula -
+#     the K-law's fnd:lawFormula is A ⊃ (B ⊃ A) (inner consequent = outer antecedent), the W-law's is
+#     (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B) (the shared A and B), the C-law's is (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)) (the
+#     A/B swap).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:ImplicationKCWShape): inject a K-law with a
+#     non-weakening formula - fnd:probeLawK a fnd:ImplicationLaw ; fnd:lawCombinator fnd:K ;
+#     fnd:lawFormula fnd:implAB (the bare A ⊃ B, whose consequent propB is atomic, NOT an implication
+#     whose consequent is A) - the K branch's inner FILTER NOT EXISTS finds no A ⊃ (B ⊃ A) structure and
+#     the ASK is FALSE (a K-law that is not weakening -> RED).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?l0 a fnd:ImplicationLaw .
+  FILTER NOT EXISTS {
+    ?lk fnd:lawCombinator fnd:K ; fnd:lawFormula ?f .
+    FILTER NOT EXISTS {
+      ?f fnd:antecedent ?a ; fnd:consequent ?c .
+      ?c fnd:antecedent ?b ; fnd:consequent ?a .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?lw fnd:lawCombinator fnd:W ; fnd:lawFormula ?f .
+    FILTER NOT EXISTS {
+      ?f fnd:antecedent ?ant ; fnd:consequent ?con .
+      ?ant fnd:antecedent ?a ; fnd:consequent ?inner .
+      ?inner fnd:antecedent ?a ; fnd:consequent ?b .
+      ?con fnd:antecedent ?a ; fnd:consequent ?b .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?lc fnd:lawCombinator fnd:C ; fnd:lawFormula ?f .
+    FILTER NOT EXISTS {
+      ?f fnd:antecedent ?ant ; fnd:consequent ?con .
+      ?ant fnd:antecedent ?a ; fnd:consequent ?bc .
+      ?bc fnd:antecedent ?b ; fnd:consequent ?c .
+      ?con fnd:antecedent ?b ; fnd:consequent ?ac .
+      ?ac fnd:antecedent ?a ; fnd:consequent ?c .
+    }
+  }
+  FILTER NOT EXISTS { ?lF a fnd:ImplicationLaw . FILTER NOT EXISTS { ?lF fnd:lawFormula ?anyF } }
+  FILTER NOT EXISTS { ?lC a fnd:ImplicationLaw . FILTER NOT EXISTS { ?lC fnd:lawCombinator ?anyC } }
+}
+
+# EXPECT-TRUE q_curry_howard : the exponential/arrow sense and the implication sense coincide on a
+#   witness (the Curry-Howard taiji; divergence -> RED).
+#   Curry s5's functionality<->implication definability (design s5; 06b_curry_lift.md s4; Curry 1936 s5:
+#   F' ≡ [x,y,z](u)(xu ⊃ y(zu)), Thm 5.8 - a function type is a universally-quantified implication; the
+#   Curry-Howard ancestor). Directive 16 polysemy: ONE lexeme with two glossary-scoped senses
+#   simultaneously - the ARROW sense (the exponential B^A = the fnd:ArrowType F(A,B) of functionality.ttl,
+#   T7) and the IMPLICATION sense (A ⊃ B = a fnd:Implication) - the SAME object. A fnd:CurryHowardCorrespondence
+#   reifies the taiji, carrying fnd:arrowSense (an fnd:ArrowType) and fnd:implicationSense (an
+#   fnd:Implication); the two senses COINCIDE iff the arrow type's fnd:hasDomainType is the fnd:WitnessType
+#   the implication's fnd:antecedent denotes (via the propositions-as-types bridge fnd:propType) AND the
+#   arrow type's fnd:hasCodomainType is the type the implication's fnd:consequent denotes. The tooth reads
+#   the reified correspondence and the propType bridge by EDGE existence, never a range-inferred type, so
+#   inference=rdfs cannot defang it (the SP1 defang discipline).
+#   DATA CONTRACT (logic.ttl + functionality.ttl): at least one ?ch0 a fnd:CurryHowardCorrespondence exists
+#     (non-vacuity anchor, FALSE on the pre-T9 graph - fnd:chWitness: arrow sense F(Animal,Dog) reusing the
+#     committed fnd:arrowTypeAnimalDog, implication sense Animal ⊃ Dog = fnd:implAnimalDog); NO correspondence
+#     diverges on the domain (every arrow domain type is propType-denoted by the implication antecedent); and
+#     NO correspondence diverges on the codomain (every arrow codomain type is propType-denoted by the
+#     implication consequent). fnd:propAnimal fnd:propType fnd:typeAnimal and fnd:propDog fnd:propType
+#     fnd:typeDog carry the bridge.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:CurryHowardShape): inject a divergent
+#     correspondence - fnd:probeCh a fnd:CurryHowardCorrespondence ; fnd:arrowSense fnd:arrowTypeAnimalDog ;
+#     fnd:implicationSense fnd:implDogAnimal (the arrow F(Animal,Dog) paired with the implication Dog ⊃ Animal:
+#     the arrow domain typeAnimal but the antecedent propDog denotes typeDog, a domain divergence) - the domain
+#     clause fires and the ASK is FALSE (the two senses do not coincide -> RED).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?ch0 a fnd:CurryHowardCorrespondence .
+  FILTER NOT EXISTS {
+    ?ch fnd:arrowSense ?arr ; fnd:implicationSense ?impl .
+    ?arr fnd:hasDomainType ?dt .
+    ?impl fnd:antecedent ?ant .
+    FILTER NOT EXISTS { ?ant fnd:propType ?dt }
+  }
+  FILTER NOT EXISTS {
+    ?ch fnd:arrowSense ?arr ; fnd:implicationSense ?impl .
+    ?arr fnd:hasCodomainType ?ct .
+    ?impl fnd:consequent ?con .
+    FILTER NOT EXISTS { ?con fnd:propType ?ct }
+  }
+  FILTER NOT EXISTS {
+    ?chA a fnd:CurryHowardCorrespondence .
+    FILTER NOT EXISTS { ?chA fnd:arrowSense ?arrA . ?arrA fnd:hasDomainType ?adA . ?arrA fnd:hasCodomainType ?acA }
+  }
+  FILTER NOT EXISTS {
+    ?chI a fnd:CurryHowardCorrespondence .
+    FILTER NOT EXISTS { ?chI fnd:implicationSense ?implI . ?implI fnd:antecedent ?iaI . ?implI fnd:consequent ?icI }
+  }
+}
+
+# EXPECT-TRUE q_proof_term_typed : every proof term is typed by the implication it proves (a proof term
+#   whose type isn't the implication it claims -> RED).
+#   The terms-as-proofs face of Curry-Howard (design s5; 06b_curry_lift.md s4; Curry 1936 s5). Under the
+#   taiji a proof of an implication A ⊃ B is a function of type F(A,B): a fnd:ProofTerm carries
+#   fnd:provesImplication (the fnd:Implication it witnesses) and fnd:proofTermType (its fnd:ArrowType). The
+#   proof term is well typed iff its arrow type's fnd:hasDomainType is the fnd:WitnessType the proved
+#   implication's fnd:antecedent denotes (via fnd:propType) AND its arrow type's fnd:hasCodomainType is the
+#   type the proved implication's fnd:consequent denotes - the inhabitant-level coincidence complementing
+#   q_curry_howard's constructor-level one. The tooth reads the proof term, the implication tree and the
+#   propType bridge by EDGE existence, never a range-inferred type (the SP1 defang discipline).
+#   DATA CONTRACT (logic.ttl): at least one ?pt0 a fnd:ProofTerm exists (non-vacuity anchor, FALSE on the
+#     pre-T9 graph - fnd:proofAnimalDog: fnd:provesImplication fnd:implAnimalDog (Animal ⊃ Dog),
+#     fnd:proofTermType fnd:arrowTypeAnimalDog (F(Animal,Dog))); NO proof term diverges on the domain (its
+#     arrow domain type is propType-denoted by the proved antecedent); and NO proof term diverges on the
+#     codomain (its arrow codomain type is propType-denoted by the proved consequent).
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:ProofTermTypedShape): inject a mistyped proof
+#     term - fnd:probeProof a fnd:ProofTerm ; fnd:provesImplication fnd:implAnimalDog ; fnd:proofTermType
+#     fnd:arrowTypeDogAnimal (claims to prove Animal ⊃ Dog but is typed F(Dog,Animal): the arrow domain
+#     typeDog, but the proved antecedent propAnimal denotes typeAnimal) - the domain clause fires and the
+#     ASK is FALSE (a proof term whose type isn't the implication it claims -> RED).
+PREFIX fnd: <urn:silmaril:fnd:#>
+ASK {
+  ?pt0 a fnd:ProofTerm .
+  FILTER NOT EXISTS {
+    ?pt fnd:provesImplication ?impl ; fnd:proofTermType ?arr .
+    ?arr fnd:hasDomainType ?dt .
+    ?impl fnd:antecedent ?ant .
+    FILTER NOT EXISTS { ?ant fnd:propType ?dt }
+  }
+  FILTER NOT EXISTS {
+    ?pt fnd:provesImplication ?impl ; fnd:proofTermType ?arr .
+    ?arr fnd:hasCodomainType ?ct .
+    ?impl fnd:consequent ?con .
+    FILTER NOT EXISTS { ?con fnd:propType ?ct }
+  }
+  FILTER NOT EXISTS {
+    ?ptA a fnd:ProofTerm .
+    FILTER NOT EXISTS { ?ptA fnd:proofTermType ?arrA . ?arrA fnd:hasDomainType ?adA . ?arrA fnd:hasCodomainType ?acA }
+  }
+  FILTER NOT EXISTS {
+    ?ptI a fnd:ProofTerm .
+    FILTER NOT EXISTS { ?ptI fnd:provesImplication ?implI . ?implI fnd:antecedent ?iaI . ?implI fnd:consequent ?icI }
+  }
+}
+
+
+# =====================================================================================
+# T10 — reanchor.ttl EXPECT-TRUE ASKs (design s7 the additive re-anchor; ledger/W2/algebra_foundation/
+# 05_reanchor_surface.md). SP1/SP2/SP3 re-anchor ONTO the foundation ADDITIVELY - new grounding EDGES
+# (fnd:groundsInSet / fnd:groundsInAlgebra / fnd:groundsInSpace / fnd:functionalityOf), rebuild nothing;
+# the ONE genuine is-a build is aob:SealedGroup rdfs:subClassOf fnd:Group, teeth-proved a real group.
+# =====================================================================================
+
+
+# EXPECT-TRUE q_reanchor_additive : every prior-floor grounding is an EDGE onto a genuine structure; no rebuild.
+#   The additive re-anchor (design s7; 05_reanchor_surface.md s4: 15/16 rows additive). SP1/SP2/SP3 are ALREADY
+#   algebra-shaped (Directive 18 last bullet); re-anchoring means adding fnd:groundsIn* / fnd:functionalityOf
+#   EDGES from the committed carriers up into the foundation, plus the ONE genuine subclass edge
+#   aob:SealedGroup rdfs:subClassOf fnd:Group - no committed structure is rebuilt and (proven by the runner
+#   keeping SP1/SP2/SP3 green + git untouched) no prior triple is removed. This tooth makes the additive
+#   discipline a GRAPH FACT: the representative re-anchor edges of ALL FOUR grounding predicates exist -
+#   the three set/algebra/functionality siblings AND the fourth space sibling at full PARITY (SP1 prim:Octet
+#   into a fnd:Set, prim:ByteVector into a fnd:AlgebraicStructure, prim:Frame typed by Curry's F; SP3
+#   crs:GeographicPlaneGeometer into a fnd:MetricSpace via fnd:groundsInSpace; SP2 aob:SealedGroup is-a
+#   fnd:Group, aob:HashDigest into a fnd:Set; SP3 crs:CarrierProduct into a fnd:Set, crs:CoordinateDerivation
+#   typed by F), AND every fnd:groundsInAlgebra edge lands on a GENUINE (Sigma,E) presented-algebra rung (one
+#   carrying a fnd:hasSignature) AND every fnd:groundsInSpace edge lands on a GENUINE space object (one
+#   carrying a space-structure edge - fnd:hasPoint / fnd:hasDistanceAssertion of a fnd:MetricSpace,
+#   fnd:hasTessellationVertices of a fnd:PerceptualTessellation, or fnd:hasCarrierSet / fnd:hasOpenSet of a
+#   fnd:TopologicalSpace) - never on a bare non-matching node that would be a rebuild-in-disguise. The space
+#   clause reads EDGE existence of a genuine space-structure edge, NOT the range-inferred rdf:type
+#   fnd:MetricSpace (which inference=rdfs WOULD materialise onto any fnd:groundsInSpace target and defang a
+#   type check) - the same defang discipline the fnd:hasSignature algebra clause uses. Edge-existence throughout.
+#   DATA CONTRACT (reanchor.ttl): the EIGHT representative additive edges above exist (FALSE on the pre-T10
+#     graph, where none do - the non-vacuity anchor); NO fnd:groundsInAlgebra edge targets a structure
+#     lacking a fnd:hasSignature (every algebra grounding lands on a real rung); and NO fnd:groundsInSpace
+#     edge targets a structure lacking a space-structure edge (every space grounding lands on a real space).
+#   PROBE OF RECORD (each must flip True->False, mirrored by fnd:ReanchorAdditiveShape):
+#     (algebra) fnd:probeBadAlgebraGrounding fnd:groundsInAlgebra fnd:setBit2 (a fnd:Set, no fnd:hasSignature)
+#       - the algebra FILTER NOT EXISTS finds it and the ASK is FALSE (a rebuild-in-disguise -> RED);
+#     (space-delete) removing the sole crs:GeographicPlaneGeometer fnd:groundsInSpace fnd:metricSpaceWitness
+#       edge makes the existence line unsatisfiable -> the ASK is FALSE (the space sibling now has teeth);
+#     (space-bad) crs:CoordinateDerivation fnd:groundsInSpace fnd:setBit2 (a fnd:Set, no space-structure
+#       edge: a groundsInSpace onto a non-space) - the space FILTER NOT EXISTS finds it -> the ASK is FALSE.
+PREFIX fnd:  <urn:silmaril:fnd:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX aob:  <urn:silmaril:aob:#>
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  prim:Octet fnd:groundsInSet ?so .
+  prim:ByteVector fnd:groundsInAlgebra ?sm .
+  prim:Frame fnd:functionalityOf ?f1 .
+  crs:GeographicPlaneGeometer fnd:groundsInSpace ?sp .
+  aob:SealedGroup rdfs:subClassOf fnd:Group .
+  aob:HashDigest fnd:groundsInSet ?sh .
+  crs:CarrierProduct fnd:groundsInSet ?scp .
+  crs:CoordinateDerivation fnd:functionalityOf ?f2 .
+  FILTER NOT EXISTS {
+    ?c fnd:groundsInAlgebra ?alg .
+    FILTER NOT EXISTS { ?alg fnd:hasSignature ?sig }
+  }
+  FILTER NOT EXISTS {
+    ?cs fnd:groundsInSpace ?spx .
+    FILTER NOT EXISTS {
+      { ?spx fnd:hasPoint ?pt } UNION { ?spx fnd:hasDistanceAssertion ?da } UNION
+      { ?spx fnd:hasTessellationVertices ?tv } UNION { ?spx fnd:hasCarrierSet ?csx } UNION
+      { ?spx fnd:hasOpenSet ?os }
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_sealedgroup_is_group : the SP2 aob:SealedGroup satisfies the full fnd:Group teeth.
+#   The ONE real build of the re-anchor (design s7 / Directive 20 PIN: "the one real build is
+#   aob:SealedGroup->fnd:Group teeth-proven, with SP2 SealedGroup a CHILD of a fresh agnostic Group
+#   progenitor"; 05_reanchor_surface.md A1/D4). SP2's sealed group NAMES itself a monoid/group OBJECT but
+#   materialises only partial axioms (associativity + identity + one aob:retracts inverse; no general binary
+#   operation, no closure, no two-sided-inverse-universal, no abelian flag - 05 s2.1). T10 makes it a GENUINE
+#   group ADDITIVELY: it declares aob:SealedGroup rdfs:subClassOf fnd:Group and supplies (in reanchor.ttl,
+#   never touching the SP2 files) the missing foundation-side group structure over the REAL sealed-group
+#   elements - identity aob:witnessAnchor, the four elements typed fnd:AlgebraElement, a CLOSED abelian Z/4
+#   Cayley table (fnd:opStructure aob:witnessGroup) honouring the one materialised inverse (inv(description)
+#   = replacement, matching aob:retracts), and a two-sided fnd:InversePairing for every element. The reused
+#   T4 teeth then bite on the actual sealed group: fnd:MonoidIdentityShape (identity) and fnd:GroupInverseShape
+#   (every pairing two-sidedly undoes) fire on aob:witnessGroup / its pairings; this ASK confirms the four
+#   Directive-20 group properties together: binary-op present, closure (no product escapes the carrier),
+#   two-sided-inverse-universal (every element has a genuine inverse), and the abelian flag (commutativity).
+#   DATA CONTRACT (reanchor.ttl): aob:SealedGroup rdfs:subClassOf fnd:Group (FALSE on the pre-T10 graph -
+#     the non-vacuity anchor); aob:witnessGroup carries fnd:hasIdentityElement + fnd:isAbelian true + a binary
+#     op table; NO product lands outside fnd:hasElement (closure); EVERY fnd:hasElement carries a two-sided
+#     inverse pairing to the identity; NO pair violates commutativity.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:SealedGroupIsGroupShape / reusing fnd:GroupInverseShape):
+#     change fnd:sgApp_a_c fnd:opResult from aob:witnessAnchor (e) to aob:witnessExample (b), so a.c = b != e:
+#     the inverse pairing (description,replacement) no longer two-sidedly undoes AND the product stays in the
+#     carrier but breaks the inverse-universal clause -> the ASK is FALSE (the SealedGroup ceases to be a group).
+PREFIX fnd:  <urn:silmaril:fnd:#>
+PREFIX aob:  <urn:silmaril:aob:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  aob:SealedGroup rdfs:subClassOf fnd:Group .
+  aob:witnessGroup fnd:hasIdentityElement ?e ; fnd:isAbelian true .
+  ?row0 fnd:opStructure aob:witnessGroup .
+  FILTER NOT EXISTS {
+    ?row fnd:opStructure aob:witnessGroup ; fnd:opResult ?r .
+    FILTER NOT EXISTS { aob:witnessGroup fnd:hasElement ?r }
+  }
+  FILTER NOT EXISTS {
+    aob:witnessGroup fnd:hasElement ?x .
+    FILTER NOT EXISTS {
+      ?p a fnd:InversePairing ; fnd:pairingModel aob:witnessGroup ; fnd:pairingElement ?x ; fnd:pairingInverse ?y .
+      ?xy fnd:opStructure aob:witnessGroup ; fnd:opLeft ?x ; fnd:opRight ?y ; fnd:opResult ?e .
+      ?yx fnd:opStructure aob:witnessGroup ; fnd:opLeft ?y ; fnd:opRight ?x ; fnd:opResult ?e .
+    }
+  }
+  FILTER NOT EXISTS {
+    ?ab fnd:opStructure aob:witnessGroup ; fnd:opLeft ?u ; fnd:opRight ?v ; fnd:opResult ?uv .
+    ?ba fnd:opStructure aob:witnessGroup ; fnd:opLeft ?v ; fnd:opRight ?u ; fnd:opResult ?vu .
+    FILTER(?uv != ?vu)
+  }
+}
+
+# =====================================================================================
+# T11 — the honesty-ledger integration tooth (design s0, the Praeriehund honesty ledger; Directive 20
+# HONESTY pin). The one NEW EXPECT-TRUE ASK T11 adds; mirrors fnd:AuthorityTagShape.
+# =====================================================================================
+# EXPECT-TRUE q_honesty_ledger : every fnd class-like/property atom is honestly classified (exactly one
+#   DS/PD/SYN tag) and at least one genuinely-tagged fnd class exists (non-vacuity). This is what makes
+#   "every foundation atom carries a DS/PD/SYN authority tag, no SYN atom masquerading as a Helios lift"
+#   (design s0, LOAD-BEARING) a graph fact rather than prose. The ASK has a POSITIVE non-vacuity clause -
+#   there IS an fnd owl:Class carrying a valid authority tag - so it returns FALSE on an empty graph (no
+#   such node) and cannot pass vacuously; AND a NOT-EXISTS clause - NO fnd-namespace owl:Class /
+#   owl:ObjectProperty / owl:DatatypeProperty anywhere lacks a single valid tag or carries two distinct
+#   tags. Over the committed floor all 77 fnd owl:Class + 122 fnd owl:ObjectProperty + 22 fnd
+#   owl:DatatypeProperty carry exactly one tag from {fnd:DS, fnd:PD, fnd:SYN}, so the ASK is TRUE.
+#   DATA CONTRACT (the whole authored foundation graph): every fnd owl:Class/ObjectProperty/
+#     DatatypeProperty carries exactly one fnd:authority in {fnd:DS,fnd:PD,fnd:SYN}; the enumerated tags
+#     fnd:DS/fnd:PD/fnd:SYN are declared (engine.ttl) as the three fnd:AuthorityTag individuals.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:AuthorityTagShape):
+#     (a) inject  fnd:probeUntaggedClass a owl:Class .   (an fnd owl:Class with NO fnd:authority) ->
+#         the NOT-EXISTS clause finds the unclassified atom -> the ASK is FALSE (branch (a) of the shape
+#         bites, conforms=True->False); OR
+#     (b) inject  fnd:probeDoubleTag a owl:Class ; fnd:authority fnd:SYN , fnd:DS .  (a masquerading
+#         double-tag) -> the NOT-EXISTS clause finds the two distinct tags -> the ASK is FALSE (branch
+#         (b) of the shape bites, conforms=True->False).
+PREFIX fnd:  <urn:silmaril:fnd:#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+ASK {
+  ?a a owl:Class .
+  FILTER(STRSTARTS(STR(?a), "urn:silmaril:fnd:#"))
+  ?a fnd:authority ?ta .
+  FILTER(?ta IN (fnd:DS, fnd:PD, fnd:SYN))
+  FILTER NOT EXISTS {
+    ?x a ?meta .
+    FILTER(?meta IN (owl:Class, owl:ObjectProperty, owl:DatatypeProperty))
+    FILTER(STRSTARTS(STR(?x), "urn:silmaril:fnd:#"))
+    FILTER(
+      NOT EXISTS { ?x fnd:authority ?t . FILTER(?t IN (fnd:DS, fnd:PD, fnd:SYN)) }
+      || EXISTS { ?x fnd:authority ?p , ?q . FILTER(?p != ?q) }
+    )
+  }
+}
+
+
+# EXPECT-TRUE q_authority_honest : every DS/PD-tagged atom carries an EXACT-LINE helios/srcy citation on
+#   EVERY helios reference (the honesty ledger's OWN bar, self-enforcing; design s0, Directive 20 HONESTY
+#   pin). A DS (verbatim-Helios) or PD (proof-derived-from-Helios) tag is only honest when the atom's
+#   rdfs:comment carries the source LOCUS WITH ITS LINE(S), so a synthesized atom can never masquerade as a
+#   Helios lift merely by wearing a DS/PD tag with a bare-file (no-:line) or absent citation. This is
+#   STRONGER than q_honesty_ledger (exactly-one-tag) AND stronger than the prior CONTAINS('helios/srcy/')
+#   form, which a bare-file citation with no line silently passed - the hole a hostile review named. The
+#   ASK has a POSITIVE non-vacuity clause - there IS a DS/PD atom carrying an EXACT-LINE helios/srcy
+#   citation (REGEX "helios/srcy/...*.tex:[0-9]") - so it returns FALSE on an empty graph and cannot pass
+#   vacuously; a NOT-EXISTS clause - NO DS/PD atom LACKS an exact-line helios/srcy citation (no citation, or
+#   a citation stripped to a bare file); and a SECOND NOT-EXISTS clause - NO DS/PD atom carries ANY
+#   bare-file helios/srcy .tex NOT followed by :line (REGEX negative lookahead), so EVERY helios citation on
+#   a DS/PD atom pins its line(s). Text-only (REGEX over rdfs:comment), never a range-inferred type - the
+#   SP1 defang discipline. Over the swept floor every DS/PD atom (minting engine, structural Set, the
+#   Monoid/endomorphism seam vocabulary - incl. fnd:soleObject:36-39 - Site/Sheaf/PerceptualTessellation
+#   vocabulary - incl. fnd:overCover/fnd:familyOverB:30-52, fnd:LocalSection:1-9, fnd:MatchingFamily:1-5 -
+#   the DS/PD/SYN honesty machinery cited to appendix 37:240) carries an exact-line file:line, so TRUE.
+#   DATA CONTRACT (the whole authored foundation graph): every subject of fnd:authority whose value is
+#     fnd:DS or fnd:PD has at least one rdfs:comment matching "helios/srcy/...*.tex:START(-END)?" AND no
+#     rdfs:comment carrying a bare-file helios/srcy .tex with no :line suffix.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:AuthorityHonestyShape):
+#     (a) retag  fnd:AlgebraicStructure fnd:authority fnd:DS  (its comment cites only Directive 17 + the
+#         ledger byte_order worked example, no helios/srcy - the exact SYN-masquerading-as-DS dodge) ->
+#         the first NOT-EXISTS clause finds the uncited DS atom -> the ASK is FALSE; OR
+#     (b) inject  fnd:probeUncitedDS a owl:Class ; fnd:authority fnd:DS ; rdfs:comment "a direct-source
+#         claim with no Helios file:line" .  -> a fresh DS atom with no helios/srcy citation -> FALSE; OR
+#     (c) STRIP the :line off a real DS atom's sole citation (fnd:soleObject:36-39 -> bare file) -> the
+#         first clause (no lined citation) AND the bare-file NOT-EXISTS clause both fire -> the ASK is FALSE.
+PREFIX fnd:  <urn:silmaril:fnd:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  ?d fnd:authority ?td .
+  FILTER(?td IN (fnd:DS, fnd:PD))
+  ?d rdfs:comment ?dc .
+  FILTER(REGEX(STR(?dc), "helios/srcy/[^ ,;)]*\\.tex:[0-9]"))
+  FILTER NOT EXISTS {
+    ?x fnd:authority ?tx .
+    FILTER(?tx IN (fnd:DS, fnd:PD))
+    FILTER NOT EXISTS {
+      ?x rdfs:comment ?cx .
+      FILTER(REGEX(STR(?cx), "helios/srcy/[^ ,;)]*\\.tex:[0-9]"))
+    }
+  }
+  FILTER NOT EXISTS {
+    ?y fnd:authority ?ty .
+    FILTER(?ty IN (fnd:DS, fnd:PD))
+    ?y rdfs:comment ?cy .
+    FILTER(REGEX(STR(?cy), "helios/srcy/[^ ,;)]*\\.tex(?!:[0-9])"))
+  }
+}
+
+
+# EXPECT-TRUE q_ring_add_identity : the additive IDENTITY holds on every two-operation structure (0+x=x, x+0=x) (R7-2).
+#   The two-operation line (design s3; 02_algebra_tower.md:134-136 - ring FULLY ABSENT as algebra in Helios).
+#   SYN, cited standard ring theory. A Semiring/Ring/Field's additive part is a commutative MONOID (Semiring) /
+#   abelian GROUP (Ring/Field), so it MUST carry a two-sided additive identity 0 (fnd:hasZeroElement) with
+#   0+x=x AND x+0=x for every element; but the ring reifies via fnd:ringStructure over fnd:hasZeroElement -
+#   DISTINCT from the spine fnd:opStructure / fnd:hasIdentityElement that q_monoid_identity walks - so no spine
+#   identity tooth reached the ring additive identity: a two-operation structure whose declared zero fails 0+a=a,
+#   or which omits the zero, passed GREEN (the round-7 finding-2 hole, additive side). This tooth closes it,
+#   mirroring q_monoid_identity over the two-operation table, plus a fnd:Semiring EXISTENCE clause.
+#   DATA CONTRACT (algebra_rings.ttl): at least one structure declares fnd:hasZeroElement (non-vacuity anchor,
+#     FALSE on the empty graph - fnd:ringModel fnd:hasZeroElement fnd:ringZero with 0+0=0, 0+1=1, 0+2=2, 1+0=1,
+#     2+0=2; fnd:fieldModel fnd:hasZeroElement fnd:fieldZero); for EVERY structure ?m with fnd:hasZeroElement ?z,
+#     NO additive row of ?m with ?z on the left has a result != its right operand and NO row with ?z on the
+#     right has a result != its left operand; and EVERY fnd:Semiring (rdf:type/rdfs:subClassOf*) HAS a zero.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:RingAddIdentityShape): change fnd:appRingAdd_0_1
+#     (0+1) fnd:ringResult from fnd:ringOne to fnd:ringZero, so 0+1 = 0 != 1 - the declared zero fails the
+#     left-unit law, the inner UNION finds the offending row, and the ASK is FALSE.
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd:  <urn:silmaril:fnd:#>
+ASK {
+  ?anchor fnd:hasZeroElement ?z0 .
+  FILTER NOT EXISTS {
+    ?m fnd:hasZeroElement ?z .
+    {
+      ?rL fnd:ringStructure ?m ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?z ; fnd:ringRight ?x ; fnd:ringResult ?rLr .
+      FILTER(?rLr != ?x)
+    } UNION {
+      ?rR fnd:ringStructure ?m ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft ?x ; fnd:ringRight ?z ; fnd:ringResult ?rRr .
+      FILTER(?rRr != ?x)
+    }
+  }
+  FILTER NOT EXISTS {
+    ?sr rdf:type/rdfs:subClassOf* fnd:Semiring .
+    FILTER NOT EXISTS { ?sr fnd:hasZeroElement ?zX }
+  }
+}
+
+
+# EXPECT-TRUE q_ring_mult_identity : the multiplicative IDENTITY holds on every fnd:Semiring (1*x=x, x*1=x) (R7-2 / Fix-B).
+#   The two-operation line (design s3; 02_algebra_tower.md:134-136 - ring FULLY ABSENT as algebra in Helios).
+#   SYN, cited standard ring theory. A Semiring's multiplicative part is a MONOID (design two-operation line:
+#   'each of the two operations a monoid'), so it MUST carry a two-sided multiplicative identity 1 (fnd:hasOneElement)
+#   with 1*x=x AND x*1=x for every element; but the ring reifies via fnd:ringStructure over fnd:hasOneElement -
+#   DISTINCT from the spine fnd:opStructure / fnd:hasIdentityElement that q_monoid_identity walks - so no spine
+#   identity tooth reached the ring/semiring multiplicative identity: a fnd:Semiring whose declared one fails 1*a=a,
+#   or which omits the one, passed GREEN (the round-7 finding-2 hole, multiplicative side; and Fix-B: the EXISTENCE
+#   clause quantified only over fnd:Ring, so a unit-less bare fnd:Semiring - itself a multiplicative monoid -
+#   escaped). This tooth closes it, mirroring q_ring_add_identity over the fnd:multiplicativeOp rows, plus a
+#   fnd:Semiring EXISTENCE clause (Fix-B broadens the existence scope from fnd:Ring to fnd:Semiring, and thus
+#   Ring/Field, exactly as q_ring_add_identity already quantifies additive existence over fnd:Semiring).
+#   DATA CONTRACT (algebra_rings.ttl): at least one structure declares fnd:hasOneElement (non-vacuity anchor,
+#     FALSE on the empty graph - fnd:ringModel fnd:hasOneElement fnd:ringOne with 1*0=0, 1*1=1, 1*2=2, 0*1=0,
+#     2*1=2; fnd:fieldModel fnd:hasOneElement fnd:fieldOne with 1*1=1); for EVERY structure ?m with
+#     fnd:hasOneElement ?o, NO multiplicative row of ?m with ?o on the left has a result != its right operand and
+#     NO row with ?o on the right has a result != its left operand; and EVERY fnd:Semiring (rdf:type/rdfs:subClassOf*
+#     - fnd:ringModel and fnd:fieldModel are both fnd:Semiring, each with a declared one) HAS a one.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:RingMultIdentityShape): change fnd:appRingMul_1_0
+#     (1*0) fnd:ringResult from fnd:ringZero to fnd:ringOne, so 1*0 = 1 != 0 - the declared one fails the
+#     left-unit law, the inner UNION finds the offending row, and the ASK is FALSE; and (Fix-B) a fresh unit-less
+#     fnd:Semiring with NO fnd:hasOneElement makes the fnd:Semiring EXISTENCE clause find it, and the ASK is FALSE.
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd:  <urn:silmaril:fnd:#>
+ASK {
+  ?anchor fnd:hasOneElement ?o0 .
+  FILTER NOT EXISTS {
+    ?m fnd:hasOneElement ?o .
+    {
+      ?rL fnd:ringStructure ?m ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?o ; fnd:ringRight ?x ; fnd:ringResult ?rLr .
+      FILTER(?rLr != ?x)
+    } UNION {
+      ?rR fnd:ringStructure ?m ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?x ; fnd:ringRight ?o ; fnd:ringResult ?rRr .
+      FILTER(?rRr != ?x)
+    }
+  }
+  FILTER NOT EXISTS {
+    ?rg rdf:type/rdfs:subClassOf* fnd:Semiring .
+    FILTER NOT EXISTS { ?rg fnd:hasOneElement ?oX }
+  }
+}
+
+
+# EXPECT-TRUE q_field_mult_comm : multiplicative COMMUTATIVITY holds on every fnd:Field (a*b = b*a) (R7-1).
+#   The two-operation line (design s3 'Field multiplicative part COMMUTATIVE'; 02_algebra_tower.md:134-136 -
+#   field FULLY ABSENT as algebra in Helios, only record-field). SYN, cited standard field theory. A fnd:Field's
+#   defining upgrade over a fnd:Ring is that its nonzero elements form a COMMUTATIVE group under * (a*b=b*a);
+#   the additive side already has q_ring_add_comm, but the MULTIPLICATIVE commutativity SPECIFIC to fnd:Field
+#   had NO tooth - a fnd:Field with a*b != b*a passed GREEN (the round-7 finding-1 HIGH hole). This tooth closes
+#   it CLASS-GENERAL over every fnd:Field (rdf:type/rdfs:subClassOf* fnd:Field, reaching fnd:fieldModel),
+#   mirroring q_ring_add_comm over the fnd:multiplicativeOp rows but SCOPED to fnd:Field (noncommutative
+#   rings/semirings are legitimate, so the law is added ONLY at the Field rung, exactly as the design pins it).
+#   DATA CONTRACT (algebra_rings.ttl): at least one multiplicative row over some ?m a fnd:Field (non-vacuity
+#     anchor, FALSE on the empty graph - the GF(3) multiplicative table over fnd:fieldModel, incl. the distinct
+#     pair 1*2=2 / 2*1=2); NO pair (a,b) over ANY fnd:Field-typed model has a*b != b*a.
+#   PROBE OF RECORD (must flip True->False, mirrored by fnd:FieldMultCommShape): change fnd:appFieldMul_1_2 (1*2)
+#     fnd:ringResult from fnd:fieldTwo to fnd:fieldOne, so 1*2 = 1 while 2*1 = 2 (fnd:appFieldMul_2_1) - the pair
+#     (1,2) is non-commutative, the inner EXISTS finds it, and the ASK is FALSE.
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fnd:  <urn:silmaril:fnd:#>
+ASK {
+  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Field .
+  ?anchor fnd:ringStructure ?mAnchor ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?la ; fnd:ringRight ?ra ; fnd:ringResult ?resa .
+  FILTER NOT EXISTS {
+    ?m rdf:type/rdfs:subClassOf* fnd:Field .
+    ?rab fnd:ringStructure ?m ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?a ; fnd:ringRight ?b ; fnd:ringResult ?ab .
+    ?rba fnd:ringStructure ?m ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?b ; fnd:ringRight ?a ; fnd:ringResult ?ba .
+    FILTER(?ab != ?ba)
+  }
+}

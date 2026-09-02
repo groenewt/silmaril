@@ -1,0 +1,375 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# combinators.ttl — Pillar 4: the combinatory substrate B/C/W/K/I + the F_n arity ladder + the
+# compositor Gamma (W2 · SP0, Task T8; design s5; Directive 19; ledger 06b_curry_lift.md s2).
+# =====================================================================================
+# The point-free substrate under the arrow pillar's typed functionality F (functionality.ttl, T7).
+# Curry's combinatory logic supplies it whole - B (compose), C (swap), W (duplicate), K (constant),
+# I (identity) with the defining reductions and the axioms (FB)(FC)(FW)(FK); the n-ary functionality
+# ladder F_n (Def 2.1: F_0=I, F_1=F, F_{n+1}=(C.BB_{n+1}) F_1 F_n); and the compositor Gamma that
+# composes functionalities (H. B. Curry, First Properties of Functionality in Combinatory Logic,
+# Tohoku Math. J. 41 (1936) 371-401; jstage handle tmj1911/41/0/41_0_371; CITED, never committed -
+# Directive 19 :265-268). Three teeth-proved structures, per the maximal choice (Directive 20):
+#
+#   (1) fnd:Combinator = the agnostic combinatory-logic progenitor that GROUNDS NOTHING (Directive 17,
+#       the byte_order / crs-geometer progenitor pattern), with five composable children
+#       fnd:B/fnd:C/fnd:W/fnd:K/fnd:I, each an individual carrying its arity and its defining reduction.
+#       Each reduction is reified as a fnd:CombinatorReduction over shared atomic witness terms
+#       (fnd:argX/argY/argZ) with applied right-hand sides built from reified fnd:ApplicationTerm nodes:
+#       I x = x; K x y = x; W x y = ((x y) y); C x y z = ((x z) y); B x y z = (x (y z)). Tooth
+#       q_combinator_reduces / fnd:CombinatorReducesShape make each reduction a graph fact (a wrong
+#       reduction -> RED); fnd:CombinatorProgenitorShape makes 'the progenitor grounds nothing' and 'no
+#       combinator crams two arities' graph facts.
+#   (2) fnd:NaryFunctionality = a rung of Curry's F_n arity ladder (Def 2.1). The base rungs are pinned
+#       (F_0 = fnd:I, F_1 = fnd:curryFunctionality the base functionality F of Pillar 4); each successor
+#       rung (index >= 2) carries fnd:fnPredecessor (F_n), fnd:fnBaseCase fnd:fnRung1 (the recurrence
+#       always folds in F_1), and fnd:composedVia the compositor Gamma. Tooth q_fn_ladder /
+#       fnd:FnLadderShape make the recurrence a graph fact (a broken rung -> RED).
+#   (3) fnd:Compositor = Curry's Gamma - the arrow that composes two functionalities (B (compose)
+#       promoted to the composition operation on the arrow algebra itself). Its witness fnd:gammaCompositor
+#       is what every successor F_n rung is fnd:composedVia.
+#
+# HONESTY (design s0 ledger, Praeriehund): EVERY atom here is SYN - cited standard mathematics (Curry
+# 1936), the Directive-19 precedent "the mathematics is fact and liftable; cite the source; do NOT
+# pretend it is a Helios lift". The corpus is a NAMED-VARIABLE lambda corpus (the Lambda/Sparky closed-λ
+# engine), the OPPOSITE of Curry's variable-free combinatory logic: B/C/W/K/I are grep-verified ABSENT
+# from the 34 authored papers (06a_functionality_corpus.md s2.3), so these combinators have NO Helios
+# carrier and are the pillar's largest genuine cited-from-Curry build - honest-red where no v1 consumer
+# binds them (corpus-agnostic v1, Directive 13: the witnesses bind no live corpus; argX/argY/argZ are
+# atomic stand-in terms). The agnostic-progenitor PACKAGING reuses the LIFTED Directive-17 pattern, but
+# the combinator content itself is cited Curry, not a Helios lift, and no T8 atom masquerades as one.
+# Namespace fnd: <urn:silmaril:fnd:#>. Recognizes fnd:curryFunctionality (T7, functionality.ttl) as the
+# F_1 base of the ladder (the Pillar-4 seam: F_1 = F). Consumed by T9 (the K/C/W combinators ARE the
+# structural rules of the implication face - K=weakening, C=exchange, W=contraction).
+# =====================================================================================
+
+
+# =====================================================================================
+# (1) The combinatory term substrate: atomic witness terms + reified application (design s5; Curry's
+# variable-free application, left-associated). Corpus-agnostic v1 stand-in terms carry the reductions.
+# =====================================================================================
+
+fnd:CombinatoryTerm a owl:Class ;
+    rdfs:label "CombinatoryTerm" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A term of the combinatory calculus - either an atomic term (fnd:AtomicTerm, an argument or a combinator constant) or an application of one term to another (fnd:ApplicationTerm). SYN: cited standard mathematics (Curry 1936, the combinatory-logic term grammar). It is the shared supertype the reduction machinery reads over: a fnd:CombinatorReduction's fnd:redArg1/redArg2/redArg3 and fnd:reducesTo all point at fnd:CombinatoryTerm nodes, and an fnd:ApplicationTerm's fnd:appFn (function part) and fnd:appArg (argument part) point at fnd:CombinatoryTerm nodes, so a right-hand side like ((x y) y) is a fully reified tree of application nodes over atomic leaves. Application is LEFT-ASSOCIATED exactly as in combinatory logic (x y z parses as ((x y) z)), which is why the reified RHS trees nest fnd:appFn to the left. On this corpus-agnostic floor (Directive 13) the only atomic leaves are the stand-in witness terms fnd:argX/argY/argZ; the class carries no live corpus binding, it is the substrate over which the combinator reduction teeth bite by edge existence." .
+
+fnd:AtomicTerm a owl:Class ;
+    rdfs:subClassOf fnd:CombinatoryTerm ;
+    rdfs:label "AtomicTerm" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "An atomic (irreducible) combinatory term - a variable/argument leaf that carries no further application structure, the base case of the fnd:CombinatoryTerm grammar. SYN: cited standard mathematics (Curry 1936). On this corpus-agnostic v1 floor (Directive 13) the atomic terms are the three shared witness arguments fnd:argX, fnd:argY, fnd:argZ over which the five combinator reductions (Kxy=x, Ix=x, Wxy=xyy, Cxyz=xzy, Bxyz=x(yz)) are stated - deliberately meaning-free stand-ins, the combinatory analogue of the algebra tower's fnd:AlgebraElement witnesses and the variance pillar's fnd:WitnessType. They are the leaves of the reified fnd:ApplicationTerm trees that form each reduction's right-hand side; the reduction teeth compare a reduction's fnd:reducesTo against a tree built from these very leaves, so the atomic terms are the non-vacuity substrate that makes q_combinator_reduces a real structural check rather than a tautology." .
+
+fnd:ApplicationTerm a owl:Class ;
+    rdfs:subClassOf fnd:CombinatoryTerm ;
+    rdfs:label "ApplicationTerm" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A reified application of one combinatory term to another - the node (f a) with fnd:appFn f (the function part) and fnd:appArg a (the argument part), both fnd:CombinatoryTerm. SYN: cited standard mathematics (Curry 1936, application is the sole term-forming operation of combinatory logic). It reifies the application TREE so a multi-symbol right-hand side is a nest of these nodes over atomic leaves, left-associated as combinatory application associates: W x y = ((x y) y) is fnd:appTermXYY (appFn fnd:appTermXY, appArg fnd:argY) over fnd:appTermXY (appFn fnd:argX, appArg fnd:argY); C x y z = ((x z) y) is fnd:appTermXZY over fnd:appTermXZ; B x y z = (x (y z)) is fnd:appTermX_YZ (appFn fnd:argX, appArg fnd:appTermYZ). Reifying application as its own node with fnd:appFn/fnd:appArg edges is exactly what lets a single sh:sparql constraint walk a reduction's fnd:reducesTo tree and check it matches the combinator's canonical form by EDGE existence, never a range-inferred rdf:type - so inference=rdfs cannot forge an application edge between two term nodes and defang the tooth (the SP1 defang discipline)." .
+
+fnd:appFn a owl:ObjectProperty ;
+    rdfs:domain fnd:ApplicationTerm ; rdfs:range fnd:CombinatoryTerm ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "appFn" ;
+    rdfs:comment "Relates a fnd:ApplicationTerm (f a) to its FUNCTION part f - the term in operator position. SYN (Curry 1936, application). In the left-associated combinatory reading, the function part of an application at the head of x y z is itself the application (x y), so fnd:appFn nests to the LEFT down the reified tree: the outer node of ((x y) y) has fnd:appFn the inner (x y) node, whose fnd:appFn is the atomic fnd:argX. The reduction teeth walk fnd:appFn / fnd:appArg to check a reduction's fnd:reducesTo matches its combinator's canonical right-hand side (e.g. for B, fnd:reducesTo fnd:appFn must be the first argument x and fnd:appArg the sub-application (y z)); the check reads edge existence over the reified tree, never a bare sh:class over an rdfs:range." .
+
+fnd:appArg a owl:ObjectProperty ;
+    rdfs:domain fnd:ApplicationTerm ; rdfs:range fnd:CombinatoryTerm ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "appArg" ;
+    rdfs:comment "Relates a fnd:ApplicationTerm (f a) to its ARGUMENT part a - the term in operand position. SYN (Curry 1936, application). It is the right child of a reified application node: the outer node of ((x y) y) has fnd:appArg the atomic fnd:argY, and B's right-hand side (x (y z)) has fnd:appArg the sub-application (y z) node. Together with fnd:appFn it fully reifies the application tree so the combinator reduction teeth (q_combinator_reduces / fnd:CombinatorReducesShape) can compare a reduction's fnd:reducesTo against the combinator's canonical form by walking these two edges - a structural equality check by edge existence, immune to rdfs range inference (the SP1 defang discipline)." .
+
+fnd:argX a fnd:AtomicTerm ;
+    rdfs:label "argX" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The first shared atomic witness term x - a meaning-free stand-in argument over which the five combinator reductions are stated (corpus-agnostic v1, Directive 13). SYN worked example (Curry 1936). It is the first argument (fnd:redArg1) of every combinator reduction on this floor: I x = x reduces to it, K x y = x reduces to it, and it is a leaf of the reified right-hand sides of W (((x y) y)), C (((x z) y)) and B ((x (y z))). It has no meaning beyond carrying the reductions - the combinatory analogue of the algebra tower's fnd:elemA." .
+
+fnd:argY a fnd:AtomicTerm ;
+    rdfs:label "argY" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The second shared atomic witness term y - a meaning-free stand-in argument over which the multi-argument combinator reductions are stated (corpus-agnostic v1, Directive 13). SYN worked example (Curry 1936). It is the second argument (fnd:redArg2) of K, W, C and B; K x y = x discards it, W x y = ((x y) y) duplicates it, C x y z = ((x z) y) permutes it, B x y z = (x (y z)) nests it under the y-application. It has no meaning beyond carrying the reductions - the combinatory analogue of the algebra tower's fnd:elemB." .
+
+fnd:argZ a fnd:AtomicTerm ;
+    rdfs:label "argZ" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The third shared atomic witness term z - a meaning-free stand-in argument over which the ternary combinator reductions are stated (corpus-agnostic v1, Directive 13). SYN worked example (Curry 1936). It is the third argument (fnd:redArg3) of the two ternary combinators C and B; C x y z = ((x z) y) swaps it before y, B x y z = (x (y z)) nests it under y inside the argument sub-application. It has no meaning beyond carrying the reductions - the combinatory analogue of the algebra tower's fnd:elemC." .
+
+# --- the reified right-hand-side application trees (left-associated, over the atomic leaves) ----------
+
+fnd:appTermXY a fnd:ApplicationTerm ;
+    rdfs:label "appTermXY" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified application (x y) - fnd:appFn fnd:argX, fnd:appArg fnd:argY. SYN worked example (Curry 1936). It is the INNER node of W's right-hand side ((x y) y): fnd:appTermXYY has this node as its fnd:appFn and fnd:argY as its fnd:appArg, so the two together reify the duplicated term x y y left-associated as ((x y) y). It exists only as a sub-tree of the W reduction's fnd:reducesTo, the non-vacuity substrate the fnd:CombinatorReducesShape W branch walks." ;
+    fnd:appFn fnd:argX ;
+    fnd:appArg fnd:argY .
+
+fnd:appTermXYY a fnd:ApplicationTerm ;
+    rdfs:label "appTermXYY" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified application ((x y) y) - fnd:appFn fnd:appTermXY, fnd:appArg fnd:argY - the canonical right-hand side of the W (duplicate) combinator, W x y = x y y. SYN worked example (Curry 1936, the (FW) axiom's reduction). It is fnd:redW's fnd:reducesTo. The fnd:CombinatorReducesShape W branch verifies exactly this structure: fnd:reducesTo fnd:appFn is an inner application whose fnd:appFn is the first argument x and whose fnd:appArg is the second argument y, and fnd:reducesTo fnd:appArg is the second argument y again - the duplication of y made a graph fact. Repointing fnd:redW fnd:reducesTo away from this node makes the W branch bite." ;
+    fnd:appFn fnd:appTermXY ;
+    fnd:appArg fnd:argY .
+
+fnd:appTermXZ a fnd:ApplicationTerm ;
+    rdfs:label "appTermXZ" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified application (x z) - fnd:appFn fnd:argX, fnd:appArg fnd:argZ. SYN worked example (Curry 1936). It is the INNER node of C's right-hand side ((x z) y): fnd:appTermXZY has this node as its fnd:appFn and fnd:argY as its fnd:appArg, reifying the permuted term x z y left-associated as ((x z) y). It exists only as a sub-tree of the C reduction's fnd:reducesTo, the non-vacuity substrate the fnd:CombinatorReducesShape C branch walks." ;
+    fnd:appFn fnd:argX ;
+    fnd:appArg fnd:argZ .
+
+fnd:appTermXZY a fnd:ApplicationTerm ;
+    rdfs:label "appTermXZY" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified application ((x z) y) - fnd:appFn fnd:appTermXZ, fnd:appArg fnd:argY - the canonical right-hand side of the C (swap/permute) combinator, C x y z = x z y. SYN worked example (Curry 1936, the (FC) axiom's reduction). It is fnd:redC's fnd:reducesTo. The fnd:CombinatorReducesShape C branch verifies exactly this structure: fnd:reducesTo fnd:appFn is an inner application whose fnd:appFn is the first argument x and whose fnd:appArg is the THIRD argument z (the swap), and fnd:reducesTo fnd:appArg is the SECOND argument y - the permutation of y and z made a graph fact. Repointing fnd:redC fnd:reducesTo away from this node makes the C branch bite." ;
+    fnd:appFn fnd:appTermXZ ;
+    fnd:appArg fnd:argY .
+
+fnd:appTermYZ a fnd:ApplicationTerm ;
+    rdfs:label "appTermYZ" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified application (y z) - fnd:appFn fnd:argY, fnd:appArg fnd:argZ. SYN worked example (Curry 1936). It is the ARGUMENT sub-application of B's right-hand side (x (y z)): fnd:appTermX_YZ has fnd:argX as its fnd:appFn and this node as its fnd:appArg, reifying the composed term x (y z). Unlike the left-associated W/C right-hand sides, B's canonical form nests the application on the RIGHT (composition), which is the whole point of B (compose); this node is that right-nested sub-tree, the non-vacuity substrate the fnd:CombinatorReducesShape B branch walks." ;
+    fnd:appFn fnd:argY ;
+    fnd:appArg fnd:argZ .
+
+fnd:appTermX_YZ a fnd:ApplicationTerm ;
+    rdfs:label "appTermX_YZ" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified application (x (y z)) - fnd:appFn fnd:argX, fnd:appArg fnd:appTermYZ - the canonical right-hand side of the B (compose) combinator, B x y z = x (y z). SYN worked example (Curry 1936, the (FB) axiom's reduction). It is fnd:redB's fnd:reducesTo. The fnd:CombinatorReducesShape B branch verifies exactly this structure: fnd:reducesTo fnd:appFn is the first argument x directly (NOT an application - B composes, it does not left-associate), and fnd:reducesTo fnd:appArg is the sub-application (y z) whose fnd:appFn is y and fnd:appArg is z. This right-nesting is what distinguishes B (composition) from the left-associated combinators; repointing fnd:redB fnd:reducesTo away from this node makes the B branch bite." ;
+    fnd:appFn fnd:argX ;
+    fnd:appArg fnd:appTermYZ .
+
+
+# =====================================================================================
+# (2) The agnostic Combinator progenitor (SYN, cited Curry; grounds nothing) + B/C/W/K/I children
+# (design s5; Curry combinators; 06b_curry_lift.md s2.1; Directive 17 one-law-per-child / no privilege).
+# =====================================================================================
+
+fnd:Combinator a owl:Class ;
+    rdfs:label "Combinator" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The AGNOSTIC combinatory-logic progenitor that GROUNDS NOTHING - the frame-neutral join of the five Curry combinators, carrying NO arity (fnd:combinatorArity), NO symbol (fnd:combinatorSymbol) and reduced by NO fnd:CombinatorReduction (no reduction fnd:reducesCombinator points at the progenitor). SYN: the combinator CONTENT is cited standard mathematics (Curry 1936: B compose, C swap, W duplicate, K constant, I identity, axioms (FB)(FC)(FW)(FK)), and the corpus is a named-variable lambda corpus with B/C/W/K/I grep-verified ABSENT (06a_functionality_corpus.md s2.3), so these have NO Helios carrier and never masquerade as a lift; only the agnostic-progenitor PACKAGING reuses the LIFTED Directive-17 pattern (the byte_order agnostic progenitor grounding nothing with symmetric children, basicttl/aob; the crs geometer / plane progenitors, basicttl/crs/geometers.ttl:76). Its five composable children fnd:B / fnd:C / fnd:W / fnd:K / fnd:I are symmetric individuals - no combinator privileged (Directive 17 'do all, no privilege') - each carrying EXACTLY ONE arity and its defining reduction. fnd:CombinatorProgenitorShape makes 'grounds nothing' a graph fact: the probe of record gives this progenitor a fnd:combinatorArity (or a fnd:combinatorSymbol) and the shape bites (conforms=True->False)." .
+
+fnd:combinatorArity a owl:DatatypeProperty ;
+    rdfs:domain fnd:Combinator ; rdfs:range xsd:integer ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "combinatorArity" ;
+    rdfs:comment "The arity of a combinator - the number of arguments its defining reduction consumes, carried as an xsd:integer. SYN (Curry 1936). I has arity 1 (I x = x), K and W arity 2 (K x y = x, W x y = x y y), C and B arity 3 (C x y z = x z y, B x y z = x (y z)). The agnostic fnd:Combinator progenitor carries NONE (it grounds nothing); each concrete child carries EXACTLY ONE (the no-cram discipline, Directive 17 one law per child). fnd:CombinatorProgenitorShape reads this property in two ways: constraint A fires if the progenitor fnd:Combinator carries an arity at all (it must ground nothing), and constraint B fires if any combinator carries TWO DISTINCT arities (a crammed combinator). It is read as a literal value, never a range-inferred class." .
+
+fnd:combinatorSymbol a owl:DatatypeProperty ;
+    rdfs:domain fnd:Combinator ; rdfs:range xsd:string ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "combinatorSymbol" ;
+    rdfs:comment "The single-letter symbol of a combinator, carried full-lexically (B / C / W / K / I). SYN (Curry 1936). It documents WHICH Curry combinator the individual is and its informal role (B compose, C swap, W duplicate, K constant, I identity). The agnostic fnd:Combinator progenitor carries NO symbol (it grounds nothing - fnd:CombinatorProgenitorShape constraint A fires if it does); each concrete child carries exactly one. It is documentation of the constant, not a teeth-bearing edge - the reduction teeth read the reified fnd:CombinatorReduction structure, not this string." .
+
+fnd:I a fnd:Combinator ;
+    rdfs:label "combinatorI" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Curry combinator I (identity): I x = x. SYN, cited standard mathematics (Curry 1936, the identity combinator; F_0 = I is the nullary base of the F_n ladder, Def 2.1). It is a composable child of the agnostic fnd:Combinator progenitor, carrying arity 1 (fnd:combinatorArity 1) and symbol I. Its defining reduction is reified as fnd:redI (fnd:reducesCombinator fnd:I, fnd:redArg1 fnd:argX, fnd:reducesTo fnd:argX): I applied to a single argument returns that argument unchanged. I is ALSO the fnd:fnDefinedAs of the F_0 rung of the arity ladder (F_0 = I) and, categorically, the identity arrow / unit of composition under the compositor (the endo-functionality monoid's unit, the Pillar-2 seam). fnd:CombinatorReducesShape's I branch makes I x = x a graph fact." ;
+    fnd:combinatorArity 1 ;
+    fnd:combinatorSymbol "I" .
+
+fnd:K a fnd:Combinator ;
+    rdfs:label "combinatorK" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Curry combinator K (constant): K x y = x. SYN, cited standard mathematics (Curry 1936, the (FK) axiom; K is the constant/projection combinator, categorically the terminal/first-projection off a product and logically WEAKENING - the K structural rule of the implication face, T9 seam). It is a composable child of the agnostic fnd:Combinator progenitor, carrying arity 2 (fnd:combinatorArity 2) and symbol K. Its defining reduction is reified as fnd:redK (fnd:reducesCombinator fnd:K, fnd:redArg1 fnd:argX, fnd:redArg2 fnd:argY, fnd:reducesTo fnd:argX): K applied to two arguments returns the FIRST and discards the second. fnd:CombinatorReducesShape's K branch makes K x y = x a graph fact; the probe of record repoints fnd:redK fnd:reducesTo to fnd:argY (K x y = y, the wrong projection) and the branch bites." ;
+    fnd:combinatorArity 2 ;
+    fnd:combinatorSymbol "K" .
+
+fnd:W a fnd:Combinator ;
+    rdfs:label "combinatorW" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Curry combinator W (duplicate): W x y = x y y. SYN, cited standard mathematics (Curry 1936, the (FW) axiom; W is the duplication combinator, categorically the diagonal X -> X x X and logically CONTRACTION - the W structural rule of the implication face, T9 seam). It is a composable child of the agnostic fnd:Combinator progenitor, carrying arity 2 (fnd:combinatorArity 2) and symbol W. Its defining reduction is reified as fnd:redW (fnd:reducesCombinator fnd:W, fnd:redArg1 fnd:argX, fnd:redArg2 fnd:argY, fnd:reducesTo fnd:appTermXYY = ((x y) y)): W applied to two arguments applies the first to the second TWICE (duplicating y). fnd:CombinatorReducesShape's W branch verifies the reified tree ((x y) y) exactly; repointing fnd:redW fnd:reducesTo breaks the structural match and the branch bites." ;
+    fnd:combinatorArity 2 ;
+    fnd:combinatorSymbol "W" .
+
+fnd:C a fnd:Combinator ;
+    rdfs:label "combinatorC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Curry combinator C (swap): C x y z = x z y. SYN, cited standard mathematics (Curry 1936, the (FC) axiom; C is the permutation combinator, logically EXCHANGE - the C structural rule of the implication face, T9 seam; C also appears in the F_n recurrence F_{n+1}=(C.BB_{n+1})F_1 F_n). It is a composable child of the agnostic fnd:Combinator progenitor, carrying arity 3 (fnd:combinatorArity 3) and symbol C. Its defining reduction is reified as fnd:redC (fnd:reducesCombinator fnd:C, fnd:redArg1 fnd:argX, fnd:redArg2 fnd:argY, fnd:redArg3 fnd:argZ, fnd:reducesTo fnd:appTermXZY = ((x z) y)): C applied to three arguments applies the first to the third then the second (SWAPPING the last two). fnd:CombinatorReducesShape's C branch verifies the reified tree ((x z) y) exactly; repointing fnd:redC fnd:reducesTo breaks the structural match and the branch bites." ;
+    fnd:combinatorArity 3 ;
+    fnd:combinatorSymbol "C" .
+
+fnd:B a fnd:Combinator ;
+    rdfs:label "combinatorB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Curry combinator B (compose): B x y z = x (y z). SYN, cited standard mathematics (Curry 1936, the (FB) axiom; B is the COMPOSITION combinator - the arrow promoted to the fnd:Compositor Gamma of the arrow algebra, and the B in the F_n recurrence F_{n+1}=(C.BB_{n+1})F_1 F_n). It is a composable child of the agnostic fnd:Combinator progenitor, carrying arity 3 (fnd:combinatorArity 3) and symbol B. Its defining reduction is reified as fnd:redB (fnd:reducesCombinator fnd:B, fnd:redArg1 fnd:argX, fnd:redArg2 fnd:argY, fnd:redArg3 fnd:argZ, fnd:reducesTo fnd:appTermX_YZ = (x (y z))): B applied to three arguments applies the first to the COMPOSITE (y z), nesting the application on the RIGHT (composition) rather than left-associating. fnd:CombinatorReducesShape's B branch verifies the right-nested tree (x (y z)) exactly; repointing fnd:redB fnd:reducesTo breaks the structural match and the branch bites." ;
+    fnd:combinatorArity 3 ;
+    fnd:combinatorSymbol "B" .
+
+
+# =====================================================================================
+# (3) The reified defining reductions (design s5; Curry axioms (FB)(FC)(FW)(FK) + I). Each combinator's
+# canonical reduction over the shared witness terms, the substrate q_combinator_reduces bites on.
+# =====================================================================================
+
+fnd:CombinatorReduction a owl:Class ;
+    rdfs:label "CombinatorReduction" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reification of one combinator's defining reduction - a node relating a combinator (fnd:reducesCombinator) to its argument terms (fnd:redArg1 / fnd:redArg2 / fnd:redArg3, positional so the fixed-arity check is a clean edge walk) and its result term (fnd:reducesTo, a fnd:CombinatoryTerm that for the applied combinators is a reified fnd:ApplicationTerm tree). SYN: cited standard mathematics (Curry 1936, the combinator reduction rules / axioms (FB)(FC)(FW)(FK) plus I x = x). Reifying the reduction as its own node is what lets a single sh:sparql constraint read the combinator, its argument leaves, and its result tree together and check the result matches the combinator's canonical form by EDGE existence - never a range-inferred rdf:type, so inference=rdfs cannot forge a redArg/reducesTo/appFn/appArg edge and defang the tooth (the SP1 defang discipline). The five witness reductions fnd:redI/redK/redW/redC/redB carry the canonical forms; q_combinator_reduces / fnd:CombinatorReducesShape make each a checkable graph fact, biting (conforms True->False) when any reduction's fnd:reducesTo departs from its combinator's canonical right-hand side." .
+
+fnd:reducesCombinator a owl:ObjectProperty ;
+    rdfs:domain fnd:CombinatorReduction ; rdfs:range fnd:Combinator ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "reducesCombinator" ;
+    rdfs:comment "Relates a fnd:CombinatorReduction to the fnd:Combinator whose defining reduction it reifies. SYN (Curry 1936). fnd:redI fnd:reducesCombinator fnd:I, fnd:redK -> fnd:K, fnd:redW -> fnd:W, fnd:redC -> fnd:C, fnd:redB -> fnd:B. It is the discriminator the fnd:CombinatorReducesShape branches self-guard on (each branch matches fnd:reducesCombinator on its combinator, then checks the canonical form for that combinator), and the edge fnd:CombinatorProgenitorShape reads to confirm NO reduction reduces the agnostic progenitor fnd:Combinator itself (the progenitor grounds nothing - only its concrete children are reduced). Its rdfs:range fnd:Combinator is the harmless type its objects (B/C/W/K/I) already carry, so rdfs range inference stamps nothing new and cannot defang the teeth (the SP1 defang discipline: the teeth read edge existence, not this range)." .
+
+fnd:redArg1 a owl:ObjectProperty ;
+    rdfs:domain fnd:CombinatorReduction ; rdfs:range fnd:CombinatoryTerm ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "redArg1" ;
+    rdfs:comment "Relates a fnd:CombinatorReduction to its FIRST (leftmost) argument term - the x in every combinator reduction on this floor (I x, K x y, W x y, C x y z, B x y z). SYN (Curry 1936). Every combinator has arity >= 1, so every reduction carries a fnd:redArg1; it is fnd:argX throughout the witnesses. The reduction teeth read it as the source of the first argument: for I and K, fnd:reducesTo MUST equal fnd:redArg1 (identity / first-projection); for W/C/B it is the leftmost leaf x of the canonical result tree. Read by edge existence over the reified reduction, never a range-inferred class." .
+
+fnd:redArg2 a owl:ObjectProperty ;
+    rdfs:domain fnd:CombinatorReduction ; rdfs:range fnd:CombinatoryTerm ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "redArg2" ;
+    rdfs:comment "Relates a fnd:CombinatorReduction to its SECOND argument term - the y in the arity-2-and-up reductions (K x y, W x y, C x y z, B x y z). SYN (Curry 1936). The arity-1 combinator I carries none; K/W/C/B carry it as fnd:argY. The reduction teeth read it as the second argument the canonical result tree is checked against: K DISCARDS it (fnd:reducesTo = redArg1, not redArg2), W DUPLICATES it (it appears twice in ((x y) y)), C PERMUTES it (it appears after z in ((x z) y)), B NESTS it (it heads the sub-application (y z)). Read by edge existence over the reified reduction, never a range-inferred class." .
+
+fnd:redArg3 a owl:ObjectProperty ;
+    rdfs:domain fnd:CombinatorReduction ; rdfs:range fnd:CombinatoryTerm ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "redArg3" ;
+    rdfs:comment "Relates a fnd:CombinatorReduction to its THIRD argument term - the z in the two ternary reductions (C x y z, B x y z). SYN (Curry 1936). Only the arity-3 combinators C and B carry it (as fnd:argZ); I/K/W carry none. The reduction teeth read it as the third argument the canonical result tree is checked against: C SWAPS it before y (it appears as the argument of the inner (x z) in ((x z) y)), B NESTS it as the tail of the sub-application (y z) in (x (y z)). Read by edge existence over the reified reduction, never a range-inferred class." .
+
+fnd:reducesTo a owl:ObjectProperty ;
+    rdfs:domain fnd:CombinatorReduction ; rdfs:range fnd:CombinatoryTerm ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "reducesTo" ;
+    rdfs:comment "Relates a fnd:CombinatorReduction to its RESULT term - the right-hand side the combinator's arguments reduce to (Curry 1936). SYN. For the projection/identity combinators it is an atomic leaf equal to an argument: fnd:redI fnd:reducesTo fnd:argX (I x = x), fnd:redK fnd:reducesTo fnd:argX (K x y = x). For the applied combinators it is a reified fnd:ApplicationTerm tree: fnd:redW -> fnd:appTermXYY (((x y) y)), fnd:redC -> fnd:appTermXZY (((x z) y)), fnd:redB -> fnd:appTermX_YZ ((x (y z))). fnd:CombinatorReducesShape walks this term (by fnd:appFn / fnd:appArg for the applied cases, by identity for I/K) and bites when it departs from the combinator's canonical form. The probe of record repoints fnd:redK fnd:reducesTo from fnd:argX to fnd:argY (K x y = y) and the shape's K branch fires (conforms True->False). Read by edge existence, never a range-inferred class." .
+
+fnd:redI a fnd:CombinatorReduction ;
+    rdfs:label "redI" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified defining reduction of I: I x = x (Curry 1936, the identity combinator). SYN worked example. fnd:reducesCombinator fnd:I; fnd:redArg1 fnd:argX; fnd:reducesTo fnd:argX - the single argument returned unchanged. It is a non-vacuity anchor for q_combinator_reduces (FALSE on the pre-T8 graph). The fnd:CombinatorReducesShape I branch checks fnd:reducesTo = fnd:redArg1; removing or repointing fnd:reducesTo makes it bite." ;
+    fnd:reducesCombinator fnd:I ;
+    fnd:redArg1 fnd:argX ;
+    fnd:reducesTo fnd:argX .
+
+fnd:redK a fnd:CombinatorReduction ;
+    rdfs:label "redK" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified defining reduction of K: K x y = x (Curry 1936, the (FK) axiom, the constant/first-projection combinator). SYN worked example. fnd:reducesCombinator fnd:K; fnd:redArg1 fnd:argX; fnd:redArg2 fnd:argY; fnd:reducesTo fnd:argX - the first argument returned, the second DISCARDED. It is a non-vacuity anchor for q_combinator_reduces (FALSE on the pre-T8 graph) and the PROBE OF RECORD carrier: repointing fnd:redK fnd:reducesTo from fnd:argX to fnd:argY (K x y = y, the wrong projection) makes the fnd:CombinatorReducesShape K branch's FILTER(?res != ?x) fire (conforms True->False), proving the tooth." ;
+    fnd:reducesCombinator fnd:K ;
+    fnd:redArg1 fnd:argX ;
+    fnd:redArg2 fnd:argY ;
+    fnd:reducesTo fnd:argX .
+
+fnd:redW a fnd:CombinatorReduction ;
+    rdfs:label "redW" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified defining reduction of W: W x y = x y y (Curry 1936, the (FW) axiom, the duplication combinator). SYN worked example. fnd:reducesCombinator fnd:W; fnd:redArg1 fnd:argX; fnd:redArg2 fnd:argY; fnd:reducesTo fnd:appTermXYY (the reified tree ((x y) y)) - the first argument applied to the second TWICE. It is a non-vacuity anchor for q_combinator_reduces. The fnd:CombinatorReducesShape W branch walks fnd:reducesTo: its fnd:appFn must be an inner application of x to y and its fnd:appArg must be y again; repointing fnd:redW fnd:reducesTo (e.g. to fnd:appTermXY, dropping the duplication) makes the branch bite." ;
+    fnd:reducesCombinator fnd:W ;
+    fnd:redArg1 fnd:argX ;
+    fnd:redArg2 fnd:argY ;
+    fnd:reducesTo fnd:appTermXYY .
+
+fnd:redC a fnd:CombinatorReduction ;
+    rdfs:label "redC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified defining reduction of C: C x y z = x z y (Curry 1936, the (FC) axiom, the swap/permutation combinator). SYN worked example. fnd:reducesCombinator fnd:C; fnd:redArg1 fnd:argX; fnd:redArg2 fnd:argY; fnd:redArg3 fnd:argZ; fnd:reducesTo fnd:appTermXZY (the reified tree ((x z) y)) - the first argument applied to the THIRD then the SECOND (last two swapped). It is a non-vacuity anchor for q_combinator_reduces. The fnd:CombinatorReducesShape C branch walks fnd:reducesTo: its fnd:appFn must be an inner application of x to z and its fnd:appArg must be y; repointing fnd:redC fnd:reducesTo makes the branch bite." ;
+    fnd:reducesCombinator fnd:C ;
+    fnd:redArg1 fnd:argX ;
+    fnd:redArg2 fnd:argY ;
+    fnd:redArg3 fnd:argZ ;
+    fnd:reducesTo fnd:appTermXZY .
+
+fnd:redB a fnd:CombinatorReduction ;
+    rdfs:label "redB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified defining reduction of B: B x y z = x (y z) (Curry 1936, the (FB) axiom, the composition combinator). SYN worked example. fnd:reducesCombinator fnd:B; fnd:redArg1 fnd:argX; fnd:redArg2 fnd:argY; fnd:redArg3 fnd:argZ; fnd:reducesTo fnd:appTermX_YZ (the reified tree (x (y z))) - the first argument applied to the COMPOSITE (y z), nesting on the RIGHT. It is a non-vacuity anchor for q_combinator_reduces. The fnd:CombinatorReducesShape B branch walks fnd:reducesTo: its fnd:appFn must be x DIRECTLY (not an application) and its fnd:appArg must be the sub-application (y z); repointing fnd:redB fnd:reducesTo (e.g. to a left-associated tree) makes the branch bite." ;
+    fnd:reducesCombinator fnd:B ;
+    fnd:redArg1 fnd:argX ;
+    fnd:redArg2 fnd:argY ;
+    fnd:redArg3 fnd:argZ ;
+    fnd:reducesTo fnd:appTermX_YZ .
+
+
+# =====================================================================================
+# (4) The F_n arity ladder + the compositor Gamma (design s5; Curry Def 2.1; 06b_curry_lift.md s2.2).
+# F_0 = I, F_1 = F (the base functionality of Pillar 4), F_{n+1} = (C.BB_{n+1}) F_1 F_n.
+# =====================================================================================
+
+fnd:Compositor a owl:Class ;
+    rdfs:label "Compositor" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Curry's compositor Gamma - the arrow that COMPOSES two functionalities, the combinator B (compose) promoted to the composition operation on the arrow algebra itself (Curry 1936, Def 2.1: the F_n recurrence F_{n+1}=(C.BB_{n+1}) F_1 F_n is built from the compositor; the (C.BB_{n+1}) prefix IS a compositor term). SYN: cited standard mathematics; the corpus supplies the associative-composition carrier (composition in the thin formal category is associative on the nose, prim:CompositeArrow) but not Curry's named Gamma, so this is a cited-from-Curry atom onto that carrier. Categorically, fnd:fnRung1 (the F_1 rung = the base functionality F, fnd:fnDefinedAs fnd:curryFunctionality) under the compositor with fnd:I as unit is itself a MONOID - the endo-functionality monoid, the Pillar-2 = Pillar-4 seam (a monoid is a one-object category, the one genuinely LIFTED algebra rung). Its witness fnd:gammaCompositor is what every successor F_n rung is fnd:composedVia; fnd:FnLadderShape reads fnd:composedVia -> a fnd:Compositor as one clause of the recurrence check (a successor rung not built through a compositor -> RED)." .
+
+fnd:NaryFunctionality a owl:Class ;
+    rdfs:label "NaryFunctionality" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A rung of Curry's n-ary functionality ladder F_n (Curry 1936, Def 2.1: F_0 = I, F_1 = F, F_{n+1} = (C.BB_{n+1}) F_1 F_n) - the arity index of the typed-arrow constructor, generalizing the base functionality F (functionality.ttl, Pillar 4) to n arguments. SYN: cited standard mathematics; the ladder is countably indexed but each rung finite, so it sits inside the set floor's finite/counting-ordinal layer (T3) with NO transfinite gap incurred, and the corpus has no F_n so it is a cited-from-Curry atom. Each rung carries an xsd:integer fnd:fnIndex. The BASE rungs are pinned by fnd:fnDefinedAs: F_0 (index 0) = fnd:I (the identity combinator), F_1 (index 1) = fnd:curryFunctionality (the base functionality F of Pillar 4 - the seam F_1 = F). Each SUCCESSOR rung (index >= 2) carries fnd:fnPredecessor (the rung F_n one index below), fnd:fnBaseCase fnd:fnRung1 (the recurrence ALWAYS folds in F_1), and fnd:composedVia a fnd:Compositor (the Gamma composing them). q_fn_ladder / fnd:FnLadderShape make the recurrence a graph fact: a rung whose predecessor's index is not exactly one below, or that omits the F_1 base-case or the compositor, is a broken rung and the tooth bites (conforms True->False)." .
+
+fnd:fnIndex a owl:DatatypeProperty ;
+    rdfs:domain fnd:NaryFunctionality ; rdfs:range xsd:integer ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "fnIndex" ;
+    rdfs:comment "The arity index n of a fnd:NaryFunctionality rung F_n, carried as an xsd:integer (Curry 1936, Def 2.1). SYN. fnd:fnRung0 has index 0, fnd:fnRung1 index 1, fnd:fnRung2 index 2, fnd:fnRung3 index 3. fnd:FnLadderShape reads it arithmetically: a successor rung's fnd:fnPredecessor must have fnd:fnIndex exactly one below (?predecessorIndex + 1 = ?ownIndex), and the base-case clauses key on index 0 (must be fnd:fnDefinedAs fnd:I) and index 1 (must be fnd:fnDefinedAs fnd:curryFunctionality). The probe of record repoints fnd:fnRung2 fnd:fnPredecessor to fnd:fnRung0 so 0 + 1 != 2 and the arithmetic clause fires. Read as a literal integer value, never a range-inferred class." .
+
+fnd:fnDefinedAs a owl:ObjectProperty ;
+    rdfs:domain fnd:NaryFunctionality ; rdfs:range owl:Thing ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "fnDefinedAs" ;
+    rdfs:comment "Relates a BASE rung of the F_n ladder to the object it is defined AS (Curry 1936, Def 2.1 base cases). SYN. F_0 fnd:fnDefinedAs fnd:I (F_0 = I, the identity combinator - the nullary base), and F_1 fnd:fnDefinedAs fnd:curryFunctionality (F_1 = F, the base functionality of Pillar 4 - the ladder-to-arrow seam). Its rdfs:range is the maximal owl:Thing PRECISELY so rdfs inference cannot retype the recognized objects (fnd:I, a fnd:Combinator; fnd:curryFunctionality, a fnd:Functionality) into fnd:NaryFunctionality and blur the ladder (the SP1 defang discipline) - the base-case teeth read the specific fnd:fnDefinedAs edge by existence, never this range. Successor rungs do NOT use it (they are defined by the recurrence via fnd:fnPredecessor / fnd:fnBaseCase / fnd:composedVia)." .
+
+fnd:fnPredecessor a owl:ObjectProperty ;
+    rdfs:domain fnd:NaryFunctionality ; rdfs:range fnd:NaryFunctionality ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "fnPredecessor" ;
+    rdfs:comment "Relates a SUCCESSOR rung F_{n+1} of the F_n ladder to its predecessor rung F_n (Curry 1936, Def 2.1: F_{n+1} = (C.BB_{n+1}) F_1 F_n folds in F_n). SYN. fnd:fnRung2 fnd:fnPredecessor fnd:fnRung1; fnd:fnRung3 fnd:fnPredecessor fnd:fnRung2. fnd:FnLadderShape reads it as the core recurrence clause: the predecessor's fnd:fnIndex must be exactly one below the successor's own index. The PROBE OF RECORD repoints fnd:fnRung2 fnd:fnPredecessor from fnd:fnRung1 to fnd:fnRung0 (predecessor index 0, own index 2, so 0 + 1 != 2, a broken rung) and the clause fires (conforms True->False). Read by edge existence over the ladder, never a range-inferred class." .
+
+fnd:fnBaseCase a owl:ObjectProperty ;
+    rdfs:domain fnd:NaryFunctionality ; rdfs:range fnd:NaryFunctionality ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "fnBaseCase" ;
+    rdfs:comment "Relates a SUCCESSOR rung F_{n+1} to the F_1 rung the recurrence folds in (Curry 1936, Def 2.1: F_{n+1} = (C.BB_{n+1}) F_1 F_n takes F_1 as the fixed left operand at every step). SYN. Every successor rung fnd:fnBaseCase fnd:fnRung1. fnd:FnLadderShape reads it as one clause of the recurrence: a successor rung (index >= 2) whose fnd:fnBaseCase is NOT fnd:fnRung1 has dropped the F_1 fold and is a broken rung -> RED. It records that the recurrence is not merely 'depends on the previous rung' but the specific Curry Def 2.1 shape that also re-folds F_1 each step. Read by edge existence over the ladder, never a range-inferred class." .
+
+fnd:composedVia a owl:ObjectProperty ;
+    rdfs:domain fnd:NaryFunctionality ; rdfs:range fnd:Compositor ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "composedVia" ;
+    rdfs:comment "Relates a SUCCESSOR rung F_{n+1} to the fnd:Compositor Gamma that composes its operands (Curry 1936, Def 2.1: the (C.BB_{n+1}) prefix is the compositor term applied to F_1 and F_n). SYN. Every successor rung fnd:composedVia fnd:gammaCompositor. fnd:FnLadderShape reads it as one clause of the recurrence: a successor rung (index >= 2) that is NOT fnd:composedVia a fnd:Compositor has no composition mechanism and is a broken rung -> RED. It records that the ladder is built by ACTUAL composition (the compositor), matching Curry's construction rather than an ad-hoc succession. Read by edge existence over the ladder, never a range-inferred class." .
+
+fnd:gammaCompositor a fnd:Compositor ;
+    rdfs:label "gammaCompositor" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness fnd:Compositor - Curry's Gamma, the one composition arrow on this floor, what every successor F_n rung is fnd:composedVia (Curry 1936, Def 2.1). SYN worked example. It exists so fnd:composedVia is non-vacuous and the recurrence's 'built through a compositor' clause of fnd:FnLadderShape has a real object to bind: F_2 and F_3 are each fnd:composedVia this Gamma. Categorically it is the composition operation under which fnd:fnRung1 (= F, the base functionality) with fnd:I as unit forms the endo-functionality monoid - the Pillar-2 = Pillar-4 seam." .
+
+fnd:fnRung0 a fnd:NaryFunctionality ;
+    rdfs:label "fnRung0" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The F_0 rung of Curry's n-ary functionality ladder - the nullary base, F_0 = I (Curry 1936, Def 2.1). SYN worked example. fnd:fnIndex 0; fnd:fnDefinedAs fnd:I (the identity combinator - F_0 is the identity of the ladder). It is a non-vacuity anchor for q_fn_ladder and the target of the index-0 base-case clause of fnd:FnLadderShape (a rung at index 0 not fnd:fnDefinedAs fnd:I -> RED). It carries no fnd:fnPredecessor (it is the base, not a successor)." ;
+    fnd:fnIndex 0 ;
+    fnd:fnDefinedAs fnd:I .
+
+fnd:fnRung1 a fnd:NaryFunctionality ;
+    rdfs:label "fnRung1" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The F_1 rung of Curry's n-ary functionality ladder - the unary base, F_1 = F, the base functionality of Pillar 4 (Curry 1936, Def 2.1). SYN worked example. fnd:fnIndex 1; fnd:fnDefinedAs fnd:curryFunctionality (the T7 Functionality atom recognized as Curry's F on the committed prim:Frame - the ladder-to-arrow seam F_1 = F). It is a non-vacuity anchor for q_fn_ladder, the target of the index-1 base-case clause of fnd:FnLadderShape (a rung at index 1 not fnd:fnDefinedAs fnd:curryFunctionality -> RED), AND the fixed fnd:fnBaseCase every successor rung folds in. It carries no fnd:fnPredecessor (it is a base rung)." ;
+    fnd:fnIndex 1 ;
+    fnd:fnDefinedAs fnd:curryFunctionality .
+
+fnd:fnRung2 a fnd:NaryFunctionality ;
+    rdfs:label "fnRung2" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The F_2 rung of Curry's n-ary functionality ladder - the first SUCCESSOR rung, F_2 = (C.BB_2) F_1 F_1 (Curry 1936, Def 2.1: F_{n+1} = (C.BB_{n+1}) F_1 F_n with n=1). SYN worked example. fnd:fnIndex 2; fnd:fnPredecessor fnd:fnRung1 (index 1, exactly one below); fnd:fnBaseCase fnd:fnRung1 (the recurrence folds in F_1); fnd:composedVia fnd:gammaCompositor (built through Gamma). It satisfies every clause of the recurrence check, so q_fn_ladder / fnd:FnLadderShape conform. It is the PROBE OF RECORD carrier: repointing fnd:fnRung2 fnd:fnPredecessor from fnd:fnRung1 to fnd:fnRung0 (predecessor index 0, own index 2, so 0 + 1 != 2, a broken rung) makes the arithmetic clause fire (conforms True->False), proving the tooth." ;
+    fnd:fnIndex 2 ;
+    fnd:fnPredecessor fnd:fnRung1 ;
+    fnd:fnBaseCase fnd:fnRung1 ;
+    fnd:composedVia fnd:gammaCompositor .
+
+fnd:fnRung3 a fnd:NaryFunctionality ;
+    rdfs:label "fnRung3" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The F_3 rung of Curry's n-ary functionality ladder - a SUCCESSOR rung, F_3 = (C.BB_3) F_1 F_2 (Curry 1936, Def 2.1: F_{n+1} = (C.BB_{n+1}) F_1 F_n with n=2). SYN worked example. fnd:fnIndex 3; fnd:fnPredecessor fnd:fnRung2 (index 2, exactly one below); fnd:fnBaseCase fnd:fnRung1 (the recurrence folds in F_1); fnd:composedVia fnd:gammaCompositor (built through Gamma). It exists so the ladder has more than one successor rung - proving the recurrence check is a genuine chain (F_3 depends on F_2 which depends on F_1) rather than a single hard-coded step, and so the arithmetic predecessor clause is exercised at two distinct indices." ;
+    fnd:fnIndex 3 ;
+    fnd:fnPredecessor fnd:fnRung2 ;
+    fnd:fnBaseCase fnd:fnRung1 ;
+    fnd:composedVia fnd:gammaCompositor .

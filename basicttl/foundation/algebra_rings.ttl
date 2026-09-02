@@ -1,0 +1,956 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# algebra_rings.ttl — Pillar 2: the two-operation line + module/vector (W2 · SP0, Task T5).
+# =====================================================================================
+# The two-operation half of the OBJECTS/OPERATIONS pillar (design s3; ledger/W2/algebra_foundation/
+# 02_algebra_tower.md "RING / FIELD / MODULE - SYNTHESIZE (absent as algebra)":134-136). Where T4's
+# algebra_spine.ttl authored the ONE-operation spine (Magma..AbelianGroup + Quasigroup/Loop, Sigma={.}),
+# this file authors the PARALLEL two-operation progenitor family with Sigma={+, ·}:
+#   fnd:Semiring -> fnd:Ring -> fnd:Field   (+distributivity / +additive-inverse / +multiplicative-inverse)
+# and the algebra-space seam module/vector sub-family
+#   fnd:Module (over a ring) -> fnd:VectorSpace (over a field)   (+scalar-action / +field-scalars).
+# Both hang off the SAME agnostic fnd:AlgebraicStructure progenitor (algebra_spine.ttl) that GROUNDS
+# NOTHING; each rung adds EXACTLY ONE law over its parent (Directive 17, never crammed) and is MINTED,
+# not invented: every concrete rung is a fnd:PresentedAlgebra (engine.ttl, LIFTED) carrying its signature
+# Sigma (fnd:hasSignature), its equation set E (fnd:hasEquationSet), a carrier that is F_E-produced
+# (fnd:hasCarrier a fnd:FreeAlgebra fnd:mintedVia the ONE lifted fnd:engineAdjunction, fnd:groundsInSet its
+# underlying Set), the single new law it adds (fnd:addsLaw), and its cumulative fnd:satisfiesLaw edges - so
+# the T2 q_engine_presents / fnd:PresentedAlgebraShape and T4 fnd:AlgebraProgenitorShape teeth cover the
+# whole two-operation family exactly as they cover the spine.
+#
+# HONESTY LEDGER (design s0 / Directive 20), tagged on EVERY atom via fnd:authority: EVERYTHING in this
+# file is SYN - the two-operation line and module/vector are FULLY ABSENT from Helios as algebra
+# (02_algebra_tower.md:134-136 "No algebraic ring, field (only record-field), or module (only code-module)";
+# "Semiring" appears only as a valuation-coefficient device, never as an axiomatized rung with +/x
+# distributivity axioms, helios/srcy/papers/32_optimization_rules/chapters/14_hyper00_intervention_evaluation_economics_protocol.tex:331,367,401,473,546 / :132; vector spaces appear only as
+# incidental "ambient vector spaces" in a sheaf-consistency operator, helios/srcy/appendices/35_appendix_a_notational_summary/sections/00_content.tex:504).
+# It is authored as CITED STANDARD-MATHEMATICAL FACT (the Directive-19/20 precedent: mathematics is fact
+# and liftable, cite the source, NEVER pretend a Helios lift). The engine machinery the rungs are minted
+# through (fnd:PresentedAlgebra / fnd:FreeAlgebra / fnd:FreeForgetful / fnd:engineAdjunction) is the LIFTED
+# DS mechanism from engine.ttl - reused here, not re-authored.
+#
+# Namespace fnd: <urn:silmaril:fnd:#>. Corpus-agnostic v1 (Directive 13): zero corpus instances - every
+# individual is a foundation-internal worked model (the finite field GF(3)=Z/3 as the ring/field witness,
+# a rank-1 free module over it, a 1-dimensional vector space over the field reusing the T4 fnd:abelianModel
+# as its additive group) that keeps the four T5 teeth non-vacuous and provably biting under probe injection
+# (conforms/ASK True->False). The two-operation reified table (fnd:RingOperationApplication, discriminated
+# by fnd:ringOp fnd:additiveOp / fnd:multiplicativeOp) is DISTINCT from T4's one-operation
+# fnd:BinaryOperationApplication, so the T5 teeth are fully isolated from the T4 rung teeth (no T4 shape is
+# scoped to a two-operation row and no two-operation model carries fnd:hasIdentityElement, the T4
+# identity/monoid key). Consumed by T10 (the SP1 number tower prim:Natural..prim:Complex re-anchors onto
+# this ring/field line; the geometers' coordinate planes re-anchor onto fnd:VectorSpace).
+# =====================================================================================
+
+
+# =====================================================================================
+# The two-operation reified table vocabulary (SYN) — the analogue of T4's one-operation
+# fnd:BinaryOperationApplication, but with an fnd:ringOp discriminator so a SINGLE reified-application class
+# carries BOTH the additive (+) and multiplicative (·) Cayley tables of a two-operation structure, keeping
+# the distributivity / inverse LAWS checkable graph facts walked by the T5 teeth.
+# =====================================================================================
+
+fnd:RingOperation a owl:Class ;
+    rdfs:label "RingOperation" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The operation discriminator of a two-operation algebraic structure - the enumerated type whose two members fnd:additiveOp (+) and fnd:multiplicativeOp (·) tag each reified fnd:RingOperationApplication with WHICH of the structure's two operations it is a row of. SYN, cited standard universal algebra: a ring/semiring/field carries two binary operations on one carrier (Sigma={+, ·}), so a single reified-application class needs a discriminator to keep the two Cayley tables apart. This is the two-operation analogue of NOT needing a discriminator in T4 (a magma/group has ONE operation). The T5 distributivity tooth (fnd:RingDistribShape) reads fnd:additiveOp rows for y+z and (x·y)+(x·z) and fnd:multiplicativeOp rows for x·(y+z), x·y, x·z; the field-inverse tooth reads fnd:multiplicativeOp rows for x·x^-1=1. It has exactly two members." .
+
+fnd:additiveOp a fnd:RingOperation ;
+    rdfs:label "additiveOp" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-operation discriminator (+) of a two-operation structure. SYN. A fnd:RingOperationApplication with fnd:ringOp fnd:additiveOp is one row of the structure's ADDITIVE Cayley table (the commutative-group operation of a ring, whose identity is fnd:hasZeroElement 0). The T5 distributivity tooth reads these rows for the sum y+z and for (x·y)+(x·z)." .
+
+fnd:multiplicativeOp a fnd:RingOperation ;
+    rdfs:label "multiplicativeOp" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative-operation discriminator (·) of a two-operation structure. SYN. A fnd:RingOperationApplication with fnd:ringOp fnd:multiplicativeOp is one row of the structure's MULTIPLICATIVE Cayley table (the monoid operation of a ring, whose identity is fnd:hasOneElement 1). The T5 distributivity tooth reads these rows for x·(y+z), x·y, x·z; the field-inverse tooth reads them for the two-sided undo x·x^-1 = 1." .
+
+fnd:RingOperationApplication a owl:Class ;
+    rdfs:label "RingOperationApplication" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A reified application of one operation of a two-operation algebraic structure: fnd:ringLeft composed with fnd:ringRight under the operation fnd:ringOp (fnd:additiveOp or fnd:multiplicativeOp) yields fnd:ringResult, all three fnd:AlgebraElement, scoped to one witness model by fnd:ringStructure. SYN, cited standard universal algebra - the two-operation analogue of T4's fnd:BinaryOperationApplication (algebra_spine.ttl), reifying each cell of BOTH the additive and multiplicative Cayley tables so the tower's two-operation LAWS become checkable graph facts. It is held DISTINCT from the one-operation fnd:BinaryOperationApplication precisely so the T5 teeth (distributivity, multiplicative inverse) are fully isolated from the T4 rung teeth: no T4 shape is scoped to fnd:ringStructure and no fnd:ringOp appears in a T4 row. fnd:RingDistribShape forms x·(y+z) via an fnd:additiveOp row then an fnd:multiplicativeOp row, forms (x·y)+(x·z) via two fnd:multiplicativeOp rows then an fnd:additiveOp row, and compares fnd:ringResult; fnd:FieldMultInverseShape checks x·inv(x)=1 over the fnd:multiplicativeOp rows. The fnd:ringStructure edge scopes each application to exactly one witness model so a probe perturbing one table's fnd:ringResult flips exactly the tooth that walks that table (conforms/ASK True->False)." .
+
+fnd:ringStructure a owl:ObjectProperty ;
+    rdfs:domain fnd:RingOperationApplication ; rdfs:range fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "ringStructure" ;
+    rdfs:comment "Relates a reified two-operation application (fnd:RingOperationApplication) to the concrete two-operation witness model (a fnd:AlgebraicStructure instance - fnd:ringModel or fnd:fieldModel) whose Cayley tables it is one row of. SYN. This scoping edge keeps the T5 teeth INDEPENDENT: each tooth walks only the applications with its own fnd:ringStructure, so a probe perturbing one model's fnd:ringResult flips exactly that model's tooth. Range fnd:AlgebraicStructure (every model is an instance of a two-operation rung, a subclass of the agnostic progenitor); domain fnd:RingOperationApplication." .
+
+fnd:ringOp a owl:ObjectProperty ;
+    rdfs:domain fnd:RingOperationApplication ; rdfs:range fnd:RingOperation ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "ringOp" ;
+    rdfs:comment "Relates a reified two-operation application (fnd:RingOperationApplication) to the operation discriminator (fnd:RingOperation: fnd:additiveOp or fnd:multiplicativeOp) that says WHICH of the structure's two operations the row belongs to. SYN. It is the edge that lets a single reified-application class carry both the additive and multiplicative Cayley tables of a ring without conflating them - the T5 distributivity tooth selects fnd:additiveOp vs fnd:multiplicativeOp rows by this edge. Domain fnd:RingOperationApplication, range fnd:RingOperation." .
+
+fnd:ringLeft a owl:ObjectProperty ;
+    rdfs:domain fnd:RingOperationApplication ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "ringLeft" ;
+    rdfs:comment "The left operand of a reified two-operation application (fnd:RingOperationApplication): the first fnd:AlgebraElement in 'fnd:ringLeft OP fnd:ringRight = fnd:ringResult' under the operation fnd:ringOp. SYN, mirroring T4's fnd:opLeft one file up. Together with fnd:ringRight and fnd:ringResult it records one row of a witness model's additive or multiplicative Cayley table. Domain fnd:RingOperationApplication, range fnd:AlgebraElement." .
+
+fnd:ringRight a owl:ObjectProperty ;
+    rdfs:domain fnd:RingOperationApplication ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "ringRight" ;
+    rdfs:comment "The right operand of a reified two-operation application (fnd:RingOperationApplication): the second fnd:AlgebraElement in 'fnd:ringLeft OP fnd:ringRight = fnd:ringResult' under the operation fnd:ringOp. SYN, mirroring T4's fnd:opRight. Together with fnd:ringLeft and fnd:ringResult it records one Cayley-table row. Domain fnd:RingOperationApplication, range fnd:AlgebraElement." .
+
+fnd:ringResult a owl:ObjectProperty ;
+    rdfs:domain fnd:RingOperationApplication ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "ringResult" ;
+    rdfs:comment "The result of a reified two-operation application (fnd:RingOperationApplication): the fnd:AlgebraElement that 'fnd:ringLeft OP fnd:ringRight' evaluates to under fnd:ringOp. SYN, mirroring T4's fnd:opResult. It is the value the T5 teeth compare: fnd:RingDistribShape checks x·(y+z) and (x·y)+(x·z) evaluate to the same result, fnd:FieldMultInverseShape checks x·inv(x) results in the field's one-element. Perturbing a single fnd:ringResult is the probe of record for each two-operation rung tooth. Domain fnd:RingOperationApplication, range fnd:AlgebraElement." .
+
+
+# =====================================================================================
+# The zero / one / carrier-enumeration / multiplicative-inverse / scalar-action vocabulary (SYN).
+# =====================================================================================
+
+fnd:hasZeroElement a owl:ObjectProperty ;
+    rdfs:domain fnd:AlgebraicStructure ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasZeroElement" ;
+    rdfs:comment "Relates a two-operation structure (a ring/field witness) to its additive identity 0 (the neutral of +). SYN, cited standard ring theory. It is DISTINCT from T4's fnd:hasIdentityElement (the single-operation identity the T4 fnd:MonoidIdentityShape keys on) precisely so the two-operation models never trip a T4 tooth. fnd:FieldMultInverseShape reads it to define 'nonzero': every fnd:hasRingElement of a fnd:Field that is not its fnd:hasZeroElement must carry a fnd:MultInversePairing. Domain fnd:AlgebraicStructure, range fnd:AlgebraElement." .
+
+fnd:hasOneElement a owl:ObjectProperty ;
+    rdfs:domain fnd:AlgebraicStructure ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasOneElement" ;
+    rdfs:comment "Relates a two-operation structure (a ring/field witness) to its multiplicative identity 1 (the neutral of ·). SYN, cited standard ring theory. DISTINCT from T4's fnd:hasIdentityElement so the two-operation models never trip the T4 fnd:MonoidIdentityShape. fnd:FieldMultInverseShape / fnd:VectorSpaceAxiomsShape read it as the target the multiplicative inverse must reach (x·x^-1 = 1) and the scalar of the vector-space unit law (1·v = v). Domain fnd:AlgebraicStructure, range fnd:AlgebraElement." .
+
+fnd:hasRingElement a owl:ObjectProperty ;
+    rdfs:domain fnd:AlgebraicStructure ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasRingElement" ;
+    rdfs:comment "Enumerates the carrier elements of a two-operation structure (a ring or field witness) - the membership edge fnd:FieldMultInverseShape quantifies over ('every nonzero element is invertible') and fnd:ModuleScalarShape reads to type-check a scalar (the scalar of a module action must be a fnd:hasRingElement of the base ring). SYN, cited standard ring theory. Domain fnd:AlgebraicStructure, range fnd:AlgebraElement." .
+
+fnd:MultInversePairing a owl:Class ;
+    rdfs:label "MultInversePairing" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A claimed multiplicative-inverse pairing in a field witness model: a reified statement that fnd:mipInverse is the two-sided multiplicative inverse of fnd:mipElement within fnd:mipModel (whose fnd:hasOneElement is the multiplicative identity 1). SYN, cited standard field theory - the field's multiplicative-inverse law (every nonzero element is invertible) is FULLY ABSENT from Helios (02_algebra_tower.md:134-136), authored here as cited math fact. It is the two-operation / multiplicative analogue of T4's fnd:InversePairing, and reuses the SAME genuine-inverse discipline (SP2 aob:retracts, 'a retract that does not undo -> RED'): fnd:FieldMultInverseShape / q_field_mult_inverse hold a pairing GENUINE only when BOTH fnd:mipElement · fnd:mipInverse = 1 AND fnd:mipInverse · fnd:mipElement = 1 (the two-sided undo, read off the reified fnd:multiplicativeOp table), so a claimed inverse that does not multiply to the field's one is RED. The probe of record perturbs the product 2·2 away from 1 and the pairing 2<->2 ceases to satisfy the undo, flipping the tooth True->False." .
+
+fnd:mipModel a owl:ObjectProperty ;
+    rdfs:domain fnd:MultInversePairing ; rdfs:range fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "mipModel" ;
+    rdfs:comment "Relates a multiplicative-inverse pairing (fnd:MultInversePairing) to the field witness model (a fnd:Field instance, fnd:fieldModel) in which the pairing is claimed - the model whose fnd:hasOneElement is the 1 the two-sided multiplicative inverse must reach, and whose reified fnd:multiplicativeOp table fnd:FieldMultInverseShape reads for the products fnd:mipElement · fnd:mipInverse and fnd:mipInverse · fnd:mipElement. SYN. Domain fnd:MultInversePairing, range fnd:AlgebraicStructure." .
+
+fnd:mipElement a owl:ObjectProperty ;
+    rdfs:domain fnd:MultInversePairing ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "mipElement" ;
+    rdfs:comment "Relates a multiplicative-inverse pairing (fnd:MultInversePairing) to the nonzero element x whose multiplicative inverse is being claimed. SYN. fnd:FieldMultInverseShape / q_field_mult_inverse require x · fnd:mipInverse = 1 AND fnd:mipInverse · x = 1, and require that EVERY nonzero fnd:hasRingElement of the field be some pairing's fnd:mipElement (completeness). Domain fnd:MultInversePairing, range fnd:AlgebraElement." .
+
+fnd:mipInverse a owl:ObjectProperty ;
+    rdfs:domain fnd:MultInversePairing ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "mipInverse" ;
+    rdfs:comment "Relates a multiplicative-inverse pairing (fnd:MultInversePairing) to the element y claimed as the two-sided multiplicative inverse of fnd:mipElement x. SYN. fnd:FieldMultInverseShape / q_field_mult_inverse require x · y = 1 AND y · x = 1 (the field's fnd:hasOneElement), reusing the T4/SP2 genuine-inverse discipline (a claimed inverse that does not undo -> RED). The probe of record perturbs the product x·y away from 1 so the two-sided undo fails and the tooth bites. Domain fnd:MultInversePairing, range fnd:AlgebraElement." .
+
+fnd:moduleOverRing a owl:ObjectProperty ;
+    rdfs:domain fnd:Module ; rdfs:range fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "moduleOverRing" ;
+    rdfs:comment "Relates a module (fnd:Module) to the base ring (a two-operation fnd:AlgebraicStructure - a fnd:Ring, or a fnd:Field for a vector space) whose elements act on the module by scalars. SYN, cited standard module theory. fnd:ModuleScalarShape / q_module_scalar read it to type-check a scalar action: the scalar of an fnd:ScalarAction over the module must be a fnd:hasRingElement of THIS base ring. Domain fnd:Module, range fnd:AlgebraicStructure." .
+
+fnd:hasModuleVector a owl:ObjectProperty ;
+    rdfs:domain fnd:Module ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasModuleVector" ;
+    rdfs:comment "Enumerates the vectors (carrier elements) of a module (fnd:Module) - the membership set the scalar action must land in (R x M -> M). SYN, cited standard module theory. fnd:ModuleScalarShape / q_module_scalar require the fnd:saResult of every fnd:ScalarAction over the module to be a fnd:hasModuleVector of it (the action does not escape M); the probe of record injects an action whose result is a ring element, not a module vector, and the tooth bites. Domain fnd:Module, range fnd:AlgebraElement." .
+
+fnd:moduleAdditiveGroup a owl:ObjectProperty ;
+    rdfs:domain fnd:Module ; rdfs:range fnd:AbelianGroup ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "moduleAdditiveGroup" ;
+    rdfs:comment "Relates a module (fnd:Module) to the ABELIAN GROUP (fnd:AbelianGroup) of its vectors under addition (M,+) - the reified vector-addition table the FULL module scalar-action law reads for the bi-distributivity axioms r.(m+n)=r.m+r.n and (r+s).m=r.m+s.m. SYN, cited standard module theory (module absent as algebra in Helios, only code-module, 02_algebra_tower.md:134-136). It is the module-general analogue of fnd:vectorAdditiveGroup (domain fnd:VectorSpace): every fnd:Module - not only a fnd:VectorSpace - carries its vectors as an abelian group, so fnd:ModuleScalarLawShape / q_module_scalar_law read the vector sum m+n and the result sum (r.m)+(r.n) over fnd:opStructure ?g where ?g is this module additive group (fnd:moduleModel -> fnd:moduleAddGroup, fnd:vectorSpaceModel -> fnd:abelianModel). Domain fnd:Module, range fnd:AbelianGroup." .
+
+fnd:ScalarAction a owl:Class ;
+    rdfs:label "ScalarAction" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A reified application of a module's scalar action R x M -> M: the scalar fnd:saScalar (a ring element r) acts on the vector fnd:saVector (a module element m) to yield fnd:saResult (the vector r·m), scoped to the module fnd:saModule. SYN, cited standard module theory - the module scalar action is FULLY ABSENT from Helios (02_algebra_tower.md:134-136), authored here as cited math fact. Reifying each scalar application as its own node makes the module's TYPING a checkable graph fact (the same edge-existence discipline as q_membership_typed / q_set_carrier): fnd:ModuleScalarShape / q_module_scalar require, for every fnd:ScalarAction, that fnd:saScalar be a fnd:hasRingElement of the module's fnd:moduleOverRing base ring AND fnd:saResult be a fnd:hasModuleVector of the module (the action lands back in M). It also carries the vector-space unit law (fnd:unitLawAction): a scalar action with scalar = the field's fnd:hasOneElement whose result must equal its vector (1·v = v). The probe of record repoints an fnd:saResult out of the module vectors so the typing fails (or repoints the unit-law result off v so 1·v != v), flipping the tooth True->False." .
+
+fnd:saModule a owl:ObjectProperty ;
+    rdfs:domain fnd:ScalarAction ; rdfs:range fnd:Module ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "saModule" ;
+    rdfs:comment "Relates a reified scalar action (fnd:ScalarAction) to the module (fnd:Module) whose scalar action R x M -> M it is one application of - the module whose fnd:moduleOverRing base ring supplies the legal scalars and whose fnd:hasModuleVector set the result must land in. SYN. fnd:ModuleScalarShape reads it to type-check the action. Domain fnd:ScalarAction, range fnd:Module." .
+
+fnd:saScalar a owl:ObjectProperty ;
+    rdfs:domain fnd:ScalarAction ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "saScalar" ;
+    rdfs:comment "The scalar r of a reified scalar action (fnd:ScalarAction) - an element of the module's base ring acting on the vector fnd:saVector. SYN. fnd:ModuleScalarShape / q_module_scalar require r to be a fnd:hasRingElement of the module's fnd:moduleOverRing base ring (a scalar drawn from the ring, not from nowhere). Domain fnd:ScalarAction, range fnd:AlgebraElement." .
+
+fnd:saVector a owl:ObjectProperty ;
+    rdfs:domain fnd:ScalarAction ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "saVector" ;
+    rdfs:comment "The vector m of a reified scalar action (fnd:ScalarAction) - the module element the scalar fnd:saScalar acts on to produce fnd:saResult = r·m. SYN. In the vector-space unit law (fnd:unitLawAction) it is the vector v that 1·v must equal (fnd:VectorSpaceAxiomsShape requires fnd:saResult = fnd:saVector when the scalar is the field's one). Domain fnd:ScalarAction, range fnd:AlgebraElement." .
+
+fnd:saResult a owl:ObjectProperty ;
+    rdfs:domain fnd:ScalarAction ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "saResult" ;
+    rdfs:comment "The result r·m of a reified scalar action (fnd:ScalarAction) - the vector the scalar fnd:saScalar produces from fnd:saVector. SYN. fnd:ModuleScalarShape / q_module_scalar require it to be a fnd:hasModuleVector of the module (the action lands back in M, R x M -> M); fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms require it to EQUAL fnd:saVector for the unit-law action (1·v = v). Perturbing a single fnd:saResult is the probe of record for both q_module_scalar (result escapes M) and q_vectorspace_axioms (1·v != v). Domain fnd:ScalarAction, range fnd:AlgebraElement." .
+
+fnd:scalarField a owl:ObjectProperty ;
+    rdfs:domain fnd:VectorSpace ; rdfs:range fnd:Field ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "scalarField" ;
+    rdfs:comment "Relates a vector space (fnd:VectorSpace) to the FIELD (fnd:Field) whose elements are its scalars - the module->vector-space upgrade made a graph edge (a vector space is exactly a module whose base ring is a field). SYN, cited standard linear algebra. fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms require the scalarField to be a fnd:Field (not merely a ring) and read its fnd:hasOneElement as the scalar of the unit law. Domain fnd:VectorSpace, range fnd:Field." .
+
+fnd:vectorAdditiveGroup a owl:ObjectProperty ;
+    rdfs:domain fnd:VectorSpace ; rdfs:range fnd:AbelianGroup ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "vectorAdditiveGroup" ;
+    rdfs:comment "Relates a vector space (fnd:VectorSpace) to the ABELIAN GROUP (fnd:AbelianGroup) of its vectors under addition - vector-space axioms 1-4 ((V,+) is an abelian group) made a graph edge. SYN, cited standard linear algebra. The witness reuses the T4 fnd:abelianModel (algebra_spine.ttl) as this additive group, tying the two-operation seam back to the one-operation spine. fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms require it to be a fnd:AbelianGroup. Domain fnd:VectorSpace, range fnd:AbelianGroup." .
+
+fnd:unitLawAction a owl:ObjectProperty ;
+    rdfs:domain fnd:VectorSpace ; rdfs:range fnd:ScalarAction ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "unitLawAction" ;
+    rdfs:comment "Relates a vector space (fnd:VectorSpace) to the reified scalar action (fnd:ScalarAction) that witnesses its UNIT LAW 1·v = v (vector-space axiom 5) - a scalar action whose scalar is the fnd:scalarField's fnd:hasOneElement and whose fnd:saResult must equal its fnd:saVector. SYN, cited standard linear algebra. fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms read it: for the unit-law action of a vector space, fnd:saResult != fnd:saVector -> RED. Domain fnd:VectorSpace, range fnd:ScalarAction." .
+
+
+# =====================================================================================
+# The E-COVERAGE bridge property (SYN) — makes 'a rung's presentation E must PRESENT every law its
+# class-general teeth enforce' a checkable graph fact (the reverse of PresentedAlgebraShape clause 4).
+# =====================================================================================
+
+fnd:rungRequiresLaw a owl:ObjectProperty ;
+    rdfs:domain fnd:PresentedAlgebra ; rdfs:range fnd:Equation ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "rungRequiresLaw" ;
+    rdfs:comment "Relates a two-operation-line rung (a fnd:PresentedAlgebra: fnd:Semiring / fnd:Ring / fnd:Field / fnd:Module / fnd:VectorSpace) to a law (fnd:Equation) that a CLASS-GENERAL SHACL tooth ENFORCES on that rung's models - the E-COVERAGE bridge that makes 'the rung's presentation E must PRESENT every law its enforced teeth demand' a checkable graph fact, closing the E-vs-teeth divergence in the direction the one-way subset never could. SYN, cited the project's own minted-not-invented doctrine (design s1) + standard universal algebra. It is the REVERSE of fnd:PresentedAlgebraShape clause 4 (fnd:satisfiesLaw subset-of E): clause 4 forbids a rung CLAIMING a law OUTSIDE its E, and the new clause 5 (added with this property) forbids a rung OMITTING from its fnd:satisfiesLaw a law a class-general tooth enforces on it - so E must both not-exceed AND fully-cover the enforced law set, i.e. satisfiesLaw == the enforced laws, matching the algebra_spine.ttl faithful convention. Each rung's fnd:rungRequiresLaw set is exactly the laws with an enforcing class-general tooth reaching that rung (cumulative through rdfs:subClassOf: fnd:Semiring the six add/mult assoc+comm+identity+distributivity teeth; fnd:Ring those + additive-inverse; fnd:Field those + field-mult-comm + mult-inverse; fnd:Module the scalar-action law; fnd:VectorSpace scalar-action + field-scalars), and on this floor is a SUBSET of the rung's cumulative fnd:satisfiesLaw (== its E), so clause 5 is GREEN. The PROBE OF RECORD deletes one fnd:satisfiesLaw edge a rung still requires (e.g. remove fnd:Semiring fnd:satisfiesLaw fnd:lawAddAssoc while fnd:RingAddAssocShape still enforces additive associativity on every fnd:Semiring) -> clause 5 bites (conforms True->False), proving a rung whose presentation no longer covers an enforced law is RED. Domain fnd:PresentedAlgebra, range fnd:Equation." .
+
+
+# =====================================================================================
+# The two-operation laws as first-class fnd:Equation individuals (reused engine.ttl fnd:Equation shape).
+# All SYN — the two-operation line and module/vector are fully absent in Helios (02_algebra_tower.md:134-136).
+# =====================================================================================
+
+fnd:lawTwoOpClosure a fnd:Equation ;
+    rdfs:label "lawTwoOpClosure" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The closure/totality law of a two-operation structure: both + and · are total binary operations on the carrier S (+ : S,S -> S and · : S,S -> S). SYN, cited standard universal algebra (the engine substrate T_Sigma(X) is LIFTED, 26/03/03, but the two-operation packaging is synthesized). It is a member of every two-operation rung's equation set (fnd:eqsSemiring..fnd:eqsVectorSpace)." ;
+    fnd:equationBody "for all x,y in S: x+y in S and x·y in S (totality/closure of both operations + and ·)" .
+
+fnd:lawDistributivity a fnd:Equation ;
+    rdfs:label "lawDistributivity" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The distributivity law connecting the two operations of a semiring/ring: · distributes over + on both sides - x·(y+z) = x·y + x·z (left) and (y+z)·x = y·x + z·x (right). SYN, cited standard ring theory - Helios has NO +/× distributivity axioms (02_algebra_tower.md:132; ring/semiring are absent as algebra). It is the sole added law of fnd:Semiring (fnd:addsLaw over the agnostic progenitor) - the characterizing two-operation interaction - and a member of every two-operation rung's equation set. q_ring_distrib / fnd:RingDistribShape check BOTH-SIDED distributivity CLASS-GENERAL over EVERY fnd:Semiring instance (?mdl a fnd:Semiring - the class where the law is added, reaching fnd:ringModel and fnd:fieldModel via rdfs:subClassOf and any bare fnd:Semiring), over the reified GF(3) tables; right distributivity does NOT follow from left in a non-commutative semiring, so both sides are enforced." ;
+    fnd:equationBody "x·(y+z) = x·y + x·z and (y+z)·x = y·x + z·x (· distributes over + on both sides)" .
+
+fnd:lawAdditiveInverse a fnd:Equation ;
+    rdfs:label "lawAdditiveInverse" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-inverse law: every element x has an additive inverse -x with x + (-x) = 0 and (-x) + x = 0 (the additive monoid (S,+,0) is upgraded to an abelian group). SYN, cited standard ring theory (ring absent as algebra in Helios, 02_algebra_tower.md:134-136). It is the sole added law of fnd:Ring (fnd:addsLaw over fnd:Semiring) - the step from a semiring (a commutative monoid under +) to a ring (an abelian group under +) - and a member of fnd:eqsRing and fnd:eqsField." ;
+    fnd:equationBody "for all x there is -x with x + (-x) = 0 and (-x) + x = 0 (additive-group inverse over the zero 0)" .
+
+fnd:lawMultInverse a fnd:Equation ;
+    rdfs:label "lawMultInverse" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative-inverse law: every NONZERO element x (x != 0) has a two-sided multiplicative inverse x^-1 with x·x^-1 = 1 and x^-1·x = 1 (the nonzero elements form a group under ·). SYN, cited standard field theory (field absent as algebra in Helios, only record-field, 02_algebra_tower.md:134-136). It is the sole added law of fnd:Field (fnd:addsLaw over fnd:Ring) - the step from a ring to a field - and a member of fnd:eqsField. q_field_mult_inverse / fnd:FieldMultInverseShape check the two-sided multiplicative undo over the reified GF(3) table and the fnd:MultInversePairing claims." ;
+    fnd:equationBody "for all x != 0 there is x^-1 with x·x^-1 = 1 and x^-1·x = 1 (multiplicative inverse over the one 1)" .
+
+fnd:lawScalarAction a fnd:Equation ;
+    rdfs:label "lawScalarAction" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The scalar-action law of a module over a ring R: the action R x M -> M is unital (1·m = m), associative in scalars ((r·s)·m = r·(s·m)), and bi-distributive (r·(m+n) = r·m + r·n and (r+s)·m = r·m + s·m). SYN, cited standard module theory (module absent as algebra in Helios, only code-module, 02_algebra_tower.md:134-136). It is the sole added law of fnd:Module (fnd:addsLaw off the agnostic progenitor) - the scalar action that makes an abelian group of vectors a module - and a member of fnd:eqsModule and fnd:eqsVectorSpace. q_module_scalar / fnd:ModuleScalarShape check the action's typing (R x M -> M) over the reified fnd:ScalarAction witnesses." ;
+    fnd:equationBody "1·m = m ; (r·s)·m = r·(s·m) ; r·(m+n) = r·m + r·n ; (r+s)·m = r·m + s·m (module scalar-action axioms, R x M -> M)" .
+
+fnd:lawFieldScalars a fnd:Equation ;
+    rdfs:label "lawFieldScalars" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The field-scalars law of a vector space: the scalar ring is a FIELD (every nonzero scalar is invertible), upgrading a module-over-a-ring to a vector-space-over-a-field. SYN, cited standard linear algebra (vector space absent as a rung in Helios, only incidental 'ambient vector spaces', 02_algebra_tower.md:136). It is the sole added law of fnd:VectorSpace (fnd:addsLaw over fnd:Module) and a member of fnd:eqsVectorSpace. q_vectorspace_axioms / fnd:VectorSpaceAxiomsShape check that a vector space's fnd:scalarField is a fnd:Field (not merely a ring) together with the abelian additive group and the unit law." ;
+    fnd:equationBody "the scalar ring is a field: every scalar a != 0 has a^-1 (module over a ring upgraded to a vector space over a field)" .
+
+# --- the BASELINE two-operation laws that PRESENT the semiring/ring/field structure. Each of the two
+# operations of a semiring is a monoid (+ additionally commutative), so the additive/multiplicative
+# associativity + identity + additive commutativity laws are members of every two-operation rung's E
+# (fnd:eqsSemiring..fnd:eqsField, cumulative) even though NONE of them is a rung's fnd:addsLaw (the
+# characterizing added law of fnd:Semiring is fnd:lawDistributivity). They are each already teeth-proved
+# CLASS-GENERAL by an enforcing shape over fnd:Semiring / fnd:Field (fnd:RingAddAssocShape, etc.); this is
+# what makes the rung's E genuinely PRESENT the free semiring/ring/field, matching the algebra_spine.ttl
+# convention where every enforced law is ALSO an fnd:hasEquation member AND a fnd:satisfiesLaw edge.
+fnd:lawAddAssoc a fnd:Equation ;
+    rdfs:label "lawAddAssoc" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-ASSOCIATIVITY law of a two-operation structure: the addition + is associative - (a+b)+c = a+(b+c) - because a semiring's additive part is a commutative MONOID and a ring's/field's is an abelian GROUP, both of which demand associativity. SYN, cited standard ring theory (ring FULLY ABSENT as algebra in Helios, 02_algebra_tower.md:134-136; the two-operation packaging is synthesized). It is a BASELINE member of every two-operation rung's equation set (fnd:eqsSemiring, fnd:eqsRing, fnd:eqsField - cumulative), NOT any rung's fnd:addsLaw (fnd:Semiring's characterizing added law is fnd:lawDistributivity), and it is teeth-proved CLASS-GENERAL over every fnd:Semiring instance by fnd:RingAddAssocShape / q_ring_add_assoc over the reified fnd:additiveOp Cayley table (reaching fnd:ringModel and fnd:fieldModel by rdfs:subClassOf), so a fnd:Semiring / fnd:Ring / fnd:Field with a non-associative addition -> RED. Its membership in E (and in each rung's fnd:satisfiesLaw) is what makes the presentation genuinely PRESENT the free semiring/ring/field, matching the algebra_spine.ttl spine convention." ;
+    fnd:equationBody "(a+b)+c = a+(b+c) (associativity of the additive operation +)" .
+
+fnd:lawAddComm a fnd:Equation ;
+    rdfs:label "lawAddComm" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-COMMUTATIVITY law of a two-operation structure: the addition + commutes - a+b = b+a - because a semiring's additive part is a COMMUTATIVE monoid and a ring's/field's is an ABELIAN group. SYN, cited standard ring theory (ring FULLY ABSENT as algebra in Helios, 02_algebra_tower.md:134-136). It is a BASELINE member of every two-operation rung's equation set (fnd:eqsSemiring, fnd:eqsRing, fnd:eqsField - cumulative), NOT any rung's fnd:addsLaw, and is teeth-proved CLASS-GENERAL over every fnd:Semiring instance by fnd:RingAddCommShape / q_ring_add_comm over the reified fnd:additiveOp table (reaching fnd:ringModel and fnd:fieldModel by rdfs:subClassOf), so a fnd:Semiring / fnd:Ring / fnd:Field with a non-commutative addition -> RED. Its membership in E (and in each rung's fnd:satisfiesLaw) is what makes the presentation genuinely PRESENT the additive commutative monoid of the free semiring/ring/field." ;
+    fnd:equationBody "a+b = b+a (commutativity of the additive operation +)" .
+
+fnd:lawAddIdentity a fnd:Equation ;
+    rdfs:label "lawAddIdentity" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-IDENTITY law of a two-operation structure: there is a two-sided additive identity 0 (the fnd:hasZeroElement) with 0+x = x AND x+0 = x for every carrier element x - the neutral of the additive commutative monoid (semiring) / abelian group (ring/field). SYN, cited standard ring theory (ring FULLY ABSENT as algebra in Helios, 02_algebra_tower.md:134-136). It is a BASELINE member of every two-operation rung's equation set (fnd:eqsSemiring, fnd:eqsRing, fnd:eqsField - cumulative), NOT any rung's fnd:addsLaw, and is teeth-proved CLASS-GENERAL over every fnd:Semiring instance by fnd:RingAddIdentityShape / q_ring_add_identity (GENUINENESS of the declared 0 as a two-sided unit AND its EXISTENCE), so a fnd:Semiring / fnd:Ring / fnd:Field whose declared 0 fails 0+x=x, or which declares no 0 at all, -> RED. Its membership in E (and each rung's fnd:satisfiesLaw) is what makes the presentation genuinely PRESENT the zero of the free semiring/ring/field." ;
+    fnd:equationBody "there is 0 with 0+x = x and x+0 = x (two-sided additive identity 0)" .
+
+fnd:lawMultAssoc a fnd:Equation ;
+    rdfs:label "lawMultAssoc" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative-ASSOCIATIVITY law of a two-operation structure: the multiplication · is associative - (a·b)·c = a·(b·c) - because the multiplicative part of a semiring/ring/field is a MONOID (at minimum a semigroup for a rng). SYN, cited standard ring theory (ring FULLY ABSENT as algebra in Helios, 02_algebra_tower.md:134-136). It is a BASELINE member of every two-operation rung's equation set (fnd:eqsSemiring, fnd:eqsRing, fnd:eqsField - cumulative), NOT any rung's fnd:addsLaw, and is teeth-proved CLASS-GENERAL over every fnd:Semiring instance by fnd:RingMultAssocShape / q_ring_mult_assoc over the reified fnd:multiplicativeOp table (reaching fnd:ringModel and fnd:fieldModel by rdfs:subClassOf), so a fnd:Semiring / fnd:Ring / fnd:Field with a non-associative multiplication -> RED. Its membership in E (and each rung's fnd:satisfiesLaw) is what makes the presentation genuinely PRESENT the multiplicative monoid of the free semiring/ring/field." ;
+    fnd:equationBody "(a·b)·c = a·(b·c) (associativity of the multiplicative operation ·)" .
+
+fnd:lawMultIdentity a fnd:Equation ;
+    rdfs:label "lawMultIdentity" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative-IDENTITY law of a two-operation structure: there is a two-sided multiplicative identity 1 (the fnd:hasOneElement) with 1·x = x AND x·1 = x for every carrier element x - the neutral of the multiplicative monoid that every semiring/ring/field carries. SYN, cited standard ring theory (ring FULLY ABSENT as algebra in Helios, 02_algebra_tower.md:134-136). It is a BASELINE member of every two-operation rung's equation set (fnd:eqsSemiring, fnd:eqsRing, fnd:eqsField - cumulative), NOT any rung's fnd:addsLaw, and is teeth-proved CLASS-GENERAL over every fnd:Semiring instance by fnd:RingMultIdentityShape / q_ring_mult_identity (GENUINENESS of the declared 1 as a two-sided unit AND its EXISTENCE, Fix-B scoped to fnd:Semiring), so a fnd:Semiring / fnd:Ring / fnd:Field whose declared 1 fails 1·x=x, or which declares no 1 at all, -> RED. Its membership in E (and each rung's fnd:satisfiesLaw) is what makes the presentation genuinely PRESENT the one of the free semiring/ring/field." ;
+    fnd:equationBody "there is 1 with 1·x = x and x·1 = x (two-sided multiplicative identity 1)" .
+
+fnd:lawFieldMultComm a fnd:Equation ;
+    rdfs:label "lawFieldMultComm" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The FIELD multiplicative-COMMUTATIVITY law: in a fnd:Field the multiplication · commutes - a·b = b·a - the Field rung's defining upgrade over a fnd:Ring together with fnd:lawMultInverse (a field's nonzero elements form a COMMUTATIVE group under ·). SYN, cited standard field theory (field FULLY ABSENT as algebra in Helios, only record-field, 02_algebra_tower.md:134-136). It is a member of fnd:eqsField ONLY - NOT of fnd:eqsSemiring / fnd:eqsRing, because noncommutative rings and semirings (matrix rings, the corpus semiring coefficients) are legitimate algebra, so multiplicative commutativity is added exactly at the fnd:Field rung. It is NOT the Field rung's fnd:addsLaw (that is fnd:lawMultInverse); rather it and fnd:lawMultInverse TOGETHER are the two laws E gains from fnd:Ring to fnd:Field, and its presence in fnd:eqsField is precisely what REMOVES the division-ring mischaracterisation (a ring with multiplicative inverses but NO multiplicative commutativity is a division ring, not a field). It is teeth-proved CLASS-GENERAL over every fnd:Field instance by fnd:FieldMultCommShape / q_field_mult_comm over the reified fnd:multiplicativeOp table, so a fnd:Field with a·b != b·a -> RED." ;
+    fnd:equationBody "a·b = b·a (commutativity of the multiplicative operation · in a field)" .
+
+
+# =====================================================================================
+# The signatures Sigma (SYN, reused engine.ttl fnd:Signature shape) — shared across the two-operation rungs.
+# =====================================================================================
+
+fnd:sigTwoBinary a fnd:Signature ;
+    rdfs:label "sigTwoBinary" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The two-operation ring signature Sigma = {+, ·, 0, 1} : one carrier sort S, two binary product symbols '+ : S,S -> S' and '· : S,S -> S', and two nullary units '0 : -> S' (additive) and '1 : -> S' (multiplicative). SYN worked signature over the lifted signature-with-equations discipline (26/03/03). Shared by fnd:Semiring, fnd:Ring and fnd:Field - the three rungs of the two-operation line that differ only in their equation set (distributivity vs +additive-inverse vs +multiplicative-inverse), not their signature." ;
+    fnd:hasSort "S" ;
+    fnd:hasOperationSymbol "+ : S,S -> S" ;
+    fnd:hasOperationSymbol "· : S,S -> S" ;
+    fnd:hasOperationSymbol "0 : -> S" ;
+    fnd:hasOperationSymbol "1 : -> S" .
+
+fnd:sigModule a fnd:Signature ;
+    rdfs:label "sigModule" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The module signature Sigma = {+_M, ·_scalar} : two sorts (the module carrier M and the scalar ring R), the vector addition '+ : M,M -> M', and the scalar action '· : R,M -> M'. SYN worked signature over the lifted signature-with-equations discipline (26/03/03). Shared by fnd:Module and fnd:VectorSpace - which differ only by whether the scalar ring is a field (the fnd:lawFieldScalars equation), not by their signature." ;
+    fnd:hasSort "M" ;
+    fnd:hasSort "R" ;
+    fnd:hasOperationSymbol "+ : M,M -> M" ;
+    fnd:hasOperationSymbol "· : R,M -> M" .
+
+
+# =====================================================================================
+# The per-rung equation sets E (SYN, reused engine.ttl fnd:EquationSet shape) — cumulative membership.
+# =====================================================================================
+
+fnd:eqsSemiring a fnd:EquationSet ;
+    rdfs:label "eqsSemiring" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The semiring equation set E = {two-op closure, additive associativity, additive commutativity, additive identity, multiplicative associativity, multiplicative identity, distributivity} - a carrier that is a COMMUTATIVE MONOID under + (associative, commutative, with a two-sided zero 0), a MONOID under · (associative, with a two-sided one 1), and in which · DISTRIBUTES over + (no additive inverses assumed). SYN. Presented over fnd:sigTwoBinary, this E now genuinely PRESENTS the free semiring: every one of its seven laws is BOTH a fnd:hasEquation member here AND a fnd:satisfiesLaw edge on fnd:Semiring AND (except closure, which is definitional totality on the reified finite Cayley table) enforced by a class-general SHACL tooth over every fnd:Semiring instance (fnd:RingAddAssocShape, fnd:RingAddCommShape, fnd:RingAddIdentityShape, fnd:RingMultAssocShape, fnd:RingMultIdentityShape, fnd:RingDistribShape), matching the algebra_spine.ttl convention. (The earlier E = {closure, distributivity} did NOT present a semiring - it omitted the two monoid structures the enforcing teeth already demand; that E-vs-teeth divergence is now closed.)" ;
+    fnd:hasEquation fnd:lawTwoOpClosure ;
+    fnd:hasEquation fnd:lawAddAssoc ;
+    fnd:hasEquation fnd:lawAddComm ;
+    fnd:hasEquation fnd:lawAddIdentity ;
+    fnd:hasEquation fnd:lawMultAssoc ;
+    fnd:hasEquation fnd:lawMultIdentity ;
+    fnd:hasEquation fnd:lawDistributivity .
+
+fnd:eqsRing a fnd:EquationSet ;
+    rdfs:label "eqsRing" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The ring equation set E = eqsSemiring + {additive inverse} = {two-op closure, additive associativity, additive commutativity, additive identity, multiplicative associativity, multiplicative identity, distributivity, additive inverse} - a semiring whose additive commutative monoid is UPGRADED to an abelian GROUP (every element has an additive inverse -x, x+(-x)=0). SYN. Presented over fnd:sigTwoBinary, it presents the free ring: it cumulatively contains every semiring law (so the additive part is now an abelian group and the multiplicative part a monoid, distributive) PLUS fnd:lawAdditiveInverse (fnd:Ring's characterizing fnd:addsLaw over fnd:Semiring). Every member is a fnd:satisfiesLaw edge on fnd:Ring and teeth-enforced (the seven semiring laws class-general over fnd:Semiring, which fnd:Ring is by rdfs:subClassOf; additive inverse by fnd:RingAdditiveInverseShape over fnd:Ring)." ;
+    fnd:hasEquation fnd:lawTwoOpClosure ;
+    fnd:hasEquation fnd:lawAddAssoc ;
+    fnd:hasEquation fnd:lawAddComm ;
+    fnd:hasEquation fnd:lawAddIdentity ;
+    fnd:hasEquation fnd:lawMultAssoc ;
+    fnd:hasEquation fnd:lawMultIdentity ;
+    fnd:hasEquation fnd:lawDistributivity ;
+    fnd:hasEquation fnd:lawAdditiveInverse .
+
+fnd:eqsField a fnd:EquationSet ;
+    rdfs:label "eqsField" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The field equation set E = eqsRing + {field multiplicative commutativity, multiplicative inverse} = {two-op closure, additive associativity, additive commutativity, additive identity, multiplicative associativity, multiplicative identity, distributivity, additive inverse, field multiplicative commutativity, multiplicative inverse} - a COMMUTATIVE ring in which every NONZERO element is multiplicatively invertible. SYN. Presented over fnd:sigTwoBinary, it presents the free field: cumulatively every ring law PLUS BOTH fnd:lawFieldMultComm (· commutes) AND fnd:lawMultInverse (fnd:Field's characterizing fnd:addsLaw). BOTH are required together - a ring with multiplicative inverses but WITHOUT multiplicative commutativity is a DIVISION RING, not a field; adding fnd:lawFieldMultComm to E is precisely what removes that mischaracterisation. Every member is a fnd:satisfiesLaw edge on fnd:Field and teeth-enforced (the semiring laws over fnd:Semiring, additive inverse over fnd:Ring, and fnd:FieldMultCommShape + fnd:FieldMultInverseShape class-general over fnd:Field)." ;
+    fnd:hasEquation fnd:lawTwoOpClosure ;
+    fnd:hasEquation fnd:lawAddAssoc ;
+    fnd:hasEquation fnd:lawAddComm ;
+    fnd:hasEquation fnd:lawAddIdentity ;
+    fnd:hasEquation fnd:lawMultAssoc ;
+    fnd:hasEquation fnd:lawMultIdentity ;
+    fnd:hasEquation fnd:lawDistributivity ;
+    fnd:hasEquation fnd:lawAdditiveInverse ;
+    fnd:hasEquation fnd:lawFieldMultComm ;
+    fnd:hasEquation fnd:lawMultInverse .
+
+fnd:eqsModule a fnd:EquationSet ;
+    rdfs:label "eqsModule" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The module equation set E = {two-op closure, scalar action} - an abelian group of vectors with a well-typed unital/associative/bi-distributive scalar action R x M -> M. SYN. Presented over fnd:sigModule." ;
+    fnd:hasEquation fnd:lawTwoOpClosure ;
+    fnd:hasEquation fnd:lawScalarAction .
+
+fnd:eqsVectorSpace a fnd:EquationSet ;
+    rdfs:label "eqsVectorSpace" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The vector-space equation set E = {two-op closure, scalar action, field scalars} - a module whose scalar ring is a field. SYN. Presented over fnd:sigModule." ;
+    fnd:hasEquation fnd:lawTwoOpClosure ;
+    fnd:hasEquation fnd:lawScalarAction ;
+    fnd:hasEquation fnd:lawFieldScalars .
+
+
+# =====================================================================================
+# The per-rung free-algebra carriers F_E(X) (SYN worked instances of the DS fnd:FreeAlgebra), each
+# fnd:mintedVia the ONE lifted fnd:engineAdjunction (engine.ttl) and fnd:groundsInSet its underlying Set
+# (so q_engine_presents clause 3 and q_set_carrier stay green over the two-operation family).
+# =====================================================================================
+
+fnd:carrierSemiring a fnd:FreeAlgebra ;
+    rdfs:label "carrierSemiring" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-semiring carrier F_E(X) for (sigTwoBinary, {closure, distributivity}). SYN worked instance of the DS fnd:FreeAlgebra, fnd:mintedVia the lifted engine, grounded into fnd:setSemiring." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={+,·,0,1}, E={distributivity}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setSemiring .
+
+fnd:carrierRing a fnd:FreeAlgebra ;
+    rdfs:label "carrierRing" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-ring carrier F_E(X) for (sigTwoBinary, {closure, distributivity, additive inverse}). SYN worked instance of the DS fnd:FreeAlgebra, grounded into fnd:setRing." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={+,·,0,1}, E={distributivity, additive inverse}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setRing .
+
+fnd:carrierField a fnd:FreeAlgebra ;
+    rdfs:label "carrierField" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-field carrier F_E(X) for (sigTwoBinary, {closure, distributivity, additive inverse, multiplicative inverse}). SYN worked instance of the DS fnd:FreeAlgebra, grounded into fnd:setField." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={+,·,0,1}, E={distributivity, add-inv, mult-inv}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setField .
+
+fnd:carrierModule a fnd:FreeAlgebra ;
+    rdfs:label "carrierModule" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-module carrier F_E(X) for (sigModule, {closure, scalar action}) - the free module on the generators over a ring. SYN worked instance of the DS fnd:FreeAlgebra, grounded into fnd:setModule." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={+_M, ·_scalar}, E={scalar action}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setModule .
+
+fnd:carrierVectorSpace a fnd:FreeAlgebra ;
+    rdfs:label "carrierVectorSpace" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-vector-space carrier F_E(X) for (sigModule, {closure, scalar action, field scalars}) - the free vector space on the generators over a field. SYN worked instance of the DS fnd:FreeAlgebra, grounded into fnd:setVectorSpace." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={+_M, ·_scalar}, E={scalar action, field scalars}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setVectorSpace .
+
+fnd:setSemiring a fnd:Set ;
+    rdfs:label "setSemiring" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierSemiring under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN; engine.ttl). SYN worked example; the grounding target of the semiring carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setRing a fnd:Set ;
+    rdfs:label "setRing" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierRing under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the ring carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setField a fnd:Set ;
+    rdfs:label "setField" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierField under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the field carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setModule a fnd:Set ;
+    rdfs:label "setModule" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierModule under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the module carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setVectorSpace a fnd:Set ;
+    rdfs:label "setVectorSpace" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierVectorSpace under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the vector-space carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+
+# =====================================================================================
+# The two-operation line rungs — each punned owl:Class + fnd:PresentedAlgebra, adding exactly one law,
+# hanging off the SAME agnostic fnd:AlgebraicStructure progenitor (algebra_spine.ttl) as the spine.
+# =====================================================================================
+
+fnd:Semiring a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Semiring" ;
+    rdfs:subClassOf fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The SEMIRING rung: a carrier with TWO operations + and · (each a monoid, + commutative) in which · DISTRIBUTES over + - x·(y+z) = x·y + x·z and (y+z)·x = y·x + z·x. It is the base rung of the two-operation line and adds EXACTLY ONE characterizing two-operation law over the agnostic progenitor (fnd:addsLaw fnd:lawDistributivity). SYN, cited standard universal algebra - 'semiring' appears in Helios only as a valuation-coefficient device in optimization (semiring planning / Pareto-semiring / semiring coordinates, helios/srcy/papers/32_optimization_rules/chapters/14_hyper00_intervention_evaluation_economics_protocol.tex:331,367,401,473,546), never as an axiomatized rung with +/× distributivity axioms (02_algebra_tower.md:123-132). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigTwoBinary (Sigma={+,·,0,1}), fnd:hasEquationSet fnd:eqsSemiring (E={closure, add-assoc, add-comm, add-identity, mult-assoc, mult-identity, distributivity} - the FULL free-semiring presentation: a commutative monoid under +, a monoid under ·, distributive), fnd:hasCarrier fnd:carrierSemiring (F_E-produced, fnd:mintedVia fnd:engineAdjunction, grounded into fnd:setSemiring), and fnd:satisfiesLaw all seven cumulative laws == E (so its presentation genuinely PRESENTS the free semiring - closing the earlier E={closure, distributivity} divergence where E omitted the two monoid structures the enforcing teeth already demand). Each of the six non-closure laws is enforced class-general over fnd:Semiring (fnd:RingAddAssocShape / fnd:RingAddCommShape / fnd:RingAddIdentityShape / fnd:RingMultAssocShape / fnd:RingMultIdentityShape / fnd:RingDistribShape), and fnd:rungRequiresLaw pins fnd:satisfiesLaw to COVER every one (fnd:PresentedAlgebraShape clause 5). It is the parallel-progenitor counterpart of fnd:Magma for two operations; the distributivity it adds is teeth-proved CLASS-GENERAL over EVERY fnd:Semiring instance by q_ring_distrib / fnd:RingDistribShape (which quantify over ?mdl a fnd:Semiring - the class where the law is ADDED, not the strict subclass fnd:Ring), so it bites not only the ring witness fnd:ringModel and field witness fnd:fieldModel (both fnd:Semiring by rdfs:subClassOf) but any bare non-distributive fnd:Semiring (e.g. the canonical semiring N0), closing the sub-population-enforcement escape." ;
+    fnd:hasSignature fnd:sigTwoBinary ;
+    fnd:hasEquationSet fnd:eqsSemiring ;
+    fnd:hasCarrier fnd:carrierSemiring ;
+    fnd:addsLaw fnd:lawDistributivity ;
+    fnd:satisfiesLaw fnd:lawTwoOpClosure ;
+    fnd:satisfiesLaw fnd:lawAddAssoc ;
+    fnd:satisfiesLaw fnd:lawAddComm ;
+    fnd:satisfiesLaw fnd:lawAddIdentity ;
+    fnd:satisfiesLaw fnd:lawMultAssoc ;
+    fnd:satisfiesLaw fnd:lawMultIdentity ;
+    fnd:satisfiesLaw fnd:lawDistributivity ;
+    fnd:rungRequiresLaw fnd:lawAddAssoc ;
+    fnd:rungRequiresLaw fnd:lawAddComm ;
+    fnd:rungRequiresLaw fnd:lawAddIdentity ;
+    fnd:rungRequiresLaw fnd:lawMultAssoc ;
+    fnd:rungRequiresLaw fnd:lawMultIdentity ;
+    fnd:rungRequiresLaw fnd:lawDistributivity .
+
+fnd:Ring a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Ring" ;
+    rdfs:subClassOf fnd:Semiring ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The RING rung: a fnd:Semiring whose additive monoid (S,+,0) is upgraded to an ABELIAN GROUP - every element x has an additive inverse -x (x + (-x) = 0). It adds EXACTLY ONE law over fnd:Semiring (fnd:addsLaw fnd:lawAdditiveInverse). SYN, cited standard ring theory - ring is FULLY ABSENT as algebra in Helios ('No algebraic ring, field (only record-field), or module (only code-module)', 02_algebra_tower.md:134-136), authored as cited math fact (Directive 19/20). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigTwoBinary, fnd:hasEquationSet fnd:eqsRing (E = eqsSemiring's seven laws + additive inverse = the full free-ring presentation), fnd:hasCarrier fnd:carrierRing (grounded into fnd:setRing), and fnd:satisfiesLaw all eight cumulative laws == E (the six semiring monoid/distributivity laws it inherits by rdfs:subClassOf, plus its own fnd:lawAdditiveInverse), with fnd:rungRequiresLaw pinning fnd:satisfiesLaw to cover every enforced law (fnd:PresentedAlgebraShape clause 5). Its DISTRIBUTIVITY is INHERITED from fnd:Semiring (distributivity is the Semiring rung's added law, not the Ring rung's - fnd:Ring adds fnd:lawAdditiveInverse), and is teeth-proved CLASS-GENERAL over every fnd:Semiring by q_ring_distrib / fnd:RingDistribShape (which reach fnd:ringModel as a fnd:Semiring by rdfs:subClassOf); over the ring witness fnd:ringModel (the finite field GF(3)=Z/3) the additive and multiplicative Cayley tables make every distributivity triple hold, and the probe of record perturbs 1·2 so a triple fails. The SP1 number tower prim:Integer.. re-anchors here at T10 as the first ring consumer." ;
+    fnd:hasSignature fnd:sigTwoBinary ;
+    fnd:hasEquationSet fnd:eqsRing ;
+    fnd:hasCarrier fnd:carrierRing ;
+    fnd:addsLaw fnd:lawAdditiveInverse ;
+    fnd:satisfiesLaw fnd:lawTwoOpClosure ;
+    fnd:satisfiesLaw fnd:lawAddAssoc ;
+    fnd:satisfiesLaw fnd:lawAddComm ;
+    fnd:satisfiesLaw fnd:lawAddIdentity ;
+    fnd:satisfiesLaw fnd:lawMultAssoc ;
+    fnd:satisfiesLaw fnd:lawMultIdentity ;
+    fnd:satisfiesLaw fnd:lawDistributivity ;
+    fnd:satisfiesLaw fnd:lawAdditiveInverse ;
+    fnd:rungRequiresLaw fnd:lawAddAssoc ;
+    fnd:rungRequiresLaw fnd:lawAddComm ;
+    fnd:rungRequiresLaw fnd:lawAddIdentity ;
+    fnd:rungRequiresLaw fnd:lawMultAssoc ;
+    fnd:rungRequiresLaw fnd:lawMultIdentity ;
+    fnd:rungRequiresLaw fnd:lawDistributivity ;
+    fnd:rungRequiresLaw fnd:lawAdditiveInverse .
+
+fnd:Field a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Field" ;
+    rdfs:subClassOf fnd:Ring ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The FIELD rung: a fnd:Ring in which every NONZERO element x has a two-sided MULTIPLICATIVE INVERSE x^-1 (x·x^-1 = 1) - the nonzero elements form a group under ·. It adds EXACTLY ONE law over fnd:Ring (fnd:addsLaw fnd:lawMultInverse). SYN, cited standard field theory - field is FULLY ABSENT as algebra in Helios (only record-field, 02_algebra_tower.md:134-136). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigTwoBinary, fnd:hasEquationSet fnd:eqsField (E = eqsRing's eight laws + field multiplicative commutativity + multiplicative inverse = the full free-field presentation; BOTH added laws are required - a ring with multiplicative inverses but no multiplicative commutativity is a division ring, not a field, so fnd:lawFieldMultComm in E removes that mischaracterisation), fnd:hasCarrier fnd:carrierField (grounded into fnd:setField), and fnd:satisfiesLaw all ten cumulative laws == E (the eight ring laws inherited by rdfs:subClassOf, plus fnd:lawFieldMultComm and its own fnd:addsLaw fnd:lawMultInverse), with fnd:rungRequiresLaw pinning fnd:satisfiesLaw to cover the field-scoped fnd:FieldMultCommShape and fnd:FieldMultInverseShape too (fnd:PresentedAlgebraShape clause 5). Its multiplicative-inverse law is teeth-proved by q_field_mult_inverse / fnd:FieldMultInverseShape over the GF(3) field witness fnd:fieldModel and its fnd:MultInversePairing claims (1^-1=1, 2^-1=2), reusing the T4/SP2 genuine-inverse discipline: a claimed inverse that does not multiply to 1 -> RED. The SP1 prim:Rational/prim:Real/prim:Complex re-anchor here at T10 as field consumers." ;
+    fnd:hasSignature fnd:sigTwoBinary ;
+    fnd:hasEquationSet fnd:eqsField ;
+    fnd:hasCarrier fnd:carrierField ;
+    fnd:addsLaw fnd:lawMultInverse ;
+    fnd:satisfiesLaw fnd:lawTwoOpClosure ;
+    fnd:satisfiesLaw fnd:lawAddAssoc ;
+    fnd:satisfiesLaw fnd:lawAddComm ;
+    fnd:satisfiesLaw fnd:lawAddIdentity ;
+    fnd:satisfiesLaw fnd:lawMultAssoc ;
+    fnd:satisfiesLaw fnd:lawMultIdentity ;
+    fnd:satisfiesLaw fnd:lawDistributivity ;
+    fnd:satisfiesLaw fnd:lawAdditiveInverse ;
+    fnd:satisfiesLaw fnd:lawFieldMultComm ;
+    fnd:satisfiesLaw fnd:lawMultInverse ;
+    fnd:rungRequiresLaw fnd:lawAddAssoc ;
+    fnd:rungRequiresLaw fnd:lawAddComm ;
+    fnd:rungRequiresLaw fnd:lawAddIdentity ;
+    fnd:rungRequiresLaw fnd:lawMultAssoc ;
+    fnd:rungRequiresLaw fnd:lawMultIdentity ;
+    fnd:rungRequiresLaw fnd:lawDistributivity ;
+    fnd:rungRequiresLaw fnd:lawAdditiveInverse ;
+    fnd:rungRequiresLaw fnd:lawFieldMultComm ;
+    fnd:rungRequiresLaw fnd:lawMultInverse .
+
+
+# =====================================================================================
+# The module/vector sub-family (fnd:Module -> fnd:VectorSpace) — the algebra-space seam (design s3/s4).
+# =====================================================================================
+
+fnd:Module a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Module" ;
+    rdfs:subClassOf fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The MODULE rung: an abelian group of VECTORS with a SCALAR ACTION R x M -> M by a base ring R (fnd:moduleOverRing) that is unital, associative in scalars, and bi-distributive. It hangs off the agnostic fnd:AlgebraicStructure progenitor as its own sub-family (the algebra-space seam) and adds EXACTLY ONE law (fnd:addsLaw fnd:lawScalarAction). SYN, cited standard module theory - module is FULLY ABSENT as algebra in Helios (only code-module, 02_algebra_tower.md:134-136). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigModule (Sigma={+_M, ·_scalar}), fnd:hasEquationSet fnd:eqsModule (E={closure, scalar action}), fnd:hasCarrier fnd:carrierModule (grounded into fnd:setModule), fnd:satisfiesLaw fnd:lawTwoOpClosure + fnd:lawScalarAction. Its scalar action's TYPING (R x M -> M) is teeth-proved by q_module_scalar / fnd:ModuleScalarShape over the rank-1 free-module witness fnd:moduleModel (vectors {V0,V1,V2} over the ring GF(3)): every fnd:ScalarAction's scalar is a ring element and its result a module vector; the probe of record injects an action whose result escapes M -> RED. The SP3 geometers' coordinate axes re-anchor here at T10." ;
+    fnd:hasSignature fnd:sigModule ;
+    fnd:hasEquationSet fnd:eqsModule ;
+    fnd:hasCarrier fnd:carrierModule ;
+    fnd:addsLaw fnd:lawScalarAction ;
+    fnd:satisfiesLaw fnd:lawTwoOpClosure ;
+    fnd:satisfiesLaw fnd:lawScalarAction ;
+    fnd:rungRequiresLaw fnd:lawScalarAction .
+
+fnd:VectorSpace a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "VectorSpace" ;
+    rdfs:subClassOf fnd:Module ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The VECTOR SPACE rung: a fnd:Module whose scalar ring is a FIELD (fnd:scalarField) - equivalently, an abelian group of vectors (fnd:vectorAdditiveGroup) with a scalar action by a field satisfying the 8 vector-space axioms. It adds EXACTLY ONE law over fnd:Module (fnd:addsLaw fnd:lawFieldScalars - the scalars-form-a-field upgrade). SYN, cited standard linear algebra - vector space is absent as a rung in Helios, appearing only as incidental 'ambient vector spaces' in a sheaf-consistency operator (helios/srcy/appendices/35_appendix_a_notational_summary/sections/00_content.tex:504, 02_algebra_tower.md:136). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigModule, fnd:hasEquationSet fnd:eqsVectorSpace (E adds field scalars), fnd:hasCarrier fnd:carrierVectorSpace (grounded into fnd:setVectorSpace), fnd:satisfiesLaw the three cumulative laws. It is shared with Pillar 3 (design s4). Its distinguishing axioms are teeth-proved by q_vectorspace_axioms / fnd:VectorSpaceAxiomsShape over the 1-dimensional witness fnd:vectorSpaceModel (scalar field GF(3) fnd:fieldModel, additive group the T4 fnd:abelianModel, unit law 1·A=A via fnd:saUnitLaw): the scalar structure is a fnd:Field, the additive group a fnd:AbelianGroup, and the unit law 1·v=v holds; the probe of record breaks the unit law (1·A=B) -> RED. Scalar-action axioms 6-8 are PROVED (not inherited) by fnd:VectorSpaceAxiomsShape constraints 3/4/5 - axiom 6 scalar distributivity over vector addition a(u+v)=au+av, axiom 7 scalar distributivity over field addition (a+b)v=av+bv, axiom 8 scalar-multiplication associativity (ab)v=a(bv) - each biting over fnd:vectorSpaceModel by its own probe of record; they are NOT inherited from q_module_scalar (which checks only the action's typing R x M -> M) or q_ring_distrib (which checks the scalar ring's own two-operation distributivity), neither of which is the scalar-action distributivity/associativity over the vector space." ;
+    fnd:hasSignature fnd:sigModule ;
+    fnd:hasEquationSet fnd:eqsVectorSpace ;
+    fnd:hasCarrier fnd:carrierVectorSpace ;
+    fnd:addsLaw fnd:lawFieldScalars ;
+    fnd:satisfiesLaw fnd:lawTwoOpClosure ;
+    fnd:satisfiesLaw fnd:lawScalarAction ;
+    fnd:satisfiesLaw fnd:lawFieldScalars ;
+    fnd:rungRequiresLaw fnd:lawScalarAction ;
+    fnd:rungRequiresLaw fnd:lawFieldScalars .
+
+
+# =====================================================================================
+# The ring/field carrier elements (SYN worked examples): the elements of the finite field GF(3)=Z/3.
+# =====================================================================================
+
+fnd:ringZero a fnd:AlgebraElement ;
+    rdfs:label "ringZero" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The additive identity 0 of the ring witness fnd:ringModel (GF(3)=Z/3). SYN worked example; a carrier element the reified two-operation table applies to (0+x=x, 0·x=0)." .
+
+fnd:ringOne a fnd:AlgebraElement ;
+    rdfs:label "ringOne" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative identity 1 of the ring witness fnd:ringModel (GF(3)=Z/3). SYN worked example; the generator of the additive group Z/3 (1, 1+1=2, 1+1+1=0) and the scalar fnd:ringOne of module scalar actions." .
+
+fnd:ringTwo a fnd:AlgebraElement ;
+    rdfs:label "ringTwo" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The element 2 of the ring witness fnd:ringModel (GF(3)=Z/3). SYN worked example; 2 = 1+1, its own additive inverse pair with 1 (1+2=0), and 2·2 = 4 = 1 mod 3." .
+
+fnd:fieldZero a fnd:AlgebraElement ;
+    rdfs:label "fieldZero" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The additive identity 0 (fnd:hasZeroElement) of the field witness fnd:fieldModel (GF(3)). SYN worked example; the one element that is NOT required to have a multiplicative inverse (q_field_mult_inverse quantifies over nonzero elements)." .
+
+fnd:fieldOne a fnd:AlgebraElement ;
+    rdfs:label "fieldOne" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative identity 1 (fnd:hasOneElement) of the field witness fnd:fieldModel (GF(3)). SYN worked example; its own multiplicative inverse (1·1=1, fnd:mipPairOne) and the scalar of the vector-space unit law 1·v=v (fnd:saUnitLaw)." .
+
+fnd:fieldTwo a fnd:AlgebraElement ;
+    rdfs:label "fieldTwo" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The element 2 of the field witness fnd:fieldModel (GF(3)). SYN worked example; a nonzero element whose multiplicative inverse is itself (2·2 = 4 = 1 mod 3, fnd:mipPairTwo). The probe of record perturbs the row 2·2 so this inverse ceases to reach 1." .
+
+fnd:vecV0 a fnd:AlgebraElement ;
+    rdfs:label "vecV0" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The zero vector V0 of the rank-1 free-module witness fnd:moduleModel (M = {V0,V1,V2} ~= Z/3 as an additive group over the ring GF(3)). SYN worked example; a fnd:hasModuleVector the scalar action lands in." .
+
+fnd:vecV1 a fnd:AlgebraElement ;
+    rdfs:label "vecV1" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The generator vector V1 of the rank-1 free-module witness fnd:moduleModel. SYN worked example; 1·V1 = V1 and 2·V1 = V2 are its reified scalar actions (fnd:saOneV1, fnd:saTwoV1)." .
+
+fnd:vecV2 a fnd:AlgebraElement ;
+    rdfs:label "vecV2" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The vector V2 = 2·V1 of the rank-1 free-module witness fnd:moduleModel. SYN worked example; 2·V2 = V1 (since 2·2 = 1 mod 3) is its reified scalar action (fnd:saTwoV2)." .
+
+
+# =====================================================================================
+# fnd:ringModel — the distributivity witness (the finite field GF(3)=Z/3 on {0,1,2}, full + and · tables).
+#   +  | 0 1 2        ·  | 0 1 2
+#   0  | 0 1 2        0  | 0 0 0
+#   1  | 1 2 0        1  | 0 1 2
+#   2  | 2 0 1        2  | 0 2 1
+# Every distributivity triple x·(y+z) = x·y + x·z holds (GF(3) is a field). Probe: perturb 1·2.
+# =====================================================================================
+
+fnd:ringModel a fnd:Ring ;
+    rdfs:label "ringModel" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The distributivity witness model - the finite field GF(3) = Z/3 on {0,1,2} viewed as a ring, with its full additive and multiplicative Cayley tables reified as fnd:RingOperationApplication rows discriminated by fnd:ringOp. SYN worked example (corpus-agnostic v1). It carries fnd:hasRingElement fnd:ringZero/fnd:ringOne/fnd:ringTwo, fnd:hasZeroElement fnd:ringZero, fnd:hasOneElement fnd:ringOne, the nine additive rows fnd:appRingAdd_i_j and the nine multiplicative rows fnd:appRingMul_i_j, so q_ring_distrib / fnd:RingDistribShape hold non-vacuously (every triple x·(y+z) = x·y + x·z is satisfied). The probe of record changes fnd:appRingMul_1_2 (1·2) fnd:ringResult from fnd:ringTwo to fnd:ringOne, so for the triple (1,1,1): x·(y+z) = 1·(1+1) = 1·2 = 1 while (x·y)+(x·z) = (1·1)+(1·1) = 1+1 = 2 - the two sides disagree and the tooth bites (conforms/ASK True->False)." ;
+    fnd:hasRingElement fnd:ringZero ;
+    fnd:hasRingElement fnd:ringOne ;
+    fnd:hasRingElement fnd:ringTwo ;
+    fnd:hasZeroElement fnd:ringZero ;
+    fnd:hasOneElement fnd:ringOne .
+
+# --- additive rows (a + b mod 3) ---
+fnd:appRingAdd_0_0 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_0_0" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 0+0=0 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringZero ; fnd:ringRight fnd:ringZero ; fnd:ringResult fnd:ringZero .
+fnd:appRingAdd_0_1 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_0_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 0+1=1 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringZero ; fnd:ringRight fnd:ringOne ; fnd:ringResult fnd:ringOne .
+fnd:appRingAdd_0_2 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_0_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 0+2=2 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringZero ; fnd:ringRight fnd:ringTwo ; fnd:ringResult fnd:ringTwo .
+fnd:appRingAdd_1_0 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_1_0" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 1+0=1 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringOne ; fnd:ringRight fnd:ringZero ; fnd:ringResult fnd:ringOne .
+fnd:appRingAdd_1_1 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_1_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 1+1=2 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table; the sum y+z of the distributivity triple (1,1,1)." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringOne ; fnd:ringRight fnd:ringOne ; fnd:ringResult fnd:ringTwo .
+fnd:appRingAdd_1_2 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_1_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 1+2=0 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringOne ; fnd:ringRight fnd:ringTwo ; fnd:ringResult fnd:ringZero .
+fnd:appRingAdd_2_0 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_2_0" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 2+0=2 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringTwo ; fnd:ringRight fnd:ringZero ; fnd:ringResult fnd:ringTwo .
+fnd:appRingAdd_2_1 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_2_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 2+1=0 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringTwo ; fnd:ringRight fnd:ringOne ; fnd:ringResult fnd:ringZero .
+fnd:appRingAdd_2_2 a fnd:RingOperationApplication ; rdfs:label "appRingAdd_2_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) additive row 2+2=1 over fnd:ringModel. SYN. One cell of the (Z/3,+) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:ringTwo ; fnd:ringRight fnd:ringTwo ; fnd:ringResult fnd:ringOne .
+
+# --- multiplicative rows (a · b mod 3) ---
+fnd:appRingMul_0_0 a fnd:RingOperationApplication ; rdfs:label "appRingMul_0_0" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 0·0=0 over fnd:ringModel. SYN. One cell of the (Z/3,·) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringZero ; fnd:ringRight fnd:ringZero ; fnd:ringResult fnd:ringZero .
+fnd:appRingMul_0_1 a fnd:RingOperationApplication ; rdfs:label "appRingMul_0_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 0·1=0 over fnd:ringModel. SYN. One cell of the (Z/3,·) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringZero ; fnd:ringRight fnd:ringOne ; fnd:ringResult fnd:ringZero .
+fnd:appRingMul_0_2 a fnd:RingOperationApplication ; rdfs:label "appRingMul_0_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 0·2=0 over fnd:ringModel. SYN. One cell of the (Z/3,·) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringZero ; fnd:ringRight fnd:ringTwo ; fnd:ringResult fnd:ringZero .
+fnd:appRingMul_1_0 a fnd:RingOperationApplication ; rdfs:label "appRingMul_1_0" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 1·0=0 over fnd:ringModel. SYN. One cell of the (Z/3,·) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringOne ; fnd:ringRight fnd:ringZero ; fnd:ringResult fnd:ringZero .
+fnd:appRingMul_1_1 a fnd:RingOperationApplication ; rdfs:label "appRingMul_1_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 1·1=1 over fnd:ringModel. SYN. One cell of the (Z/3,·) Cayley table; x·y and x·z of the distributivity triple (1,1,1)." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringOne ; fnd:ringRight fnd:ringOne ; fnd:ringResult fnd:ringOne .
+fnd:appRingMul_1_2 a fnd:RingOperationApplication ; rdfs:label "appRingMul_1_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 1·2=2 over fnd:ringModel. SYN. The x·(y+z) step of the distributivity triple (1,1,1) (1·(1+1)=1·2). Changing its fnd:ringResult from fnd:ringTwo to fnd:ringOne is the probe of record for q_ring_distrib (the triple (1,1,1) then has x·(y+z)=1 != 2=(x·y)+(x·z))." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringOne ; fnd:ringRight fnd:ringTwo ; fnd:ringResult fnd:ringTwo .
+fnd:appRingMul_2_0 a fnd:RingOperationApplication ; rdfs:label "appRingMul_2_0" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 2·0=0 over fnd:ringModel. SYN. One cell of the (Z/3,·) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringTwo ; fnd:ringRight fnd:ringZero ; fnd:ringResult fnd:ringZero .
+fnd:appRingMul_2_1 a fnd:RingOperationApplication ; rdfs:label "appRingMul_2_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 2·1=2 over fnd:ringModel. SYN. One cell of the (Z/3,·) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringTwo ; fnd:ringRight fnd:ringOne ; fnd:ringResult fnd:ringTwo .
+fnd:appRingMul_2_2 a fnd:RingOperationApplication ; rdfs:label "appRingMul_2_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) multiplicative row 2·2=1 over fnd:ringModel (4 mod 3 = 1). SYN. One cell of the (Z/3,·) Cayley table." ;
+    fnd:ringStructure fnd:ringModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:ringTwo ; fnd:ringRight fnd:ringTwo ; fnd:ringResult fnd:ringOne .
+
+
+# =====================================================================================
+# fnd:fieldModel — the multiplicative-inverse witness (GF(3) as a field; nonzero {1,2} each self-inverse).
+# =====================================================================================
+
+fnd:fieldModel a fnd:Field ;
+    rdfs:label "fieldModel" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative-inverse witness model - the finite field GF(3) = {0,1,2} with fnd:hasZeroElement 0, fnd:hasOneElement 1, and every nonzero element self-inverse (1·1=1, 2·2=4=1). SYN worked example. It carries fnd:hasRingElement fnd:fieldZero/fnd:fieldOne/fnd:fieldTwo, the two multiplicative rows fnd:appFieldMul_1_1 (1·1=1) and fnd:appFieldMul_2_2 (2·2=1) the inverse pairings read, and the fnd:MultInversePairing claims fnd:mipPairOne (1<->1) and fnd:mipPairTwo (2<->2), so q_field_mult_inverse / fnd:FieldMultInverseShape hold non-vacuously (every nonzero element has a genuine two-sided multiplicative inverse). It is ALSO the scalar field of fnd:vectorSpaceModel. The probe of record changes fnd:appFieldMul_2_2 fnd:ringResult from fnd:fieldOne to fnd:fieldTwo (2·2 = 2 != 1), so the claimed inverse 2 of 2 no longer reaches 1 and the tooth bites - a 'field' with a non-invertible nonzero element (conforms/ASK True->False)." ;
+    fnd:hasRingElement fnd:fieldZero ;
+    fnd:hasRingElement fnd:fieldOne ;
+    fnd:hasRingElement fnd:fieldTwo ;
+    fnd:hasZeroElement fnd:fieldZero ;
+    fnd:hasOneElement fnd:fieldOne .
+
+fnd:appFieldMul_1_1 a fnd:RingOperationApplication ; rdfs:label "appFieldMul_1_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) field multiplicative row 1·1=1 over fnd:fieldModel. SYN. The product the self-inverse pairing fnd:mipPairOne reads (1·1 = the field one)." ;
+    fnd:ringStructure fnd:fieldModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:fieldOne ; fnd:ringRight fnd:fieldOne ; fnd:ringResult fnd:fieldOne .
+fnd:appFieldMul_2_2 a fnd:RingOperationApplication ; rdfs:label "appFieldMul_2_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) field multiplicative row 2·2=1 over fnd:fieldModel (4 mod 3 = 1). SYN. The product the self-inverse pairing fnd:mipPairTwo reads. Changing its fnd:ringResult from fnd:fieldOne to fnd:fieldTwo is the probe of record for q_field_mult_inverse (the inverse 2 of 2 ceases to reach 1)." ;
+    fnd:ringStructure fnd:fieldModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:fieldTwo ; fnd:ringRight fnd:fieldTwo ; fnd:ringResult fnd:fieldOne .
+
+fnd:mipPairOne a fnd:MultInversePairing ;
+    rdfs:label "mipPairOne" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative-inverse pairing claiming 1 is its own two-sided inverse in fnd:fieldModel. SYN. q_field_mult_inverse requires 1·1 = 1 (holds via fnd:appFieldMul_1_1)." ;
+    fnd:mipModel fnd:fieldModel ; fnd:mipElement fnd:fieldOne ; fnd:mipInverse fnd:fieldOne .
+
+fnd:mipPairTwo a fnd:MultInversePairing ;
+    rdfs:label "mipPairTwo" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The multiplicative-inverse pairing claiming 2 is its own two-sided inverse in fnd:fieldModel (2·2 = 1 mod 3). SYN. q_field_mult_inverse requires 2·2 = 1 (holds via fnd:appFieldMul_2_2); the probe of record breaks that product so this pairing ceases to undo and the tooth bites." ;
+    fnd:mipModel fnd:fieldModel ; fnd:mipElement fnd:fieldTwo ; fnd:mipInverse fnd:fieldTwo .
+
+
+# =====================================================================================
+# fnd:moduleModel — the scalar-action typing witness (rank-1 free module {V0,V1,V2} over the ring GF(3)).
+# =====================================================================================
+
+fnd:moduleModel a fnd:Module ;
+    rdfs:label "moduleModel" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The scalar-action typing witness model - the rank-1 free module M = {V0,V1,V2} (an additive group ~= Z/3) over the base ring fnd:ringModel (GF(3)). SYN worked example. It carries fnd:moduleOverRing fnd:ringModel, fnd:hasModuleVector fnd:vecV0/fnd:vecV1/fnd:vecV2, and the reified scalar actions fnd:saOneV1 (1·V1=V1), fnd:saTwoV1 (2·V1=V2), fnd:saTwoV2 (2·V2=V1), so q_module_scalar / fnd:ModuleScalarShape hold non-vacuously (every action's scalar is a ring element and its result a module vector, R x M -> M). The probe of record injects fnd:probeEscapingScalarAction (1·V1 = fnd:ringZero, a RING element that is not a module vector), so the action escapes M and the tooth bites (conforms/ASK True->False)." ;
+    fnd:moduleOverRing fnd:ringModel ;
+    fnd:moduleAdditiveGroup fnd:moduleAddGroup ;
+    fnd:hasModuleVector fnd:vecV0 ;
+    fnd:hasModuleVector fnd:vecV1 ;
+    fnd:hasModuleVector fnd:vecV2 .
+
+fnd:saOneV1 a fnd:ScalarAction ;
+    rdfs:label "saOneV1" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The scalar action 1·V1 = V1 over fnd:moduleModel (the unit scalar fixes the generator). SYN. Well typed: scalar fnd:ringOne is a ring element, result fnd:vecV1 is a module vector." ;
+    fnd:saModule fnd:moduleModel ; fnd:saScalar fnd:ringOne ; fnd:saVector fnd:vecV1 ; fnd:saResult fnd:vecV1 .
+
+fnd:saTwoV1 a fnd:ScalarAction ;
+    rdfs:label "saTwoV1" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The scalar action 2·V1 = V2 over fnd:moduleModel. SYN. Well typed: scalar fnd:ringTwo is a ring element, result fnd:vecV2 is a module vector." ;
+    fnd:saModule fnd:moduleModel ; fnd:saScalar fnd:ringTwo ; fnd:saVector fnd:vecV1 ; fnd:saResult fnd:vecV2 .
+
+fnd:saTwoV2 a fnd:ScalarAction ;
+    rdfs:label "saTwoV2" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The scalar action 2·V2 = V1 over fnd:moduleModel (2·2 = 1 mod 3, so 2·(2·V1) = V1). SYN. Well typed: scalar fnd:ringTwo is a ring element, result fnd:vecV1 is a module vector. Also the scalar-associativity witness of q_module_scalar_law: (2.2).V1 = 1.V1 = V1 (fnd:saOneV1) and 2.(2.V1) = 2.V2 = V1 agree; the probe of record changes its fnd:saResult from fnd:vecV1 to fnd:vecV0 so the two sides disagree and fnd:ModuleScalarLawShape constraint 2 bites." ;
+    fnd:saModule fnd:moduleModel ; fnd:saScalar fnd:ringTwo ; fnd:saVector fnd:vecV2 ; fnd:saResult fnd:vecV1 .
+
+
+# =====================================================================================
+# fnd:moduleAddGroup — the ABELIAN GROUP of the module's vectors (M,+) = Z/3 on {V0,V1,V2} (V0=0,V1=1,V2=2),
+# the fnd:moduleAdditiveGroup of fnd:moduleModel. Its full 9-row Z/3 Cayley table lets fnd:ModuleScalarLawShape
+# / q_module_scalar_law witness the module BI-DISTRIBUTIVITY axioms (r.(m+n)=r.m+r.n and (r+s).m=r.m+s.m)
+# over the plain module (not only over the vector space). SYN worked example; a genuine abelian group, so the
+# generalised fnd:SemigroupAssocShape (associativity) and fnd:AbelianCommShape (commutativity) stay GREEN on it.
+# =====================================================================================
+
+fnd:moduleAddGroup a fnd:AbelianGroup ;
+    rdfs:label "moduleAddGroup" ;
+    fnd:authority fnd:SYN ;
+    fnd:hasIdentityElement fnd:vecV0 ;
+    fnd:hasGroupElement fnd:vecV0 , fnd:vecV1 , fnd:vecV2 ;
+    rdfs:comment "The abelian group of vectors (M,+) of the rank-1 free module fnd:moduleModel - the cyclic group Z/3 on the module vectors {V0=0, V1=1, V2=2}, the fnd:moduleAdditiveGroup that q_module_scalar_law / fnd:ModuleScalarLawShape read for the module bi-distributivity axioms. SYN, cited standard module theory (module absent as algebra in Helios, only code-module, 02_algebra_tower.md:134-136). Its full nine-row Z/3 addition table (fnd:appMAddV0V0 .. fnd:appMAddV2V2 over fnd:opStructure fnd:moduleAddGroup) is a genuine associative and commutative group, so the CLASS-GENERAL fnd:SemigroupAssocShape (which now quantifies over every fnd:Semigroup, and this AbelianGroup is one by rdfs:subClassOf) and fnd:AbelianCommShape stay GREEN on it. It closes the EXISTENCE-HALF class: it declares fnd:hasIdentityElement fnd:vecV0 (the additive identity, so the Monoid-identity-EXISTENCE tooth is satisfied - a fnd:Group with no identity -> RED), it ENUMERATES its carrier fnd:hasGroupElement V0/V1/V2 (so the Group-carrier-EXISTENCE tooth is satisfied - inverse-completeness NOT opt-in), and every enumerated element carries a two-sided fnd:InversePairing (fnd:maInvV0 V0<->V0, fnd:maInvV1 V1<->V2, fnd:maInvV2 V2<->V1) so the Group inverse-COMPLETENESS clause bites genuinely. It witnesses left bi-distributivity 2.(V1+V1)=2.V2=V1 and (2.V1)+(2.V1)=V2+V2=V1 (equal) and right bi-distributivity (1+1).V1=2.V1=V2 and (1.V1)+(1.V1)=V1+V1=V2 (equal); the probe of record perturbs fnd:appMAddV2V2 fnd:opResult so a bi-distributivity leg drifts and fnd:ModuleScalarLawShape constraint 3 bites." .
+
+# --- moduleAddGroup two-sided inverse pairings (Z/3 additive: V0<->V0, V1<->V2, V2<->V1), so the Group
+#     inverse-COMPLETENESS clause is genuine over the enumerated carrier. The additive rows they read
+#     (V0+V0=V0, V1+V2=V0, V2+V1=V0) already exist as fnd:appMAddV0V0 / _V1V2 / _V2V1.
+fnd:maInvV0 a fnd:InversePairing ; fnd:authority fnd:SYN ;
+    rdfs:label "maInvV0" ; rdfs:comment "The inverse pairing V0<->V0 in fnd:moduleAddGroup: the additive identity is its own two-sided inverse (V0+V0=V0 via fnd:appMAddV0V0). SYN." ;
+    fnd:pairingModel fnd:moduleAddGroup ; fnd:pairingElement fnd:vecV0 ; fnd:pairingInverse fnd:vecV0 .
+fnd:maInvV1 a fnd:InversePairing ; fnd:authority fnd:SYN ;
+    rdfs:label "maInvV1" ; rdfs:comment "The inverse pairing V1<->V2 in fnd:moduleAddGroup: V2 is the two-sided additive inverse of V1 (V1+V2=V0 via fnd:appMAddV1V2, V2+V1=V0 via fnd:appMAddV2V1). SYN." ;
+    fnd:pairingModel fnd:moduleAddGroup ; fnd:pairingElement fnd:vecV1 ; fnd:pairingInverse fnd:vecV2 .
+fnd:maInvV2 a fnd:InversePairing ; fnd:authority fnd:SYN ;
+    rdfs:label "maInvV2" ; rdfs:comment "The inverse pairing V2<->V1 in fnd:moduleAddGroup: V1 is the two-sided additive inverse of V2 (V2+V1=V0 via fnd:appMAddV2V1, V1+V2=V0 via fnd:appMAddV1V2). SYN. Completes the universal inverse law over the enumerated carrier." ;
+    fnd:pairingModel fnd:moduleAddGroup ; fnd:pairingElement fnd:vecV2 ; fnd:pairingInverse fnd:vecV1 .
+
+# --- the Z/3 vector-addition table (i+j) mod 3 over {V0,V1,V2} ---
+fnd:appMAddV0V0 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV0V0" ; rdfs:comment "The module vector-addition row V0+V0=V0 (0+0=0) over fnd:moduleAddGroup. SYN. One cell of the (M,+)=Z/3 Cayley table." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV0 ; fnd:opRight fnd:vecV0 ; fnd:opResult fnd:vecV0 .
+fnd:appMAddV0V1 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV0V1" ; rdfs:comment "The module vector-addition row V0+V1=V1 (0+1=1) over fnd:moduleAddGroup. SYN. One cell of the (M,+)=Z/3 Cayley table." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV0 ; fnd:opRight fnd:vecV1 ; fnd:opResult fnd:vecV1 .
+fnd:appMAddV0V2 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV0V2" ; rdfs:comment "The module vector-addition row V0+V2=V2 (0+2=2) over fnd:moduleAddGroup. SYN. One cell of the (M,+)=Z/3 Cayley table." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV0 ; fnd:opRight fnd:vecV2 ; fnd:opResult fnd:vecV2 .
+fnd:appMAddV1V0 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV1V0" ; rdfs:comment "The module vector-addition row V1+V0=V1 (1+0=1) over fnd:moduleAddGroup. SYN. One cell of the (M,+)=Z/3 Cayley table." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV1 ; fnd:opRight fnd:vecV0 ; fnd:opResult fnd:vecV1 .
+fnd:appMAddV1V1 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV1V1" ; rdfs:comment "The module vector-addition row V1+V1=V2 (1+1=2) over fnd:moduleAddGroup. SYN. Read by q_module_scalar_law: the m+n leg of left bi-distributivity (m=n=V1) and the (r.m)+(s.m) leg of right bi-distributivity (r=s=1)." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV1 ; fnd:opRight fnd:vecV1 ; fnd:opResult fnd:vecV2 .
+fnd:appMAddV1V2 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV1V2" ; rdfs:comment "The module vector-addition row V1+V2=V0 (1+2=0) over fnd:moduleAddGroup. SYN. One cell of the (M,+)=Z/3 Cayley table." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV1 ; fnd:opRight fnd:vecV2 ; fnd:opResult fnd:vecV0 .
+fnd:appMAddV2V0 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV2V0" ; rdfs:comment "The module vector-addition row V2+V0=V2 (2+0=2) over fnd:moduleAddGroup. SYN. One cell of the (M,+)=Z/3 Cayley table." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV2 ; fnd:opRight fnd:vecV0 ; fnd:opResult fnd:vecV2 .
+fnd:appMAddV2V1 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV2V1" ; rdfs:comment "The module vector-addition row V2+V1=V0 (2+1=0) over fnd:moduleAddGroup. SYN. One cell of the (M,+)=Z/3 Cayley table." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV2 ; fnd:opRight fnd:vecV1 ; fnd:opResult fnd:vecV0 .
+fnd:appMAddV2V2 a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appMAddV2V2" ; rdfs:comment "The module vector-addition row V2+V2=V1 (2+2=1 mod 3) over fnd:moduleAddGroup. SYN. Read by q_module_scalar_law: the (r.m)+(r.n) leg of left bi-distributivity (r=2, m=n=V1: 2.V1=V2, V2+V2=V1). The probe of record changes its fnd:opResult from fnd:vecV1 to fnd:vecV0 so 2.(V1+V1)=V1 != V0=(2.V1)+(2.V1) and fnd:ModuleScalarLawShape constraint 3 bites (True->False)." ;
+    fnd:opStructure fnd:moduleAddGroup ; fnd:opLeft fnd:vecV2 ; fnd:opRight fnd:vecV2 ; fnd:opResult fnd:vecV1 .
+
+
+# =====================================================================================
+# fnd:vectorSpaceModel — the vector-space-axioms witness (1-dim space over GF(3); additive group = T4
+# fnd:abelianModel; unit law 1·A = A via fnd:saUnitLaw). Reuses the T4 spine's abelian group as (V,+).
+# =====================================================================================
+
+fnd:vectorSpaceModel a fnd:VectorSpace ;
+    rdfs:label "vectorSpaceModel" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The vector-space-axioms witness model - a 1-dimensional vector space over the field GF(3) whose additive group of vectors REUSES the T4 spine's fnd:abelianModel (algebra_spine.ttl) as (V,+), tying the two-operation seam back to the one-operation spine. SYN worked example. It carries fnd:scalarField fnd:fieldModel (a fnd:Field, the module->vector-space upgrade), fnd:vectorAdditiveGroup fnd:abelianModel (a fnd:AbelianGroup, axioms 1-4), fnd:moduleOverRing fnd:fieldModel + fnd:hasModuleVector fnd:elemE/fnd:elemA/fnd:elemB (it is a module over its field), and fnd:unitLawAction fnd:saUnitLaw (1·A = A, axiom 5), so q_vectorspace_axioms / fnd:VectorSpaceAxiomsShape hold non-vacuously (scalar structure is a field, additive group is abelian, unit law holds). The probe of record changes fnd:saUnitLaw fnd:saResult from fnd:elemA to fnd:elemB (1·A = B != A), breaking the unit law so the tooth bites (conforms/ASK True->False)." ;
+    fnd:scalarField fnd:fieldModel ;
+    fnd:vectorAdditiveGroup fnd:abelianModel ;
+    fnd:moduleAdditiveGroup fnd:abelianModel ;
+    fnd:moduleOverRing fnd:fieldModel ;
+    fnd:hasModuleVector fnd:elemE ;
+    fnd:hasModuleVector fnd:elemA ;
+    fnd:hasModuleVector fnd:elemB ;
+    fnd:unitLawAction fnd:saUnitLaw .
+
+fnd:saUnitLaw a fnd:ScalarAction ;
+    rdfs:label "saUnitLaw" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The vector-space unit-law witness 1·A = A over fnd:vectorSpaceModel - the scalar action whose scalar is the field's one (fnd:fieldOne) and whose result must equal its vector (fnd:elemA). SYN. It is well typed for q_module_scalar (scalar fnd:fieldOne is a fnd:hasRingElement of the field fnd:fieldModel, result fnd:elemA is a fnd:hasModuleVector of the vector space) AND it satisfies the unit law for q_vectorspace_axioms (fnd:saResult = fnd:saVector = fnd:elemA). The probe of record changes its fnd:saResult from fnd:elemA to fnd:elemB (1·A = B != A) so the unit law fails and q_vectorspace_axioms / fnd:VectorSpaceAxiomsShape bite; note fnd:elemB is still a module vector, so this probe flips ONLY the vector-space tooth, not q_module_scalar." ;
+    fnd:saModule fnd:vectorSpaceModel ; fnd:saScalar fnd:fieldOne ; fnd:saVector fnd:elemA ; fnd:saResult fnd:elemA .
+
+
+# =====================================================================================
+# W1a hardening — the additive-inverse vocabulary + witnesses (SYN). fnd:Ring's SOLE added law
+# fnd:lawAdditiveInverse (the semiring->ring step) previously had NO tooth: a semiring-with-no-additive-
+# inverse typed fnd:Ring passed GREEN. fnd:AdditiveInversePairing + fnd:RingAdditiveInverseShape /
+# q_ring_additive_inverse close it, mirroring fnd:MultInversePairing / fnd:FieldMultInverseShape: every
+# fnd:Ring element (enumerated via fnd:hasRingElement) MUST carry a genuine two-sided additive inverse
+# reaching the additive identity fnd:hasZeroElement.
+# =====================================================================================
+
+fnd:AdditiveInversePairing a owl:Class ;
+    rdfs:label "AdditiveInversePairing" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A claimed additive-inverse pairing in a ring/field witness model: a reified statement that fnd:aipInverse is the two-sided ADDITIVE inverse (-x) of fnd:aipElement (x) within fnd:aipModel (whose fnd:hasZeroElement is the additive identity 0). SYN, cited standard ring theory - fnd:Ring's characterising step over fnd:Semiring is that the additive monoid (S,+,0) is upgraded to an ABELIAN GROUP (fnd:lawAdditiveInverse: every x has -x with x+(-x)=0), and this class makes that UNIVERSAL law a checkable graph fact. It is the ADDITIVE analogue of fnd:MultInversePairing and reuses the SAME genuine-inverse discipline (a claimed inverse that does not two-sidedly undo -> RED): fnd:RingAdditiveInverseShape / q_ring_additive_inverse hold a pairing GENUINE only when BOTH fnd:aipElement + fnd:aipInverse = 0 AND fnd:aipInverse + fnd:aipElement = 0 (read off the reified fnd:additiveOp table), AND require EVERY fnd:hasRingElement of a fnd:Ring to carry such a pairing (completeness - so a semiring-as-ring with a non-invertible additive element is RED). The probe of record is a Boolean-OR 'ring' on {0,1} (1+1=1, so 1 has no additive inverse): its element 1 carries no fnd:AdditiveInversePairing and the completeness clause bites (conforms/ASK True->False)." .
+
+fnd:aipModel a owl:ObjectProperty ;
+    rdfs:domain fnd:AdditiveInversePairing ; rdfs:range fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "aipModel" ;
+    rdfs:comment "Relates an additive-inverse pairing (fnd:AdditiveInversePairing) to the ring/field witness model (a fnd:Ring instance, fnd:ringModel or fnd:fieldModel) in which the pairing is claimed - the model whose fnd:hasZeroElement is the 0 the two-sided additive inverse must reach, and whose reified fnd:additiveOp table fnd:RingAdditiveInverseShape reads for the sums fnd:aipElement + fnd:aipInverse and fnd:aipInverse + fnd:aipElement. SYN. Domain fnd:AdditiveInversePairing, range fnd:AlgebraicStructure." .
+
+fnd:aipElement a owl:ObjectProperty ;
+    rdfs:domain fnd:AdditiveInversePairing ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "aipElement" ;
+    rdfs:comment "Relates an additive-inverse pairing (fnd:AdditiveInversePairing) to the element x whose additive inverse -x is being claimed. SYN. fnd:RingAdditiveInverseShape / q_ring_additive_inverse require x + fnd:aipInverse = 0 AND fnd:aipInverse + x = 0, and require that EVERY fnd:hasRingElement of a fnd:Ring be some pairing's fnd:aipElement (completeness). Domain fnd:AdditiveInversePairing, range fnd:AlgebraElement." .
+
+fnd:aipInverse a owl:ObjectProperty ;
+    rdfs:domain fnd:AdditiveInversePairing ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "aipInverse" ;
+    rdfs:comment "Relates an additive-inverse pairing (fnd:AdditiveInversePairing) to the element -x claimed as the two-sided additive inverse of fnd:aipElement x. SYN. fnd:RingAdditiveInverseShape / q_ring_additive_inverse require x + (-x) = 0 AND (-x) + x = 0 (the model's fnd:hasZeroElement), reusing the genuine-inverse discipline (a claimed inverse that does not undo -> RED). Domain fnd:AdditiveInversePairing, range fnd:AlgebraElement." .
+
+# --- ring witness fnd:ringModel additive-inverse pairings (GF(3) additive group Z/3): 0<->0, 1<->2, 2<->1.
+# The additive rows they read (0+0=0, 1+2=0, 2+1=0) already exist as fnd:appRingAdd_0_0 / _1_2 / _2_1.
+fnd:aipRingZero a fnd:AdditiveInversePairing ; rdfs:label "aipRingZero" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-inverse pairing claiming 0 is its own two-sided additive inverse in fnd:ringModel (0+0=0). SYN. q_ring_additive_inverse requires 0+0 = 0 (holds via fnd:appRingAdd_0_0)." ;
+    fnd:aipModel fnd:ringModel ; fnd:aipElement fnd:ringZero ; fnd:aipInverse fnd:ringZero .
+fnd:aipRingOne a fnd:AdditiveInversePairing ; rdfs:label "aipRingOne" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-inverse pairing claiming 2 is the two-sided additive inverse of 1 in fnd:ringModel (1+2=0, 2+1=0). SYN. q_ring_additive_inverse requires both sums reach 0 (fnd:appRingAdd_1_2 / fnd:appRingAdd_2_1)." ;
+    fnd:aipModel fnd:ringModel ; fnd:aipElement fnd:ringOne ; fnd:aipInverse fnd:ringTwo .
+fnd:aipRingTwo a fnd:AdditiveInversePairing ; rdfs:label "aipRingTwo" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-inverse pairing claiming 1 is the two-sided additive inverse of 2 in fnd:ringModel (2+1=0, 1+2=0). SYN. q_ring_additive_inverse requires both sums reach 0 (fnd:appRingAdd_2_1 / fnd:appRingAdd_1_2)." ;
+    fnd:aipModel fnd:ringModel ; fnd:aipElement fnd:ringTwo ; fnd:aipInverse fnd:ringOne .
+
+# --- field witness fnd:fieldModel additive rows (Z/3), the extra multiplicative row 2.1=2 (W2 axiom-8),
+# and its additive-inverse pairings 0<->0, 1<->2, 2<->1. fnd:fieldModel is a fnd:Field rdfs:subClassOf
+# fnd:Ring, so the W1a completeness clause targets it too - it must carry additive inverses for all of 0,1,2.
+fnd:appFieldAdd_0_0 a fnd:RingOperationApplication ; rdfs:label "appFieldAdd_0_0" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) field additive row 0+0=0 over fnd:fieldModel. SYN. Read by q_ring_additive_inverse for the self-inverse pairing of 0 (fnd:aipFieldZero)." ;
+    fnd:ringStructure fnd:fieldModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:fieldZero ; fnd:ringRight fnd:fieldZero ; fnd:ringResult fnd:fieldZero .
+fnd:appFieldAdd_1_1 a fnd:RingOperationApplication ; rdfs:label "appFieldAdd_1_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) field additive row 1+1=2 over fnd:fieldModel. SYN. The a+b sum of the vector-space axiom-7 witness (a=1,b=1). Changing its fnd:ringResult from fnd:fieldTwo to fnd:fieldOne is the probe of record for the axiom-7 clause ((a+b)v != av+bv)." ;
+    fnd:ringStructure fnd:fieldModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:fieldOne ; fnd:ringRight fnd:fieldOne ; fnd:ringResult fnd:fieldTwo .
+fnd:appFieldAdd_1_2 a fnd:RingOperationApplication ; rdfs:label "appFieldAdd_1_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) field additive row 1+2=0 over fnd:fieldModel. SYN. Read by q_ring_additive_inverse for the additive inverse pairing 1<->2 (fnd:aipFieldOne / fnd:aipFieldTwo)." ;
+    fnd:ringStructure fnd:fieldModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:fieldOne ; fnd:ringRight fnd:fieldTwo ; fnd:ringResult fnd:fieldZero .
+fnd:appFieldAdd_2_1 a fnd:RingOperationApplication ; rdfs:label "appFieldAdd_2_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) field additive row 2+1=0 over fnd:fieldModel. SYN. Read by q_ring_additive_inverse for the additive inverse pairing 2<->1 (fnd:aipFieldTwo / fnd:aipFieldOne)." ;
+    fnd:ringStructure fnd:fieldModel ; fnd:ringOp fnd:additiveOp ; fnd:ringLeft fnd:fieldTwo ; fnd:ringRight fnd:fieldOne ; fnd:ringResult fnd:fieldZero .
+fnd:appFieldMul_2_1 a fnd:RingOperationApplication ; rdfs:label "appFieldMul_2_1" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) field multiplicative row 2.1=2 over fnd:fieldModel. SYN. The a.b product of the vector-space axiom-8 witness (a=2,b=1). Changing its fnd:ringResult from fnd:fieldTwo to fnd:fieldOne is the probe of record for the axiom-8 clause ((ab)v != a(bv)); it does NOT touch the field-inverse pairings (which read 1.1 and 2.2), so it isolates the axiom-8 tooth." ;
+    fnd:ringStructure fnd:fieldModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:fieldTwo ; fnd:ringRight fnd:fieldOne ; fnd:ringResult fnd:fieldTwo .
+fnd:appFieldMul_1_2 a fnd:RingOperationApplication ; rdfs:label "appFieldMul_1_2" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The GF(3) field multiplicative row 1.2=2 over fnd:fieldModel (the reverse of fnd:appFieldMul_2_1's 2.1=2). SYN. It is the second half of the distinct-element multiplicative pair (1,2) that makes the field MULTIPLICATIVE-COMMUTATIVITY tooth fnd:FieldMultCommShape / q_field_mult_comm NON-VACUOUS on fnd:fieldModel: with both 1.2=2 and 2.1=2 present the pair (1,2) is checkably commutative (1.2 = 2 = 2.1), so the field witness conforms GREEN; the PROBE OF RECORD changes THIS row's fnd:ringResult from fnd:fieldTwo to fnd:fieldOne, so 1.2 = 1 while 2.1 = 2 - the pair (1,2) ceases to commute and the tooth bites (conforms/ASK True->False). It is a true GF(3) product (1.2 = 2), so it leaves every other two-operation tooth GREEN over fnd:fieldModel (distributivity, both associativities, the multiplicative inverse read 1.1/2.2, the additive/multiplicative identity) - GF(3) multiplication is associative and commutative, so adding a further correct product closes no violating chain in fnd:RingDistribShape/fnd:RingMultAssocShape." ;
+    fnd:ringStructure fnd:fieldModel ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft fnd:fieldOne ; fnd:ringRight fnd:fieldTwo ; fnd:ringResult fnd:fieldTwo .
+
+fnd:aipFieldZero a fnd:AdditiveInversePairing ; rdfs:label "aipFieldZero" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-inverse pairing claiming 0 is its own two-sided additive inverse in fnd:fieldModel (0+0=0). SYN. q_ring_additive_inverse requires 0+0 = 0 (fnd:appFieldAdd_0_0)." ;
+    fnd:aipModel fnd:fieldModel ; fnd:aipElement fnd:fieldZero ; fnd:aipInverse fnd:fieldZero .
+fnd:aipFieldOne a fnd:AdditiveInversePairing ; rdfs:label "aipFieldOne" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-inverse pairing claiming 2 is the two-sided additive inverse of 1 in fnd:fieldModel (1+2=0, 2+1=0). SYN. q_ring_additive_inverse requires both sums reach 0 (fnd:appFieldAdd_1_2 / fnd:appFieldAdd_2_1)." ;
+    fnd:aipModel fnd:fieldModel ; fnd:aipElement fnd:fieldOne ; fnd:aipInverse fnd:fieldTwo .
+fnd:aipFieldTwo a fnd:AdditiveInversePairing ; rdfs:label "aipFieldTwo" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The additive-inverse pairing claiming 1 is the two-sided additive inverse of 2 in fnd:fieldModel (2+1=0, 1+2=0). SYN. q_ring_additive_inverse requires both sums reach 0 (fnd:appFieldAdd_2_1 / fnd:appFieldAdd_1_2)." ;
+    fnd:aipModel fnd:fieldModel ; fnd:aipElement fnd:fieldTwo ; fnd:aipInverse fnd:fieldOne .
+
+# --- W2: vector-space scalar-multiplication actions over fnd:vectorSpaceModel (scalars GF(3), vectors
+# {E=0,A=1,B=2}). 1.A=A is fnd:saUnitLaw (already present); these add 2.A=B and 2.B=A so the axiom
+# 6/7/8 witnesses are fully tabulated. Both are well typed (scalar in the field, result a module vector),
+# so fnd:ModuleScalarShape / q_module_scalar stay GREEN.
+fnd:sa2A a fnd:ScalarAction ; rdfs:label "sa2A" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The vector-space scalar action 2.A = B over fnd:vectorSpaceModel (2.1=2). SYN. Well typed (scalar fnd:fieldTwo a fnd:hasRingElement of fnd:fieldModel, result fnd:elemB a fnd:hasModuleVector of fnd:vectorSpaceModel). Read by vector-space axioms 6/7/8 (fnd:VectorSpaceAxiomsShape) as an au / (a+b)v / c.v leg." ;
+    fnd:saModule fnd:vectorSpaceModel ; fnd:saScalar fnd:fieldTwo ; fnd:saVector fnd:elemA ; fnd:saResult fnd:elemB .
+fnd:sa2B a fnd:ScalarAction ; rdfs:label "sa2B" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The vector-space scalar action 2.B = A over fnd:vectorSpaceModel (2.2=4=1). SYN. Well typed (scalar fnd:fieldTwo a fnd:hasRingElement of fnd:fieldModel, result fnd:elemA a fnd:hasModuleVector of fnd:vectorSpaceModel). Read by vector-space axioms 6/8 (fnd:VectorSpaceAxiomsShape) as the a(u+v) / a(bv) leg." ;
+    fnd:saModule fnd:vectorSpaceModel ; fnd:saScalar fnd:fieldTwo ; fnd:saVector fnd:elemB ; fnd:saResult fnd:elemA .

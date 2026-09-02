@@ -1,0 +1,270 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# reanchor.ttl — the ADDITIVE re-anchor of SP1/SP2/SP3 onto the Foundation floor (W2 · SP0, Task T10).
+# =====================================================================================
+# Directive 18/20 makes the algebra<-set-theory + space + functionality foundation the BEDROCK the whole
+# ontology stands on, and pins the re-anchor as ADDITIVE: land basicttl/foundation/ first (T2..T9 DONE),
+# THEN add grounding EDGES from the already-committed floors up into it - rebuild nothing, remove no prior
+# triple (design s7; 05_reanchor_surface.md s4: 15 of 16 surface rows are additive). The three floors are
+# ALREADY algebra-shaped (Directive 18 last bullet: SP3's panel checked its carriers/towers/products/groups
+# were "algebra-SHAPED and ready to re-anchor"), so re-anchoring is overwhelmingly a matter of naming, via a
+# new object property, the structure a committed carrier ALREADY IS:
+#
+#   * fnd:groundsInSet      - a carrier IS a Set under the two-step descent R:GovAlg->Graph (DS) then
+#                             Graph->Set (fnd:graphUnderlyingSet, SYN; the grounding edge defined in
+#                             set_theory.ttl); reused here for the SP1/SP2/SP3 carriers.
+#   * fnd:groundsInAlgebra  - a carrier IS an algebraic structure under a forgetful grounding (NEW here).
+#   * fnd:groundsInSpace    - a carrier IS a space (metric/topological/coordinate) under a grounding (NEW here).
+#   * fnd:functionalityOf   - a callable/arrow IS typed by Curry's F (defined in functionality.ttl; reused).
+#
+# These are EDGES, not rdfs:subClassOf: a carrier is not a SUBTYPE of a Set/Monoid, it IS one under a
+# forgetful grounding (design s7 edge mechanism; the same shape as SP3's crs:ForgetfulTagFrame surjection
+# and SP1's prim:DualGroundingShape realizes-edge). rdfs:subClassOf is RESERVED for the ONE genuine is-a:
+# aob:SealedGroup rdfs:subClassOf fnd:Group (05_reanchor_surface.md A1; Directive 20 PIN). Every domain is
+# owl:Thing so rdfs range/domain inference stamps only a harmless type on the TARGET (a foundation object)
+# and never retypes an SP1/SP2/SP3 subject into a foundation class - so no prior tooth can be regressed.
+#
+# HONESTY (Praeriehund, design s0): the entire re-anchor is SYN - the edge mechanism and the group axioms
+# it teeth-proves are cited standard mathematics (the Directive-19 precedent: math is fact and liftable),
+# not a Helios lift. The recognition that a specific committed carrier IS a specific foundation structure
+# is design s7's mapping (05_reanchor_surface.md's file:line surface), recorded per edge below. NO atom
+# here masquerades as a Helios DS/PD lift.
+#
+# THE ONE REAL BUILD (design s7 / Directive 20 PIN; 05 A1/D4). SP2's aob:SealedGroup names itself a
+# monoid/group OBJECT but materialises only partial axioms (associativity + identity + a single aob:retracts
+# inverse; no general binary operation, no closure, no two-sided-inverse-universal, no abelian flag - 05
+# s2.1). T10 makes it a GENUINE fnd:Group teeth-proved, ADDITIVELY: (1) aob:SealedGroup rdfs:subClassOf
+# fnd:Group (a fresh agnostic Group progenitor, algebra_spine.ttl); (2) the missing foundation-side group
+# structure supplied HERE (never in the SP2 files) over the REAL sealed-group elements - the base atom
+# aob:witnessAnchor as the two-sided identity (matching aob:groupIdentity), the four elements typed
+# fnd:AlgebraElement, a CLOSED abelian Z/4 Cayley table (fnd:opStructure aob:witnessGroup) whose one
+# non-trivial inverse honours aob:retracts (inv(witnessDescription) = witnessReplacement), and a two-sided
+# fnd:InversePairing for every element. The reused T4 teeth then bite on the ACTUAL sealed group:
+# fnd:MonoidIdentityShape (the identity) and fnd:GroupInverseShape (each pairing two-sidedly undoes) fire on
+# aob:witnessGroup / its pairings, and the new fnd:SealedGroupIsGroupShape + q_sealedgroup_is_group confirm
+# binary-op / closure / two-sided-inverse-universal / abelian-flag together. Load-bearing, not cosmetic.
+#
+# TEETH (design s7): q_reanchor_additive + fnd:ReanchorAdditiveShape (every prior-floor grounding is an EDGE
+# onto a genuine structure; a fnd:groundsInAlgebra edge onto a non-matching structure -> RED) and
+# q_sealedgroup_is_group + fnd:SealedGroupIsGroupShape (the SealedGroup satisfies the full group teeth). The
+# "no prior triple removed / SP1-SP2-SP3 diff empty" half of q_reanchor_additive is enforced by the runner
+# keeping all three prior floors green over the merged graph AND git left untouched (this file authors ONLY
+# additive fnd: edges + the one subclass edge). Consumed by: every later floor that grounds in the bedrock.
+# Corpus-agnostic v1 (Directive 13; zero corpus instances). Namespace fnd: (this file's atoms), with
+# additive edges onto committed prim:/aob:/crs: subjects. Design spec s7; plan T10.
+# =====================================================================================
+
+
+# =====================================================================================
+# A. The re-anchor object properties (SYN; the edge mechanism, design s7).
+# =====================================================================================
+# fnd:groundsInSet is defined in set_theory.ttl and reused. Here we mint the two remaining grounding
+# predicates + the two group-completion predicates the SealedGroup teeth-prove needs. Domain owl:Thing on
+# the grounding edges (the property applies uniformly to any committed carrier) so rdfs domain-inference
+# stamps only owl:Thing on the SP1/SP2/SP3 subject and cannot retype it into a foundation class.
+
+fnd:groundsInAlgebra a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ; rdfs:range fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "groundsInAlgebra" ;
+    rdfs:comment "Relates a carrier to the fnd:AlgebraicStructure it grounds into under a FORGETFUL grounding - a carrier IS an algebra (a monoid under concatenation, a ring/field under +/x) NOT a subtype of one (design s7 edge mechanism; reserving rdfs:subClassOf for genuine is-a). SYN, cited standard universal algebra - reifying as a graph edge the same forgetful discipline as fnd:groundsInSet (set_theory.ttl), one tower up. This is the algebra pole of the design s7 additive re-anchor (05_reanchor_surface.md S2/S3): prim:ByteVector grounds into fnd:Monoid (the free monoid on Octet under concatenation, 05 s1.3), prim:Integer into fnd:Ring, prim:Rational/prim:Real into fnd:Field (the number tower's ring/field line, 05 s1.1). rdfs:range fnd:AlgebraicStructure honestly types the TARGET (every rung is a subclass of that progenitor); rdfs:domain owl:Thing keeps the SUBJECT (a committed carrier) from being retyped into a foundation class, so no prior tooth is regressed. fnd:ReanchorAdditiveShape / q_reanchor_additive read EDGE existence and require every fnd:groundsInAlgebra edge to land on a GENUINE (Sigma,E) rung (one carrying a fnd:hasSignature), never on a bare non-matching node - a rebuild-in-disguise re-anchor onto a signature-less structure is the probe of record (conforms=True->False)." .
+
+fnd:groundsInSpace a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ; rdfs:range fnd:MetricSpace ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "groundsInSpace" ;
+    rdfs:comment "Relates a carrier to the space it grounds into under a FORGETFUL grounding - a coordinate carrier IS a space (a finite-dimensional coordinate/metric space) NOT a subtype of one (design s7 edge mechanism). SYN, cited standard mathematics. This is the space pole of the design s7 additive re-anchor (05_reanchor_surface.md C5/S5): SP3's crs:GeographicPlaneGeometer (a lon/lat coordinate plane over prim:CRS/prim:Latitude/prim:Longitude) grounds into fnd:metricSpaceWitness, a fnd:MetricSpace, so the plane's geometry re-anchors onto Pillar 3's space constructs (metric/topology). rdfs:range fnd:MetricSpace honestly types the target (the v1 space grounding is the coordinate-plane-as-metric-space reading; other space kinds - topological/vector/normed - are deferred to the re-runnable W5, an honest-red v1 scope, design s9); rdfs:domain owl:Thing keeps the SUBJECT (a committed geometer) from being retyped into a foundation class. Read by edge existence; the metric's own triangle law is teeth-proved by fnd:MetricTriangleShape (spaces.ttl) on the grounded fnd:MetricSpace." .
+
+fnd:hasElement a owl:ObjectProperty ;
+    rdfs:domain fnd:AlgebraicStructure ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasElement" ;
+    rdfs:comment "Relates a concrete algebra witness model to a carrier ELEMENT it contains - the enumeration of the (finite) carrier set that makes CLOSURE a checkable graph fact. SYN, cited standard universal algebra. It is minted for the T10 SealedGroup-as-Group build: aob:witnessGroup fnd:hasElement its four elements (aob:witnessAnchor the identity, aob:witnessDescription, aob:witnessExample, aob:witnessReplacement), so fnd:SealedGroupIsGroupShape / q_sealedgroup_is_group can require that (a) every product in the reified op table lands on a fnd:hasElement (closure - no product escapes the carrier) and (b) every fnd:hasElement carries a two-sided inverse pairing (the inverse law is UNIVERSAL, quantified over the whole carrier, not just one materialised aob:retracts). Domain fnd:AlgebraicStructure, range fnd:AlgebraElement; read by edge existence, defang-proof." .
+
+fnd:isAbelian a owl:DatatypeProperty ;
+    rdfs:domain fnd:AlgebraicStructure ; rdfs:range xsd:boolean ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "isAbelian" ;
+    rdfs:comment "The commutativity (abelian) FLAG of a concrete algebra witness model - a self-declared xsd:boolean claim that the model's operation commutes (x.y = y.x for all x,y). SYN, cited standard group theory. It is minted for the T10 SealedGroup-as-Group build: aob:witnessGroup fnd:isAbelian true, the Z/4 cyclic group being commutative. It is an HONEST self-declaration held to account by teeth, never a bare assertion: fnd:SealedGroupIsGroupShape / q_sealedgroup_is_group require that a model claiming fnd:isAbelian true actually has NO pair (x,y) with x.y != y.x over its reified op table (the abelian-flag clause), so a structure that flags itself abelian while carrying a non-commutative pair is RED. Domain fnd:AlgebraicStructure, range xsd:boolean." .
+
+
+# =====================================================================================
+# B. SP1 (basicttl/primitives) re-anchor edges (additive; SYN - 05_reanchor_surface.md s1).
+# =====================================================================================
+# The set-theory bedrock (finite carriers -> fnd:Set with cardinality), the free monoid + number
+# ring/field line (-> fnd:AlgebraicStructure), and the arrow layer (-> Curry's F). No prim: triple is
+# removed; only these edges are added. The grounding-target sets are minted here as fnd:Set witnesses.
+
+fnd:setOctet256 a fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "setOctet256" ;
+    rdfs:comment "The underlying finite SET of the SP1 code-space carrier prim:Octet - the 256-element byte/colour code space {0..255} as a first-class fnd:Set (05_reanchor_surface.md s1.3: 'prim:Octet IS a finite SET of cardinality 256'; the unary law's Count 256 / ordinal 255 / bit-width 128 kept as three distinct coordinates, docs/unary-byte-frame-law.md). SYN - the set-theoretic framing is standard math; the fact that prim:Octet has cardinality 256 lives in the SP1 comments (physical.ttl:156) and this atom makes it a first-class object. It is the target of prim:Octet fnd:groundsInSet and carries fnd:hasCardinality fnd:card256; corpus-agnostic v1 (no 256 named elements materialised - the cardinality object is the v1 depth)." ;
+    fnd:hasCardinality fnd:card256 .
+
+fnd:setRGB3 a fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "setRGB3" ;
+    rdfs:comment "The underlying finite SET of the SP1 colour-space carrier prim:RGB - the 3-element set {Red, Green, Blue} as a first-class fnd:Set (05_reanchor_surface.md s1.3: 'prim:RGB IS a finite SET {Red,Green,Blue} of cardinality 3'; the three channels are already minted named individuals prim:Red/prim:Green/prim:Blue at physical.ttl:457-465). SYN - the set-theoretic framing is standard math. It is the target of prim:RGB fnd:groundsInSet and carries fnd:hasCardinality fnd:card3. Held DISTINCT from the SP3 role towers (the colour channels are deliberately NOT identified with S/O/P - crs:ColourOnlyProjection proves S=R/O=G/P=B underivable), so this set anchors only the colour code space." ;
+    fnd:hasCardinality fnd:card3 .
+
+fnd:setBit2 a fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "setBit2" ;
+    rdfs:comment "The underlying finite SET of the SP1 base-unit carrier prim:Bit - the 2-element set {0,1} as a first-class fnd:Set (05_reanchor_surface.md s1.3: 'prim:Bit is a finite set of cardinality 2', the unary-byte-frame-law Byte-Stream Carrier Closure 0<->Zero / 1<->One). SYN - the set-theoretic framing is standard math. It is the target of prim:Bit fnd:groundsInSet and carries fnd:hasCardinality fnd:card2, the deepest carrier the whole dual-grounding descent bottoms out at (Directive 9: the base unit remains bit- and byte-vectors)." ;
+    fnd:hasCardinality fnd:card2 .
+
+fnd:card256 a fnd:Cardinality ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "card256" ;
+    rdfs:comment "The finite counting cardinal 256 as a first-class object - the cardinality of fnd:setOctet256 (the prim:Octet code space). SYN-FROM the SP1 carrier comment (physical.ttl:156, 'cardinality 256'). v1 finite counting cardinality only (transfinite cardinals a deferred honest-red, set_theory.ttl fnd:Cardinality); carries fnd:cardinalityCount 256." ;
+    fnd:cardinalityCount 256 .
+
+fnd:card3 a fnd:Cardinality ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "card3" ;
+    rdfs:comment "The finite counting cardinal 3 as a first-class object - the cardinality of fnd:setRGB3 (the prim:RGB colour code space {Red,Green,Blue}). SYN-FROM the SP1 carrier comments (physical.ttl:449-465). v1 finite counting cardinality only; carries fnd:cardinalityCount 3." ;
+    fnd:cardinalityCount 3 .
+
+fnd:card2 a fnd:Cardinality ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "card2" ;
+    rdfs:comment "The finite counting cardinal 2 as a first-class object - the cardinality of fnd:setBit2 (the prim:Bit base-unit set {0,1}). SYN-FROM the SP1 carrier comment (physical.ttl:148). v1 finite counting cardinality only; carries fnd:cardinalityCount 2." ;
+    fnd:cardinalityCount 2 .
+
+# The additive SP1 grounding edges (no prim: triple removed).
+prim:Octet fnd:groundsInSet fnd:setOctet256 .        # Octet IS the 256-element code space (Set)
+prim:RGB   fnd:groundsInSet fnd:setRGB3 .            # RGB IS the 3-element colour set
+prim:Bit   fnd:groundsInSet fnd:setBit2 .            # Bit IS the 2-element base set
+prim:ByteVector fnd:groundsInAlgebra fnd:Monoid .    # Vec(Oct) IS the free monoid on Octet under concat (05 s1.3)
+prim:Integer  fnd:groundsInAlgebra fnd:Ring .        # (Z,+,x) IS a commutative ring (05 s1.1)
+prim:Rational fnd:groundsInAlgebra fnd:Field .       # Q IS a field
+prim:Real     fnd:groundsInAlgebra fnd:Field .       # R IS a field
+prim:Frame              fnd:functionalityOf fnd:curryFunctionality .  # the Frame IS Curry's F (Directive 19)
+prim:Realization        fnd:functionalityOf fnd:curryFunctionality .  # rho's realizations are F-typed callables
+prim:RealizationTransport fnd:functionalityOf fnd:curryFunctionality . # the covariant leg of F(dom,cod) (design s5)
+
+
+# =====================================================================================
+# C. SP2 (basicttl/aob) re-anchor - the ONE real build + two grounding edges (additive; SYN).
+# =====================================================================================
+# C1. The ONE genuine is-a edge: aob:SealedGroup rdfs:subClassOf fnd:Group. Authored HERE (a foundation
+# file), never in the SP2 files - the SP2 group_law.ttl is left byte-for-byte untouched (the diff-empty
+# half of q_reanchor_additive). SYN: the group axioms are cited standard math (05 s5 gap 3 / Directive 19).
+
+aob:SealedGroup rdfs:subClassOf fnd:Group .
+
+# C2. The foundation-side group structure over the REAL sealed-group elements (the missing axioms, 05 s2.1).
+# Group = the cyclic group Z/4 with e = aob:witnessAnchor (identity, matching aob:groupIdentity),
+# a = aob:witnessDescription (1), b = aob:witnessExample (2), c = aob:witnessReplacement (3). The one
+# non-trivial inverse honours aob:retracts (aob:witnessReplacement retracts aob:witnessDescription, i.e.
+# inv(a) = c, so a + c = e in Z/4). Every element typed fnd:AlgebraElement so the reified op table + the
+# T4 teeth apply to the actual sealed-group carrier.
+
+aob:witnessAnchor      a fnd:AlgebraElement .   # e = identity (0) - also aob:groupIdentity / aob:colimitApex
+aob:witnessDescription a fnd:AlgebraElement .   # a (1) - inv is c (aob:retracts: replacement supersedes description)
+aob:witnessExample     a fnd:AlgebraElement .   # b (2) - self-inverse (b + b = e)
+aob:witnessReplacement a fnd:AlgebraElement .   # c (3) - inv is a
+
+aob:witnessGroup
+    fnd:authority fnd:SYN ;
+    fnd:hasIdentityElement aob:witnessAnchor ;
+    fnd:isAbelian true ;
+    fnd:hasElement aob:witnessAnchor , aob:witnessDescription , aob:witnessExample , aob:witnessReplacement ;
+    rdfs:comment "The T10 foundation-side group completion of the SP2 sealed group aob:witnessGroup (05_reanchor_surface.md A1): additively (never touching group_law.ttl) it declares the missing fnd:Group structure over the REAL sealed-group elements so aob:SealedGroup rdfs:subClassOf fnd:Group is teeth-proved, not asserted. Its two-sided identity is aob:witnessAnchor (matching aob:groupIdentity/aob:colimitApex); its carrier is the four elements {witnessAnchor=e, witnessDescription=a, witnessExample=b, witnessReplacement=c} = the cyclic group Z/4, with the one non-trivial inverse honouring aob:retracts (inv(a)=c). fnd:isAbelian true (Z/4 commutes). The reified Z/4 Cayley table (fnd:opStructure aob:witnessGroup) + the four fnd:InversePairing claims make fnd:MonoidIdentityShape, fnd:GroupInverseShape and fnd:SealedGroupIsGroupShape bite on the actual sealed group. SYN, cited standard group theory." .
+
+# The four two-sided inverse pairings (the UNIVERSAL inverse law - every element, not just one aob:retracts).
+fnd:sgInvE a fnd:InversePairing ;
+    fnd:authority fnd:SYN ;
+    fnd:pairingModel aob:witnessGroup ; fnd:pairingElement aob:witnessAnchor ; fnd:pairingInverse aob:witnessAnchor ;
+    rdfs:label "sgInvE" ;
+    rdfs:comment "The inverse pairing e<->e in the sealed-group Z/4 model: the identity aob:witnessAnchor is its own two-sided inverse (e + e = e). SYN. fnd:GroupInverseShape / q_sealedgroup_is_group require e+e=e over fnd:opStructure aob:witnessGroup (row fnd:sgApp_e_e), which holds; it is one of the four pairings proving the inverse law is UNIVERSAL over the whole carrier." .
+
+fnd:sgInvA a fnd:InversePairing ;
+    fnd:authority fnd:SYN ;
+    fnd:pairingModel aob:witnessGroup ; fnd:pairingElement aob:witnessDescription ; fnd:pairingInverse aob:witnessReplacement ;
+    rdfs:label "sgInvA" ;
+    rdfs:comment "The inverse pairing a<->c in the sealed-group Z/4 model: aob:witnessReplacement (c) is the two-sided inverse of aob:witnessDescription (a), a + c = e and c + a = e. SYN - and this is the pairing that HONOURS aob:retracts (in group_law.ttl aob:witnessReplacement retracts aob:witnessDescription), so the one inverse SP2 materialised is exactly the group inverse here. fnd:GroupInverseShape reads rows fnd:sgApp_a_c and fnd:sgApp_c_a (both = e); the q_sealedgroup_is_group probe of record perturbs fnd:sgApp_a_c so a+c != e and this pairing ceases to undo -> RED." .
+
+fnd:sgInvB a fnd:InversePairing ;
+    fnd:authority fnd:SYN ;
+    fnd:pairingModel aob:witnessGroup ; fnd:pairingElement aob:witnessExample ; fnd:pairingInverse aob:witnessExample ;
+    rdfs:label "sgInvB" ;
+    rdfs:comment "The inverse pairing b<->b in the sealed-group Z/4 model: aob:witnessExample (b, the order-2 element) is its own two-sided inverse, b + b = e. SYN. fnd:GroupInverseShape reads row fnd:sgApp_b_b (= e); it is the pairing that makes the inverse law universal for the element SP2 left without an aob:retracts, exactly the gap 05 s2.1 flags." .
+
+fnd:sgInvC a fnd:InversePairing ;
+    fnd:authority fnd:SYN ;
+    fnd:pairingModel aob:witnessGroup ; fnd:pairingElement aob:witnessReplacement ; fnd:pairingInverse aob:witnessDescription ;
+    rdfs:label "sgInvC" ;
+    rdfs:comment "The inverse pairing c<->a in the sealed-group Z/4 model: aob:witnessDescription (a) is the two-sided inverse of aob:witnessReplacement (c), c + a = e and a + c = e - the symmetric partner of fnd:sgInvA. SYN. fnd:GroupInverseShape reads rows fnd:sgApp_c_a and fnd:sgApp_a_c (both = e), completing the four-element universal inverse law." .
+
+# The closed Z/4 Cayley table: 16 reified fnd:BinaryOperationApplication rows scoped to aob:witnessGroup.
+# e=anchor(0) a=description(1) b=example(2) c=replacement(3); result = (i+j) mod 4.
+fnd:sgApp_e_e a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessAnchor ; fnd:opRight aob:witnessAnchor ; fnd:opResult aob:witnessAnchor ;
+    rdfs:label "sgApp_e_e" ; rdfs:comment "Sealed-group Z/4 row e+e=e (0+0=0): the identity composed with itself is the identity. SYN. Read by fnd:MonoidIdentityShape (left/right unit) and fnd:sgInvE (e is self-inverse)." .
+fnd:sgApp_e_a a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessAnchor ; fnd:opRight aob:witnessDescription ; fnd:opResult aob:witnessDescription ;
+    rdfs:label "sgApp_e_a" ; rdfs:comment "Sealed-group Z/4 row e+a=a (0+1=1): the left-unit law for a. SYN. Read by fnd:MonoidIdentityShape (e on the left must return the right operand)." .
+fnd:sgApp_e_b a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessAnchor ; fnd:opRight aob:witnessExample ; fnd:opResult aob:witnessExample ;
+    rdfs:label "sgApp_e_b" ; rdfs:comment "Sealed-group Z/4 row e+b=b (0+2=2): the left-unit law for b. SYN. Read by fnd:MonoidIdentityShape." .
+fnd:sgApp_e_c a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessAnchor ; fnd:opRight aob:witnessReplacement ; fnd:opResult aob:witnessReplacement ;
+    rdfs:label "sgApp_e_c" ; rdfs:comment "Sealed-group Z/4 row e+c=c (0+3=3): the left-unit law for c. SYN. Read by fnd:MonoidIdentityShape." .
+fnd:sgApp_a_e a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessDescription ; fnd:opRight aob:witnessAnchor ; fnd:opResult aob:witnessDescription ;
+    rdfs:label "sgApp_a_e" ; rdfs:comment "Sealed-group Z/4 row a+e=a (1+0=1): the right-unit law for a. SYN. Read by fnd:MonoidIdentityShape (e on the right must return the left operand)." .
+fnd:sgApp_a_a a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessDescription ; fnd:opRight aob:witnessDescription ; fnd:opResult aob:witnessExample ;
+    rdfs:label "sgApp_a_a" ; rdfs:comment "Sealed-group Z/4 row a+a=b (1+1=2): the cyclic-group generator squared. SYN. A closure witness (result b is in the carrier); read by the abelian and closure clauses." .
+fnd:sgApp_a_b a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessDescription ; fnd:opRight aob:witnessExample ; fnd:opResult aob:witnessReplacement ;
+    rdfs:label "sgApp_a_b" ; rdfs:comment "Sealed-group Z/4 row a+b=c (1+2=3). SYN. Its symmetric partner fnd:sgApp_b_a also = c, so the abelian-flag clause holds for (a,b)." .
+fnd:sgApp_a_c a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessDescription ; fnd:opRight aob:witnessReplacement ; fnd:opResult aob:witnessAnchor ;
+    rdfs:label "sgApp_a_c" ; rdfs:comment "Sealed-group Z/4 row a+c=e (1+3=0): the inverse a<->c (honouring aob:retracts). SYN. Read by fnd:sgInvA / fnd:sgInvC and fnd:GroupInverseShape; the q_sealedgroup_is_group probe of record changes this fnd:opResult to aob:witnessExample (a+c=b != e) so the inverse pairing ceases to undo and the tooth bites (True->False)." .
+fnd:sgApp_b_e a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessExample ; fnd:opRight aob:witnessAnchor ; fnd:opResult aob:witnessExample ;
+    rdfs:label "sgApp_b_e" ; rdfs:comment "Sealed-group Z/4 row b+e=b (2+0=2): the right-unit law for b. SYN. Read by fnd:MonoidIdentityShape." .
+fnd:sgApp_b_a a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessExample ; fnd:opRight aob:witnessDescription ; fnd:opResult aob:witnessReplacement ;
+    rdfs:label "sgApp_b_a" ; rdfs:comment "Sealed-group Z/4 row b+a=c (2+1=3): symmetric partner of fnd:sgApp_a_b (both = c), witnessing commutativity for (a,b). SYN." .
+fnd:sgApp_b_b a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessExample ; fnd:opRight aob:witnessExample ; fnd:opResult aob:witnessAnchor ;
+    rdfs:label "sgApp_b_b" ; rdfs:comment "Sealed-group Z/4 row b+b=e (2+2=0): the order-2 element is self-inverse. SYN. Read by fnd:sgInvB and fnd:GroupInverseShape." .
+fnd:sgApp_b_c a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessExample ; fnd:opRight aob:witnessReplacement ; fnd:opResult aob:witnessDescription ;
+    rdfs:label "sgApp_b_c" ; rdfs:comment "Sealed-group Z/4 row b+c=a (2+3=1). SYN. Symmetric partner fnd:sgApp_c_b also = a; a closure witness." .
+fnd:sgApp_c_e a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessReplacement ; fnd:opRight aob:witnessAnchor ; fnd:opResult aob:witnessReplacement ;
+    rdfs:label "sgApp_c_e" ; rdfs:comment "Sealed-group Z/4 row c+e=c (3+0=3): the right-unit law for c. SYN. Read by fnd:MonoidIdentityShape." .
+fnd:sgApp_c_a a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessReplacement ; fnd:opRight aob:witnessDescription ; fnd:opResult aob:witnessAnchor ;
+    rdfs:label "sgApp_c_a" ; rdfs:comment "Sealed-group Z/4 row c+a=e (3+1=0): the inverse c<->a. SYN. Read by fnd:sgInvC / fnd:sgInvA and fnd:GroupInverseShape (the two-sided undo needs both a+c=e and c+a=e)." .
+fnd:sgApp_c_b a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessReplacement ; fnd:opRight aob:witnessExample ; fnd:opResult aob:witnessDescription ;
+    rdfs:label "sgApp_c_b" ; rdfs:comment "Sealed-group Z/4 row c+b=a (3+2=1): symmetric partner of fnd:sgApp_b_c (both = a), witnessing commutativity for (b,c). SYN." .
+fnd:sgApp_c_c a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ; fnd:opStructure aob:witnessGroup ; fnd:opLeft aob:witnessReplacement ; fnd:opRight aob:witnessReplacement ; fnd:opResult aob:witnessExample ;
+    rdfs:label "sgApp_c_c" ; rdfs:comment "Sealed-group Z/4 row c+c=b (3+3=2). SYN. A closure witness (result b in the carrier); completes the 16-row closed abelian Cayley table." .
+
+# C3. Two SP2 set groundings (additive; 05 s2.2 / s2.3).
+fnd:setOctet32Power a fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "setOctet32Power" ;
+    rdfs:comment "The underlying finite SET of the SP2 content-address carrier aob:HashDigest - the 32-fold Cartesian POWER Octet^32 (a finite product set of cardinality 256^32) whose points are the 32-octet digests (05_reanchor_surface.md s2.2: 'a 32-octet digest is an element of Octet^32, the 32-fold Cartesian power of the Octet finite set'; aob:zSeed is the projection onto the first-two-octet factor). SYN, standard finite set theory. It is the target of aob:HashDigest fnd:groundsInSet; corpus-agnostic v1 (the cardinality is the depth, no 256^32 points materialised)." .
+
+fnd:setByteOrderCoproduct a fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "setByteOrderCoproduct" ;
+    rdfs:comment "The underlying SET of the SP2 agnostic progenitor aob:ByteOrderProgenitor - the disjoint union (COPRODUCT in Set) of its children byteOrderLittle/Big/None/Host (05_reanchor_surface.md s2.3: 'aob:ByteOrderProgenitor is the Directive-17 agnostic-progenitor pattern, a coproduct/disjoint-union of its children in Set'). SYN, standard set theory. It is the target of aob:ByteOrderProgenitor fnd:groundsInSet, recording that the agnostic-progenitor pattern the whole tower uses is set-theoretically a coproduct; the universal-coproduct structure itself is fnd:Coproduct (set_theory.ttl)." .
+
+aob:HashDigest         fnd:groundsInSet fnd:setOctet32Power .     # a digest IS a point of Octet^32 (Set)
+aob:ByteOrderProgenitor fnd:groundsInSet fnd:setByteOrderCoproduct . # the progenitor IS a coproduct in Set
+
+
+# =====================================================================================
+# D. SP3 (basicttl/crs) re-anchor edges (additive; SYN - 05_reanchor_surface.md s3).
+# =====================================================================================
+fnd:setCarrierProduct a fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "setCarrierProduct" ;
+    rdfs:comment "The underlying SET of the SP3 apex carrier crs:CarrierProduct - the five-factor product K = K_A x K_G x K_S x K_O x K_P as a first-class fnd:Set (05_reanchor_surface.md s3.3/C4: 'crs:CarrierProduct is a categorical product with its five projection morphisms and joint-faithfulness = the product universal property'; the set-theoretic content is a Cartesian product set). SYN, standard set theory. It is the target of crs:CarrierProduct fnd:groundsInSet; the categorical universal-product structure (projections + factoriser) is fnd:Product (set_theory.ttl), which the SP3 five projections already materialise." .
+
+crs:CarrierProduct        fnd:groundsInSet fnd:setCarrierProduct .        # K IS a product set (categorical product)
+crs:GeographicPlaneGeometer fnd:groundsInSpace fnd:metricSpaceWitness .   # the lon/lat plane IS a coordinate/metric space
+crs:ForgetfulTagFrame     fnd:functionalityOf fnd:curryFunctionality .    # the tag-erasure surjection IS an F-typed set function
+crs:CoordinateDerivation  fnd:functionalityOf fnd:curryFunctionality .    # coordinatization IS an F-typed Kleisli arrow (05 s3.5)
