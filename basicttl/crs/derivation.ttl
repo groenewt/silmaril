@@ -1,0 +1,394 @@
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# derivation.ttl — coordinatization as a Frame / Kleisli arrow extending rho (W2 · SP3, Task T8).
+# =====================================================================================
+# LIFTED (Directive 1: lift, do not invent) from the Helios carrier-towers source
+# helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex and the SP3
+# design spec (2.5, "Coordinatization = a Kleisli arrow extending rho; the z descent"). The design is
+# explicit: "A crs:CoordinateDerivation is a Frame in the exact SP1 sense (prim:frameOutput +
+# prim:frameEffect), hence a Kleisli arrow of the SP1 realization monad -- not a bare function. Its
+# domain is an SP2 atom identity (what gets coordinatised); its codomain is a tower position or a
+# derived ordinal. 'Derived, not stored' is then precise: no atom/point may assert a literal
+# coordinate; every coordinate is some derivation's frameOutput. Per the unary law the Frame is the
+# Yoneda point, so coordinatization = Yoneda evaluation at the geometer's representable -- reusing SP1's
+# prim:Frame prim:isYonedaPoint true, not re-deriving it."
+#
+# WHAT THIS FILE MATERIALISES (T8): the two load-bearing structures of coordinatization.
+#   (1) crs:CoordinateDerivation -- a Frame / Kleisli arrow of the SP1 realization monad, authored
+#       rdfs:subClassOf prim:Realization so that SP1's prim:RealizationShape (exactly one
+#       prim:frameOutput, at least one prim:frameEffect, both defang-proof) governs it DIRECTLY, exactly
+#       as the T3 crs:LexToUrnBridge Frame is governed. Its domain (crs:derivesForAtom) is an SP2
+#       aob:AOBAtom identity -- the thing being coordinatised; its codomain (crs:derivesTowerPosition) is
+#       a tower position / prim:Ordinal. Reusing SP1's Frame law (and its prim:Frame prim:isYonedaPoint
+#       true) is the whole point: the coordinate is a Yoneda evaluation, not a re-derived construct.
+#   (2) crs:CoordinatePoint -- a coordinatised point whose coordinate is DERIVED, never STORED: it
+#       carries crs:atCoordinate pointing at the crs:CoordinateDerivation whose prim:frameOutput IS the
+#       coordinate. The derived-not-stored discipline is exactly that crs:atCoordinate must never carry a
+#       literal (xsd) value -- a stored double/decimal coordinate is the forbidden case.
+#
+# GROUNDING: aob:AOBAtom (SP2), prim:Realization / prim:Ordinal / prim:Uint16 / prim:EncodingLoss (SP1)
+# are consumed from the committed floors. Corpus-agnostic v1 (Directive 13): the only individuals are
+# floor WITNESSES (one coordinatised point over one z-coordinate derivation), minted only to keep
+# crs:FrameDerivationShape / crs:DerivedNotStoredShape and q_coordinates_derived non-vacuous -- zero
+# corpus instances. crs:CoordinatePoint is the coordinate-chart OBJECT of this file: at T8 it is a bare
+# owl:Class NOT rdfs:subClassOf* prim:FormalType, so SP1's prim:DualGroundingShape does not yet target it
+# here, and its reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl).
+# crs:CoordinateDerivation is EXCEPTED: it IS rdfs:subClassOf prim:Realization (a physical Frame / Kleisli
+# arrow), which is a bare owl:Class NOT under prim:FormalType, so its instances fall under prim:RealizationShape
+# (the Frame law) but NOT under the class dual-grounding law — SP1's YonedaShape doctrine keeps Frames outside
+# prim:FormalType, so crs:CoordinateDerivation is deliberately NOT grounded by T11.
+#
+# TOOTH (this task): crs:FrameDerivationShape + crs:DerivedNotStoredShape (crs.shapes.ttl) +
+# q_coordinates_derived (crs.queries.sparql). Probes of record (conforms/ASK True->False):
+#   (P1) crs:probeStoredPoint a crs:CoordinatePoint ; crs:atCoordinate "3.14"^^xsd:double (a point
+#        carrying a stored literal coordinate) -> crs:DerivedNotStoredShape conforms=True->False;
+#   (P2) crs:probeEffectlessDerivation a crs:CoordinateDerivation ; prim:frameOutput prim:Uint16 (a
+#        derivation missing prim:frameEffect) -> crs:FrameDerivationShape conforms=True->False.
+# The z descent (T9), the S:P:O<->S:O:P order effect (T10), and the chi honest-red marker (T12) are
+# authored into this same file by their own later tasks; T8 lays only the Frame/derived-not-stored floor.
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (§2.5, §4)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T8)
+# =====================================================================================
+
+
+# ---- The coordinatization Frame: a Kleisli arrow of the SP1 realization monad --------------------
+
+crs:CoordinateDerivation a owl:Class ;
+    rdfs:subClassOf prim:Realization ;
+    rdfs:label "CoordinateDerivation (coordinatization = a Frame / Kleisli arrow extending rho)" ;
+    rdfs:comment "A coordinate derivation -- the categorical object that MAKES a coordinate, lifted from the SP3 design (2.5): 'A crs:CoordinateDerivation is a Frame in the exact SP1 sense (prim:frameOutput + prim:frameEffect), hence a Kleisli arrow of the SP1 realization monad -- not a bare function.' It is authored rdfs:subClassOf prim:Realization precisely so that every instance IS a Frame / Kleisli arrow of the SP1 Frame monad and SP1's prim:RealizationShape governs it DIRECTLY (exactly one prim:frameOutput X = a byte-carrying prim:PhysicalEncoding, at least one prim:frameEffect Y = a typed prim:Effect), reusing the SP1 Frame law and its prim:Frame prim:isYonedaPoint true rather than re-deriving them -- coordinatization is Yoneda evaluation at the geometer's representable, not a re-invented construct. Its DOMAIN (crs:derivesForAtom) is an SP2 aob:AOBAtom identity: the thing being coordinatised, an atom whose identity is a sha256 over 32 prim:Octet. Its CODOMAIN (crs:derivesTowerPosition) is a tower position or a derived prim:Ordinal: the coordinate the atom lands on. It is the derived-not-stored discipline in class form: a coordinate is never a literal asserted on an atom, it is always THIS Frame's prim:frameOutput. It is deliberately NOT rdfs:subClassOf* prim:FormalType (prim:Realization is a bare owl:Class), so SP1's class dual-grounding law does not target it; the Frame law (prim:RealizationShape) does. The z descent (T9) is a concrete crs:CoordinateDerivation whose frameOutput lands on prim:Uint16 via the SHA-256 prefix chain. Enforced by crs:FrameDerivationShape + q_coordinates_derived." .
+
+crs:CoordinatePoint a owl:Class ;
+    rdfs:label "CoordinatePoint (a coordinatised point whose coordinate is derived, never stored)" ;
+    rdfs:comment "A coordinatised point -- an atom's position in a geometer's axis system, lifted from the SP3 design's derived-not-stored discipline (2.5, design constraint 4: 'Coordinates are derived, never stored. Every coordinate is the frameOutput of a derivation Frame'). A crs:CoordinatePoint carries crs:atCoordinate pointing at the crs:CoordinateDerivation whose prim:frameOutput IS its coordinate -- the coordinate is an OBJECT (a Frame's output), never a stored literal. The load-bearing prohibition is that crs:atCoordinate must NEVER carry a literal (xsd) value: a point asserting a stored xsd:double/xsd:decimal coordinate has smuggled a materialised coordinate onto the point instead of deriving it as the frameOutput of a Kleisli arrow, exactly the anti-pattern the design forbids. This keeps coordinatization total and honest: every coordinate is recomputable by re-running its derivation Frame from the atom identity, never read back from a frozen literal that could drift from the atom it claims to coordinatise. At T8 it is a bare owl:Class NOT rdfs:subClassOf* prim:FormalType, so SP1's dual-grounding law does not yet target it here; its reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl), which puns it a prim:FormalType with its own prim:Realization + reflexive octet-vector carrier + prim:Primitive + Yoneda apparatus, so SP1's prim:DualGroundingShape and prim:YonedaShape target and are satisfied by it over the merged graph. The derived-not-stored discipline is enforced (not merely declared) by crs:DerivedNotStoredShape, whose probe of record injects a point carrying a stored xsd:double coordinate and is caught (conforms=True->False), and mirrored by q_coordinates_derived." .
+
+
+# ---- The Frame's domain / codomain coordinates + the derived-coordinate slot ----------------------
+
+crs:derivesForAtom a owl:ObjectProperty ;
+    rdfs:domain crs:CoordinateDerivation ;
+    rdfs:range aob:AOBAtom ;
+    rdfs:label "derivesForAtom" ;
+    rdfs:comment "The DOMAIN edge of a coordinate derivation read as a Frame / Kleisli arrow: from the crs:CoordinateDerivation to the SP2 aob:AOBAtom identity being coordinatised (the design's 'its domain is an SP2 atom identity, what gets coordinatised'). Every crs:CoordinateDerivation carries exactly one crs:derivesForAtom -- the atom whose sha256 identity the coordinate is derived FROM. Paired with crs:derivesTowerPosition (the codomain), it records the whole domain->codomain signature of the coordinatization Frame as a graph fact, so a coordinate is always traceable back to the atom it coordinatises rather than floating free." .
+
+crs:derivesTowerPosition a owl:ObjectProperty ;
+    rdfs:domain crs:CoordinateDerivation ;
+    rdfs:range prim:FormalType ;
+    rdfs:label "derivesTowerPosition" ;
+    rdfs:comment "The CODOMAIN edge of a coordinate derivation read as a Frame / Kleisli arrow: from the crs:CoordinateDerivation to the tower position or derived ordinal the atom lands on (the design's 'its codomain is a tower position or a derived ordinal'). On this floor the witness derivation lands on prim:Ordinal -- the SP1 totally-ordered index a coordinate IS -- but a role-tower derivation may land on a crs:UrnTowerAxis position instead; the range is the SP1 prim:FormalType tower so both a tower position class and prim:Ordinal are admissible codomains. Paired with crs:derivesForAtom (the domain) it fixes the coordinatization Frame's full signature." .
+
+crs:atCoordinate a rdf:Property ;
+    rdfs:domain crs:CoordinatePoint ;
+    rdfs:label "atCoordinate" ;
+    rdfs:comment "The coordinate slot of a coordinatised point -- the single load-bearing property of the derived-not-stored discipline. crs:atCoordinate MUST point at the crs:CoordinateDerivation whose prim:frameOutput IS the coordinate (an OBJECT), and must NEVER carry a literal (xsd) value (a STORED coordinate). It is authored as a bare rdf:Property (not owl:ObjectProperty) precisely because its value-space is exactly what the law constrains: the legitimate value is a Frame object, the forbidden value is a literal, and crs:DerivedNotStoredShape reads isLiteral() over the genuine crs:atCoordinate edge to bite the forbidden case (defang-proof: rdfs inference can add an rdf:type but can never turn a literal into a non-literal). Its rdfs:domain crs:CoordinatePoint means any node carrying crs:atCoordinate is a coordinatised point, so a stored-coordinate probe is drawn into the shape's target set even if it is not explicitly typed. It is what q_coordinates_derived walks to confirm every coordinate is a derivation's frameOutput and none is a stored literal." .
+
+
+# ---- The coordinatization Frame witness + the derived (not stored) coordinate point ---------------
+# Corpus-agnostic v1 floor witnesses only (Directive 13): one z-coordinate derivation Frame over the
+# SP2 witness atom aob:witnessAnchor, and one coordinatised point whose coordinate IS that derivation
+# (an object, not a stored literal). Minted only to keep the T8 teeth + q_coordinates_derived
+# non-vacuous. The derivation carries prim:frameOutput prim:Uint16 (X, a byte-carrying PhysicalEncoding
+# with prim:bitWidth 16) + prim:frameEffect prim:EncodingLoss (Y, the honest cost of deriving a bounded
+# coordinate from an unbounded atom identity), so SP1's prim:RealizationShape governs it and passes.
+
+crs:zCoordinateDerivation a crs:CoordinateDerivation ;
+    crs:derivesForAtom aob:witnessAnchor ;
+    crs:derivesTowerPosition prim:Ordinal ;
+    prim:frameOutput prim:Uint16 ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "zCoordinateDerivation (the witness coordinatization Frame)" ;
+    rdfs:comment "The floor-witness coordinate derivation: a Frame / Kleisli arrow of the SP1 realization monad that coordinatises the SP2 witness atom aob:witnessAnchor (crs:derivesForAtom, the domain -- an aob:AOBAtom identity) onto a prim:Ordinal coordinate (crs:derivesTowerPosition, the codomain). As an instance of crs:CoordinateDerivation it IS a prim:Realization, so it carries prim:frameOutput prim:Uint16 (X = the byte-carrying coordinate encoding, the same 16-bit carrier the z descent lands on) and prim:frameEffect prim:EncodingLoss (Y = the honest cost of deriving a bounded coordinate from the atom's full sha256 identity), and SP1's prim:RealizationShape governs it directly and passes. It is the concrete anchor that makes crs:FrameDerivationShape and q_coordinates_derived non-vacuous. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:coordinatePointWitness a crs:CoordinatePoint ;
+    crs:atCoordinate crs:zCoordinateDerivation ;
+    rdfs:label "coordinatePointWitness (the witness coordinatised point -- coordinate derived, not stored)" ;
+    rdfs:comment "The floor-witness coordinatised point: its coordinate crs:atCoordinate is crs:zCoordinateDerivation -- an OBJECT, the crs:CoordinateDerivation Frame whose prim:frameOutput IS the coordinate -- NOT a stored literal. It is the concrete witness of the derived-not-stored discipline: the coordinate is recomputable by re-running the derivation Frame from the atom aob:witnessAnchor, never read back from a frozen xsd:double literal. It makes crs:DerivedNotStoredShape and q_coordinates_derived non-vacuous, and it is the clean case the probe of record (crs:probeStoredPoint a crs:CoordinatePoint ; crs:atCoordinate a stored xsd:double) is contrasted against. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# =====================================================================================
+# T9 — the z descent + the agnostic byte-order coordinate (Q1). The worked derived-not-stored
+# example: the layering coordinate z = a prim:Uint16 over the FIRST TWO OCTETS of an atom's
+# source_sha256, endianness selected by the AGNOSTIC byte_order progenitor (no concrete leaf in v1).
+# =====================================================================================
+# LIFTED (Directive 1: lift, do not invent) from the Helios projection diagram
+# helios/srcy/shared/components/diagrams/patterns/projection/source_dimension_planes.tex ("SHA-256
+# content digest: 256-bit digest computed from the UTF-8 bytes of one canonical uniform resource name")
+# and the SP3 design spec (2.5, "The z derivation, grounded end-to-end"), whose descent is:
+#   urn : prim:URN --encodeUtf8--> prim:ByteVector --sha256--> prim:Hash (32 prim:Octet)
+#     --takesOctetPrefix 2--> (octet[0], octet[1]) : prim:Block --interpret as prim:Uint16, byteOrder--> 
+#     z : prim:Natural (ordinal 0..65535).
+# Every hop is an SP1 primitive; the source_sha256 identity + its 32-octet descent are the committed
+# SP2 aob:HashDigest floor SP3 CONSUMES (aob:hasHashDigest -> aob:HashDigest -> 32 aob:digestOctet;
+# aob:zSeed the little-endian prim:Uint16 of octetPosition 0,1). SP3 ADDS only the crs:ZDerivation
+# Frame that NAMES this descent as a coordinatization.
+#
+# Q1 PINNED (Directive 17): the endianness coordinate is the AGNOSTIC aob:ByteOrderProgenitor with NO
+# concrete leaf in v1 (concrete endianness deferred to W5). crs:ZGroundingShape PERMITS the ungrounded
+# progenitor as the v1 default and REJECTS a none/big default (category error / no floor basis): a
+# concrete leaf asserted as the canonical v1 default forces an endianness the corpus-agnostic floor has
+# no basis to choose. SP2's little-endian aob:zSeed is the byteOrderLittle REALISATION composing UNDER
+# the progenitor (a concrete W5 reading), NOT the v1 default.
+#
+# WHAT THIS TASK MATERIALISES (T9):
+#   (1) crs:ZDerivation -- a crs:CoordinateDerivation (hence a prim:Realization Frame) whose frameOutput
+#       lands on prim:Uint16 via the SHA-256 prefix chain: crs:zFromDigest (the atom's aob:HashDigest),
+#       crs:takesOctetPrefix 2 (the two-octet prim:Block prefix), crs:zByteOrderCoordinate the AGNOSTIC
+#       aob:ByteOrderProgenitor, crs:zInterpretsAs prim:Natural, crs:derivesTowerPosition prim:Natural.
+#       Its SP1 Frame Y coordinate (prim:frameEffect) is prim:NarrowingLoss (the 256-bit digest narrowed
+#       to a 16-bit read, drawn from SP1's CLOSED prim:Effect family so prim:RealizationShape stays green);
+#       the crs-specific truncation loss is carried SEPARATELY on crs:hasHashPrefixTruncation.
+#   (2) crs:HashPrefixTruncation -- the typed crs loss (2 of 32 octets consumed) minted per SP1's
+#       extensible-Effect discipline, seeding SP4; carried via crs:hasHashPrefixTruncation. Exactly like
+#       T6's crs:RoleDropEffect it is a bare owl:Class NOT rdfs:subClassOf* prim:FormalType and is
+#       deliberately NOT grounded by T11 (which grounds only the coordinate-chart OBJECT classes): as a
+#       crs-minted effect loss SP1's prim:DualGroundingShape does not target it, exactly as SP1 keeps its
+#       own prim:Effect handling outside prim:FormalType; it is NOT a prim:frameEffect value either
+#       (SP1's prim:RealizationShape closes that value-space to its own closed prim:Effect family).
+#
+# TOOTH (this task): crs:ZGroundingShape (crs.shapes.ttl) + q_z_from_urn (crs.queries.sparql). Probes of
+# record (conforms/ASK True->False): (P1) crs:probeZFourOctets a crs:ZDerivation ; crs:takesOctetPrefix 4
+# (a z reading 4 octets) -> RED; (P2) crs:probeZNoByteOrder a crs:ZDerivation with NO crs:zByteOrderCoordinate
+# (a z omitting the byte-order progenitor coordinate) -> RED; (P3) crs:probeZBigEndian a crs:ZDerivation ;
+# crs:zByteOrderCoordinate aob:byteOrderBig (a z defaulting to big-endian) -> RED.
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (§2.5, §4, Q1)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T9)
+# =====================================================================================
+
+
+# ---- The z descent class: a coordinate derivation grounded end-to-end down the byte floor ----------
+
+crs:ZDerivation a owl:Class ;
+    rdfs:subClassOf crs:CoordinateDerivation ;
+    rdfs:label "ZDerivation (the layering coordinate z = uint16 over source_sha256's first two octets)" ;
+    rdfs:comment "The z-coordinate derivation -- the canonical worked example of 'coordinates are derived, never stored', lifted from the Helios projection diagram (source_dimension_planes.tex: 'SHA-256 content digest: 256-bit digest computed from the UTF-8 bytes of one canonical uniform resource name') and the SP3 design (2.5, 'The z derivation, grounded end-to-end'). A crs:ZDerivation is a crs:CoordinateDerivation (hence a prim:Realization Frame / Kleisli arrow of the SP1 realization monad) whose whole descent bottoms out on the SP1/SP2 byte floor: its domain (crs:derivesForAtom) is an aob:AOBAtom identity, whose source_sha256 (crs:zFromDigest -> aob:HashDigest, a prim:ByteVector of EXACTLY 32 prim:Octet, byte-descending to the prim:Bit floor) has its FIRST TWO OCTETS (crs:takesOctetPrefix 2, a prim:Block prefix over the octet vector) read as a prim:Uint16 (prim:bitWidth 16, prim:interpretAs prim:Natural) landing on prim:Natural (0..65535) -- the layering coordinate z. Q1 PINNED (Directive 17): its endianness coordinate crs:zByteOrderCoordinate is the AGNOSTIC aob:ByteOrderProgenitor with NO concrete leaf in v1 (concrete endianness deferred to W5); crs:ZGroundingShape PERMITS the ungrounded progenitor as the v1 default and REJECTS a none/big default (a corpus-agnostic floor has no basis to fix endianness) -- SP2's little-endian aob:zSeed is the byteOrderLittle REALISATION composing under the progenitor, not the v1 default. As a prim:Realization its SP1 Frame Y coordinate (prim:frameEffect) is prim:NarrowingLoss (the 256-bit identity narrowed to a 16-bit read), drawn from SP1's closed prim:Effect family so prim:RealizationShape stays green; the crs-specific 2-of-32-octet loss is carried separately as crs:hasHashPrefixTruncation crs:HashPrefixTruncation, seeding SP4. It is deliberately NOT rdfs:subClassOf* prim:FormalType (via prim:Realization, a bare owl:Class), so SP1's class dual-grounding law does not target it here; the Frame law and the exact-chain law (crs:ZGroundingShape) do. Enforced by crs:ZGroundingShape + q_z_from_urn." .
+
+crs:HashPrefixTruncation a owl:Class ;
+    rdfs:label "HashPrefixTruncation (the typed loss of reading only 2 of 32 source_sha256 octets -- seeds SP4)" ;
+    rdfs:comment "The typed LOSS incurred when the z descent reads only the FIRST TWO OCTETS of an atom's 32-octet source_sha256 identity, lifted from the SP3 design (2.5): 'The derivation carries a typed crs:HashPrefixTruncation effect (only 2 of 32 octets consumed -- a genuine loss, minted because a concrete consumer needs it, per SP1's extensible-Effect discipline).' Reading a 2-octet prefix of a 32-octet digest FORGETS the remaining 30 octets: two distinct atoms whose digests agree on octets 0,1 collapse to the same z, so the truncation is a genuine many-to-one loss, never a free operation. A crs:HashPrefixTruncation is carried on a crs:ZDerivation via crs:hasHashPrefixTruncation, the graph statement that the z coordinate is a LOSSY prefix read rather than a lossless function of the whole identity. It SEEDS SP4 (the forgetful/effect layer) alongside T6's crs:RoleDropEffect and T10's crs:RoleOrderEffect. Exactly like crs:RoleDropEffect it is deliberately NOT a prim:frameEffect value (SP1's prim:RealizationShape closes the prim:Effect family to its own closed list, which this crs-minted loss is not a member of, so it rides a crs-specific edge instead) and NOT rdfs:subClassOf* prim:FormalType, and is deliberately NOT grounded by Task T11 (which grounds only the coordinate-chart OBJECT classes): as a crs-minted effect loss SP1's prim:DualGroundingShape does not target it, exactly as SP1 keeps its own prim:Effect handling outside prim:FormalType." .
+
+
+# ---- The z descent's coordinates (the chain hops, each an SP1/SP2 floor edge NAMED as a coordinate) --
+
+crs:zFromDigest a owl:ObjectProperty ;
+    rdfs:domain crs:ZDerivation ;
+    rdfs:range aob:HashDigest ;
+    rdfs:label "zFromDigest" ;
+    rdfs:comment "Relates a crs:ZDerivation to the SP2 aob:HashDigest (the atom's source_sha256 identity, a prim:ByteVector of EXACTLY 32 prim:Octet) whose first two octets the z coordinate is read FROM -- the concrete graph statement that z descends from the committed SP2 32-octet identity floor, not an opaque token. It is the same digest the derivation's domain atom carries via aob:hasHashDigest (crs:zDerivationWitness crs:zFromDigest aob:witnessDigest, the digest of crs:derivesForAtom aob:witnessAnchor), so the z descent's source is pinned to the atom being coordinatised. q_z_from_urn walks aob:hasHashDigest then crs:zFromDigest to confirm the derivation reads the atom's OWN identity digest." .
+
+crs:takesOctetPrefix a owl:DatatypeProperty ;
+    rdfs:domain crs:ZDerivation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "takesOctetPrefix" ;
+    rdfs:comment "The number of leading octets of the source_sha256 digest the z coordinate reads -- lifted from the design's 'crs:takesOctetPrefix 2 (first two octets, a prim:Block over the ByteVector)'. For the canonical z this is EXACTLY 2: a prim:Uint16 is 16 bits = 2 octets, so a z reading any other count is not a uint16 read of the digest prefix. crs:ZGroundingShape reads this literal and rejects any crs:ZDerivation whose crs:takesOctetPrefix is not 2 (the probe of record injects crs:takesOctetPrefix 4, a 4-octet read, and is caught conforms=True->False); it is a literal-value check, defang-proof against rdfs range-inference which can never change the numeric value carried on the edge." .
+
+crs:zPrefixBlock a owl:ObjectProperty ;
+    rdfs:domain crs:ZDerivation ;
+    rdfs:range prim:Block ;
+    rdfs:label "zPrefixBlock" ;
+    rdfs:comment "Relates a crs:ZDerivation to the SP1 prim:Block that IS its two-octet digest prefix -- the design's '(first two octets, a prim:Block over the ByteVector)'. A prim:Block is the SP1 composite/product physical carrier (physical.ttl) that byteDescendsTo prim:Octet and thence to the prim:Bit floor, so the two-octet prefix the z reads is a genuine byte carrier grounded in the floor's physical ladder rather than a free pair of integers. crs:zDerivationWitness crs:zPrefixBlock prim:Block; the z descent thus names the exact SP1 carrier its prefix read lands on before interpretation as a prim:Uint16." .
+
+crs:zByteOrderCoordinate a owl:ObjectProperty ;
+    rdfs:domain crs:ZDerivation ;
+    rdfs:range aob:ByteOrderProgenitor ;
+    rdfs:label "zByteOrderCoordinate (the AGNOSTIC endianness coordinate of the z read -- Q1: progenitor, no leaf)" ;
+    rdfs:comment "The endianness coordinate of the z uint16 read -- Q1 PINNED (Directive 17): it is the AGNOSTIC aob:ByteOrderProgenitor (the SP2 order-agnostic parent from which the concrete children aob:byteOrderLittle/Big/None/Host descend), with NO concrete leaf asserted in v1. Which octet of the two-octet prefix is most-significant is DEFERRED to W5, when a concrete corpus binding selects a child; the corpus-agnostic v1 floor has no basis to fix little- vs big-endian, so it names only the progenitor. crs:ZGroundingShape PERMITS exactly this progenitor as the v1 default and REJECTS any concrete leaf asserted as the canonical default -- a none/big default is a category error (network order is not the neutral choice) with no floor basis, and the probe of record injects crs:zByteOrderCoordinate aob:byteOrderBig and is caught (conforms=True->False). SP2's little-endian aob:zSeed is the byteOrderLittle REALISATION composing UNDER this progenitor (a concrete W5 reading), never the v1 default. rdfs:range is aob:ByteOrderProgenitor so both the progenitor and (post-W5) its children are admissible values; the shape uses node-identity, not sh:class, so it is defang-proof." .
+
+crs:zInterpretsAs a owl:ObjectProperty ;
+    rdfs:domain crs:ZDerivation ;
+    rdfs:range prim:FormalType ;
+    rdfs:label "zInterpretsAs (the formal type the z read interprets as -- prim:Natural, 0..65535)" ;
+    rdfs:comment "The formal type the z uint16 read is INTERPRETED as -- the design's 'interpret as prim:Uint16 ... z : prim:Natural (ordinal 0..65535)'. For the canonical z this is prim:Natural: a prim:Uint16 (prim:interpretAs prim:Natural in SP1's physical.ttl) reads its two octets as a non-negative integer 0..65535, so z is a prim:Natural coordinate, never a signed prim:Integer or a prim:Real. crs:zDerivationWitness crs:zInterpretsAs prim:Natural, matching its prim:frameOutput prim:Uint16's own prim:interpretAs prim:Natural. crs:ZGroundingShape rejects any crs:ZDerivation whose crs:zInterpretsAs is not prim:Natural (a non-Natural interpretation of the digest prefix), reading node identity so the check is defang-proof against rdfs range-inference. It is the interpretation half of the z descent, companion to crs:zByteOrderCoordinate (the endianness half)." .
+
+crs:hasHashPrefixTruncation a owl:ObjectProperty ;
+    rdfs:domain crs:ZDerivation ;
+    rdfs:range crs:HashPrefixTruncation ;
+    rdfs:label "hasHashPrefixTruncation" ;
+    rdfs:comment "Relates a crs:ZDerivation to the typed crs:HashPrefixTruncation loss it incurs -- the concrete graph statement that reading only 2 of the digest's 32 octets is a genuine many-to-one LOSS (the other 30 octets are forgotten), not a free operation, minted per SP1's extensible-Effect discipline because a concrete consumer (the z descent) needs it. It is carried on a crs-specific edge rather than prim:frameEffect precisely because SP1's prim:RealizationShape closes the prim:frameEffect value-space to its own closed prim:Effect family (of which this crs-minted loss is not a member); the SP1 Frame Y coordinate of the z derivation is prim:NarrowingLoss, while crs:hasHashPrefixTruncation carries the SP3-specific truncation loss that SEEDS SP4's forgetful/effect layer alongside crs:RoleDropEffect (T6) and crs:RoleOrderEffect (T10)." .
+
+
+# ---- The z descent floor witness (corpus-agnostic v1) + the typed truncation loss individual --------
+# Directive 13: the ONLY individuals are floor witnesses over the committed SP2 witness atom/digest
+# (aob:witnessAnchor aob:hasHashDigest aob:witnessDigest, a 32-octet aob:HashDigest). Minted only to keep
+# crs:ZGroundingShape + q_z_from_urn non-vacuous. As a crs:CoordinateDerivation the z witness carries the
+# SP1 Frame law coordinates (prim:frameOutput prim:Uint16 + prim:frameEffect prim:NarrowingLoss) so SP1's
+# prim:RealizationShape (re-run over the merged graph) governs it and passes; its endianness coordinate is
+# the AGNOSTIC aob:ByteOrderProgenitor (Q1, no concrete leaf).
+
+crs:hashPrefixTruncationEffect a crs:HashPrefixTruncation ;
+    rdfs:label "hashPrefixTruncationEffect (the typed 2-of-32-octet loss of the witness z descent)" ;
+    rdfs:comment "The floor-witness typed truncation loss: the crs:HashPrefixTruncation carried by crs:zDerivationWitness, recording that reading only octets 0,1 of the 32-octet aob:witnessDigest FORGETS the remaining 30 octets (a genuine many-to-one loss). It makes crs:hasHashPrefixTruncation non-vacuous and is the SP3-specific loss seeding SP4, distinct from the z derivation's SP1 Frame Y coordinate prim:NarrowingLoss. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:zDerivationWitness a crs:ZDerivation ;
+    crs:derivesForAtom aob:witnessAnchor ;
+    crs:zFromDigest aob:witnessDigest ;
+    crs:takesOctetPrefix 2 ;
+    crs:zPrefixBlock prim:Block ;
+    crs:zByteOrderCoordinate aob:ByteOrderProgenitor ;
+    crs:zInterpretsAs prim:Natural ;
+    crs:derivesTowerPosition prim:Natural ;
+    prim:frameOutput prim:Uint16 ;
+    prim:frameEffect prim:NarrowingLoss ;
+    crs:hasHashPrefixTruncation crs:hashPrefixTruncationEffect ;
+    rdfs:label "zDerivationWitness (the witness z descent: uint16 over source_sha256's first two octets)" ;
+    rdfs:comment "The floor-witness z descent: a crs:ZDerivation that coordinatises the SP2 witness atom aob:witnessAnchor (crs:derivesForAtom, the domain -- an aob:AOBAtom) by reading the FIRST TWO OCTETS (crs:takesOctetPrefix 2, crs:zPrefixBlock prim:Block) of its source_sha256 identity aob:witnessDigest (crs:zFromDigest, a 32-octet aob:HashDigest) as a prim:Uint16 (prim:frameOutput, prim:bitWidth 16, prim:interpretAs prim:Natural) landing on prim:Natural (crs:zInterpretsAs / crs:derivesTowerPosition, 0..65535) -- the layering coordinate z. Q1 PINNED: its crs:zByteOrderCoordinate is the AGNOSTIC aob:ByteOrderProgenitor (no concrete leaf in v1). As a crs:CoordinateDerivation it IS a prim:Realization Frame, so it carries prim:frameOutput prim:Uint16 + prim:frameEffect prim:NarrowingLoss (the 256-bit identity narrowed to a 16-bit read, drawn from SP1's closed prim:Effect family) and SP1's prim:RealizationShape governs it and passes; the SP3-specific 2-of-32-octet loss is crs:hasHashPrefixTruncation crs:hashPrefixTruncationEffect. It makes crs:ZGroundingShape and q_z_from_urn non-vacuous, and is the clean case the probes of record (crs:probeZFourOctets 4-octet read / crs:probeZNoByteOrder omitted byte-order / crs:probeZBigEndian big-endian default) are contrasted against. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# =====================================================================================
+# T10 — the S:P:O <-> S:O:P order effect (lifted; seeds SP4). One content-addressed reified arrow-node
+# carries TWO distinct declared orders -- the rank-zero external S:P:O and the source-declared internal
+# role S:O:P -- and re-ordering between them is a MATERIALISED typed loss (a crs:RoleOrderEffect), never
+# a free relabelling.
+# =====================================================================================
+# LIFTED (Directive 1: lift, do not invent) from the Helios projection diagram
+# helios/srcy/shared/components/diagrams/patterns/projection/source_dimension_planes.tex: the reified
+# arrow-node is a "first-class content-addressed atom that carries one subject predicate and object
+# relation" (SilDiagramReifiedArrowNode) whose "orders" edge names TWO declared orders --
+# SilDiagramRankZeroOrder S:P:O = "external relation coordinate ordered as subject then predicate then
+# object" and SilDiagramInternalRoleOrder S:O:P = "source-declared internal role vector ordered as
+# subject then object then predicate" -- and the SP3 design spec (2.6, "The S:P:O <-> S:O:P order effect"):
+# "source_dimension_planes.tex fixes two distinct orders on one reified arrow-node ... Re-ordering between
+# them is a materialised effect/loss between projections (a content-addressed reified arrow-node carries
+# 'declared orders S:P:O / S:O:P'). SP3 models the reorder as a typed crs:OrderProjection Frame with a
+# crs:RoleOrderEffect -- the projection packet (SP4) consumes it as one loss class. The arrow-node identity
+# itself is the content-address descent of §2.5 (URN -> UTF-8 -> SHA-256 -> ...), so z and the arrow
+# identity share one floor."
+#
+# THE ARROW-NODE IS SP2's aob:YonedaHomLeg (Q0/Directive 17): the SP2 arrow atom carrying the S/O/P triple
+# aob:sourceNodeUrn (S) / aob:targetNodeUrn (O) / aob:cpoProcessIri (P) -- the exact seed SP3 lifts into the
+# CRS, and (as an aob:AOBAtom) content-addressed by a sha256 over 32 prim:Octet, the SAME content-address
+# floor the z descent (T9) bottoms out on. SP3 ADDS only the crs:OrderProjection Frame that NAMES the
+# reorder as a typed loss; it INVENTS nothing about the arrow-node's identity or its S/O/P coordinates.
+#
+# WHAT THIS TASK MATERIALISES (T10):
+#   (1) crs:OrderProjection -- a prim:Realization Frame (Kleisli arrow of the SP1 realization monad) whose
+#       prim:frameOutput is prim:TripleNTriples (the byte-carrying N-Triples serialization of the ordered S-P-O
+#       statement, prim:bitWidth 8, prim:interpretAs prim:Triple) and whose prim:frameEffect is
+#       prim:OrderingCanonicalization (the SP1 CLOSED-family effect of imposing/normalising an order over an
+#       otherwise-unordered presentation), so SP1's prim:RealizationShape governs it and passes. It carries
+#       crs:reordersArrowNode (the one reified arrow-node), crs:externalOrder "S:P:O" + crs:internalOrder
+#       "S:O:P" (the two DISTINCT declared orders), and crs:hasRoleOrderEffect (the typed reorder loss).
+#   (2) crs:RoleOrderEffect -- the typed reorder LOSS minted per SP1's extensible-Effect discipline, seeding
+#       SP4; carried via crs:hasRoleOrderEffect. Exactly like T6's crs:RoleDropEffect and T9's
+#       crs:HashPrefixTruncation it is a bare owl:Class NOT rdfs:subClassOf* prim:FormalType and is
+#       deliberately NOT grounded by T11 (which grounds only the coordinate-chart OBJECT classes): as a
+#       crs-minted effect loss SP1's prim:DualGroundingShape does not target it, exactly as SP1 keeps its
+#       own prim:Effect handling outside prim:FormalType; and it is NOT a prim:frameEffect value either
+#       (SP1's prim:RealizationShape closes that value-space to its own closed prim:Effect family).
+#
+# TOOTH (this task): crs:OrderProjectionShape (crs.shapes.ttl) + q_order_effect (crs.queries.sparql); the
+# reorder Frame is ALSO under crs:FrameDerivationShape / SP1's prim:RealizationShape for the Frame law.
+# Probe of record (conforms/ASK True->False): crs:probeOrderNoEffect a crs:OrderProjection ;
+# crs:reordersArrowNode aob:witnessLeg ; crs:externalOrder "S:P:O" ; crs:internalOrder "S:O:P" ;
+# prim:frameOutput prim:TripleNTriples ; prim:frameEffect prim:OrderingCanonicalization (a reorder missing its
+# crs:RoleOrderEffect) -> crs:OrderProjectionShape conforms=True->False and q_order_effect True->False.
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (§2.6, §4)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T10)
+# =====================================================================================
+
+
+# ---- The reorder Frame + the typed reorder loss ---------------------------------------------------
+
+crs:OrderProjection a owl:Class ;
+    rdfs:subClassOf prim:Realization ;
+    rdfs:label "OrderProjection (the S:P:O <-> S:O:P reorder as a typed Frame carrying a materialised loss)" ;
+    rdfs:comment "The order-projection Frame -- the categorical object that NAMES the S:P:O <-> S:O:P reorder as a typed loss, lifted from the Helios projection diagram (source_dimension_planes.tex: the reified arrow-node, a 'first-class content-addressed atom that carries one subject predicate and object relation', carries its two 'declared orders', the rank-zero external S:P:O 'external relation coordinate ordered as subject then predicate then object' and the internal role S:O:P 'source-declared internal role vector ordered as subject then object then predicate') and the SP3 design (2.6, 'The S:P:O <-> S:O:P order effect'): 'SP3 models the reorder as a typed crs:OrderProjection Frame with a crs:RoleOrderEffect -- the projection packet (SP4) consumes it as one loss class'. A crs:OrderProjection is authored rdfs:subClassOf prim:Realization precisely so that every instance IS a Frame / Kleisli arrow of the SP1 realization monad and SP1's prim:RealizationShape governs it DIRECTLY (exactly one prim:frameOutput X and at least one prim:frameEffect Y), exactly as crs:CoordinateDerivation is; its X is prim:TripleNTriples (the byte-carrying N-Triples serialization of the ordered S-P-O statement, prim:bitWidth 8, prim:interpretAs prim:Triple) and its Y is prim:OrderingCanonicalization (the SP1 closed-family effect of imposing/normalising an order), so the Frame law passes. It reorders ONE content-addressed reified arrow-node (crs:reordersArrowNode -- the SP2 aob:YonedaHomLeg carrying the S/O/P triple aob:sourceNodeUrn/aob:targetNodeUrn/aob:cpoProcessIri, its identity the sha256 content-address descent of §2.5 that z (T9) shares) between the two DISTINCT declared orders crs:externalOrder \"S:P:O\" and crs:internalOrder \"S:O:P\". The load-bearing discipline is that re-ordering is NEVER a free relabelling: it MUST carry a typed crs:hasRoleOrderEffect crs:RoleOrderEffect (the SP3-specific loss seeding SP4). It is deliberately NOT rdfs:subClassOf* prim:FormalType (prim:Realization is a bare owl:Class) and is deliberately NOT grounded by Task T11 (which grounds only the coordinate-chart OBJECT classes): as a physical Frame SP1's YonedaShape doctrine keeps it outside prim:FormalType, so SP1's class dual-grounding law does not target it; the Frame law (crs:FrameDerivationShape / prim:RealizationShape) and the reorder-obligation law (crs:OrderProjectionShape) govern it instead. Enforced by crs:OrderProjectionShape + q_order_effect." .
+
+crs:RoleOrderEffect a owl:Class ;
+    rdfs:label "RoleOrderEffect (the typed loss of reordering the roles between S:P:O and S:O:P -- seeds SP4)" ;
+    rdfs:comment "The typed LOSS incurred when a crs:OrderProjection re-orders the three roles between the rank-zero external order S:P:O and the source-declared internal role order S:O:P on one content-addressed reified arrow-node, lifted from the SP3 design (2.6): 'Re-ordering between them is a materialised effect/loss between projections ... SP3 models the reorder as a typed crs:OrderProjection Frame with a crs:RoleOrderEffect -- the projection packet (SP4) consumes it as one loss class'. Re-ordering the S-P-O positions is a MATERIALISED effect, not a free relabelling: the external S:P:O and internal S:O:P orders are two distinct coordinates on the same arrow-node, and moving between them is a genuine projection with a cost that a downstream consumer (SP4's projection packet) reads as one loss class -- so the reorder must be witnessed by a typed effect rather than presumed cost-free. A crs:RoleOrderEffect is carried on a crs:OrderProjection via crs:hasRoleOrderEffect, the graph statement that the reorder is a typed loss. It SEEDS SP4 (the forgetful/effect layer) alongside T6's crs:RoleDropEffect (the drop-one-role loss) and T9's crs:HashPrefixTruncation (the 2-of-32-octet loss). Exactly like those it is deliberately NOT a prim:frameEffect value (SP1's prim:RealizationShape closes the prim:Effect family to its own closed list, of which this crs-minted loss is not a member, so it rides a crs-specific edge instead) and NOT rdfs:subClassOf* prim:FormalType, and is deliberately NOT grounded by Task T11 (which grounds only the coordinate-chart OBJECT classes): as a crs-minted effect loss SP1's prim:DualGroundingShape does not target it, exactly as SP1 keeps its own prim:Effect handling outside prim:FormalType." .
+
+
+# ---- The reorder Frame's coordinates (the reified arrow-node, the two orders, the typed loss) ------
+
+crs:reordersArrowNode a owl:ObjectProperty ;
+    rdfs:domain crs:OrderProjection ;
+    rdfs:range aob:YonedaHomLeg ;
+    rdfs:label "reordersArrowNode" ;
+    rdfs:comment "Relates a crs:OrderProjection to the ONE content-addressed reified arrow-node it reorders -- the SP2 aob:YonedaHomLeg arrow atom (the design's 'a content-addressed reified arrow-node carries declared orders S:P:O / S:O:P'). The arrow-node carries the S/O/P triple aob:sourceNodeUrn (S) / aob:targetNodeUrn (O) / aob:cpoProcessIri (P) -- the exact seed SP3 lifts into the CRS -- and, as an aob:AOBAtom, is content-addressed by a sha256 over 32 prim:Octet, the same content-address floor the T9 z descent bottoms out on (so z and the arrow identity share one floor). rdfs:range is aob:YonedaHomLeg (the arrow family only, never the aob:ConcreteAnchor node family), so an order projection is always over a genuine reified relation atom rather than a bare object. crs:OrderProjectionShape requires it present (a reorder acting on no arrow-node is free-floating)." .
+
+crs:externalOrder a owl:DatatypeProperty ;
+    rdfs:domain crs:OrderProjection ;
+    rdfs:range xsd:string ;
+    rdfs:label "externalOrder (the rank-zero external order S:P:O of the reified arrow-node)" ;
+    rdfs:comment "The rank-zero EXTERNAL declared order of the reified arrow-node -- lifted verbatim from source_dimension_planes.tex's SilDiagramRankZeroOrder S:P:O, 'external relation coordinate ordered as subject then predicate then object'. It is carried as the string \"S:P:O\" (the ordered role sequence), the outward-facing coordinate order in which the relation is presented externally. It is the DISTINCT counterpart of crs:internalOrder \"S:O:P\" (the source-declared internal role order): the two orders coincide on the S position but differ on positions two and three (P<->O), and re-ordering between them is exactly the materialised crs:RoleOrderEffect loss. It is a bare owl:DatatypeProperty carrying a string rather than an object because the coordinate the law constrains is the declared ORDER itself; crs:OrderProjectionShape requires it present and requires it DIFFER from crs:internalOrder (a reorder whose two orders coincide reorders nothing)." .
+
+crs:internalOrder a owl:DatatypeProperty ;
+    rdfs:domain crs:OrderProjection ;
+    rdfs:range xsd:string ;
+    rdfs:label "internalOrder (the source-declared internal role order S:O:P of the reified arrow-node)" ;
+    rdfs:comment "The source-declared INTERNAL role order of the reified arrow-node -- lifted verbatim from source_dimension_planes.tex's SilDiagramInternalRoleOrder S:O:P, 'source-declared internal role vector ordered as subject then object then predicate'. It is carried as the string \"S:O:P\" (the ordered role sequence), the inward role-vector order the source declares. It is the DISTINCT counterpart of crs:externalOrder \"S:P:O\" (the rank-zero external order): the two orders agree on the S position but swap positions two and three (O<->P), which is precisely the reorder the crs:OrderProjection Frame materialises as a typed crs:RoleOrderEffect loss (never a free relabelling). It is a bare owl:DatatypeProperty carrying a string because the coordinate the law constrains is the declared ORDER itself; crs:OrderProjectionShape requires it present and DISTINCT from crs:externalOrder." .
+
+crs:hasRoleOrderEffect a owl:ObjectProperty ;
+    rdfs:domain crs:OrderProjection ;
+    rdfs:range crs:RoleOrderEffect ;
+    rdfs:label "hasRoleOrderEffect" ;
+    rdfs:comment "Relates a crs:OrderProjection to the typed crs:RoleOrderEffect loss it incurs -- the concrete graph statement that re-ordering the roles between the external S:P:O and internal S:O:P orders is a genuine MATERIALISED loss (which SP4's projection packet consumes as one loss class), not a free relabelling, minted per SP1's extensible-Effect discipline because a concrete consumer (the reorder) needs it. It is carried on a crs-specific edge rather than prim:frameEffect precisely because SP1's prim:RealizationShape closes the prim:frameEffect value-space to its own closed prim:Effect family (of which this crs-minted loss is not a member); the SP1 Frame Y coordinate of the reorder is prim:OrderingCanonicalization, while crs:hasRoleOrderEffect carries the SP3-specific reorder loss that SEEDS SP4 alongside crs:RoleDropEffect (T6) and crs:HashPrefixTruncation (T9). crs:OrderProjectionShape requires it present -- a reorder omitting it is the probe of record (conforms=True->False)." .
+
+
+# ---- The reorder floor witness (corpus-agnostic v1) + the typed reorder-loss individual ------------
+# Directive 13: the ONLY individuals are floor witnesses over the committed SP2 witness arrow atom
+# aob:witnessLeg (a aob:YonedaHomLeg carrying the S/O/P triple aob:sourceNodeUrn/targetNodeUrn/cpoProcessIri).
+# Minted only to keep crs:OrderProjectionShape + q_order_effect non-vacuous. As a prim:Realization the reorder
+# witness carries the SP1 Frame law coordinates (prim:frameOutput prim:TripleNTriples + prim:frameEffect
+# prim:OrderingCanonicalization) so SP1's prim:RealizationShape (re-run over the merged graph) governs it and
+# passes; the SP3-specific reorder loss is crs:hasRoleOrderEffect crs:roleOrderEffectWitness.
+
+crs:roleOrderEffectWitness a crs:RoleOrderEffect ;
+    rdfs:label "roleOrderEffectWitness (the typed reorder loss of the witness S:P:O <-> S:O:P order projection)" ;
+    rdfs:comment "The floor-witness typed reorder loss: the crs:RoleOrderEffect carried by crs:orderProjectionWitness, recording that re-ordering the roles between the external S:P:O and internal S:O:P orders of the reified arrow-node aob:witnessLeg is a genuine materialised loss (which SP4's projection packet consumes as one loss class), not a free relabelling. It makes crs:hasRoleOrderEffect non-vacuous and is the SP3-specific loss seeding SP4, distinct from the reorder Frame's SP1 Frame Y coordinate prim:OrderingCanonicalization. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:orderProjectionWitness a crs:OrderProjection ;
+    crs:reordersArrowNode aob:witnessLeg ;
+    crs:externalOrder "S:P:O" ;
+    crs:internalOrder "S:O:P" ;
+    crs:hasRoleOrderEffect crs:roleOrderEffectWitness ;
+    prim:frameOutput prim:TripleNTriples ;
+    prim:frameEffect prim:OrderingCanonicalization ;
+    rdfs:label "orderProjectionWitness (the witness S:P:O <-> S:O:P reorder Frame over one reified arrow-node)" ;
+    rdfs:comment "The floor-witness order projection: a crs:OrderProjection Frame that reorders ONE content-addressed reified arrow-node -- the SP2 witness arrow atom aob:witnessLeg (crs:reordersArrowNode, a aob:YonedaHomLeg carrying the S/O/P triple aob:sourceNodeUrn/aob:targetNodeUrn/aob:cpoProcessIri, its identity a sha256 over 32 prim:Octet) -- between its two DISTINCT declared orders crs:externalOrder \"S:P:O\" (the rank-zero external order) and crs:internalOrder \"S:O:P\" (the source-declared internal role order). Re-ordering is NOT free: it carries the typed crs:hasRoleOrderEffect crs:roleOrderEffectWitness (a crs:RoleOrderEffect loss seeding SP4). As a prim:Realization it IS a Frame / Kleisli arrow of the SP1 realization monad, so it carries prim:frameOutput prim:TripleNTriples (the byte-carrying N-Triples serialization of the ordered S-P-O statement, prim:bitWidth 8, prim:interpretAs prim:Triple) + prim:frameEffect prim:OrderingCanonicalization (the SP1 closed-family order-imposition effect) and SP1's prim:RealizationShape governs it and passes. It makes crs:OrderProjectionShape and q_order_effect non-vacuous, and is the clean case the probe of record (crs:probeOrderNoEffect a crs:OrderProjection missing its crs:RoleOrderEffect) is contrasted against. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# =====================================================================================
+# T12 — the chi honest-red deferral marker (Directive 17 Q4, PINNED).
+# =====================================================================================
+# LIFTED (Directive 1) from the whitepaper (05_carrier_towers_triad.tex) and the SP3 design (§6 Q4):
+# the whitepaper leaves chi : Ob(K) -> W (the cross-framework comparison of the five-factor carrier
+# product K against an EXTERNAL world tuple W, i.e. an Atlas<->Graph-versus-world comparison) an
+# EXPLICIT comparison obligation, "not forced by shared cardinality 5". Q4 PINNED: SP3 v1 does NOT
+# model chi or ANY Atlas<->Graph transition -- carrier DISJOINTNESS (T2's Q_A ∩ Q_G = ∅, no cross-tag
+# hom-set) plus the forgetful tag-erasure Frames is the WHOLE v1 story; chi is recorded ONLY here as
+# an HONEST-RED deferral marker (Praeriehund honesty, Directive 17 Q4's "honest-red marker; no chi"):
+# it is NAMED because it must be named, carries NO component map (no crs:landsInFactor, no transition
+# edge, no realization -- it is deliberately ungrounded), carries NO tooth (no SHACL shape targets it),
+# and is silm:isProvisional true. Its enforcement counterpart is crs:NoCrossTagTransitionShape
+# (crs.shapes.ttl), the guard tooth that forbids any premature Atlas<->Graph transition edge from being
+# asserted in v1 -- the marker DEFERS chi, the guard KEEPS it deferred. Deferred to SP4 (the projection
+# packet) / W5 (the live corpus binding). It is kept DISTINCT from the INTERNAL product projections
+# pi_j : K -> K_j (geometers.ttl, the joint-faithfulness seal, in scope) -- pi_j are internal factor
+# projections that ARE materialised with teeth; chi is the external cross-framework comparison that is
+# NOT.
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (§6 Q4, §2.1)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T12)
+# =====================================================================================
+
+crs:DeferredCrossFrameworkObligation a owl:Class ;
+    silm:isProvisional true ;
+    rdfs:label "DeferredCrossFrameworkObligation (the honest-red deferral marker type)" ;
+    rdfs:comment "The honest-red deferral-marker TYPE (Directive 17 Q4, Praeriehund honesty): a cross-framework comparison obligation that SP3 v1 NAMES but deliberately does NOT discharge -- an obligation whose realization is deferred to a later work-package (SP4 the projection packet / W5 the live corpus binding), never force-fit into an in-scope construct. It is a first-class citizen of the graph, not an error and not a dodge: it is the structural refusal of the sycophantic move of pretending a cross-framework map exists when the corpus-agnostic v1 floor has no basis to build one. It is deliberately NOT rdfs:subClassOf* prim:FormalType (it carries no subClassOf edge at all), so SP1's class dual-grounding law prim:DualGroundingShape does not target it and it is correctly ungrounded -- an ungrounded marker is precisely the point, the whole class exists to record a gap honestly rather than to be realized. It carries NO tooth (no SHACL shape targets it) and every instance carries silm:isProvisional true. Its sole instance in SP3 is crs:chiComparisonObligation, the deferred chi : Ob(K) -> W comparison of the five-factor carrier product against an external world tuple (Q4)." .
+
+crs:chiComparisonObligation a owl:NamedIndividual , crs:DeferredCrossFrameworkObligation ;
+    silm:isProvisional true ;
+    rdfs:label "chiComparisonObligation (the deferred chi : Ob(K) -> W cross-framework comparison, HONEST-RED)" ;
+    rdfs:comment "The honest-red deferral marker for chi : Ob(K) -> W (Directive 17 Q4, PINNED), lifted from the whitepaper (05_carrier_towers_triad.tex): chi is the EXTERNAL cross-framework comparison map from the objects of the five-factor carrier product K = K_A x K_G x K_S x K_O x K_P (crs:CarrierProduct, geometers.ttl) to an external world tuple W (the Atlas<->Graph-versus-world comparison), which the whitepaper leaves an EXPLICIT comparison obligation 'not forced by shared cardinality 5'. Q4 PINNED: SP3 v1 does NOT model chi or ANY Atlas<->Graph transition -- carrier disjointness (T2, Q_A ∩ Q_G = ∅, no cross-tag hom-set) plus the tag-erasure forgetful Frames is the whole v1 story. This individual NAMES chi because it must be named, but carries NO component map (no crs:landsInFactor, no crs:crossTagTransition, no crs:reordersArrowNode, no prim:Realization / prim:frameOutput / prim:frameEffect -- deliberately ungrounded and unrealized), carries NO tooth (no SHACL shape targets it), and is silm:isProvisional true (Praeriehund honesty: an honest gap, not a dodge). It is kept STRICTLY DISTINCT from the internal product projections pi_j : K -> K_j (crs:FactorProjection, geometers.ttl) -- those ARE materialised with teeth (crs:FiveProjectionShape joint-faithfulness); chi is the external comparison that is NOT. Its enforcement counterpart is the guard tooth crs:NoCrossTagTransitionShape, which forbids any premature Atlas<->Graph transition edge in v1: this marker DEFERS chi, that guard KEEPS it deferred, until SP4 (the projection packet) / W5 (the live corpus binding) discharge the obligation. Corpus-agnostic v1 deferral marker, not a corpus instance and not a realized map." .

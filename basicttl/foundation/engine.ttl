@@ -1,0 +1,333 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# engine.ttl — the shared MECHANISM: the minting engine (W2 · SP0, Task T2; design s1, LIFTED).
+# =====================================================================================
+# The real anchor of the whole algebra tower. Every rung of the foundation (Magma...AbelianGroup, the
+# two-operation line, quasigroup/loop, module/vector) is NOT hand-axiomatised in isolation; it is a
+# PRESENTED ALGEBRA minted through the free-|forgetful engine Helios authors fully and provably. This
+# file authors that engine so the later rung files (T4/T5) instantiate it rather than invent axioms:
+# "the tower is minted, not invented" becomes a graph fact enforced by the q_engine_presents tooth and
+# the fnd:PresentedAlgebraShape (probe: a presented algebra whose carrier is not F_E-produced -> RED).
+#
+# WHAT IS LIFTED (DS, verbatim Helios) vs SYNTHESIZED (SYN, cited standard-math packaging) - the design
+# s0 honesty ledger, tagged on EVERY atom below via fnd:authority:
+#   - fnd:PresentedAlgebra = F_E(X) = T_Sigma(X)/=_E : the presented free algebra on a many-sorted
+#     signature-with-equations. DS, verbatim theorem: helios/srcy/papers/26_adjunctions_free_graphs_
+#     governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:31-42
+#     (=_E = the least typed substitution congruence closed under every constructor, :16-29).
+#   - fnd:FreeForgetful = the adjunction L-|R with the forgetful functor R:GovAlg->Graph (R forgets a
+#     governed algebra to its inspectable underlying GRAPH), unit eta:1=>RL, counit epsilon:LR=>1. DS,
+#     verbatim: helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-128
+#     (R forgets a governed algebra to its inspectable underlying graph :93-95; Hom_GovAlg(LG,A) ~= Hom_Graph(G,RA) :97-101;
+#     eta/epsilon :108-122; transpose law R(f-bar) . eta_G = f :123-128). The descent to the STRUCTURAL SET
+#     carrier is then the TWO-STEP R:GovAlg->Graph (DS) THEN Graph->Set (the underlying-vertex-set forgetful
+#     functor fnd:graphUnderlyingSet, SYN standard math - NOT a paper-26 lift), never a single DS R:GovAlg->Set.
+#   - fnd:graphUnderlyingSet = the underlying-vertex-set forgetful functor Graph->Set, the SYN second step of
+#     that descent. SYN, cited standard math (a graph's underlying vertex set), NOT a Helios paper-26 lift.
+#   - fnd:GovAlg = the governed-algebra wrapper (A, op, E, V, l, P) = carrier + operation-interpretation
+#     + satisfied-equations + admission-predicate + lineage + profile. DS, verbatim:
+#     helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13.
+#   - fnd:FreeAlgebra = the carrier object F_E(X) the engine produces. DS (the LIFTED construction's object).
+#   - fnd:Signature (Sigma), fnd:EquationSet (E), fnd:Equation = OUR first-class object packaging of the
+#     source's "signature-with-equations" discipline. SYN, cited to the same 26/03/03 discipline: the
+#     discipline is lifted, the reified Sigma/E/equation OBJECTS are the synthesized shape.
+#   - fnd:AuthorityTag + fnd:DS/fnd:PD/fnd:SYN + fnd:authority = the DS/PD/SYN honesty machinery itself,
+#     LIFTED from the corpus's authority trichotomy (Node-or-Arrow admission grammar + authority class;
+#     design s0; ledger/W2/algebra_foundation/00_synthesis.md PIN 3, 02_algebra_tower.md s2). DS.
+#
+# Namespace fnd: <urn:silmaril:fnd:#>. Corpus-agnostic v1 (Directive 13): the ONE witness presented
+# algebra below binds no live corpus - it is the engine's own worked example (the free algebra on a
+# single binary constructor presenting one law) that keeps q_engine_presents non-vacuous and proves the
+# teeth bite. Consumed by T4/T5 (every rung a fnd:PresentedAlgebra) and T10 (the re-anchor groundings).
+# =====================================================================================
+
+
+# =====================================================================================
+# The DS/PD/SYN honesty machinery (LIFTED; design s0, PIN 3). Every foundation atom carries exactly one
+# fnd:authority tag so no SYN atom can masquerade as a Helios lift.
+# =====================================================================================
+
+fnd:AuthorityTag a owl:Class ;
+    rdfs:label "AuthorityTag" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The authority classification of a foundation atom - the Praeriehund honesty ledger made a graph fact (design s0; ledger/W2/algebra_foundation/00_synthesis.md PIN 3). LIFTED from the corpus's own DS/PD/SYN authority trichotomy attached to the Node-or-Arrow admission grammar (the authority class every governed atom carries). It has exactly three members: fnd:DS (direct-source, verbatim Helios lift), fnd:PD (proof-derived from Helios), and fnd:SYN (synthesized as cited standard-mathematical fact - the Directive-19 Curry precedent: mathematics is fact and liftable, cite the source, do NOT pretend it is a Helios lift). Every fnd: atom in the foundation floor is related by fnd:authority to exactly one of these three, so a reader (and a later honesty tooth) can tell at a glance which atoms are genuine Helios lifts and which are honest synthesis; a SYN atom claiming DS provenance is precisely the dodge the ledger forbids. The authority discipline itself is a genuine lift: the corpus's Node-or-Arrow foundation draws the very three-way DS/PD/SYN trichotomy this classification enforces - the three evidence-class constructors 'DirectSource ProvedDerivation or DeclaredSynthesis constructor stored on the typed claim vertex' (helios/srcy/appendices/37_appendix_c_node_arrow_foundation/sections/00_content.tex:1704), enumerated in the Routers-End-at-Sources subsubsection that keeps sources, proofs, and synthesis separate (helios/srcy/appendices/37_appendix_c_node_arrow_foundation/sections/00_content.tex:1956). The binary direct-source-vs-declared-synthesis pole the DS/SYN tags name is the coarser distinction at :240." .
+
+fnd:DS a fnd:AuthorityTag ;
+    rdfs:label "DS" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The DIRECT-SOURCE authority tag: the atom is a verbatim lift of an authored Helios structure, carried with the exact file:line citation in the atom's rdfs:comment. On the SP0 floor the DS atoms are the minting engine proper (fnd:PresentedAlgebra, fnd:FreeForgetful, fnd:GovAlg, fnd:FreeAlgebra), structural Set, the Monoid rung, Site/sheaf + the perceptual tessellation, and the Frame/rho/Yoneda apparatus the arrow pillar recognizes. The DS tag (and this whole honesty machinery) is itself LIFTED from the corpus's Node-or-Arrow authority discipline, whose 'direct source' pole this tag names (helios/srcy/appendices/37_appendix_c_node_arrow_foundation/sections/00_content.tex:240)." .
+
+fnd:PD a fnd:AuthorityTag ;
+    rdfs:label "PD" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The PROOF-DERIVED authority tag: the atom is not verbatim in Helios but is a faithful consequence proved from authored Helios structures (e.g. a law the corpus proves for a specific witness - associativity of colon-concatenation and path composition - reused as the rung's defining equation). PD atoms are lifts of a THEOREM rather than of a definition; they still cite the authored source the derivation runs from. The PD tag (part of the LIFTED honesty machinery) names the proof-derived pole - the ProvedDerivation constructor - of the corpus's three-way evidence-class trichotomy DirectSource/ProvedDerivation/DeclaredSynthesis on the Node-or-Arrow authority discipline (helios/srcy/appendices/37_appendix_c_node_arrow_foundation/sections/00_content.tex:1704; the separation subsubsection at helios/srcy/appendices/37_appendix_c_node_arrow_foundation/sections/00_content.tex:1956). The proof-derived pole is genuinely three-way here, not the binary direct-source-vs-declared-synthesis at :240." .
+
+fnd:SYN a fnd:AuthorityTag ;
+    rdfs:label "SYN" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The SYNTHESIZED authority tag: the atom is standard-mathematical fact authored here as cited synthesis, NOT lifted from Helios (the Directive-19 Curry precedent - mathematics is fact and liftable, but cite the source and never pretend it is a Helios lift). On SP0 the SYN atoms are every rung above Monoid, the two-operation line, quasigroup/loop, module/vector, all point-set spaces, the combinators/F_n/Gamma, the group inverse law, the entire logic sub-floor, and the reified Signature/EquationSet/Equation packaging of the engine's signature-with-equations discipline. SYN atoms stay honest-red where no v1 consumer exists yet, but are still teeth-proved per the maximal choice. The SYN tag itself is part of the LIFTED honesty machinery: it names the corpus's own 'declared project synthesis' pole (the exact phrase the Node-or-Arrow foundation uses for a claim grounded in, but not verbatim from, the direct source - helios/srcy/appendices/37_appendix_c_node_arrow_foundation/sections/00_content.tex:240)." .
+
+fnd:authority a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ; rdfs:range fnd:AuthorityTag ;
+    fnd:authority fnd:DS ;
+    rdfs:label "authority" ;
+    rdfs:comment "Relates a foundation atom to its authority classification (fnd:DS | fnd:PD | fnd:SYN) - the honesty-ledger edge every fnd: atom carries (design s0). LIFTED from the corpus's authority trichotomy on the Node-or-Arrow admission grammar. The value discriminates a verbatim Helios lift (fnd:DS) from a proof-derived lift (fnd:PD) from cited standard-math synthesis (fnd:SYN), so no SYN atom can masquerade as a Helios lift. Range is the enumerated fnd:AuthorityTag; domain is owl:Thing because the tag applies uniformly to classes, properties, and individuals across the whole floor. The property is LIFTED (DS) as the edge of the corpus's Node-or-Arrow authority discipline that carries the three-way DirectSource/ProvedDerivation/DeclaredSynthesis evidence-class classification (helios/srcy/appendices/37_appendix_c_node_arrow_foundation/sections/00_content.tex:1704; the Routers-End-at-Sources separation subsubsection at helios/srcy/appendices/37_appendix_c_node_arrow_foundation/sections/00_content.tex:1956)." .
+
+
+# =====================================================================================
+# The signature-with-equations packaging (SYN shape; the source's discipline lifted, the OBJECTS reified).
+# =====================================================================================
+
+fnd:Signature a owl:Class ;
+    rdfs:label "Signature" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A many-sorted signature Sigma - a set of sorts together with typed operation symbols each carrying an arity (input sorts -> output sort). SYN: the reified Sigma OBJECT is our first-class packaging of the source's signature-with-equations discipline (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:13-15,31-42 - raw many-sorted syntax T_Sigma(X) before equations, then F_E(X)=T_Sigma(X)/=_E), so the discipline is a lift but the reified Signature is synthesized shape. A Signature is HALF of a presentation: paired with a fnd:EquationSet it presents an algebra via the engine. Its sorts are carried by fnd:hasSort and its typed operation symbols (with arity) by fnd:hasOperationSymbol; the free term algebra T_Sigma(X) is exactly what the engine quotients by =_E to build the presented algebra's carrier. A magma signature is Sigma={.} (one binary symbol); a monoid signature adds a nullary unit symbol; a ring signature has two binary symbols." .
+
+fnd:EquationSet a owl:Class ;
+    rdfs:label "EquationSet" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "An equation set E over a signature Sigma - the set of laws (equations between Sigma-terms) a presentation imposes. SYN: the reified E OBJECT is our first-class packaging of the source's signature-with-equations discipline (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:16-42), where =_E is defined as the least typed substitution congruence closed under every constructor and F_E(X)=T_Sigma(X)/=_E is the presented free algebra; the discipline is lifted, the reified EquationSet is synthesized shape. An EquationSet is the OTHER half of a presentation: paired with a fnd:Signature it presents an algebra. Its members are fnd:Equation individuals carried by fnd:hasEquation. The empty equation set (E=empty) presents the free algebra T_Sigma(X) itself (a free magma when Sigma={.}); adding the associativity equation presents a free semigroup, adding the unit laws a free monoid, and so on up the tower - one law per rung, never crammed (Directive 17). The q_engine_presents tooth requires every law a presented algebra fnd:satisfiesLaw to be a fnd:hasEquation member of ITS equation set." .
+
+fnd:Equation a owl:Class ;
+    rdfs:label "Equation" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A single equation (law) l = r between two Sigma-terms over a signature - one member of a fnd:EquationSet. SYN: the reified equation OBJECT packages the source's equational discipline (the equations E whose congruence =_E the engine quotients by, helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:16-42). Its body (the term-pair, e.g. the associativity law (x.y).z = x.(y.z)) is carried lexically by fnd:equationBody. Reifying each law as its own node - rather than a bare string on the equation set - is what makes the tower's one-law-per-rung discipline (Directive 17) a graph fact and lets the q_engine_presents tooth check that every law a presented algebra claims to satisfy genuinely lives in its own equation set (a rung asserting a law not in its E is rejected). The membership edge fnd:hasEquation (equation set -> equation) and the claim edge fnd:satisfiesLaw (presented algebra -> equation) must agree." .
+
+fnd:hasSort a owl:DatatypeProperty ;
+    rdfs:domain fnd:Signature ; rdfs:range xsd:string ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasSort" ;
+    rdfs:comment "Relates a many-sorted signature (fnd:Signature) to one of its sorts, carried full-lexically as a string (e.g. the single carrier sort of a one-sorted algebra). A signature may carry several sorts; together with fnd:hasOperationSymbol they are the raw many-sorted syntax the engine builds the free term algebra T_Sigma(X) over (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:13-15). SYN shape over the lifted discipline." .
+
+fnd:hasOperationSymbol a owl:DatatypeProperty ;
+    rdfs:domain fnd:Signature ; rdfs:range xsd:string ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasOperationSymbol" ;
+    rdfs:comment "Relates a many-sorted signature (fnd:Signature) to one of its typed operation symbols, carried full-lexically as a string naming the symbol with its arity (input sorts -> output sort), e.g. a binary product symbol '. : S,S -> S' or a nullary unit 'e : -> S'. These typed symbols are the constructors the engine closes the substitution congruence =_E under (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:16-29); the free term algebra T_Sigma(X) is generated by applying them to generators. SYN shape over the lifted discipline." .
+
+fnd:equationBody a owl:DatatypeProperty ;
+    rdfs:domain fnd:Equation ; rdfs:range xsd:string ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "equationBody" ;
+    rdfs:comment "The body of a single equation (fnd:Equation), carried full-lexically as a string stating the law as a term-pair l = r over the signature (e.g. the associativity law '(x.y).z = x.(y.z)'). It records WHICH law the equation is; the engine's congruence =_E is generated by the bodies of an equation set's members (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:16-42). SYN shape over the lifted equational discipline." .
+
+fnd:hasEquation a owl:ObjectProperty ;
+    rdfs:domain fnd:EquationSet ; rdfs:range fnd:Equation ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasEquation" ;
+    rdfs:comment "Relates an equation set (fnd:EquationSet) to one of its member equations (fnd:Equation) - the membership edge of a presentation's laws. It is the LEFT side of the q_engine_presents law-membership check: a presented algebra may fnd:satisfiesLaw only equations that its own equation set fnd:hasEquation, so a rung asserting a law not in its E is rejected (the probe of record adds a fnd:satisfiesLaw to a foreign equation and the tooth bites). SYN shape over the source's equational discipline." .
+
+fnd:satisfiesLaw a owl:ObjectProperty ;
+    rdfs:domain fnd:PresentedAlgebra ; rdfs:range fnd:Equation ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "satisfiesLaw" ;
+    rdfs:comment "Relates a presented algebra (fnd:PresentedAlgebra) to an equation (fnd:Equation) it satisfies - the law the rung CLAIMS. The q_engine_presents tooth enforces that every claimed law lives in the algebra's own equation set (there is a fnd:hasEquation from its fnd:hasEquationSet to the same equation): a rung claiming a law its presentation does not impose is not a faithfully minted algebra and is rejected (fnd:PresentedAlgebraShape flags it; the probe adds fnd:satisfiesLaw fnd:foreignLaw with fnd:foreignLaw outside the equation set). SYN shape over the lifted discipline; this is the edge T4/T5 rung teeth build on." .
+
+
+# =====================================================================================
+# The presented free algebra + the free-|forgetful adjunction + the GovAlg wrapper (DS; the real lift).
+# =====================================================================================
+
+fnd:PresentedAlgebra a owl:Class ;
+    rdfs:label "PresentedAlgebra" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "A presented free algebra F_E(X) = T_Sigma(X)/=_E : the free E-algebra on generators X, i.e. the free term algebra over a signature Sigma quotiented by the least typed substitution congruence =_E generated by an equation set E. DS - verbatim from the authored Helios theorem (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:31-42: F_E(X) is the free E-algebra, with a unique E-homomorphism to every E-algebra; =_E defined :16-29; the non-congruence-quotient counterexample :77-92). This is the SHAPE every tower rung inhabits (T4/T5): a rung IS a fnd:PresentedAlgebra carrying its fnd:hasSignature (Sigma), its fnd:hasEquationSet (E), a fnd:hasCarrier that is F_E-produced (fnd:mintedVia the fnd:FreeForgetful engine), and fnd:satisfiesLaw edges all of which live in its E. The q_engine_presents tooth and fnd:PresentedAlgebraShape make 'minted, not invented' a graph fact: a presented algebra with no Sigma, no E, a carrier not produced by the engine, or a law outside its E is rejected." .
+
+fnd:FreeAlgebra a owl:Class ;
+    rdfs:label "FreeAlgebra" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The carrier object F_E(X) = T_Sigma(X)/=_E the engine PRODUCES - the free E-algebra's underlying carrier, obtained by applying the free (left-adjoint) construction to a set of generators and quotienting the term algebra by the congruence =_E. DS - the object of the LIFTED construction (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:31-42; the free functor L of the L-|R adjunction, helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-128). A fnd:FreeAlgebra is the value a presented algebra's fnd:hasCarrier points at, and it MUST be fnd:mintedVia a fnd:FreeForgetful engine - that mintedVia edge is exactly the graph witness of 'F_E-produced'. The fnd:PresentedAlgebraShape probe of record removes that edge (a carrier asserted free by fiat rather than produced by the engine) and the tooth bites (conforms=True->False), so 'the carrier is engine-produced' is enforced, not assumed." .
+
+fnd:FreeForgetful a owl:Class ;
+    rdfs:label "FreeForgetful" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The free-|forgetful adjunction L-|R between a category of presentations/graphs and the category of governed algebras, with the forgetful functor R:GovAlg->Graph (R forgets a governed algebra to its inspectable underlying GRAPH), together with its unit eta:1=>RL and counit epsilon:LR=>1. DS - verbatim from the authored Helios adjunction (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-128: R forgets a governed algebra to its inspectable underlying graph :93-95; the hom-set bijection Hom_GovAlg(LG,A) ~= Hom_Graph(G,RA) :97-101; unit/counit :108-122; the transpose law R(f-bar) . eta_G = f :123-128). It is the MECHANISM that produces every presented algebra's carrier: L is the free construction (the term algebra + quotient), R forgets a governed algebra to its underlying GRAPH, and their adjunction is what makes F_E(X) genuinely free (the universal property = the hom-set bijection). The descent to the STRUCTURAL SET carrier the T3 Set floor consolidates is then the TWO-STEP R:GovAlg->Graph (DS, this atom) THEN Graph->Set (the underlying-vertex-set forgetful functor fnd:graphUnderlyingSet, SYN standard math, NOT a paper-26 lift) - never a single DS R:GovAlg->Set. Its coordinates are carried by fnd:leftAdjoint (L), fnd:rightAdjoint (R:GovAlg->Graph), fnd:unit (eta), fnd:counit (epsilon), and the SYN bridge fnd:graphUnderlyingSet (the Graph->Set underlying-vertex-set step). A fnd:FreeAlgebra carrier fnd:mintedVia this engine is what 'F_E-produced' means as a graph fact." .
+
+fnd:GovAlg a owl:Class ;
+    rdfs:label "GovAlg" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The governed-algebra wrapper: a 6-tuple (A, op, E, V, l, P) = carrier A + operation-interpretation op + satisfied-equations E + admission-predicate V + lineage l + profile P. DS - verbatim from the authored Helios definition (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13; morphisms preserve all six coordinates, chapters/04/sections/02_morphisms_in_GovAlg.tex:5-9). This is the RUNG SHAPE Helios actually uses: 'algebra' in the corpus already means governed algebra (algebra + validation + provenance + interface), which is exactly the envelope the foundation wants each tower rung to inhabit. A fnd:PresentedAlgebra is fnd:governedBy a fnd:GovAlg carrying the six coordinates: fnd:govCarrier (A), fnd:govOperations (op), fnd:govEquations (E), fnd:govAdmission (V), fnd:govLineage (l), fnd:govProfile (P). It is a WRAPPER, not itself a magma/group - the wrapper the T4/T5 rungs are minted into." .
+
+fnd:leftAdjoint a owl:DatatypeProperty ;
+    rdfs:domain fnd:FreeForgetful ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "leftAdjoint" ;
+    rdfs:comment "The left adjoint L (the free construction) of a fnd:FreeForgetful adjunction, named full-lexically (e.g. 'L: the free E-algebra functor, X |-> F_E(X)=T_Sigma(X)/=_E'). DS: the free functor of the lifted L-|R adjunction (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-101). L is what produces a presented algebra's carrier from its generators." .
+
+fnd:rightAdjoint a owl:DatatypeProperty ;
+    rdfs:domain fnd:FreeForgetful ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "rightAdjoint" ;
+    rdfs:comment "The right adjoint R (the forgetful functor GovAlg->Graph) of a fnd:FreeForgetful adjunction, named full-lexically (e.g. 'R: the forgetful functor GovAlg -> Graph, A |-> underlying graph'). DS: the forgetful functor of the lifted L-|R adjunction (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-101, where R genuinely forgets a governed algebra to its inspectable underlying GRAPH, Hom_GovAlg(LG,A) ~= Hom_Graph(G,RA)). R:GovAlg->Graph forgets a governed algebra to its underlying graph; the FURTHER descent Graph->Set (the SYN bridge fnd:graphUnderlyingSet) is the SECOND, SYN step that lands the carrier in the structural set carrier the T3 Set floor consolidates - the honest two-step, never a single DS R:GovAlg->Set." .
+
+fnd:unit a owl:DatatypeProperty ;
+    rdfs:domain fnd:FreeForgetful ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "unit" ;
+    rdfs:comment "The unit natural transformation eta:1 => RL of a fnd:FreeForgetful adjunction (the insertion of generators into the free algebra), carried full-lexically (e.g. 'eta: 1 => RL, the generators-into-F_E(X) insertion'). DS: verbatim from the lifted adjunction (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:108-122; the transpose law R(f-bar) . eta_G = f :123-128). Together with the counit it certifies the adjunction via the triangle identities." .
+
+fnd:counit a owl:DatatypeProperty ;
+    rdfs:domain fnd:FreeForgetful ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "counit" ;
+    rdfs:comment "The counit natural transformation epsilon:LR => 1 of a fnd:FreeForgetful adjunction (the universal evaluation of a free algebra onto any algebra), carried full-lexically (e.g. 'epsilon: LR => 1, the free-algebra-onto-algebra evaluation'). DS: verbatim from the lifted adjunction (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:108-122). The induced monad T=RL (epsilon and mu=R.epsilon.L) ties the engine back to the monoid rung (a monad = a monoid object in the endofunctor category)." .
+
+fnd:graphUnderlyingSet a owl:DatatypeProperty ;
+    rdfs:domain fnd:FreeForgetful ; rdfs:range xsd:string ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "graphUnderlyingSet" ;
+    rdfs:comment "The underlying-vertex-set forgetful functor Graph -> Set carried as a coordinate of a fnd:FreeForgetful engine (the map sending a graph to its set of vertices/underlying elements), named full-lexically. SYN - the SEPARATE SECOND step of the honest two-step descent into the structural Set carrier: the lifted right adjoint fnd:rightAdjoint is R:GovAlg->Graph (DS, verbatim from helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-101, where R genuinely forgets a governed algebra to its inspectable underlying GRAPH), and THEN this Graph->Set functor forgets the graph to its underlying vertex set. That second step is STANDARD MATHEMATICS (a graph's underlying vertex set), NOT a paper-26 lift, so it is tagged SYN and cited to the standard graph-to-set forgetful construction rather than pretending R lands in Set in one DS step. It is what makes the T3 fnd:groundsInSet grounding honest: a carrier lands in a fnd:Set by R:GovAlg->Graph (DS) THEN this Graph->Set bridge (SYN), never a single DS R:GovAlg->Set. Its witness value is carried on fnd:engineAdjunction." .
+
+fnd:freeAlgebraFormula a owl:DatatypeProperty ;
+    rdfs:domain fnd:FreeAlgebra ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "freeAlgebraFormula" ;
+    rdfs:comment "The defining formula of a fnd:FreeAlgebra carrier, carried full-lexically as the string 'F_E(X) = T_Sigma(X)/=_E' instantiated for the specific presentation (e.g. the free algebra on one generator for the signature Sigma={.} presenting associativity). DS: the lifted theorem's formula (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:31-42). It records HOW the carrier was produced by the engine, complementing the fnd:mintedVia edge that is the machine-checked 'F_E-produced' witness." .
+
+fnd:hasSignature a owl:ObjectProperty ;
+    rdfs:domain fnd:PresentedAlgebra ; rdfs:range fnd:Signature ;
+    fnd:authority fnd:DS ;
+    rdfs:label "hasSignature" ;
+    rdfs:comment "Relates a presented algebra (fnd:PresentedAlgebra) to its signature Sigma (fnd:Signature) - the sorts+operations half of the presentation the engine builds the free term algebra T_Sigma(X) over. The q_engine_presents tooth and fnd:PresentedAlgebraShape require every presented algebra to carry this edge (a presented algebra with no Sigma is not a faithfully minted algebra and is rejected). DS: the presentation datum of the lifted F_E theorem (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:31-42)." .
+
+fnd:hasEquationSet a owl:ObjectProperty ;
+    rdfs:domain fnd:PresentedAlgebra ; rdfs:range fnd:EquationSet ;
+    fnd:authority fnd:DS ;
+    rdfs:label "hasEquationSet" ;
+    rdfs:comment "Relates a presented algebra (fnd:PresentedAlgebra) to its equation set E (fnd:EquationSet) - the laws half of the presentation the engine quotients the term algebra by (=_E). The q_engine_presents tooth requires every presented algebra to carry this edge, and every law it fnd:satisfiesLaw to be a fnd:hasEquation member of THIS set (a law outside E is rejected). DS: the presentation datum of the lifted F_E theorem (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:31-42)." .
+
+fnd:hasCarrier a owl:ObjectProperty ;
+    rdfs:domain fnd:PresentedAlgebra ; rdfs:range fnd:FreeAlgebra ;
+    fnd:authority fnd:DS ;
+    rdfs:label "hasCarrier" ;
+    rdfs:comment "Relates a presented algebra (fnd:PresentedAlgebra) to its carrier object (fnd:FreeAlgebra) F_E(X). The carrier MUST be F_E-produced: fnd:PresentedAlgebraShape requires the carrier to be fnd:mintedVia a fnd:FreeForgetful engine, and the probe of record removes that mintedVia edge (a carrier asserted free by fiat) so the tooth bites (conforms=True->False). DS: the carrier of the lifted F_E theorem (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/03_free_functor_on_graphs/sections/03_signature_equations_governed.tex:31-42)." .
+
+fnd:mintedVia a owl:ObjectProperty ;
+    rdfs:domain fnd:FreeAlgebra ; rdfs:range fnd:FreeForgetful ;
+    fnd:authority fnd:DS ;
+    rdfs:label "mintedVia" ;
+    rdfs:comment "Relates a carrier (fnd:FreeAlgebra) to the free-|forgetful engine (fnd:FreeForgetful) that PRODUCED it - the machine-checked graph witness of 'F_E-produced'. This is the load-bearing edge of the fnd:PresentedAlgebraShape probe of record: a presented algebra whose carrier lacks this edge has a carrier not produced by the engine, so the shape flags it and q_engine_presents flips True->False. It is what turns 'the tower is minted, not invented' from a slogan into a graph fact. DS: the free construction of the lifted L-|R adjunction (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-128)." .
+
+fnd:governedBy a owl:ObjectProperty ;
+    rdfs:domain fnd:PresentedAlgebra ; rdfs:range fnd:GovAlg ;
+    fnd:authority fnd:DS ;
+    rdfs:label "governedBy" ;
+    rdfs:comment "Relates a presented algebra (fnd:PresentedAlgebra) to the governed-algebra wrapper (fnd:GovAlg) that carries its six coordinates (A, op, E, V, l, P). It records that a minted rung inhabits the corpus's governed-algebra envelope (algebra + validation + provenance + interface), not a bare set-with-operation. DS: the governed-algebra definition (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13)." .
+
+fnd:govCarrier a owl:ObjectProperty ;
+    rdfs:domain fnd:GovAlg ; rdfs:range fnd:FreeAlgebra ;
+    fnd:authority fnd:DS ;
+    rdfs:label "govCarrier" ;
+    rdfs:comment "The carrier coordinate A of a governed-algebra wrapper (fnd:GovAlg) - the underlying algebra object (a fnd:FreeAlgebra when the governed algebra is a presented one). DS: coordinate 1 of the lifted 6-tuple (A, op, E, V, l, P) (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13)." .
+
+fnd:govEquations a owl:ObjectProperty ;
+    rdfs:domain fnd:GovAlg ; rdfs:range fnd:EquationSet ;
+    fnd:authority fnd:DS ;
+    rdfs:label "govEquations" ;
+    rdfs:comment "The satisfied-equations coordinate E of a governed-algebra wrapper (fnd:GovAlg) - the equation set (fnd:EquationSet) the governed algebra satisfies. DS: coordinate 3 of the lifted 6-tuple (A, op, E, V, l, P) (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13)." .
+
+fnd:govOperations a owl:DatatypeProperty ;
+    rdfs:domain fnd:GovAlg ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "govOperations" ;
+    rdfs:comment "The operation-interpretation coordinate op of a governed-algebra wrapper (fnd:GovAlg), carried full-lexically (the interpretation of each signature operation symbol on the carrier). DS: coordinate 2 of the lifted 6-tuple (A, op, E, V, l, P) (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13)." .
+
+fnd:govAdmission a owl:DatatypeProperty ;
+    rdfs:domain fnd:GovAlg ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "govAdmission" ;
+    rdfs:comment "The admission-predicate coordinate V of a governed-algebra wrapper (fnd:GovAlg), carried full-lexically (the predicate deciding whether a candidate is admitted as a governed algebra). DS: coordinate 4 of the lifted 6-tuple (A, op, E, V, l, P) (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13)." .
+
+fnd:govLineage a owl:DatatypeProperty ;
+    rdfs:domain fnd:GovAlg ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "govLineage" ;
+    rdfs:comment "The lineage coordinate l of a governed-algebra wrapper (fnd:GovAlg), carried full-lexically (the provenance/derivation history of the governed algebra). DS: coordinate 5 of the lifted 6-tuple (A, op, E, V, l, P) (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13)." .
+
+fnd:govProfile a owl:DatatypeProperty ;
+    rdfs:domain fnd:GovAlg ; rdfs:range xsd:string ;
+    fnd:authority fnd:DS ;
+    rdfs:label "govProfile" ;
+    rdfs:comment "The profile coordinate P of a governed-algebra wrapper (fnd:GovAlg), carried full-lexically (the interface/profile the governed algebra exposes). DS: coordinate 6 of the lifted 6-tuple (A, op, E, V, l, P) (helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/chapters/04_governed_algebra_category/sections/01_governed_algebra_definition.tex:6-13)." .
+
+
+# =====================================================================================
+# The ONE witness presented algebra (non-vacuity; corpus-agnostic v1, Directive 13). SYN worked example.
+# The engine's own worked example: the free algebra on one generator for the signature Sigma={.}
+# (one binary product symbol) presenting the single law of associativity. It is NOT declared a tower
+# rung (Magma/Semigroup are T4's classes) - it is purely the engine's witness that keeps
+# q_engine_presents non-vacuous and proves the fnd:PresentedAlgebraShape teeth bite. Its carrier is
+# genuinely fnd:mintedVia the engine (F_E-produced); its one claimed law lives in its equation set.
+# =====================================================================================
+
+fnd:engineAdjunction a fnd:FreeForgetful ;
+    rdfs:label "engineAdjunction" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The one lifted free-|forgetful engine instance (non-vacuity witness for the minting mechanism): the adjunction L-|R with L the free E-algebra functor, R the forgetful functor GovAlg->Graph (forgetting a governed algebra to its inspectable underlying graph; the Graph->Set descent is the separate SYN bridge fnd:graphUnderlyingSet), unit eta:1=>RL and counit epsilon:LR=>1, verbatim from helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-128. Every witness carrier below is fnd:mintedVia this engine, so 'the carrier is F_E-produced' is a real graph fact the teeth can check." ;
+    fnd:leftAdjoint "L: the free E-algebra functor, X |-> F_E(X) = T_Sigma(X)/=_E" ;
+    fnd:rightAdjoint "R: the forgetful functor GovAlg -> Graph, A |-> underlying graph" ;
+    fnd:unit "eta: 1 => RL, the insertion of generators X into the free algebra F_E(X)" ;
+    fnd:counit "epsilon: LR => 1, the universal evaluation of a free algebra onto any E-algebra" ;
+    fnd:graphUnderlyingSet "Graph -> Set: the underlying-vertex-set forgetful functor - the SYN standard-math second step composing under R:GovAlg->Graph to land the carrier in the structural Set floor (NOT a paper-26 lift)" .
+
+fnd:witnessSignature a fnd:Signature ;
+    rdfs:label "witnessSignature" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness signature Sigma = {.} : one carrier sort S and one binary product operation symbol '. : S,S -> S' - the engine's canonical worked example of a signature. SYN worked example over the lifted signature-with-equations discipline (26/03/03). Paired with fnd:witnessEquationSet it presents fnd:witnessPresentedAlgebra; it is not a tower rung, only the engine's non-vacuity witness." ;
+    fnd:hasSort "S" ;
+    fnd:hasOperationSymbol ". : S,S -> S" .
+
+fnd:witnessLaw a fnd:Equation ;
+    rdfs:label "witnessLaw" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness equation: the associativity law (x.y).z = x.(y.z) over the witness signature Sigma={.}. SYN worked example (the associativity law itself is PD-liftable - proved for colon-concatenation and path composition in Helios - but here it is used only as the engine's non-vacuity witness, tagged SYN as a synthesized example rather than a tower rung's defining law). It is the sole fnd:hasEquation member of fnd:witnessEquationSet and the sole law fnd:witnessPresentedAlgebra fnd:satisfiesLaw, so the law-in-E clause of q_engine_presents is exercised non-vacuously." ;
+    fnd:equationBody "(x.y).z = x.(y.z)" .
+
+fnd:foreignLaw a fnd:Equation ;
+    rdfs:label "foreignLaw" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A witness equation deliberately NOT a member of fnd:witnessEquationSet: the commutativity law x.y = y.x over the witness signature. SYN. It exists so the q_engine_presents / fnd:PresentedAlgebraShape law-membership probe of record is concrete and named: adding fnd:witnessPresentedAlgebra fnd:satisfiesLaw fnd:foreignLaw (a law the presentation does not impose) makes clause 4 fail and the tooth bite (conforms=True->False). On the happy path nothing fnd:satisfiesLaw it, so it does not disturb the floor." ;
+    fnd:equationBody "x.y = y.x" .
+
+fnd:witnessEquationSet a fnd:EquationSet ;
+    rdfs:label "witnessEquationSet" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness equation set E = { associativity } over the witness signature Sigma={.} - the laws half of the engine's worked-example presentation. SYN worked example over the lifted equational discipline (26/03/03). Its sole member is fnd:witnessLaw; fnd:foreignLaw is deliberately NOT a member, so the q_engine_presents law-membership clause has both a positive (associativity, in E) and a negative (commutativity, outside E) to bite on." ;
+    fnd:hasEquation fnd:witnessLaw .
+
+fnd:witnessCarrier a fnd:FreeAlgebra ;
+    rdfs:label "witnessCarrier" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness carrier F_E(X) = T_Sigma(X)/=_E for the worked-example presentation (Sigma={.}, E={associativity}) - the free associative algebra (a free semigroup) on the generators, PRODUCED by the engine. SYN worked example whose object type fnd:FreeAlgebra is the LIFTED construction (DS). It is genuinely fnd:mintedVia fnd:engineAdjunction, which is the machine-checked witness of 'F_E-produced'; removing that mintedVia edge is the fnd:PresentedAlgebraShape probe of record." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={.}, E={(x.y).z = x.(y.z)}" ;
+    fnd:mintedVia fnd:engineAdjunction .
+
+fnd:witnessGovAlg a fnd:GovAlg ;
+    rdfs:label "witnessGovAlg" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The governed-algebra wrapper (A, op, E, V, l, P) of the witness presented algebra - the six-coordinate envelope the minted example inhabits. SYN worked example whose wrapper class fnd:GovAlg is the LIFTED 6-tuple (DS). Its coordinates: A = fnd:witnessCarrier, op = the interpretation of '.', E = fnd:witnessEquationSet, V = the admission predicate, l = the lineage, P = the profile." ;
+    fnd:govCarrier fnd:witnessCarrier ;
+    fnd:govEquations fnd:witnessEquationSet ;
+    fnd:govOperations "op: '.' interpreted as the associative product on the free carrier" ;
+    fnd:govAdmission "V: admit iff the carrier is F_E-produced and =_E is a congruence" ;
+    fnd:govLineage "l: minted via fnd:engineAdjunction from Sigma={.}, E={associativity}" ;
+    fnd:govProfile "P: a one-sorted associative algebra interface (a free semigroup profile)" .
+
+fnd:witnessPresentedAlgebra a fnd:PresentedAlgebra ;
+    rdfs:label "witnessPresentedAlgebra" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The ONE witness presented algebra (non-vacuity; corpus-agnostic v1, Directive 13): the engine's own worked example F_E(X)=T_Sigma(X)/=_E for Sigma={.}, E={associativity}. SYN worked example that instantiates the LIFTED engine end-to-end so q_engine_presents is non-vacuous and the fnd:PresentedAlgebraShape teeth are provably biting. It carries fnd:hasSignature fnd:witnessSignature (Sigma), fnd:hasEquationSet fnd:witnessEquationSet (E), fnd:hasCarrier fnd:witnessCarrier (F_E-produced, fnd:mintedVia fnd:engineAdjunction), fnd:governedBy fnd:witnessGovAlg (the 6-tuple), and fnd:satisfiesLaw fnd:witnessLaw (a law that IS a member of its equation set). It is NOT declared a tower rung - Magma/Semigroup are T4's classes; this is purely the engine's witness. The two probes of record - (a) removing fnd:witnessCarrier fnd:mintedVia fnd:engineAdjunction, (b) adding fnd:satisfiesLaw fnd:foreignLaw - each flip q_engine_presents and fnd:PresentedAlgebraShape True->False." ;
+    fnd:hasSignature fnd:witnessSignature ;
+    fnd:hasEquationSet fnd:witnessEquationSet ;
+    fnd:hasCarrier fnd:witnessCarrier ;
+    fnd:governedBy fnd:witnessGovAlg ;
+    fnd:satisfiesLaw fnd:witnessLaw .

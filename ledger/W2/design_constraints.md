@@ -178,3 +178,161 @@ maintainer in the W2 brainstorming gate before any authoring.
     The SP1 universality tooth (D1), the frame-sort fence (D2), and the corrected Atlas/Graph
     analogy (D3) are the SP1↔Helios reconciliation items; D4 (independent S/O/P towers) is already
     faithful. Whether D1–D3 land now or at the W2 relaunch (Directive 13) is a build-time call.
+
+17. **Be MORE agnostic/progenitor in definitions — on ALL of them** (maintainer voice, SP3
+    Q3 ruling, general going forward). Whenever a concept has variants, do NOT mint the bare
+    concrete case and do NOT privilege one variant: mint an **agnostic progenitor parent that
+    grounds nothing** + explicit **composable children**, symmetric across the variants — the
+    `byte_order` progenitor pattern applied everywhere. "Do all" + "not crammed" + "no reductive
+    either/or" simultaneously. This resolves the **SP3 open questions (Q0–Q4)**, recorded here as
+    gospel for the build:
+    - **Q0 (pinned from committed SP2):** SP3 coordinatises `aob:AOBAtom` (→`aob:ConcreteAnchor`/
+      `aob:YonedaHomLeg`); value bridge `aob:aobValue → prim:Primitive`; content address is the
+      **class** `aob:HashDigest` reached via `aob:hasHashDigest` (32 `prim:Octet`, with
+      `aob:zSeed → prim:Uint16` already materialised); S/O/P triple = `aob:sourceNodeUrn` (S) /
+      `aob:targetNodeUrn` (O) / `aob:cpoProcessIri` (P), all `xsd:string` full-lexical — **SP3
+      bridges string→`prim:URN` itself** (does not expect SP2 to hand typed URN objects).
+    - **Q1 + z byte-order (maintainer choice: agnostic progenitor, no leaf):** SP3's `z`
+      derivation types its byte-order coordinate at `aob:ByteOrderProgenitor` with **no** concrete
+      `little/big/host` child committed in this corpus-agnostic v1; concrete endianness is deferred
+      to the consumer at the re-runnable W5. `z` is pure-shape (no numeric value yet); SP2's
+      already-materialised LE `aob:zSeed` is the eventual `byteOrderLittle` realisation that
+      composes **under** the progenitor. `none` is NOT the default (it means "ordering not
+      applicable / single-octet", a category error for a 2-octet `z`); `big` is rejected (no floor
+      basis — SP1 `prim:Uint16` is LE). SP3 must author a `z`-local grounding allowance so the
+      deliberately-ungrounded progenitor is accepted (SP2's `TensorByteOrderShape` demands a
+      grounded child; SP3's `crs:ZGroundingShape` permits the agnostic parent as the v1 default).
+    - **Q2 (lifted from Helios):** `crs:hasDimension` counts **tower-axes** (`crs:hasAxis` arity),
+      never scalar ordinals — the scalar reading is the forbidden positional-collapse. The S-O-P
+      role geometer is dimension 3 (three tower projections). Each counted axis is a URN tower
+      (`crs:AxisUrnTowerShape`); the per-geometer axis-arity dimension is kept DISTINCT from each
+      tower's own internal nth.
+    - **Q3 (maintainer choice: do all, be more agnostic — no privilege):** an agnostic
+      `crs:PlaneGeometer` progenitor (dim 2, grounds nothing) with **all** planes minted as
+      composable children — `crs:HoneycombPlaneGeometer` (x,y, source-attested) +
+      `crs:GeographicPlaneGeometer` (lon,lat, SP1 `prim:CRS`/`prim:Latitude`/`prim:Longitude`) +
+      an agnostic `crs:RolePairProjectionPlane` sub-progenitor carrying the **full symmetric**
+      role-pair family (S,O)/(S,P)/(O,P), each a lawful `π`-projection off the rank-3 S-O-P role
+      geometer (each drops one role — a documented SP4 loss). No role pair is privileged; the
+      S-O-P role geometer stays a rank-3 sibling. This dissolves the D1 asymmetry worry by making
+      the role-pair plane a symmetric composable family, not a special-cased (S,O).
+    - **Q4 (lifted from Helios):** SP3 does **NOT** model χ (a cross-*framework* map `Ob(K)→W` to
+      an external `.yur` proposal tuple, declared unsupplied in the source) and models **no**
+      Atlas↔Graph transition/hom — carrier disjointness (`Q_A∩Q_G=∅`, no cross-tag hom) + the
+      many-to-one forgetful tag-erasure Frame is the complete v1 Atlas/Graph story. χ is recorded
+      only as an **honest-red deferral marker** (an `rdfs:comment`/annotation naming it a deferred
+      obligation to SP4/W5, no component map, no tooth). SP3 keeps the **internal** product
+      projections `π_j: K→K_j` (in scope, the joint-faithfulness seal) distinct from the
+      **external** χ (deferred).
+
+18. **Ontology-first means anchored on ALGEBRA, and algebra itself anchors on SET THEORY**
+    (maintainer voice, verbatim: *"we need everything to be ontology first — or more precisely we
+    anchor on algebra (the css and html artifacts are violations but this should be realized within
+    your workflow as is!) `<<<<` Set theory (magma → abelian groups and all in between, as well as
+    space constructs!)"*). This is the foundation the whole ontology stands on:
+    - **The anchor stack (bedrock → surface):** **Set theory** (sets, elements, functions,
+      relations, products/coproducts/disjoint unions, power sets, ordinals/cardinals) — *including
+      the* **space constructs** *(topological / metric / vector / normed spaces)* — is the deepest
+      anchor. **Algebra** sits ON set theory: the full **magma tower** `Magma → Semigroup → Monoid
+      → Group → AbelianGroup` with **"all in between"** as first-class citizens (Quasigroup, Loop,
+      CommutativeMonoid, and the semiring/ring/module/field line where a corpus needs it), each its
+      own atom under an agnostic progenitor (Directive 17), NEVER crammed. **Everything else** —
+      SP1 primitives, SP2's AOB (its `group_law` sealed group IS a group in this hierarchy), SP3's
+      CRS carriers/towers/products (a byte-vector carrier is a monoid under concatenation; the
+      five-factor `K` is a product; the role towers are graded structures), and onward — **grounds
+      in this algebraic–set-theoretic foundation.**
+    - **A foundational floor must exist and be anchored to.** The algebra/set-theory foundation is
+      an explicit floor that sits **beneath** SP1 (or beside it as the deepest ground) and that
+      SP1/SP2/SP3 **re-anchor onto**. It gets its OWN superpowers design gate (brainstorming HARD
+      GATE) — its depth (how far the set-theory + algebra + space hierarchy goes for v1), and the
+      **sequencing** (re-anchor the existing floors after it lands vs. rebuild on it) are that
+      gate's central questions, resolved with the maintainer, LIFTED from the Helios categorical
+      papers (34 `.tex`: sheaf/semiring/lens/category-theory foundations), never invented.
+    - **CSS/HTML (and hand-authored render) artifacts are VIOLATIONS.** They violate the
+      ontology-first / algebra-anchored law (hardcoded, not derived from the ground). The workflow
+      must **REALIZE them as violations** — surface and model them AS violations in the ontology
+      (the active-RED state), never legitimize or hardcode them. W3 (render seal, artifacts
+      generated-not-committed) and W4 (blocking CI) are where the violation is driven RED→GREEN;
+      until then it is named honestly, not hidden.
+    - **Immediate application:** SP3 finishes on the SP1/SP2 grounding as planned (auto-resume after
+      the Aug-10 usage reset); its panel now also checks that its carriers/towers/products/groups
+      are **algebra-SHAPED and ready to re-anchor** (magma/monoid/group-recognizable) and that no
+      render artifact is legitimized. The algebra/set-theory foundation is then the **next
+      design-gate sub-project**, after which SP1–SP3 re-anchor onto it.
+
+19. **The foundation's FOURTH pillar is FUNCTIONALITY / TYPING over COMBINATORY LOGIC — the
+    Frame IS Curry's functionality** (maintainer-supplied source: H. B. Curry, *First Properties
+    of Functionality in Combinatory Logic*, Tôhoku Mathematical Journal **41** (1936) 371–401;
+    jstage `tmj1911/41/0/41_0_371`. CITE it, do NOT commit the PDF — the mathematics is fact and
+    liftable; the journal scan is not ours to redistribute). Directive 18's stack (set theory →
+    algebra tower → space constructs) is INCOMPLETE without the arrow/typing layer, and this paper
+    supplies it:
+    - **Functionality `F` = the Unary Frame.** Curry's `⊢ FXYZ` ("Z is a function from X to Y",
+      X/Y categories) is exactly `F(x) → Frame(output:X, effect:Y)`. The foundation carries a
+      **functionality/typing pillar** — the algebra of typed ARROWS — over the **combinatory-logic
+      substrate** (the combinators B, C, W, K, I; `F_n` for n-ary functions; the `Γ_m·B…`
+      compositor), which IS the closed-λ "Lambda"/Sparky engine the corpus already names
+      (Lambda-Blotto). Point-free / variable-free = the unary law's "no free variables, closed
+      terms". Set theory carries the CARRIERS, the algebra tower the OBJECTS/OPERATIONS, this
+      pillar the ARROWS; "the Frame is the Yoneda point" = "the Frame is Curry's F applied".
+    - **Subtyping variance (Curry §4).** `FXY` with `U⊆X` and `Y⊆V` ⟹ `FUV` — CONTRAVARIANT in
+      the domain, COVARIANT in the codomain (axioms `(FP)₁`,`(FP)₂` via inclusion `P*`/`⊃`). The
+      function-type algebra MUST carry this variance; it is the law SP1's ρ-functor-on-subtyping-
+      arrows (`RealizationTransport`, functor identity/composition) re-anchors onto.
+    - **Functionality ↔ implication = a taiji (Curry §5, Curry–Howard ancestor).** `F` is
+      DEFINABLE as `F' ≡ [x,y,z](u)(xu ⊃ y(zu))` — a function type is a universally-quantified
+      implication; Thm 5.8 shows every F-theorem holds for `F'` given the K/C/W implication laws.
+      Types-as-propositions is ONE lexeme with two glossary senses (Directive 16 polysemy), not two
+      layers: the arrow pillar and the logical-implication layer are the same object.
+    - **Paradox quarantine by type discipline (Curry §6).** The Russell contradiction
+      (`E≡WQ`; `χ≡[f]N(ff)`, `⊢χχ=N(χχ)`) rests on a tacit, "not even plausible" assumption about
+      the functional character of negation — i.e. it arises ONLY from applying functionality
+      OUTSIDE its proper category. Type/functionality discipline is the quarantine. This is our
+      ContractGate branching-quarantine + Praeriehund provisional-naming + the "a category is a
+      useful servant, dangerous master" warning (srcy paper 41 cheese/progenitor); the foundation
+      must make self-application type-disciplined, never naively self-applicable.
+    - **Design-gate consequence:** the algebra/set-theory foundation design gate (Directive 18) now
+      has a functionality/combinatory-logic pillar as a co-equal fourth strand; its synthesis +
+      maintainer decisions must cover how the arrow/typing layer is lifted (Curry's F + B/C/W/K/I,
+      the §4 variance, the §5 implication taiji, the §6 quarantine) and how SP1's Frame/ρ/Yoneda
+      apparatus re-anchors onto it.
+
+20. **FOUNDATION DESIGN-GATE RESOLVED (SP0 — the deepest floor `basicttl/foundation/`).** After the
+    four-pillar research (ledger/W2/algebra_foundation/00–06) the maintainer chose **MAXIMAL depth,
+    all teeth-proved** across every pillar (overriding the synthesis's YAGNI lean — completeness is
+    the mandate). Gospel for the build:
+    - **Algebra tower (all teeth-proved):** the FULL spine `Magma → Semigroup → Monoid →
+      CommutativeMonoid → Group → AbelianGroup` PLUS the two-operation line `Semiring → Ring →
+      Field`, PLUS `Quasigroup / Loop`, PLUS `Module / VectorSpace` — every rung an agnostic-
+      progenitor `(Σ,E)` presented-algebra atom minted through the LIFTED free⊣forgetful engine
+      `F_E(X)=T_Σ(X)/≡_E`, each adding exactly one law, NEVER crammed (Directive 17), each with a
+      genuine biting SHACL tooth (probe injection).
+    - **Spaces (all teeth-proved):** `TopologicalSpace (X,τ)`, `MetricSpace (X,d)`, `VectorSpace`,
+      `NormedSpace`/`InnerProductSpace` authored NOW as teeth-proved atoms, ALONGSIDE the LIFTED
+      Site/sheaf + `𝔗_f` finite space + the non-Riemannian partition theorem.
+    - **Functionality (all teeth-proved):** the full combinator family `B/C/W/K/I` + the n-ary
+      `F_n` ladder (Def 2.1) + the `Γ` compositor as an agnostic-progenitor family, teeth-proved;
+      the Frame RECOGNIZED as Curry's `F` (not rebuilt); the §4 variance carried via a separate
+      `F(dom,cod)` bifunctor with CONTRAVARIANT-domain teeth (the covariant codomain reuses SP1's
+      proved `RealizationTransport`; the unary-law input-coordinate collision becomes an SP6
+      polysemy tooth).
+    - **Logic (full sub-floor):** a proposition/negation/implication stratum `P_r / N / ⊃` + proof
+      terms (the K/C/W implication laws), teeth-proved — complete Curry–Howard; the
+      functionality↔implication taiji is one lexeme with two glossary senses (Directive 16).
+    - **HONESTY (Praeriehund, load-bearing):** only **Monoid**, the **minting engine**, the
+      **agnostic-progenitor pattern**, **Site/sheaf + 𝔗_f**, and structural **Set** are LIFTED from
+      Helios. Every rung above Monoid, the two-operation line, quasigroup/loop, module/vector, ALL
+      point-set spaces, the combinators/`F_n`, and the logic floor are **SYNTHESIZED as cited
+      standard-mathematical fact** (the Directive-19 Curry precedent: math is fact and liftable, cite
+      the source, do not pretend it is a Helios lift). The group **inverse law** is the one axiom
+      with zero Helios basis — authored as cited math fact. Every atom carries a `DS`/`PD`/`SYN`
+      authority tag; SYN atoms are honest-red where a v1 consumer is absent but STILL teeth-proved
+      per the maximal choice. The corpus's *refusal* of point-set topology (`19/05/03`) is recorded
+      as the reason those space atoms are SYN, not LIFTED.
+    - **PINS adopted:** framing = taiji-via-engine; position = new deepest floor `basicttl/foundation/`
+      BENEATH SP1; re-anchor = ADDITIVE (`foundation:groundsIn*` edges, rebuild nothing — 15/16
+      points additive; the one real build is `aob:SealedGroup`→`foundation:Group` teeth-proven, with
+      SP2 SealedGroup a CHILD of a fresh agnostic `Group` progenitor); set floor = structural/ETCS
+      consolidating SP1 (material/ZFC set theory = honest-red deferral); external appendix-39
+      `compass_artifact` space survey = reference-only (cite, never author-from). Functionality is a
+      co-equal fourth pillar under the same floor.

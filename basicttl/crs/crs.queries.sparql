@@ -1,0 +1,531 @@
+# =====================================================================================
+# crs.queries.sparql — the EXPECT-TRUE ASK suite of the S/O/P-tower CRS floor (W2 · SP3).
+# =====================================================================================
+# Auto-discovered by basicttl/crs/checks/run-crs-checks.sh: the runner splits this file on every
+# "# EXPECT-TRUE <name>" marker and requires each ASK true over the merged SP1 + SP2 + SP3 graph.
+# Each ASK is non-vacuous (must return FALSE on the empty graph), carries an inline DATA CONTRACT
+# naming the triples that make it true, and is proven to flip True -> False under a documented
+# probe of record (mirroring its SHACL shape).
+#
+# T1 SCAFFOLD: no ASK is declared yet, so the runner reports "crs ASKs: 0 run, 0 failed" and the
+# floor is GREEN on the empty crs graph. Each later task adds its EXPECT-TRUE ASK here:
+#
+#   T2  q_carriers_disjoint            Q_A and Q_G disjoint; no cross-tag hom
+#   T3  q_towers_independent           K_S/K_O/K_P each a URN tower, nth-dim, not scalar
+#   T5  q_dimension_equals_count       per-geometer coord-count == dimension
+#   T5  q_geometer_below_towers        each geometer declares its own axis system + dimension
+#   T6  q_plane_progenitor_symmetric   agnostic plane progenitor + symmetric role-pair family
+#   T7  q_five_projections_faithful    the five pi_j jointly determine an arrow of K
+#   T8  q_coordinates_derived          every coordinate is a derivation output, none stored
+#   T9  q_z_from_urn                   z descends URN -> UTF-8 -> SHA-256 -> 2 octets -> Uint16
+#   T10 q_order_effect                 the S:P:O <-> S:O:P reorder is a typed OrderProjection
+#   T11 q_chart_dual_grounded          each crs class dual-grounds into the SP1 floor (merged)
+# =====================================================================================
+
+
+# EXPECT-TRUE q_carriers_disjoint : the Atlas and Graph byte carriers are disjoint (Q_A ∩ Q_G = ∅) — no object is both.
+#   Lifted from helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex
+#   (the Q_A/Q_G disjointness equation + Def. "Project-authored five-factor Helios carrier"): Q_A =
+#   {aTag}×RGB×Vec(Oct) and Q_G = {gTag}×RGB×Vec(Oct) are nominally-tagged copies of ONE RGB byte-carrier
+#   category B_rgb; distinct outer tags make them disjoint carriers EVEN THOUGH the untagged payloads are
+#   isomorphic ("Erasing the outer tag is a many-to-one forgetful operation, not an equality of carriers").
+#   Directive 17 (be more agnostic on all): the agnostic progenitor crs:TaggedByteCarrier (= B_rgb) grounds
+#   no outer tag; crs:AtlasByteCarrier and crs:GraphByteCarrier are its two SYMMETRIC composable children,
+#   neither privileged. The many-to-one tag-erasure is carried by the crs:ForgetfulTagFrame Kleisli arrows.
+#   DATA CONTRACT (carriers.ttl): crs:AtlasByteCarrier owl:disjointWith crs:GraphByteCarrier holds (the
+#     disjointness declaration); the two witnesses crs:atlasCarrierWitness a crs:AtlasByteCarrier and
+#     crs:graphCarrierWitness a crs:GraphByteCarrier exist (non-vacuity anchors, distinct outer tags over an
+#     isomorphic payload); NO node is typed BOTH crs:AtlasByteCarrier and crs:GraphByteCarrier.
+#   PROBE OF RECORD (must flip True->False): inject one object typed both crs:AtlasByteCarrier and
+#     crs:GraphByteCarrier (payload-isomorphism sneaking in as carrier equality) -> crs:CarrierDisjointnessShape
+#     conforms=True->False, and this ASK True->False.
+PREFIX crs: <urn:silmaril:crs:#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+ASK {
+  crs:AtlasByteCarrier owl:disjointWith crs:GraphByteCarrier .
+  crs:atlasCarrierWitness a crs:AtlasByteCarrier .
+  crs:graphCarrierWitness a crs:GraphByteCarrier .
+  FILTER NOT EXISTS { ?x a crs:AtlasByteCarrier , crs:GraphByteCarrier }
+}
+
+
+# EXPECT-TRUE q_towers_independent : the three role towers K_S/K_O/K_P are each an INDEPENDENT URN tower (functor prim:Ordinal -> prim:URN, nth-dim composite prim:Vector/prim:Tensor), never a scalar.
+#   Lifted from helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex
+#   (§"Disjoint Carriers": "Subject, Object, and Predicate live in three other typed towers K_S, K_O, K_P"
+#   + the terminal drill: "The Subject, Object, and Predicate tower files each descend from
+#   Octet.Pair.Sequence.Value, each owns a separate dimension value"). Each role tower is a URN tower: a
+#   functor from an ordinal index (SP1 prim:Ordinal) into prim:URN (SP1 identifier tower), whose nth-dim
+#   composite is an SP1 prim:Vector/prim:Tensor of URN components -- NEVER a prim:Real scalar (unary law:
+#   "a scalar triple, raw tuple, or three unrelated URN strings is not an admissible substitute for those
+#   towers"). Directive 17 (be more agnostic on all): the agnostic progenitor crs:UrnRoleTower grounds no
+#   concrete role; crs:SubjectTower/crs:ObjectTower/crs:PredicateTower are its three SYMMETRIC children,
+#   none privileged, each independently declaring its OWN crs:hasTowerDimension.
+#   DATA CONTRACT (towers.ttl): three witnesses crs:subjectTowerWitness a crs:SubjectTower /
+#     crs:objectTowerWitness a crs:ObjectTower / crs:predicateTowerWitness a crs:PredicateTower each carry
+#     crs:towerIndexDomain prim:Ordinal, crs:towerValueCodomain prim:URN, their OWN crs:hasTowerDimension,
+#     and a crs:hasAxisPosition whose crs:UrnTowerAxis has crs:axisComponentType on the prim:URN line
+#     (prim:URN reflexive); NO crs:UrnTowerAxis carries a non-URN (scalar) component type.
+#   PROBE OF RECORD (must flip True->False): inject one crs:probeScalarAxis a crs:UrnTowerAxis ;
+#     crs:axisComponentType prim:Real (a tower axis position typed as a scalar) -> crs:AxisUrnTowerShape
+#     conforms=True->False, and this ASK True->False.
+#   T4 EXTENSION (design §4: "and no positional colour map exists"): the final FILTER NOT EXISTS
+#     asserts the positional-collapse obstruction as a positive litmus — NO role tower (rdfs:subClassOf*
+#     crs:UrnRoleTower) is identified (owl:sameAs, either direction) with an RGB colour channel
+#     (rdfs:subClassOf* crs:ColourChannel). On the clean graph no such edge exists so this holds; the
+#     T4 probe crs:SubjectTower owl:sameAs crs:RedChannel (the forbidden S=R) flips it -> ASK False,
+#     mirroring crs:NoPositionalMapShape conforms=True->False.
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+ASK {
+  crs:subjectTowerWitness   a crs:SubjectTower ;   crs:towerIndexDomain prim:Ordinal ; crs:towerValueCodomain prim:URN ; crs:hasTowerDimension ?ds ; crs:hasAxisPosition ?axS .
+  crs:objectTowerWitness    a crs:ObjectTower ;    crs:towerIndexDomain prim:Ordinal ; crs:towerValueCodomain prim:URN ; crs:hasTowerDimension ?do ; crs:hasAxisPosition ?axO .
+  crs:predicateTowerWitness a crs:PredicateTower ; crs:towerIndexDomain prim:Ordinal ; crs:towerValueCodomain prim:URN ; crs:hasTowerDimension ?dp ; crs:hasAxisPosition ?axP .
+  ?axS a crs:UrnTowerAxis ; crs:axisComponentType ?cS . ?cS rdfs:subClassOf* prim:URN .
+  ?axO a crs:UrnTowerAxis ; crs:axisComponentType ?cO . ?cO rdfs:subClassOf* prim:URN .
+  ?axP a crs:UrnTowerAxis ; crs:axisComponentType ?cP . ?cP rdfs:subClassOf* prim:URN .
+  FILTER (?axS != ?axO && ?axO != ?axP && ?axS != ?axP)
+  FILTER NOT EXISTS { ?bad a crs:UrnTowerAxis ; crs:axisComponentType ?bt . FILTER NOT EXISTS { ?bt rdfs:subClassOf* prim:URN } }
+  FILTER NOT EXISTS { ?rt rdfs:subClassOf* crs:UrnRoleTower . ?rt owl:sameAs ?cc . ?cc rdfs:subClassOf* crs:ColourChannel . }
+  FILTER NOT EXISTS { ?cc2 rdfs:subClassOf* crs:ColourChannel . ?cc2 owl:sameAs ?rt2 . ?rt2 rdfs:subClassOf* crs:UrnRoleTower . }
+}
+
+
+# EXPECT-TRUE q_dimension_equals_count : the CRS dimension law PER-GEOMETER — for every geometer the arity of its axis system (count of crs:hasAxis) EQUALS its own crs:hasDimension, and the counted axes are TOWER-axes, never scalars (Q2).
+#   Lifted from helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex
+#   (the terminal drill: the S/O/P tower files "each own a separate dimension value"; the TOWERS
+#   positional-collapse obstruction forbidding a scalar RGB-to-S/O/P reading) and the per-Frame
+#   perceptual tessellation archetype T_f=(V_f,E_f,F_f,w_f,l_f,e_f) (def:whitepaper-frame-perceptual-tessellation):
+#   dimension is PER-Frame/PER-geometer, never a jump straight to S-O-P. Directive 17 Q2 (pinned):
+#   crs:hasDimension counts TOWER-AXES (crs:hasAxis arity), NEVER scalar ordinals — the scalar reading is
+#   the forbidden positional-collapse; the S-O-P role geometer is dimension 3 (three tower projections),
+#   the low-order 3x3 quark-grid geometer is dimension 2 (two grid axes). Each counted axis is a URN tower
+#   (crs:AxisUrnTowerShape), and the per-geometer axis-arity dimension is kept DISTINCT from each tower's own internal nth.
+#   DATA CONTRACT (geometers.ttl): crs:roleGeometerWitness a crs:RoleGeometer carries crs:hasDimension 3 and
+#     exactly its three tower axes crs:hasAxis crs:subjectTowerWitness/crs:objectTowerWitness/crs:predicateTowerWitness;
+#     crs:quarkGridGeometerWitness a crs:QuarkGridGeometer carries crs:hasDimension 2 and exactly its two grid axes
+#     crs:hasAxis crs:quarkCategoryAxis/crs:quarkDiscriminatorAxis; NO CONCRETE geometer (a node typed as one of the
+#     seven concrete geometer leaves crs:RoleGeometer/crs:QuarkGridGeometer/crs:HoneycombPlaneGeometer/
+#     crs:GeographicPlaneGeometer/crs:SubjectObjectPlane/crs:SubjectPredicatePlane/crs:ObjectPredicatePlane) has
+#     count(DISTINCT crs:hasAxis) != crs:hasDimension or lacks crs:hasDimension. The two clauses are CONCRETENESS-
+#     SCOPED (mirroring crs:DimensionCountShape, E1): the agnostic progenitors crs:Geometer/crs:PlaneGeometer/
+#     crs:RolePairProjectionPlane GROUND NOTHING (Q3) and are exempt, so a bare progenitor instance at zero axes
+#     (crs:pA a crs:PlaneGeometer; crs:probeBareProg a crs:PlaneGeometer, crs:hasDimension 2; the same for
+#     crs:RolePairProjectionPlane) does NOT flip this ASK — the regression control stays GREEN.
+#   PROBE OF RECORD (must flip True->False): inject one crs:probeXyGeometer a crs:QuarkGridGeometer ;
+#     crs:hasDimension 2 ; crs:hasAxis (three axes) — an (x,y) geometer with 3 axes, OR a S-O-P geometer
+#     declaring dimension 2 -> crs:DimensionCountShape conforms=True->False, and this ASK True->False.
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  crs:roleGeometerWitness crs:hasDimension ?dr ;
+      crs:hasAxis crs:subjectTowerWitness , crs:objectTowerWitness , crs:predicateTowerWitness .
+  crs:quarkGridGeometerWitness crs:hasDimension ?dq ;
+      crs:hasAxis crs:quarkCategoryAxis , crs:quarkDiscriminatorAxis .
+  FILTER (?dr = 3 && ?dq = 2)
+  # every CONCRETE geometer's axis-arity equals its declared dimension — count via OPTIONAL so a ZERO-axis
+  # concrete geometer yields ?n=0 (the empty-GROUP-BY vacuity closed, mirroring crs:DimensionCountShape): a
+  # declared dimension over zero grounded axes (e.g. crs:isoA dim 5 / 0 axes) flips this FILTER. CONCRETENESS-
+  # SCOPED via the concrete-leaf VALUES enumeration (the exact mechanism q_plane_progenitor_symmetric uses),
+  # so the agnostic progenitors crs:Geometer / crs:PlaneGeometer / crs:RolePairProjectionPlane — which GROUND
+  # NOTHING (Q3) — never enter the count and a bare progenitor instance at zero axes does NOT flip this ASK.
+  FILTER NOT EXISTS {
+    ?g a ?gt . VALUES ?gt {
+      crs:RoleGeometer crs:QuarkGridGeometer
+      crs:HoneycombPlaneGeometer crs:GeographicPlaneGeometer
+      crs:SubjectObjectPlane crs:SubjectPredicatePlane crs:ObjectPredicatePlane }
+    ?g crs:hasDimension ?d .
+    { SELECT ?g (COUNT(DISTINCT ?a) AS ?n) WHERE {
+        ?g a ?gt2 . VALUES ?gt2 {
+          crs:RoleGeometer crs:QuarkGridGeometer
+          crs:HoneycombPlaneGeometer crs:GeographicPlaneGeometer
+          crs:SubjectObjectPlane crs:SubjectPredicatePlane crs:ObjectPredicatePlane }
+        OPTIONAL { ?g crs:hasAxis ?a }
+      } GROUP BY ?g }
+    FILTER (?n != ?d)
+  }
+  # every CONCRETE geometer declares its OWN dimension (Q2 per-geometer, the dimension-present mirror of
+  # crs:DimensionCountShape): a concrete geometer with crs:hasAxis edges but no crs:hasDimension (e.g. crs:isoB)
+  # flips this FILTER. CONCRETENESS-SCOPED the same way, so the agnostic progenitors (which declare no concrete
+  # dimension, Q3) are exempt and a bare crs:PlaneGeometer / crs:RolePairProjectionPlane instance stays GREEN.
+  FILTER NOT EXISTS {
+    ?gm a ?gmt . VALUES ?gmt {
+      crs:RoleGeometer crs:QuarkGridGeometer
+      crs:HoneycombPlaneGeometer crs:GeographicPlaneGeometer
+      crs:SubjectObjectPlane crs:SubjectPredicatePlane crs:ObjectPredicatePlane }
+    FILTER NOT EXISTS { ?gm crs:hasDimension ?anyd2 }
+  }
+}
+
+
+# EXPECT-TRUE q_geometer_below_towers : each geometer declares its OWN axis system + OWN dimension, fixed by its OWN atlas glossary — the S-O-P role geometer is itself a geometer (not a presumed jump to towers), and a distinct low-order geometer owns a distinct dimension.
+#   Lifted from helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex
+#   (design spec 2.4: "We cannot jump to towers" is the load-bearing discipline; the per-geometer quark grid
+#   {cat,econ,lang}x{node_or_arrow,shape,color} lifted from helios/00_src_specs _urn/identity.j2::quark is the
+#   low-order axis layer BENEATH the towers; the five-factor product K = K_A x K_G x K_S x K_O x K_P is BUILT UP
+#   from per-geometer axes, not presumed). A crs:Geometer is fixed by its atlas glossary (crs:fixedByGlossary,
+#   an SP6 forward reference marked silm:isProvisional true) and declares its own crs:hasAxis system and own
+#   crs:hasDimension. The S-O-P role geometer is the geometer whose axis system is the three role URN towers;
+#   the 3x3 quark-grid geometer is a rank-2 sibling below the towers with dimension 2 — no geometer jumps
+#   straight to rank 3.
+#   DATA CONTRACT (geometers.ttl): crs:roleGeometerWitness a crs:RoleGeometer crs:fixedByGlossary a
+#     crs:AtlasGlossary, crs:hasDimension 3, crs:hasAxis the three tower witnesses (each a crs:SubjectTower/
+#     crs:ObjectTower/crs:PredicateTower); crs:quarkGridGeometerWitness a crs:QuarkGridGeometer
+#     crs:fixedByGlossary a crs:AtlasGlossary, crs:hasDimension 2, crs:hasQuarkGrid a crs:QuarkGrid whose
+#     crs:quarkGridCellCount is 9; the two geometers' dimensions DIFFER (per-geometer).
+#   PROBE OF RECORD (must flip True->False): strip crs:roleGeometerWitness crs:fixedByGlossary (the geometer
+#     no longer declares its own glossary-fixed axis system) -> this ASK True->False; the DimensionCountShape
+#     probe (a geometer with count(hasAxis) != hasDimension) independently flips crs:DimensionCountShape.
+PREFIX crs:  <urn:silmaril:crs:#>
+ASK {
+  crs:roleGeometerWitness a crs:RoleGeometer ; crs:fixedByGlossary ?gRole ; crs:hasDimension ?dr ;
+      crs:hasAxis crs:subjectTowerWitness , crs:objectTowerWitness , crs:predicateTowerWitness .
+  ?gRole a crs:AtlasGlossary .
+  crs:subjectTowerWitness   a crs:SubjectTower .
+  crs:objectTowerWitness    a crs:ObjectTower .
+  crs:predicateTowerWitness a crs:PredicateTower .
+  crs:quarkGridGeometerWitness a crs:QuarkGridGeometer ; crs:fixedByGlossary ?gQuark ; crs:hasDimension ?dq ;
+      crs:hasQuarkGrid ?qg .
+  ?gQuark a crs:AtlasGlossary .
+  ?qg a crs:QuarkGrid ; crs:quarkGridCellCount ?cells .
+  FILTER (?dr != ?dq)
+  FILTER (?cells = 9)
+}
+
+
+# EXPECT-TRUE q_plane_progenitor_symmetric : the agnostic plane-geometer PROGENITOR family (Q3) — an agnostic crs:PlaneGeometer (dim 2, grounds nothing) with the source-attested Honeycomb (x,y) and geospatial (lon,lat) children AND the agnostic crs:RolePairProjectionPlane sub-progenitor carrying the FULL SYMMETRIC role-pair family (S,O)/(S,P)/(O,P), each a lawful rank-2 projection off the rank-3 S-O-P role geometer that drops exactly one role, no pair privileged/missing.
+#   Lifted from helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex
+#   (dimension is per-Frame/per-geometer; a plane geometer has dimension 2 WITHOUT touching the towers) and
+#   helios/srcy/shared/components/diagrams/patterns/projection/source_dimension_planes.tex (the Honeycomb
+#   "concentric-ring map radius and angle to (x,y)" planar coordinate pair, shared-dimensional-honeycomb-planar-coordinate);
+#   SP1 supplies the geospatial pair (prim:CRS / prim:Longitude / prim:Latitude). Directive 17 Q3 (pinned,
+#   "do all, be more agnostic — no privilege"): an agnostic crs:PlaneGeometer progenitor (dim 2, grounds NO
+#   concrete axis) with ALL planes minted as composable children — crs:HoneycombPlaneGeometer (x,y),
+#   crs:GeographicPlaneGeometer (lon,lat over prim:CRS), and an agnostic crs:RolePairProjectionPlane
+#   sub-progenitor (also grounds nothing) carrying the FULL SYMMETRIC role-pair family crs:SubjectObjectPlane
+#   (retains pi_S,pi_O; drops P) / crs:SubjectPredicatePlane (retains pi_S,pi_P; drops O) / crs:ObjectPredicatePlane
+#   (retains pi_O,pi_P; drops S), each a lawful pi-projection off the rank-3 crs:roleGeometerWitness dropping ONE
+#   role (a crs:RoleDropEffect loss seeding SP4). No role pair privileged; the S-O-P role geometer stays a rank-3 sibling.
+#   DATA CONTRACT (geometers.ttl): crs:PlaneGeometer rdfs:subClassOf crs:Geometer and crs:RolePairProjectionPlane
+#     rdfs:subClassOf crs:PlaneGeometer (the agnostic progenitor + sub-progenitor); crs:honeycombPlaneWitness a
+#     crs:HoneycombPlaneGeometer / crs:geographicPlaneWitness a crs:GeographicPlaneGeometer (crs:overCRS prim:CRS),
+#     each crs:hasDimension 2 with EXACTLY 2 crs:hasAxis; the three role-pair witnesses each
+#     crs:projectsFromRoleGeometer crs:roleGeometerWitness, crs:dropsRole a DISTINCT tower witness, crs:hasRoleDropEffect,
+#     and exactly its two retained-role pi axes; each of crs:{subject,object,predicate}TowerWitness is dropped by
+#     exactly one plane (symmetric); NO bare (non-concrete-leaf) crs:PlaneGeometer instance carries a concrete axis
+#     (the progenitor + sub-progenitor ground nothing); NO concrete plane child has other than 2 axes.
+#   PROBE OF RECORD (must flip True->False): inject crs:probePlaneProgenitorAxis a crs:PlaneGeometer ; crs:hasAxis
+#     crs:honeycombXAxis (the agnostic progenitor carrying a concrete axis) -> crs:PlaneProgenitorShape
+#     conforms=True->False, and this ASK True->False. Two further probe variants also bite: a concrete plane child
+#     with 3 axes (crs:PlaneProgenitorShape constraint B / the exactly-2 FILTER here), and a role-pair family
+#     MISSING one of the three symmetric planes (crs:PlaneProgenitorShape symmetry constraint / the three
+#     dropsRole EXISTS clauses here) -> both conforms=True->False and this ASK True->False.
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  # the agnostic plane progenitor + agnostic role-pair sub-progenitor are declared under crs:Geometer
+  crs:PlaneGeometer rdfs:subClassOf crs:Geometer .
+  crs:RolePairProjectionPlane rdfs:subClassOf crs:PlaneGeometer .
+  # the source-attested Honeycomb (x,y) + geospatial (lon,lat over prim:CRS) concrete children, each dim 2 / 2 axes
+  crs:honeycombPlaneWitness  a crs:HoneycombPlaneGeometer  ; crs:hasDimension 2 ; crs:hasAxis crs:honeycombXAxis , crs:honeycombYAxis .
+  crs:geographicPlaneWitness a crs:GeographicPlaneGeometer ; crs:hasDimension 2 ; crs:hasAxis crs:geographicLonAxis , crs:geographicLatAxis ; crs:overCRS prim:CRS .
+  # the SYMMETRIC role-pair family: all three planes, each projecting off the rank-3 role geometer,
+  # each dropping a DISTINCT role (with its typed RoleDropEffect) and carrying its two retained-role pi axes
+  crs:subjectObjectPlaneWitness    a crs:SubjectObjectPlane    ; crs:projectsFromRoleGeometer crs:roleGeometerWitness ; crs:dropsRole crs:predicateTowerWitness ; crs:hasRoleDropEffect ?eP ; crs:hasAxis crs:piSubject , crs:piObject .
+  crs:subjectPredicatePlaneWitness a crs:SubjectPredicatePlane ; crs:projectsFromRoleGeometer crs:roleGeometerWitness ; crs:dropsRole crs:objectTowerWitness    ; crs:hasRoleDropEffect ?eO ; crs:hasAxis crs:piSubject , crs:piPredicate .
+  crs:objectPredicatePlaneWitness  a crs:ObjectPredicatePlane  ; crs:projectsFromRoleGeometer crs:roleGeometerWitness ; crs:dropsRole crs:subjectTowerWitness   ; crs:hasRoleDropEffect ?eS ; crs:hasAxis crs:piObject , crs:piPredicate .
+  # symmetry litmus: each of the three roles is dropped by exactly the family — none privileged/missing
+  FILTER EXISTS { ?p1 crs:dropsRole crs:subjectTowerWitness }
+  FILTER EXISTS { ?p2 crs:dropsRole crs:objectTowerWitness }
+  FILTER EXISTS { ?p3 crs:dropsRole crs:predicateTowerWitness }
+  # the agnostic progenitor + sub-progenitor GROUND NOTHING: no bare (non-concrete-leaf) plane geometer
+  # instance carries a concrete axis (the progenitor-with-axis probe of record flips this)
+  FILTER NOT EXISTS {
+    ?bp a crs:PlaneGeometer ; crs:hasAxis ?ba .
+    FILTER NOT EXISTS { ?bp a ?leaf . VALUES ?leaf {
+      crs:HoneycombPlaneGeometer crs:GeographicPlaneGeometer
+      crs:SubjectObjectPlane crs:SubjectPredicatePlane crs:ObjectPredicatePlane } }
+  }
+  # every concrete plane child has EXACTLY 2 axes — count via OPTIONAL, anchored on concrete-leaf
+  # membership, so a concrete plane LEAF grounded in ZERO axes yields ?n=0 (the empty-GROUP-BY vacuity
+  # closed, mirroring crs:PlaneProgenitorShape constraint B): the 3-axis-child probe AND the zero-axis
+  # ghost-leaf probe (crs:probeGhostPlane a crs:HoneycombPlaneGeometer, no axis) both flip this FILTER,
+  # while the agnostic progenitors crs:PlaneGeometer / crs:RolePairProjectionPlane (not concrete leaves) never enter the count.
+  FILTER NOT EXISTS {
+    ?pl a ?t . VALUES ?t {
+      crs:HoneycombPlaneGeometer crs:GeographicPlaneGeometer
+      crs:SubjectObjectPlane crs:SubjectPredicatePlane crs:ObjectPredicatePlane }
+    { SELECT ?pl (COUNT(DISTINCT ?a) AS ?n) WHERE {
+        ?pl a ?t2 . VALUES ?t2 {
+          crs:HoneycombPlaneGeometer crs:GeographicPlaneGeometer
+          crs:SubjectObjectPlane crs:SubjectPredicatePlane crs:ObjectPredicatePlane }
+        OPTIONAL { ?pl crs:hasAxis ?a }
+      } GROUP BY ?pl }
+    FILTER ( ?n != 2 )
+  }
+}
+
+
+# EXPECT-TRUE q_five_projections_faithful : the whitepaper's five-factor Helios product K = K_A x K_G x K_S x K_O x K_P has five product projections pi_j (j in {A,G,S,O,P}), each landing in ITS factor category and NEVER in a colour component, and the five projections are JOINTLY FAITHFUL — an arrow of K is exactly its five-tuple of component arrows (the reversibility round-trip), so no two DISTINCT K-arrows share an identical five-tuple of pi_j images.
+#   Lifted verbatim from helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex
+#   (Def. "Project-authored five-factor Helios carrier", def:whitepaper-five-factor-carrier: K := K_A x K_G x K_S x K_O x K_P
+#   with product projections pi_j, j in {A,G,S,O,P}; "pi_A K in K_A and pi_G K in K_G retain their outer nominal tags, while
+#   pi_S K, pi_O K, pi_P K land in the three role-tower categories and never in a color component"; Thm. "Five projections
+#   are jointly faithful", thm:whitepaper-five-projections: for parallel u,v : K -> K', u = v <=> pi_j u = pi_j v for every
+#   j in {A,G,S,O,P}, proof: "An arrow in a product category is exactly its five-tuple of component arrows, so equality is
+#   componentwise"). SP3 reifies K as crs:CarrierProduct, each factor as an owl:Class (the SP3 carriers crs:AtlasByteCarrier/
+#   crs:GraphByteCarrier = K_A/K_G and the SP3 role towers crs:SubjectTower/crs:ObjectTower/crs:PredicateTower = K_S/K_O/K_P),
+#   and each pi_j as a first-class projection arrow. Directive 17 (be more agnostic on all): the agnostic crs:FactorProjection
+#   progenitor grounds no concrete factor; its two symmetric children crs:CarrierTagProjection (pi_A, pi_G — retain the outer
+#   nominal tag) and crs:RoleTowerProjection (pi_S, pi_O, pi_P — land in a role tower, never a colour component) supply the five,
+#   none privileged. The T6 role-pair pi axes crs:piSubject/crs:piObject/crs:piPredicate are REUSED as the three role projections
+#   (T6 authored them "forward-seeds the T7 five-factor product's pi_S/O/P"); crs:piAtlas/crs:piGraph are the two carrier-tag projections.
+#   DATA CONTRACT (geometers.ttl): crs:carrierProductWitness a crs:CarrierProduct carries crs:hasFactor the five factor classes
+#     and crs:hasProjection the five projections; each projection crs:landsInFactor its factor category (piAtlas->AtlasByteCarrier,
+#     piGraph->GraphByteCarrier, piSubject->SubjectTower, piObject->ObjectTower, piPredicate->PredicateTower), and NO projection's
+#     crs:landsInFactor is on the crs:ColourChannel line; two DISTINCT crs:ProductArrow witnesses crs:productArrowWitnessU/V carry
+#     five component images (crs:piAComponent/piGComponent/piSComponent/piOComponent/piPComponent) differing in exactly the P
+#     component (distinct five-tuples), and NO two distinct crs:ProductArrow share an identical five-tuple.
+#   PROBE OF RECORD (must flip True->False): (A) inject crs:probeFaithlessArrow a crs:ProductArrow with the SAME five-tuple as
+#     crs:productArrowWitnessU (two distinct K-arrows, one five-tuple — a joint-faithfulness break) -> crs:FiveProjectionShape
+#     conforms=True->False and this ASK True->False; (B) inject crs:piSubject crs:landsInFactor crs:RedChannel (a pi_S landing in
+#     a colour component) -> crs:FiveProjectionShape conforms=True->False and this ASK True->False.
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  # the five-factor Helios product K, its five factor categories and its five product projections pi_j
+  crs:carrierProductWitness a crs:CarrierProduct ;
+      crs:hasFactor crs:AtlasByteCarrier , crs:GraphByteCarrier , crs:SubjectTower , crs:ObjectTower , crs:PredicateTower ;
+      crs:hasProjection crs:piAtlas , crs:piGraph , crs:piSubject , crs:piObject , crs:piPredicate .
+  # pi_A/pi_G retain the outer nominal tag; pi_S/pi_O/pi_P land in the three role towers — each in ITS factor category
+  crs:piAtlas     a crs:CarrierTagProjection ; crs:landsInFactor crs:AtlasByteCarrier .
+  crs:piGraph     a crs:CarrierTagProjection ; crs:landsInFactor crs:GraphByteCarrier .
+  crs:piSubject   a crs:RoleTowerProjection  ; crs:landsInFactor crs:SubjectTower .
+  crs:piObject    a crs:RoleTowerProjection  ; crs:landsInFactor crs:ObjectTower .
+  crs:piPredicate a crs:RoleTowerProjection  ; crs:landsInFactor crs:PredicateTower .
+  # two DISTINCT product arrows exist (non-vacuity anchor of the joint-faithfulness seal)
+  crs:productArrowWitnessU a crs:ProductArrow .
+  crs:productArrowWitnessV a crs:ProductArrow .
+  FILTER ( crs:productArrowWitnessU != crs:productArrowWitnessV )
+  # (probe B litmus) NO projection lands in a colour component (crs:ColourChannel line) — pi_S/pi_O/pi_P never in R/G/B
+  FILTER NOT EXISTS { ?pj crs:landsInFactor ?f . ?f rdfs:subClassOf* crs:ColourChannel . }
+  # (probe A litmus) joint faithfulness / reversibility round-trip: NO two DISTINCT product arrows share an identical five-tuple of pi_j images
+  FILTER NOT EXISTS {
+    ?u crs:piAComponent ?a ; crs:piGComponent ?g ; crs:piSComponent ?s ; crs:piOComponent ?o ; crs:piPComponent ?p .
+    ?w crs:piAComponent ?a ; crs:piGComponent ?g ; crs:piSComponent ?s ; crs:piOComponent ?o ; crs:piPComponent ?p .
+    FILTER ( ?u != ?w )
+  }
+}
+
+
+# EXPECT-TRUE q_coordinates_derived : coordinatization is a Frame / Kleisli arrow extending SP1's rho, and coordinates are DERIVED, never STORED — every coordinate of a coordinatised point IS the frameOutput of a crs:CoordinateDerivation (a Frame carrying prim:frameOutput + prim:frameEffect, its domain an aob:AOBAtom identity, its codomain a tower position / ordinal), and NO atom or point carries a stored literal (xsd) coordinate.
+#   Lifted from helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex
+#   and the design spec (2.5, "Coordinatization = a Kleisli arrow extending rho"): "A crs:CoordinateDerivation
+#   is a Frame in the exact SP1 sense (prim:frameOutput + prim:frameEffect), hence a Kleisli arrow of the SP1
+#   realization monad — not a bare function. Its domain is an SP2 atom identity (what gets coordinatised); its
+#   codomain is a tower position or a derived ordinal. 'Derived, not stored' is then precise: no atom/point may
+#   assert a literal coordinate; every coordinate is some derivation's frameOutput. Per the unary law the Frame
+#   is the Yoneda point, so coordinatization = Yoneda evaluation at the geometer's representable — reusing SP1's
+#   prim:Frame prim:isYonedaPoint true, not re-deriving it." Directive 1 (lift not invent): the derivation is
+#   authored as rdfs:subClassOf prim:Realization so SP1's prim:RealizationShape (frameOutput + frameEffect,
+#   defang-proof) governs it directly, exactly as the T3 crs:LexToUrnBridge Frame is; the coordinate is REUSED,
+#   never re-derived. Corpus-agnostic v1 (Directive 13): the only individuals are floor witnesses.
+#   DATA CONTRACT (derivation.ttl): crs:coordinatePointWitness a crs:CoordinatePoint carries crs:atCoordinate
+#     crs:zCoordinateDerivation (an OBJECT — the derivation whose frameOutput IS the coordinate, NOT a stored
+#     literal); crs:zCoordinateDerivation a crs:CoordinateDerivation carries crs:derivesForAtom aob:witnessAnchor
+#     (an aob:AOBAtom, the SP2 domain identity being coordinatised), crs:derivesTowerPosition prim:Ordinal (the
+#     codomain tower position / ordinal), and — as a prim:Realization Frame — prim:frameOutput prim:Uint16 (the
+#     Frame output X, a byte-carrying PhysicalEncoding) + prim:frameEffect prim:EncodingLoss (the typed cost Y);
+#     NO node carries a LITERAL crs:atCoordinate (derived-not-stored), and NO crs:CoordinateDerivation is missing
+#     its prim:frameEffect (the SP1 Frame law).
+#   PROBE OF RECORD (must flip True->False): (P1, derived-not-stored) inject crs:probeStoredPoint a
+#     crs:CoordinatePoint ; crs:atCoordinate "3.14"^^xsd:double (a point carrying a stored literal coordinate) ->
+#     crs:DerivedNotStoredShape conforms=True->False, and this ASK True->False (the isLiteral FILTER NOT EXISTS
+#     fails); (P2, Frame law) inject crs:probeEffectlessDerivation a crs:CoordinateDerivation ; prim:frameOutput
+#     prim:Uint16 (a derivation missing prim:frameEffect) -> crs:FrameDerivationShape conforms=True->False, and
+#     this ASK True->False (the no-effectless-derivation FILTER NOT EXISTS fails).
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX aob:  <urn:silmaril:aob:#>
+ASK {
+  # coordinatization = a Frame / Kleisli arrow: the coordinatised point's coordinate IS a crs:CoordinateDerivation object
+  crs:coordinatePointWitness a crs:CoordinatePoint ; crs:atCoordinate ?d .
+  # the derivation is a Frame (prim:frameOutput X + prim:frameEffect Y), domain an aob:AOBAtom identity, codomain a tower position/ordinal
+  ?d a crs:CoordinateDerivation ;
+     crs:derivesForAtom ?atom ;
+     crs:derivesTowerPosition ?pos ;
+     prim:frameOutput ?x ;
+     prim:frameEffect ?y .
+  ?atom a aob:AOBAtom .
+  # (P1 litmus) derived, NEVER stored: no atom/point carries a LITERAL crs:atCoordinate
+  FILTER NOT EXISTS { ?p crs:atCoordinate ?lit . FILTER ( isLiteral(?lit) ) }
+  # (P2 litmus) the SP1 Frame law: no crs:CoordinateDerivation is missing its prim:frameEffect
+  FILTER NOT EXISTS { ?dd a crs:CoordinateDerivation . FILTER NOT EXISTS { ?dd prim:frameEffect ?e } }
+}
+
+
+# EXPECT-TRUE q_z_from_urn : the z layering coordinate is DERIVED end-to-end down the SP1/SP2 byte floor — an aob:AOBAtom's source_sha256 identity (aob:hasHashDigest -> aob:HashDigest, 32 prim:Octet) has its first two octets (crs:takesOctetPrefix 2, a prim:Block) read as a prim:Uint16 (prim:bitWidth 16, prim:interpretAs prim:Natural) whose endianness coordinate is the AGNOSTIC aob:ByteOrderProgenitor (Q1: no concrete leaf in v1, none/big both rejected), landing on prim:Natural (0..65535), carrying a typed crs:HashPrefixTruncation loss (2 of 32 octets) — and NO crs:ZDerivation defaults to a concrete byte-order leaf, reads a count other than 2, omits the byte-order coordinate, or interprets as non-Natural.
+#   Lifted from helios/srcy/shared/components/diagrams/patterns/projection/source_dimension_planes.tex
+#   ("SHA-256 content digest: 256-bit digest computed from the UTF-8 bytes of one canonical uniform resource
+#   name") and the design spec (2.5, "The z derivation, grounded end-to-end"): urn -> encodeUtf8 ->
+#   prim:ByteVector -> sha256 -> prim:Hash (32 octets) -> takesOctetPrefix 2 -> two prim:Octet -> prim:Uint16
+#   (bitWidth 16, interpretAs prim:Natural, byteOrder a byte_order child) -> prim:Natural (0..65535). Every hop
+#   is an SP1 primitive; the source_sha256 identity + its 32-octet descent are the SP2 aob:HashDigest floor SP3
+#   consumes (aob:hasHashDigest / aob:digestOctet / aob:zSeed). Q1 PINNED (Directive 17): the endianness
+#   coordinate is the AGNOSTIC aob:ByteOrderProgenitor with NO concrete leaf in v1 (concrete endianness deferred
+#   to W5); crs:ZGroundingShape PERMITS the ungrounded progenitor as the v1 default and REJECTS a none/big default
+#   (category error / no floor basis). SP2's little-endian aob:zSeed is the byteOrderLittle REALISATION composing
+#   under the progenitor, not the v1 default. Directive 1 (lift not invent): the whole chain reuses SP1/SP2 floor
+#   structures; SP3 only ADDS the crs:ZDerivation Frame that names the descent. Corpus-agnostic v1 (Directive 13):
+#   the only individual is the floor witness crs:zDerivationWitness over the SP2 witness atom/digest.
+#   DATA CONTRACT (derivation.ttl + consumed SP2 octet_descent.ttl): aob:witnessAnchor a aob:AOBAtom carries
+#     aob:hasHashDigest aob:witnessDigest (a aob:HashDigest of 32 prim:Octet); crs:zDerivationWitness a
+#     crs:ZDerivation (rdfs:subClassOf crs:CoordinateDerivation) carries crs:derivesForAtom aob:witnessAnchor,
+#     crs:zFromDigest aob:witnessDigest, crs:takesOctetPrefix 2, crs:zPrefixBlock prim:Block, crs:zByteOrderCoordinate
+#     aob:ByteOrderProgenitor (the AGNOSTIC progenitor, Q1), crs:zInterpretsAs prim:Natural, crs:derivesTowerPosition
+#     prim:Natural, prim:frameOutput prim:Uint16 (bitWidth 16, interpretAs prim:Natural), prim:frameEffect
+#     prim:NarrowingLoss (SP1 closed-family Frame Y), and crs:hasHashPrefixTruncation crs:hashPrefixTruncationEffect
+#     (a crs:HashPrefixTruncation loss seeding SP4); NO crs:ZDerivation carries a byte-order coordinate other than
+#     the progenitor, a prefix count other than 2, a missing byte-order coordinate, or an interpretation other
+#     than prim:Natural.
+#   PROBE OF RECORD (must flip True->False, mirroring crs:ZGroundingShape): (P1) inject crs:probeZFourOctets a
+#     crs:ZDerivation ; crs:takesOctetPrefix 4 (a z reading 4 octets) -> crs:ZGroundingShape conforms=True->False
+#     and this ASK True->False (the no-prefix!=2 litmus fails); (P2) inject crs:probeZNoByteOrder a crs:ZDerivation
+#     with NO crs:zByteOrderCoordinate (a z omitting the byte-order progenitor coordinate) -> conforms=True->False
+#     and this ASK True->False (the no-missing-byteorder litmus fails); (P3) inject crs:probeZBigEndian a
+#     crs:ZDerivation ; crs:zByteOrderCoordinate aob:byteOrderBig (a z defaulting to big-endian) ->
+#     conforms=True->False and this ASK True->False (the no-concrete-leaf litmus fails).
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX aob:  <urn:silmaril:aob:#>
+ASK {
+  # the SP2 atom identity: an aob:AOBAtom's source_sha256 (aob:HashDigest of 32 prim:Octet)
+  ?atom a aob:AOBAtom ; aob:hasHashDigest ?digest .
+  ?digest a aob:HashDigest .
+  # the z descent Frame: domain = the atom, source = its digest, first two octets read as a Uint16 -> Natural
+  ?z a crs:ZDerivation ;
+     crs:derivesForAtom ?atom ;
+     crs:zFromDigest ?digest ;
+     crs:takesOctetPrefix ?n ;
+     crs:zPrefixBlock ?blk ;
+     crs:zByteOrderCoordinate ?bo ;
+     crs:zInterpretsAs ?interp ;
+     crs:derivesTowerPosition ?pos ;
+     prim:frameOutput ?enc ;
+     prim:frameEffect ?eff ;
+     crs:hasHashPrefixTruncation ?trunc .
+  # exactly two octets (a prim:Block prefix), never four
+  FILTER ( ?n = 2 )
+  # Q1: the endianness coordinate is the AGNOSTIC progenitor, NO concrete leaf, none/big rejected
+  FILTER ( ?bo = aob:ByteOrderProgenitor )
+  # the read encoding is a Uint16 (bitWidth 16) interpreting as Natural (0..65535)
+  ?enc prim:bitWidth 16 ; prim:interpretAs prim:Natural .
+  FILTER ( ?interp = prim:Natural )
+  # (P3/leaf litmus) no crs:ZDerivation defaults to a concrete byte-order leaf (only the progenitor is admissible)
+  FILTER NOT EXISTS { ?zz a crs:ZDerivation ; crs:zByteOrderCoordinate ?bad . FILTER ( ?bad != aob:ByteOrderProgenitor ) }
+  # (P2/omission litmus) no crs:ZDerivation omits its byte-order coordinate entirely
+  FILTER NOT EXISTS { ?zz2 a crs:ZDerivation . FILTER NOT EXISTS { ?zz2 crs:zByteOrderCoordinate ?anybo } }
+  # (P1/prefix litmus) no crs:ZDerivation reads a prefix count other than 2 octets
+  FILTER NOT EXISTS { ?zz3 a crs:ZDerivation ; crs:takesOctetPrefix ?nn . FILTER ( ?nn != 2 ) }
+}
+
+
+# EXPECT-TRUE q_order_effect : the S:P:O <-> S:O:P reorder is a typed crs:OrderProjection Frame — one content-addressed reified arrow-node carries TWO distinct declared orders (the rank-zero external S:P:O and the source-declared internal role S:O:P), and re-ordering between them is a MATERIALISED loss carried as a typed crs:RoleOrderEffect (seeding SP4), never a free relabelling; and NO crs:OrderProjection omits its crs:RoleOrderEffect.
+#   Lifted from helios/srcy/shared/components/diagrams/patterns/projection/source_dimension_planes.tex
+#   (the reified arrow-node "first-class content-addressed atom that carries one subject predicate and
+#   object relation" carrying "declared orders" via its orders edge: SilDiagramRankZeroOrder S:P:O =
+#   "external relation coordinate ordered as subject then predicate then object" and
+#   SilDiagramInternalRoleOrder S:O:P = "source-declared internal role vector ordered as subject then
+#   object then predicate") and the design spec (2.6, "The S:P:O <-> S:O:P order effect"): "source_dimension_planes.tex
+#   fixes two distinct orders on one reified arrow-node ... Re-ordering between them is a materialised
+#   effect/loss between projections ... SP3 models the reorder as a typed crs:OrderProjection Frame with
+#   a crs:RoleOrderEffect -- the projection packet (SP4) consumes it as one loss class. The arrow-node
+#   identity itself is the content-address descent of §2.5 (URN -> UTF-8 -> SHA-256 -> ...), so z and the
+#   arrow identity share one floor." The reified arrow-node is the SP2 aob:YonedaHomLeg arrow atom, whose
+#   S/O/P triple (aob:sourceNodeUrn = S, aob:targetNodeUrn = O, aob:cpoProcessIri = P) SP2's SopCarrierShape
+#   already fixes and which SP3 lifts into the CRS; its identity is a sha256 over 32 prim:Octet (the same
+#   content-address floor the z descent bottoms out on). Directive 1 (lift not invent): SP3 only ADDS the
+#   crs:OrderProjection Frame that NAMES the reorder as a typed loss. As a prim:Realization Frame the
+#   OrderProjection carries prim:frameOutput prim:TripleNTriples (the byte-carrying N-Triples serialization of
+#   the ordered S-P-O statement, prim:bitWidth 8, prim:interpretAs prim:Triple) + prim:frameEffect
+#   prim:OrderingCanonicalization (the SP1 closed-family effect of imposing/normalising an order), so SP1's
+#   prim:RealizationShape governs it and passes; the SP3-specific reorder loss is crs:hasRoleOrderEffect a
+#   crs:RoleOrderEffect (seeds SP4 alongside crs:RoleDropEffect (T6) and crs:HashPrefixTruncation (T9)).
+#   Corpus-agnostic v1 (Directive 13): the only individual is the floor witness crs:orderProjectionWitness
+#   over the SP2 witness arrow atom aob:witnessLeg.
+#   DATA CONTRACT (derivation.ttl + consumed SP2 meta.ttl/upper_anchor.ttl): aob:witnessLeg a aob:YonedaHomLeg
+#     (an aob:AOBAtom arrow) carries aob:sourceNodeUrn (S), aob:targetNodeUrn (O), aob:cpoProcessIri (P);
+#     crs:orderProjectionWitness a crs:OrderProjection carries crs:reordersArrowNode aob:witnessLeg,
+#     crs:externalOrder "S:P:O", crs:internalOrder "S:O:P" (the two DISTINCT declared orders),
+#     crs:hasRoleOrderEffect crs:roleOrderEffectWitness (a crs:RoleOrderEffect loss), prim:frameOutput
+#     prim:TripleNTriples, prim:frameEffect prim:OrderingCanonicalization; the two orders DIFFER (a genuine
+#     reorder); NO crs:OrderProjection is missing its crs:RoleOrderEffect.
+#   PROBE OF RECORD (must flip True->False, mirroring crs:OrderProjectionShape): inject
+#     crs:probeOrderNoEffect a crs:OrderProjection ; crs:reordersArrowNode aob:witnessLeg ; crs:externalOrder
+#     "S:P:O" ; crs:internalOrder "S:O:P" ; prim:frameOutput prim:TripleNTriples ; prim:frameEffect
+#     prim:OrderingCanonicalization (an crs:OrderProjection missing its crs:RoleOrderEffect) ->
+#     crs:OrderProjectionShape conforms=True->False, and this ASK True->False (the no-effectless-reorder
+#     litmus FILTER NOT EXISTS fails).
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX aob:  <urn:silmaril:aob:#>
+ASK {
+  # the content-addressed reified arrow-node = the SP2 aob:YonedaHomLeg arrow atom carrying the S/O/P triple
+  aob:witnessLeg a aob:YonedaHomLeg ; aob:sourceNodeUrn ?s ; aob:targetNodeUrn ?o ; aob:cpoProcessIri ?p .
+  # the S:P:O <-> S:O:P reorder Frame over that one arrow-node, carrying two distinct declared orders
+  crs:orderProjectionWitness a crs:OrderProjection ;
+      crs:reordersArrowNode aob:witnessLeg ;
+      crs:externalOrder ?ext ;
+      crs:internalOrder ?int ;
+      crs:hasRoleOrderEffect ?eff ;
+      prim:frameOutput ?enc ;
+      prim:frameEffect ?fx .
+  ?eff a crs:RoleOrderEffect .
+  # the read encoding is the N-Triples serialization of the ordered S-P-O statement (a real byte carrier)
+  ?enc prim:bitWidth ?bw ; prim:interpretAs prim:Triple .
+  # the two declared orders DIFFER — a genuine reorder, not a free relabelling
+  FILTER ( str(?ext) != str(?int) )
+  # (probe litmus) no crs:OrderProjection omits its typed crs:RoleOrderEffect loss (the reorder is never free)
+  FILTER NOT EXISTS { ?op a crs:OrderProjection . FILTER NOT EXISTS { ?op crs:hasRoleOrderEffect ?e2 } }
+}
+
+
+# EXPECT-TRUE q_chart_dual_grounded : every new crs coordinate-chart class DUAL-GROUNDS into the committed SP1 floor over the single merged graph — it REUSES SP1's prim:DualGroundingShape / q_universality unchanged (the class-level litmus of the primitive floor, primitives.queries.sparql q_universality), only scoped to the crs namespace, so SP3 is not green unless the SP1 dual-grounding law stays green over the merged SP1+SP2+SP3 graph into which SP3's chart classes descend.
+#   Design/plan lift (Directive 1, no invention): plan Task T11 ("Every new crs: carrier/tower/geometer/plane/product owl:Class carries its own prim:Realization (aob:groundingClaim-style) + reflexive carrier + prim:Primitive so SP1's prim:DualGroundingShape / q_universality stays green on the merged graph") and design §3 ("SP3 adds owl:Classes that fall under SP1's prim:DualGroundingShape / q_universality, so SP3 is not green unless it keeps the SP1 floor green — every new carrier/tower/geometer class carries its own prim:Realization + reflexive carrier + prim:Primitive") + §4 ("Reused SP1 tooth: each new carrier/tower/geometer owl:Class is under prim:DualGroundingShape; an ungrounded class flips SP1's q_universality false"). The prior tasks (T2–T10) deliberately authored these coordinate-chart OBJECT classes NOT rdfs:subClassOf* prim:FormalType and left the reused SP1 dual-grounding to be added HERE; T11 fulfils that contract in basicttl/crs/dual_grounding.ttl by giving EACH of the 23 coordinate-chart OBJECT classes its OWN grounding cluster EXACTLY as SP1 grounds its 59 tower classes — the four carriers (crs:TaggedByteCarrier/crs:AtlasByteCarrier/crs:GraphByteCarrier/crs:UntaggedBytePayload), the five tower/axis classes (crs:UrnRoleTower/crs:SubjectTower/crs:ObjectTower/crs:PredicateTower/crs:UrnTowerAxis), the five geometer classes (crs:Geometer/crs:RoleGeometer/crs:QuarkGridGeometer/crs:GeometerAxis/crs:QuarkGrid), the seven plane classes (crs:PlaneGeometer/crs:HoneycombPlaneGeometer/crs:GeographicPlaneGeometer/crs:RolePairProjectionPlane/crs:SubjectObjectPlane/crs:SubjectPredicatePlane/crs:ObjectPredicatePlane), the product crs:CarrierProduct, and the point crs:CoordinatePoint. The physical Frames (crs:ForgetfulTagFrame/crs:LexToUrnBridge/crs:ColourOnlyProjection/crs:CoordinateDerivation/crs:ZDerivation/crs:OrderProjection), the product arrows/projections (crs:ProductArrow/crs:FactorComponentArrow/crs:FactorProjection/crs:CarrierTagProjection/crs:RoleTowerProjection), the crs-minted SP4-seeding effects (crs:RoleDropEffect/crs:HashPrefixTruncation/crs:RoleOrderEffect), the RGB colour channels (crs:ColourChannel/crs:RedChannel/crs:GreenChannel/crs:BlueChannel, SP1's prim:RGB re-viewed and grounded via crs:groundsColourOctet), and the provisional SP6 crs:AtlasGlossary stay OUTSIDE prim:FormalType (SP1's own YonedaShape doctrine keeps arrows/Frames/effects out; the colour channels are the T4 negative space and the glossary is honestly deferred to SP6), so they are correctly NOT flagged by the universal litmus below (the pun a owl:Class , prim:FormalType + rdfs:subClassOf prim:FormalType, a prim:Realization prim:realizesFrom it, a reflexive prim:PhysicalEncoding carrier prim:interpretAs it, a prim:Primitive gluing the two, plus the literal-Yoneda apparatus prim:yonedaObject -> prim:RepresentablePresheaf (prim:yonedaPoint) and a prim:RhoComponent prim:rhoComponentAt it so SP1's prim:YonedaShape stays green too). SP1's own vocabulary is reused wholesale (prim:Realization / prim:PhysicalEncoding / prim:Primitive / prim:EncodingLoss / prim:presheafOlog), never re-minted (SELECT-not-mint, the SP2 groundingClaim discipline).
+#   NON-VACUITY: the ASK first BINDS a positive witness — at least one crs class that is a punned prim:FormalType and carries an actual prim:Realization — so it returns FALSE on the pre-T11 graph (where NO crs class is prim:FormalType), i.e. RED before authoring and GREEN after; it is not the vacuous "no counterexample exists over the empty set".
+#   DATA CONTRACT (dual_grounding.ttl over the merged SP1+SP2+SP3 graph): each of the 23 coordinate-chart OBJECT classes (crs:CarrierProduct / crs:CoordinatePoint / crs:UrnTowerAxis / crs:GeometerAxis / crs:QuarkGrid, plus the eighteen T11 adds — the four carriers, the four tower classes, the three geometer classes, and the seven plane classes) is `a owl:Class , prim:FormalType ; rdfs:subClassOf prim:FormalType ; prim:realizesAs crs:realize_<C> ; prim:rhoObject crs:carrier_<C> ; prim:yonedaObject crs:repr_<C>`, with crs:realize_<C> a prim:Realization (prim:realizesFrom <C>, prim:encoding/prim:frameOutput crs:carrier_<C>, prim:frameEffect prim:EncodingLoss), crs:carrier_<C> a prim:PhysicalEncoding (prim:bitWidth 8, prim:byteOrder prim:EndianNeutral, prim:interpretAs <C>), crs:prim_<C> a prim:Primitive (prim:formalFacet <C>, prim:physicalFacet crs:carrier_<C>, prim:gluedBy crs:realize_<C>), crs:repr_<C> a prim:RepresentablePresheaf with prim:yonedaPoint crs:id_<C>, and crs:rhoNat_<C> a prim:RhoComponent prim:rhoComponentAt <C>; NO crs class rdfs:subClassOf+ prim:FormalType lacks grounding on its subClassOf* line.
+#   PROBE OF RECORD (must flip True->False, reusing SP1's prim:DualGroundingShape teeth exactly as its OrphanB probe): inject `crs:probeOrphanChart a owl:Class ; rdfs:subClassOf prim:FormalType` (an ungrounded crs coordinate-chart class, no prim:Realization on its whole subClassOf* line) -> SP1 prim:DualGroundingShape conforms=True->False over the merged graph, SP1 q_universality True->False, AND this ASK True->False (the universal litmus FILTER NOT EXISTS finds the orphan). Equivalently, STRIPPING one grounded class's prim:Realization (deleting crs:realize_CarrierProduct and its prim:realizesAs edge) leaves crs:CarrierProduct rdfs:subClassOf+ prim:FormalType with no grounding on its line -> the same three flip True->False, proving the grounding is load-bearing and not decorative.
+PREFIX crs:  <urn:silmaril:crs:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  # non-vacuity witness: at least one crs coordinate-chart class is a punned prim:FormalType carrying a real prim:Realization.
+  # WRAPPED IN FILTER EXISTS so the witness is evaluated ONCE as a boolean (short-circuiting at the first grounded
+  # crs FormalType class), rather than JOINED into the main pattern — which would bind ?wc/?wr to every one of the
+  # ~46 (23 classes x the realizesAs/realizesFrom UNION) witness rows and REDUNDANTLY re-evaluate the whole-graph
+  # universal FILTER NOT EXISTS below (whose truth does not depend on ?wc/?wr) once per row. That cross-product was a
+  # pure performance defect (~165s over the merged graph); FILTER EXISTS is SEMANTICALLY IDENTICAL — the ASK is true
+  # iff (EXISTS a grounded crs FormalType witness) AND (NO crs FormalType-descendant class lacks grounding) — and
+  # evaluates in <1s. Probe-of-record behaviour is unchanged: on the pre-T11 graph the witness EXISTS is false -> ASK
+  # false (RED); injecting crs:probeOrphanChart or stripping crs:realize_CarrierProduct flips the universal litmus ->
+  # ASK false (both verified True->False).
+  FILTER EXISTS {
+    ?wc a owl:Class , prim:FormalType .
+    FILTER ( STRSTARTS( STR(?wc), "urn:silmaril:crs:#" ) )
+    { ?wc prim:realizesAs ?wr } UNION { ?wr prim:realizesFrom ?wc }
+  }
+  # universal litmus (SP1's q_universality logic, scoped to crs): NO crs class rdfs:subClassOf+ prim:FormalType
+  # lacks grounding (a prim:Realization) somewhere on its whole subClassOf* line — self, a realized ancestor,
+  # or a realized descendant (both edge directions counted, exactly as prim:DualGroundingShape accepts them).
+  FILTER NOT EXISTS {
+    ?c a owl:Class ; rdfs:subClassOf+ prim:FormalType .
+    FILTER ( STRSTARTS( STR(?c), "urn:silmaril:crs:#" ) )
+    FILTER NOT EXISTS {
+      { ?c rdfs:subClassOf* ?g } UNION { ?g rdfs:subClassOf* ?c }
+      { ?g prim:realizesAs ?r } UNION { ?r prim:realizesFrom ?g }
+    }
+  }
+}

@@ -1,0 +1,1093 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# algebra_spine.ttl — Pillar 2: the one-operation algebra spine + quasigroup/loop (W2 · SP0, Task T4).
+# =====================================================================================
+# The OBJECTS/OPERATIONS pillar of the four-pillar taiji (design s3; ledger/W2/algebra_foundation/
+# 02_algebra_tower.md). Set theory (T3) carries the CARRIERS, this tower carries the OBJECTS/OPERATIONS,
+# functionality (T7) the ARROWS, spaces (T6) the topology/geometry. Authored as an AGNOSTIC-PROGENITOR
+# tower (Directive 17, the LIFTED byte_order / crs-geometer progenitor pattern): a fnd:AlgebraicStructure
+# progenitor that GROUNDS NOTHING (no operation, no signature, no carrier), with each rung a composable
+# child adding EXACTLY ONE law, NEVER crammed. The one-operation spine is
+#   fnd:Magma -> fnd:Semigroup -> fnd:Monoid -> fnd:CommutativeMonoid -> fnd:Group -> fnd:AbelianGroup
+# (+closure / +associativity / +identity / +commutativity / +inverse / +commutativity), and the division
+# sub-family fnd:Quasigroup -> fnd:Loop hangs off fnd:Magma (+Latin-square division / +identity).
+#
+# EACH RUNG IS MINTED, NOT INVENTED: every concrete rung is a fnd:PresentedAlgebra (engine.ttl, LIFTED),
+# carrying its signature Sigma (fnd:hasSignature), its equation set E (fnd:hasEquationSet), a carrier that
+# is F_E-produced (fnd:hasCarrier a fnd:FreeAlgebra fnd:mintedVia the ONE lifted fnd:engineAdjunction), the
+# single new law it adds over its parent (fnd:addsLaw), and its cumulative fnd:satisfiesLaw edges (all
+# members of its E) - so the T2 q_engine_presents / fnd:PresentedAlgebraShape teeth cover the whole tower.
+#
+# HONESTY LEDGER (design s0 / Directive 20), tagged on EVERY atom via fnd:authority:
+#   - fnd:AlgebraicStructure progenitor = SYN: the agnostic-progenitor 'grounds nothing' PATTERN is
+#     grep-verified ABSENT from the authored helios/srcy papers - it is the MAINTAINER-DIRECTIVE pattern of
+#     Directive 17 (the byte_order worked example, 02_algebra_tower.md s3; the crs geometer/plane
+#     progenitors), NOT a Helios-paper lift (the appendix-39 byte_order mirror is reference-only). Cited
+#     project synthesis, applied as the tower root that grounds nothing.
+#   - fnd:Monoid = DS: the ONE genuinely lifted rung (free monoid (E,:,eps) with proved unit+associativity
+#     07/05/03; endopath monoid M_X=Hom(X,X) 31/01; "monoid = one-object category" helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex).
+#   - fnd:lawAssociativity = PD (proved for path concat 31/01/02 and colon product 07/05/03);
+#     fnd:lawIdentity = PD (the free-monoid unit proof 07/05/03).
+#   - fnd:Magma / fnd:Semigroup / fnd:CommutativeMonoid / fnd:Group / fnd:AbelianGroup / fnd:Quasigroup /
+#     fnd:Loop, the group fnd:lawInverse (the ONE tower axiom with ZERO Helios basis, cited standard math),
+#     fnd:lawCommutativity, fnd:lawLatinDivision, fnd:lawClosure, and ALL the reified operation-table /
+#     inverse-pairing / one-object-category witness machinery = SYN, cited standard universal algebra.
+#
+# Namespace fnd: <urn:silmaril:fnd:#>. Corpus-agnostic v1 (Directive 13): zero corpus instances - every
+# individual is a foundation-internal worked model (a small finite Cayley table, a Z/3 group, a Latin
+# square) that keeps the seven T4 teeth non-vacuous and provably biting under probe injection. Consumed by
+# T5 (the two-operation line + module/vector re-uses this engine + the AlgebraicStructure progenitor),
+# T7 (fnd:Monoid = F(X,X), the Pillar-4 seam), T10 (aob:SealedGroup rdfs:subClassOf fnd:Group).
+# =====================================================================================
+
+
+# =====================================================================================
+# The reified binary-operation table vocabulary (SYN) — the same discipline SP2's aob:Composition uses,
+# one floor down: an operation application is a first-class node so the LAWS (associativity / identity /
+# commutativity / inverse / division) become CHECKABLE graph facts walked by the T4 teeth.
+# =====================================================================================
+
+fnd:AlgebraElement a owl:Class ;
+    rdfs:label "AlgebraElement" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "An element of a concrete finite algebra witness's carrier - a first-class carrier element (e.g. the identity fnd:elemE, or fnd:elemA / fnd:elemB / fnd:elemC of a three-element Z/3 model) that the reified binary-operation table (fnd:BinaryOperationApplication) applies to. SYN, cited standard universal algebra: the foundation floor is corpus-agnostic v1 (Directive 13), so these are worked examples, not lifted corpus instances. Elements are shared across the witness models and kept apart by the fnd:opStructure scoping edge on each operation application, so one element pool serves the semigroup / monoid / commutative-monoid / group / abelian / quasigroup tables without cross-contaminating the per-model teeth. The endomorphism identity fnd:idEndoX is ALSO a fnd:AlgebraElement because the elements of an endomorphism monoid End(X) ARE the endomorphisms of X (the Pillar-4 monoid=one-object-category seam)." .
+
+fnd:BinaryOperationApplication a owl:Class ;
+    rdfs:label "BinaryOperationApplication" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A reified application of a concrete algebra's binary operation: fnd:opLeft composed with fnd:opRight yields fnd:opResult, all three fnd:AlgebraElement, scoped to one witness model by fnd:opStructure. SYN, cited standard universal algebra - the same reification discipline SP2's aob:Composition uses (basicttl/aob/group_law.ttl: aob:compLeft/aob:compRight/aob:compResult), lifted one floor down to the foundation tower. Reifying each operation application as its own node - rather than leaving the operation an untestable abstraction - is what makes the tower's LAWS checkable graph facts: fnd:SemigroupAssocShape forms both bracketings of a triple and compares fnd:opResult; fnd:MonoidIdentityShape reads the identity rows; fnd:CommMonoidCommShape / fnd:AbelianCommShape compare x.y with y.x; fnd:GroupInverseShape checks x.inv(x)=e; fnd:QuasigroupDivisionShape checks the Latin-square uniqueness of division. The fnd:opStructure edge scopes each application to exactly one witness model so a probe perturbing one table's fnd:opResult flips exactly the tooth that walks that table (conforms/ASK True->False)." .
+
+fnd:opStructure a owl:ObjectProperty ;
+    rdfs:domain fnd:BinaryOperationApplication ; rdfs:range fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "opStructure" ;
+    rdfs:comment "Relates a reified binary-operation application (fnd:BinaryOperationApplication) to the concrete algebra witness model (a fnd:AlgebraicStructure instance - fnd:semigroupModel, fnd:monoidModel, fnd:commMonoidModel, fnd:groupModel, fnd:abelianModel, fnd:quasigroupModel) whose Cayley table it is one row of. SYN. This scoping edge is what keeps the seven T4 law teeth INDEPENDENT: each tooth walks only the applications with its own fnd:opStructure, so a probe perturbing one model's fnd:opResult flips exactly that model's tooth. Range fnd:AlgebraicStructure (every model is an instance of a tower rung, a subclass of the progenitor); domain fnd:BinaryOperationApplication." .
+
+fnd:opLeft a owl:ObjectProperty ;
+    rdfs:domain fnd:BinaryOperationApplication ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "opLeft" ;
+    rdfs:comment "The left operand of a reified binary-operation application (fnd:BinaryOperationApplication): the first fnd:AlgebraElement in fnd:opLeft . fnd:opRight = fnd:opResult. SYN, mirroring SP2's aob:compLeft. Together with fnd:opRight and fnd:opResult it records one row of a witness model's Cayley table, the table the T4 law teeth walk. Domain fnd:BinaryOperationApplication, range fnd:AlgebraElement." .
+
+fnd:opRight a owl:ObjectProperty ;
+    rdfs:domain fnd:BinaryOperationApplication ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "opRight" ;
+    rdfs:comment "The right operand of a reified binary-operation application (fnd:BinaryOperationApplication): the second fnd:AlgebraElement in fnd:opLeft . fnd:opRight = fnd:opResult. SYN, mirroring SP2's aob:compRight. Together with fnd:opLeft and fnd:opResult it records one row of a witness model's Cayley table. Domain fnd:BinaryOperationApplication, range fnd:AlgebraElement." .
+
+fnd:opResult a owl:ObjectProperty ;
+    rdfs:domain fnd:BinaryOperationApplication ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "opResult" ;
+    rdfs:comment "The result of a reified binary-operation application (fnd:BinaryOperationApplication): the fnd:AlgebraElement that fnd:opLeft . fnd:opRight evaluates to. SYN, mirroring SP2's aob:compResult. It is the value the T4 law teeth compare: fnd:SemigroupAssocShape checks the two bracketings' results agree, fnd:CommMonoidCommShape checks x.y and y.x results agree, fnd:GroupInverseShape checks x.inv(x) results in the identity, fnd:QuasigroupDivisionShape checks no row/column repeats a result. Perturbing a single fnd:opResult is the probe of record for each rung tooth. Domain fnd:BinaryOperationApplication, range fnd:AlgebraElement." .
+
+
+# =====================================================================================
+# The rung-law objects (fnd:addsLaw / fnd:hasIdentityElement / the inverse pairing) — SYN, the tower
+# machinery the AlgebraProgenitorShape 'no cram' clause and the identity/inverse teeth read.
+# =====================================================================================
+
+fnd:addsLaw a owl:ObjectProperty ;
+    rdfs:domain fnd:PresentedAlgebra ; rdfs:range fnd:Equation ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "addsLaw" ;
+    rdfs:comment "Relates a tower rung (a fnd:PresentedAlgebra) to the SINGLE new law (fnd:Equation) it adds over its parent rung - the one-law-per-child discipline made a graph fact (Directive 17 'never crammed'; the source's own 'add one universal-property clause at a time / six obligations checked separately' discipline, 26/03/04:24-50). fnd:Semigroup fnd:addsLaw fnd:lawAssociativity over fnd:Magma; fnd:Monoid fnd:addsLaw fnd:lawIdentity; fnd:CommutativeMonoid fnd:addsLaw fnd:lawCommutativity; fnd:Group fnd:addsLaw fnd:lawInverse; fnd:AbelianGroup fnd:addsLaw fnd:lawCommutativity (off Group); fnd:Quasigroup fnd:addsLaw fnd:lawLatinDivision (off Magma); fnd:Loop fnd:addsLaw fnd:lawIdentity. fnd:AlgebraProgenitorShape enforces EXACTLY ONE fnd:addsLaw per CONCRETE rung as BOTH bounds together: the <=1 no-cram upper bound (constraint B - a rung with two distinct fnd:addsLaw crams two laws -> RED) AND the >=1 lower bound (constraint C - a CONCRETE rung, a fnd:PresentedAlgebra rdfs:subClassOf the progenitor, carrying zero fnd:addsLaw -> RED, so a rung stripped of its added law is rejected), AND that the agnostic progenitor fnd:AlgebraicStructure - which grounds nothing and is NOT a fnd:PresentedAlgebra - carries NONE (constraint A; zero addsLaw is correct for it, and constraint C never fires on it). The added law is always a member of the rung's fnd:hasEquationSet. Domain fnd:PresentedAlgebra, range fnd:Equation." .
+
+fnd:hasIdentityElement a owl:ObjectProperty ;
+    rdfs:domain fnd:AlgebraicStructure ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasIdentityElement" ;
+    rdfs:comment "Relates a concrete algebra witness model to its declared two-sided identity element (the neutral e with e.x=x and x.e=x). SYN, cited standard universal algebra. fnd:MonoidIdentityShape / q_monoid_identity read it: for every structure carrying fnd:hasIdentityElement e, no reified op row with e on the left may have a result != its right operand, and no row with e on the right may have a result != its left operand (the probe of record makes e.A = E != A and the tooth bites). fnd:GroupInverseShape reads it as the target the two-sided inverse must undo to (x.inv(x) = e). fnd:monoidModel, fnd:groupModel, the endomorphism monoid fnd:endoMonoidWitness (whose identity is the object identity arrow fnd:idEndoX) and the loop witness fnd:loopModel (whose identity is fnd:elemE, read by the NEW fnd:LoopIdentityShape) carry it. Domain fnd:AlgebraicStructure, range fnd:AlgebraElement." .
+
+fnd:InversePairing a owl:Class ;
+    rdfs:label "InversePairing" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A claimed inverse pairing in a group witness model: a reified statement that fnd:pairingInverse is the two-sided inverse of fnd:pairingElement within fnd:pairingModel (whose fnd:hasIdentityElement is the identity e). SYN, cited standard group theory - the group INVERSE LAW is the ONE tower axiom with ZERO Helios basis (02_algebra_tower.md s1 GROUP: the inverse axiom is never defined for any Helios ontology structure), authored here as cited math fact. It reuses the SP2 sealed-group inverse-teeth pattern (aob:retracts, 'a retract that does not undo -> RED', basicttl/aob/group_law.ttl): fnd:GroupInverseShape / q_group_inverse hold a pairing GENUINE only when BOTH fnd:pairingElement . fnd:pairingInverse = e AND fnd:pairingInverse . fnd:pairingElement = e (the two-sided undo, read off the reified op table), so an inverse that does not undo the operation is RED. The probe of record perturbs the product A.B away from the identity and the pairing A<->B ceases to satisfy the undo, flipping the tooth True->False." .
+
+fnd:pairingModel a owl:ObjectProperty ;
+    rdfs:domain fnd:InversePairing ; rdfs:range fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "pairingModel" ;
+    rdfs:comment "Relates an inverse pairing (fnd:InversePairing) to the group witness model (a fnd:AlgebraicStructure instance, fnd:groupModel) in which the pairing is claimed - the model whose fnd:hasIdentityElement is the identity the two-sided inverse must undo to, and whose reified op table fnd:GroupInverseShape reads for the products fnd:pairingElement . fnd:pairingInverse and fnd:pairingInverse . fnd:pairingElement. SYN. Domain fnd:InversePairing, range fnd:AlgebraicStructure." .
+
+fnd:pairingElement a owl:ObjectProperty ;
+    rdfs:domain fnd:InversePairing ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "pairingElement" ;
+    rdfs:comment "Relates an inverse pairing (fnd:InversePairing) to the element x whose inverse is being claimed. SYN. fnd:GroupInverseShape / q_group_inverse require x . fnd:pairingInverse = e AND fnd:pairingInverse . x = e (two-sided undo to the model identity e), so a claimed inverse that does not undo x is RED. Domain fnd:InversePairing, range fnd:AlgebraElement." .
+
+fnd:pairingInverse a owl:ObjectProperty ;
+    rdfs:domain fnd:InversePairing ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "pairingInverse" ;
+    rdfs:comment "Relates an inverse pairing (fnd:InversePairing) to the element y claimed as the two-sided inverse of fnd:pairingElement x. SYN. fnd:GroupInverseShape / q_group_inverse require x . y = e AND y . x = e (the identity of fnd:pairingModel), reusing SP2's genuine-inverse discipline (a retract that does not undo -> RED). The probe of record either perturbs the product x.y away from e, or repoints y at a non-inverse, so the two-sided undo fails and the tooth bites. Domain fnd:InversePairing, range fnd:AlgebraElement." .
+
+
+# =====================================================================================
+# The tower laws as first-class fnd:Equation individuals (reused engine.ttl fnd:Equation shape).
+# =====================================================================================
+
+fnd:lawClosure a fnd:Equation ;
+    rdfs:label "lawClosure" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The closure / totality law of a magma: for all x,y in the carrier S, x.y is defined and lies in S (the binary operation is a total function S x S -> S). SYN (the engine substrate T_Sigma(X) is LIFTED, 26/03/03:13-15; the reified closure-as-first-law is synthesized). It is the sole added law of the base rung fnd:Magma (fnd:addsLaw) and a member of every rung's equation set." ;
+    fnd:equationBody "for all x,y in S: x.y in S (totality/closure of the binary operation . : S,S -> S)" .
+
+fnd:lawAssociativity a fnd:Equation ;
+    rdfs:label "lawAssociativity" ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "The associativity law: (x.y).z = x.(y.z). PROOF-DERIVED (PD) - the law itself is proved in Helios for path concatenation (helios/srcy/papers/31_path_monoids/chapters/01_quiver_free_path_category/sections/02_free_path_category_construction.tex:51-94) and for the colon product of the ecosystem free monoid (helios/srcy/papers/07_the_canonical_question/chapters/05_free_construction_and_quotient/sections/03_ecosystem_free_monoid.tex:51-55), even though the Semigroup STRUCTURE is only named as a boundary counterexample (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:138). It is the sole added law of fnd:Semigroup (fnd:addsLaw) and a member of every rung above Magma; q_semigroup_assoc / fnd:SemigroupAssocShape check it over the reified table." ;
+    fnd:equationBody "(x.y).z = x.(y.z)" .
+
+fnd:lawIdentity a fnd:Equation ;
+    rdfs:label "lawIdentity" ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "The two-sided identity/unit law: there is an e with e.x = x and x.e = x for all x. PROOF-DERIVED (PD) - the unit law is proved for the ecosystem free monoid (E,:,eps) (helios/srcy/papers/07_the_canonical_question/chapters/05_free_construction_and_quotient/sections/03_ecosystem_free_monoid.tex:51-55) and the endopath monoid (identity path as unit, helios/srcy/papers/31_path_monoids/sections/01_thesis.tex:29-32), part of the ONE genuinely lifted rung fnd:Monoid. It is the sole added law of fnd:Monoid (fnd:addsLaw over fnd:Semigroup) and of fnd:Loop (over fnd:Quasigroup); q_monoid_identity / fnd:MonoidIdentityShape check it over the reified identity rows." ;
+    fnd:equationBody "e.x = x and x.e = x (two-sided identity, the unit e)" .
+
+fnd:lawCommutativity a fnd:Equation ;
+    rdfs:label "lawCommutativity" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The commutativity law: x.y = y.x. SYN - Helios has commutativity only as a DECLARED congruence (the trace monoid E/=_I, 07/05/03:222-232) and instances ((N0,+,0), M_J=N0^J), with noncommutativity the explicit default (ba != ab, 31/02/03:12-15); the law-as-tower-axiom is synthesized. It is the sole added law of fnd:CommutativeMonoid (fnd:addsLaw over fnd:Monoid) AND of fnd:AbelianGroup (over fnd:Group) - the same law added at two different points of the spine, each its own atom (Directive 17 no-cram). q_commmonoid_comm and q_abelian_comm check it over their reified tables." ;
+    fnd:equationBody "x.y = y.x" .
+
+fnd:lawInverse a fnd:Equation ;
+    rdfs:label "lawInverse" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The two-sided inverse law: for every x there is an inv(x) with x.inv(x) = e and inv(x).x = e. SYN, and THE ONE TOWER AXIOM WITH ZERO HELIOS BASIS (02_algebra_tower.md s1 GROUP / Directive 20): 'the inverse/invertibility axiom is never defined for any ontology structure' in Helios (every corpus 'invertible' hit is cocone-leg / comparison-map invertibility, a morphism-isomorphism question, NOT a group inverse). It is authored here as CITED STANDARD-MATHEMATICAL FACT (the Directive-19 Curry precedent - math is fact and liftable, cite the source, never pretend a Helios lift). It is the sole added law of fnd:Group (fnd:addsLaw over fnd:Monoid); q_group_inverse / fnd:GroupInverseShape check the two-sided undo over the reified table and the fnd:InversePairing claims." ;
+    fnd:equationBody "x.inv(x) = e and inv(x).x = e (two-sided inverse relative to the identity e)" .
+
+fnd:lawLatinDivision a fnd:Equation ;
+    rdfs:label "lawLatinDivision" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Latin-square division law of a quasigroup: for all a,b the equations a.x = b and y.a = b each have a UNIQUE solution (right division x = a\\b and left division y = b/a), equivalently the Cayley table is a Latin square (each element occurs exactly once per row and per column). SYN, cited standard universal algebra - quasigroup/loop are FULLY ABSENT from Helios (02_algebra_tower.md s1: grep zero). It is the sole added law of fnd:Quasigroup (fnd:addsLaw over fnd:Magma); q_quasigroup_division / fnd:QuasigroupDivisionShape check the uniqueness (no row and no column repeats a result) over the reified 9-row Z/3 table." ;
+    fnd:equationBody "for all a,b: unique x with a.x = b (right division a\\b) and unique y with y.a = b (left division b/a)" .
+
+
+# =====================================================================================
+# The signatures Sigma (SYN, reused engine.ttl fnd:Signature shape) — shared across rungs by arity.
+# =====================================================================================
+
+fnd:sigOneBinary a fnd:Signature ;
+    rdfs:label "sigOneBinary" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The one-binary-operation signature Sigma = {.} : one carrier sort S and one binary product symbol '. : S,S -> S'. SYN worked signature over the lifted signature-with-equations discipline (26/03/03). Shared by fnd:Magma (E={closure}) and fnd:Semigroup (E adds associativity) - the two rungs that differ only in their equation set, not their signature." ;
+    fnd:hasSort "S" ;
+    fnd:hasOperationSymbol ". : S,S -> S" .
+
+fnd:sigMonoid a fnd:Signature ;
+    rdfs:label "sigMonoid" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The monoid signature Sigma = {., e} : the carrier sort S, the binary product '. : S,S -> S', and the nullary unit 'e : -> S'. SYN worked signature over the lifted discipline (26/03/03). Shared by fnd:Monoid and fnd:CommutativeMonoid (which differ only by the commutativity equation)." ;
+    fnd:hasSort "S" ;
+    fnd:hasOperationSymbol ". : S,S -> S" ;
+    fnd:hasOperationSymbol "e : -> S" .
+
+fnd:sigGroup a fnd:Signature ;
+    rdfs:label "sigGroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The group signature Sigma = {., e, inv} : the carrier sort S, the binary product '. : S,S -> S', the nullary unit 'e : -> S', and the unary inverse 'inv : S -> S'. SYN worked signature over the lifted discipline (26/03/03). Shared by fnd:Group and fnd:AbelianGroup (which differ only by the commutativity equation). The unary inverse symbol is the syntactic carrier of the one zero-Helios-basis axiom fnd:lawInverse." ;
+    fnd:hasSort "S" ;
+    fnd:hasOperationSymbol ". : S,S -> S" ;
+    fnd:hasOperationSymbol "e : -> S" ;
+    fnd:hasOperationSymbol "inv : S -> S" .
+
+fnd:sigQuasigroup a fnd:Signature ;
+    rdfs:label "sigQuasigroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The quasigroup signature Sigma = {., \\, /} : the carrier sort S, the binary product '. : S,S -> S', and the two division symbols left '\\ : S,S -> S' and right '/ : S,S -> S' that make division total and unique (the equational presentation of the Latin-square property). SYN worked signature over the lifted discipline (26/03/03). Used by fnd:Quasigroup (E = {closure, Latin division})." ;
+    fnd:hasSort "S" ;
+    fnd:hasOperationSymbol ". : S,S -> S" ;
+    fnd:hasOperationSymbol "\\ : S,S -> S" ;
+    fnd:hasOperationSymbol "/ : S,S -> S" .
+
+fnd:sigLoop a fnd:Signature ;
+    rdfs:label "sigLoop" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The loop signature Sigma = {., \\, /, e} : the quasigroup signature plus the nullary unit 'e : -> S'. SYN worked signature over the lifted discipline (26/03/03). Used by fnd:Loop (a quasigroup with a two-sided identity, E = {closure, Latin division, identity})." ;
+    fnd:hasSort "S" ;
+    fnd:hasOperationSymbol ". : S,S -> S" ;
+    fnd:hasOperationSymbol "\\ : S,S -> S" ;
+    fnd:hasOperationSymbol "/ : S,S -> S" ;
+    fnd:hasOperationSymbol "e : -> S" .
+
+
+# =====================================================================================
+# The per-rung equation sets E (SYN, reused engine.ttl fnd:EquationSet shape) — cumulative membership.
+# =====================================================================================
+
+fnd:eqsMagma a fnd:EquationSet ;
+    rdfs:label "eqsMagma" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The magma equation set E = {closure} - only the totality/closure of the binary operation, no further law. SYN. Presented over fnd:sigOneBinary, it presents the free magma T_Sigma(X)." ;
+    fnd:hasEquation fnd:lawClosure .
+
+fnd:eqsSemigroup a fnd:EquationSet ;
+    rdfs:label "eqsSemigroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The semigroup equation set E = {closure, associativity} - the free semigroup presentation. SYN (the associativity member is PD)." ;
+    fnd:hasEquation fnd:lawClosure ;
+    fnd:hasEquation fnd:lawAssociativity .
+
+fnd:eqsMonoid a fnd:EquationSet ;
+    rdfs:label "eqsMonoid" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The monoid equation set E = {closure, associativity, identity} - the free monoid presentation. SYN wrapper over the LIFTED monoid rung's laws (associativity + unit both PD)." ;
+    fnd:hasEquation fnd:lawClosure ;
+    fnd:hasEquation fnd:lawAssociativity ;
+    fnd:hasEquation fnd:lawIdentity .
+
+fnd:eqsCommMonoid a fnd:EquationSet ;
+    rdfs:label "eqsCommMonoid" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The commutative-monoid equation set E = {closure, associativity, identity, commutativity} - the free commutative monoid presentation. SYN." ;
+    fnd:hasEquation fnd:lawClosure ;
+    fnd:hasEquation fnd:lawAssociativity ;
+    fnd:hasEquation fnd:lawIdentity ;
+    fnd:hasEquation fnd:lawCommutativity .
+
+fnd:eqsGroup a fnd:EquationSet ;
+    rdfs:label "eqsGroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The group equation set E = {closure, associativity, identity, inverse} - the free group presentation. SYN; the inverse member is the one zero-Helios-basis axiom (cited standard math)." ;
+    fnd:hasEquation fnd:lawClosure ;
+    fnd:hasEquation fnd:lawAssociativity ;
+    fnd:hasEquation fnd:lawIdentity ;
+    fnd:hasEquation fnd:lawInverse .
+
+fnd:eqsAbelian a fnd:EquationSet ;
+    rdfs:label "eqsAbelian" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The abelian-group equation set E = {closure, associativity, identity, inverse, commutativity} - the free abelian group presentation. SYN." ;
+    fnd:hasEquation fnd:lawClosure ;
+    fnd:hasEquation fnd:lawAssociativity ;
+    fnd:hasEquation fnd:lawIdentity ;
+    fnd:hasEquation fnd:lawInverse ;
+    fnd:hasEquation fnd:lawCommutativity .
+
+fnd:eqsQuasigroup a fnd:EquationSet ;
+    rdfs:label "eqsQuasigroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The quasigroup equation set E = {closure, Latin division} - a magma whose division is total and unique (Latin square), no identity assumed. SYN." ;
+    fnd:hasEquation fnd:lawClosure ;
+    fnd:hasEquation fnd:lawLatinDivision .
+
+fnd:eqsLoop a fnd:EquationSet ;
+    rdfs:label "eqsLoop" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The loop equation set E = {closure, Latin division, identity} - a quasigroup with a two-sided identity. SYN." ;
+    fnd:hasEquation fnd:lawClosure ;
+    fnd:hasEquation fnd:lawLatinDivision ;
+    fnd:hasEquation fnd:lawIdentity .
+
+
+# =====================================================================================
+# The per-rung free-algebra carriers F_E(X) (SYN worked instances of the DS fnd:FreeAlgebra), each
+# fnd:mintedVia the ONE lifted fnd:engineAdjunction (engine.ttl) and fnd:groundsInSet its underlying Set
+# (so q_engine_presents clause 3 and q_set_carrier stay green over the whole tower).
+# =====================================================================================
+
+fnd:carrierMagma a fnd:FreeAlgebra ;
+    rdfs:label "carrierMagma" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-magma carrier F_E(X) for (sigOneBinary, {closure}) - the raw binary term algebra with no imposed law, produced by the engine. SYN worked instance of the DS fnd:FreeAlgebra." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={.}, E={closure}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setMagma .
+
+fnd:carrierSemigroup a fnd:FreeAlgebra ;
+    rdfs:label "carrierSemigroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-semigroup carrier F_E(X) for (sigOneBinary, {closure, associativity}). SYN worked instance of the DS fnd:FreeAlgebra, fnd:mintedVia the lifted engine." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={.}, E={assoc}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setSemigroup .
+
+fnd:carrierMonoid a fnd:FreeAlgebra ;
+    rdfs:label "carrierMonoid" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-monoid carrier F_E(X) for (sigMonoid, {closure, associativity, identity}) - the LIFTED free monoid (E,:,eps) as an engine-produced carrier. SYN worked instance of the DS fnd:FreeAlgebra." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={., e}, E={assoc, unit}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setMonoid .
+
+fnd:carrierCommMonoid a fnd:FreeAlgebra ;
+    rdfs:label "carrierCommMonoid" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-commutative-monoid carrier F_E(X) for (sigMonoid, {closure, assoc, identity, commutativity}) - e.g. the shape of N0^J. SYN worked instance of the DS fnd:FreeAlgebra." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={., e}, E={assoc, unit, comm}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setCommMonoid .
+
+fnd:carrierGroup a fnd:FreeAlgebra ;
+    rdfs:label "carrierGroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-group carrier F_E(X) for (sigGroup, {closure, assoc, identity, inverse}). SYN worked instance of the DS fnd:FreeAlgebra; the inverse law is the one zero-Helios-basis axiom." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={., e, inv}, E={assoc, unit, inverse}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setGroup .
+
+fnd:carrierAbelian a fnd:FreeAlgebra ;
+    rdfs:label "carrierAbelian" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-abelian-group carrier F_E(X) for (sigGroup, {closure, assoc, identity, inverse, commutativity}) - the free Z-module on the generators. SYN worked instance of the DS fnd:FreeAlgebra." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={., e, inv}, E={assoc, unit, inverse, comm}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setAbelian .
+
+fnd:carrierQuasigroup a fnd:FreeAlgebra ;
+    rdfs:label "carrierQuasigroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-quasigroup carrier F_E(X) for (sigQuasigroup, {closure, Latin division}). SYN worked instance of the DS fnd:FreeAlgebra." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={., \\, /}, E={Latin division}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setQuasigroup .
+
+fnd:carrierLoop a fnd:FreeAlgebra ;
+    rdfs:label "carrierLoop" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The free-loop carrier F_E(X) for (sigLoop, {closure, Latin division, identity}). SYN worked instance of the DS fnd:FreeAlgebra." ;
+    fnd:freeAlgebraFormula "F_E(X) = T_Sigma(X)/=_E for Sigma={., \\, /, e}, E={Latin division, unit}" ;
+    fnd:mintedVia fnd:engineAdjunction ;
+    fnd:groundsInSet fnd:setLoop .
+
+fnd:setMagma a fnd:Set ;
+    rdfs:label "setMagma" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierMagma under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN; engine.ttl). SYN worked example; the grounding target of the magma carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setSemigroup a fnd:Set ;
+    rdfs:label "setSemigroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierSemigroup under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the semigroup carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setMonoid a fnd:Set ;
+    rdfs:label "setMonoid" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierMonoid under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the monoid carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setCommMonoid a fnd:Set ;
+    rdfs:label "setCommMonoid" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierCommMonoid under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the commutative-monoid carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setGroup a fnd:Set ;
+    rdfs:label "setGroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierGroup under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the group carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setAbelian a fnd:Set ;
+    rdfs:label "setAbelian" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierAbelian under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the abelian-group carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setQuasigroup a fnd:Set ;
+    rdfs:label "setQuasigroup" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierQuasigroup under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the quasigroup carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+fnd:setLoop a fnd:Set ;
+    rdfs:label "setLoop" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of fnd:carrierLoop under the two-step descent R:GovAlg->Graph (DS) then Graph->Set (fnd:graphUnderlyingSet, SYN). SYN worked example; the grounding target of the loop carrier's fnd:groundsInSet edge (q_set_carrier)." .
+
+
+# =====================================================================================
+# The agnostic progenitor (DS, the lifted progenitor pattern) — GROUNDS NOTHING.
+# =====================================================================================
+
+fnd:AlgebraicStructure a owl:Class ;
+    rdfs:label "AlgebraicStructure" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The AGNOSTIC algebraic-structure progenitor of the one-operation tower - the frame-neutral join of every rung that GROUNDS NOTHING: it carries NO binary operation, NO signature (fnd:hasSignature), NO carrier (fnd:hasCarrier), NO added law (fnd:addsLaw), and is deliberately NOT a fnd:PresentedAlgebra. SYN, cited to Directive 17 (NOT a Helios-paper lift): the agnostic-progenitor 'grounds nothing' PATTERN is grep-verified ABSENT from the authored helios/srcy papers ('agnostic.progenitor'/'grounds nothing' return zero) - it is the MAINTAINER-DIRECTIVE pattern of Directive 17 ('be more agnostic/progenitor ... an agnostic progenitor parent that grounds nothing + explicit composable children') worked out in the maintainer's byte_order example (ledger/W2/algebra_foundation/02_algebra_tower.md s3: byte_order grounds nothing, children byte_order_{little,big,host,none} compose via ancestry.via), and mirrored by the SP3 crs geometer/plane progenitors (basicttl/crs/geometers.ttl:76-88); the external appendix-39 byte_order spec-atom mirror (ledger/W2/helios/srcy_map.md:268-276) is REFERENCE-ONLY, not an authored-paper source. So this progenitor is honest project synthesis, never a DS lift. Its composable children add EXACTLY ONE law each, never crammed: fnd:Magma (closure) -> fnd:Semigroup (associativity) -> fnd:Monoid (identity) -> fnd:CommutativeMonoid (commutativity) -> fnd:Group (inverse) -> fnd:AbelianGroup (commutativity), with the division sub-family fnd:Quasigroup (Latin division) -> fnd:Loop (identity) hanging off fnd:Magma. Each concrete rung is minted through the LIFTED free-|forgetful engine (engine.ttl) as a fnd:PresentedAlgebra. fnd:AlgebraProgenitorShape makes 'grounds nothing' a graph fact (constraint A) and 'every concrete rung adds EXACTLY ONE law' a graph fact (constraints B no-cram + C at-least-one): the probe of record gives this progenitor a fnd:addsLaw or a fnd:hasSignature and constraint A bites (conforms=True->False), while stripping a concrete rung's sole fnd:addsLaw makes constraint C bite - but this progenitor itself, grounding nothing, carries zero fnd:addsLaw and stays GREEN under C (it is not a fnd:PresentedAlgebra)." .
+
+
+# =====================================================================================
+# The one-operation spine rungs — each punned owl:Class + fnd:PresentedAlgebra, adding exactly one law.
+# =====================================================================================
+
+fnd:Magma a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Magma" ;
+    rdfs:subClassOf fnd:AlgebraicStructure ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The MAGMA rung: a set with one TOTAL binary operation . : S,S -> S and NO further law (E = {closure}). SYN - Helios has no named magma (02_algebra_tower.md s1 MAGMA: grep zero); the SUBSTRATE exists as the raw term algebra T_Sigma(X) before equations (26/03/03:13-15), so a free magma is exactly T_Sigma(X) for Sigma={.}, E=empty, reachable from the LIFTED engine. It is the base composable child of the agnostic fnd:AlgebraicStructure progenitor and the root of the one-operation spine; the division sub-family fnd:Quasigroup / fnd:Loop also hangs off it. Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigOneBinary (Sigma={.}), fnd:hasEquationSet fnd:eqsMagma (E={closure}), fnd:hasCarrier fnd:carrierMagma (F_E-produced, fnd:mintedVia fnd:engineAdjunction, grounded into fnd:setMagma), fnd:addsLaw fnd:lawClosure (its single new law), fnd:satisfiesLaw fnd:lawClosure. So q_engine_presents and fnd:PresentedAlgebraShape cover it as a genuinely minted rung." ;
+    fnd:hasSignature fnd:sigOneBinary ;
+    fnd:hasEquationSet fnd:eqsMagma ;
+    fnd:hasCarrier fnd:carrierMagma ;
+    fnd:addsLaw fnd:lawClosure ;
+    fnd:satisfiesLaw fnd:lawClosure .
+
+fnd:Semigroup a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Semigroup" ;
+    rdfs:subClassOf fnd:Magma ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The SEMIGROUP rung: a fnd:Magma whose operation is ASSOCIATIVE - (x.y).z = x.(y.z). It adds EXACTLY ONE law over fnd:Magma (fnd:addsLaw fnd:lawAssociativity). SYN atom (Helios NAMES semigroup only once, as a boundary counterexample, helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:138) but its LAW is PROOF-DERIVED (the associativity of path concatenation 31/01/02:51-94 and colon product 07/05/03:51-55). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigOneBinary, fnd:hasEquationSet fnd:eqsSemigroup (E={closure, associativity}), fnd:hasCarrier fnd:carrierSemigroup (F_E-produced, grounded into fnd:setSemigroup), fnd:satisfiesLaw fnd:lawClosure + fnd:lawAssociativity (both members of its E). Its associativity is teeth-proved by q_semigroup_assoc / fnd:SemigroupAssocShape over the reified left-zero witness table fnd:semigroupModel: for any triple the two bracketings (x.y).z and x.(y.z) must agree, and the probe of record (a perturbed fnd:opResult) makes a triple disagree so the tooth bites." ;
+    fnd:hasSignature fnd:sigOneBinary ;
+    fnd:hasEquationSet fnd:eqsSemigroup ;
+    fnd:hasCarrier fnd:carrierSemigroup ;
+    fnd:addsLaw fnd:lawAssociativity ;
+    fnd:satisfiesLaw fnd:lawClosure ;
+    fnd:satisfiesLaw fnd:lawAssociativity .
+
+fnd:Monoid a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Monoid" ;
+    rdfs:subClassOf fnd:Semigroup ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The MONOID rung: a fnd:Semigroup with a two-sided IDENTITY e (e.x = x, x.e = x). It adds EXACTLY ONE law over fnd:Semigroup (fnd:addsLaw fnd:lawIdentity). DS - the ONE genuinely LIFTED rung: Helios authors the monoid richly and provably (the ecosystem free monoid (E,:,eps) with proved unit + associativity and a universal property, helios/srcy/papers/07_the_canonical_question/chapters/05_free_construction_and_quotient/sections/03_ecosystem_free_monoid.tex:38-55; the endopath monoid M_X = Hom(X,X) helios/srcy/papers/31_path_monoids/sections/01_thesis.tex:29-32; End_C(X) with product = composition, unit = id_X, and the explicit 'a monoid is a one-object category', helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:2,16-17,36-39). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigMonoid (Sigma={., e}), fnd:hasEquationSet fnd:eqsMonoid (E={closure, associativity, identity}), fnd:hasCarrier fnd:carrierMonoid (F_E-produced, grounded into fnd:setMonoid), fnd:satisfiesLaw the three cumulative laws. Its identity is teeth-proved by q_monoid_identity / fnd:MonoidIdentityShape (fnd:monoidModel), and its 'monoid = one-object category = F(X,X)' seam to Pillar 4 by q_monoid_is_endo / fnd:MonoidIsEndoShape (fnd:endoMonoidWitness)." ;
+    fnd:hasSignature fnd:sigMonoid ;
+    fnd:hasEquationSet fnd:eqsMonoid ;
+    fnd:hasCarrier fnd:carrierMonoid ;
+    fnd:addsLaw fnd:lawIdentity ;
+    fnd:satisfiesLaw fnd:lawClosure ;
+    fnd:satisfiesLaw fnd:lawAssociativity ;
+    fnd:satisfiesLaw fnd:lawIdentity .
+
+fnd:CommutativeMonoid a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "CommutativeMonoid" ;
+    rdfs:subClassOf fnd:Monoid ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The COMMUTATIVE MONOID rung: a fnd:Monoid whose operation COMMUTES - x.y = y.x. It adds EXACTLY ONE law over fnd:Monoid (fnd:addsLaw fnd:lawCommutativity). SYN (the ATOM synthesized; instances are lifted - (N0,+,0) as a grading target 31/02/03:10, M_J = N0^J 26/10/01:8 - and commutativity appears as a DECLARED congruence in the trace monoid E/=_I, 07/05/03:222-232, with noncommutativity the explicit corpus default). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigMonoid, fnd:hasEquationSet fnd:eqsCommMonoid (E adds commutativity), fnd:hasCarrier fnd:carrierCommMonoid (grounded into fnd:setCommMonoid), fnd:satisfiesLaw the four cumulative laws. Its commutativity is teeth-proved by q_commmonoid_comm / fnd:CommMonoidCommShape over the reified witness table fnd:commMonoidModel: no pair (x,y) may have x.y != y.x, and the probe of record makes one pair non-commutative so the tooth bites." ;
+    fnd:hasSignature fnd:sigMonoid ;
+    fnd:hasEquationSet fnd:eqsCommMonoid ;
+    fnd:hasCarrier fnd:carrierCommMonoid ;
+    fnd:addsLaw fnd:lawCommutativity ;
+    fnd:satisfiesLaw fnd:lawClosure ;
+    fnd:satisfiesLaw fnd:lawAssociativity ;
+    fnd:satisfiesLaw fnd:lawIdentity ;
+    fnd:satisfiesLaw fnd:lawCommutativity .
+
+fnd:Group a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Group" ;
+    rdfs:subClassOf fnd:Monoid ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The GROUP rung: a fnd:Monoid in which every element x has a two-sided INVERSE inv(x) (x.inv(x) = e, inv(x).x = e). It adds EXACTLY ONE law over fnd:Monoid (fnd:addsLaw fnd:lawInverse). SYN, and the inverse law is THE ONE TOWER AXIOM WITH ZERO HELIOS BASIS (02_algebra_tower.md s1 GROUP / Directive 20: Helios defines no group and no inverse axiom for any ontology structure; the vol-20 abelian<->group inclusion is only an external colimit-non-preservation counterexample, 20/09/03:61,65). It is authored as CITED STANDARD-MATHEMATICAL FACT. Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigGroup (Sigma={., e, inv}), fnd:hasEquationSet fnd:eqsGroup (E adds inverse), fnd:hasCarrier fnd:carrierGroup (grounded into fnd:setGroup), fnd:satisfiesLaw the four cumulative laws. Its inverse law is teeth-proved by q_group_inverse / fnd:GroupInverseShape over the Z/3 witness fnd:groupModel and its fnd:InversePairing claims (reusing SP2's genuine-inverse discipline: a claimed inverse that does not two-sidedly undo the operation -> RED). At T10 the SP2 aob:SealedGroup becomes a child (rdfs:subClassOf) of THIS fresh agnostic fnd:Group." ;
+    fnd:hasSignature fnd:sigGroup ;
+    fnd:hasEquationSet fnd:eqsGroup ;
+    fnd:hasCarrier fnd:carrierGroup ;
+    fnd:addsLaw fnd:lawInverse ;
+    fnd:satisfiesLaw fnd:lawClosure ;
+    fnd:satisfiesLaw fnd:lawAssociativity ;
+    fnd:satisfiesLaw fnd:lawIdentity ;
+    fnd:satisfiesLaw fnd:lawInverse .
+
+fnd:AbelianGroup a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "AbelianGroup" ;
+    rdfs:subClassOf fnd:Group ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The ABELIAN GROUP rung: a fnd:Group whose operation COMMUTES - x.y = y.x. It adds EXACTLY ONE law over fnd:Group (fnd:addsLaw fnd:lawCommutativity - the SAME commutativity law fnd:CommutativeMonoid adds off fnd:Monoid, but here its own atom at a different point of the spine, Directive 17 no-cram). SYN (Helios has 'abelian group' only as the vol-20 external counterexample where the abelian<->group inclusion fails to preserve colimits, 20/09/03:61,65,81,148; no definition). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigGroup, fnd:hasEquationSet fnd:eqsAbelian (E adds commutativity), fnd:hasCarrier fnd:carrierAbelian (grounded into fnd:setAbelian), fnd:satisfiesLaw the five cumulative laws. Its commutativity is teeth-proved by q_abelian_comm / fnd:AbelianCommShape over the reified witness table fnd:abelianModel, scoped to a DISTINCT witness from the commutative monoid so a non-commutative 'abelian group' is RED. The SP1 number tower re-anchors onto this line at T10." ;
+    fnd:hasSignature fnd:sigGroup ;
+    fnd:hasEquationSet fnd:eqsAbelian ;
+    fnd:hasCarrier fnd:carrierAbelian ;
+    fnd:addsLaw fnd:lawCommutativity ;
+    fnd:satisfiesLaw fnd:lawClosure ;
+    fnd:satisfiesLaw fnd:lawAssociativity ;
+    fnd:satisfiesLaw fnd:lawIdentity ;
+    fnd:satisfiesLaw fnd:lawInverse ;
+    fnd:satisfiesLaw fnd:lawCommutativity .
+
+
+# =====================================================================================
+# The division sub-family (fnd:Quasigroup -> fnd:Loop off fnd:Magma) — SYN, fully absent in Helios.
+# =====================================================================================
+
+fnd:Quasigroup a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Quasigroup" ;
+    rdfs:subClassOf fnd:Magma ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The QUASIGROUP rung: a fnd:Magma whose Cayley table is a LATIN SQUARE - for all a,b the equations a.x = b and y.a = b have UNIQUE solutions (total, unique left and right division). It adds EXACTLY ONE law over fnd:Magma (fnd:addsLaw fnd:lawLatinDivision) and hangs off fnd:Magma as a sibling sub-family of the spine (NO associativity assumed). SYN, cited standard universal algebra - quasigroup/loop are FULLY ABSENT from Helios (02_algebra_tower.md s1: grep for quasigroup/Moufang/algebraic-loop returns zero; every 'loop' hit is a Yoneda- or control-flow loop). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigQuasigroup (Sigma={., \\, /}), fnd:hasEquationSet fnd:eqsQuasigroup (E={closure, Latin division}), fnd:hasCarrier fnd:carrierQuasigroup (grounded into fnd:setQuasigroup), fnd:satisfiesLaw fnd:lawClosure + fnd:lawLatinDivision. Its division law is teeth-proved by q_quasigroup_division / fnd:QuasigroupDivisionShape over the reified 9-row Z/3 Latin-square witness fnd:quasigroupModel: no row and no column repeats a result (unique division), and the probe of record injects a repeated result so the tooth bites." ;
+    fnd:hasSignature fnd:sigQuasigroup ;
+    fnd:hasEquationSet fnd:eqsQuasigroup ;
+    fnd:hasCarrier fnd:carrierQuasigroup ;
+    fnd:addsLaw fnd:lawLatinDivision ;
+    fnd:satisfiesLaw fnd:lawClosure ;
+    fnd:satisfiesLaw fnd:lawLatinDivision .
+
+fnd:Loop a owl:Class , fnd:PresentedAlgebra ;
+    rdfs:label "Loop" ;
+    rdfs:subClassOf fnd:Quasigroup ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The LOOP rung: a fnd:Quasigroup with a two-sided IDENTITY e (a quasigroup that has a unit). It adds EXACTLY ONE law over fnd:Quasigroup (fnd:addsLaw fnd:lawIdentity - the same identity law fnd:Monoid adds off fnd:Semigroup, here its own atom off the division sub-family, Directive 17 no-cram). SYN, cited standard universal algebra (fully absent in Helios, 02_algebra_tower.md s1). Minted as a fnd:PresentedAlgebra: fnd:hasSignature fnd:sigLoop (Sigma={., \\, /, e}), fnd:hasEquationSet fnd:eqsLoop (E={closure, Latin division, identity}), fnd:hasCarrier fnd:carrierLoop (grounded into fnd:setLoop), fnd:satisfiesLaw fnd:lawClosure + fnd:lawLatinDivision + fnd:lawIdentity. It is the division-family counterpart of the monoid: a loop is to a quasigroup as a monoid is to a semigroup (add a unit). At L1 close fnd:Loop is brought to PARITY with every sibling rung: it carries the SYN worked-example witness fnd:loopModel (a genuine non-associative order-5 loop, Latin square + two-sided identity) and a DISTINCT biting per-rung law-tooth q_loop_identity / fnd:LoopIdentityShape (EXPECT-TRUE) for its ADDED law (identity): every fnd:Loop MUST carry a two-sided identity element, and a fnd:Loop that is a quasigroup with NO identity -> RED (the exact hole L1 closed - previously the lone identity tooth fnd:MonoidIdentityShape only focused on subjects of fnd:hasIdentityElement, so an identity-less Loop passed vacuously). Its INHERITED Latin-square/division law is witnessed by q_quasigroup_division / fnd:QuasigroupDivisionShape generalised over the fnd:Quasigroup family (loopModel is a fnd:Quasigroup by subclass), exactly as fnd:AbelianGroup re-adds commutativity as its own atom (q_abelian_comm) over a distinct witness (Directive 17 no-cram, Directive 20 all-teeth-proved)." ;
+    fnd:hasSignature fnd:sigLoop ;
+    fnd:hasEquationSet fnd:eqsLoop ;
+    fnd:hasCarrier fnd:carrierLoop ;
+    fnd:addsLaw fnd:lawIdentity ;
+    fnd:satisfiesLaw fnd:lawClosure ;
+    fnd:satisfiesLaw fnd:lawLatinDivision ;
+    fnd:satisfiesLaw fnd:lawIdentity .
+
+
+# =====================================================================================
+# The shared element pool (SYN worked examples): carrier elements of the finite witness models.
+# =====================================================================================
+
+fnd:elemE a fnd:AlgebraElement ;
+    rdfs:label "elemE" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The identity element e of the finite witness models (the neutral of fnd:monoidModel and fnd:groupModel, and the value 0 of the cyclic Z/3 group/quasigroup). SYN worked example; a carrier element the reified operation tables apply to." .
+
+fnd:elemA a fnd:AlgebraElement ;
+    rdfs:label "elemA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The element a of the finite witness models (the generator, value 1 of the cyclic Z/3 group/quasigroup; a in the left-zero semigroup). SYN worked example." .
+
+fnd:elemB a fnd:AlgebraElement ;
+    rdfs:label "elemB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The element b of the finite witness models (value 2 of the cyclic Z/3 group/quasigroup, the inverse of a; b in the left-zero semigroup). SYN worked example." .
+
+fnd:elemC a fnd:AlgebraElement ;
+    rdfs:label "elemC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The element c of the three-element witness models (the third element of the left-zero semigroup table and the third element of the Latin-square quasigroup, where {A,B,C} = Z/3). SYN worked example." .
+
+fnd:elemD a fnd:AlgebraElement ;
+    rdfs:label "elemD" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The fifth element d of the five-element loop witness fnd:loopModel (the smallest faithful non-associative loop, carrier {E,A,B,C,D}, order 5). SYN worked example - a carrier element the reified Cayley table of fnd:loopModel applies to. It exists only on the loop witness (the spine/quasigroup models are three-element {E,A,B,C} at most), so no other rung tooth reads it; it completes the order-5 Latin square that q_loop_identity (identity) and q_quasigroup_division (Latin-square division, generalised over the quasigroup family) walk." .
+
+
+# =====================================================================================
+# fnd:magmaModel — the closure/totality witness (a CLOSED, NON-ASSOCIATIVE order-2 magma on {A,B}).
+#   * | A B        A.A=B, A.B=B, B.A=A, B.B=B — every product lands back in {A,B} (CLOSED), but
+#   A | B B        (A.A).A = B.A = A while A.(A.A) = A.B = B (A != B), so NON-ASSOCIATIVE: a bare magma,
+#   B | A B        NOT accidentally a semigroup (and row A repeats B, so not a Latin square / quasigroup).
+# It enumerates its carrier via fnd:hasElement so q_magma_closure / fnd:MagmaClosureShape are non-vacuous,
+# bringing fnd:Magma to PARITY with every sibling rung (a SYN witness + a biting per-rung law-tooth).
+# =====================================================================================
+
+fnd:magmaModel a fnd:Magma ;
+    rdfs:label "magmaModel" ;
+    fnd:authority fnd:SYN ;
+    fnd:hasElement fnd:elemA , fnd:elemB ;
+    rdfs:comment "The magma-closure witness model - a GENUINE BARE magma on the enumerated carrier {A,B} whose single total binary operation . : S,S -> S is CLOSED (every product lands back in {A,B}) but NON-ASSOCIATIVE, so it is a magma and NOT accidentally a semigroup, at PARITY with every sibling rung (a SYN worked-example witness + a biting per-rung law-tooth). SYN, cited standard universal algebra: the fnd:Magma rung is SYN and the free term-algebra substrate T_Sigma(X) is LIFTED (26/03/03:13-15), while this closed non-associative Cayley table is a worked example (corpus-agnostic v1, Directive 13). Table A.A=B, A.B=B, B.A=A, B.B=B - CLOSED (all four results lie in {A,B}), NON-ASSOCIATIVE because (A.A).A = B.A = A while A.(A.A) = A.B = B and A != B, so no associativity law holds and this sits strictly below fnd:Semigroup on the spine (its A-row repeats B, so it is not a Latin square either - not accidentally a quasigroup). It ENUMERATES its carrier fnd:hasElement fnd:elemA , fnd:elemB (the enumeration is the edge that makes closure a checkable graph fact, exactly as aob:witnessGroup enumerates its Z/4 carrier for the T10 SealedGroup closure), so q_magma_closure / fnd:MagmaClosureShape (every reified fnd:opResult over a fnd:Magma with an enumerated carrier MUST be a fnd:hasElement of that magma) hold non-vacuously. The probe of record injects a fnd:Magma (fnd:probeMagmaOpenResult, enumerated carrier {A,B}) with an op row whose fnd:opResult is fnd:elemC - OUTSIDE the enumerated carrier - which fnd:MagmaClosureShape flags RED (conforms/ASK True->False) while this closed fnd:magmaModel stays GREEN, reusing the SealedGroup closure idiom (a reified product whose result is not a fnd:hasElement of the structure -> violation)." .
+
+fnd:appMagmaAA a fnd:BinaryOperationApplication ;
+    rdfs:label "appMagmaAA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The magma row A.A = B over fnd:magmaModel. SYN. One cell of the closed non-associative order-2 table; the left branch of the non-associativity witness (A.A).A = B.A = A vs A.(A.A) = A.B = B. Its result fnd:elemB IS a fnd:hasElement of fnd:magmaModel (closure holds)." ;
+    fnd:opStructure fnd:magmaModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemB .
+
+fnd:appMagmaAB a fnd:BinaryOperationApplication ;
+    rdfs:label "appMagmaAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The magma row A.B = B over fnd:magmaModel. SYN. One cell of the closed non-associative order-2 table (the right branch A.(A.A) = A.B = B). Its result fnd:elemB IS a fnd:hasElement of fnd:magmaModel (closure holds)." ;
+    fnd:opStructure fnd:magmaModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemB .
+
+fnd:appMagmaBA a fnd:BinaryOperationApplication ;
+    rdfs:label "appMagmaBA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The magma row B.A = A over fnd:magmaModel. SYN. One cell of the closed non-associative order-2 table (the outer step of the left branch (A.A).A = B.A = A). Its result fnd:elemA IS a fnd:hasElement of fnd:magmaModel (closure holds)." ;
+    fnd:opStructure fnd:magmaModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemA .
+
+fnd:appMagmaBB a fnd:BinaryOperationApplication ;
+    rdfs:label "appMagmaBB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The magma row B.B = B over fnd:magmaModel. SYN. The last cell of the closed non-associative order-2 table. Its result fnd:elemB IS a fnd:hasElement of fnd:magmaModel (closure holds)." ;
+    fnd:opStructure fnd:magmaModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemB .
+
+
+# =====================================================================================
+# fnd:semigroupModel — the associativity witness (a left-zero semigroup x.y = x on {A,B,C}).
+# Both bracketings of the triple (A,B,C) evaluate to A: (A.B).C = A.C = A, A.(B.C) = A.B = A.
+# =====================================================================================
+
+fnd:semigroupModel a fnd:Semigroup ;
+    rdfs:label "semigroupModel" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The associativity witness model - a left-zero semigroup on {A,B,C} where x.y = x (always associative: (x.y).z = x.z = x = x.y = x.(y.z)). SYN worked example (corpus-agnostic v1). It carries the reified rows fnd:appSgAB (A.B=A), fnd:appSgAC (A.C=A), fnd:appSgBC (B.C=B), which make both bracketings of the triple (A,B,C) evaluate to A, keeping q_semigroup_assoc / fnd:SemigroupAssocShape non-vacuous. The probe of record changes fnd:appSgAC fnd:opResult to fnd:elemB, so (A.B).C = A.C = B while A.(B.C) = A.B = A, and the tooth bites (conforms/ASK True->False)." .
+
+fnd:appSgAB a fnd:BinaryOperationApplication ;
+    rdfs:label "appSgAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The left-zero semigroup row A.B = A over fnd:semigroupModel. SYN. Inner product of both bracketings of (A,B,C): (A.B).C reads A.B=A, and A.(B.C) reads A.(B.C)=A.B=A." ;
+    fnd:opStructure fnd:semigroupModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemA .
+
+fnd:appSgAC a fnd:BinaryOperationApplication ;
+    rdfs:label "appSgAC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The left-zero semigroup row A.C = A over fnd:semigroupModel. SYN. Outer step of the LEFT bracketing (A.B).C = A.C = A. Changing its fnd:opResult to fnd:elemB is the probe of record that drives (A.B).C away from A.(B.C) so q_semigroup_assoc bites." ;
+    fnd:opStructure fnd:semigroupModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemA .
+
+fnd:appSgBC a fnd:BinaryOperationApplication ;
+    rdfs:label "appSgBC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The left-zero semigroup row B.C = B over fnd:semigroupModel. SYN. Inner product of the RIGHT bracketing A.(B.C): B.C = B, then A.B = A." ;
+    fnd:opStructure fnd:semigroupModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemB .
+
+
+# =====================================================================================
+# fnd:monoidModel — the two-sided-identity witness (identity E on {E,A}).
+# =====================================================================================
+
+fnd:monoidModel a fnd:Monoid ;
+    rdfs:label "monoidModel" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The two-sided-identity witness model - a monoid on {E,A} with identity E (E.A=A, A.E=A, E.E=E). SYN worked example. It carries fnd:hasIdentityElement fnd:elemE and the reified rows fnd:appMonEA / fnd:appMonAE / fnd:appMonEE, so q_monoid_identity / fnd:MonoidIdentityShape (which require every identity row e.x to yield x and x.e to yield x) hold non-vacuously. The probe of record changes fnd:appMonEA fnd:opResult from fnd:elemA to fnd:elemE (E.A = E != A), breaking the left-unit law so the tooth bites." ;
+    fnd:hasIdentityElement fnd:elemE .
+
+fnd:appMonEA a fnd:BinaryOperationApplication ;
+    rdfs:label "appMonEA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The identity row E.A = A over fnd:monoidModel (left-unit law for A). SYN. Changing its fnd:opResult to fnd:elemE is the probe of record for q_monoid_identity." ;
+    fnd:opStructure fnd:monoidModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemA .
+
+fnd:appMonAE a fnd:BinaryOperationApplication ;
+    rdfs:label "appMonAE" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The identity row A.E = A over fnd:monoidModel (right-unit law for A). SYN." ;
+    fnd:opStructure fnd:monoidModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemA .
+
+fnd:appMonEE a fnd:BinaryOperationApplication ;
+    rdfs:label "appMonEE" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The identity row E.E = E over fnd:monoidModel (the identity is idempotent). SYN." ;
+    fnd:opStructure fnd:monoidModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemE .
+
+
+# =====================================================================================
+# fnd:commMonoidModel — the commutativity witness (symmetric pair A.B = B.A = E).
+# =====================================================================================
+
+fnd:commMonoidModel a fnd:CommutativeMonoid ;
+    rdfs:label "commMonoidModel" ;
+    fnd:authority fnd:SYN ;
+    fnd:hasIdentityElement fnd:elemE ;
+    rdfs:comment "The commutativity witness model - a commutative-monoid on {E,A,B} = Z/3 (E=0) with the symmetric pair A.B = B.A = E and two-sided identity E. SYN worked example. It carries the reified rows fnd:appCmAB (A.B=E) and fnd:appCmBA (B.A=E) plus the identity rows fnd:appCmEE/EA/AE/EB/BE (E is the two-sided unit), so q_commmonoid_comm / fnd:CommMonoidCommShape (no pair x.y != y.x) hold non-vacuously AND the Monoid-identity-EXISTENCE tooth (fnd:MonoidIdentityShape branch existence / q_monoid_identity) is satisfied - it declares a two-sided identity element (a fnd:CommutativeMonoid, hence fnd:Monoid, that OMITTED fnd:hasIdentityElement would go RED). The probe of record changes fnd:appCmBA fnd:opResult from fnd:elemE to fnd:elemA (B.A = A while A.B = E), making the pair (A,B) non-commutative so the tooth bites." .
+
+# --- commMonoidModel identity rows (E neutral on Z/3 {E,A,B}); make the Monoid-identity-existence
+#     tooth non-vacuous and the declared identity E genuine (fnd:MonoidIdentityShape genuineness).
+fnd:appCmEE a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appCmEE" ; rdfs:comment "The row E.E = E over fnd:commMonoidModel (the identity is idempotent). SYN." ;
+    fnd:opStructure fnd:commMonoidModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemE .
+fnd:appCmEA a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appCmEA" ; rdfs:comment "The identity row E.A = A over fnd:commMonoidModel (left-unit law for A). SYN." ;
+    fnd:opStructure fnd:commMonoidModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemA .
+fnd:appCmAE a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appCmAE" ; rdfs:comment "The identity row A.E = A over fnd:commMonoidModel (right-unit law for A). SYN." ;
+    fnd:opStructure fnd:commMonoidModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemA .
+fnd:appCmEB a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appCmEB" ; rdfs:comment "The identity row E.B = B over fnd:commMonoidModel (left-unit law for B). SYN." ;
+    fnd:opStructure fnd:commMonoidModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemB .
+fnd:appCmBE a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appCmBE" ; rdfs:comment "The identity row B.E = B over fnd:commMonoidModel (right-unit law for B). SYN." ;
+    fnd:opStructure fnd:commMonoidModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemB .
+
+fnd:appCmAB a fnd:BinaryOperationApplication ;
+    rdfs:label "appCmAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row A.B = E over fnd:commMonoidModel. SYN. Together with fnd:appCmBA (B.A=E) it exhibits the commutative pair; both directions have the same result." ;
+    fnd:opStructure fnd:commMonoidModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemE .
+
+fnd:appCmBA a fnd:BinaryOperationApplication ;
+    rdfs:label "appCmBA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row B.A = E over fnd:commMonoidModel. SYN. Changing its fnd:opResult to fnd:elemA is the probe of record for q_commmonoid_comm (a non-commutative pair)." ;
+    fnd:opStructure fnd:commMonoidModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemE .
+
+
+# =====================================================================================
+# fnd:groupModel — the two-sided-inverse witness (Z/3 = {E,A,B}, identity E, inverses A<->B, E<->E).
+# =====================================================================================
+
+fnd:groupModel a fnd:Group ;
+    rdfs:label "groupModel" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The two-sided-inverse witness model - the cyclic group Z/3 = {E,A,B} with identity E and inverses A<->B (A.B = B.A = E) and E<->E (E.E = E). SYN worked example. It carries fnd:hasIdentityElement fnd:elemE, the reified rows fnd:appGrAB / fnd:appGrBA / fnd:appGrEE, and the fnd:InversePairing claims fnd:invPairAB / fnd:invPairBA / fnd:invPairEE, so q_group_inverse / fnd:GroupInverseShape (each claimed inverse must two-sidedly undo the operation to the identity) hold non-vacuously. The probe of record changes fnd:appGrAB fnd:opResult from fnd:elemE to fnd:elemA (A.B = A != E), so the claimed inverse B no longer undoes A and the tooth bites - reusing SP2's genuine-inverse discipline (a retract that does not undo -> RED)." ;
+    fnd:hasIdentityElement fnd:elemE .
+
+fnd:appGrAB a fnd:BinaryOperationApplication ;
+    rdfs:label "appGrAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row A.B = E over fnd:groupModel (A times its inverse B is the identity). SYN. Changing its fnd:opResult to fnd:elemA is the probe of record for q_group_inverse (the inverse ceases to undo)." ;
+    fnd:opStructure fnd:groupModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemE .
+
+fnd:appGrBA a fnd:BinaryOperationApplication ;
+    rdfs:label "appGrBA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row B.A = E over fnd:groupModel (B times its inverse A is the identity - the other side of the two-sided undo). SYN." ;
+    fnd:opStructure fnd:groupModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemE .
+
+fnd:appGrEE a fnd:BinaryOperationApplication ;
+    rdfs:label "appGrEE" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row E.E = E over fnd:groupModel (the identity is its own inverse). SYN." ;
+    fnd:opStructure fnd:groupModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemE .
+
+fnd:invPairAB a fnd:InversePairing ;
+    rdfs:label "invPairAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The inverse pairing claiming B is the two-sided inverse of A in fnd:groupModel. SYN. q_group_inverse requires A.B = E and B.A = E (both hold via fnd:appGrAB / fnd:appGrBA); the probe of record breaks A.B so this pairing ceases to undo and the tooth bites." ;
+    fnd:pairingModel fnd:groupModel ; fnd:pairingElement fnd:elemA ; fnd:pairingInverse fnd:elemB .
+
+fnd:invPairBA a fnd:InversePairing ;
+    rdfs:label "invPairBA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The inverse pairing claiming A is the two-sided inverse of B in fnd:groupModel. SYN. q_group_inverse requires B.A = E and A.B = E (both hold)." ;
+    fnd:pairingModel fnd:groupModel ; fnd:pairingElement fnd:elemB ; fnd:pairingInverse fnd:elemA .
+
+fnd:invPairEE a fnd:InversePairing ;
+    rdfs:label "invPairEE" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The inverse pairing claiming E is its own two-sided inverse in fnd:groupModel. SYN. q_group_inverse requires E.E = E (holds via fnd:appGrEE)." ;
+    fnd:pairingModel fnd:groupModel ; fnd:pairingElement fnd:elemE ; fnd:pairingInverse fnd:elemE .
+
+
+# =====================================================================================
+# fnd:abelianModel — the abelian-commutativity witness (symmetric pair, distinct from commMonoidModel).
+# =====================================================================================
+
+fnd:abelianModel a fnd:AbelianGroup ;
+    rdfs:label "abelianModel" ;
+    fnd:authority fnd:SYN ;
+    fnd:hasIdentityElement fnd:elemE ;
+    fnd:hasGroupElement fnd:elemE , fnd:elemA , fnd:elemB ;
+    rdfs:comment "The abelian-group witness model - the full cyclic group Z/3 on {E,A,B} (E=0, A=1, B=2) with the symmetric pair A.B = B.A = E, two-sided identity E, and every element carrier-enumerated with a genuine two-sided inverse, scoped DISTINCT from fnd:commMonoidModel so a non-commutative 'abelian group' is caught on its own witness. SYN worked example. It carries the reified rows fnd:appAbAB (A.B=E), fnd:appAbBA (B.A=E), the self-sums fnd:appAbAA (A.A=B) / fnd:appAbBB (B.B=A) and the identity rows fnd:appAbEE/EA/AE/EB/BE (E the two-sided unit), so q_abelian_comm / fnd:AbelianCommShape hold non-vacuously. It closes the EXISTENCE-HALF class for the group family: it declares fnd:hasIdentityElement fnd:elemE (so the Monoid-identity-EXISTENCE tooth is satisfied - a fnd:Monoid/fnd:Group with NO identity -> RED), it ENUMERATES its carrier fnd:hasGroupElement E/A/B (so the Group-carrier-EXISTENCE tooth is satisfied - a fnd:Group that omits its carrier enumeration -> RED, inverse-completeness NOT opt-in), and every enumerated element carries a two-sided fnd:InversePairing (fnd:abInvE E<->E, fnd:abInvA A<->B, fnd:abInvB B<->A) so the Group inverse-COMPLETENESS clause (fnd:GroupInverseShape constraint B / q_group_inverse) bites genuinely. The probe of record changes fnd:appAbBA fnd:opResult from fnd:elemE to fnd:elemB (B.A = B while A.B = E), making the structure non-commutative so the tooth bites." .
+
+fnd:appAbAB a fnd:BinaryOperationApplication ;
+    rdfs:label "appAbAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row A.B = E over fnd:abelianModel. SYN. Together with fnd:appAbBA it exhibits the commutative pair of the abelian witness." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemE .
+
+fnd:appAbBA a fnd:BinaryOperationApplication ;
+    rdfs:label "appAbBA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row B.A = E over fnd:abelianModel. SYN. Changing its fnd:opResult to fnd:elemB is the probe of record for q_abelian_comm (a non-commutative pair in a structure claiming to be abelian)." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemE .
+
+# --- abelianModel identity rows (E neutral on Z/3 {E,A,B}) + two-sided inverse pairings, so the
+#     Monoid-identity-EXISTENCE, Group-carrier-EXISTENCE and Group-inverse-COMPLETENESS teeth are all
+#     satisfied genuinely (the self-sums fnd:appAbAA A.A=B / fnd:appAbBB B.B=A are added in the W1b/W2
+#     section below). Every added row is a correct Z/3 value, so associativity + commutativity hold.
+fnd:appAbEE a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appAbEE" ; rdfs:comment "The row E.E = E over fnd:abelianModel (the identity is idempotent; witnesses the E<->E inverse pairing). SYN." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemE .
+fnd:appAbEA a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appAbEA" ; rdfs:comment "The identity row E.A = A over fnd:abelianModel (left-unit law for A). SYN." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemA .
+fnd:appAbAE a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appAbAE" ; rdfs:comment "The identity row A.E = A over fnd:abelianModel (right-unit law for A). SYN." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemA .
+fnd:appAbEB a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appAbEB" ; rdfs:comment "The identity row E.B = B over fnd:abelianModel (left-unit law for B). SYN." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemB .
+fnd:appAbBE a fnd:BinaryOperationApplication ; fnd:authority fnd:SYN ;
+    rdfs:label "appAbBE" ; rdfs:comment "The identity row B.E = B over fnd:abelianModel (right-unit law for B). SYN." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemB .
+
+fnd:abInvE a fnd:InversePairing ; fnd:authority fnd:SYN ;
+    rdfs:label "abInvE" ; rdfs:comment "The inverse pairing E<->E in fnd:abelianModel: the identity is its own two-sided inverse (E.E=E via fnd:appAbEE). SYN. Read by fnd:GroupInverseShape (genuineness) and the completeness clause." ;
+    fnd:pairingModel fnd:abelianModel ; fnd:pairingElement fnd:elemE ; fnd:pairingInverse fnd:elemE .
+fnd:abInvA a fnd:InversePairing ; fnd:authority fnd:SYN ;
+    rdfs:label "abInvA" ; rdfs:comment "The inverse pairing A<->B in fnd:abelianModel: B is the two-sided inverse of A (A.B=E via fnd:appAbAB, B.A=E via fnd:appAbBA). SYN." ;
+    fnd:pairingModel fnd:abelianModel ; fnd:pairingElement fnd:elemA ; fnd:pairingInverse fnd:elemB .
+fnd:abInvB a fnd:InversePairing ; fnd:authority fnd:SYN ;
+    rdfs:label "abInvB" ; rdfs:comment "The inverse pairing B<->A in fnd:abelianModel: A is the two-sided inverse of B (B.A=E via fnd:appAbBA, A.B=E via fnd:appAbAB). SYN. Completes the universal inverse law over the enumerated carrier." ;
+    fnd:pairingModel fnd:abelianModel ; fnd:pairingElement fnd:elemB ; fnd:pairingInverse fnd:elemA .
+
+
+# =====================================================================================
+# fnd:quasigroupModel — the Latin-square-division witness (cyclic Z/3 table on {A,B,C}, 9 rows).
+#   * | A B C        A=0,B=1,C=2 under addition mod 3; each element appears once per row and per column.
+#   A | A B C
+#   B | B C A
+#   C | C A B
+# =====================================================================================
+
+fnd:quasigroupModel a fnd:Quasigroup ;
+    rdfs:label "quasigroupModel" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Latin-square-division witness model - the cyclic quasigroup Z/3 on {A,B,C} (A=0,B=1,C=2 under addition mod 3), whose full 9-row Cayley table is a Latin square (each element occurs exactly once per row and per column, so left and right division are unique). SYN worked example. It carries the nine reified rows fnd:appQgAA..fnd:appQgCC, so q_quasigroup_division / fnd:QuasigroupDivisionShape (no fixed left operand yields the same result for two distinct right operands, and no fixed right operand yields the same result for two distinct left operands) hold non-vacuously. The probe of record changes fnd:appQgAC fnd:opResult from fnd:elemC to fnd:elemB, so the A-row has A.B = B AND A.C = B (two right-divisors of B under A) - right division is no longer unique and the tooth bites." .
+
+fnd:appQgAA a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgAA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row A.A = A (0+0=0) over fnd:quasigroupModel. SYN. One cell of the Latin square." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemA .
+
+fnd:appQgAB a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row A.B = B (0+1=1) over fnd:quasigroupModel. SYN. One cell of the Latin square." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemB .
+
+fnd:appQgAC a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgAC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row A.C = C (0+2=2) over fnd:quasigroupModel. SYN. Changing its fnd:opResult to fnd:elemB is the probe of record for q_quasigroup_division (it duplicates the A-row result B, breaking right-division uniqueness)." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemC .
+
+fnd:appQgBA a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgBA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row B.A = B (1+0=1) over fnd:quasigroupModel. SYN. One cell of the Latin square." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemB .
+
+fnd:appQgBB a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgBB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row B.B = C (1+1=2) over fnd:quasigroupModel. SYN. One cell of the Latin square." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemC .
+
+fnd:appQgBC a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgBC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row B.C = A (1+2=0) over fnd:quasigroupModel. SYN. One cell of the Latin square." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemA .
+
+fnd:appQgCA a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgCA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row C.A = C (2+0=2) over fnd:quasigroupModel. SYN. One cell of the Latin square." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemC ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemC .
+
+fnd:appQgCB a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgCB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row C.B = A (2+1=0) over fnd:quasigroupModel. SYN. One cell of the Latin square." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemC ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemA .
+
+fnd:appQgCC a fnd:BinaryOperationApplication ;
+    rdfs:label "appQgCC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The Z/3 quasigroup row C.C = B (2+2=1) over fnd:quasigroupModel. SYN. One cell of the Latin square." ;
+    fnd:opStructure fnd:quasigroupModel ; fnd:opLeft fnd:elemC ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemB .
+
+
+# =====================================================================================
+# fnd:loopModel — the Loop-rung witness (L1 close): a GENUINE non-associative loop on {E,A,B,C,D}.
+#   * | E A B C D      Identity is E (row E and column E are the header: E.x=x, x.E=x for all x).
+#   E | E A B C D      The interior 4x4 makes the full 5x5 a LATIN SQUARE (each element once per row and
+#   A | A E C D B      per column, so left and right division are unique - it IS a quasigroup), AND it is
+#   B | B C D E A      NON-ASSOCIATIVE, so it is a genuine loop, not a group in disguise: e.g.
+#   C | C D A B E      (A.A).B = E.B = B  but  A.(A.B) = A.C = D  (B != D). Order 5 is the smallest order
+#   D | D B E A C      at which a non-associative loop exists (orders 1-4 force associativity => a group).
+# The 25 reified rows fnd:appLpEE..fnd:appLpDD carry the table; verified Latin square + two-sided identity
+# E + non-associative by an exhaustive check (scratch enumeration, standard finite universal algebra).
+# =====================================================================================
+
+fnd:loopModel a fnd:Loop ;
+    rdfs:label "loopModel" ;
+    fnd:authority fnd:SYN ;
+    fnd:hasIdentityElement fnd:elemE ;
+    rdfs:comment "The Loop-rung witness model (L1 close) - a GENUINE non-associative loop on the five-element carrier {E,A,B,C,D} with two-sided identity E, giving fnd:Loop parity with every other rung (a SYN worked-example witness + a biting law-tooth). SYN, cited standard universal algebra: quasigroup/loop are FULLY ABSENT from Helios (02_algebra_tower.md s1, grep zero), so this is a synthesised worked example, not a lift. Its Cayley table (op rows fnd:appLpEE..fnd:appLpDD) is a LATIN SQUARE (each of E,A,B,C,D occurs exactly once per row and per column, so left and right division are total and unique - it is genuinely a fnd:Quasigroup) AND carries a TWO-SIDED IDENTITY E (row E and column E reproduce the header: E.x=x and x.E=x for all x, so fnd:hasIdentityElement fnd:elemE is a real unit) AND is NON-ASSOCIATIVE, so it is a genuine loop rather than a group in disguise (a loop that is associative is a group): the division witnesses A.A=E, A.B=C, A.C=D, A.D=B (the A-row is a permutation, unique division) with the associativity failure (A.A).B = E.B = B while A.(A.B) = A.C = D (B != D). Order 5 is the smallest order admitting a non-associative loop (orders 1-4 force associativity). It fnd:hasIdentityElement fnd:elemE, so the two-sided-identity discipline reads it: the NEW per-rung tooth q_loop_identity / fnd:LoopIdentityShape requires every fnd:Loop to carry a two-sided identity (a fnd:Loop with none -> RED, closing the L1 hole where Loop was the only unwitnessed, untoothed rung), and the inherited Latin-square/division law is witnessed by q_quasigroup_division / fnd:QuasigroupDivisionShape generalised over the fnd:Quasigroup family (loopModel is a fnd:Quasigroup by subclass). The probe of record - a fnd:Loop that is a quasigroup with NO fnd:hasIdentityElement - flips fnd:LoopIdentityShape / q_loop_identity True->False while fnd:loopModel stays GREEN." .
+
+fnd:appLpEE a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpEE" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row E.E = E over fnd:loopModel (identity is idempotent; identity-row cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemE .
+fnd:appLpEA a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpEA" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row E.A = A over fnd:loopModel (left-unit law for A; identity row). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemA .
+fnd:appLpEB a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpEB" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row E.B = B over fnd:loopModel (left-unit law for B; identity row). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemB .
+fnd:appLpEC a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpEC" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row E.C = C over fnd:loopModel (left-unit law for C; identity row). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemC .
+fnd:appLpED a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpED" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row E.D = D over fnd:loopModel (left-unit law for D; identity row). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemE ; fnd:opRight fnd:elemD ; fnd:opResult fnd:elemD .
+fnd:appLpAE a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpAE" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row A.E = A over fnd:loopModel (right-unit law for A; identity column). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemA .
+fnd:appLpAA a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpAA" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row A.A = E over fnd:loopModel (A is its own inverse in this loop; interior Latin cell). SYN. Left factor of the non-associativity witness (A.A).B = E.B = B != D = A.(A.B)." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemE .
+fnd:appLpAB a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpAB" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row A.B = C over fnd:loopModel (interior Latin cell). SYN. Inner step of the non-associativity witness A.(A.B) = A.C = D." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemC .
+fnd:appLpAC a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpAC" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row A.C = D over fnd:loopModel (interior Latin cell). SYN. Outer step of the non-associativity witness A.(A.B) = A.C = D." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemD .
+fnd:appLpAD a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpAD" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row A.D = B over fnd:loopModel (interior Latin cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemD ; fnd:opResult fnd:elemB .
+fnd:appLpBE a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpBE" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row B.E = B over fnd:loopModel (right-unit law for B; identity column). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemB .
+fnd:appLpBA a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpBA" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row B.A = C over fnd:loopModel (interior Latin cell). SYN. Note B.A = A.B = C here, but the loop is still non-associative overall." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemC .
+fnd:appLpBB a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpBB" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row B.B = D over fnd:loopModel (interior Latin cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemD .
+fnd:appLpBC a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpBC" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row B.C = E over fnd:loopModel (interior Latin cell; B and C are inverse here). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemE .
+fnd:appLpBD a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpBD" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row B.D = A over fnd:loopModel (interior Latin cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemD ; fnd:opResult fnd:elemA .
+fnd:appLpCE a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpCE" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row C.E = C over fnd:loopModel (right-unit law for C; identity column). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemC ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemC .
+fnd:appLpCA a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpCA" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row C.A = D over fnd:loopModel (interior Latin cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemC ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemD .
+fnd:appLpCB a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpCB" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row C.B = A over fnd:loopModel (interior Latin cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemC ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemA .
+fnd:appLpCC a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpCC" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row C.C = B over fnd:loopModel (interior Latin cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemC ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemB .
+fnd:appLpCD a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpCD" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row C.D = E over fnd:loopModel (interior Latin cell; C and D are inverse here). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemC ; fnd:opRight fnd:elemD ; fnd:opResult fnd:elemE .
+fnd:appLpDE a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpDE" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row D.E = D over fnd:loopModel (right-unit law for D; identity column). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemD ; fnd:opRight fnd:elemE ; fnd:opResult fnd:elemD .
+fnd:appLpDA a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpDA" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row D.A = B over fnd:loopModel (interior Latin cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemD ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemB .
+fnd:appLpDB a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpDB" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row D.B = E over fnd:loopModel (interior Latin cell; D and B are inverse here). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemD ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemE .
+fnd:appLpDC a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpDC" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row D.C = A over fnd:loopModel (interior Latin cell). SYN." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemD ; fnd:opRight fnd:elemC ; fnd:opResult fnd:elemA .
+fnd:appLpDD a fnd:BinaryOperationApplication ;
+    rdfs:label "appLpDD" ; fnd:authority fnd:SYN ;
+    rdfs:comment "The loop row D.D = C over fnd:loopModel (interior Latin cell). SYN. Completes the order-5 Latin square." ;
+    fnd:opStructure fnd:loopModel ; fnd:opLeft fnd:elemD ; fnd:opRight fnd:elemD ; fnd:opResult fnd:elemC .
+
+
+# =====================================================================================
+# The Pillar-4 seam: Monoid = one-object category = End(X) = F(X,X) (LIFTED, helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex).
+# =====================================================================================
+
+fnd:CategoryObject a owl:Class ;
+    rdfs:label "CategoryObject" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "An object of a category - here the SOLE object X of a one-object category (fnd:OneObjectCategory) whose endomorphisms End(X) = Hom(X,X) form a monoid. DS - lifted from the corpus's 'monoid = one-object category' with End_C(X) and the endopath monoid M_X = Hom(X,X) (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:2,16-17,36-39; helios/srcy/papers/31_path_monoids/sections/01_thesis.tex:29-32). It is the domain and codomain of every endomorphism of the one-object category (fnd:endoDomain / fnd:endoCodomain), and the value of fnd:soleObject. The witness fnd:endoObjectX instantiates it as the object X whose endomorphism monoid is fnd:endoMonoidWitness (the Pillar-4 seam F(X,X) - Curry's functionality F applied to one type, forward to T7 fnd:Functionality)." .
+
+fnd:Endomorphism a owl:Class ;
+    rdfs:label "Endomorphism" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "An endomorphism of a category object - an arrow X -> X (equal domain and codomain), an element of the endomorphism monoid End(X) = Hom(X,X). DS - lifted from the corpus's End_C(X) with product = composition and unit = id_X (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:36-39; the endopath monoid M_X = Hom(X,X) under concatenation with the identity path as unit, helios/srcy/papers/31_path_monoids/sections/01_thesis.tex:29-32). The identity endomorphism id_X (the object's fnd:objectIdentityArrow) IS the monoid identity of End(X): this is the mathematical content of 'the monoid identity = id_X', the Pillar-4 seam q_monoid_is_endo checks (the monoid's fnd:hasIdentityElement must equal the one-object category's fnd:objectIdentityArrow, an endomorphism X -> X). The witness fnd:idEndoX instantiates it (and is also a fnd:AlgebraElement, since the carrier elements of End(X) ARE its endomorphisms). Curry's functionality F(X,X) = this endomorphism type (design s5; forward to T7 fnd:Functionality)." .
+
+fnd:OneObjectCategory a owl:Class ;
+    rdfs:label "OneObjectCategory" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "A one-object category - a category with a single object X, whose hom-set Hom(X,X) = End(X) of endomorphisms forms a monoid under composition with the identity arrow id_X as unit. DS - lifted from the corpus's explicit 'a monoid is a one-object category' (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:2,16-17, citing Joy of Cats 'a monoid as a one-object category at lines 1001-1014'; End_C(X) product = composition, unit = id_X, :36-39). It carries fnd:soleObject (the single object X) and fnd:objectIdentityArrow (the identity endomorphism id_X = the monoid identity). This is the Pillar-2/Pillar-4 SEAM: a fnd:Monoid recognized (via fnd:monoidAsCategory) as a one-object category is exactly the endomorphism monoid End(X) = F(X,X) (Curry's functionality F applied to one type). q_monoid_is_endo / fnd:MonoidIsEndoShape make the seam a graph fact: the monoid's identity element must EQUAL the category's object-identity arrow, an endomorphism X -> X; the probe of record repoints the monoid identity away from id_X and the tooth bites. The witness fnd:oneObjectCat instantiates it for fnd:endoMonoidWitness." .
+
+fnd:monoidAsCategory a owl:ObjectProperty ;
+    rdfs:domain fnd:Monoid ; rdfs:range fnd:OneObjectCategory ;
+    fnd:authority fnd:DS ;
+    rdfs:label "monoidAsCategory" ;
+    rdfs:comment "Relates a fnd:Monoid to the one-object category (fnd:OneObjectCategory) it IS - the corpus's 'monoid = one-object category' recognition (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:2,16-17). DS. It is the edge q_monoid_is_endo / fnd:MonoidIsEndoShape walk: for a monoid recognized as a one-object category, the monoid's fnd:hasIdentityElement must equal the category's fnd:objectIdentityArrow (id_X), an endomorphism X -> X - the Pillar-4 seam (End(X) = F(X,X)). Domain fnd:Monoid, range fnd:OneObjectCategory." .
+
+fnd:soleObject a owl:ObjectProperty ;
+    rdfs:domain fnd:OneObjectCategory ; rdfs:range fnd:CategoryObject ;
+    fnd:authority fnd:DS ;
+    rdfs:label "soleObject" ;
+    rdfs:comment "Relates a one-object category (fnd:OneObjectCategory) to its single object X (fnd:CategoryObject) - the object whose endomorphism monoid End(X) = Hom(X,X) the category realizes. DS (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:36-39). q_monoid_is_endo reads it as the domain/codomain the object-identity arrow must be an endomorphism of. Domain fnd:OneObjectCategory, range fnd:CategoryObject." .
+
+fnd:objectIdentityArrow a owl:ObjectProperty ;
+    rdfs:domain fnd:OneObjectCategory ; rdfs:range fnd:Endomorphism ;
+    fnd:authority fnd:DS ;
+    rdfs:label "objectIdentityArrow" ;
+    rdfs:comment "Relates a one-object category (fnd:OneObjectCategory) to the identity endomorphism id_X (fnd:Endomorphism) of its sole object - which IS the identity of the endomorphism monoid End(X) (unit = id_X, helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:36-39). DS. q_monoid_is_endo / fnd:MonoidIsEndoShape require the recognized monoid's fnd:hasIdentityElement to EQUAL this arrow (the monoid identity = id_X), and that this arrow be an endomorphism X -> X of fnd:soleObject; the probe of record makes the monoid identity differ from it so the tooth bites. Domain fnd:OneObjectCategory, range fnd:Endomorphism." .
+
+fnd:endoDomain a owl:ObjectProperty ;
+    rdfs:domain fnd:Endomorphism ; rdfs:range fnd:CategoryObject ;
+    fnd:authority fnd:DS ;
+    rdfs:label "endoDomain" ;
+    rdfs:comment "The domain object of an endomorphism (fnd:Endomorphism) X -> X. DS - the source coordinate of the endomorphism arrows of End_C(X) = Hom(X,X) whose composition is the monoid product (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:36-39). For a genuine endomorphism the domain equals the codomain (fnd:endoCodomain), both the one-object category's fnd:soleObject; q_monoid_is_endo checks the identity arrow is such an endomorphism of X. Domain fnd:Endomorphism, range fnd:CategoryObject." .
+
+fnd:endoCodomain a owl:ObjectProperty ;
+    rdfs:domain fnd:Endomorphism ; rdfs:range fnd:CategoryObject ;
+    fnd:authority fnd:DS ;
+    rdfs:label "endoCodomain" ;
+    rdfs:comment "The codomain object of an endomorphism (fnd:Endomorphism) X -> X. DS - the target coordinate of the endomorphism arrows of End_C(X) = Hom(X,X) whose composition is the monoid product (helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:36-39). Equals the domain (fnd:endoDomain) for a genuine endomorphism, the one-object category's fnd:soleObject; q_monoid_is_endo checks the identity arrow is an endomorphism X -> X of the same object. Domain fnd:Endomorphism, range fnd:CategoryObject." .
+
+fnd:endoObjectX a fnd:CategoryObject ;
+    rdfs:label "endoObjectX" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness object X whose endomorphism monoid End(X) = Hom(X,X) is fnd:endoMonoidWitness - the sole object of the one-object category fnd:oneObjectCat. SYN worked witness (a corpus-agnostic finite example, tagged SYN like every other model witness on the floor - fnd:monoidModel, fnd:metricSpaceWitness - even though the End_C(X) / M_X = Hom(X,X) discipline it instantiates is the lifted class fnd:CategoryObject, helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:36-39; helios/srcy/papers/31_path_monoids/sections/01_thesis.tex:29-32)." .
+
+fnd:idEndoX a fnd:Endomorphism , fnd:AlgebraElement ;
+    rdfs:label "idEndoX" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The identity endomorphism id_X of fnd:endoObjectX - the unit of the endomorphism monoid End(X), and hence the monoid identity of fnd:endoMonoidWitness. SYN worked witness (a corpus-agnostic example instantiating the lifted End_C(X) unit = id_X, helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:36-39; tagged SYN like every other model witness). It is BOTH a fnd:Endomorphism (an arrow X -> X, fnd:endoDomain / fnd:endoCodomain fnd:endoObjectX) AND a fnd:AlgebraElement (the carrier elements of End(X) ARE its endomorphisms). It is the value of fnd:oneObjectCat fnd:objectIdentityArrow and of fnd:endoMonoidWitness fnd:hasIdentityElement, so q_monoid_is_endo sees the monoid identity coincide with id_X; the probe of record repoints fnd:endoMonoidWitness fnd:hasIdentityElement to fnd:elemA (not id_X) so the coincidence fails and the tooth bites." ;
+    fnd:endoDomain fnd:endoObjectX ;
+    fnd:endoCodomain fnd:endoObjectX .
+
+fnd:oneObjectCat a fnd:OneObjectCategory ;
+    rdfs:label "oneObjectCat" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness one-object category whose sole object is fnd:endoObjectX and whose object-identity arrow is fnd:idEndoX (id_X) - the category realizing End(X) = Hom(X,X) as the monoid fnd:endoMonoidWitness. SYN worked witness (a corpus-agnostic example instantiating the lifted 'monoid = one-object category', helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:2,16-17; tagged SYN like every other model witness). It is the value of fnd:endoMonoidWitness fnd:monoidAsCategory and the anchor of q_monoid_is_endo." ;
+    fnd:soleObject fnd:endoObjectX ;
+    fnd:objectIdentityArrow fnd:idEndoX .
+
+fnd:endoMonoidWitness a fnd:Monoid ;
+    rdfs:label "endoMonoidWitness" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The endomorphism-monoid witness End(X) = Hom(X,X) - the fnd:Monoid instance realizing the Pillar-2/Pillar-4 seam (a monoid IS a one-object category IS F(X,X)). SYN worked witness (a corpus-agnostic example instantiating the lifted End_C(X) / M_X, helios/srcy/papers/21_ologs_and_typed_english/chapters/05_yoneda_for_typed_english/sections/04_monoid_monad_yoneda_binders.tex:36-39; helios/srcy/papers/31_path_monoids/sections/01_thesis.tex:29-32; tagged SYN like fnd:monoidModel and every other model witness, though its class fnd:Monoid is the DS rung). It fnd:monoidAsCategory fnd:oneObjectCat and its fnd:hasIdentityElement is fnd:idEndoX (the identity endomorphism id_X = the object-identity arrow), so q_monoid_is_endo / fnd:MonoidIsEndoShape confirm the monoid identity coincides with id_X and is a genuine endomorphism X -> X. Curry's functionality F(X,X) = this endomorphism monoid (design s5; the seam T7 fnd:Functionality consumes). The probe of record repoints its fnd:hasIdentityElement to fnd:elemA so the identity no longer equals id_X and the tooth bites." ;
+    fnd:monoidAsCategory fnd:oneObjectCat ;
+    fnd:hasIdentityElement fnd:idEndoX .
+
+
+# =====================================================================================
+# W1b/W2 hardening additions — group element enumeration + the abelian-group vector-addition
+# rows the vector-space scalar-distributivity axioms (6,7) read. All SYN worked examples.
+# =====================================================================================
+
+# --- W1b: enumerate the carrier of fnd:groupModel so the Group inverse-COMPLETENESS tooth
+# (fnd:GroupInverseShape constraint B / q_group_inverse's completeness clause) is non-vacuous:
+# every fnd:hasGroupElement of a fnd:Group must carry a genuine two-sided fnd:InversePairing.
+fnd:hasGroupElement a owl:ObjectProperty ;
+    rdfs:domain fnd:AlgebraicStructure ; rdfs:range fnd:AlgebraElement ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasGroupElement" ;
+    rdfs:comment "Enumerates the carrier elements of a one-operation group witness (a fnd:Group instance) - the membership edge the Group inverse-COMPLETENESS tooth quantifies over ('every element has a two-sided inverse', not merely 'every declared inverse pairing is genuine'). SYN, cited standard group theory: the group axiom is UNIVERSAL over the whole carrier, so without an element enumeration a fnd:Group could carry a non-invertible element and stay GREEN (the W1b hole). It is the one-operation analogue of fnd:hasRingElement / fnd:hasElement. fnd:GroupInverseShape constraint B / q_group_inverse's completeness clause fires when a fnd:hasGroupElement of a fnd:Group carries NO fnd:InversePairing with it as fnd:pairingElement (a non-invertible element). Domain fnd:AlgebraicStructure (every model is an instance of a one-operation rung), range fnd:AlgebraElement; read by edge existence, defang-proof." .
+
+fnd:groupModel fnd:hasGroupElement fnd:elemE , fnd:elemA , fnd:elemB .
+
+# --- W2: the abelian additive group of fnd:vectorSpaceModel is fnd:abelianModel (V,+) = Z/3 on {E,A,B}
+# (E=0,A=1,B=2). The commutativity pair A+B=B+A=E is already reified (fnd:appAbAB/appAbBA); these two
+# SELF-SUM rows A+A=B and B+B=A complete the (V,+) table the vector-space scalar-distributivity axioms
+# 6 (a(u+v)=au+av) and 7 ((a+b)v=av+bv) read for the sum-of-vectors legs. Both are self-pairs (x=y) so
+# they add no non-commutative pair and fnd:AbelianCommShape stays GREEN.
+fnd:appAbAA a fnd:BinaryOperationApplication ;
+    rdfs:label "appAbAA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row A.A = B over fnd:abelianModel (Z/3: 1+1=2). SYN worked example. A self-sum cell of the (V,+) additive-group table of fnd:vectorSpaceModel; read by vector-space axioms 6/7 (fnd:VectorSpaceAxiomsShape) as the u+v or av+bv sum-of-vectors leg. Being a self-pair it introduces no non-commutative pair, so fnd:AbelianCommShape stays GREEN." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemA ; fnd:opRight fnd:elemA ; fnd:opResult fnd:elemB .
+
+fnd:appAbBB a fnd:BinaryOperationApplication ;
+    rdfs:label "appAbBB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The row B.B = A over fnd:abelianModel (Z/3: 2+2=4=1). SYN worked example. A self-sum cell of the (V,+) additive-group table of fnd:vectorSpaceModel; read by vector-space axiom 6 (fnd:VectorSpaceAxiomsShape) as the au+av sum-of-vectors leg (B+B for the witness a=2,u=v=A). Being a self-pair it introduces no non-commutative pair, so fnd:AbelianCommShape stays GREEN. Repointing its fnd:opResult from fnd:elemA to fnd:elemE is the probe of record for the axiom-6 clause (a(u+v) != au+av)." ;
+    fnd:opStructure fnd:abelianModel ; fnd:opLeft fnd:elemB ; fnd:opRight fnd:elemB ; fnd:opResult fnd:elemA .
