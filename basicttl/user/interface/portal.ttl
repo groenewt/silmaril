@@ -1,0 +1,2281 @@
+@prefix geometry: <http://www.opengis.net/ont/geosparql#> .
+@prefix interface: <urn:silmaril:user:interface:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix portal: <urn:silmaril:user:interface:portal:> .
+@prefix projection: <urn:silmaril:user:interface:projection:> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+portal:ArchitecturePage a portal:Artifact ;
+    portal:content """---
+permalink: /architecture/
+layout: default
+title: "Architecture | Silmaril"
+description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the typed morphism families (provenance and ontology pipelines) that realize it."
+---
+
+<header class="page-hero">
+    <p class="hero-eyebrow">The Unary Byte-Frame Law</p>
+    <h1>Architecture</h1>
+    <p class="hero-subtitle">
+        One law governs every callable in this repository: one explicit input, one
+        explicit physical frame result. The tooling that signs, verifies, and
+        consolidates is built as small typed arrows composed by <code>make</code> —
+        and where the implementation falls short of the law, the gap is recorded in
+        red, never papered over.
+    </p>
+</header>
+
+{% include build-status.html %}
+
+<section id="law" class="section page-section">
+    <div class="section-container">
+        <p class="section-eyebrow">The law in brief</p>
+        <h2>One Input, One Frame</h2>
+
+        <div class="law-display">T &rarr; Frame(output: X, error|effect: Y)</div>
+
+        <p>
+            Every exposed callable — independent of language, file type, path, or
+            generated status — is inventoried as a typed arrow with one explicit input
+            and one explicit physical frame result. The frame is a typed product, not a
+            tuple, <code>Either</code>, <code>Try</code>, or implicit exception: input,
+            output, and error-or-effect are separately navigable coordinates.
+        </p>
+        <ul class="doc-links">
+            <li><strong>Active-red honesty.</strong> The law's status is
+                <em>active red migration</em>: it is specified in full while the enforcement
+                implementation does not yet satisfy the law it enforces. Provisional and gap
+                rows are recorded over pretense — a bounded census cannot be green while a
+                shortcut remains.</li>
+            <li><strong>Full lexical identity.</strong> No abbreviation, acronym, or fused
+                expansion is an internal coordinate. Internally it is
+                <code>shapes/constraint/language</code>, <code>query/protocol/language</code>,
+                <code>resource/description/framework</code> — spellings like
+                <code>SHACL</code>, <code>SPARQL</code>, <code>gpg</code> survive only as
+                immutable external evidence on the far side of a registered bridge.</li>
+            <li><strong>Bridges, registered.</strong> Anything whose protocol cannot be a
+                lawful unary callable — git hooks, CI workflow steps — is a registered
+                external bridge: it declares its findings in a header and delegates all
+                policy to the typed tree.</li>
+        </ul>
+        <p>
+            The full law — semantic ancestry, build bootstrap boundary, normative boundary,
+            explicit binding and observation, sealed self-hosting closure — is the
+            authoritative document
+            docs/unary-byte-frame-law.md (embedded below).
+        </p>
+    </div>
+</section>
+
+<section id="typed-tree" class="section section-alt page-section">
+    <div class="section-container">
+        <p class="section-eyebrow">The Python realization</p>
+        <h2>Leaves, Gates, Constants, Ledgers</h2>
+        <p>
+            The executable tree rooted at <code>scripts/python/pylib</code> admits exactly
+            three leaf filenames, each carrying one public symbol:
+        </p>
+        <div class="table-scroll">
+            <table class="doc-table">
+                <thead>
+                    <tr><th>Leaf</th><th>Symbol</th><th>Role</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>value.py</code></td>
+                        <td><code>VALUE</code></td>
+                        <td>A constant leaf: one byte string or command tuple under
+                            <code>config/constants/&hellip;</code>. Identities are URNs of the form
+                            <code>urn:silmaril:&lt;colon-path&gt;:v1</code>.</td>
+                    </tr>
+                    <tr>
+                        <td><code>library.py</code></td>
+                        <td><code>DEPENDENCY</code></td>
+                        <td>A gate leaf: the only place an external import may occur
+                            (<code>import X as DEPENDENCY</code>) under
+                            <code>config/gate/external/&hellip;</code>. Explicit spelling elsewhere is
+                            not admission.</td>
+                    </tr>
+                    <tr>
+                        <td><code>process.py</code></td>
+                        <td><code>MAIN</code></td>
+                        <td>An arrow leaf: exactly <em>one semantic application</em> — one
+                            subprocess run of a command tuple, or one gated library call chain
+                            reading stdin bytes and writing stdout bytes — ending
+                            <code>raise SystemExit(MAIN())</code>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="doc-links">
+            <li><strong>The make envelope.</strong> Every target guards
+                <code>SILMARIL_PYTHON</code> (absent &rarr; exit 64), runs with
+                <code>PYTHONDONTWRITEBYTECODE=1</code> and <code>PYTHONPATH=src</code>, writes
+                stdout to <code>$@.pending</code>, stderr to <code>$@.stderr</code>, the exit
+                status to <code>$@.status</code>, and promotes the artifact with an atomic
+                <code>mv</code> only on success. Bytes in, bytes out, evidence on disk.</li>
+            <li><strong>The ledgers.</strong> Every <code>process.py</code> owns a row in a
+                committed process ledger (<code>tests/fixtures/*_process_ledger.csv</code>)
+                declaring, among eleven columns, its
+                <code>semantic_application_count&nbsp;=&nbsp;1</code>. The runtime test suite is the
+                enforcement oracle: it walks the tree and rejects loops, <code>try</code>/
+                <code>except</code>, prints, multiple symbols, and unregistered imports.</li>
+            <li><strong>The gates in one place.</strong> Four composite targets gate the whole
+                system, and CI runs them all:</li>
+        </ul>
+        <pre class="command-block">export SILMARIL_PYTHON=$(command -v python3)
+make -C scripts/python/pylib morphism-provenance-trust-manifest-check
+make -C scripts/python/pylib morphism-provenance-commit-policy-default
+make -C scripts/python/pylib morphism-ontology-consolidation-check
+make -C scripts/python/pylib morphism-ontology-validation</pre>
+    </div>
+</section>
+
+<section id="morphism-map" class="section page-section">
+    <div class="section-container">
+        <p class="section-eyebrow">The morphism family map</p>
+        <h2>Two Pipelines</h2>
+        <p>
+            The families live under
+            <code>silmaril/sparky/morphism/&hellip;</code> with mirrored constants and gates.
+            Each step below is one <code>process.py</code> — one arrow, one semantic
+            application — composed by <code>make</code>.
+        </p>
+
+        <div class="pipeline-grid">
+            <div class="pipeline-card">
+                <h4>provenance / trust</h4>
+                <ol class="pipeline-steps">
+                    <li><code>trust/manifest/extraction</code> — fingerprints, policy classes,
+                        key files, identities out of the ontology turtle</li>
+                    <li><code>trust/manifest/render</code> — the manifest document</li>
+                    <li>drift gate &mdash; byte-compare against the committed
+                        <code>keys/trust-manifest.txt</code></li>
+                </ol>
+            </div>
+
+            <div class="pipeline-card">
+                <h4>provenance / commit</h4>
+                <ol class="pipeline-steps">
+                    <li><code>commit/keyring/construction</code> — ephemeral keyring from committed public keys</li>
+                    <li><code>commit/observation/header</code> and
+                        <code>commit/observation/verification</code> — raw commit headers and
+                        <code>gpg</code> verification evidence</li>
+                    <li><code>commit/classification/*</code> — <code>signature/type</code>, then
+                        <code>good</code>, <code>attested</code>, <code>secure/shell</code>,
+                        <code>unsigned</code>, <code>unknown</code>, <code>bad/signature</code></li>
+                    <li><code>commit/record/merge</code> — one classified record per commit</li>
+                    <li><code>commit/policy/{default, report, strict}</code> — the exit-status gate</li>
+                </ol>
+                <p class="pipeline-note">See <a href="{{ '/provenance/' | relative_url }}">Provenance</a>
+                    for what the classes mean and how the server bridge uses them.</p>
+            </div>
+
+            <div class="pipeline-card">
+                <h4>ontology / consolidation</h4>
+                <ol class="pipeline-steps">
+                    <li><code>consolidation/source/discovery</code> — enumerate <code>basicttl/</code></li>
+                    <li><code>consolidation/document/normalization</code> — per-document cleanup
+                        (illegal local names percent-encoded)</li>
+                    <li><code>consolidation/namespace/union/projection</code> — one namespace union</li>
+                    <li><code>consolidation/{corpus, entity, statement}/tally</code> — census counts</li>
+                    <li>five renders — <code>consolidated/render</code>,
+                        <code>shapes/constraint/language/document/render</code>,
+                        <code>query/protocol/language/document/emission</code>,
+                        <code>geographic/query/protocol/language/document/emission</code>,
+                        <code>manifest/render</code></li>
+                    <li>sync gate &mdash; the five artifacts must byte-match
+                        <code>ontology/</code>; regeneration is the documented copy in
+                        ontology/README.md (embedded below)</li>
+                </ol>
+            </div>
+
+            <div class="pipeline-card">
+                <h4>ontology / validation</h4>
+                <ol class="pipeline-steps">
+                    <li><code>document/parse</code> — the consolidated graph parses</li>
+                    <li><code>shapes/conformance</code> — shapes-constraint-language conformance
+                        over the consolidated graph</li>
+                    <li><code>queries/parse</code> — the query library parses</li>
+                    <li><code>queries/execution</code> — the executable queries run and return rows</li>
+                </ol>
+                <p class="pipeline-note">External libraries enter only through gates:
+                    <code>resource_description_framework_library</code> and
+                    <code>shapes_constraint_language_library</code>.</p>
+            </div>
+        </div>
+
+        <h3>Further reading</h3>
+        <ul class="doc-links">
+            <li>The Universal Unary Byte-Frame Law (embedded below) — the authoritative law, amendments, and red receipts.</li>
+            <li>Der Pr&auml;riehund und die Demokratie der Kategorien (embedded below) — why the repository prefers a provisional frame to a false taxon.</li>
+            <li><a href="{{ '/provenance/' | relative_url }}">Provenance</a> — the trust system this machinery enforces.</li>
+            <li><a href="{{ '/folklore/' | relative_url }}">Folklore</a> — the same architecture, as story and as ontology.</li>
+        </ul>
+    </div>
+</section>
+
+{% include documentation.html source="docs/praeriehund-demokratie-der-kategorien.md" %}
+
+{% include documentation.html source="docs/unary-byte-frame-law.md" %}
+
+{% include documentation.html source="ontology/README.md" %}
+""" ;
+    portal:path "docs/architecture.html" .
+
+portal:Artifacts portal:query """PREFIX portal: <urn:silmaril:user:interface:portal:>
+SELECT ?path ?root ?content WHERE { ?artifact a portal:Artifact ; portal:path ?path . OPTIONAL { ?artifact portal:root ?root } OPTIONAL { ?artifact portal:content ?content } } ORDER BY ?path""" .
+
+portal:BrowserBehavior a portal:Artifact,
+        portal:BrowserModule ;
+    portal:content """/* Browser mechanics for ontology-owned presentation and repository observations. */
+(() => {
+  'use strict';
+  const base = document.body.dataset.basePath || '';
+  const local = path => base + path;
+  const make = (tag, text, attributes = {}) => {
+    const node = document.createElement(tag);
+    if (text !== undefined) node.textContent = text;
+    Object.entries(attributes).forEach(([name, value]) => node.setAttribute(name, value));
+    return node;
+  };
+  const button = (text, action) => {
+    const node = make('button', text, {type: 'button'});
+    node.addEventListener('click', action);
+    return node;
+  };
+  const unfold = target => {
+    for (let node = target; node; node = node.parentElement) if (node.tagName === 'DETAILS') node.open = true;
+  };
+  const revealHash = () => {
+    if (!location.hash) return;
+    let identifier;
+    try { identifier = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const target = document.getElementById(identifier);
+    if (target) { unfold(target); target.scrollIntoView({block: 'start'}); }
+  };
+  window.addEventListener('hashchange', revealHash);
+
+  // Closed shelves do not fetch frame documents until a reader opens them.
+  const shelves = [...document.querySelectorAll('.embedded-document')];
+  shelves.forEach(shelf => shelf.addEventListener('toggle', () => {
+    const frame = shelf.querySelector('iframe[data-src]');
+    if (shelf.open && frame && !frame.hasAttribute('src')) frame.src = frame.dataset.src;
+  }));
+  document.querySelectorAll('[data-shelf]').forEach(control => control.addEventListener('click', () => shelves.filter(shelf => !shelf.hidden).forEach(shelf => { shelf.open = control.dataset.shelf === 'open'; })));
+  const documentSearch = document.getElementById('document-search');
+  const filterDocuments = () => {
+    const text = (documentSearch?.value || '').toLowerCase();
+    shelves.forEach(shelf => { shelf.hidden = !shelf.textContent.toLowerCase().includes(text); });
+    const count = document.getElementById('document-count');
+    if (count) count.textContent = `${shelves.filter(shelf => !shelf.hidden).length} / ${shelves.length}`;
+  };
+  documentSearch?.addEventListener('input', filterDocuments);
+  filterDocuments();
+
+  // Native disclosure elements preserve keyboard operation and heading targets.
+  const documentContent = document.getElementById('document-content');
+  if (documentContent) {
+    const contents = document.getElementById('document-toc');
+    const used = new Set();
+    documentContent.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((heading, index) => {
+      let identifier = heading.id || heading.textContent.trim().toLowerCase().replace(/[^\\p{L}\\p{N}]+/gu, '-').replace(/^-|-$/g, '') || `section-${index}`;
+      if (used.has(identifier)) identifier += `-${index}`;
+      used.add(identifier); heading.id = identifier;
+      const item = make('li'); item.dataset.level = heading.tagName;
+      item.append(make('a', heading.textContent, {href: '#' + encodeURIComponent(identifier)})); contents.append(item);
+    });
+    [...documentContent.querySelectorAll(':scope > h2')].forEach(heading => {
+      const disclosure = make('details', undefined, {class: 'document-chapter'}); disclosure.open = true;
+      const summary = make('summary'); heading.before(disclosure); summary.append(heading); disclosure.append(summary);
+      while (disclosure.nextSibling && !(disclosure.nextSibling.nodeType === 1 && /^H[12]$/.test(disclosure.nextSibling.tagName))) disclosure.append(disclosure.nextSibling);
+    });
+    document.querySelectorAll('[data-fold]').forEach(control => control.addEventListener('click', () => documentContent.querySelectorAll('details').forEach(section => { section.open = control.dataset.fold === 'open'; })));
+    // Keep links between repository Markdown documents inside the reading surface.
+    fetch(local('/assets/data/documents.json')).then(response => response.json()).then(documents => {
+      const paths = new Map(documents.map(item => [item.source, item.identity]));
+      documentContent.querySelectorAll('a[href]').forEach(anchor => {
+        const href = anchor.getAttribute('href');
+        if (!href || /^(#|https?:|mailto:)/.test(href)) return;
+        const resolved = new URL(href, 'https://repository.invalid/' + document.body.dataset.source);
+        const source = decodeURIComponent(resolved.pathname.slice(1));
+        if (paths.has(source)) anchor.href = local('/documents/' + paths.get(source) + '/') + resolved.hash;
+        else if (source.startsWith('basicttl/') && source.endsWith('.ttl')) { anchor.href = local('/explore/?file=') + encodeURIComponent(source); anchor.target = '_top'; }
+      });
+    }).catch(() => { documentContent.dataset.links = 'unavailable'; });
+  }
+
+  // Math is rendered locally; text alternatives remain in KaTeX's MathML output.
+  if (window.katex) {
+    document.querySelectorAll('[data-mathematics], script[type^="math/tex"]').forEach(source => {
+      const target = source.tagName === 'SCRIPT' ? make('span', undefined, {class: 'mathematical-expression'}) : source;
+      const expression = source.textContent;
+      if (target !== source) source.replaceWith(target);
+      window.katex.render(expression, target, {displayMode: source.dataset.mathematics === 'display' || (source.type || '').includes('display'), throwOnError: false, trust: false, output: 'htmlAndMathml'});
+    });
+    if (window.renderMathInElement) window.renderMathInElement(document.body, {throwOnError: false, trust: false, delimiters: [{left:'$$',right:'$$',display:true},{left:'\\\\[',right:'\\\\]',display:true},{left:'\\\\(',right:'\\\\)',display:false}]});
+  }
+  revealHash();
+
+  const workbench = document.getElementById('ontology-workbench');
+  if (!workbench) return;
+  const status = document.getElementById('catalog-status');
+  const navigation = document.getElementById('ontology-tree');
+  const inspector = document.getElementById('ontology-inspector');
+  const search = document.getElementById('ontology-search');
+  const kind = document.getElementById('ontology-kind');
+  let catalog, labels, files, entities, sequence = 0;
+  const cache = new Map();
+  const short = value => value.split(/[#/:]/).filter(Boolean).pop() || value;
+  const read = async url => { const response = await fetch(url); if (!response.ok) throw new Error(response.status + ' ' + url); return response.json(); };
+  const fileData = key => {
+    if (!cache.has(key)) cache.set(key, read(local('/assets/data/ontology/' + key + '.json')).catch(error => { cache.delete(key); throw error; }));
+    return cache.get(key);
+  };
+  const disclosure = (title, content, open = false) => { const node = make('details', undefined, {class: 'inspector-panel'}); node.open = open; node.append(make('summary', title), content); return node; };
+  const fail = error => { inspector.replaceChildren(make('h2', labels.error), make('p', error.message)); };
+  const termControl = value => {
+    if (value.kind === 'literal') {
+      const node = make('span', value.value, {class: 'literal-value'});
+      if (value.language || value.datatype) node.append(make('small', value.language ? '@' + value.language : '^^' + value.datatype));
+      return node;
+    }
+    const node = button(entities.get(value.value)?.label || short(value.value), () => inspectEntity(value.value));
+    node.className = 'term-link'; node.title = value.value; return node;
+  };
+  const tripleTable = triples => {
+    const wrapper = make('div', undefined, {class:'statement-list'});
+    let limit = 0;
+    const more = button(labels.more, append);
+    function append() {
+      const next = triples.slice(limit, limit + 100); limit += next.length;
+      next.forEach(triple => { const row = make('div', undefined, {class:'statement'}); triple.forEach(term => { const cell = make('div'); cell.append(termControl(term)); row.append(cell); }); wrapper.insertBefore(row, more); });
+      more.hidden = limit >= triples.length;
+    }
+    wrapper.append(more); append(); return wrapper;
+  };
+  const sourcePanel = data => {
+    const box = make('div');
+    if (data.context.length) box.append(make('p', labels.context), make('pre', data.context.map(([prefix, namespace]) => prefix + ': ' + namespace).join('\\n')));
+    if (data.error) box.append(make('p', labels.parse, {class:'parse-error'}), make('pre', data.error));
+    box.append(make('pre', data.source, {class:'turtle-source'}));
+    return disclosure(labels.source + ' · ' + data.path, box, Boolean(data.error));
+  };
+  const updateAddress = selection => {
+    const url = new URL(location); url.search = ''; Object.entries(selection).forEach(([key,value]) => url.searchParams.set(key,value)); history.pushState(selection,'',url);
+  };
+  async function inspectFile(key, address = true) {
+    const ticket = ++sequence;
+    try {
+      const data = await fileData(key); if (ticket !== sequence) return;
+      if (address) updateAddress({file:data.path});
+      inspector.replaceChildren(make('h2', data.path), make('p', `${data.triples.length} ${labels.triples.toLowerCase()}`), make('p', data.digest, {class:'source-digest'}));
+      inspector.append(disclosure(labels.triples, tripleTable(data.triples), true), sourcePanel(data));
+      inspector.dataset.selection = data.path;
+    } catch (error) { if(ticket === sequence) fail(error); }
+  }
+  function relationshipList(title, identifiers) {
+    const list = make('ul');
+    identifiers.forEach(identifier => { const item = make('li'); item.append(termControl({kind:'iri',value:identifier})); list.append(item); });
+    if (!identifiers.length) list.append(make('li',labels.none));
+    return disclosure(title, list, true);
+  }
+  function neighborhood(entry, children) {
+    const namespace = 'http://www.w3.org/2000/svg';
+    const vector = (tag, attributes, text) => { const node = document.createElementNS(namespace,tag); Object.entries(attributes).forEach(([key,value]) => node.setAttribute(key,value)); if(text) node.textContent=text; return node; };
+    const diagram = vector('svg',{viewBox:'0 0 620 220',role:'img','aria-label':labels.diagram,class:'neighborhood-diagram'});
+    const rows = [entry.parents.slice(0,3),[entry.iri],children.slice(0,3)];
+    rows.forEach((identifiers,row) => identifiers.forEach((identifier,index) => {
+      const horizontal = (index+1)*620/(identifiers.length+1), vertical = 35+row*75;
+      if(row!==1) diagram.append(vector('line',{x1:horizontal,y1:vertical,x2:310,y2:110,stroke:'#528267','stroke-width':'2'}));
+      diagram.append(vector('circle',{cx:horizontal,cy:vertical,r:'9',fill:'#205943'}));
+      const title=entities.get(identifier)?.label||short(identifier);
+      const text=vector('text',{x:horizontal,y:vertical+24,'text-anchor':'middle',fill:'#17372b'},title.length>27?title.slice(0,24)+'…':title);diagram.append(text);
+    }));
+    return diagram;
+  }
+  async function inspectEntity(identifier, address = true) {
+    const ticket = ++sequence;
+    try {
+      const entry = entities.get(identifier);
+      if(address) updateAddress({entity:identifier});
+      inspector.replaceChildren(make('h2',entry?.label||short(identifier)),make('code',identifier,{class:'entity-identity'}));
+      inspector.dataset.selection=identifier;
+      if(!entry){inspector.append(make('p',labels.unindexed));return;}
+      const sources = await Promise.all(entry.files.map(fileData)); if(ticket!==sequence)return;
+      const children = catalog.entities.filter(value=>value.parents.includes(identifier)).map(value=>value.iri);
+      const copy=button(labels.copy,async()=>{try{await navigator.clipboard.writeText(identifier);copy.textContent=labels.copied;}catch{copy.textContent=identifier;}}); inspector.append(copy);
+      if(entry.kind==='class') inspector.append(neighborhood(entry,children),relationshipList(labels.parents,entry.parents),relationshipList(labels.children,children));
+      inspector.append(relationshipList(labels.types,entry.types));
+      sources.forEach(data=>{
+        const section=make('section'); section.append(make('h3',data.path),disclosure(labels.outgoing,tripleTable(data.triples.filter(row=>row[0].value===identifier)),true),disclosure(labels.incoming,tripleTable(data.triples.filter(row=>row[2].kind!=='literal'&&row[2].value===identifier))),sourcePanel(data));inspector.append(section);
+      });
+    } catch(error){if(ticket===sequence)fail(error);}
+  }
+  const trie = {directories:new Map(),files:[]};
+  function directoryContent(branch) {
+    const list=make('ul');
+    [...branch.directories.entries()].sort(([a],[b])=>a.localeCompare(b)).forEach(([name,child])=>{
+      const item=make('li'),folder=make('details'),summary=make('summary',name);folder.append(summary);
+      folder.addEventListener('toggle',()=>{if(folder.open&&!folder.dataset.loaded){folder.dataset.loaded='true';folder.append(directoryContent(child));}});
+      item.append(folder);list.append(item);
+    });
+    branch.files.forEach(file=>{const item=make('li'),control=button(file.path.split('/').pop()+(file.error?' ⚠':''),()=>inspectFile(file.key));control.title=file.path;item.append(control);list.append(item);});
+    return list;
+  }
+  function results() {
+    const needle=search.value.toLowerCase().trim();navigation.replaceChildren();
+    if(kind.value==='files'&&!needle){navigation.append(directoryContent(trie));return;}
+    const matches=kind.value==='files'?catalog.files.filter(file=>file.path.toLowerCase().includes(needle)):catalog.entities.filter(entry=>entry.kind===kind.value&&(entry.label.toLowerCase().includes(needle)||entry.iri.toLowerCase().includes(needle)));
+    navigation.append(make('p',String(matches.length),{role:'status'}));
+    let offset=0;const more=button(labels.more,append);navigation.append(more);
+    function append(){matches.slice(offset,offset+100).forEach(entry=>{const control=button(entry.path||entry.label,()=>entry.path?inspectFile(entry.key):inspectEntity(entry.iri));control.className='explorer-result';control.title=entry.path||entry.iri;navigation.insertBefore(control,more);});offset+=100;more.hidden=offset>=matches.length;}
+    if(matches.length)append();else navigation.prepend(make('p',labels.empty));
+  }
+  function selectionFromAddress() {
+    const parameters=new URLSearchParams(location.search);
+    if(parameters.has('entity'))inspectEntity(parameters.get('entity'),false);
+    else if(parameters.has('file')){const entry=catalog.files.find(file=>file.path===parameters.get('file'));if(entry)inspectFile(entry.key,false);else inspector.replaceChildren(make('p',labels.empty));}
+  }
+  Promise.all([read(local('/assets/data/portal.json')),read(local('/assets/data/ontology.json'))]).then(([words,data])=>{
+    labels=words;catalog=data;files=new Map(data.files.map(file=>[file.key,file]));entities=new Map(data.entities.map(entry=>[entry.iri,entry]));
+    catalog.files.forEach(file=>{const parts=file.path.split('/');parts.pop();let branch=trie;parts.forEach(part=>{if(!branch.directories.has(part))branch.directories.set(part,{directories:new Map(),files:[]});branch=branch.directories.get(part);});branch.files.push(file);});
+    status.textContent=`${data.files.length.toLocaleString()} ${labels.fileCount} · ${data.entities.length.toLocaleString()} ${labels.entityCount} · ${data.errors} ${labels.parseCount} · ${labels.revision} ${data.revision.slice(0,8)}`;
+    workbench.dataset.ready='true';results();selectionFromAddress();
+    search.addEventListener('input',results);kind.addEventListener('change',results);document.getElementById('ontology-clear').addEventListener('click',()=>{search.value='';results();search.focus();});
+    window.addEventListener('popstate',selectionFromAddress);
+  }).catch(error=>{status.textContent=error.message;status.setAttribute('role','alert');});
+})();
+""" ;
+    portal:path "docs/assets/js/portal.js" .
+
+portal:Chapter a owl:Class .
+
+portal:DefaultLayout a portal:Artifact ;
+    portal:content """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/generated.css' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="{{ page.layout }}" data-base-path="{{ site.baseurl }}">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <nav class="site-nav">
+        <div class="nav-container">
+            <a href="{{ '/' | relative_url }}" class="site-title">Silmaril</a>
+            <div class="nav-links">
+                <a href="{{ '/explore/' | relative_url }}">Ontology atlas</a>
+                <a href="{{ '/architecture/' | relative_url }}">Architecture</a>
+                <a href="{{ '/provenance/' | relative_url }}">Provenance</a>
+                <a href="{{ '/folklore/' | relative_url }}">Folklore</a>
+                {% include reading-navigation.html %}
+                <a href="https://github.com/groenewt" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        {{ content }}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>An open notebook for structures, strategies, and the evidence between them.</p>
+            <p class="footer-meta">Tristan Groenewold / <a href="https://github.com/groenewt">github.com/groenewt</a></p>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="{{ '/assets/vendor/katex/katex.min.css' | relative_url }}">
+    <script defer src="{{ '/assets/vendor/katex/katex.min.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/vendor/katex/contrib/auto-render.min.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/portal.js' | relative_url }}"></script>
+</body>
+</html>
+""" ;
+    portal:path "docs/_layouts/default.html" .
+
+portal:Diagram a owl:Class .
+
+portal:DocumentFrame a owl:Class .
+
+portal:DocumentFrameLayout a portal:Artifact ;
+    portal:content """<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ page.title | escape }}</title><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/css/generated.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/vendor/katex/katex.min.css' | relative_url }}"></head>
+<body class="document-frame" data-base-path="{{ site.baseurl }}" data-source="{{ page.document_source | escape }}"><a class="skip-link" href="#document-content">Skip to document</a><header class="document-toolbar"><span>{{ page.title | escape }}</span><button type="button" data-fold="close">Collapse sections</button><button type="button" data-fold="open">Expand sections</button><a href="{{ page.url | relative_url }}" target="_blank" rel="noopener">Open full document</a></header><div class="document-layout"><nav class="document-toc" aria-label="Document contents"><h2>Contents</h2><ol id="document-toc"></ol></nav><main id="document-content" class="embedded-document-body" data-document-source="{{ page.document_source | escape }}" data-document-digest="{{ page.document_digest }}">{{ content }}</main></div><script defer src="{{ '/assets/vendor/katex/katex.min.js' | relative_url }}"></script><script defer src="{{ '/assets/vendor/katex/contrib/auto-render.min.js' | relative_url }}"></script><script defer src="{{ '/assets/js/portal.js' | relative_url }}"></script></body></html>""" ;
+    portal:path "docs/_layouts/document-frame.html" .
+
+portal:Elements portal:query """PREFIX interface: <urn:silmaril:user:interface:>
+PREFIX projection: <urn:silmaril:user:interface:projection:>
+PREFIX geometry: <http://www.opengis.net/ont/geosparql#>
+PREFIX datatype: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?subject ?tag ?text ?parent ?horizontal ?vertical WHERE {
+ ?root interface:child* ?subject . ?subject a ?species . ?species projection:tag ?tag .
+ OPTIONAL { ?subject interface:text ?literal } BIND(COALESCE(?literal, "") AS ?text)
+ OPTIONAL { ?parent interface:child ?subject }
+ ?subject geometry:hasGeometry/geometry:asWKT ?point .
+ BIND(STRAFTER(STR(?point), "POINT (") AS ?coordinates)
+ BIND(datatype:integer(STRBEFORE(?coordinates, " ")) AS ?horizontal)
+ BIND(datatype:integer(STRBEFORE(STRAFTER(?coordinates, " "), ")")) AS ?vertical)
+} ORDER BY ?vertical ?horizontal STR(?subject)""" .
+
+portal:ExplorerInclude a portal:Artifact ;
+    portal:path "docs/_includes/ontology-explorer.html" ;
+    portal:root <urn:silmaril:user:interface:portal:element:69> .
+
+portal:ExplorerPage a portal:Artifact ;
+    portal:content """---
+layout: default
+title: "Ontology atlas | Silmaril"
+permalink: /explore/
+---
+{% include ontology-explorer.html %}""" ;
+    portal:path "docs/explore.html" .
+
+portal:FolklorePage a portal:Artifact ;
+    portal:content """---
+permalink: /folklore/
+layout: default
+title: "Folklore | Silmaril"
+description: "The fable of this repository, told in the expedition journal's voice — the historian, the web scribe, the fable-agent, the wolf at the gate, and the prairie dog's lesson — every figure anchored to a real coordinate."
+---
+
+<header class="page-hero">
+    <p class="hero-eyebrow">The Expedition Journal</p>
+    <h1>Folklore</h1>
+    <p class="hero-subtitle">
+        Every repository accumulates a folklore. Most let it evaporate into commit
+        messages. This one writes its fable down, in the journal voice of an
+        expedition that names what it does not yet understand — and then commits
+        the fable to the ontology, where it is parsed, validated, and consolidated
+        like everything else. The story you are reading is also data.
+    </p>
+</header>
+
+<section id="journal" class="section page-section">
+    <div class="section-container">
+        <p class="section-eyebrow">In the manner of the captains</p>
+        <h2>The Fable of the Signed River</h2>
+
+        <div class="journal-entry">
+            <p>September 7th, 1804. Discovered today a Village of small animals&hellip;
+            the Dogs bark at us as we pass, and sit erect at the mouths of their holes.
+            I know not what to call them, and so have called them what they do.</p>
+            <cite>— after the journals of Lewis &amp; Clark, upon meeting the prairie dog</cite>
+        </div>
+
+        <p>
+            We proceeded on. The river we travel is a history: every bend in it a
+            commit, every commit a claim that someone was here and did this. Early in
+            the expedition we understood that a river which anyone may redraw is not a
+            map but a rumor. So we appointed keepers, cut their marks into the trust
+            manifest, and set a gate at the water's edge. What follows is the muster
+            roll of the expedition — each figure with its true coordinate, for we do
+            not tell stories we cannot anchor.
+        </p>
+
+        <div class="figure-card" id="the-historian">
+            <h3>The Historian</h3>
+            <p class="figure-role">Herodotus &middot; keeper of releases</p>
+            <p>
+                First among the keepers is the Historian, who bears the oldest name in the
+                trade: Herodotus, who wrote down what happened so that it should not be
+                washed out by time. In this country he signs the releases — nothing enters
+                the permanent record as a release but that his mark is upon it. His seal
+                travels with the expedition; his secret stays home with his keeper, as a
+                historian's private papers should.
+            </p>
+            <p class="figure-coordinate">
+                Coordinate: fingerprint <code>77481DD960B9CBE52BEC60CFC998590FAEA8530A</code>,
+                policy <code>release</code> —
+                <a href="{{ '/provenance/#herodotus' | relative_url }}">the identities table</a> &middot;
+                <a href="https://github.com/groenewt/silmaril/blob/master/keys/herodotus.asc">keys/herodotus.asc</a>
+            </p>
+        </div>
+
+        <div class="figure-card" id="the-web-scribe">
+            <h3>The Web Scribe</h3>
+            <p class="figure-role">GitHub web-flow &middot; clerk of the trading post</p>
+            <p>
+                At the trading post sits the Web Scribe, who signs on behalf of any
+                traveler who writes their letters at the post's own desk. He is no member
+                of the expedition; he is the post itself, stamping what passes through the
+                web. His stamp is known in every territory — public knowledge, no custody —
+                and so we honor it under its own policy, neither more nor less.
+            </p>
+            <p class="figure-coordinate">
+                Coordinate: fingerprint <code>968479A1AFF927E37D1A566BB5690EEEBB952194</code>,
+                policy <code>web-flow</code> —
+                <a href="{{ '/provenance/#web-flow' | relative_url }}">the identities table</a> &middot;
+                <a href="https://github.com/groenewt/silmaril/blob/master/keys/github-web-flow.asc">keys/github-web-flow.asc</a>
+            </p>
+        </div>
+
+        <div class="figure-card" id="the-fable-agent">
+            <h3>The Fable-Agent</h3>
+            <p class="figure-role">The session scribe &middot; a mark that outlives its maker</p>
+            <p>
+                Third comes the session scribe, carrying a key with a short life and a
+                journal with a long one. The scribe helps build the machinery and
+                leaves a signature beside its work. Its keys are creatures of a
+                season. Each dies with the session's container, unexported, and a
+                successor agent mints a new key and appends itself to the trust model.
+                The expedition keeps every superseded mark on the roll, for the old
+                entries in the journal must keep verifying after their author is gone.
+            </p>
+            <p class="figure-coordinate">
+                Coordinate: fingerprint <code>27044DC503CD3A5EE470CE4E15B79D364040C858</code>,
+                policy <code>agent</code> —
+                <a href="{{ '/provenance/#claude-agent' | relative_url }}">the identities table</a> &middot;
+                <a href="https://github.com/groenewt/silmaril/blob/master/keys/claude.asc">keys/claude.asc</a>
+            </p>
+        </div>
+
+        <div class="figure-card" id="the-wolf">
+            <h3>The Wolf at the Gate</h3>
+            <p class="figure-role">the tampered force-push &middot; turned away</p>
+            <p>
+                One night a wolf came to the gate wearing a keeper's coat, driving a
+                rewritten history before it and carrying papers it had signed for itself.
+                But the gate does not read the stranger's papers. It reads its law from
+                the trusted past — the old ref, which no incoming push can rewrite — and
+                against that law the wolf's commits classified <code>BADSIG</code> and
+                <code>UNKNOWN</code>, and the ref never moved. The wolf is not a villain
+                in this country so much as a proof: the gate was built because wolves
+                exist, and it is tested with a wolf of our own making.
+            </p>
+            <p class="figure-coordinate">
+                Coordinate: the server bridge
+                <a href="https://github.com/groenewt/silmaril/blob/master/hooks/remote-update">hooks/remote-update</a> &middot;
+                <a href="{{ '/provenance/#server-bridge' | relative_url }}">how the gate reasons</a> &middot;
+                policy classes <a href="{{ '/provenance/#policy-classes' | relative_url }}">GOOD &hellip; BADSIG</a>
+            </p>
+        </div>
+
+        <div class="figure-card" id="the-prairie-dog">
+            <h3>The Prairie Dog's Lesson</h3>
+            <p class="figure-role">the barking squirrel &middot; provisional naming</p>
+            <p>
+                And presiding over the whole camp, the small animal that started it. When
+                the captains met a creature that fit no category they carried, they did
+                not force it into one — they opened a provisional frame, called it what it
+                did, and documented the gap honestly. This repository keeps that
+                discipline as law: coined coordinates are marked <em>provisional</em>, the
+                law's own status is <em>active red</em> where enforcement lags
+                specification, and a gap recorded in red is worth more than a green
+                pretense. Say honestly that you have no frame, then build one in the open.
+            </p>
+            <p class="figure-coordinate">
+                Coordinate: the essay
+                <a href="https://github.com/groenewt/silmaril/blob/master/docs/praeriehund-demokratie-der-kategorien.md">Der Pr&auml;riehund und die Demokratie der Kategorien</a> &middot;
+                the law's status line and full-lexical amendment,
+                <a href="https://github.com/groenewt/silmaril/blob/master/docs/unary-byte-frame-law.md">docs/unary-byte-frame-law.md</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="fable-as-ontology" class="section section-alt page-section">
+    <div class="section-container">
+        <p class="section-eyebrow">The story is also data</p>
+        <h2>The Fable in the Ontology</h2>
+        <p>
+            This page is the telling; the record is turtle. The fable is committed to the
+            encyclopedia substrate as
+            <a href="https://github.com/groenewt/silmaril/blob/master/basicttl/folklore_provenance_fable.ttl">basicttl/folklore_provenance_fable.ttl</a>,
+            where the tale is a <code>silm:fable</code> individual, each figure above — the
+            historian, the web scribe, the fable-agent, the wolf, the prairie dog — a
+            <code>silm:fablefigure</code>, and the lesson a <code>silm:fablemoral</code>.
+        </p>
+        <p>
+            Being ontology, the fable travels the same pipeline as everything else: the
+            consolidation morphisms merge it into
+            <a href="https://github.com/groenewt/silmaril/blob/master/ontology/silmaril-consolidated.ttl">ontology/silmaril-consolidated.ttl</a>,
+            the validation morphisms parse it and hold it to the shapes, and CI fails if
+            the consolidated graph drifts from its sources. A folklore that cannot
+            survive its own repository's gates would be a poor folklore for this
+            repository.
+        </p>
+        <ul class="doc-links">
+            <li><a href="{{ '/provenance/' | relative_url }}">Provenance</a> — the trust system the fable narrates.</li>
+            <li><a href="{{ '/architecture/' | relative_url }}">Architecture</a> — the law and the morphism families the figures walk through.</li>
+        </ul>
+    </div>
+</section>
+""" ;
+    portal:path "docs/folklore.html" .
+
+portal:FragmentNamespaceContext portal:binding <urn:silmaril:user:interface:portal:namespace:cceo>,
+        <urn:silmaril:user:interface:portal:namespace:cco>,
+        <urn:silmaril:user:interface:portal:namespace:geo>,
+        <urn:silmaril:user:interface:portal:namespace:owl>,
+        <urn:silmaril:user:interface:portal:namespace:rdf>,
+        <urn:silmaril:user:interface:portal:namespace:rdfs>,
+        <urn:silmaril:user:interface:portal:namespace:sf>,
+        <urn:silmaril:user:interface:portal:namespace:sh>,
+        <urn:silmaril:user:interface:portal:namespace:silm>,
+        <urn:silmaril:user:interface:portal:namespace:xsd> ;
+    portal:sourceRoot "basicttl/_verb" .
+
+portal:HomeInclude a portal:Artifact ;
+    portal:path "docs/_includes/living-home.html" ;
+    portal:root <urn:silmaril:user:interface:portal:element:48> .
+
+portal:HomePage a portal:Artifact ;
+    portal:content """---
+layout: default
+title: "Silmaril | A little world, with its rules showing"
+---
+{% include living-home.html %}""" ;
+    portal:path "docs/index.html" .
+
+portal:Page a owl:Class .
+
+portal:ProvenancePage a portal:Artifact ;
+    portal:content """---
+permalink: /provenance/
+layout: default
+title: "Provenance | Silmaril"
+description: "The Silmaril trust system: three signing identities, a typed verification pipeline, six classification verdicts, and server-side bridges that reject tampered history."
+---
+
+<header class="page-hero">
+    <p class="hero-eyebrow">Commit Provenance</p>
+    <h1>The Trust System</h1>
+    <p class="hero-subtitle">
+        Every commit in this repository is classified against a trust model that
+        lives in the ontology, is rendered into a generated manifest, and is
+        enforced by a typed byte-frame pipeline — on your machine, in CI, and at
+        the server gate. Nothing is taken on faith; everything is a coordinate.
+    </p>
+</header>
+
+<section id="identities" class="section page-section">
+    <div class="section-container">
+        <p class="section-eyebrow">Who signs</p>
+        <h2>The Three Identities</h2>
+        <p>
+            Trusted signing keys are declared as individuals in
+            <a href="https://github.com/groenewt/silmaril/blob/master/basicttl/commit_signing_trust.ttl">basicttl/commit_signing_trust.ttl</a>
+            — the authoritative trust model — committed as armored public keys under
+            <a href="https://github.com/groenewt/silmaril/tree/master/keys">keys/</a>,
+            and rendered into the generated
+            <a href="https://github.com/groenewt/silmaril/blob/master/keys/trust-manifest.txt">trust manifest</a>
+            that the verifier consumes. CI fails if the manifest drifts from the ontology.
+        </p>
+
+        <div class="table-scroll">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Identity</th>
+                        <th>Policy</th>
+                        <th>Key</th>
+                        <th>Fingerprint</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="herodotus">
+                        <td><strong>Herodotus</strong> &lt;herodotus@silmaril.internal&gt;<br>
+                            the openclaw agent — release custodian; the secret half lives with the agent's owner</td>
+                        <td><code>release</code></td>
+                        <td>ed25519<br><code>herodotus.asc</code></td>
+                        <td><code>77481DD960B9CBE52BEC60CFC998590FAEA8530A</code></td>
+                    </tr>
+                    <tr id="web-flow">
+                        <td><strong>GitHub</strong> &lt;noreply@github.com&gt;<br>
+                            the web-flow service key — signs commits made through the GitHub web UI; public knowledge, no custody</td>
+                        <td><code>web-flow</code></td>
+                        <td>rsa4096<br><code>github-web-flow.asc</code></td>
+                        <td><code>968479A1AFF927E37D1A566BB5690EEEBB952194</code></td>
+                    </tr>
+                    <tr id="claude-agent">
+                        <td><strong>Claude</strong> &lt;claude@silmaril.internal&gt;<br>
+                            the existing agent signing identity. Its secret halves are session-ephemeral: they die with the agent's
+                            container and are never exported. A future session mints a successor
+                            <code>agent</code> key and appends it to the trust model</td>
+                        <td><code>agent</code></td>
+                        <td>ed25519<br><code>claude.asc</code></td>
+                        <td><code>27044DC503CD3A5EE470CE4E15B79D364040C858</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="pipeline-note">
+            Superseded keys stay listed — historical commits must keep verifying. A listed
+            fingerprint whose key file is absent is <em>attested</em>: acknowledged, but
+            cryptographically unverifiable until the key lands.
+        </p>
+    </div>
+</section>
+
+<section id="verification" class="section section-alt page-section">
+    <div class="section-container">
+        <p class="section-eyebrow">How verification works</p>
+        <h2>The Typed Pipeline</h2>
+        <p>
+            Verification is not a shell script — it is a family of unary byte-frame
+            morphisms under <code>scripts/python/pylib</code>, each one process reading
+            bytes and writing bytes, composed by <code>make</code>
+            (see <a href="{{ '/architecture/' | relative_url }}">Architecture</a>). The chain:
+        </p>
+        <ul class="doc-links">
+            <li><strong>Trust extraction.</strong> Fingerprint, policy class, key file, and identity are
+                extracted from the ontology and rendered into <code>keys/trust-manifest.txt</code>.
+                A check gate fails on any drift between the committed manifest and a fresh render.</li>
+            <li><strong>Ephemeral keyring.</strong> The committed public keys are imported into a
+                temporary <code>GNUPGHOME</code> created for the run — your personal GnuPG keyring
+                is never read or written.</li>
+            <li><strong>Observation.</strong> Each commit's headers and its
+                <code>gpg</code> verification output are captured as byte documents.</li>
+            <li><strong>Classification.</strong> Per-commit records are merged and classified into
+                exactly one of the six classification verdicts below, keyed by signature type and by the
+                signer's fingerprint against the manifest.</li>
+            <li><strong>Policy.</strong> A policy morphism reads the classified stream and decides
+                the exit status. The classified report is always emitted either way.</li>
+        </ul>
+
+        <h3 id="classification-verdicts">Classification verdicts</h3>
+        <div class="table-scroll">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Meaning</th>
+                        <th>Default policy</th>
+                        <th>Strict policy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>GOOD</code></td>
+                        <td>Valid OpenPGP signature by a fingerprint in the trust manifest</td>
+                        <td><span class="token-good">pass</span></td>
+                        <td><span class="token-good">pass</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>ATTESTED</code></td>
+                        <td>Signed by a listed fingerprint whose key file is absent — acknowledged, not verifiable</td>
+                        <td><span class="token-warn">pass, acknowledged</span></td>
+                        <td><span class="token-fail">fail</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>SSH</code></td>
+                        <td>SSH-signed commit — outside the OpenPGP trust chain</td>
+                        <td><span class="token-warn">pass, warned</span></td>
+                        <td><span class="token-fail">fail</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>UNSIGNED</code></td>
+                        <td>No signature at all</td>
+                        <td><span class="token-warn">pass, warned</span></td>
+                        <td><span class="token-fail">fail</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>UNKNOWN</code></td>
+                        <td>Signed by a key outside the trust manifest</td>
+                        <td><span class="token-fail">fail</span></td>
+                        <td><span class="token-fail">fail</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>BADSIG</code></td>
+                        <td>Signature present but cryptographically invalid — tampered content or forged header</td>
+                        <td><span class="token-fail">fail</span></td>
+                        <td><span class="token-fail">fail</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="pipeline-note">
+            Default hard-fails <code>BADSIG</code> and <code>UNKNOWN</code>; strict accepts
+            <code>GOOD</code> only; the report target classifies without gating. Run the report against the
+            exact revision being reviewed; a profile or public key alone does not prove a commit signature.
+        </p>
+
+        <h3 id="quickstart">Quickstart</h3>
+        <pre class="command-block">export SILMARIL_PYTHON=$(command -v python3)
+make -C scripts/python/pylib morphism-provenance-commit-policy-default   # verify history
+make -C scripts/python/pylib morphism-provenance-commit-policy-report    # classify only
+make -C scripts/python/pylib morphism-provenance-commit-policy-strict    # GOOD-only gate
+make -C scripts/python/pylib morphism-provenance-trust-manifest-check    # manifest &lt;- trust model
+bash scripts/install-git-hook.sh                                         # bridge hooks</pre>
+    </div>
+</section>
+
+<section id="server-bridge" class="section page-section">
+    <div class="section-container">
+        <p class="section-eyebrow">The wolf at the gate</p>
+        <h2>Server-Side Bridges</h2>
+        <p>
+            Git hooks cannot be lawful internal callables — their protocol is
+            multi-argument with a stdin stream — so they are <em>registered external
+            bridges</em>: short scripts in
+            <a href="https://github.com/groenewt/silmaril/tree/master/hooks">hooks/</a>
+            that carry their typed findings in a header comment and delegate all policy
+            to the typed tree.
+        </p>
+        <ul class="doc-links">
+            <li><strong><a href="https://github.com/groenewt/silmaril/blob/master/hooks/remote-update">remote-update</a></strong>
+                (server side) — the decisive one. The typed tree and trust material are extracted
+                from a <em>trusted</em> revision: the old ref value, which the incoming push cannot
+                rewrite — never from the pushed tip. A force-push carrying a tampered commit is
+                verified against the policy of the history it is trying to replace, classifies
+                <code>BADSIG</code> or <code>UNKNOWN</code>, and the ref never moves. A push cannot
+                smuggle in its own policy.</li>
+            <li><strong><a href="https://github.com/groenewt/silmaril/blob/master/hooks/pre-push">pre-push</a></strong>
+                (client side) — every outgoing revision range runs the default commit policy before
+                it leaves your machine.</li>
+            <li><strong><a href="https://github.com/groenewt/silmaril/blob/master/hooks/pre-commit">pre-commit</a></strong>
+                — blocks staged shell syntax errors and staged armored <em>secret</em> key material;
+                warns when your signing configuration would classify <code>UNSIGNED</code> or
+                <code>SSH</code> (set <code>git config silmaril.requiresign true</code> to upgrade
+                warnings to failures).</li>
+            <li><strong>CI</strong> — the same make targets run as workflow bridges on pushes to
+                <code>master</code>/<code>main</code> and on pull requests: commit policy,
+                trust-manifest drift gate, ontology consolidation sync gate, semantic validation gates.</li>
+        </ul>
+
+        <h3>Sources of truth</h3>
+        <ul class="doc-links">
+            <li>README.md — Commit Signing &amp; Verification (embedded below) — the top-level contract.</li>
+            <li>keys/README.md (embedded below) — custody model, key rotation, and regeneration procedure.</li>
+            <li><a href="{{ '/folklore/' | relative_url }}">Folklore</a> — the same system, told as the fable it also is.</li>
+        </ul>
+    </div>
+</section>
+
+{% include documentation.html source="README.md" %}
+
+{% include documentation.html source="keys/README.md" %}
+
+{% include aster-profile.html %}
+""" ;
+    portal:path "docs/provenance.html" .
+
+<urn:silmaril:user:interface:portal:label:all> a portal:Label ;
+    portal:key "all" ;
+    portal:text "All categories" .
+
+<urn:silmaril:user:interface:portal:label:children> a portal:Label ;
+    portal:key "children" ;
+    portal:text "Declared subclasses" .
+
+<urn:silmaril:user:interface:portal:label:class> a portal:Label ;
+    portal:key "class" ;
+    portal:text "Classes" .
+
+<urn:silmaril:user:interface:portal:label:clear> a portal:Label ;
+    portal:key "clear" ;
+    portal:text "Clear search" .
+
+<urn:silmaril:user:interface:portal:label:collapse> a portal:Label ;
+    portal:key "collapse" ;
+    portal:text "Collapse all" .
+
+<urn:silmaril:user:interface:portal:label:contents> a portal:Label ;
+    portal:key "contents" ;
+    portal:text "On this page" .
+
+<urn:silmaril:user:interface:portal:label:context> a portal:Label ;
+    portal:key "context" ;
+    portal:text "Fragment interpreted with the declared _verb namespace context; the original source is unchanged." .
+
+<urn:silmaril:user:interface:portal:label:copied> a portal:Label ;
+    portal:key "copied" ;
+    portal:text "IRI copied" .
+
+<urn:silmaril:user:interface:portal:label:copy> a portal:Label ;
+    portal:key "copy" ;
+    portal:text "Copy IRI" .
+
+<urn:silmaril:user:interface:portal:label:declaration> a portal:Label ;
+    portal:key "declaration" ;
+    portal:text "Declaration view; no reasoning or ontology-conformance claim." .
+
+<urn:silmaril:user:interface:portal:label:diagram> a portal:Label ;
+    portal:key "diagram" ;
+    portal:text "Local subclass neighborhood" .
+
+<urn:silmaril:user:interface:portal:label:empty> a portal:Label ;
+    portal:key "empty" ;
+    portal:text "No matching entries. Try a broader name or IRI." .
+
+<urn:silmaril:user:interface:portal:label:entity> a portal:Label ;
+    portal:key "entity" ;
+    portal:text "Entity inspector" .
+
+<urn:silmaril:user:interface:portal:label:entityCount> a portal:Label ;
+    portal:key "entityCount" ;
+    portal:text "declared entities" .
+
+<urn:silmaril:user:interface:portal:label:error> a portal:Label ;
+    portal:key "error" ;
+    portal:text "Unable to load this panel. Please retry." .
+
+<urn:silmaril:user:interface:portal:label:expand> a portal:Label ;
+    portal:key "expand" ;
+    portal:text "Expand all" .
+
+<urn:silmaril:user:interface:portal:label:fileCount> a portal:Label ;
+    portal:key "fileCount" ;
+    portal:text "Turtle sources" .
+
+<urn:silmaril:user:interface:portal:label:files> a portal:Label ;
+    portal:key "files" ;
+    portal:text "Files" .
+
+<urn:silmaril:user:interface:portal:label:folder> a portal:Label ;
+    portal:key "folder" ;
+    portal:text "Repository tree" .
+
+<urn:silmaril:user:interface:portal:label:incoming> a portal:Label ;
+    portal:key "incoming" ;
+    portal:text "Incoming statements in this file" .
+
+<urn:silmaril:user:interface:portal:label:individual> a portal:Label ;
+    portal:key "individual" ;
+    portal:text "Individuals" .
+
+<urn:silmaril:user:interface:portal:label:loading> a portal:Label ;
+    portal:key "loading" ;
+    portal:text "Opening the atlas…" .
+
+<urn:silmaril:user:interface:portal:label:more> a portal:Label ;
+    portal:key "more" ;
+    portal:text "Show more" .
+
+<urn:silmaril:user:interface:portal:label:none> a portal:Label ;
+    portal:key "none" ;
+    portal:text "None declared" .
+
+<urn:silmaril:user:interface:portal:label:outgoing> a portal:Label ;
+    portal:key "outgoing" ;
+    portal:text "Outgoing statements in this file" .
+
+<urn:silmaril:user:interface:portal:label:parents> a portal:Label ;
+    portal:key "parents" ;
+    portal:text "Declared superclasses" .
+
+<urn:silmaril:user:interface:portal:label:parse> a portal:Label ;
+    portal:key "parse" ;
+    portal:text "This source does not parse. Its original text is preserved below." .
+
+<urn:silmaril:user:interface:portal:label:parseCount> a portal:Label ;
+    portal:key "parseCount" ;
+    portal:text "sources with parse errors" .
+
+<urn:silmaril:user:interface:portal:label:previous> a portal:Label ;
+    portal:key "previous" ;
+    portal:text "Previous selection" .
+
+<urn:silmaril:user:interface:portal:label:property> a portal:Label ;
+    portal:key "property" ;
+    portal:text "Properties" .
+
+<urn:silmaril:user:interface:portal:label:read> a portal:Label ;
+    portal:key "read" ;
+    portal:text "Open full document" .
+
+<urn:silmaril:user:interface:portal:label:revision> a portal:Label ;
+    portal:key "revision" ;
+    portal:text "Repository revision" .
+
+<urn:silmaril:user:interface:portal:label:search> a portal:Label ;
+    portal:key "search" ;
+    portal:text "Search files, labels, or full IRIs" .
+
+<urn:silmaril:user:interface:portal:label:select> a portal:Label ;
+    portal:key "select" ;
+    portal:text "Choose a file or entity to inspect its declarations." .
+
+<urn:silmaril:user:interface:portal:label:show> a portal:Label ;
+    portal:key "show" ;
+    portal:text "Show" .
+
+<urn:silmaril:user:interface:portal:label:source> a portal:Label ;
+    portal:key "source" ;
+    portal:text "Turtle source" .
+
+<urn:silmaril:user:interface:portal:label:tripleCount> a portal:Label ;
+    portal:key "tripleCount" ;
+    portal:text "statements" .
+
+<urn:silmaril:user:interface:portal:label:triples> a portal:Label ;
+    portal:key "triples" ;
+    portal:text "Asserted statements" .
+
+<urn:silmaril:user:interface:portal:label:types> a portal:Label ;
+    portal:key "types" ;
+    portal:text "Declared types" .
+
+<urn:silmaril:user:interface:portal:label:unindexed> a portal:Label ;
+    portal:key "unindexed" ;
+    portal:text "This term has no subject declaration in the indexed files." .
+
+portal:AccessibleDescription a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "desc" .
+
+portal:AccessibleTitle a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "title" .
+
+portal:BrowserModule a owl:Class .
+
+portal:Button a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "button" .
+
+portal:Catalog a owl:Class,
+        portal:Catalog ;
+    portal:extension ".ttl" ;
+    portal:sourceRoot "basicttl" .
+
+portal:Line a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "line" .
+
+portal:SearchInput a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "input" .
+
+portal:Selector a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "select" .
+
+portal:VectorDiagram a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "svg" .
+
+<urn:silmaril:user:interface:portal:attribute:10:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "story-card" .
+
+<urn:silmaril:user:interface:portal:attribute:11:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "section-eyebrow" .
+
+<urn:silmaril:user:interface:portal:attribute:14:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "story-link" .
+
+<urn:silmaril:user:interface:portal:attribute:14:href> a interface:Attribute ;
+    interface:name "href" ;
+    interface:value "/reading/#document-docs-unary-byte-frame-law" .
+
+<urn:silmaril:user:interface:portal:attribute:15:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "story-card" .
+
+<urn:silmaril:user:interface:portal:attribute:16:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "journey-title" .
+
+<urn:silmaril:user:interface:portal:attribute:17:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "journey-description" .
+
+<urn:silmaril:user:interface:portal:attribute:18:stroke> a interface:Attribute ;
+    interface:name "stroke" ;
+    interface:value "currentColor" .
+
+<urn:silmaril:user:interface:portal:attribute:18:stroke-width> a interface:Attribute ;
+    interface:name "stroke-width" ;
+    interface:value "3" .
+
+<urn:silmaril:user:interface:portal:attribute:18:x1> a interface:Attribute ;
+    interface:name "x1" ;
+    interface:value "110" .
+
+<urn:silmaril:user:interface:portal:attribute:18:x2> a interface:Attribute ;
+    interface:name "x2" ;
+    interface:value "530" .
+
+<urn:silmaril:user:interface:portal:attribute:18:y1> a interface:Attribute ;
+    interface:name "y1" ;
+    interface:value "85" .
+
+<urn:silmaril:user:interface:portal:attribute:18:y2> a interface:Attribute ;
+    interface:name "y2" ;
+    interface:value "85" .
+
+<urn:silmaril:user:interface:portal:attribute:19:cx> a interface:Attribute ;
+    interface:name "cx" ;
+    interface:value "110" .
+
+<urn:silmaril:user:interface:portal:attribute:19:cy> a interface:Attribute ;
+    interface:name "cy" ;
+    interface:value "85" .
+
+<urn:silmaril:user:interface:portal:attribute:19:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#e5f3e9" .
+
+<urn:silmaril:user:interface:portal:attribute:19:r> a interface:Attribute ;
+    interface:name "r" ;
+    interface:value "28" .
+
+<urn:silmaril:user:interface:portal:attribute:19:stroke> a interface:Attribute ;
+    interface:name "stroke" ;
+    interface:value "#205943" .
+
+<urn:silmaril:user:interface:portal:attribute:19:stroke-width> a interface:Attribute ;
+    interface:name "stroke-width" ;
+    interface:value "3" .
+
+<urn:silmaril:user:interface:portal:attribute:1:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "section-eyebrow" .
+
+<urn:silmaril:user:interface:portal:attribute:20:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#17372b" .
+
+<urn:silmaril:user:interface:portal:attribute:20:text-anchor> a interface:Attribute ;
+    interface:name "text-anchor" ;
+    interface:value "middle" .
+
+<urn:silmaril:user:interface:portal:attribute:20:x> a interface:Attribute ;
+    interface:name "x" ;
+    interface:value "110" .
+
+<urn:silmaril:user:interface:portal:attribute:20:y> a interface:Attribute ;
+    interface:name "y" ;
+    interface:value "92" .
+
+<urn:silmaril:user:interface:portal:attribute:21:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#17372b" .
+
+<urn:silmaril:user:interface:portal:attribute:21:text-anchor> a interface:Attribute ;
+    interface:name "text-anchor" ;
+    interface:value "middle" .
+
+<urn:silmaril:user:interface:portal:attribute:21:x> a interface:Attribute ;
+    interface:name "x" ;
+    interface:value "110" .
+
+<urn:silmaril:user:interface:portal:attribute:21:y> a interface:Attribute ;
+    interface:name "y" ;
+    interface:value "149" .
+
+<urn:silmaril:user:interface:portal:attribute:22:cx> a interface:Attribute ;
+    interface:name "cx" ;
+    interface:value "320" .
+
+<urn:silmaril:user:interface:portal:attribute:22:cy> a interface:Attribute ;
+    interface:name "cy" ;
+    interface:value "85" .
+
+<urn:silmaril:user:interface:portal:attribute:22:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#e5f3e9" .
+
+<urn:silmaril:user:interface:portal:attribute:22:r> a interface:Attribute ;
+    interface:name "r" ;
+    interface:value "28" .
+
+<urn:silmaril:user:interface:portal:attribute:22:stroke> a interface:Attribute ;
+    interface:name "stroke" ;
+    interface:value "#205943" .
+
+<urn:silmaril:user:interface:portal:attribute:22:stroke-width> a interface:Attribute ;
+    interface:name "stroke-width" ;
+    interface:value "3" .
+
+<urn:silmaril:user:interface:portal:attribute:23:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#17372b" .
+
+<urn:silmaril:user:interface:portal:attribute:23:text-anchor> a interface:Attribute ;
+    interface:name "text-anchor" ;
+    interface:value "middle" .
+
+<urn:silmaril:user:interface:portal:attribute:23:x> a interface:Attribute ;
+    interface:name "x" ;
+    interface:value "320" .
+
+<urn:silmaril:user:interface:portal:attribute:23:y> a interface:Attribute ;
+    interface:name "y" ;
+    interface:value "92" .
+
+<urn:silmaril:user:interface:portal:attribute:24:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#17372b" .
+
+<urn:silmaril:user:interface:portal:attribute:24:text-anchor> a interface:Attribute ;
+    interface:name "text-anchor" ;
+    interface:value "middle" .
+
+<urn:silmaril:user:interface:portal:attribute:24:x> a interface:Attribute ;
+    interface:name "x" ;
+    interface:value "320" .
+
+<urn:silmaril:user:interface:portal:attribute:24:y> a interface:Attribute ;
+    interface:name "y" ;
+    interface:value "149" .
+
+<urn:silmaril:user:interface:portal:attribute:25:cx> a interface:Attribute ;
+    interface:name "cx" ;
+    interface:value "530" .
+
+<urn:silmaril:user:interface:portal:attribute:25:cy> a interface:Attribute ;
+    interface:name "cy" ;
+    interface:value "85" .
+
+<urn:silmaril:user:interface:portal:attribute:25:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#e5f3e9" .
+
+<urn:silmaril:user:interface:portal:attribute:25:r> a interface:Attribute ;
+    interface:name "r" ;
+    interface:value "28" .
+
+<urn:silmaril:user:interface:portal:attribute:25:stroke> a interface:Attribute ;
+    interface:name "stroke" ;
+    interface:value "#205943" .
+
+<urn:silmaril:user:interface:portal:attribute:25:stroke-width> a interface:Attribute ;
+    interface:name "stroke-width" ;
+    interface:value "3" .
+
+<urn:silmaril:user:interface:portal:attribute:26:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#17372b" .
+
+<urn:silmaril:user:interface:portal:attribute:26:text-anchor> a interface:Attribute ;
+    interface:name "text-anchor" ;
+    interface:value "middle" .
+
+<urn:silmaril:user:interface:portal:attribute:26:x> a interface:Attribute ;
+    interface:name "x" ;
+    interface:value "530" .
+
+<urn:silmaril:user:interface:portal:attribute:26:y> a interface:Attribute ;
+    interface:name "y" ;
+    interface:value "92" .
+
+<urn:silmaril:user:interface:portal:attribute:27:fill> a interface:Attribute ;
+    interface:name "fill" ;
+    interface:value "#17372b" .
+
+<urn:silmaril:user:interface:portal:attribute:27:text-anchor> a interface:Attribute ;
+    interface:name "text-anchor" ;
+    interface:value "middle" .
+
+<urn:silmaril:user:interface:portal:attribute:27:x> a interface:Attribute ;
+    interface:name "x" ;
+    interface:value "530" .
+
+<urn:silmaril:user:interface:portal:attribute:27:y> a interface:Attribute ;
+    interface:name "y" ;
+    interface:value "149" .
+
+<urn:silmaril:user:interface:portal:attribute:28:aria-labelledby> a interface:Attribute ;
+    interface:name "aria-labelledby" ;
+    interface:value "journey-title journey-description" .
+
+<urn:silmaril:user:interface:portal:attribute:28:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "journey-diagram" .
+
+<urn:silmaril:user:interface:portal:attribute:28:role> a interface:Attribute ;
+    interface:name "role" ;
+    interface:value "img" .
+
+<urn:silmaril:user:interface:portal:attribute:28:viewBox> a interface:Attribute ;
+    interface:name "viewBox" ;
+    interface:value "0 0 640 200" .
+
+<urn:silmaril:user:interface:portal:attribute:29:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "section-eyebrow" .
+
+<urn:silmaril:user:interface:portal:attribute:31:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "portal-lede" .
+
+<urn:silmaril:user:interface:portal:attribute:32:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "btn-primary" .
+
+<urn:silmaril:user:interface:portal:attribute:32:href> a interface:Attribute ;
+    interface:name "href" ;
+    interface:value "/explore/" .
+
+<urn:silmaril:user:interface:portal:attribute:33:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "btn-secondary" .
+
+<urn:silmaril:user:interface:portal:attribute:33:href> a interface:Attribute ;
+    interface:name "href" ;
+    interface:value "/reading/" .
+
+<urn:silmaril:user:interface:portal:attribute:34:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "btn-secondary" .
+
+<urn:silmaril:user:interface:portal:attribute:34:href> a interface:Attribute ;
+    interface:name "href" ;
+    interface:value "#story" .
+
+<urn:silmaril:user:interface:portal:attribute:35:aria-label> a interface:Attribute ;
+    interface:name "aria-label" ;
+    interface:value "Start exploring" .
+
+<urn:silmaril:user:interface:portal:attribute:35:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "portal-actions" .
+
+<urn:silmaril:user:interface:portal:attribute:36:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "portal-hero" .
+
+<urn:silmaril:user:interface:portal:attribute:37:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "story-grid" .
+
+<urn:silmaril:user:interface:portal:attribute:37:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "story" .
+
+<urn:silmaril:user:interface:portal:attribute:40:data-mathematics> a interface:Attribute ;
+    interface:name "data-mathematics" ;
+    interface:value "display" .
+
+<urn:silmaril:user:interface:portal:attribute:41:data-mathematics> a interface:Attribute ;
+    interface:name "data-mathematics" ;
+    interface:value "display" .
+
+<urn:silmaril:user:interface:portal:attribute:43:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "portal-equation" .
+
+<urn:silmaril:user:interface:portal:attribute:46:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "btn-primary" .
+
+<urn:silmaril:user:interface:portal:attribute:46:href> a interface:Attribute ;
+    interface:name "href" ;
+    interface:value "/explore/" .
+
+<urn:silmaril:user:interface:portal:attribute:47:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "portal-invitation" .
+
+<urn:silmaril:user:interface:portal:attribute:48:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "living-portal" .
+
+<urn:silmaril:user:interface:portal:attribute:49:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "section-eyebrow" .
+
+<urn:silmaril:user:interface:portal:attribute:4:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "story-link" .
+
+<urn:silmaril:user:interface:portal:attribute:4:href> a interface:Attribute ;
+    interface:name "href" ;
+    interface:value "/explore/?file=basicttl/foundation/algebra_spine.ttl" .
+
+<urn:silmaril:user:interface:portal:attribute:52:aria-live> a interface:Attribute ;
+    interface:name "aria-live" ;
+    interface:value "polite" .
+
+<urn:silmaril:user:interface:portal:attribute:52:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "catalog-status" .
+
+<urn:silmaril:user:interface:portal:attribute:52:role> a interface:Attribute ;
+    interface:name "role" ;
+    interface:value "status" .
+
+<urn:silmaril:user:interface:portal:attribute:53:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "explorer-heading" .
+
+<urn:silmaril:user:interface:portal:attribute:54:for> a interface:Attribute ;
+    interface:name "for" ;
+    interface:value "ontology-search" .
+
+<urn:silmaril:user:interface:portal:attribute:55:autocomplete> a interface:Attribute ;
+    interface:name "autocomplete" ;
+    interface:value "off" .
+
+<urn:silmaril:user:interface:portal:attribute:55:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "ontology-search" .
+
+<urn:silmaril:user:interface:portal:attribute:55:placeholder> a interface:Attribute ;
+    interface:name "placeholder" ;
+    interface:value "Try Magma, Frame, or a full IRI…" .
+
+<urn:silmaril:user:interface:portal:attribute:55:type> a interface:Attribute ;
+    interface:name "type" ;
+    interface:value "search" .
+
+<urn:silmaril:user:interface:portal:attribute:56:for> a interface:Attribute ;
+    interface:name "for" ;
+    interface:value "ontology-kind" .
+
+<urn:silmaril:user:interface:portal:attribute:57:value> a interface:Attribute ;
+    interface:name "value" ;
+    interface:value "files" .
+
+<urn:silmaril:user:interface:portal:attribute:58:value> a interface:Attribute ;
+    interface:name "value" ;
+    interface:value "class" .
+
+<urn:silmaril:user:interface:portal:attribute:59:value> a interface:Attribute ;
+    interface:name "value" ;
+    interface:value "property" .
+
+<urn:silmaril:user:interface:portal:attribute:5:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "story-card" .
+
+<urn:silmaril:user:interface:portal:attribute:60:value> a interface:Attribute ;
+    interface:name "value" ;
+    interface:value "individual" .
+
+<urn:silmaril:user:interface:portal:attribute:61:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "ontology-kind" .
+
+<urn:silmaril:user:interface:portal:attribute:62:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "ontology-clear" .
+
+<urn:silmaril:user:interface:portal:attribute:62:type> a interface:Attribute ;
+    interface:name "type" ;
+    interface:value "button" .
+
+<urn:silmaril:user:interface:portal:attribute:63:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "explorer-controls" .
+
+<urn:silmaril:user:interface:portal:attribute:64:aria-label> a interface:Attribute ;
+    interface:name "aria-label" ;
+    interface:value "Ontology navigation" .
+
+<urn:silmaril:user:interface:portal:attribute:64:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "explorer-tree" .
+
+<urn:silmaril:user:interface:portal:attribute:64:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "ontology-tree" .
+
+<urn:silmaril:user:interface:portal:attribute:67:aria-label> a interface:Attribute ;
+    interface:name "aria-label" ;
+    interface:value "Entity and source inspector" .
+
+<urn:silmaril:user:interface:portal:attribute:67:aria-live> a interface:Attribute ;
+    interface:name "aria-live" ;
+    interface:value "polite" .
+
+<urn:silmaril:user:interface:portal:attribute:67:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "explorer-inspector" .
+
+<urn:silmaril:user:interface:portal:attribute:67:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "ontology-inspector" .
+
+<urn:silmaril:user:interface:portal:attribute:68:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "explorer-columns" .
+
+<urn:silmaril:user:interface:portal:attribute:69:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "living-portal ontology-workbench" .
+
+<urn:silmaril:user:interface:portal:attribute:69:id> a interface:Attribute ;
+    interface:name "id" ;
+    interface:value "ontology-workbench" .
+
+<urn:silmaril:user:interface:portal:attribute:6:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "section-eyebrow" .
+
+<urn:silmaril:user:interface:portal:attribute:9:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "story-link" .
+
+<urn:silmaril:user:interface:portal:attribute:9:href> a interface:Attribute ;
+    interface:name "href" ;
+    interface:value "/explore/?file=basicttl/crs/towers.ttl" .
+
+<urn:silmaril:user:interface:portal:element:1> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:1> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:1:class> ;
+    interface:text "01 · The arrival" .
+
+<urn:silmaril:user:interface:portal:element:10> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:10> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:10:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:6>,
+        <urn:silmaril:user:interface:portal:element:7>,
+        <urn:silmaril:user:interface:portal:element:8>,
+        <urn:silmaril:user:interface:portal:element:9> .
+
+<urn:silmaril:user:interface:portal:element:11> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:11> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:11:class> ;
+    interface:text "03 · The return" .
+
+<urn:silmaril:user:interface:portal:element:12> a portal:SectionHeading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:12> ;
+    interface:text "Bring back what happened" .
+
+<urn:silmaril:user:interface:portal:element:13> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:13> ;
+    interface:text "A journey returns more than a trophy. The frame carries an output together with its errors or effects. The archive keeps the occurrence, even when a later journey restores an earlier state." .
+
+<urn:silmaril:user:interface:portal:element:14> a portal:Link ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:14> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:14:class>,
+        <urn:silmaril:user:interface:portal:attribute:14:href> ;
+    interface:text "Read the Frame law" .
+
+<urn:silmaril:user:interface:portal:element:15> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:15> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:15:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:11>,
+        <urn:silmaril:user:interface:portal:element:12>,
+        <urn:silmaril:user:interface:portal:element:13>,
+        <urn:silmaril:user:interface:portal:element:14> .
+
+<urn:silmaril:user:interface:portal:element:16> a portal:AccessibleTitle ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:16> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:16:id> ;
+    interface:text "A claim travels through structure, evidence, and a frame" .
+
+<urn:silmaril:user:interface:portal:element:17> a portal:AccessibleDescription ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:17> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:17:id> ;
+    interface:text "Three connected, labeled stations. The diagram introduces a reading route; it is not a proof of admission." .
+
+<urn:silmaril:user:interface:portal:element:18> a portal:Line ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:18> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:18:stroke>,
+        <urn:silmaril:user:interface:portal:attribute:18:stroke-width>,
+        <urn:silmaril:user:interface:portal:attribute:18:x1>,
+        <urn:silmaril:user:interface:portal:attribute:18:x2>,
+        <urn:silmaril:user:interface:portal:attribute:18:y1>,
+        <urn:silmaril:user:interface:portal:attribute:18:y2> .
+
+<urn:silmaril:user:interface:portal:element:19> a portal:Circle ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:19> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:19:cx>,
+        <urn:silmaril:user:interface:portal:attribute:19:cy>,
+        <urn:silmaril:user:interface:portal:attribute:19:fill>,
+        <urn:silmaril:user:interface:portal:attribute:19:r>,
+        <urn:silmaril:user:interface:portal:attribute:19:stroke>,
+        <urn:silmaril:user:interface:portal:attribute:19:stroke-width> .
+
+<urn:silmaril:user:interface:portal:element:2> a portal:SectionHeading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:2> ;
+    interface:text "A traveler brings a claim" .
+
+<urn:silmaril:user:interface:portal:element:20> a portal:VectorText ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:20> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:20:fill>,
+        <urn:silmaril:user:interface:portal:attribute:20:text-anchor>,
+        <urn:silmaril:user:interface:portal:attribute:20:x>,
+        <urn:silmaril:user:interface:portal:attribute:20:y> ;
+    interface:text "1" .
+
+<urn:silmaril:user:interface:portal:element:21> a portal:VectorText ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:21> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:21:fill>,
+        <urn:silmaril:user:interface:portal:attribute:21:text-anchor>,
+        <urn:silmaril:user:interface:portal:attribute:21:x>,
+        <urn:silmaril:user:interface:portal:attribute:21:y> ;
+    interface:text "Structure" .
+
+<urn:silmaril:user:interface:portal:element:22> a portal:Circle ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:22> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:22:cx>,
+        <urn:silmaril:user:interface:portal:attribute:22:cy>,
+        <urn:silmaril:user:interface:portal:attribute:22:fill>,
+        <urn:silmaril:user:interface:portal:attribute:22:r>,
+        <urn:silmaril:user:interface:portal:attribute:22:stroke>,
+        <urn:silmaril:user:interface:portal:attribute:22:stroke-width> .
+
+<urn:silmaril:user:interface:portal:element:23> a portal:VectorText ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:23> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:23:fill>,
+        <urn:silmaril:user:interface:portal:attribute:23:text-anchor>,
+        <urn:silmaril:user:interface:portal:attribute:23:x>,
+        <urn:silmaril:user:interface:portal:attribute:23:y> ;
+    interface:text "2" .
+
+<urn:silmaril:user:interface:portal:element:24> a portal:VectorText ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:24> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:24:fill>,
+        <urn:silmaril:user:interface:portal:attribute:24:text-anchor>,
+        <urn:silmaril:user:interface:portal:attribute:24:x>,
+        <urn:silmaril:user:interface:portal:attribute:24:y> ;
+    interface:text "Evidence" .
+
+<urn:silmaril:user:interface:portal:element:25> a portal:Circle ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:25> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:25:cx>,
+        <urn:silmaril:user:interface:portal:attribute:25:cy>,
+        <urn:silmaril:user:interface:portal:attribute:25:fill>,
+        <urn:silmaril:user:interface:portal:attribute:25:r>,
+        <urn:silmaril:user:interface:portal:attribute:25:stroke>,
+        <urn:silmaril:user:interface:portal:attribute:25:stroke-width> .
+
+<urn:silmaril:user:interface:portal:element:26> a portal:VectorText ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:26> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:26:fill>,
+        <urn:silmaril:user:interface:portal:attribute:26:text-anchor>,
+        <urn:silmaril:user:interface:portal:attribute:26:x>,
+        <urn:silmaril:user:interface:portal:attribute:26:y> ;
+    interface:text "3" .
+
+<urn:silmaril:user:interface:portal:element:27> a portal:VectorText ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:27> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:27:fill>,
+        <urn:silmaril:user:interface:portal:attribute:27:text-anchor>,
+        <urn:silmaril:user:interface:portal:attribute:27:x>,
+        <urn:silmaril:user:interface:portal:attribute:27:y> ;
+    interface:text "Frame" .
+
+<urn:silmaril:user:interface:portal:element:28> a portal:VectorDiagram ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:28> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:28:aria-labelledby>,
+        <urn:silmaril:user:interface:portal:attribute:28:class>,
+        <urn:silmaril:user:interface:portal:attribute:28:role>,
+        <urn:silmaril:user:interface:portal:attribute:28:viewBox> ;
+    interface:child <urn:silmaril:user:interface:portal:element:16>,
+        <urn:silmaril:user:interface:portal:element:17>,
+        <urn:silmaril:user:interface:portal:element:18>,
+        <urn:silmaril:user:interface:portal:element:19>,
+        <urn:silmaril:user:interface:portal:element:20>,
+        <urn:silmaril:user:interface:portal:element:21>,
+        <urn:silmaril:user:interface:portal:element:22>,
+        <urn:silmaril:user:interface:portal:element:23>,
+        <urn:silmaril:user:interface:portal:element:24>,
+        <urn:silmaril:user:interface:portal:element:25>,
+        <urn:silmaril:user:interface:portal:element:26>,
+        <urn:silmaril:user:interface:portal:element:27> .
+
+<urn:silmaril:user:interface:portal:element:29> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:29> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:29:class> ;
+    interface:text "Silmaril · an open computational laboratory" .
+
+<urn:silmaril:user:interface:portal:element:3> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:3> ;
+    interface:text "At the edge of the archive, a traveler arrives with a splendid claim: “This operation is a group.” The tortoise at the desk asks for its carrier, its operation, and its laws. A handsome name will not fill a missing table row." .
+
+<urn:silmaril:user:interface:portal:element:30> a portal:PageHeading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:30> ;
+    interface:text "A little world, with its rules showing." .
+
+<urn:silmaril:user:interface:portal:element:31> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:31> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:31:class> ;
+    interface:text "Economics brings the questions. Algebra gives the objects their shape. Ontology records the relationships. Come through the story, then open the actual declarations and decide what the evidence earns." .
+
+<urn:silmaril:user:interface:portal:element:32> a portal:Link ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:32> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:32:class>,
+        <urn:silmaril:user:interface:portal:attribute:32:href> ;
+    interface:text "Open the ontology atlas" .
+
+<urn:silmaril:user:interface:portal:element:33> a portal:Link ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:33> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:33:class>,
+        <urn:silmaril:user:interface:portal:attribute:33:href> ;
+    interface:text "Find a document" .
+
+<urn:silmaril:user:interface:portal:element:34> a portal:Link ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:34> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:34:class>,
+        <urn:silmaril:user:interface:portal:attribute:34:href> ;
+    interface:text "Take the story route" .
+
+<urn:silmaril:user:interface:portal:element:35> a portal:Navigation ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:35> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:35:aria-label>,
+        <urn:silmaril:user:interface:portal:attribute:35:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:32>,
+        <urn:silmaril:user:interface:portal:element:33>,
+        <urn:silmaril:user:interface:portal:element:34> .
+
+<urn:silmaril:user:interface:portal:element:36> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:36> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:36:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:28>,
+        <urn:silmaril:user:interface:portal:element:29>,
+        <urn:silmaril:user:interface:portal:element:30>,
+        <urn:silmaril:user:interface:portal:element:31>,
+        <urn:silmaril:user:interface:portal:element:35> .
+
+<urn:silmaril:user:interface:portal:element:37> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:37> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:37:class>,
+        <urn:silmaril:user:interface:portal:attribute:37:id> ;
+    interface:child <urn:silmaril:user:interface:portal:element:10>,
+        <urn:silmaril:user:interface:portal:element:15>,
+        <urn:silmaril:user:interface:portal:element:5> .
+
+<urn:silmaril:user:interface:portal:element:38> a portal:SectionHeading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:38> ;
+    interface:text "What the traveler owes" .
+
+<urn:silmaril:user:interface:portal:element:39> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:39> ;
+    interface:text "A magma needs a total, single-valued operation on its carrier. A runtime result needs a frame. These are obligations to check, not powers conferred by a label." .
+
+<urn:silmaril:user:interface:portal:element:4> a portal:Link ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:4> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:4:class>,
+        <urn:silmaril:user:interface:portal:attribute:4:href> ;
+    interface:text "Meet the algebraic cast" .
+
+<urn:silmaril:user:interface:portal:element:40> a portal:MathematicalExpression ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:40> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:40:data-mathematics> ;
+    interface:text "\\mu:A\\times A\\to A" .
+
+<urn:silmaril:user:interface:portal:element:41> a portal:MathematicalExpression ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:41> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:41:data-mathematics> ;
+    interface:text "T\\longrightarrow\\operatorname{Frame}(X,E)" .
+
+<urn:silmaril:user:interface:portal:element:42> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:42> ;
+    interface:text "The current repository still records an active-red migration toward the unary byte-frame law. The atlas lets you inspect declarations; it does not turn them into proofs." .
+
+<urn:silmaril:user:interface:portal:element:43> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:43> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:43:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:38>,
+        <urn:silmaril:user:interface:portal:element:39>,
+        <urn:silmaril:user:interface:portal:element:40>,
+        <urn:silmaril:user:interface:portal:element:41>,
+        <urn:silmaril:user:interface:portal:element:42> .
+
+<urn:silmaril:user:interface:portal:element:44> a portal:SectionHeading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:44> ;
+    interface:text "Open the cupboards." .
+
+<urn:silmaril:user:interface:portal:element:45> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:45> ;
+    interface:text "The atlas follows the complete basicttl file tree. Switch from files to classes, properties, or individuals; trace a superclass, inspect a literal, and return to the source. The reading room keeps the project’s Markdown inside the site, with room to unfold one chapter at a time." .
+
+<urn:silmaril:user:interface:portal:element:46> a portal:Link ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:46> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:46:class>,
+        <urn:silmaril:user:interface:portal:attribute:46:href> ;
+    interface:text "Explore the living repository →" .
+
+<urn:silmaril:user:interface:portal:element:47> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:47> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:47:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:44>,
+        <urn:silmaril:user:interface:portal:element:45>,
+        <urn:silmaril:user:interface:portal:element:46> .
+
+<urn:silmaril:user:interface:portal:element:48> a portal:Container ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:48> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:48:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:36>,
+        <urn:silmaril:user:interface:portal:element:37>,
+        <urn:silmaril:user:interface:portal:element:43>,
+        <urn:silmaril:user:interface:portal:element:47> .
+
+<urn:silmaril:user:interface:portal:element:49> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:49> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:49:class> ;
+    interface:text "The atlas · inspect the actual repository" .
+
+<urn:silmaril:user:interface:portal:element:5> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:5> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:5:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:1>,
+        <urn:silmaril:user:interface:portal:element:2>,
+        <urn:silmaril:user:interface:portal:element:3>,
+        <urn:silmaril:user:interface:portal:element:4> .
+
+<urn:silmaril:user:interface:portal:element:50> a portal:PageHeading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:50> ;
+    interface:text "Follow a name into its world." .
+
+<urn:silmaril:user:interface:portal:element:51> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:51> ;
+    interface:text "Browse every Turtle source, or follow declared classes, properties, and individuals. Each selection opens its statements and original source. This is a declaration browser; no reasoner is running behind the curtain." .
+
+<urn:silmaril:user:interface:portal:element:52> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:52> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:52:aria-live>,
+        <urn:silmaril:user:interface:portal:attribute:52:id>,
+        <urn:silmaril:user:interface:portal:attribute:52:role> ;
+    interface:text "Opening the atlas…" .
+
+<urn:silmaril:user:interface:portal:element:53> a portal:Container ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:53> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:53:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:49>,
+        <urn:silmaril:user:interface:portal:element:50>,
+        <urn:silmaril:user:interface:portal:element:51>,
+        <urn:silmaril:user:interface:portal:element:52> .
+
+<urn:silmaril:user:interface:portal:element:54> a portal:LabelElement ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:54> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:54:for> ;
+    interface:text "Search files, labels, or full IRIs" .
+
+<urn:silmaril:user:interface:portal:element:55> a portal:SearchInput ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:55> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:55:autocomplete>,
+        <urn:silmaril:user:interface:portal:attribute:55:id>,
+        <urn:silmaril:user:interface:portal:attribute:55:placeholder>,
+        <urn:silmaril:user:interface:portal:attribute:55:type> .
+
+<urn:silmaril:user:interface:portal:element:56> a portal:LabelElement ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:56> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:56:for> ;
+    interface:text "Browse by" .
+
+<urn:silmaril:user:interface:portal:element:57> a portal:Choice ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:57> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:57:value> ;
+    interface:text "File tree" .
+
+<urn:silmaril:user:interface:portal:element:58> a portal:Choice ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:58> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:58:value> ;
+    interface:text "Classes" .
+
+<urn:silmaril:user:interface:portal:element:59> a portal:Choice ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:59> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:59:value> ;
+    interface:text "Properties" .
+
+<urn:silmaril:user:interface:portal:element:6> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:6> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:6:class> ;
+    interface:text "02 · The journey" .
+
+<urn:silmaril:user:interface:portal:element:60> a portal:Choice ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:60> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:60:value> ;
+    interface:text "Individuals" .
+
+<urn:silmaril:user:interface:portal:element:61> a portal:Selector ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:61> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:61:id> ;
+    interface:child <urn:silmaril:user:interface:portal:element:57>,
+        <urn:silmaril:user:interface:portal:element:58>,
+        <urn:silmaril:user:interface:portal:element:59>,
+        <urn:silmaril:user:interface:portal:element:60> .
+
+<urn:silmaril:user:interface:portal:element:62> a portal:Button ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:62> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:62:id>,
+        <urn:silmaril:user:interface:portal:attribute:62:type> ;
+    interface:text "Clear search" .
+
+<urn:silmaril:user:interface:portal:element:63> a portal:Container ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:63> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:63:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:54>,
+        <urn:silmaril:user:interface:portal:element:55>,
+        <urn:silmaril:user:interface:portal:element:56>,
+        <urn:silmaril:user:interface:portal:element:61>,
+        <urn:silmaril:user:interface:portal:element:62> .
+
+<urn:silmaril:user:interface:portal:element:64> a portal:Navigation ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:64> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:64:aria-label>,
+        <urn:silmaril:user:interface:portal:attribute:64:class>,
+        <urn:silmaril:user:interface:portal:attribute:64:id> .
+
+<urn:silmaril:user:interface:portal:element:65> a portal:SectionHeading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:65> ;
+    interface:text "Choose a file or a name." .
+
+<urn:silmaril:user:interface:portal:element:66> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:66> ;
+    interface:text "Its declarations, relationships, and source will appear here. Nothing is edited by this browser." .
+
+<urn:silmaril:user:interface:portal:element:67> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:67> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:67:aria-label>,
+        <urn:silmaril:user:interface:portal:attribute:67:aria-live>,
+        <urn:silmaril:user:interface:portal:attribute:67:class>,
+        <urn:silmaril:user:interface:portal:attribute:67:id> ;
+    interface:child <urn:silmaril:user:interface:portal:element:65>,
+        <urn:silmaril:user:interface:portal:element:66> .
+
+<urn:silmaril:user:interface:portal:element:68> a portal:Container ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:68> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:68:class> ;
+    interface:child <urn:silmaril:user:interface:portal:element:64>,
+        <urn:silmaril:user:interface:portal:element:67> .
+
+<urn:silmaril:user:interface:portal:element:69> a portal:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:69> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:69:class>,
+        <urn:silmaril:user:interface:portal:attribute:69:id> ;
+    interface:child <urn:silmaril:user:interface:portal:element:53>,
+        <urn:silmaril:user:interface:portal:element:63>,
+        <urn:silmaril:user:interface:portal:element:68> .
+
+<urn:silmaril:user:interface:portal:element:7> a portal:SectionHeading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:7> ;
+    interface:text "The map is allowed to lose things" .
+
+<urn:silmaril:user:interface:portal:element:8> a portal:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:8> ;
+    interface:text "The cartographer draws a small map of a large world. Coordinates help the traveler find a place; they do not become the place. Every projection owes an account of what it preserves and what it leaves behind." .
+
+<urn:silmaril:user:interface:portal:element:9> a portal:Link ;
+    geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:9> ;
+    interface:attribute <urn:silmaril:user:interface:portal:attribute:9:class>,
+        <urn:silmaril:user:interface:portal:attribute:9:href> ;
+    interface:text "Follow the coordinate trail" .
+
+<urn:silmaril:user:interface:portal:geometry:1> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:10> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:11> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:12> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:13> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:14> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:15> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:16> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:17> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:18> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:19> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:2> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:20> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:21> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 5)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:22> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 6)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:23> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 7)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:24> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 8)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:25> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 9)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:26> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 10)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:27> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 11)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:28> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:29> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:3> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:30> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:31> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:32> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:33> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:34> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:35> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:36> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:37> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:38> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:39> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:4> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:40> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:41> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:42> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:43> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:44> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:45> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:46> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:47> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:48> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 48)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:49> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:5> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:50> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:51> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:52> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:53> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:54> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:55> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:56> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:57> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:58> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:59> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:6> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:60> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:61> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:62> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:63> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:64> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:65> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:66> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:67> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:68> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:69> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 69)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:7> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:8> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:geometry:9> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:portal:namespace:cceo> a portal:NamespaceBinding ;
+    portal:namespace "https://www.commoncoreontologies.org/cpo#" ;
+    portal:prefix "cceo" .
+
+<urn:silmaril:user:interface:portal:namespace:cco> a portal:NamespaceBinding ;
+    portal:namespace "https://www.commoncoreontologies.org/" ;
+    portal:prefix "cco" .
+
+<urn:silmaril:user:interface:portal:namespace:geo> a portal:NamespaceBinding ;
+    portal:namespace "http://www.opengis.net/ont/geosparql#" ;
+    portal:prefix "geo" .
+
+<urn:silmaril:user:interface:portal:namespace:owl> a portal:NamespaceBinding ;
+    portal:namespace "http://www.w3.org/2002/07/owl#" ;
+    portal:prefix "owl" .
+
+<urn:silmaril:user:interface:portal:namespace:rdf> a portal:NamespaceBinding ;
+    portal:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ;
+    portal:prefix "rdf" .
+
+<urn:silmaril:user:interface:portal:namespace:rdfs> a portal:NamespaceBinding ;
+    portal:namespace "http://www.w3.org/2000/01/rdf-schema#" ;
+    portal:prefix "rdfs" .
+
+<urn:silmaril:user:interface:portal:namespace:sf> a portal:NamespaceBinding ;
+    portal:namespace "http://www.opengis.net/ont/sf#" ;
+    portal:prefix "sf" .
+
+<urn:silmaril:user:interface:portal:namespace:sh> a portal:NamespaceBinding ;
+    portal:namespace "http://www.w3.org/ns/shacl#" ;
+    portal:prefix "sh" .
+
+<urn:silmaril:user:interface:portal:namespace:silm> a portal:NamespaceBinding ;
+    portal:namespace "urn:silmaril:entity#" ;
+    portal:prefix "silm" .
+
+<urn:silmaril:user:interface:portal:namespace:xsd> a portal:NamespaceBinding ;
+    portal:namespace "http://www.w3.org/2001/XMLSchema#" ;
+    portal:prefix "xsd" .
+
+portal:LabelElement a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "label" .
+
+portal:MathematicalExpression a owl:Class ;
+    projection:tag "p" .
+
+portal:Navigation a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "nav" .
+
+portal:PageHeading a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "h1" .
+
+portal:Circle a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "circle" .
+
+portal:Choice a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "option" .
+
+portal:Container a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "div" .
+
+portal:SectionHeading a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "h2" .
+
+portal:VectorText a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "text" .
+
+portal:Link a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "a" .
+
+portal:Section a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "section" .
+
+portal:Artifact a owl:Class .
+
+portal:NamespaceBinding a owl:Class .
+
+portal:Paragraph a owl:Class ;
+    schema1:subClassOf interface:Element ;
+    projection:tag "p" .
+
+portal:Label a owl:Class .

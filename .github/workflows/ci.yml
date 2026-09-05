@@ -38,6 +38,13 @@ jobs:
         run: |
           pip install -r scripts/python/pylib/requirements-user-interface.txt
           make -C scripts/python/pylib morphism-user-interface-constructor-install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install mathematical rendering assets
+        run: |
+          npm install --omit=dev --no-save --package-lock=false --prefix scripts/site
+          node scripts/site/vendor.cjs
       - name: Build Jekyll site
         working-directory: docs
         run: |

@@ -26,8 +26,9 @@ jobs:
         run: |
           pip install -r scripts/python/pylib/requirements-user-interface.txt
           bundle install --gemfile docs/Gemfile
-          npm install --no-save --package-lock=false playwright@1.62.1
-          npx playwright install --with-deps chromium
+          npm install --no-save --package-lock=false --prefix scripts/site
+          node scripts/site/vendor.cjs
+          scripts/site/node_modules/.bin/playwright install --with-deps chromium
       - name: Validate and generate specifications
         run: make -C scripts/python/pylib morphism-user-interface-constructor-check morphism-user-interface-constructor-install SILMARIL_PYTHON=python3
       - name: Build Jekyll

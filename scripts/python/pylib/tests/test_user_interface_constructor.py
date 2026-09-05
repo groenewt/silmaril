@@ -23,7 +23,7 @@ GEOMETRY = Namespace("http://www.opengis.net/ont/geosparql#")
 @pytest.fixture
 def specification():
     graph = Graph()
-    for path in sorted((REPOSITORY / "basicttl/user/interface").glob("*.ttl")):
+    for path in [REPOSITORY / "basicttl/user/interface" / name for name in ("schema.ttl", "components.ttl", "styles.ttl", "queries.ttl", "shapes.ttl")]:
         graph.parse(path)
     return graph
 

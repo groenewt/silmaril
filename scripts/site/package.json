@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "description": "Pinned dependencies for generated mathematical documents and browser validation",
+  "dependencies": {"katex": "0.18.5"},
+  "devDependencies": {"playwright": "1.62.1"}
+}

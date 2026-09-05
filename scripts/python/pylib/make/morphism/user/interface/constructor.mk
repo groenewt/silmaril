@@ -30,7 +30,7 @@ $(MORPHISM_USER_INTERFACE_CONSTRUCTOR_ARTIFACT_ROOT)/build-status.html: $(MORPHI
 	$(call MORPHISM_USER_INTERFACE_CONSTRUCTOR_STEP,hypertext.markup.language.render)
 
 morphism-user-interface-constructor-check: morphism-user-interface-constructor
-	@PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(MORPHISM_USER_INTERFACE_CONSTRUCTOR_SOURCE_ROOT)" "$(SILMARIL_PYTHON)" -m pytest -q tests/test_user_interface_constructor.py
+	@PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(MORPHISM_USER_INTERFACE_CONSTRUCTOR_SOURCE_ROOT)" "$(SILMARIL_PYTHON)" -m pytest -q tests/test_user_interface_constructor.py ../../../scripts/site/test_projection.py
 
 morphism-user-interface-constructor-install: morphism-user-interface-constructor
 	@mkdir -p "$(dir $(MORPHISM_USER_INTERFACE_CONSTRUCTOR_CASCADING_STYLE_SHEET))" "$(dir $(MORPHISM_USER_INTERFACE_CONSTRUCTOR_HYPERTEXT_MARKUP_LANGUAGE))"
@@ -44,3 +44,9 @@ morphism-user-interface-documentation:
 	@SILMARIL_REPOSITORY_ROOT="$(MORPHISM_USER_INTERFACE_CONSTRUCTOR_REPOSITORY_ROOT)" PYTHONUTF8=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$(MORPHISM_USER_INTERFACE_CONSTRUCTOR_SOURCE_ROOT)" "$(SILMARIL_PYTHON)" -m silmaril.sparky.morphism.user.interface.documentation.render.engine
 
 morphism-user-interface-constructor-install: morphism-user-interface-documentation
+
+.PHONY: morphism-user-interface-portal
+morphism-user-interface-portal:
+	@PYTHONDONTWRITEBYTECODE=1 "$(SILMARIL_PYTHON)" "$(MORPHISM_USER_INTERFACE_CONSTRUCTOR_REPOSITORY_ROOT)/scripts/site/project.py"
+
+morphism-user-interface-constructor-install: morphism-user-interface-portal
