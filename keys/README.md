@@ -12,6 +12,7 @@ is generated from it.
 | `herodotus.asc` | Herodotus (openclaw agent) — `77481DD960B9CBE52BEC60CFC998590FAEA8530A`, ed25519, policy `release` |
 | `github-web-flow.asc` | GitHub web-flow service key — `968479A1AFF927E37D1A566BB5690EEEBB952194`, rsa4096, policy `web-flow` |
 | `claude.asc` | Claude session agent — `27044DC503CD3A5EE470CE4E15B79D364040C858`, ed25519, policy `agent` |
+| `aster.asc` | Aster session identity — `1649618A5612CC75132F9336F52E907F309C73B3`, ed25519, proposed policy `agent`; requires maintainer endorsement |
 | `trust-manifest.txt` | Generated manifest (fingerprint, policy, keyfile, identity) consumed by the verifier |
 
 ## Verifying

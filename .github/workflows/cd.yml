@@ -29,6 +29,13 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate user interface from specifications
+        run: |
+          pip install -r scripts/python/pylib/requirements-user-interface.txt
+          make -C scripts/python/pylib morphism-user-interface-constructor-install SILMARIL_PYTHON=python3
       - name: Build Jekyll
         working-directory: docs
         run: |
