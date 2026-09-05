@@ -19,12 +19,155 @@
     style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:10:declaration:font-weight> ;
     style:selector ".build-status-name" .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:100> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:100:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:100:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:100:color> ;
+    style:selector "body" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:101> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:101:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:101:margin>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:101:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:101:padding> ;
+    style:selector ".living-portal" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:102> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:102:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:102:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:102:padding-block> ;
+    style:selector ".portal-hero" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:103> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:103:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:103:color>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:103:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:103:font-weight>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:103:letter-spacing>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:103:line-height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:103:max-width> ;
+    style:selector ".portal-hero h1" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:104> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:104:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:104:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:104:margin-block>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:104:max-width> ;
+    style:selector ".portal-lede" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:105> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:105:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:105:align-items>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:105:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:105:flex-wrap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:105:gap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:105:margin-block> ;
+    style:selector ".portal-actions, .reading-controls, .explorer-controls, .document-toolbar" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:106> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:106:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:106:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:106:height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:106:margin>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:106:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:106:overflow>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:106:width> ;
+    style:selector ".journey-diagram, .neighborhood-diagram" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:107> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:107:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:107:font-family>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:107:font-size> ;
+    style:selector ".journey-diagram text, .neighborhood-diagram text" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:108> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:108:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:108:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:108:gap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:108:grid-template-columns>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:108:margin-block> ;
+    style:selector ".story-grid" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:109> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:109:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:109:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:109:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:109:border-radius>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:109:padding> ;
+    style:selector ".story-card, .portal-equation, .portal-invitation" .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:11> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:11:geometry> ;
     style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:11:declaration:color>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:11:declaration:font-family>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:11:declaration:font-size> ;
     style:selector ".build-status-state" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:110> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:110:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:110:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:110:line-height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:110:margin-block> ;
+    style:selector ".story-card h2, .portal-invitation h2, .portal-equation h2" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:111> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:111:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:111:margin-block> ;
+    style:selector ".story-card p" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:112> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:112:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:112:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:112:font-weight>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:112:margin-top> ;
+    style:selector ".story-link" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:113> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:113:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:113:margin-block> ;
+    style:selector ".portal-equation, .portal-invitation" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:114> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:114:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:114:background> ;
+    style:selector ".portal-equation" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:115:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:115:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:115:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:115:border-radius>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:115:color>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:115:font>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:115:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:115:padding> ;
+    style:selector "button, input, select" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:116> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:116:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:116:cursor> ;
+    style:selector "button, summary" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:117> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:117:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:117:background> ;
+    style:selector "button:hover, .term-link:hover" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:118> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:118:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:118:outline>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:118:outline-offset> ;
+    style:selector "a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:119> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:119:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:119:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:119:left>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:119:padding>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:119:position>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:119:top>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:119:z-index> ;
+    style:selector ".skip-link" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:12> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:12:geometry> ;
@@ -37,21 +180,368 @@
         <urn:silmaril:user:interface:cascading:style:sheet:rule:12:declaration:text-underline-offset> ;
     style:selector ".build-status-link" .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:120> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:120:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:120:top> ;
+    style:selector ".skip-link:focus" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:121> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:121:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:121:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:121:line-height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:121:margin-block> ;
+    style:selector ".reading-room h1, .explorer-heading h1" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:122> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:122:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:122:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:122:border-radius>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:122:margin-block>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:122:padding> ;
+    style:selector ".reading-contents" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:123> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:123:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:123:columns>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:123:padding-left> ;
+    style:selector ".reading-contents ul" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:124> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:124:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:124:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:124:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:124:border-radius>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:124:margin>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:124:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:124:padding> ;
+    style:selector ".embedded-document" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:125> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:125:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:125:font-weight>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:125:overflow-wrap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:125:padding> ;
+    style:selector ".embedded-document summary" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:126> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:126:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:126:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:126:font-family>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:126:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:126:font-weight>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:126:margin-top> ;
+    style:selector ".embedded-document summary small" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:127:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:127:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:127:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:127:border-top>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:127:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:127:height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:127:min-height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:127:width> ;
+    style:selector ".document-panel" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:128> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:128:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:128:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:128:padding> ;
+    style:selector ".document-frame" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:129> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:129:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:129:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:129:border-radius>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:129:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:129:padding> ;
+    style:selector ".document-toolbar" .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:13> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:13:geometry> ;
     style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:13:declaration:max-width>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:13:declaration:overflow-x> ;
     style:selector ".law-display, .figure-coordinate, pre" .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:130> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:130:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:130:align-items>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:130:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:130:flex-wrap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:130:gap> ;
+    style:selector ".document-layout, .explorer-columns" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:131> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:131:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:131:flex>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:131:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:131:max-height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:131:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:131:overflow-y>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:131:padding> ;
+    style:selector ".document-toc" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:132> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:132:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:132:padding-left> ;
+    style:selector ".document-toc ol" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:133> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:133:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:133:margin-left> ;
+    style:selector ".document-toc li[data-level=\"H3\"], .document-toc li[data-level=\"H4\"]" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:134> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:134:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:134:flex>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:134:min-width> ;
+    style:selector ".document-layout main" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:135> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:135:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:135:border-top>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:135:margin-block>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:135:padding> ;
+    style:selector ".document-chapter" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:136> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:136:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:136:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:136:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:136:line-height> ;
+    style:selector ".document-chapter summary h2" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:137> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:137:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:137:font-size> ;
+    style:selector ".document-frame h1" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:138> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:138:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:138:margin-block> ;
+    style:selector ".document-frame p, .document-frame ul, .document-frame ol, .document-frame pre" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:139> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:139:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:139:padding-left> ;
+    style:selector ".document-frame ul, .document-frame ol" .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:14> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:14:geometry> ;
     style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:14:declaration:overflow-wrap> ;
     style:selector ".doc-links a, .figure-coordinate a" .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:140> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:140:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:140:font-family>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:140:font-size> ;
+    style:selector ".document-frame code" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:141> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:141:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:141:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:141:overflow-x>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:141:overflow-y>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:141:padding-block> ;
+    style:selector ".katex-display" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:142:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:142:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:142:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:142:border-radius>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:142:flex>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:142:max-height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:142:min-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:142:overflow>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:142:padding> ;
+    style:selector ".explorer-tree" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:143> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:143:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:143:list-style>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:143:margin>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:143:padding-left> ;
+    style:selector ".explorer-tree ul" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:144:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:144:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:144:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:144:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:144:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:144:overflow-wrap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:144:text-align>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:144:width> ;
+    style:selector ".explorer-tree button" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:145> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:145:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:145:font-family>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:145:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:145:padding-block> ;
+    style:selector ".explorer-tree summary" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:146:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:146:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:146:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:146:border-radius>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:146:flex>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:146:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:146:min-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:146:padding> ;
+    style:selector ".explorer-inspector" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:147> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:147:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:147:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:147:overflow-wrap> ;
+    style:selector ".explorer-inspector h2" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:148> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:148:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:148:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:148:margin-block>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:148:overflow-wrap> ;
+    style:selector ".explorer-inspector h3" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:149> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:149:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:149:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:149:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:149:margin-block>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:149:overflow-wrap> ;
+    style:selector ".entity-identity, .source-digest" .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:15> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:15:geometry> ;
     style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:15:declaration:scroll-margin-top> ;
     style:selector "section[id]" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:150> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:150:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:150:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:150:border-radius>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:150:margin-block>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:150:padding> ;
+    style:selector ".inspector-panel" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:151> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:151:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:151:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:151:font-weight>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:151:overflow-wrap> ;
+    style:selector ".inspector-panel summary" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:152> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:152:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:152:border-bottom>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:152:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:152:gap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:152:grid-template-columns>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:152:padding-block> ;
+    style:selector ".statement" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:153> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:153:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:153:min-width> ;
+    style:selector ".statement div" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:154:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:154:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:154:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:154:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:154:overflow-wrap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:154:padding>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:154:text-align>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:154:text-decoration> ;
+    style:selector ".term-link" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:155> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:155:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:155:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:155:overflow-wrap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:155:white-space> ;
+    style:selector ".literal-value" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:156> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:156:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:156:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:156:font-family>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:156:font-size> ;
+    style:selector ".literal-value small" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:157:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:157:background>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:157:font-size>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:157:max-height>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:157:overflow>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:157:overflow-wrap>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:157:padding>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:157:white-space> ;
+    style:selector ".turtle-source, .inspector-panel pre" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:158> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:158:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:158:color>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:158:font-weight> ;
+    style:selector ".parse-error" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:159> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:159:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:159:display> ;
+    style:selector "[hidden]" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:16> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:16:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:16:margin>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:16:padding>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:16:width> ;
+    style:selector ".embedded-document" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:17> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:17:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:17:overflow> ;
+    style:selector ".embedded-document-body" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:18> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:18:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:18:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:18:overflow>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:18:width> ;
+    style:selector ".embedded-document-body pre, .embedded-document-body table" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:180> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:180:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:180:font-size> ;
+    style:selector ".journey-diagram text" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:181> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:181:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:181:border>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:181:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:181:overflow-x>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:181:padding> ;
+    style:selector ".diagram-viewport" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:182> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:182:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:182:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:182:width> ;
+    style:selector ".diagram-viewport .neighborhood-diagram" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:183> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:183:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:183:font-size> ;
+    style:selector ".diagram-viewport p" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:19> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:19:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:19:overflow-wrap> ;
+    style:selector "main" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:2> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:2:geometry> ;
@@ -59,6 +549,23 @@
         <urn:silmaril:user:interface:cascading:style:sheet:rule:2:declaration:gap>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:2:declaration:min-width> ;
     style:selector ".nav-links" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:20> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:20:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:20:min-width> ;
+    style:selector ".hero *, .section-container *" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:21> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:21:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:21:display>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:21:max-width>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:21:overflow-x> ;
+    style:selector "main pre, main table" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:22> a style:Rule ;
+    geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:22:geometry> ;
+    style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:22:font-size> ;
+    style:selector ".hero h1, .page-hero h1" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:3> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:3:geometry> ;
@@ -84,8 +591,11 @@
         <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:display>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:gap>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:margin-block>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:margin-inline>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:max-width>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:min-width>,
-        <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:padding> ;
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:padding>,
+        <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:width> ;
     style:selector ".build-status-bar" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:6> a style:Rule ;
@@ -141,12 +651,324 @@
 <urn:silmaril:user:interface:cascading:style:sheet:rule:0:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:100:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#faf8f0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:100:color> a style:Declaration ;
+    style:name "color" ;
+    style:value "#23392f" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:100:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 100)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:101:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 101)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:101:margin> a style:Declaration ;
+    style:name "margin" ;
+    style:value "0 auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:101:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "1240px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:101:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "clamp(1rem, 4vw, 3rem)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:102:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 102)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:102:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "1000px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:102:padding-block> a style:Declaration ;
+    style:name "padding-block" ;
+    style:value "2rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:103:color> a style:Declaration ;
+    style:name "color" ;
+    style:value "#173d2e" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:103:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "clamp(2.15rem, 5.5vw, 4.5rem)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:103:font-weight> a style:Declaration ;
+    style:name "font-weight" ;
+    style:value "400" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:103:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 103)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:103:letter-spacing> a style:Declaration ;
+    style:name "letter-spacing" ;
+    style:value "-0.035em" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:103:line-height> a style:Declaration ;
+    style:name "line-height" ;
+    style:value "1.05" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:103:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "17ch" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:104:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "1.1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:104:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 104)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:104:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "1.5rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:104:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "64ch" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:105:align-items> a style:Declaration ;
+    style:name "align-items" ;
+    style:value "center" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:105:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "flex" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:105:flex-wrap> a style:Declaration ;
+    style:name "flex-wrap" ;
+    style:value "wrap" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:105:gap> a style:Declaration ;
+    style:name "gap" ;
+    style:value "0.65rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:105:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 105)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:105:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:106:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:106:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 106)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:106:height> a style:Declaration ;
+    style:name "height" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:106:margin> a style:Declaration ;
+    style:name "margin" ;
+    style:value "1.5rem auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:106:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "700px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:106:overflow> a style:Declaration ;
+    style:name "overflow" ;
+    style:value "visible" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:106:width> a style:Declaration ;
+    style:name "width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:107:font-family> a style:Declaration ;
+    style:name "font-family" ;
+    style:value "var(--font-mono)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:107:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "16px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:107:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 107)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:108:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "grid" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:108:gap> a style:Declaration ;
+    style:name "gap" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:108:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 108)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:108:grid-template-columns> a style:Declaration ;
+    style:name "grid-template-columns" ;
+    style:value "repeat(auto-fit, minmax(min(100%, 18rem), 1fr))" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:108:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "2rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:109:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#fffef9" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:109:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "1px solid #c9d4c5" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:109:border-radius> a style:Declaration ;
+    style:name "border-radius" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:109:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 109)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:109:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "clamp(1rem, 3vw, 2rem)" .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:10:declaration:font-weight> a style:Declaration ;
     style:name "font-weight" ;
     style:value "600" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:10:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 10)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:110:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "1.55rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:110:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 110)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:110:line-height> a style:Declaration ;
+    style:name "line-height" ;
+    style:value "1.2" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:110:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "0.7rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:111:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 111)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:111:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "0.75rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:112:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "inline-block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:112:font-weight> a style:Declaration ;
+    style:name "font-weight" ;
+    style:value "600" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:112:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 112)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:112:margin-top> a style:Declaration ;
+    style:name "margin-top" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:113:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 113)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:113:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "1.5rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:114:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#edf3e7" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:114:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 114)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#fffef9" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "1px solid #899d8d" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115:border-radius> a style:Declaration ;
+    style:name "border-radius" ;
+    style:value "0.4rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115:color> a style:Declaration ;
+    style:name "color" ;
+    style:value "#173d2e" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115:font> a style:Declaration ;
+    style:name "font" ;
+    style:value "inherit" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 115)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:115:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0.55rem 0.7rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:116:cursor> a style:Declaration ;
+    style:name "cursor" ;
+    style:value "pointer" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:116:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 116)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:117:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#e3eddf" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:117:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 117)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:118:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 118)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:118:outline> a style:Declaration ;
+    style:name "outline" ;
+    style:value "3px solid #935509" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:118:outline-offset> a style:Declaration ;
+    style:name "outline-offset" ;
+    style:value "3px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:119:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#fff" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:119:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 119)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:119:left> a style:Declaration ;
+    style:name "left" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:119:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:119:position> a style:Declaration ;
+    style:name "position" ;
+    style:value "fixed" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:119:top> a style:Declaration ;
+    style:name "top" ;
+    style:value "-8rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:119:z-index> a style:Declaration ;
+    style:name "z-index" ;
+    style:value "100" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:11:declaration:color> a style:Declaration ;
     style:name "color" ;
@@ -162,6 +984,184 @@
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:11:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 11)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:120:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 120)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:120:top> a style:Declaration ;
+    style:name "top" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:121:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "clamp(1.9rem, 4.5vw, 3.2rem)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:121:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 121)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:121:line-height> a style:Declaration ;
+    style:name "line-height" ;
+    style:value "1.1" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:121:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "0.75rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:122:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "1px solid #c9d4c5" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:122:border-radius> a style:Declaration ;
+    style:name "border-radius" ;
+    style:value "0.6rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:122:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 122)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:122:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:122:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:123:columns> a style:Declaration ;
+    style:name "columns" ;
+    style:value "18rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:123:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 123)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:123:padding-left> a style:Declaration ;
+    style:name "padding-left" ;
+    style:value "1.25rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:124:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#fffef9" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:124:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "1px solid #b8c9b9" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:124:border-radius> a style:Declaration ;
+    style:name "border-radius" ;
+    style:value "0.6rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:124:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 124)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:124:margin> a style:Declaration ;
+    style:name "margin" ;
+    style:value "0.7rem 0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:124:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "none" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:124:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:125:font-weight> a style:Declaration ;
+    style:name "font-weight" ;
+    style:value "600" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:125:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 125)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:125:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:125:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:126:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:126:font-family> a style:Declaration ;
+    style:name "font-family" ;
+    style:value "var(--font-mono)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:126:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.7rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:126:font-weight> a style:Declaration ;
+    style:name "font-weight" ;
+    style:value "400" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:126:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 126)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:126:margin-top> a style:Declaration ;
+    style:name "margin-top" ;
+    style:value "0.35rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#fffef9" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127:border-top> a style:Declaration ;
+    style:name "border-top" ;
+    style:value "1px solid #c9d4c5" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 127)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127:height> a style:Declaration ;
+    style:name "height" ;
+    style:value "75vh" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127:min-height> a style:Declaration ;
+    style:name "min-height" ;
+    style:value "460px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:127:width> a style:Declaration ;
+    style:name "width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:128:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "16px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:128:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 128)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:128:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "clamp(0.7rem, 2vw, 1.5rem)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:129:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#edf3e7" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:129:border-radius> a style:Declaration ;
+    style:name "border-radius" ;
+    style:value "0.5rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:129:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.8rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:129:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 129)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:129:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0.75rem" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:12:declaration:align-items> a style:Declaration ;
     style:name "align-items" ;
@@ -194,6 +1194,128 @@
 <urn:silmaril:user:interface:cascading:style:sheet:rule:12:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 12)"^^geometry:wktLiteral .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:130:align-items> a style:Declaration ;
+    style:name "align-items" ;
+    style:value "flex-start" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:130:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "flex" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:130:flex-wrap> a style:Declaration ;
+    style:name "flex-wrap" ;
+    style:value "wrap" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:130:gap> a style:Declaration ;
+    style:name "gap" ;
+    style:value "1.25rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:130:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 130)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:131:flex> a style:Declaration ;
+    style:name "flex" ;
+    style:value "1 1 12rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:131:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.85rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:131:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 131)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:131:max-height> a style:Declaration ;
+    style:name "max-height" ;
+    style:value "20rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:131:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "20rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:131:overflow-y> a style:Declaration ;
+    style:name "overflow-y" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:131:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0.75rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:132:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 132)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:132:padding-left> a style:Declaration ;
+    style:name "padding-left" ;
+    style:value "1.2rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:133:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 133)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:133:margin-left> a style:Declaration ;
+    style:name "margin-left" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:134:flex> a style:Declaration ;
+    style:name "flex" ;
+    style:value "3 1 28rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:134:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 134)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:134:min-width> a style:Declaration ;
+    style:name "min-width" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:135:border-top> a style:Declaration ;
+    style:name "border-top" ;
+    style:value "1px solid #c9d4c5" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:135:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 135)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:135:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:135:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0.5rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:136:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "inline" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:136:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "1.35rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:136:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 136)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:136:line-height> a style:Declaration ;
+    style:name "line-height" ;
+    style:value "1.3" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:137:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "1.8rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:137:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 137)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:138:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 138)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:138:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "0.8rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:139:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 139)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:139:padding-left> a style:Declaration ;
+    style:name "padding-left" ;
+    style:value "1.5rem" .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:13:declaration:max-width> a style:Declaration ;
     style:name "max-width" ;
     style:value "100%" .
@@ -205,6 +1327,208 @@
 <urn:silmaril:user:interface:cascading:style:sheet:rule:13:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 13)"^^geometry:wktLiteral .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:140:font-family> a style:Declaration ;
+    style:name "font-family" ;
+    style:value "var(--font-mono)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:140:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.85em" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:140:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 140)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:141:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 141)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:141:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:141:overflow-x> a style:Declaration ;
+    style:name "overflow-x" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:141:overflow-y> a style:Declaration ;
+    style:name "overflow-y" ;
+    style:value "hidden" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:141:padding-block> a style:Declaration ;
+    style:name "padding-block" ;
+    style:value "0.4rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#edf3e7" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "1px solid #c9d4c5" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:border-radius> a style:Declaration ;
+    style:name "border-radius" ;
+    style:value "0.7rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:flex> a style:Declaration ;
+    style:name "flex" ;
+    style:value "1 1 17rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 142)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:max-height> a style:Declaration ;
+    style:name "max-height" ;
+    style:value "70vh" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:min-width> a style:Declaration ;
+    style:name "min-width" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:overflow> a style:Declaration ;
+    style:name "overflow" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:142:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:143:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 143)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:143:list-style> a style:Declaration ;
+    style:name "list-style" ;
+    style:value "none" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:143:margin> a style:Declaration ;
+    style:name "margin" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:143:padding-left> a style:Declaration ;
+    style:name "padding-left" ;
+    style:value "0.8rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "transparent" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.8rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 144)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144:text-align> a style:Declaration ;
+    style:name "text-align" ;
+    style:value "left" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:144:width> a style:Declaration ;
+    style:name "width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:145:font-family> a style:Declaration ;
+    style:name "font-family" ;
+    style:value "var(--font-mono)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:145:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.8rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:145:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 145)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:145:padding-block> a style:Declaration ;
+    style:name "padding-block" ;
+    style:value "0.25rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#fffef9" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "1px solid #c9d4c5" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146:border-radius> a style:Declaration ;
+    style:name "border-radius" ;
+    style:value "0.7rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146:flex> a style:Declaration ;
+    style:name "flex" ;
+    style:value "3 1 30rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 146)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146:min-width> a style:Declaration ;
+    style:name "min-width" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:146:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:147:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "1.4rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:147:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 147)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:147:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:148:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.9rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:148:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 148)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:148:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:148:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:149:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:149:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.7rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:149:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 149)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:149:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "0.75rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:149:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:14:declaration:overflow-wrap> a style:Declaration ;
     style:name "overflow-wrap" ;
     style:value "anywhere" .
@@ -212,12 +1536,274 @@
 <urn:silmaril:user:interface:cascading:style:sheet:rule:14:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 14)"^^geometry:wktLiteral .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:150:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "1px solid #d6dfd0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:150:border-radius> a style:Declaration ;
+    style:name "border-radius" ;
+    style:value "0.4rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:150:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 150)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:150:margin-block> a style:Declaration ;
+    style:name "margin-block" ;
+    style:value "0.8rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:150:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0.5rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:151:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.9rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:151:font-weight> a style:Declaration ;
+    style:name "font-weight" ;
+    style:value "600" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:151:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 151)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:151:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:152:border-bottom> a style:Declaration ;
+    style:name "border-bottom" ;
+    style:value "1px solid #e0e5d8" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:152:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "grid" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:152:gap> a style:Declaration ;
+    style:name "gap" ;
+    style:value "0.4rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:152:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 152)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:152:grid-template-columns> a style:Declaration ;
+    style:name "grid-template-columns" ;
+    style:value "repeat(auto-fit, minmax(min(100%, 9rem), 1fr))" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:152:padding-block> a style:Declaration ;
+    style:name "padding-block" ;
+    style:value "0.55rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:153:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 153)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:153:min-width> a style:Declaration ;
+    style:name "min-width" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "transparent" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.75rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 154)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0.2rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154:text-align> a style:Declaration ;
+    style:name "text-align" ;
+    style:value "left" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:154:text-decoration> a style:Declaration ;
+    style:name "text-decoration" ;
+    style:value "underline" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:155:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.85rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:155:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 155)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:155:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:155:white-space> a style:Declaration ;
+    style:name "white-space" ;
+    style:value "pre-wrap" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:156:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:156:font-family> a style:Declaration ;
+    style:name "font-family" ;
+    style:value "var(--font-mono)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:156:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.65rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:156:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 156)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157:background> a style:Declaration ;
+    style:name "background" ;
+    style:value "#f1f2e9" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.7rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 157)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157:max-height> a style:Declaration ;
+    style:name "max-height" ;
+    style:value "30rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157:overflow> a style:Declaration ;
+    style:name "overflow" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0.75rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:157:white-space> a style:Declaration ;
+    style:name "white-space" ;
+    style:value "pre-wrap" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:158:color> a style:Declaration ;
+    style:name "color" ;
+    style:value "#852b20" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:158:font-weight> a style:Declaration ;
+    style:name "font-weight" ;
+    style:value "600" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:158:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 158)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:159:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "none" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:159:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 159)"^^geometry:wktLiteral .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:15:declaration:scroll-margin-top> a style:Declaration ;
     style:name "scroll-margin-top" ;
     style:value "10rem" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:15:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 15)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:16:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 16)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:16:margin> a style:Declaration ;
+    style:name "margin" ;
+    style:value "2rem auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:16:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "1rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:16:width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "900px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:17:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 17)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:17:overflow> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:180:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "32px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:180:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 180)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:181:border> a style:Declaration ;
+    style:name "border" ;
+    style:value "1px solid #d6dfd0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:181:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 181)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:181:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:181:overflow-x> a style:Declaration ;
+    style:name "overflow-x" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:181:padding> a style:Declaration ;
+    style:name "padding" ;
+    style:value "0.5rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:182:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 182)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:182:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "none" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:182:width> a style:Declaration ;
+    style:name "width" ;
+    style:value "620px" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:183:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "0.75rem" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:183:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 183)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:18:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:18:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 18)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:18:overflow> a style:Declaration ;
+    style:name "overflow-x" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:18:width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:19:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 19)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:19:overflow-wrap> a style:Declaration ;
+    style:name "overflow-wrap" ;
+    style:value "anywhere" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:1:declaration:flex-wrap> a style:Declaration ;
     style:name "flex-wrap" ;
@@ -233,6 +1819,35 @@
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:1:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:20:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 20)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:20:min-width> a style:Declaration ;
+    style:name "min-width" ;
+    style:value "0" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:21:display> a style:Declaration ;
+    style:name "display" ;
+    style:value "block" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:21:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 21)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:21:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "100%" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:21:overflow-x> a style:Declaration ;
+    style:name "overflow-x" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:22:font-size> a style:Declaration ;
+    style:name "font-size" ;
+    style:value "clamp(1.8rem, 6vw, 3rem)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:22:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 22)"^^geometry:wktLiteral .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:2:declaration:flex-wrap> a style:Declaration ;
     style:name "flex-wrap" ;
@@ -311,6 +1926,14 @@
     style:name "margin-block" ;
     style:value "1.5rem 2rem" .
 
+<urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:margin-inline> a style:Declaration ;
+    style:name "margin-inline" ;
+    style:value "auto" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:max-width> a style:Declaration ;
+    style:name "max-width" ;
+    style:value "var(--max-width)" .
+
 <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:min-width> a style:Declaration ;
     style:name "min-width" ;
     style:value "0" .
@@ -318,6 +1941,10 @@
 <urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:padding> a style:Declaration ;
     style:name "padding" ;
     style:value "clamp(1rem, 4vw, 1.5rem)" .
+
+<urn:silmaril:user:interface:cascading:style:sheet:rule:5:declaration:width> a style:Declaration ;
+    style:name "width" ;
+    style:value "calc(100% - 2rem)" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:5:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 5)"^^geometry:wktLiteral .
@@ -437,41 +2064,3 @@
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:9:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 9)"^^geometry:wktLiteral .
-
-
-style:rule:5 style:declaration style:rule:5:declaration:max-width, style:rule:5:declaration:width, style:rule:5:declaration:margin-inline .
-style:rule:5:declaration:max-width a style:Declaration ; style:name "max-width" ; style:value "var(--max-width)" .
-style:rule:5:declaration:width a style:Declaration ; style:name "width" ; style:value "calc(100% - 2rem)" .
-style:rule:5:declaration:margin-inline a style:Declaration ; style:name "margin-inline" ; style:value "auto" .
-
-style:rule:16 a style:Rule ; style:selector ".embedded-document" ; geometry:hasGeometry style:rule:16:geometry ; style:declaration style:rule:16:width, style:rule:16:margin, style:rule:16:padding .
-style:rule:16:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 16)"^^geometry:wktLiteral .
-style:rule:16:width a style:Declaration ; style:name "max-width" ; style:value "900px" .
-style:rule:16:margin a style:Declaration ; style:name "margin" ; style:value "2rem auto" .
-style:rule:16:padding a style:Declaration ; style:name "padding" ; style:value "1rem" .
-style:rule:17 a style:Rule ; style:selector ".embedded-document-body" ; geometry:hasGeometry style:rule:17:geometry ; style:declaration style:rule:17:overflow .
-style:rule:17:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 17)"^^geometry:wktLiteral .
-style:rule:17:overflow a style:Declaration ; style:name "overflow-wrap" ; style:value "anywhere" .
-style:rule:18 a style:Rule ; style:selector ".embedded-document-body pre, .embedded-document-body table" ; geometry:hasGeometry style:rule:18:geometry ; style:declaration style:rule:18:overflow, style:rule:18:display, style:rule:18:width .
-style:rule:18:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 18)"^^geometry:wktLiteral .
-style:rule:18:overflow a style:Declaration ; style:name "overflow-x" ; style:value "auto" .
-style:rule:18:display a style:Declaration ; style:name "display" ; style:value "block" .
-style:rule:18:width a style:Declaration ; style:name "max-width" ; style:value "100%" .
-
-style:rule:19 a style:Rule ; style:selector "main" ; geometry:hasGeometry style:rule:19:geometry ; style:declaration style:rule:19:overflow-wrap .
-style:rule:19:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 19)"^^geometry:wktLiteral .
-style:rule:19:overflow-wrap a style:Declaration ; style:name "overflow-wrap" ; style:value "anywhere" .
-
-style:rule:20 a style:Rule ; style:selector ".hero *, .section-container *" ; geometry:hasGeometry style:rule:20:geometry ; style:declaration style:rule:20:min-width .
-style:rule:20:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 20)"^^geometry:wktLiteral .
-style:rule:20:min-width a style:Declaration ; style:name "min-width" ; style:value "0" .
-
-style:rule:21 a style:Rule ; style:selector "main pre, main table" ; geometry:hasGeometry style:rule:21:geometry ; style:declaration style:rule:21:max-width, style:rule:21:overflow-x, style:rule:21:display .
-style:rule:21:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 21)"^^geometry:wktLiteral .
-style:rule:21:max-width a style:Declaration ; style:name "max-width" ; style:value "100%" .
-style:rule:21:overflow-x a style:Declaration ; style:name "overflow-x" ; style:value "auto" .
-style:rule:21:display a style:Declaration ; style:name "display" ; style:value "block" .
-
-style:rule:22 a style:Rule ; style:selector ".hero h1, .page-hero h1" ; geometry:hasGeometry style:rule:22:geometry ; style:declaration style:rule:22:font-size .
-style:rule:22:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 22)"^^geometry:wktLiteral .
-style:rule:22:font-size a style:Declaration ; style:name "font-size" ; style:value "clamp(1.8rem, 6vw, 3rem)" .

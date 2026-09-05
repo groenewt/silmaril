@@ -5,15 +5,13 @@ document:Content document:query """PREFIX document: <urn:silmaril:user:interface
 SELECT ?identity ?path ?title ?content ?digest WHERE { ?subject a document:Source ; document:identity ?identity ; document:path ?path ; document:title ?title ; document:content ?content ; document:digest ?digest } ORDER BY ?path""" .
 
 document:Include a document:Template ;
-    document:content """{% for document in site.data.documentation %}{% if include.source == nil or include.source == document.source %}
-<details class="embedded-document" id="document-{{ document.identity }}" open>
-<summary>{{ document.title | escape }}</summary>
-{% assign identifier_prefix = 'id="' | append: document.identity | append: '-' %}
-{% assign anchor_prefix = 'href="#' | append: document.identity | append: '-' %}
-<div class="embedded-document-body" data-document-source="{{ document.source | escape }}" data-document-digest="{{ document.digest }}">{{ document.content | markdownify | replace: 'id="', identifier_prefix | replace: 'href="#', anchor_prefix }}</div>
-</details>
-{% endif %}{% endfor %}
-""" ;
+    document:content """<div class="document-shelf">
+{% for document in site.data.documentation %}{% if include.source == nil or include.source == document.source %}
+<details class="embedded-document" id="document-{{ document.identity }}" data-document-title="{{ document.title | escape }}">
+<summary><span>{{ document.title | escape }}</span><small>{{ document.source | escape }}</small></summary>
+<iframe class="document-panel" title="{{ document.title | escape }}" data-document-source="{{ document.source | escape }}" data-document-digest="{{ document.digest }}" data-src="{{ '/documents/' | append: document.identity | append: '/' | relative_url }}" loading="lazy"></iframe>
+<noscript><a href="{{ '/documents/' | append: document.identity | append: '/' | relative_url }}">Read {{ document.title | escape }}</a></noscript>
+</details>{% endif %}{% endfor %}</div>""" ;
     document:path "docs/_includes/documentation.html" .
 
 document:Navigation a document:Template ;
@@ -34,16 +32,14 @@ layout: default
 title: "Reading room | Silmaril"
 permalink: /reading/
 ---
-<section class="section page-section"><div class="section-container">
-<h1>Reading room</h1>
-<p>Complete project documents, rendered here from their Markdown sources.</p>
-{% include documentation.html %}
-</div></section>
-""" ;
+<section class="living-portal reading-room"><p class="section-eyebrow">The reading room · open one cupboard at a time</p><h1>Every document has a place.</h1><p>Notes from the workshop, plans for the next floor, and the laws the machinery still owes. Choose a title to read it here. Each document has its own contents, folding sections, and full-page view.</p><div class="reading-controls"><label for="document-search">Find a document</label><input id="document-search" type="search" placeholder="Search titles or paths…"><button type="button" data-shelf="close">Collapse all documents</button><button type="button" data-shelf="open">Expand visible documents</button><p id="document-count" role="status" aria-live="polite"></p></div><details class="reading-contents"><summary>Document contents</summary><nav aria-label="Reading room contents"><ul>{% for document in site.data.documentation %}<li><a href="#document-{{ document.identity }}">{{ document.title | escape }}</a></li>{% endfor %}</ul></nav></details>{% include documentation.html %}</section>""" ;
     document:path "docs/reading.html" .
 
 document:Registry document:query """PREFIX document: <urn:silmaril:user:interface:documentation:>
 SELECT ?subject ?path WHERE { ?subject a document:Source ; document:path ?path } ORDER BY ?path""" .
+
+document:RepositoryCatalog a document:Catalog ;
+    document:extension ".md" .
 
 document:Templates document:query """PREFIX document: <urn:silmaril:user:interface:documentation:>
 SELECT ?path ?content WHERE { ?subject a document:Template ; document:path ?path ; document:content ?content } ORDER BY ?path""" .

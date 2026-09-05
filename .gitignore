@@ -72,3 +72,19 @@ id_ed25519*
 /docs/reading.html
 
 /docs/_includes/reading-navigation.html
+
+# Ontology-projected reading and exploration surfaces
+/docs/index.html
+/docs/architecture.html
+/docs/provenance.html
+/docs/folklore.html
+/docs/explore.html
+/docs/_layouts/default.html
+/docs/_layouts/document-frame.html
+/docs/_includes/living-home.html
+/docs/_includes/ontology-explorer.html
+/docs/documents/
+/docs/assets/data/
+/docs/assets/vendor/
+/docs/assets/js/portal.js
+/scripts/site/node_modules/
