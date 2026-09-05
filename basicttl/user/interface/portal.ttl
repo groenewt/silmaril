@@ -392,7 +392,9 @@ portal:BrowserBehavior a portal:Artifact,
       const title=entities.get(identifier)?.label||short(identifier);
       const text=vector('text',{x:horizontal,y:vertical+24,'text-anchor':'middle',fill:'#17372b'},title.length>27?title.slice(0,24)+'…':title);diagram.append(text);
     }));
-    return diagram;
+    const viewport = make('div', undefined, {class:'diagram-viewport',tabindex:'0',role:'region','aria-label':labels.diagram});
+    viewport.append(diagram, make('p', labels.diagramScope));
+    return viewport;
   }
   async function inspectEntity(identifier, address = true) {
     const ticket = ++sequence;
@@ -508,7 +510,7 @@ portal:DocumentFrame a owl:Class .
 portal:DocumentFrameLayout a portal:Artifact ;
     portal:content """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ page.title | escape }}</title><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/css/generated.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/vendor/katex/katex.min.css' | relative_url }}"></head>
-<body class="document-frame" data-base-path="{{ site.baseurl }}" data-source="{{ page.document_source | escape }}"><a class="skip-link" href="#document-content">Skip to document</a><header class="document-toolbar"><span>{{ page.title | escape }}</span><button type="button" data-fold="close">Collapse sections</button><button type="button" data-fold="open">Expand sections</button><a href="{{ page.url | relative_url }}" target="_blank" rel="noopener">Open full document</a></header><div class="document-layout"><nav class="document-toc" aria-label="Document contents"><h2>Contents</h2><ol id="document-toc"></ol></nav><main id="document-content" class="embedded-document-body" data-document-source="{{ page.document_source | escape }}" data-document-digest="{{ page.document_digest }}">{{ content }}</main></div><script defer src="{{ '/assets/vendor/katex/katex.min.js' | relative_url }}"></script><script defer src="{{ '/assets/vendor/katex/contrib/auto-render.min.js' | relative_url }}"></script><script defer src="{{ '/assets/js/portal.js' | relative_url }}"></script></body></html>""" ;
+<body class="document-frame" data-base-path="{{ site.baseurl }}" data-source="{{ page.document_source | escape }}"><a class="skip-link" href="#document-content">Skip to document</a><header class="document-toolbar"><span>{{ page.title | escape }}</span><button type="button" data-fold="close">Collapse sections</button><button type="button" data-fold="open">Expand sections</button><a href="{{ page.url | relative_url }}" target="_blank" rel="noopener">Open full document</a></header><div class="document-layout"><details class="document-toc" open><summary>Contents</summary><nav aria-label="Document contents"><ol id="document-toc"></ol></nav></details><main id="document-content" class="embedded-document-body" data-document-source="{{ page.document_source | escape }}" data-document-digest="{{ page.document_digest }}">{{ content }}</main></div><script defer src="{{ '/assets/vendor/katex/katex.min.js' | relative_url }}"></script><script defer src="{{ '/assets/vendor/katex/contrib/auto-render.min.js' | relative_url }}"></script><script defer src="{{ '/assets/js/portal.js' | relative_url }}"></script></body></html>""" ;
     portal:path "docs/_layouts/document-frame.html" .
 
 portal:Elements portal:query """PREFIX interface: <urn:silmaril:user:interface:>
@@ -1001,6 +1003,10 @@ bash scripts/install-git-hook.sh                                         # bridg
 <urn:silmaril:user:interface:portal:label:diagram> a portal:Label ;
     portal:key "diagram" ;
     portal:text "Local subclass neighborhood" .
+
+<urn:silmaril:user:interface:portal:label:diagramScope> a portal:Label ;
+    portal:key "diagramScope" ;
+    portal:text "Up to three parents and three children are pictured. All declared relationships are listed below. Scroll the diagram horizontally on a narrow screen." .
 
 <urn:silmaril:user:interface:portal:label:empty> a portal:Label ;
     portal:key "empty" ;
@@ -2232,6 +2238,7 @@ portal:LabelElement a owl:Class ;
     projection:tag "label" .
 
 portal:MathematicalExpression a owl:Class ;
+    schema1:subClassOf interface:Element ;
     projection:tag "p" .
 
 portal:Navigation a owl:Class ;

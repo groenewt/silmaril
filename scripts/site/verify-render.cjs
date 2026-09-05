@@ -78,6 +78,7 @@ const server = http.createServer((request, response) => {
           assert(catalog.files.length>30000,'catalog covers the full basicttl tree');
           assert.equal(await page.locator('#ontology-tree details').count(),1,'file directories render lazily');
           await page.locator('#ontology-tree summary').first().click();
+          await page.locator('#ontology-tree details details').first().waitFor();
           assert((await page.locator('#ontology-tree details').count())>1);
           await page.locator('#ontology-kind').selectOption('class');await page.locator('#ontology-search').fill('urn:silmaril:fnd:#Magma');
           await page.getByRole('button',{name:'Magma',exact:true}).click();
@@ -90,6 +91,11 @@ const server = http.createServer((request, response) => {
           await page.getByRole('button',{name:'basicttl/foundation/algebra_rings.ttl',exact:true}).click();
           await page.locator('#ontology-inspector[data-selection="basicttl/foundation/algebra_rings.ttl"]').waitFor();
           assert((await page.locator('#ontology-inspector .statement').count())>0);
+          const invalid=catalog.files.find(file=>file.error);
+          await page.locator('#ontology-search').fill(invalid.path);
+          await page.getByRole('button',{name:invalid.path,exact:true}).click();
+          await page.locator('.parse-error').waitFor();
+          assert((await page.locator('.turtle-source').textContent()).length>0);
         }
         await page.screenshot({path:`render-evidence/${base?'project':'root'}-${width}-${route.replace(/[^a-z]/g,'')||'index'}.png`});
         const dimensions=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,overflowing:[...document.querySelectorAll('body *')].filter(node=>node.getBoundingClientRect().right>document.documentElement.clientWidth+1&&getComputedStyle(node).position!=='absolute').slice(0,10).map(node=>({tag:node.tagName,classes:node.className,right:node.getBoundingClientRect().right}))}));
