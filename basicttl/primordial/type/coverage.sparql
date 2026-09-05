@@ -1,0 +1,18 @@
+PREFIX model: <urn:silmaril:primordial:type:>
+PREFIX ontology: <http://www.w3.org/2002/07/owl#>
+
+# Every source class has a nominal declaration, and every source property is
+# either typed or explicitly unresolved. Completeness is not runtime admission.
+ASK WHERE {
+  FILTER EXISTS { ?some model:sourceClass ?sourceClass }
+  FILTER NOT EXISTS {
+    ?source a ontology:Class .
+    FILTER (STRSTARTS(STR(?source), "urn:silmaril:prim:#") || STRSTARTS(STR(?source), "urn:silmaril:aob:#"))
+    FILTER NOT EXISTS { ?declaration a model:ClassDeclaration ; model:sourceClass ?source }
+  }
+  FILTER NOT EXISTS {
+    ?source a ?kind . FILTER (?kind IN (ontology:ObjectProperty, ontology:DatatypeProperty))
+    FILTER (STRSTARTS(STR(?source), "urn:silmaril:prim:#") || STRSTARTS(STR(?source), "urn:silmaril:aob:#"))
+    FILTER NOT EXISTS { ?entry model:sourcePredicate ?source . ?entry a ?entryKind . FILTER (?entryKind IN (model:Field, model:UnresolvedProperty)) }
+  }
+}

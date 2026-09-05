@@ -14,7 +14,16 @@ every QA answer, every clarification — captured in full before acting.
 ## 2. Unary Byte-Frame Law
 `T -> Frame(output: X, error|effect: Y)`. Every callable has one input,
 one frame result. Strict pylib form: only `value.py` (VALUE), `library.py`
-(DEPENDENCY), `process.py` (MAIN ending `raise SystemExit(MAIN())`).
+(DEPENDENCY), `process.py` (MAIN). Define MAIN with exactly one explicit,
+typed, non-default input and an explicit physical Frame result:
+`MAIN(input: Input) -> Frame`. Importing a process performs no invocation.
+Host observation and termination belong to a separately typed, registered
+host-exit boundary; they are not a process-module trailer. Do not call MAIN
+without an input, return an integer in place of its Frame, or raise SystemExit
+inside MAIN. The host boundary retains the Frame's output and effect as
+independent evidence before translating an admitted completion to host exit.
+This process-form correction grants no carrier, constructor, import, launcher,
+test, or generated-code exemption from the complete unary byte-frame law.
 No try/except. No loops. No print. No deviation.
 
 ## 3. Full-Lexical-Identity

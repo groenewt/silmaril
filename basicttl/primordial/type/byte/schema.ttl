@@ -1,0 +1,14 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+family:ByteSchema a ontology:Class, model:ClassDeclaration, model:Product ;
+    model:field family:SchemaWidthField, family:SchemaBitOrderField, family:SchemaByteOrderField, family:SchemaEncodingField ;
+    model:admissionState model:Pending ;
+    schema:comment "The byte schema class has separately typed width, bit-order, byte-order and encoding coordinates. Width admits the 1..128 refinement and is independent of stream extent and value ordinal. A concrete schema specialization requires its own identity and closure evidence; neither a Python bytes class nor a missing payload defines it." .
+family:SchemaWidthField a model:Field ; model:owner family:ByteSchema ; model:range family:ByteWidth ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:SchemaBitOrderField a model:Field ; model:owner family:ByteSchema ; model:range family:BitOrder ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:SchemaByteOrderField a model:Field ; model:owner family:ByteSchema ; model:range primitive:ByteOrder ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:SchemaEncodingField a model:Field ; model:owner family:ByteSchema ; model:range primitive:PhysicalEncoding ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .

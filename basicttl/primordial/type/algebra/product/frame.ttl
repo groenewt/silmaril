@@ -1,0 +1,16 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+family:Frame a ontology:Class, model:ClassDeclaration, model:Product, model:Frame ;
+    schema:seeAlso primitive:Frame ;
+    model:parameter family:OutputParameter, family:EffectParameter ;
+    model:field family:OutputField, family:EffectField ;
+    model:admissionState model:Pending ;
+    schema:comment "Frame[Output, Effect] is a nominal product class with two independently addressed, invariant type parameters and exactly two immutable value fields. The output may itself contain a closed algebraic alternative, while the effect is always retained. This type declaration preserves the product even for rejected output." .
+family:OutputParameter a model:Parameter ; model:owner family:Frame ; model:bound primitive:FormalType ; model:variance model:Invariant .
+family:EffectParameter a model:Parameter ; model:owner family:Frame ; model:bound primitive:Effect ; model:variance model:Invariant .
+family:OutputField a model:Field ; model:owner family:Frame ; model:range family:OutputParameter ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable ; model:role model:Output .
+family:EffectField a model:Field ; model:owner family:Frame ; model:range family:EffectParameter ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable ; model:role model:Effect .

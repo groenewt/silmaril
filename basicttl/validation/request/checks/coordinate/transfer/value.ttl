@@ -1,0 +1,9 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:CoordinateTransfer a validation:Check ;
+    schema:comment "Detect newly introduced invalid blank-node focus nodes when transferring atomic-object validation to the categorical reference system." ;
+    validation:declarationPath "basicttl/validation/request/checks/coordinate/transfer/value.ttl" .

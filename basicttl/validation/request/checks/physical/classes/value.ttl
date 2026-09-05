@@ -1,0 +1,10 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:PhysicalClasses a validation:Check ;
+    schema:comment "Verify physically integrated Python class realizations for every modeled primordial and atomic-object type, including byte descent and distinct identities." ;
+    validation:declarationPath "basicttl/validation/request/checks/physical/classes/value.ttl" ;
+    validation:dependsOn validation:PolymorphicModel .

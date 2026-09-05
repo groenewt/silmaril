@@ -1,0 +1,12 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+family:ByteOccurrence a ontology:Class, model:ClassDeclaration, model:Product ;
+    schema:subClassOf primitive:PhysicalCarrier ; model:parameter family:OccurrenceSchemaParameter ;
+    model:field family:OccurrenceSchemaField, family:OccurrenceByteField ; model:admissionState model:Pending ;
+    schema:comment "ByteOccurrence[Schema] names one byte under an explicitly selected schema. Its schema reference and byte evidence are separately typed coordinates, and the byte evidence must be admitted under that same schema. This contract does not identify Byte with Octet or convert a host bytes object into an occurrence." .
+family:OccurrenceSchemaParameter a model:Parameter ; model:owner family:ByteOccurrence ; model:bound family:ByteSchema ; model:variance model:Invariant .
+family:OccurrenceSchemaField a model:Field ; model:owner family:ByteOccurrence ; model:range family:OccurrenceSchemaParameter ; model:referenceKind model:ClassReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:OccurrenceByteField a model:Field ; model:owner family:ByteOccurrence ; model:range primitive:Byte ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .

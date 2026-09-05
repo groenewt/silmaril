@@ -1,0 +1,95 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+model:ClassDeclaration a ontology:Class ;
+    schema:comment "A nominal class declaration in the polymorphic model. It has its own address, explicit parameters, parent classes and property contracts. The declaration describes a type; it is distinct from a value occurrence, a host-language class object and proof that a physical implementation is admitted." .
+model:Parameter a ontology:Class ;
+    schema:comment "An independently addressed type parameter belonging to exactly one class declaration. Its bound is a named ontology class and its variance is explicit. Binding replaces this parameter with a class satisfying that bound; a string naming a type, a value occurrence and an unrelated class cannot substitute for it." .
+model:Application a ontology:Class ;
+    schema:comment "An application of a polymorphic class to an exact set of class arguments. Each declared parameter must be bound once, with no additional parameters, and every argument must satisfy its own bound. Applications specialize a declaration without changing the identities or meanings of the declaration's parameters." .
+model:Binding a ontology:Class ;
+    schema:comment "One typed substitution in one class application. The parameter and class argument are independent coordinates and the binding is itself addressable. Duplicate substitutions, missing substitutions and bindings to undeclared parameters are errors even when the supplied arguments happen to have the same lexical spelling." .
+model:Field a ontology:Class ;
+    schema:comment "An independently addressed property contract owned by a class declaration. It records the exact source predicate when one exists, the range class or scoped parameter, whether it contains a value or a type reference, its multiplicity and its immutability. Host dictionaries do not define or extend this property set." .
+model:Product a ontology:Class ;
+    schema:subClassOf model:ClassDeclaration ;
+    schema:comment "A class declaration with a product algebra: all of its declared fields are simultaneously present according to their multiplicities. Field identity and field type are independent. A unary Frame is a specific two-coordinate product; selecting one of its coordinates cannot stand for constructing the whole product." .
+model:ClosedSum a ontology:Class ;
+    schema:subClassOf model:ClassDeclaration ;
+    schema:comment "A class declaration with a closed coproduct algebra. Its alternatives are separately declared nominal classes, each linked to this exact progenitor. An occurrence selects exactly one alternative. Unregistered subclasses cannot extend the declared alternative set, and the sum cannot replace a callable's Frame product." .
+model:Alternative a ontology:Class ;
+    schema:subClassOf model:ClassDeclaration ;
+    schema:comment "A separately addressed constructor alternative belonging to one closed sum. It has its own declaration file, nominal class identity, discriminant and product fields. Alternative membership is explicit and exhaustive; sharing fields or a superclass never makes two alternatives interchangeable or opens the family." .
+model:Frame a ontology:Class ;
+    schema:subClassOf model:Product ;
+    schema:comment "The class-level contract of a unary Frame. Exactly one output field and exactly one error-or-effect field form the product, and both have separately typed ranges. This declaration constrains a future physical Frame implementation; neither its name nor conformance of this model proves physical byte descent." .
+model:Callable a ontology:Class ;
+    schema:comment "A declared unary behavior contract with one input class and one Frame class application as its result. The input and every result coordinate require their own physical implementation and admission. This graph does not execute the callable, supply an implementation or authorize a nullary launcher around it." .
+model:ImportGate a ontology:Class ;
+    schema:comment "A declaration of one exact foreign symbol binding and its unary admission contract. Package, version, module, symbol, binding path and public export are explicit. Observation of a symbol is distinct from admission of its physical effects; pending gates cannot authorize runtime imports or transitive dependencies." .
+model:ImportBinding a ontology:Class ;
+    schema:comment "A consumer's explicit dependency on one registered import gate. The consumer path and the local binding name are independently recorded, and the gate supplies the exact foreign coordinate. Wildcards, whole-module convenience bindings, undeclared imports and alias changes cannot enlarge the admitted dependency surface." .
+model:AdmissionEvidence a ontology:Class ;
+    schema:comment "The separately addressed evidence required to admit an external binding or a physical carrier implementation. Source revision, exact implementation, transitive dependency closure and typed inverse readback must be established by the registered verifier. Merely creating an instance of this class is not proof of admission." .
+model:UnresolvedProperty a ontology:Class ;
+    schema:comment "A source property whose observed domain or range does not resolve to a declared class. Its source coordinates remain visible and it contributes to the completeness accounting, but it cannot become an active typed property or type argument. Resolution requires an explicit class and a justified bridge, not a guessed coercion." .
+
+model:parameter a ontology:ObjectProperty ; schema:domain model:ClassDeclaration ; schema:range model:Parameter .
+model:owner a ontology:ObjectProperty .
+model:bound a ontology:ObjectProperty .
+model:variance a ontology:ObjectProperty .
+model:constructor a ontology:ObjectProperty ; schema:domain model:Application ; schema:range model:ClassDeclaration .
+model:binding a ontology:ObjectProperty ; schema:domain model:Application ; schema:range model:Binding .
+model:binds a ontology:ObjectProperty ; schema:domain model:Binding ; schema:range model:Parameter .
+model:argument a ontology:ObjectProperty .
+model:scope a ontology:ObjectProperty ; schema:domain model:Application ; schema:range model:ClassDeclaration .
+model:field a ontology:ObjectProperty ; schema:domain model:ClassDeclaration ; schema:range model:Field .
+model:range a ontology:ObjectProperty .
+model:referenceKind a ontology:ObjectProperty .
+model:multiplicity a ontology:ObjectProperty .
+model:mutability a ontology:ObjectProperty .
+model:role a ontology:ObjectProperty .
+model:sourcePredicate a ontology:ObjectProperty .
+model:sourceClass a ontology:ObjectProperty .
+model:sourceDomain a ontology:ObjectProperty .
+model:sourceRange a ontology:ObjectProperty .
+model:sourceDocument a ontology:DatatypeProperty .
+model:cardinalityAuthority a ontology:ObjectProperty .
+model:requiresConversionGate a ontology:ObjectProperty .
+model:propertyRole a ontology:ObjectProperty ; schema:range model:Field .
+model:minimum a ontology:DatatypeProperty ; schema:range datatype:integer .
+model:maximum a ontology:DatatypeProperty ; schema:range datatype:integer .
+model:alternative a ontology:ObjectProperty ; schema:domain model:ClosedSum ; schema:range model:Alternative .
+model:progenitor a ontology:ObjectProperty ; schema:domain model:Alternative ; schema:range model:ClosedSum .
+model:discriminant a ontology:ObjectProperty .
+model:declarationPath a ontology:DatatypeProperty ; schema:range datatype:string .
+model:input a ontology:ObjectProperty .
+model:result a ontology:ObjectProperty ; schema:range model:Application .
+model:contract a ontology:ObjectProperty ; schema:range model:Callable .
+model:gate a ontology:ObjectProperty ; schema:range model:ImportGate .
+model:package a ontology:DatatypeProperty .
+model:version a ontology:DatatypeProperty .
+model:module a ontology:DatatypeProperty .
+model:symbol a ontology:DatatypeProperty .
+model:publicExport a ontology:DatatypeProperty .
+model:localBinding a ontology:DatatypeProperty .
+model:consumerPath a ontology:DatatypeProperty .
+model:admissionState a ontology:ObjectProperty .
+model:evidence a ontology:ObjectProperty ; schema:range model:AdmissionEvidence .
+
+# These control coordinates describe the model grammar. They are not runtime values.
+model:Invariant schema:label "Invariant type parameter" .
+model:ValueReference schema:label "A value of the declared range type" .
+model:ClassReference schema:label "A reference to the declared type itself" .
+model:ExactlyOne schema:label "Exactly one coordinate" .
+model:Optional schema:label "A closed absent or present alternative" .
+model:OrderedMany schema:label "An ordered typed collection" .
+model:UnorderedMany schema:label "An unordered typed collection" .
+model:Immutable schema:label "No mutation after admission" .
+model:Output schema:label "Frame output coordinate" .
+model:Effect schema:label "Frame effect coordinate" .
+model:Error schema:label "Frame error coordinate" .
+model:Pending schema:label "Runtime admission has not been established" .
+model:ProposedClassContract schema:label "Multiplicity proposed by this class contract; not inferred from source instances" .

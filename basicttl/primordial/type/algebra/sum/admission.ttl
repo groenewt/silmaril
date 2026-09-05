@@ -1,0 +1,25 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+family:Admission a ontology:Class, model:ClassDeclaration, model:ClosedSum ;
+    schema:subClassOf primitive:Sum ;
+    model:parameter family:AdmissionValueParameter, family:AdmissionRejectionParameter ;
+    model:alternative family:Accepted, family:Rejected ;
+    model:admissionState model:Pending ;
+    schema:comment "Admission is the closed Accepted-or-Rejected output family. Each alternative is a nominal class in a separate physical declaration file with a separately typed payload. This family may fill a Frame's output argument; it never supplies or erases the independent effect coordinate of the surrounding Frame product." .
+family:Accepted ontology:disjointWith family:Rejected .
+family:AdmissionValueParameter a model:Parameter ; model:owner family:Admission ; model:bound primitive:FormalType ; model:variance model:Invariant .
+family:AdmissionRejectionParameter a model:Parameter ; model:owner family:Admission ; model:bound primitive:Effect ; model:variance model:Invariant .
+
+family:IdentifierAdmission a model:Application ; model:constructor family:Admission ;
+    model:binding family:IdentifierValue, family:IdentifierRejection .
+family:IdentifierValue a model:Binding ; model:binds family:AdmissionValueParameter ; model:argument primitive:URN .
+family:IdentifierRejection a model:Binding ; model:binds family:AdmissionRejectionParameter ; model:argument primitive:Effect .
+
+family:AdmissionFrame a model:Application ; model:constructor family:Frame ;
+    model:binding family:AdmissionOutput, family:AdmissionEffect .
+family:AdmissionOutput a model:Binding ; model:binds family:OutputParameter ; model:argument family:IdentifierAdmission .
+family:AdmissionEffect a model:Binding ; model:binds family:EffectParameter ; model:argument primitive:Effect .

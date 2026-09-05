@@ -1,0 +1,10 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:ImportAdmission a validation:Check ;
+    schema:comment "Verify registered exact-symbol import gates, typed effects, pinned dependencies, transitive closure and readback before runtime execution." ;
+    validation:declarationPath "basicttl/validation/request/checks/import/admission/value.ttl" ;
+    validation:dependsOn validation:PhysicalClasses .

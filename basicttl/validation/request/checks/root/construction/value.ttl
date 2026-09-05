@@ -1,0 +1,10 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:RootBuild a validation:Check ;
+    schema:comment "Complete a clean generated-site build at the root base path and retain exact source-revision and artifact digest evidence." ;
+    validation:declarationPath "basicttl/validation/request/checks/root/construction/value.ttl" ;
+    validation:dependsOn validation:OntologyProjection .

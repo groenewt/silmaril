@@ -1,0 +1,14 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+family:Rejected a ontology:Class, model:ClassDeclaration, model:Alternative ;
+    schema:subClassOf family:Admission ; model:progenitor family:Admission ;
+    model:discriminant family:RejectedTag ;
+    model:declarationPath "basicttl/primordial/type/algebra/sum/admission/rejected.ttl" ;
+    model:field family:RejectedEvidenceField ;
+    model:admissionState model:Pending ;
+    schema:comment "Rejected is the negative constructor class of the Admission output algebra. Its payload retains typed rejection evidence; an empty graph, None value or thrown exception is not an alternative payload. The surrounding Frame continues to carry its own effect coordinate independently of the rejected output state." .
+family:RejectedEvidenceField a model:Field ; model:owner family:Rejected ; model:range family:AdmissionRejectionParameter ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .

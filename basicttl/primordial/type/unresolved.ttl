@@ -1,0 +1,19 @@
+@prefix atomic: <urn:silmaril:aob:#> .
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:silmaril:primordial:type:unresolved:atomic:object:VerticalSeed> a model:UnresolvedProperty ;
+    schema1:comment "The source domain or range is not a declared class. Preserve the source term and reject its use as a type argument until a grounded class definition and explicit bridge are supplied." ;
+    model:admissionState model:Pending ;
+    model:sourceDomain atomic:HashDigest ;
+    model:sourcePredicate atomic:zSeed ;
+    model:sourceRange primitive:Uint16 .
+
+<urn:silmaril:primordial:type:unresolved:atomic:object:VerticalSeedValue> a model:UnresolvedProperty ;
+    schema1:comment "The source domain or range is not a declared class. Preserve the source term and reject its use as a type argument until a grounded class definition and explicit bridge are supplied." ;
+    model:admissionState model:Pending ;
+    model:sourceDomain primitive:Uint16 ;
+    model:sourcePredicate atomic:zSeedValue ;
+    model:sourceRange xsd:integer .

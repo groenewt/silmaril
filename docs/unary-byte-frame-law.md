@@ -308,6 +308,23 @@ For each callable, the Source Discipline audit now requires:
 
 ## Explicit binding and observation law
 
+### Python process form
+
+The process-form correction in `STRICTNESS_RULES.md`, rule 2, replaces the
+former nullary terminal trailer with `MAIN(input: Input) -> Frame`. MAIN has
+exactly one explicit, typed, non-default input and returns the declared physical
+Frame. Importing its `process.py` module performs no invocation. A process does
+not read implicit environment or command-line input, raise SystemExit, or
+substitute an integer exit status for its Frame.
+
+Host input observation and host termination occupy separately typed registered
+boundaries. Completion must preserve the output and effect coordinates and
+their evidence before the host consumes an admitted termination instruction.
+The host's termination is an observed external effect, not a returning owned
+callable or an exception-based replacement for the Frame. This correction
+settles the process syntax; it does not admit an implementation, waive physical
+carrier closure, or make a previously unobserved launcher executable.
+
 The callable law is language-neutral. Scala and Java name the current scanner
 surface; they are not a scope ceiling or an ontology. Each Haskell, Elixir,
 Scala, Java, BEAM, native, script, generated, or later language frontend must

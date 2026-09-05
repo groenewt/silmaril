@@ -1,0 +1,10 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:RuntimeAdmission a validation:Check ;
+    schema:comment "Run the repository admission boundary with all physical, launcher and dependency obligations fulfilled. This observation plan cannot authorize execution." ;
+    validation:declarationPath "basicttl/validation/request/checks/runtime/admission/value.ttl" ;
+    validation:dependsOn validation:UnaryContracts, validation:ImportAdmission .

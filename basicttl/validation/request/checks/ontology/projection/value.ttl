@@ -1,0 +1,10 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:OntologyProjection a validation:Check ;
+    schema:comment "Generate content and typed component composition from Turtle specifications through the declared query pipeline with no hand-authored output substitution." ;
+    validation:declarationPath "basicttl/validation/request/checks/ontology/projection/value.ttl" ;
+    validation:dependsOn validation:RuntimeAdmission, validation:OntologyAssembly .

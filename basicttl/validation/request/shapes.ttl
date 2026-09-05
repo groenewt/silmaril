@@ -1,0 +1,73 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:RunShape a constraint:NodeShape ; constraint:targetClass validation:Run ;
+    constraint:property [ constraint:path validation:plan ; constraint:hasValue validation:FullRequest ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path validation:sourceRevision ; constraint:datatype datatype:string ; constraint:pattern "^[0-9a-f]{40}$" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path validation:observation ; constraint:class validation:Observation ; constraint:minCount 1 ] ;
+    constraint:sparql [ constraint:message "Every required criterion needs exactly one observation for this source revision; foreign, duplicate and stale observations are invalid." ; constraint:select """
+      PREFIX validation: <urn:silmaril:validation:request:>
+      SELECT $this WHERE {
+        $this validation:plan ?plan ; validation:sourceRevision ?revision .
+        { ?plan validation:requires ?check . FILTER NOT EXISTS { $this validation:observation ?observation . ?observation validation:check ?check } }
+        UNION { $this validation:observation ?first, ?second . ?first validation:check ?check . ?second validation:check ?check . FILTER (?first != ?second) }
+        UNION { $this validation:observation ?observation . ?observation validation:check ?check . FILTER NOT EXISTS { ?plan validation:requires ?check } }
+        UNION { $this validation:observation ?observation . ?observation validation:sourceRevision ?observed . FILTER (?observed != ?revision) }
+      }
+    """ ] ;
+    constraint:sparql [ constraint:message "A passed check cannot depend on a failed, blocked or unexecuted prerequisite." ; constraint:select """
+      PREFIX validation: <urn:silmaril:validation:request:>
+      SELECT $this WHERE {
+        $this validation:observation ?result . ?result validation:check ?check ; validation:outcome validation:Passed .
+        ?check validation:dependsOn+ ?prerequisite .
+        FILTER NOT EXISTS { $this validation:observation ?prior . ?prior validation:check ?prerequisite ; validation:outcome validation:Passed }
+      }
+    """ ] .
+
+validation:ObservationShape a constraint:NodeShape ; constraint:targetClass validation:Observation ;
+    constraint:property [ constraint:path validation:check ; constraint:class validation:Check ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path validation:outcome ; constraint:in (validation:Passed validation:Failed validation:Blocked validation:NotRun) ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path validation:sourceRevision ; constraint:datatype datatype:string ; constraint:pattern "^[0-9a-f]{40}$" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path validation:artifactPath ; constraint:datatype datatype:string ; constraint:minLength 1 ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path validation:artifactDigest ; constraint:datatype datatype:string ; constraint:pattern "^[0-9a-f]{64}$" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path validation:detail ; constraint:datatype datatype:string ; constraint:minLength 1 ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+validation:CheckShape a constraint:NodeShape ; constraint:targetClass validation:Check ;
+    constraint:property [ constraint:path validation:declarationPath ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path validation:dependsOn ; constraint:class validation:Check ] ;
+    constraint:sparql [ constraint:message "Validation dependencies must not contain a cycle." ; constraint:select """
+      PREFIX validation: <urn:silmaril:validation:request:>
+      SELECT $this WHERE { $this validation:dependsOn+ $this }
+    """ ] .
+
+validation:PlanShape a constraint:NodeShape ; constraint:targetNode validation:FullRequest ;
+    constraint:property [ constraint:path validation:requires ; constraint:class validation:Check ; constraint:minCount 26 ; constraint:maxCount 26 ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:SigningIdentity ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:CommitSignatures ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:SignedPublication ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:SourceParsing ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:OntologyAssembly ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:OntologyFloors ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:AlgebraCounterexamples ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:LiteralReadback ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:CoordinateTransfer ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:CitationSources ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:PolymorphicModel ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:PhysicalClasses ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:UnaryContracts ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:ImportAdmission ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:RuntimeAdmission ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:OntologyProjection ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:RootBuild ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:ProjectBuild ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:EmbeddedDocuments ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:OntologyNavigation ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:VectorRendering ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:MathematicalRendering ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:Accessibility ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:NarrativeContent ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:ContinuousIntegration ] ;
+    constraint:property [ constraint:path validation:requires ; constraint:hasValue validation:DeploymentDependency ] .

@@ -1,9 +1,10 @@
 name: CD
 
 on:
-  push:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [master, main]
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,9 +18,22 @@ concurrency:
 jobs:
   build:
     name: Build Site
+    # workflow_run fires for failed runs too. Only this repository's successful
+    # push validation may enter the privileged Pages workflow.
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      (github.event.workflow_run.head_branch == 'master' ||
+       github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          submodules: false
+      - name: Require admitted user interface runtime
+        run: make -C scripts/python/pylib morphism-user-interface-runtime-admission
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'

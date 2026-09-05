@@ -1,0 +1,12 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:UnaryContracts a validation:Check ;
+    schema:seeAlso <../../../../../user/interface/runtime/process/contract.ttl>,
+        <../../../../../user/interface/runtime/process/shapes.ttl> ;
+    schema:comment "Require one explicit input and one physical output/effect Frame for every owned callable, including constructors, launchers and generated programs." ;
+    validation:declarationPath "basicttl/validation/request/checks/unary/contracts/value.ttl" ;
+    validation:dependsOn validation:PhysicalClasses .

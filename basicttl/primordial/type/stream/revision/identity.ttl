@@ -1,0 +1,8 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+family:StreamRevisionIdentity a ontology:Class, model:ClassDeclaration ; schema:subClassOf primitive:URN ;
+    ontology:disjointWith family:TypeIdentity, family:OccurrenceIdentity ; model:admissionState model:Pending ;
+    schema:comment "StreamRevisionIdentity identifies a stable revision of an ordered byte stream. It remains distinct from a type definition, an individual byte occurrence and a path or offset into host memory. An Empty vector records this coordinate explicitly, so its schema and stream cannot be inferred from absence of payload." .

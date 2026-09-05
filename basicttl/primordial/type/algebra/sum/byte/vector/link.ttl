@@ -1,0 +1,12 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+family:LinkedByteVector a ontology:Class, model:ClassDeclaration, model:Alternative ;
+    schema:subClassOf family:ByteVector ; model:progenitor family:ByteVector ; model:discriminant family:LinkedByteVectorTag ;
+    model:declarationPath "basicttl/primordial/type/algebra/sum/byte/vector/link.ttl" ;
+    model:field family:VectorHeadField, family:VectorTailField ; model:admissionState model:Pending ;
+    schema:comment "The Link constructor class of ByteVector[Schema] is the product of ByteOccurrence[Schema] and ByteVector[Schema]. Head and tail use distinct, explicit applications of the same scoped schema parameter. A differently indexed head, a raw array or an unregistered constructor cannot satisfy this declared algebra." .
+family:VectorHeadField a model:Field ; model:owner family:LinkedByteVector ; model:range family:VectorHeadType ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:VectorTailField a model:Field ; model:owner family:LinkedByteVector ; model:range family:VectorTailType ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
