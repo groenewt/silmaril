@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
-UI Constructor — Ontology-Driven UI Generation
+Legacy UI Constructor — Ontology-Driven UI Generation
 
-Reads SHACL shapes and TTL UI definitions from the ontology and generates
-CSS, HTML, and SVG assets. The ontology is the source of truth; the generated
-files are render targets.
+Historical reference implementation. It does not validate shapes and does
+not supply the production site build. Use the specification projection:
+
+    make -C scripts/python/pylib morphism-user-interface-constructor-install SILMARIL_PYTHON=python3
+
+The historical command interface below is retained for reference only.
 
 Usage:
     python3 scripts/ui-constructor.py --input basicttl/ui_constructor.ttl --output docs/assets/css/generated.css --format css

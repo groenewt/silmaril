@@ -1,4 +1,5 @@
 ---
+permalink: /provenance/
 layout: default
 title: "Provenance | Silmaril"
 description: "The Silmaril trust system: three signing identities, a typed verification pipeline, six classification verdicts, and server-side bridges that reject tampered history."
@@ -203,9 +204,15 @@ bash scripts/install-git-hook.sh                                         # bridg
 
         <h3>Sources of truth</h3>
         <ul class="doc-links">
-            <li><a href="https://github.com/groenewt/silmaril/blob/master/README.md#commit-signing--verification">README.md — Commit Signing &amp; Verification</a> — the top-level contract.</li>
-            <li><a href="https://github.com/groenewt/silmaril/blob/master/keys/README.md">keys/README.md</a> — custody model, key rotation, and regeneration procedure.</li>
+            <li>README.md — Commit Signing &amp; Verification (embedded below) — the top-level contract.</li>
+            <li>keys/README.md (embedded below) — custody model, key rotation, and regeneration procedure.</li>
             <li><a href="{{ '/folklore/' | relative_url }}">Folklore</a> — the same system, told as the fable it also is.</li>
         </ul>
     </div>
 </section>
+
+{% include documentation.html source="README.md" %}
+
+{% include documentation.html source="keys/README.md" %}
+
+{% include aster-profile.html %}

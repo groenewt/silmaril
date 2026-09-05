@@ -131,3 +131,17 @@ silm:signing_key_claude_2026 a owl:NamedIndividual, silm:signingkey ;
     silm:hasKeyAlgorithm "ed25519" ;
     silm:hasKeyFile "claude.asc" ;
     silm:hasPolicyClass silm:trust_policy_agent .
+
+# User-authorized session identity; maintainer endorsement establishes trust.
+silm:signing_identity_aster a owl:NamedIndividual, silm:signingidentity ;
+    rdfs:label "Aster" ;
+    silm:hasEmail "aster@silmaril.internal" ;
+    silm:signsWith silm:signing_key_aster_2026 ;
+    rdfs:comment "Distinct signing identity for the user-interface and documentation review. Its private key stays in the session keyring. This cryptographic identity is not a trained model or a computational harness." .
+
+silm:signing_key_aster_2026 a owl:NamedIndividual, silm:signingkey ;
+    rdfs:label "Aster signing key, September 2026" ;
+    silm:hasFingerprint "1649618A5612CC75132F9336F52E907F309C73B3" ;
+    silm:hasKeyAlgorithm "ed25519" ;
+    silm:hasKeyFile "aster.asc" ;
+    silm:hasPolicyClass silm:trust_policy_agent .

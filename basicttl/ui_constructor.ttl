@@ -1,3 +1,4 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix silm: <urn:silmaril:entity#> .
 @prefix ui: <urn:silmaril:ui#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -276,7 +277,7 @@ ui:SVGPolyline a owl:Class ;
 A polyline does not close; it is a path from a start point through intermediate
 points to an end point. In SVG it renders as connected line segments. Every
 vertex must be justified: why this point, why this sequence, why this direction.
-The polyline is the minimal geometry for directional symbols (arrows, checkmarks).""" ;
+The polyline is the minimal geometry for directional symbols (arrows, checkmarks).""" .
 
 ui:SVGLine a owl:Class ;
     rdfs:subClassOf ui:SVGPrimitive ;
@@ -285,7 +286,7 @@ ui:SVGLine a owl:Class ;
 A line has a start and an end; it is directed. In SVG it renders as one
 straight segment. Every line must declare its purpose: is it a divider,
 a connector, a cross, a boundary? Without purpose, the line is arbitrary
-and the ontology cannot validate the visual semantics.""" ;
+and the ontology cannot validate the visual semantics.""" .
 
 ui:SVGPolygon a owl:Class ;
     rdfs:subClassOf ui:SVGPrimitive ;
@@ -294,7 +295,7 @@ ui:SVGPolygon a owl:Class ;
 A polygon encloses an area; it has an inside and an outside. In SVG it
 renders as a filled shape with an optional stroke. Every polygon must
 justify its number of vertices (triangle = minimal, quadrilateral = stable,
-higher = complex) and its symmetry (regular vs. irregular).""" ;
+higher = complex) and its symmetry (regular vs. irregular).""" .
 
 ui:SVGCircle a owl:Class ;
     rdfs:subClassOf ui:SVGPrimitive ;
@@ -303,7 +304,7 @@ ui:SVGCircle a owl:Class ;
 A circle is the set of all points equidistant from a center. In SVG it
 renders as a round shape. Every circle must justify its center (what does
 it center on?) and its radius (what does the radius measure?). Without
-justification, the circle is arbitrary decoration, not ontology.""" ;
+justification, the circle is arbitrary decoration, not ontology.""" .
 
 ui:SVGPoint a owl:Class ;
     rdfs:label "SVGPoint" ;
@@ -312,7 +313,7 @@ A point is the atomic unit of SVG geometry. It has no dimension, only
 position. Every point must be justified: why this x, why this y. In the
 context of an icon, points are relative to the viewBox, not absolute pixels.
 The viewBox provides the coordinate reference system; the point provides
-the data.""" ;
+the data.""" .
 
 ui:hasViewBox a owl:DatatypeProperty ;
     rdfs:label "hasViewBox" ;
@@ -538,12 +539,12 @@ future: what will happen if you do not act.""" .
 
 ui:build_status_ontology a owl:NamedIndividual, ui:BuildStatusPass ;
     rdfs:label "OntologyBuildPass" ;
-    rdfs:comment "Ontology consolidation and validation passed." .
+    rdfs:comment "Specification example of an ontology pass; not a live build observation." .
 
 ui:build_status_provenance a owl:NamedIndividual, ui:BuildStatusPass ;
     rdfs:label "ProvenanceBuildPass" ;
-    rdfs:comment "Trust manifest and commit policy passed." .
+    rdfs:comment "Specification example of a provenance pass; not a live build observation." .
 
 ui:build_status_scripts a owl:NamedIndividual, ui:BuildStatusWarn ;
     rdfs:label "ScriptsBuildWarn" ;
-    rdfs:comment "Script tests advisory; pre-existing red migration census." .
+    rdfs:comment "Specification example of an advisory; not a live build observation." .

@@ -1,0 +1,146 @@
+@prefix interface: <urn:silmaril:user:interface:> .
+@prefix language: <urn:silmaril:user:interface:hypertext:markup:language:> .
+@prefix projection: <urn:silmaril:user:interface:projection:> .
+@prefix style: <urn:silmaril:user:interface:cascading:style:sheet:> .
+@prefix status: <urn:silmaril:user:interface:build:status:> .
+@prefix geometry: <http://www.opengis.net/ont/geosparql#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix description: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+projection:DocumentShape a constraint:NodeShape ;
+    constraint:targetClass projection:Document ;
+    constraint:property [ constraint:path projection:root ; constraint:class interface:Element ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "The document root must not have a parent." ; constraint:select """
+        SELECT $this WHERE {
+          $this <urn:silmaril:user:interface:projection:root> ?root .
+          ?parent <urn:silmaril:user:interface:child> ?root .
+        }""" ] .
+
+interface:ElementShape a constraint:NodeShape ;
+    constraint:targetClass interface:Element ;
+    constraint:property [ constraint:path description:type ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:in (language:Section language:Heading language:Paragraph language:List language:Item language:Link language:Span language:Graphic language:Circle language:Line status:Indicator) ] ;
+    constraint:property [ constraint:path interface:child ; constraint:class interface:Element ] ;
+    constraint:property [ constraint:path [ constraint:inversePath interface:child ] ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path interface:attribute ; constraint:class interface:Attribute ] ;
+    constraint:property [ constraint:path interface:text ; constraint:datatype datatype:string ; constraint:maxCount 1 ; constraint:minLength 1 ] ;
+    constraint:property [ constraint:path status:state ; constraint:in (status:Unknown) ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path geometry:hasGeometry ; constraint:class geometry:Geometry ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "Containment must be acyclic." ; constraint:select """
+        SELECT $this WHERE { $this <urn:silmaril:user:interface:child>+ $this }
+    """ ] ;
+    constraint:sparql [ constraint:message "Every element must be reachable from the document root." ; constraint:select """
+        SELECT $this WHERE { FILTER NOT EXISTS {
+          ?document a <urn:silmaril:user:interface:projection:Document> ;
+            <urn:silmaril:user:interface:projection:root>/<urn:silmaril:user:interface:child>* $this .
+        }}""" ] ;
+    constraint:sparql [ constraint:message "A state label is projected from its state; it cannot be overridden by text." ; constraint:select """
+        SELECT $this WHERE { $this <urn:silmaril:user:interface:build:status:state> ?state ; <urn:silmaril:user:interface:text> ?text }
+    """ ] ;
+    constraint:sparql [ constraint:message "Sibling chart coordinates must be distinct." ; constraint:select """
+        SELECT $this WHERE {
+          $this <urn:silmaril:user:interface:child> ?first, ?second .
+          ?first <http://www.opengis.net/ont/geosparql#hasGeometry>/<http://www.opengis.net/ont/geosparql#asWKT> ?point .
+          ?second <http://www.opengis.net/ont/geosparql#hasGeometry>/<http://www.opengis.net/ont/geosparql#asWKT> ?point .
+          FILTER (?first != ?second)
+        }""" ] ;
+    constraint:sparql [ constraint:message "An element cannot declare the same attribute name twice." ; constraint:select """
+        SELECT $this WHERE {
+          $this <urn:silmaril:user:interface:attribute> ?first, ?second .
+          ?first <urn:silmaril:user:interface:name> ?name .
+          ?second <urn:silmaril:user:interface:name> ?name . FILTER (?first != ?second)
+        }""" ] .
+
+geometry:ChartShape a constraint:NodeShape ;
+    constraint:targetObjectsOf geometry:hasGeometry ;
+    constraint:property [ constraint:path geometry:asWKT ; constraint:datatype geometry:wktLiteral ; constraint:minCount 1 ; constraint:maxCount 1 ;
+      constraint:pattern "^<urn:silmaril:user:interface:projection:Flow> POINT \\((0|[1-9][0-9]*) (0|[1-9][0-9]*)\\)$" ] .
+
+interface:AttributeShape a constraint:NodeShape ;
+    constraint:targetClass interface:Attribute ;
+    constraint:property [ constraint:path interface:name ; constraint:minCount 1 ; constraint:maxCount 1 ;
+      constraint:in ("class" "href" "aria-label" "aria-hidden" "focusable" "role" "xmlns" "viewBox" "width" "height" "fill" "stroke" "stroke-width" "stroke-linecap" "stroke-linejoin" "points" "x1" "y1" "x2" "y2" "cx" "cy" "r") ] ;
+    constraint:property [ constraint:path interface:value ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:minLength 1 ] ;
+    constraint:property [ constraint:path [constraint:inversePath interface:attribute] ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "Links must use an explicit https destination." ; constraint:select """
+        SELECT $this WHERE {
+          $this <urn:silmaril:user:interface:name> "href" ; <urn:silmaril:user:interface:value> ?value .
+          FILTER (!REGEX(STR(?value), "^https://[^ /]+/[^ ]*$"))
+        }""" ] .
+
+status:UnknownShape a constraint:NodeShape ;
+    constraint:targetNode status:Unknown ;
+    constraint:property [ constraint:path schema:label ; constraint:hasValue "Not checked" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+style:RuleShape a constraint:NodeShape ;
+    constraint:targetClass style:Rule ;
+    constraint:property [ constraint:path style:selector ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:minLength 1 ; constraint:pattern "^[^{};<>]+$" ] ;
+    constraint:property [ constraint:path style:declaration ; constraint:class style:Declaration ; constraint:minCount 1 ] ;
+    constraint:property [ constraint:path geometry:hasGeometry ; constraint:class geometry:Geometry ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "A rule cannot declare the same property twice." ; constraint:select """
+        SELECT $this WHERE {
+          $this <urn:silmaril:user:interface:cascading:style:sheet:declaration> ?first, ?second .
+          ?first <urn:silmaril:user:interface:cascading:style:sheet:name> ?name .
+          ?second <urn:silmaril:user:interface:cascading:style:sheet:name> ?name . FILTER (?first != ?second)
+        }""" ] ;
+    constraint:sparql [ constraint:message "Style rules require distinct cascade coordinates." ; constraint:select """
+        SELECT $this WHERE {
+          $this <http://www.opengis.net/ont/geosparql#hasGeometry>/<http://www.opengis.net/ont/geosparql#asWKT> ?point .
+          ?other a <urn:silmaril:user:interface:cascading:style:sheet:Rule> ;
+            <http://www.opengis.net/ont/geosparql#hasGeometry>/<http://www.opengis.net/ont/geosparql#asWKT> ?point .
+          FILTER (?other != $this)
+        }""" ] .
+
+style:DeclarationShape a constraint:NodeShape ;
+    constraint:targetClass style:Declaration ;
+    constraint:property [ constraint:path style:name ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:pattern "^(--)?[a-z][a-z-]*$" ] ;
+    constraint:property [ constraint:path style:value ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:minLength 1 ; constraint:pattern "^[^{};<>]+$" ] .
+
+projection:QueryShape a constraint:NodeShape ;
+    constraint:targetClass projection:Query ;
+    constraint:property [ constraint:path projection:query ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:minLength 1 ] .
+
+projection:SectionShape a constraint:NodeShape ; constraint:targetNode language:Section ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "section" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:HeadingShape a constraint:NodeShape ; constraint:targetNode language:Heading ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "h2" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:ParagraphShape a constraint:NodeShape ; constraint:targetNode language:Paragraph ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "p" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:ListShape a constraint:NodeShape ; constraint:targetNode language:List ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "ul" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:ItemShape a constraint:NodeShape ; constraint:targetNode language:Item ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "li" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:LinkShape a constraint:NodeShape ; constraint:targetNode language:Link ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "a" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:SpanShape a constraint:NodeShape ; constraint:targetNode language:Span ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "span" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:GraphicShape a constraint:NodeShape ; constraint:targetNode language:Graphic ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "svg" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:CircleShape a constraint:NodeShape ; constraint:targetNode language:Circle ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "circle" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+projection:LineShape a constraint:NodeShape ; constraint:targetNode language:Line ; constraint:property [ constraint:path projection:tag ; constraint:hasValue "line" ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+interface:HeadingShape a constraint:NodeShape ; constraint:targetClass language:Heading ; constraint:property [ constraint:path interface:child ; constraint:maxCount 0 ] ; constraint:or ( [ constraint:property [ constraint:path interface:text ; constraint:minCount 1 ] ] [ constraint:property [ constraint:path status:state ; constraint:minCount 1 ] ] ) .
+
+interface:ParagraphShape a constraint:NodeShape ; constraint:targetClass language:Paragraph ; constraint:property [ constraint:path interface:child ; constraint:maxCount 0 ] ; constraint:or ( [ constraint:property [ constraint:path interface:text ; constraint:minCount 1 ] ] [ constraint:property [ constraint:path status:state ; constraint:minCount 1 ] ] ) .
+
+interface:LinkShape a constraint:NodeShape ; constraint:targetClass language:Link ; constraint:property [ constraint:path interface:child ; constraint:maxCount 0 ] ; constraint:or ( [ constraint:property [ constraint:path interface:text ; constraint:minCount 1 ] ] [ constraint:property [ constraint:path status:state ; constraint:minCount 1 ] ] ) .
+
+interface:SpanShape a constraint:NodeShape ; constraint:targetClass language:Span ; constraint:property [ constraint:path interface:child ; constraint:maxCount 0 ] ; constraint:or ( [ constraint:property [ constraint:path interface:text ; constraint:minCount 1 ] ] [ constraint:property [ constraint:path status:state ; constraint:minCount 1 ] ] ) .
+
+interface:ListShape a constraint:NodeShape ; constraint:targetClass language:List ;
+    constraint:property [ constraint:path interface:child ; constraint:class language:Item ; constraint:minCount 1 ] .
+
+interface:LinkDestinationShape a constraint:NodeShape ; constraint:targetClass language:Link ;
+    constraint:sparql [ constraint:message "A link must declare a destination." ; constraint:select """
+        SELECT $this WHERE { FILTER NOT EXISTS {
+          $this <urn:silmaril:user:interface:attribute> ?attribute .
+          ?attribute <urn:silmaril:user:interface:name> "href" .
+        }}""" ] .
+
+status:IndicatorShape a constraint:NodeShape ; constraint:targetClass status:Indicator ;
+    constraint:property [ constraint:path status:state ; constraint:class status:State ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path interface:text ; constraint:maxCount 0 ] .
+projection:IndicatorShape a constraint:NodeShape ; constraint:targetNode status:Indicator ;
+    constraint:property [ constraint:path projection:tag ; constraint:hasValue "span" ; constraint:minCount 1 ; constraint:maxCount 1 ] .

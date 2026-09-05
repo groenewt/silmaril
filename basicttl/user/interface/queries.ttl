@@ -1,0 +1,55 @@
+@prefix projection: <urn:silmaril:user:interface:projection:> .
+
+projection:Attributes a projection:Query ;
+    projection:query """PREFIX interface: <urn:silmaril:user:interface:>
+PREFIX projection: <urn:silmaril:user:interface:projection:>
+PREFIX style: <urn:silmaril:user:interface:cascading:style:sheet:>
+PREFIX status: <urn:silmaril:user:interface:build:status:>
+PREFIX geometry: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX datatype: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?subject ?name ?value WHERE {
+    ?document a projection:Document ; projection:root/interface:child* ?subject .
+    ?subject interface:attribute ?attribute .
+    ?attribute interface:name ?name ; interface:value ?value .
+} ORDER BY STR(?subject) ?name""" .
+
+projection:Elements a projection:Query ;
+    projection:query """PREFIX interface: <urn:silmaril:user:interface:>
+PREFIX projection: <urn:silmaril:user:interface:projection:>
+PREFIX style: <urn:silmaril:user:interface:cascading:style:sheet:>
+PREFIX status: <urn:silmaril:user:interface:build:status:>
+PREFIX geometry: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX datatype: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?subject ?tag ?text ?parent ?horizontal ?vertical WHERE {
+    ?document a projection:Document ; projection:root/interface:child* ?subject .
+    ?subject a ?species . ?species projection:tag ?tag .
+    OPTIONAL { ?subject interface:text ?literal }
+    OPTIONAL { ?subject status:state/schema:label ?state }
+    BIND(COALESCE(?state, ?literal, "") AS ?text)
+    OPTIONAL { ?parent interface:child ?subject }
+
+    ?subject geometry:hasGeometry/geometry:asWKT ?point .
+    BIND(STRAFTER(STR(?point), "POINT (") AS ?coordinates)
+    BIND(datatype:integer(STRBEFORE(?coordinates, " ")) AS ?horizontal)
+    BIND(datatype:integer(STRBEFORE(STRAFTER(?coordinates, " "), ")")) AS ?vertical)
+} ORDER BY ?vertical ?horizontal STR(?subject)""" .
+
+projection:Styles a projection:Query ;
+    projection:query """PREFIX interface: <urn:silmaril:user:interface:>
+PREFIX projection: <urn:silmaril:user:interface:projection:>
+PREFIX style: <urn:silmaril:user:interface:cascading:style:sheet:>
+PREFIX status: <urn:silmaril:user:interface:build:status:>
+PREFIX geometry: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX datatype: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?subject ?selector ?name ?value ?horizontal ?vertical WHERE {
+    ?subject a style:Rule ; style:selector ?selector ; style:declaration ?declaration .
+    ?declaration style:name ?name ; style:value ?value .
+
+    ?subject geometry:hasGeometry/geometry:asWKT ?point .
+    BIND(STRAFTER(STR(?point), "POINT (") AS ?coordinates)
+    BIND(datatype:integer(STRBEFORE(?coordinates, " ")) AS ?horizontal)
+    BIND(datatype:integer(STRBEFORE(STRAFTER(?coordinates, " "), ")")) AS ?vertical)
+} ORDER BY ?vertical ?horizontal STR(?subject) ?name""" .

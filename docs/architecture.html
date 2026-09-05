@@ -1,4 +1,5 @@
 ---
+permalink: /architecture/
 layout: default
 title: "Architecture | Silmaril"
 description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the typed morphism families (provenance and ontology pipelines) that realize it."
@@ -53,7 +54,7 @@ description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the
             The full law — semantic ancestry, build bootstrap boundary, normative boundary,
             explicit binding and observation, sealed self-hosting closure — is the
             authoritative document
-            <a href="https://github.com/groenewt/silmaril/blob/master/docs/unary-byte-frame-law.md">docs/unary-byte-frame-law.md</a>.
+            docs/unary-byte-frame-law.md (embedded below).
         </p>
     </div>
 </section>
@@ -177,7 +178,7 @@ make -C scripts/python/pylib morphism-ontology-validation</pre>
                         <code>manifest/render</code></li>
                     <li>sync gate &mdash; the five artifacts must byte-match
                         <code>ontology/</code>; regeneration is the documented copy in
-                        <a href="https://github.com/groenewt/silmaril/blob/master/ontology/README.md">ontology/README.md</a></li>
+                        ontology/README.md (embedded below)</li>
                 </ol>
             </div>
 
@@ -198,10 +199,16 @@ make -C scripts/python/pylib morphism-ontology-validation</pre>
 
         <h3>Further reading</h3>
         <ul class="doc-links">
-            <li><a href="https://github.com/groenewt/silmaril/blob/master/docs/unary-byte-frame-law.md">The Universal Unary Byte-Frame Law</a> — the authoritative law, amendments, and red receipts.</li>
-            <li><a href="https://github.com/groenewt/silmaril/blob/master/docs/praeriehund-demokratie-der-kategorien.md">Der Pr&auml;riehund und die Demokratie der Kategorien</a> — why the repository prefers a provisional frame to a false taxon.</li>
+            <li>The Universal Unary Byte-Frame Law (embedded below) — the authoritative law, amendments, and red receipts.</li>
+            <li>Der Pr&auml;riehund und die Demokratie der Kategorien (embedded below) — why the repository prefers a provisional frame to a false taxon.</li>
             <li><a href="{{ '/provenance/' | relative_url }}">Provenance</a> — the trust system this machinery enforces.</li>
             <li><a href="{{ '/folklore/' | relative_url }}">Folklore</a> — the same architecture, as story and as ontology.</li>
         </ul>
     </div>
 </section>
+
+{% include documentation.html source="docs/praeriehund-demokratie-der-kategorien.md" %}
+
+{% include documentation.html source="docs/unary-byte-frame-law.md" %}
+
+{% include documentation.html source="ontology/README.md" %}

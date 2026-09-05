@@ -1,0 +1,114 @@
+@prefix interface: <urn:silmaril:user:interface:> .
+@prefix language: <urn:silmaril:user:interface:hypertext:markup:language:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix projection: <urn:silmaril:user:interface:projection:> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix status: <urn:silmaril:user:interface:build:status:> .
+@prefix style: <urn:silmaril:user:interface:cascading:style:sheet:> .
+
+interface:Attribute a owl:Class .
+
+interface:attribute a owl:ObjectProperty .
+
+status:Unknown a status:State ;
+    rdfs:label "Not checked" .
+
+status:state a owl:ObjectProperty .
+
+style:Declaration a owl:Class .
+
+style:Rule a owl:Class ;
+    rdfs:comment "An ordered style projection. Its chart point specifies cascade precedence. Declarations are independent typed values, not an opaque style block." .
+
+style:declaration a owl:ObjectProperty .
+
+style:name a owl:DatatypeProperty .
+
+style:selector a owl:DatatypeProperty .
+
+style:value a owl:DatatypeProperty .
+
+interface:child a owl:ObjectProperty .
+
+language:Circle a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "circle" .
+
+language:Graphic a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "svg" .
+
+language:Heading a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "h2" .
+
+language:Item a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "li" .
+
+language:Line a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "line" .
+
+language:Link a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "a" .
+
+language:List a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "ul" .
+
+language:Paragraph a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "p" .
+
+language:Section a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "section" .
+
+language:Span a owl:Class ;
+    rdfs:subClassOf interface:Element ;
+    projection:tag "span" .
+
+interface:name a owl:DatatypeProperty .
+
+projection:Document a owl:Class ;
+    rdfs:comment "A rooted finite tree of typed elements. Sibling reading order is ascending vertical then horizontal chart coordinate, extracted from geometry:asWKT POINT coordinates. Coordinates belong to a local logical flow chart; they are not pixel positions or geographic longitude/latitude." .
+
+projection:Query a owl:Class .
+
+projection:query a owl:DatatypeProperty .
+
+projection:root a owl:ObjectProperty .
+
+projection:tag a owl:DatatypeProperty .
+
+interface:text a owl:DatatypeProperty .
+
+interface:value a owl:DatatypeProperty .
+
+status:State a owl:Class ;
+    rdfs:comment "This static projection admits Unknown only. A live result requires a separately implemented evidence projection binding a workflow run, commit revision, conclusion and observation time." .
+
+interface:Element a owl:Class .
+
+
+projection:Chart a owl:Class .
+projection:Flow a projection:Chart ; rdfs:comment "Local logical flow chart. Horizontal coordinates increase rightward; vertical coordinates increase downward. Integer coordinates determine reading and cascade order, not viewport pixels." .
+
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+interface:child rdfs:domain interface:Element ; rdfs:range interface:Element .
+interface:attribute rdfs:domain interface:Element ; rdfs:range interface:Attribute .
+interface:text rdfs:domain interface:Element ; rdfs:range datatype:string .
+interface:name rdfs:domain interface:Attribute ; rdfs:range datatype:string .
+interface:value rdfs:domain interface:Attribute ; rdfs:range datatype:string .
+projection:root rdfs:domain projection:Document ; rdfs:range interface:Element .
+projection:query rdfs:domain projection:Query ; rdfs:range datatype:string .
+projection:tag rdfs:domain owl:Class ; rdfs:range datatype:string .
+style:declaration rdfs:domain style:Rule ; rdfs:range style:Declaration .
+style:selector rdfs:domain style:Rule ; rdfs:range datatype:string .
+style:name rdfs:domain style:Declaration ; rdfs:range datatype:string .
+style:value rdfs:domain style:Declaration ; rdfs:range datatype:string .
+status:state rdfs:domain interface:Element ; rdfs:range status:State .
+
+status:Indicator a owl:Class ; rdfs:subClassOf language:Span ; projection:tag "span" .
