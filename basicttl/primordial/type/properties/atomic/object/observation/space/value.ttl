@@ -1,0 +1,27 @@
+@prefix atomic: <urn:silmaril:aob:#> .
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:silmaril:primordial:type:class:atomic:object:ObservationContract> model:field <urn:silmaril:primordial:type:property:ObservationSpace> .
+
+<urn:silmaril:primordial:type:class:property:ObservationSpaceValue> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "The independently named value type of urn:silmaril:aob:#obsSpace. Its semantic parent is urn:silmaril:prim:#String; the role remains distinct from other fields sharing that parent. The source range is retained separately for an explicit conversion gate. This nominal declaration does not admit a host literal or provide conversion or physical byte-closure evidence." ;
+    schema1:subClassOf primitive:String ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/properties/atomic/object/observation/space/value.ttl" ;
+    model:propertyRole <urn:silmaril:primordial:type:property:ObservationSpace> .
+
+<urn:silmaril:primordial:type:property:ObservationSpace> a model:Field ;
+    model:cardinalityAuthority model:ProposedClassContract ;
+    model:multiplicity model:ExactlyOne ;
+    model:mutability model:Immutable ;
+    model:owner <urn:silmaril:primordial:type:class:atomic:object:ObservationContract> ;
+    model:range <urn:silmaril:primordial:type:class:property:ObservationSpaceValue> ;
+    model:referenceKind model:ValueReference ;
+    model:requiresConversionGate model:Pending ;
+    model:sourcePredicate atomic:obsSpace ;
+    model:sourceRange xsd:string .

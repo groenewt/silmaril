@@ -286,17 +286,45 @@ fnd:PresheafNotSetShape a sh:NodeShape ;
 fnd:MagmaClosureShape a sh:NodeShape ;
     rdfs:label "MagmaClosureShape" ;
     rdfs:comment "The base Magma-rung CLOSURE/TOTALITY tooth with teeth on fnd:Magma (algebra_spine.ttl, design s3; M1 parity). fnd:Magma is a concrete law-bearing rung whose sole added law is closure/totality (fnd:addsLaw fnd:lawClosure: the binary operation . : S,S -> S is a TOTAL function landing back in the carrier S), yet its closure law previously had NO biting tooth and NO witness model, while every sibling rung (Semigroup..AbelianGroup, Quasigroup/Loop) carried both - the M1 defect. This shape gives fnd:Magma PARITY by making closure a CHECKABLE graph fact, REUSING the SealedGroup closure idiom (fnd:SealedGroupIsGroupShape / q_sealedgroup_is_group closure branch, and the topology closure check: a reified product over the operation whose result is NOT a fnd:hasElement of the structure -> violation), generalised CLASS-GENERAL over the whole fnd:Magma family. SYN, cited standard universal algebra (fnd:Magma is SYN; the free term-algebra substrate T_Sigma(X) is LIFTED, 26/03/03:13-15). A sh:sparql node shape (sh:targetClass fnd:Magma, so under inference=rdfs it targets every Magma-or-subclass instance) whose constraint fires when a fnd:Magma $this ENUMERATES its carrier (there is a $this fnd:hasElement ?someEl - the guard that scopes the tooth to magmas over an enumerated carrier) AND some reified product over it escapes that carrier (a ?row fnd:opStructure $this ; fnd:opResult ?r with ?r NOT a fnd:hasElement of $this). The enumerated-carrier guard is load-bearing: the spine/division witnesses that do not enumerate a carrier (fnd:semigroupModel, fnd:monoidModel, fnd:commMonoidModel, fnd:groupModel, fnd:quasigroupModel, fnd:loopModel - none carry fnd:hasElement, they enumerate via other predicates or not at all) are correctly OUT OF SCOPE and not falsely flagged as all-escaping; the magmas that DO enumerate fnd:hasElement are fnd:magmaModel (the closed order-2 non-associative witness over {A,B}) and, via rdfs:subClassOf fnd:Group ... fnd:Magma, the T10 aob:witnessGroup (the closed Z/4 SealedGroup), both closed. Every clause reads EDGE existence over the reified op table (fnd:opStructure/fnd:opResult) and the element enumeration (fnd:hasElement), never a bare sh:class over an rdfs:range, so inference=rdfs (which can materialise an rdf:type but cannot forge one of these property edges between two specific nodes) cannot defang it - the SP1 defang discipline. On this floor fnd:magmaModel (rows A.A=B, A.B=B, B.A=A, B.B=B, all landing in {A,B}) and aob:witnessGroup (the closed Z/4 Cayley table) satisfy it, so conforms=True; the probe of record - fnd:probeMagmaOpenResult a fnd:Magma with fnd:hasElement fnd:elemA , fnd:elemB and an op row whose fnd:opResult is fnd:elemC (outside the enumerated carrier {A,B}) - makes the closure clause bite (conforms=True->False) while the closed fnd:magmaModel stays GREEN, proving the tooth on the case that matters. Mirrors q_magma_closure." ;
+    rdfs:comment "Refinement: this constraint now verifies totality on every ordered pair of the explicitly enumerated carrier and functionality across all application rows. Missing coordinates, multiple coordinates, escaping operands/results and conflicting rows reject. Duplicate rows with the same ordered pair and result preserve functionality. Unenumerated symbolic structures remain outside this finite-table check and are not certified total by it." ;
     sh:targetClass fnd:Magma ;
     sh:sparql [
         a sh:SPARQLConstraint ;
         sh:severity sh:Violation ;
-        sh:message "magma rung (closure): this fnd:Magma enumerates a carrier (fnd:hasElement) yet some reified product over its operation has a fnd:opResult that is NOT a fnd:hasElement of the magma - the binary operation is not closed on the enumerated carrier (a product escapes S)." ;
+        sh:message "The enumerated magma operation must cover every ordered carrier pair, have exactly one left/right/result per row, remain inside its carrier and assign one result to each pair." ;
         sh:select """
-            SELECT $this WHERE {
-              $this <urn:silmaril:fnd:#hasElement> ?someEl .
-              ?row <urn:silmaril:fnd:#opStructure> $this ; <urn:silmaril:fnd:#opResult> ?r .
-              FILTER NOT EXISTS { $this <urn:silmaril:fnd:#hasElement> ?r }
-            }
+PREFIX foundation: <urn:silmaril:fnd:#>
+SELECT DISTINCT $this WHERE {
+  $this foundation:hasElement ?carrierMember .
+
+  {
+    $this foundation:hasElement ?left, ?right .
+    FILTER NOT EXISTS {
+      ?application foundation:opStructure $this ; foundation:opLeft ?left ;
+          foundation:opRight ?right ; foundation:opResult ?result .
+    }
+  } UNION {
+    ?application foundation:opStructure $this .
+    FILTER (NOT EXISTS { ?application foundation:opLeft ?left } ||
+            NOT EXISTS { ?application foundation:opRight ?right } ||
+            NOT EXISTS { ?application foundation:opResult ?result })
+  } UNION {
+    ?application foundation:opStructure $this .
+    ?application ?coordinate ?first, ?second .
+    FILTER (?coordinate IN (foundation:opLeft, foundation:opRight, foundation:opResult) && ?first != ?second)
+  } UNION {
+    ?application foundation:opStructure $this .
+    ?application ?coordinate ?value .
+    FILTER (?coordinate IN (foundation:opLeft, foundation:opRight, foundation:opResult))
+    FILTER NOT EXISTS { $this foundation:hasElement ?value }
+  } UNION {
+    ?firstApplication foundation:opStructure $this ; foundation:opLeft ?left ;
+        foundation:opRight ?right ; foundation:opResult ?firstResult .
+    ?secondApplication foundation:opStructure $this ; foundation:opLeft ?left ;
+        foundation:opRight ?right ; foundation:opResult ?secondResult .
+    FILTER (?firstResult != ?secondResult)
+  }
+}
         """ ;
     ] .
 
@@ -796,6 +824,7 @@ fnd:RingAdditiveInverseShape a sh:NodeShape ;
 fnd:FieldMultInverseShape a sh:NodeShape ;
     rdfs:label "FieldMultInverseShape" ;
     rdfs:comment "The Field-rung multiplicative-inverse tooth with teeth on fnd:MultInversePairing and fnd:Field (algebra_rings.ttl, design s3). Field is FULLY ABSENT as algebra in Helios (only record-field, 02_algebra_tower.md:134-136), authored as cited standard field theory; this tooth is the MULTIPLICATIVE analogue of fnd:GroupInverseShape and reuses the SP2/T4 genuine-inverse discipline (a claimed inverse that does not undo -> RED). It makes two doctrines graph facts: (A) every claimed multiplicative-inverse pairing genuinely two-sidedly reaches the field's one, and (B) every nonzero field element actually carries such a pairing. A sh:sparql node shape with TWO targets - sh:targetClass fnd:MultInversePairing and sh:targetClass fnd:Field - carrying TWO self-guarded sh:sparql constraints (the same multi-target self-guarded pattern fnd:AlgebraProgenitorShape uses). Constraint A fires when $this a fnd:MultInversePairing (fnd:mipModel ?fld with fnd:hasOneElement ?one, fnd:mipElement ?x, fnd:mipInverse ?y) has NO reified multiplicative row x·y = 1 OR no row y·x = 1 over fnd:ringStructure ?fld. Constraint B fires when $this a fnd:Field has a fnd:hasRingElement ?e that is not its fnd:hasZeroElement and there is NO fnd:MultInversePairing over $this with fnd:mipElement ?e (a nonzero element with no inverse). Each constraint self-guards on $this's type, so each no-ops on the irrelevant target. Both read EDGE existence over the reified applications and pairing/enumeration edges, never a bare sh:class over an rdfs:range, so inference=rdfs cannot defang it - the SP1 defang discipline. On this floor the GF(3) field fnd:fieldModel (1·1=1, 2·2=1; pairings 1<->1, 2<->2 for the nonzero elements 1 and 2) conforms; the probe of record - changing fnd:appFieldMul_2_2 (2·2) fnd:ringResult from fnd:fieldOne to fnd:fieldTwo, so 2·2 = 2 != 1 - makes constraint A bite for fnd:mipPairTwo (conforms=True->False), a 'field' with a non-invertible nonzero element, proving the tooth. Constraint C (one-element EXISTENCE, the guard-on-optional-edge close) fires when a fnd:Field declares no fnd:hasOneElement - the multiplicative identity 1 that constraint A binds as the inverse target (x.inv(x)=1) - so a one-less field, which A would skip for lack of a bound 1, is now RED. On this floor fnd:fieldModel declares fnd:hasOneElement fnd:fieldOne, so conforms=True; the probe - a fnd:Field with no fnd:hasOneElement - makes constraint C bite." ;
+    rdfs:comment "Refinement: the identity constraint now requires one zero and one multiplicative identity, carrier membership for each, and nontriviality. Equal identities or an explicit sameAs chain between them reject, including a singleton zero ring. This does not add nontriviality to the general ring family, where the zero ring remains permitted." ;
     sh:targetClass fnd:MultInversePairing , fnd:Field ;
     sh:sparql [
         a sh:SPARQLConstraint ;
@@ -829,12 +858,29 @@ fnd:FieldMultInverseShape a sh:NodeShape ;
     sh:sparql [
         a sh:SPARQLConstraint ;
         sh:severity sh:Violation ;
-        sh:message "field rung (C, one-element EXISTENCE): this fnd:Field declares no fnd:hasOneElement - the multiplicative identity 1 the inverse must reach (x.inv(x)=1) is OMITTED, so the genuineness clause (A) has no target 1 to bind and a one-less field escapes it; a fnd:Field that omits fnd:hasOneElement -> RED (the guard-on-optional-edge close)." ;
+        sh:message "A field must have exactly one zero and one multiplicative identity, both in its carrier and distinct even through explicit identity equivalences." ;
         sh:select """
-            SELECT $this WHERE {
-              $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:fnd:#Field> .
-              FILTER NOT EXISTS { $this <urn:silmaril:fnd:#hasOneElement> ?one }
-            }
+PREFIX foundation: <urn:silmaril:fnd:#>
+PREFIX ontology: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT $this WHERE {
+  $this a foundation:Field .
+
+  {
+    FILTER NOT EXISTS { $this foundation:hasZeroElement ?zero }
+  } UNION {
+    FILTER NOT EXISTS { $this foundation:hasOneElement ?one }
+  } UNION {
+    $this ?coordinate ?first, ?second .
+    FILTER (?coordinate IN (foundation:hasZeroElement, foundation:hasOneElement) && ?first != ?second)
+  } UNION {
+    $this ?coordinate ?identity .
+    FILTER (?coordinate IN (foundation:hasZeroElement, foundation:hasOneElement))
+    FILTER NOT EXISTS { $this foundation:hasRingElement ?identity }
+  } UNION {
+    $this foundation:hasZeroElement ?zero ; foundation:hasOneElement ?one .
+    FILTER (?zero = ?one || EXISTS { ?zero (ontology:sameAs|^ontology:sameAs)+ ?one })
+  }
+}
         """ ;
     ] .
 

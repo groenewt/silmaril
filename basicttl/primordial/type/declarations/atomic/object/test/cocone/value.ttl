@@ -1,0 +1,15 @@
+@prefix atomic: <urn:silmaril:aob:#> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:silmaril:primordial:type:class:atomic:object:TestCocone> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "Nominal polymorphic class declaration for urn:silmaril:aob:#TestCocone. It retains the source class's exact ancestry and inherits independently typed identity, formal, physical, realization and ancestry coordinates through the primordial template. Source properties remain individually addressed contracts. This declaration is not an executable Python class or a physical admission certificate." ;
+    schema1:subClassOf atomic:TestCocone,
+        family:Primordial ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/declarations/atomic/object/test/cocone/value.ttl" ;
+    model:sourceClass atomic:TestCocone ;
+    model:sourceDocument "basicttl/aob/group_law.ttl" .

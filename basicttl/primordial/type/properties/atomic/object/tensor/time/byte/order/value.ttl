@@ -1,0 +1,24 @@
+@prefix atomic: <urn:silmaril:aob:#> .
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:silmaril:primordial:type:class:atomic:object:TensorBlock> model:field <urn:silmaril:primordial:type:property:TensorTimeByteOrder> .
+
+<urn:silmaril:primordial:type:class:property:TensorTimeByteOrderValue> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "The independently named value type of urn:silmaril:aob:#ttByteOrder. Its semantic parent is urn:silmaril:aob:#ByteOrderProgenitor; the role remains distinct from other fields sharing that parent. The source range is retained separately for an explicit conversion gate. This nominal declaration does not admit a host literal or provide conversion or physical byte-closure evidence." ;
+    schema1:subClassOf atomic:ByteOrderProgenitor ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/properties/atomic/object/tensor/time/byte/order/value.ttl" ;
+    model:propertyRole <urn:silmaril:primordial:type:property:TensorTimeByteOrder> .
+
+<urn:silmaril:primordial:type:property:TensorTimeByteOrder> a model:Field ;
+    model:cardinalityAuthority model:ProposedClassContract ;
+    model:multiplicity model:ExactlyOne ;
+    model:mutability model:Immutable ;
+    model:owner <urn:silmaril:primordial:type:class:atomic:object:TensorBlock> ;
+    model:range <urn:silmaril:primordial:type:class:property:TensorTimeByteOrderValue> ;
+    model:referenceKind model:ValueReference ;
+    model:sourcePredicate atomic:ttByteOrder ;
+    model:sourceRange atomic:ByteOrderProgenitor .

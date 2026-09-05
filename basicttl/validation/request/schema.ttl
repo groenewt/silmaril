@@ -1,0 +1,26 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:Plan a ontology:Class ; schema:comment "A versioned acceptance plan for the requested repository work. Every required check has a separately addressed source declaration and explicit dependencies. The plan records what must be observed and never substitutes for runtime admission or an executable dependency gate." .
+validation:Check a ontology:Class ; schema:comment "An independently addressed acceptance criterion. Its evidence must refer to the candidate source revision and be retained for inspection. A check result describes an observation; claiming that result does not implement a physical carrier, prove byte closure or authorize execution." .
+validation:Run a ontology:Class ; schema:comment "One observation set for an exact candidate revision and the authoritative plan revision. Results from earlier commits cannot fill missing observations. Failed, blocked and unexecuted checks remain visible and prevent a complete successful acceptance verdict." .
+validation:Observation a ontology:Class ; schema:comment "An external validation observation with a closed outcome, exact source revision, evidence path and digest. Artifact bytes and signatures must be checked by the observing tool; a shape check verifies this record's structure and does not authenticate its claims." .
+validation:Outcome a ontology:Class ; ontology:oneOf (validation:Passed validation:Failed validation:Blocked validation:NotRun) .
+validation:Passed a validation:Outcome .
+validation:Failed a validation:Outcome .
+validation:Blocked a validation:Outcome .
+validation:NotRun a validation:Outcome .
+validation:requires a ontology:ObjectProperty .
+validation:dependsOn a ontology:ObjectProperty .
+validation:plan a ontology:ObjectProperty .
+validation:observation a ontology:ObjectProperty .
+validation:check a ontology:ObjectProperty .
+validation:outcome a ontology:ObjectProperty .
+validation:sourceRevision a ontology:DatatypeProperty .
+validation:declarationPath a ontology:DatatypeProperty .
+validation:artifactPath a ontology:DatatypeProperty .
+validation:artifactDigest a ontology:DatatypeProperty .
+validation:detail a ontology:DatatypeProperty .

@@ -1,0 +1,12 @@
+PREFIX model: <urn:silmaril:primordial:type:>
+
+# Expected FALSE for this model-only change. A green structural check does not
+# discharge the unresolved source types or any pending physical/import admission.
+# Evaluate after model shapes conform. This is a pending-obligation readback,
+# not an authorization decision or proof of physical runtime implementation.
+# Full requested acceptance is separately specified in validation/request/plan.ttl.
+ASK WHERE {
+  FILTER EXISTS { ?declaration a model:ClassDeclaration }
+  FILTER NOT EXISTS { ?property a model:UnresolvedProperty }
+  FILTER NOT EXISTS { ?coordinate model:admissionState model:Pending }
+}

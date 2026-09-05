@@ -10,11 +10,35 @@ env:
   SILMARIL_PYTHON: python3
 
 jobs:
+  ontology-floors:
+    name: Foundation and All Ontology Floors
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install semantic dependencies
+        run: pip install rdflib==7.6.0 pyshacl==0.40.1
+      - name: Validate every standalone and merged ontology floor
+        run: bash basicttl/foundation/checks/run-foundation-checks.sh
+
+  browser-render:
+    name: Root and Project Browser Rendering
+    uses: ./.github/workflows/site-render.yml
+    permissions:
+      contents: read
+
   ui-constructor:
     name: User Interface Projection
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Require admitted user interface runtime
+        run: make -C scripts/python/pylib morphism-user-interface-runtime-admission
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -28,6 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Require admitted user interface runtime
+        run: make -C scripts/python/pylib morphism-user-interface-runtime-admission
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
@@ -114,7 +140,6 @@ jobs:
         working-directory: scripts/python/pylib
         run: |
           PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q tests/test_morphism_process_ledger.py $(ls tests/test_morphism_*_process.py tests/test_morphism_*_pipeline.py 2>/dev/null)
-      - name: Pylib suite (advisory — pre-existing red migration census)
+      - name: Required Python runtime and contract suite
         working-directory: scripts/python/pylib
-        run: |
-          PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q || printf '%s\n' 'advisory: pre-existing red-migration findings (documented in docs/unary-byte-frame-law.md)'
+        run: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q

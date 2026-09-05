@@ -45,16 +45,12 @@ echo "== merged graph (SP1 + SP2 + SP3): pyshacl + every EXPECT-TRUE ASK =="
 python3 - <<'PY'
 import glob, os.path, re, sys, time
 from rdflib import Graph
-from rdflib.namespace import RDF, RDFS
+from rdflib.namespace import RDF
 from rdflib import URIRef
 from pyshacl import validate
 
 SH_NODESHAPE = URIRef("http://www.w3.org/ns/shacl#NodeShape")
 SH_PROPSHAPE = URIRef("http://www.w3.org/ns/shacl#PropertyShape")
-SH_TARGETCLASS = URIRef("http://www.w3.org/ns/shacl#targetClass")
-SH_NS = "http://www.w3.org/ns/shacl#"
-AOB_NS = "urn:silmaril:aob:#"
-CRS_NS = "urn:silmaril:crs:#"
 
 SP1 = [f"basicttl/primitives/{f}" for f in
        ["formal.ttl", "physical.ttl", "realization.ttl", "taiji.ttl"]]
@@ -93,75 +89,11 @@ def validate_over_merged(shapes_path, label):
 validate_over_merged("basicttl/crs/crs.shapes.ttl", "crs.shapes.ttl")
 validate_over_merged("basicttl/primitives/primitives.shapes.ttl", "primitives.shapes.ttl")
 
-# --- SP2 law (aob.shapes) over the merged graph -------------------------------------------------
-# The committed SP2 runner (step (2)) validates aob.shapes over the aob-ONLY graph (7 files, ~1079
-# triples) and is green. The merged graph adds the whole NON-AOB delta -- SP1 (4 files) + SP3 (crs, 5
-# files) -- on top of those aob triples. We transfer that standalone green to the merged graph instead
-# of re-running aob.shapes' 38 sh:sparql constraints over the ~11.6k-triple merged graph (measured
-# ~177s -- the constraints re-scan the SAME 11 aob focus nodes over a 10x-larger graph, for zero added
-# coverage; the full merged aob.shapes run is measured conforms=True and recorded in the README).
-# The transfer is SOUND exactly when the non-aob delta neither adds an aob focus node nor mutates an
-# existing one, because aob.shapes targets EXCLUSIVELY by sh:targetClass (audited: no sh:targetNode /
-# sh:targetSubjectsOf / sh:targetObjectsOf / sh:target) and its constraints are $this-anchored to those
-# focus nodes -- so an unchanged focus set with unchanged neighbourhoods yields an unchanged result.
-# This runner MACHINE-CHECKS both conditions over the FULL non-aob delta each run and, if either breaks
-# (a future corpus-bound version), FALLS BACK to the full aob.shapes re-validation over the merged graph.
-def aob_focus_transfers():
-    """Return (ok, reason). ok=True => the SP2-standalone aob.shapes green transfers to the merged graph
-    and the expensive re-run may be skipped. ok=False => the invariant is broken; the caller must run the
-    full aob.shapes validation over the merged graph."""
-    sh = Graph(); sh.parse("basicttl/aob/aob.shapes.ttl")
-    # (i) aob.shapes must target ONLY by class, else its focus set is not class-derivable -> fall back.
-    for mech in ("targetNode", "targetSubjectsOf", "targetObjectsOf"):
-        if (None, URIRef(SH_NS + mech), None) in sh:
-            return False, f"aob.shapes uses sh:{mech} (non-targetClass target) -> full re-validation"
-    tclasses = set(sh.objects(None, SH_TARGETCLASS))
-    # expand target classes by rdfs:subClassOf within the merged graph (the subClassOf type rule).
-    subs = set(tclasses); changed = True
-    while changed:
-        changed = False
-        for s, _, o in data.triples((None, RDFS.subClassOf, None)):
-            if o in subs and s not in subs:
-                subs.add(s); changed = True
-    # Every rdfs type rule that can put a node under an aob targetClass: asserted rdf:type, subClassOf
-    # (folded into `subs`), rdfs:domain (subject), rdfs:range (object). Any NON-AOB node so typed is a
-    # focus node the aob-only standalone graph did not have -> the transfer is unsound. (Checking the
-    # whole non-aob delta, i.e. every node outside the aob: namespace, covers BOTH SP1 and SP3, not just
-    # crs -- the merged graph adds both to the aob-only baseline.)
-    def nonaob(n):
-        return isinstance(n, URIRef) and not str(n).startswith(AOB_NS)
-    contributed = set()
-    for c in subs:                                                   # asserted + subClassOf
-        for n in data.subjects(RDF.type, c):
-            if nonaob(n): contributed.add(n)
-    doms = {p for p, _, c in data.triples((None, RDFS.domain, None)) if c in subs}
-    rngs = {p for p, _, c in data.triples((None, RDFS.range, None)) if c in subs}
-    for p in doms:                                                   # rdfs:domain type rule
-        for s, _, o in data.triples((None, p, None)):
-            if nonaob(s): contributed.add(s)
-    for p in rngs:                                                   # rdfs:range type rule
-        for s, _, o in data.triples((None, p, None)):
-            if nonaob(o): contributed.add(o)
-    if contributed:
-        return False, f"non-aob delta contributes {len(contributed)} aob focus node(s) -> full re-validation"
-    # (ii) No non-aob source file may mutate an existing aob individual (add a triple whose subject is an
-    # aob node), else a focus node's neighbourhood changes. Origin-aware: re-read the SP1 + SP3 files.
-    delta = Graph()
-    for f in SP1 + SP3: delta.parse(f)
-    mutated = {str(s) for s in delta.subjects() if isinstance(s, URIRef) and str(s).startswith(AOB_NS)}
-    if mutated:
-        return False, f"non-aob delta mutates {len(mutated)} aob individual(s) -> full re-validation"
-    return True, "non-aob delta (SP1+SP3) adds 0 aob focus nodes and mutates 0 aob individuals"
+# Validate the complete merged graph. A namespace-based transfer cannot prove
+# equivalence: blank nodes, new individuals within the same namespace, inferred
+# types and changes to related nodes can all change a constraint result.
+validate_over_merged("basicttl/aob/aob.shapes.ttl", "aob.shapes.ttl")
 
-if os.path.exists("basicttl/aob/aob.shapes.ttl"):
-    t = time.time()
-    ok, reason = aob_focus_transfers()
-    if ok:
-        print(f"  [{time.time()-t:5.1f}s] SHACL conforms (aob.shapes.ttl over merged): True "
-              f"[transferred from SP2 standalone -- {reason}; equivalence machine-checked]")
-    else:
-        print(f"  aob.shapes.ttl invariant broken ({reason}); running full re-validation over merged...")
-        validate_over_merged("basicttl/aob/aob.shapes.ttl", "aob.shapes.ttl")
 
 def run_asks(query_path, label):
     global problems

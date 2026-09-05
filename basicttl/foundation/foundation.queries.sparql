@@ -250,19 +250,44 @@ ASK {
 #     op-result outside its enumerated carrier - fnd:probeMagmaOpenResult a fnd:Magma ; fnd:hasElement
 #     fnd:elemA , fnd:elemB with an op row whose fnd:opResult is fnd:elemC (NOT a fnd:hasElement of the magma)
 #     - the inner EXISTS finds the escaping product and the ASK is FALSE; fnd:magmaModel stays GREEN.
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX fnd: <urn:silmaril:fnd:#>
+# Refinement: totality, row cardinality and functionality are checked as well as closure.
+PREFIX foundation: <urn:silmaril:fnd:#>
+PREFIX schema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX description: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 ASK {
-  ?mAnchor rdf:type/rdfs:subClassOf* fnd:Magma ; fnd:hasElement ?anchorEl .
-  ?anchorRow fnd:opStructure ?mAnchor .
+  ?witness description:type/schema:subClassOf* foundation:Magma ; foundation:hasElement ?member .
   FILTER NOT EXISTS {
-    ?m rdf:type/rdfs:subClassOf* fnd:Magma ; fnd:hasElement ?el .
-    ?row fnd:opStructure ?m ; fnd:opResult ?r .
-    FILTER NOT EXISTS { ?m fnd:hasElement ?r }
+    ?model description:type/schema:subClassOf* foundation:Magma ; foundation:hasElement ?carrierMember .
+
+  {
+    ?model foundation:hasElement ?left, ?right .
+    FILTER NOT EXISTS {
+      ?application foundation:opStructure ?model ; foundation:opLeft ?left ;
+          foundation:opRight ?right ; foundation:opResult ?result .
+    }
+  } UNION {
+    ?application foundation:opStructure ?model .
+    FILTER (NOT EXISTS { ?application foundation:opLeft ?left } ||
+            NOT EXISTS { ?application foundation:opRight ?right } ||
+            NOT EXISTS { ?application foundation:opResult ?result })
+  } UNION {
+    ?application foundation:opStructure ?model .
+    ?application ?coordinate ?first, ?second .
+    FILTER (?coordinate IN (foundation:opLeft, foundation:opRight, foundation:opResult) && ?first != ?second)
+  } UNION {
+    ?application foundation:opStructure ?model .
+    ?application ?coordinate ?value .
+    FILTER (?coordinate IN (foundation:opLeft, foundation:opRight, foundation:opResult))
+    FILTER NOT EXISTS { ?model foundation:hasElement ?value }
+  } UNION {
+    ?firstApplication foundation:opStructure ?model ; foundation:opLeft ?left ;
+        foundation:opRight ?right ; foundation:opResult ?firstResult .
+    ?secondApplication foundation:opStructure ?model ; foundation:opLeft ?left ;
+        foundation:opRight ?right ; foundation:opResult ?secondResult .
+    FILTER (?firstResult != ?secondResult)
+  }
   }
 }
-
 
 # EXPECT-TRUE q_semigroup_assoc : associativity holds on the semigroup rung witness ((a.b).c == a.(b.c)).
 #   The one-operation spine, Semigroup rung (design s3; ledger/W2/algebra_foundation/02_algebra_tower.md
@@ -831,28 +856,47 @@ ASK {
 #     row fnd:appFieldMul_2_2 (2·2) fnd:ringResult from fnd:fieldOne to fnd:fieldTwo (so 2·2 = 2 != 1) - the
 #     claimed inverse 2 of 2 no longer multiplies to the field's one, the inner two-sided-undo FILTER NOT
 #     EXISTS fails for fnd:mipPairTwo, and the ASK is FALSE (a "field" with a non-invertible nonzero element).
-PREFIX fnd: <urn:silmaril:fnd:#>
+PREFIX foundation: <urn:silmaril:fnd:#>
+PREFIX ontology: <http://www.w3.org/2002/07/owl#>
+PREFIX schema: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX description: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 ASK {
-  ?p0 a fnd:MultInversePairing .
+  ?p0 a foundation:MultInversePairing .
   FILTER NOT EXISTS {
-    ?pp a fnd:MultInversePairing ; fnd:mipModel ?fld ; fnd:mipElement ?x ; fnd:mipInverse ?y .
-    ?fld fnd:hasOneElement ?one .
+    ?pp a foundation:MultInversePairing ; foundation:mipModel ?fld ; foundation:mipElement ?x ; foundation:mipInverse ?y .
+    ?fld foundation:hasOneElement ?one .
     FILTER NOT EXISTS {
-      ?xy fnd:ringStructure ?fld ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?x ; fnd:ringRight ?y ; fnd:ringResult ?one .
-      ?yx fnd:ringStructure ?fld ; fnd:ringOp fnd:multiplicativeOp ; fnd:ringLeft ?y ; fnd:ringRight ?x ; fnd:ringResult ?one .
+      ?xy foundation:ringStructure ?fld ; foundation:ringOp foundation:multiplicativeOp ; foundation:ringLeft ?x ; foundation:ringRight ?y ; foundation:ringResult ?one .
+      ?yx foundation:ringStructure ?fld ; foundation:ringOp foundation:multiplicativeOp ; foundation:ringLeft ?y ; foundation:ringRight ?x ; foundation:ringResult ?one .
     }
   }
   FILTER NOT EXISTS {
-    ?fld2 a fnd:Field ; fnd:hasRingElement ?e ; fnd:hasZeroElement ?zero .
+    ?fld2 a foundation:Field ; foundation:hasRingElement ?e ; foundation:hasZeroElement ?zero .
     FILTER(?e != ?zero)
-    FILTER NOT EXISTS { ?q2 a fnd:MultInversePairing ; fnd:mipModel ?fld2 ; fnd:mipElement ?e }
+    FILTER NOT EXISTS { ?q2 a foundation:MultInversePairing ; foundation:mipModel ?fld2 ; foundation:mipElement ?e }
   }
   FILTER NOT EXISTS {
-    ?fldC a fnd:Field .
-    FILTER NOT EXISTS { ?fldC fnd:hasOneElement ?one }
+    ?field description:type/schema:subClassOf* foundation:Field .
+    FILTER NOT EXISTS { ?field foundation:hasZeroElement ?zero }
+  }
+  FILTER NOT EXISTS {
+    ?field description:type/schema:subClassOf* foundation:Field .
+    FILTER NOT EXISTS { ?field foundation:hasOneElement ?one }
+  }
+  FILTER NOT EXISTS {
+    ?field description:type/schema:subClassOf* foundation:Field ; ?coordinate ?first, ?second .
+    FILTER (?coordinate IN (foundation:hasZeroElement, foundation:hasOneElement) && ?first != ?second)
+  }
+  FILTER NOT EXISTS {
+    ?field description:type/schema:subClassOf* foundation:Field ; ?coordinate ?identity .
+    FILTER (?coordinate IN (foundation:hasZeroElement, foundation:hasOneElement))
+    FILTER NOT EXISTS { ?field foundation:hasRingElement ?identity }
+  }
+  FILTER NOT EXISTS {
+    ?field description:type/schema:subClassOf* foundation:Field ; foundation:hasZeroElement ?zero ; foundation:hasOneElement ?one .
+    FILTER (?zero = ?one || EXISTS { ?zero (ontology:sameAs|^ontology:sameAs)+ ?one })
   }
 }
-
 
 # EXPECT-TRUE q_module_scalar : the scalar action is well typed on the module witness (R x M -> M).
 #   The algebra-space seam, Module rung (design s3; 02_algebra_tower.md "RING / FIELD / MODULE - SYNTHESIZE

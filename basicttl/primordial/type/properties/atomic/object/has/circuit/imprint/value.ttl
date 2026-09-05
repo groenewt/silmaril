@@ -1,0 +1,24 @@
+@prefix atomic: <urn:silmaril:aob:#> .
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:silmaril:primordial:type:class:atomic:object:AtomicObjectAtom> model:field <urn:silmaril:primordial:type:property:HasCircuitImprint> .
+
+<urn:silmaril:primordial:type:class:property:HasCircuitImprintValue> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "The independently named value type of urn:silmaril:aob:#hasCircuitImprint. Its semantic parent is urn:silmaril:aob:#CircuitImprintTensor; the role remains distinct from other fields sharing that parent. The source range is retained separately for an explicit conversion gate. This nominal declaration does not admit a host literal or provide conversion or physical byte-closure evidence." ;
+    schema1:subClassOf atomic:CircuitImprintTensor ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/properties/atomic/object/has/circuit/imprint/value.ttl" ;
+    model:propertyRole <urn:silmaril:primordial:type:property:HasCircuitImprint> .
+
+<urn:silmaril:primordial:type:property:HasCircuitImprint> a model:Field ;
+    model:cardinalityAuthority model:ProposedClassContract ;
+    model:multiplicity model:Optional ;
+    model:mutability model:Immutable ;
+    model:owner <urn:silmaril:primordial:type:class:atomic:object:AtomicObjectAtom> ;
+    model:range <urn:silmaril:primordial:type:class:property:HasCircuitImprintValue> ;
+    model:referenceKind model:ValueReference ;
+    model:sourcePredicate atomic:hasCircuitImprint ;
+    model:sourceRange atomic:CircuitImprintTensor .

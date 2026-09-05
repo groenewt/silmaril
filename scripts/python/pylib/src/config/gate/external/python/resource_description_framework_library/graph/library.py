@@ -1,3 +1,1 @@
-from config.gate.external.python.resource_description_framework_library.library import DEPENDENCY as _RESOURCE_DESCRIPTION_FRAMEWORK_LIBRARY
-
-DEPENDENCY = _RESOURCE_DESCRIPTION_FRAMEWORK_LIBRARY.Graph
+from rdflib import Graph as DEPENDENCY

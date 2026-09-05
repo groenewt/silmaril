@@ -17,8 +17,8 @@
 #      (the SP0 law — skipped while it declares no shape, e.g. at T1).
 #   3. The prior-floor laws STILL conform once SP0 is mixed in: primitives.shapes.ttl and
 #      crs.shapes.ttl re-run OVER the SP0-augmented merged graph (catches an SP0 atom that would
-#      regress a prior tooth — e.g. an ungrounded re-anchor edge), and aob.shapes.ttl transferred
-#      (or fully re-validated) the same way the SP3 runner does it.
+#      regress a prior tooth — e.g. an ungrounded re-anchor edge), and aob.shapes.ttl fully
+#      re-validated over that same merged graph.
 #   4. Every EXPECT-TRUE ASK of all four suites (foundation / SP1 / SP2 / SP3) holds over the
 #      SP0-augmented merged graph.
 #   5. Every owl:Class under basicttl/foundation carries a >= 200-char rdfs:comment (the depth gate).
@@ -53,14 +53,11 @@ echo "== merged graph (SP0 + SP1 + SP2 + SP3): pyshacl + every EXPECT-TRUE ASK =
 python3 - <<'PY'
 import glob, os.path, re, sys, time
 from rdflib import Graph, URIRef
-from rdflib.namespace import RDF, RDFS
+from rdflib.namespace import RDF
 from pyshacl import validate
 
 SH_NODESHAPE   = URIRef("http://www.w3.org/ns/shacl#NodeShape")
 SH_PROPSHAPE   = URIRef("http://www.w3.org/ns/shacl#PropertyShape")
-SH_TARGETCLASS = URIRef("http://www.w3.org/ns/shacl#targetClass")
-SH_NS  = "http://www.w3.org/ns/shacl#"
-AOB_NS = "urn:silmaril:aob:#"
 
 SP1 = [f"basicttl/primitives/{f}" for f in
        ["formal.ttl", "physical.ttl", "realization.ttl", "taiji.ttl"]]
@@ -108,58 +105,10 @@ validate_over_merged("basicttl/foundation/foundation.shapes.ttl", "foundation.sh
 validate_over_merged("basicttl/primitives/primitives.shapes.ttl", "primitives.shapes.ttl")
 validate_over_merged("basicttl/crs/crs.shapes.ttl", "crs.shapes.ttl")
 
-# --- SP2 aob.shapes over the merged graph (transfer, else full re-validation) --------------------
-# aob.shapes' 38 sh:sparql constraints re-scan the SAME 11 aob focus nodes; over the ~11.6k-triple
-# SP1+SP2+SP3 merge (now + the SP0 delta) that is ~177s for zero added coverage. We transfer the
-# SP2-standalone green (step (1) already proved aob.shapes green on the aob-only graph, and the SP3
-# runner proved it green over SP1+SP2+SP3) to THIS merge exactly when the non-aob delta (SP0+SP1+SP3)
-# neither contributes an aob focus node nor mutates an existing aob individual. Both conditions are
-# machine-checked each run; if EITHER breaks (e.g. the T10 re-anchor edges, whose subjects are aob
-# nodes), the runner FALLS BACK to the full aob.shapes re-validation over the merged graph.
-def aob_focus_transfers():
-    sh = Graph(); sh.parse("basicttl/aob/aob.shapes.ttl")
-    for mech in ("targetNode", "targetSubjectsOf", "targetObjectsOf"):
-        if (None, URIRef(SH_NS + mech), None) in sh:
-            return False, f"aob.shapes uses sh:{mech} (non-targetClass target) -> full re-validation"
-    tclasses = set(sh.objects(None, SH_TARGETCLASS))
-    subs = set(tclasses); changed = True
-    while changed:
-        changed = False
-        for s, _, o in data.triples((None, RDFS.subClassOf, None)):
-            if o in subs and s not in subs:
-                subs.add(s); changed = True
-    def nonaob(n):
-        return isinstance(n, URIRef) and not str(n).startswith(AOB_NS)
-    contributed = set()
-    for c in subs:
-        for n in data.subjects(RDF.type, c):
-            if nonaob(n): contributed.add(n)
-    doms = {p for p, _, c in data.triples((None, RDFS.domain, None)) if c in subs}
-    rngs = {p for p, _, c in data.triples((None, RDFS.range, None)) if c in subs}
-    for p in doms:
-        for s, _, o in data.triples((None, p, None)):
-            if nonaob(s): contributed.add(s)
-    for p in rngs:
-        for s, _, o in data.triples((None, p, None)):
-            if nonaob(o): contributed.add(o)
-    if contributed:
-        return False, f"non-aob delta contributes {len(contributed)} aob focus node(s) -> full re-validation"
-    delta = Graph()
-    for f in SP0 + SP1 + SP3: delta.parse(f)
-    mutated = {str(s) for s in delta.subjects() if isinstance(s, URIRef) and str(s).startswith(AOB_NS)}
-    if mutated:
-        return False, f"non-aob delta mutates {len(mutated)} aob individual(s) -> full re-validation"
-    return True, "non-aob delta (SP0+SP1+SP3) adds 0 aob focus nodes and mutates 0 aob individuals"
-
-if os.path.exists("basicttl/aob/aob.shapes.ttl"):
-    t = time.time()
-    ok, reason = aob_focus_transfers()
-    if ok:
-        print(f"  [{time.time()-t:5.1f}s] SHACL conforms (aob.shapes.ttl over merged): True "
-              f"[transferred from SP2 standalone -- {reason}; equivalence machine-checked]")
-    else:
-        print(f"  aob.shapes.ttl invariant broken ({reason}); running full re-validation over merged...")
-        validate_over_merged("basicttl/aob/aob.shapes.ttl", "aob.shapes.ttl")
+# Validate the complete merged graph. A namespace-based transfer cannot prove
+# equivalence: blank nodes, new individuals within the same namespace, inferred
+# types and changes to related nodes can all change a constraint result.
+validate_over_merged("basicttl/aob/aob.shapes.ttl", "aob.shapes.ttl")
 
 # --- (4) every EXPECT-TRUE ASK of all four suites over the SP0-augmented merged graph ------------
 def run_asks(query_path, label):

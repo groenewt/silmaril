@@ -1,0 +1,10 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:SignedPublication a validation:Check ;
+    schema:comment "Publish the verified signed commits and return a pull request for maintainer review; signing and transport authentication are separate checks." ;
+    validation:declarationPath "basicttl/validation/request/checks/signed/publication/value.ttl" ;
+    validation:dependsOn validation:CommitSignatures .

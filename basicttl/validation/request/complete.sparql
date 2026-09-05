@@ -1,0 +1,18 @@
+PREFIX validation: <urn:silmaril:validation:request:>
+
+# Evaluate only after shapes.ttl conforms over plan, criteria and observations,
+# and the observing tool verifies source revisions and artifact bytes/digests.
+# This reports complete recorded success. It is not runtime admission.
+ASK WHERE {
+  ?run a validation:Run ; validation:plan validation:FullRequest ; validation:sourceRevision ?revision .
+  FILTER NOT EXISTS { ?other a validation:Run . FILTER (?other != ?run) }
+  FILTER EXISTS { validation:FullRequest validation:requires ?required }
+  FILTER NOT EXISTS {
+    validation:FullRequest validation:requires ?required .
+    FILTER NOT EXISTS {
+      ?run validation:observation ?observation .
+      ?observation validation:check ?required ; validation:sourceRevision ?revision ; validation:outcome validation:Passed .
+    }
+  }
+  FILTER NOT EXISTS { ?run validation:observation ?observation . ?observation validation:outcome ?outcome . FILTER (?outcome != validation:Passed) }
+}

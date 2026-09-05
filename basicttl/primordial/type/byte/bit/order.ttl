@@ -1,0 +1,6 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+family:BitOrder a ontology:Class, model:ClassDeclaration ; model:admissionState model:Pending ;
+    schema:comment "BitOrder names the ordering of bits within one schema-qualified byte occurrence. It is an independent semantic class from byte order across occurrences and from host endianness. Its admitted alternatives and physical realization belong to the byte-schema closure rather than to an assumed host convention." .

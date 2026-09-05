@@ -1,0 +1,19 @@
+PREFIX model: <urn:silmaril:primordial:type:>
+PREFIX schema: <http://www.w3.org/2000/01/rdf-schema#>
+
+# A query-only catalog of nominal class declarations and inherited typed fields.
+# Consumers retain separate class/value reference kinds and exact source predicates.
+# This is model readback, not an executable Python generator or an admission verdict.
+SELECT DISTINCT ?declaration ?source ?parent ?field ?predicate ?range ?kind ?multiplicity ?admission
+WHERE {
+  ?declaration a model:ClassDeclaration ; model:admissionState ?admission .
+  OPTIONAL { ?declaration model:sourceClass ?source }
+  OPTIONAL { ?declaration schema:subClassOf ?parent }
+  OPTIONAL {
+    ?declaration schema:subClassOf* ?owner .
+    ?owner model:field ?field .
+    ?field model:range ?range ; model:referenceKind ?kind ; model:multiplicity ?multiplicity .
+    OPTIONAL { ?field model:sourcePredicate ?predicate }
+  }
+}
+ORDER BY ?declaration ?parent ?field

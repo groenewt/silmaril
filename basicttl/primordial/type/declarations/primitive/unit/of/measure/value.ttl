@@ -1,0 +1,14 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:silmaril:primordial:type:class:primitive:UnitOfMeasure> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "Nominal polymorphic class declaration for urn:silmaril:prim:#UnitOfMeasure. It retains the source class's exact ancestry and inherits independently typed identity, formal, physical, realization and ancestry coordinates through the primordial template. Source properties remain individually addressed contracts. This declaration is not an executable Python class or a physical admission certificate." ;
+    schema1:subClassOf primitive:UnitOfMeasure,
+        <urn:silmaril:primordial:type:class:primitive:FormalType> ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/declarations/primitive/unit/of/measure/value.ttl" ;
+    model:sourceClass primitive:UnitOfMeasure ;
+    model:sourceDocument "basicttl/primitives/formal.ttl" .
