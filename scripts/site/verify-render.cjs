@@ -36,7 +36,8 @@ const server = http.createServer((request, response) => {
         assert.equal(response.status(), 200, route);
         assert(await page.locator('main').isVisible(), route + ' main');
         assert.equal(await page.locator('link[href*="generated.css"]').count(), 1);
-        const dimensions = await page.evaluate(() => ({width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth}));
+        await page.screenshot({path:`render-evidence/${base ? 'project' : 'root'}-${width}-${route.replace(/[^a-z]/g,'') || 'index'}.png`});
+        const dimensions = await page.evaluate(() => ({width:document.documentElement.clientWidth, scroll:document.documentElement.scrollWidth, overflowing:[...document.querySelectorAll('body *')].filter(node=>node.getBoundingClientRect().right>document.documentElement.clientWidth+1 && getComputedStyle(node).position!=='absolute').slice(0,12).map(node=>({tag:node.tagName,classes:node.className,right:node.getBoundingClientRect().right}))}));
         assert(dimensions.scroll <= dimensions.width + 1, `${route} overflows at ${width}: ${JSON.stringify(dimensions)}`);
         if (route === '/architecture/') {
           assert.equal(await page.locator('.build-status-state').allTextContents().then(values => values.join('|')), 'Not checked|Not checked|Not checked');

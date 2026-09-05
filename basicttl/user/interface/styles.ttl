@@ -457,3 +457,21 @@ style:rule:18:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:
 style:rule:18:overflow a style:Declaration ; style:name "overflow-x" ; style:value "auto" .
 style:rule:18:display a style:Declaration ; style:name "display" ; style:value "block" .
 style:rule:18:width a style:Declaration ; style:name "max-width" ; style:value "100%" .
+
+style:rule:19 a style:Rule ; style:selector "main" ; geometry:hasGeometry style:rule:19:geometry ; style:declaration style:rule:19:overflow-wrap .
+style:rule:19:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 19)"^^geometry:wktLiteral .
+style:rule:19:overflow-wrap a style:Declaration ; style:name "overflow-wrap" ; style:value "anywhere" .
+
+style:rule:20 a style:Rule ; style:selector ".hero *, .section-container *" ; geometry:hasGeometry style:rule:20:geometry ; style:declaration style:rule:20:min-width .
+style:rule:20:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 20)"^^geometry:wktLiteral .
+style:rule:20:min-width a style:Declaration ; style:name "min-width" ; style:value "0" .
+
+style:rule:21 a style:Rule ; style:selector "main pre, main table" ; geometry:hasGeometry style:rule:21:geometry ; style:declaration style:rule:21:max-width, style:rule:21:overflow-x, style:rule:21:display .
+style:rule:21:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 21)"^^geometry:wktLiteral .
+style:rule:21:max-width a style:Declaration ; style:name "max-width" ; style:value "100%" .
+style:rule:21:overflow-x a style:Declaration ; style:name "overflow-x" ; style:value "auto" .
+style:rule:21:display a style:Declaration ; style:name "display" ; style:value "block" .
+
+style:rule:22 a style:Rule ; style:selector ".hero h1, .page-hero h1" ; geometry:hasGeometry style:rule:22:geometry ; style:declaration style:rule:22:font-size .
+style:rule:22:geometry a geometry:Geometry ; geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 22)"^^geometry:wktLiteral .
+style:rule:22:font-size a style:Declaration ; style:name "font-size" ; style:value "clamp(1.8rem, 6vw, 3rem)" .

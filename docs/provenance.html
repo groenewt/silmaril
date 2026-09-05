@@ -57,8 +57,7 @@ description: "The Silmaril trust system: three signing identities, a typed verif
                     </tr>
                     <tr id="claude-agent">
                         <td><strong>Claude</strong> &lt;claude@silmaril.internal&gt;<br>
-                            the session agent (a Claude agent; the sessions that built this pipeline run on the model
-                            Fable&nbsp;5). Its secret halves are session-ephemeral: they die with the agent's
+                            the existing agent signing identity. Its secret halves are session-ephemeral: they die with the agent's
                             container and are never exported. A future session mints a successor
                             <code>agent</code> key and appends it to the trust model</td>
                         <td><code>agent</code></td>
@@ -155,8 +154,8 @@ description: "The Silmaril trust system: three signing identities, a typed verif
         </div>
         <p class="pipeline-note">
             Default hard-fails <code>BADSIG</code> and <code>UNKNOWN</code>; strict accepts
-            <code>GOOD</code> only; the report target classifies without gating. On the current
-            history every commit classifies <code>GOOD</code>: release, web-flow, and agent lines.
+            <code>GOOD</code> only; the report target classifies without gating. Run the report against the
+            exact revision being reviewed; a profile or public key alone does not prove a commit signature.
         </p>
 
         <h3 id="quickstart">Quickstart</h3>

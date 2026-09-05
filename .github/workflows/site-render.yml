@@ -1,7 +1,5 @@
 name: Site Render Verification
 on:
-  push:
-    branches: ['codex/user-interface-specifications']
   pull_request:
   workflow_dispatch:
 permissions:
