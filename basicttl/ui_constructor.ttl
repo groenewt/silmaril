@@ -272,47 +272,47 @@ composed to form complete icons.""" .
 ui:SVGPolyline a owl:Class ;
     rdfs:subClassOf ui:SVGPrimitive ;
     rdfs:label "SVGPolyline" ;
-    rdfs:comment "An open polygonal chain: a sequence of connected line segments.
+    rdfs:comment """An open polygonal chain: a sequence of connected line segments.
 A polyline does not close; it is a path from a start point through intermediate
 points to an end point. In SVG it renders as connected line segments. Every
 vertex must be justified: why this point, why this sequence, why this direction.
-The polyline is the minimal geometry for directional symbols (arrows, checkmarks)." ;
+The polyline is the minimal geometry for directional symbols (arrows, checkmarks).""" ;
 
 ui:SVGLine a owl:Class ;
     rdfs:subClassOf ui:SVGPrimitive ;
     rdfs:label "SVGLine" ;
-    rdfs:comment "A single straight line segment between two points.
+    rdfs:comment """A single straight line segment between two points.
 A line has a start and an end; it is directed. In SVG it renders as one
 straight segment. Every line must declare its purpose: is it a divider,
 a connector, a cross, a boundary? Without purpose, the line is arbitrary
-and the ontology cannot validate the visual semantics." ;
+and the ontology cannot validate the visual semantics.""" ;
 
 ui:SVGPolygon a owl:Class ;
     rdfs:subClassOf ui:SVGPrimitive ;
     rdfs:label "SVGPolygon" ;
-    rdfs:comment "A closed polygon: a sequence of vertices connected and closed.
+    rdfs:comment """A closed polygon: a sequence of vertices connected and closed.
 A polygon encloses an area; it has an inside and an outside. In SVG it
 renders as a filled shape with an optional stroke. Every polygon must
 justify its number of vertices (triangle = minimal, quadrilateral = stable,
-higher = complex) and its symmetry (regular vs. irregular)." ;
+higher = complex) and its symmetry (regular vs. irregular).""" ;
 
 ui:SVGCircle a owl:Class ;
     rdfs:subClassOf ui:SVGPrimitive ;
     rdfs:label "SVGCircle" ;
-    rdfs:comment "A circle defined by center point and radius.
+    rdfs:comment """A circle defined by center point and radius.
 A circle is the set of all points equidistant from a center. In SVG it
 renders as a round shape. Every circle must justify its center (what does
 it center on?) and its radius (what does the radius measure?). Without
-justification, the circle is arbitrary decoration, not ontology." ;
+justification, the circle is arbitrary decoration, not ontology.""" ;
 
 ui:SVGPoint a owl:Class ;
     rdfs:label "SVGPoint" ;
-    rdfs:comment "A point in the SVG coordinate system. Has x and y as floats.
+    rdfs:comment """A point in the SVG coordinate system. Has x and y as floats.
 A point is the atomic unit of SVG geometry. It has no dimension, only
 position. Every point must be justified: why this x, why this y. In the
 context of an icon, points are relative to the viewBox, not absolute pixels.
 The viewBox provides the coordinate reference system; the point provides
-the data." ;
+the data.""" ;
 
 ui:hasViewBox a owl:DatatypeProperty ;
     rdfs:label "hasViewBox" ;

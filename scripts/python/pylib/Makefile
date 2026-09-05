@@ -22,6 +22,7 @@ include make/morphism/provenance/trust.mk
 include make/morphism/provenance/commit.mk
 include make/morphism/ontology/consolidation.mk
 include make/morphism/ontology/validation.mk
+include make/morphism/user/interface/constructor.mk
 include make/quality/python.mk
 
 .PHONY: morphism-codebase-volume
