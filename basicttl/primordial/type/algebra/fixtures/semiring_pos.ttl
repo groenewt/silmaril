@@ -1,0 +1,130 @@
+# =====================================================================================
+# semiring_pos.ttl — the finite-table CERTIFICATE fixture (POSITIVE) for the semiring rung (W2 · SP0 ·
+# Stage 3a, T-SEMIRING; the saturating semiring B(2) witness, the base-two-op-line analogue of fnd:ringModel).
+# =====================================================================================
+# The saturating semiring B(2) on {0,1,2} — additive table +sat(a,b)=min(a+b,2), multiplicative table
+# ·sat(a,b)=min(a·b,2) — both reified Cayley tables (discriminated by @rel:operation:discriminator,
+# records_twoop.ttl):
+#   +  | 0 1 2        ·  | 0 1 2
+#   0  | 0 1 2        0  | 0 0 0
+#   1  | 1 2 2        1  | 0 1 2
+#   2  | 2 2 2        2  | 0 2 2
+# A GENUINE semiring that is NOT a ring: (S,+,0) is a commutative monoid (associative, commutative, two-sided
+# zero 0) and (S,·,1) a monoid, · distributes over + on both sides, yet 2 has NO additive inverse (nothing
+# +2 = 0) so the additive monoid is NOT a group — the honest semiring-not-ring witness (contrast fnd:ringModel
+# GF(3), a field). Its ADDITION is NON-IDEMPOTENT (1+1 = 2, a fresh value), which is exactly what lets the
+# single-cell distributivity perturbation of fixtures/semiring_neg.ttl bite cleanly. Every distributivity
+# triple x·(y+z) = x·y + x·z holds (verified exhaustively).
+# Stamped with the D24 finite-table CERTIFICATE metadata @rel:proof:status "finite:checked" (the tables were
+# exhaustively checked) + @rel:validation:mode "finite:table" (the mode the semiring theory record declares).
+# Typed rec:model:record so it is a SemiringDistributivityShape / ModelShape focus. Merged onto the algebra
+# data graph it MUST still conform (run-algebra-checks.sh step (b) positive polarity): SemiringDistributivityShape
+# passes over this distributive pair of tables (as does RingDistributivityShape — distributivity holds here);
+# ModelShape's identity tooth is vacuous (no @rel:identity:element); the one-operation per-law teeth are vacuous
+# (no reified cell is scoped @rel:structure -> the model — the two-operation rows are scoped to the reified-table
+# node, the T4/T5 two-table isolation). Its matching distributivity-VIOLATING negative is fixtures/semiring_neg.ttl.
+# D24 four-planes: finite-table EVIDENCE under fixtures/, outside the ontology data glob and the CI graph.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type (rec:model:record /
+# rec:application:two:operation:record / @typ:finite:table / @typ:finite:element), never bare, never owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+@prefix alg: <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+
+# --- the finite:checked / finite:table certificate model: B(2) as a semiring ---
+<urn:silmaril:fixture:algebra:semiring:b2>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "B(2)=saturating semiring on {0,1,2} — finite Cayley-table certificate (distributive: every x·(y+z)=x·y+x·z holds; NOT a ring: 2 has no additive inverse)" ;
+    rel:reified:table   <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "finite:checked" .
+
+# --- the reified-table scope node (rows scope here, NOT to the model, keeping the two-operation rows out
+#     of the one-operation per-law teeth's `@rel:structure = model` scan) ---
+<urn:silmaril:fixture:algebra:semiring:b2:tables>
+    a owl:NamedIndividual , typ:finite:table ;
+    rel:notation "B(2) reified additive + multiplicative Cayley tables (discriminated)" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:semiring:b2:elem:0> a owl:NamedIndividual , typ:finite:element ; rel:notation "0" .
+<urn:silmaril:fixture:algebra:semiring:b2:elem:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "1" .
+<urn:silmaril:fixture:algebra:semiring:b2:elem:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "2" .
+
+# --- ADDITIVE rows (min(a+b,2)), discriminator = additive ---
+<urn:silmaril:fixture:algebra:semiring:b2:add:0:0> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:0> .
+<urn:silmaril:fixture:algebra:semiring:b2:add:0:1> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:1> .
+<urn:silmaril:fixture:algebra:semiring:b2:add:0:2> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .
+<urn:silmaril:fixture:algebra:semiring:b2:add:1:0> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:1> .
+<urn:silmaril:fixture:algebra:semiring:b2:add:1:1> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .
+<urn:silmaril:fixture:algebra:semiring:b2:add:1:2> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .
+<urn:silmaril:fixture:algebra:semiring:b2:add:2:0> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .
+<urn:silmaril:fixture:algebra:semiring:b2:add:2:1> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .
+<urn:silmaril:fixture:algebra:semiring:b2:add:2:2> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .
+
+# --- MULTIPLICATIVE rows (min(a·b,2)), discriminator = multiplicative ---
+<urn:silmaril:fixture:algebra:semiring:b2:mul:0:0> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:0> .
+<urn:silmaril:fixture:algebra:semiring:b2:mul:0:1> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:0> .
+<urn:silmaril:fixture:algebra:semiring:b2:mul:0:2> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:0> .
+<urn:silmaril:fixture:algebra:semiring:b2:mul:1:0> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:0> .
+<urn:silmaril:fixture:algebra:semiring:b2:mul:1:1> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:1> .
+<urn:silmaril:fixture:algebra:semiring:b2:mul:1:2> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .
+<urn:silmaril:fixture:algebra:semiring:b2:mul:2:0> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:0> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:0> .
+<urn:silmaril:fixture:algebra:semiring:b2:mul:2:1> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:1> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .
+<urn:silmaril:fixture:algebra:semiring:b2:mul:2:2> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:semiring:b2:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:second <urn:silmaril:fixture:algebra:semiring:b2:elem:2> ; rel:category:result <urn:silmaril:fixture:algebra:semiring:b2:elem:2> .

@@ -1,0 +1,74 @@
+# =====================================================================================
+# field_neg.ttl — the multiplicative-inverse-VIOLATING negative fixture for the field rung (W2 · SP0 ·
+# Stage 3a, T-FIELD). The matching negative of fixtures/field_pos.ttl: byte-identical GF(3)=Z/3 field model
+# + multiplicative-inverse pairings EXCEPT the SINGLE injected perturbation on the multiplicative row 2·2
+# (result 1 -> 2).
+# =====================================================================================
+# SINGLE INJECTION (design §4 "a failing negative per shape ... one injected violation"): the multiplicative
+# row 2·2 = 1 (the genuine GF(3) product, 4 mod 3 = 1) is corrupted to 2·2 = 2. The CLAIMED
+# multiplicative-inverse pairing 2^-1 = 2 (unchanged) now reads its two-sided undo as:
+#   x·inv(x) = 2·2 = 2 != 1   (the perturbed multiplicative row)
+#   -> the claimed inverse 2 of the nonzero element 2 no longer multiplies to the field's one 1.
+# FieldMultInverseShape / probes/field_law.rq bite (conforms True->False): a 'field' with a nonzero element
+# whose declared multiplicative inverse is not genuine — the T4/SP2 genuine-inverse discipline (a claimed
+# inverse that does not undo -> RED, algebra_rings.ttl:824-857, matching the fnd probe of record that
+# changes fnd:appFieldMul_2_2 fnd:ringResult from fnd:fieldOne to fnd:fieldTwo). Every OTHER row and pairing
+# is byte-identical to field_pos.ttl, so ONLY the multiplicative-inverse tooth flips — the RED->GREEN proof
+# of a single, isolated, biting tooth (the sparse two-row multiplicative table has no closing distributivity
+# chain, so RingDistributivityShape does not fire). The model stays rec:model:record with the SAME
+# @rel:reified:table scoping, so the one-operation per-law teeth stay vacuous (no cell scoped @rel:structure
+# -> the model) and do NOT falsely redden; ModelShape's identity tooth is vacuous (no @rel:identity:element).
+# Merged onto the algebra data graph this fixture MUST NOT conform (run-algebra-checks.sh step (b) negative
+# polarity).
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type, never bare, never owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+@prefix alg: <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+
+# --- the model (identical to field_pos) ---
+<urn:silmaril:fixture:algebra:field:z3>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "GF(3)=Z/3 as a field — BROKEN (multiplicative 2·2 perturbed 1->2, the claimed inverse 2^-1=2 fails to reach 1)" ;
+    rel:reified:table   <urn:silmaril:fixture:algebra:field:z3:tables> ;
+    rel:zero:element    <urn:silmaril:fixture:algebra:field:z3:elem:0> ;
+    rel:one:element     <urn:silmaril:fixture:algebra:field:z3:elem:1> ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "counterexample:known" .
+
+<urn:silmaril:fixture:algebra:field:z3:tables>
+    a owl:NamedIndividual , typ:finite:table ;
+    rel:notation "GF(3) reified multiplicative rows with a single injected multiplicative-inverse violation" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:field:z3:elem:0> a owl:NamedIndividual , typ:finite:element ; rel:notation "0 (the zero; not required to be invertible)" .
+<urn:silmaril:fixture:algebra:field:z3:elem:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "1 (the one)" .
+<urn:silmaril:fixture:algebra:field:z3:elem:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "2" .
+
+# --- MULTIPLICATIVE rows the inverse pairings read (a · b mod 3), discriminator = multiplicative ---
+# 1·1 = 1 unchanged (the claimed pairing 1^-1=1 still reaches the one).
+<urn:silmaril:fixture:algebra:field:z3:mul:1:1> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:field:z3:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:field:z3:elem:1> ; rel:category:second <urn:silmaril:fixture:algebra:field:z3:elem:1> ; rel:category:result <urn:silmaril:fixture:algebra:field:z3:elem:1> .
+# *** THE SINGLE INJECTION is on mul:2:2 below: result elem:2 instead of the genuine elem:1 (2·2 = 1 mod 3). ***
+<urn:silmaril:fixture:algebra:field:z3:mul:2:2> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:field:z3:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:field:z3:elem:2> ; rel:category:second <urn:silmaril:fixture:algebra:field:z3:elem:2> ; rel:category:result <urn:silmaril:fixture:algebra:field:z3:elem:2> .
+
+# --- MULTIPLICATIVE-INVERSE PAIRING claims (identical to field_pos): 1^-1=1 (still genuine) and 2^-1=2
+#     (now BROKEN — its product 2·2 reads 2, not 1, so the claimed inverse does not reach the one). ---
+<urn:silmaril:fixture:algebra:field:z3:mip:1> a owl:NamedIndividual , typ:multiplicative:inverse:pairing ;
+    rel:notation "1^-1 = 1 (1·1 = 1, still genuine)" ;
+    rel:pairing:model   <urn:silmaril:fixture:algebra:field:z3> ;
+    rel:pairing:element <urn:silmaril:fixture:algebra:field:z3:elem:1> ;
+    rel:pairing:inverse <urn:silmaril:fixture:algebra:field:z3:elem:1> .
+<urn:silmaril:fixture:algebra:field:z3:mip:2> a owl:NamedIndividual , typ:multiplicative:inverse:pairing ;
+    rel:notation "2^-1 = 2 (CLAIMED, but 2·2 = 2 != 1 -> not genuine)" ;
+    rel:pairing:model   <urn:silmaril:fixture:algebra:field:z3> ;
+    rel:pairing:element <urn:silmaril:fixture:algebra:field:z3:elem:2> ;
+    rel:pairing:inverse <urn:silmaril:fixture:algebra:field:z3:elem:2> .

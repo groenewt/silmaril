@@ -1,0 +1,46 @@
+# =====================================================================================
+# field_law.rq — RED->GREEN probe for T-FIELD (the two-operation MULTIPLICATIVE-INVERSE tooth, W2 · SP0).
+# Re-homes fnd:FieldMultInverseShape constraint A / q_field_mult_inverse (basicttl/foundation/
+# algebra_rings.ttl:258-262 + foundation.shapes.ttl:824) into the folded stratified idiom, over the
+# discriminated reified two-operation multiplicative Cayley table + the multiplicative-inverse pairing
+# claims (records_twoop.ttl: @rel:structure = the reified-table node, @rel:operation:discriminator =
+# multiplicative, @rel:category:first/second/result = the reified cell; @rel:pairing:model/element/inverse
+# = the claimed inverse pairing).
+# =====================================================================================
+# The FIELD multiplicative-inverse law (genuine-inverse discipline, T4/SP2): over a model's reified
+# multiplicative Cayley table (linked from the model by @rel:reified:table), for every CLAIMED
+# multiplicative-inverse pairing (x, inv(x)) the two-sided product x·inv(x) and inv(x)·x must BOTH equal
+# the model's @rel:one:element (the field's one 1). This SELECT returns every (model, x, inv(x)) for which
+# the claimed pairing does NOT two-sidedly reach the one — i.e. a nonzero element whose declared
+# multiplicative inverse is NOT genuine.
+#
+#   GREEN (a genuine field, e.g. fixtures/field_pos.ttl — GF(3)=Z/3, every nonzero element self-inverse):
+#         0 rows — every claimed inverse pairing multiplies to 1, the tooth is satisfied.
+#   RED   (a broken field, e.g. fixtures/field_neg.ttl — the single multiplicative row 2·2 perturbed 1->2):
+#         >= 1 row — the claimed pairing 2^-1=2 reads x·inv(x)=2·2=2 != 1, so the inverse is not genuine
+#         and the tooth bites.
+#
+# Run over the algebra data graph merged with the fixture under test, inference=none. Companion SHACL:
+# shapes/field.shapes.ttl FieldMultInverseShape (sh:targetClass rec:model:record) carries the SAME clause,
+# so the runner's fixture iteration catches the negative through the shape too.
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+PREFIX alg: <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:>
+
+SELECT DISTINCT ?model ?x ?inv WHERE {
+  ?model rel:reified:table ?t ;
+         rel:one:element ?one .
+  # a CLAIMED multiplicative-inverse pairing (x, inv) scoped to the model
+  ?pair rel:pairing:model ?model ;
+        rel:pairing:element ?x ;
+        rel:pairing:inverse ?inv .
+  # the pairing is NOT a genuine two-sided inverse: no row x·inv=1 or no row inv·x=1
+  FILTER NOT EXISTS {
+    ?xy rel:structure ?t ;
+        rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+        rel:category:first ?x ; rel:category:second ?inv ; rel:category:result ?one .
+    ?yx rel:structure ?t ;
+        rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+        rel:category:first ?inv ; rel:category:second ?x ; rel:category:result ?one .
+  }
+}

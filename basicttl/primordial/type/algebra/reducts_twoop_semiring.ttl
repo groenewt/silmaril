@@ -1,0 +1,102 @@
+# =====================================================================================
+# reducts_twoop_semiring.ttl — the D24 SEMIRING-AS-REDUCTS decomposition edges (W2 · SP0 · Stage 3a,
+# T-SEMIRING). The BASE case of ring-as-reducts.
+# =====================================================================================
+# D24 A6 (the base of the showcase): a SEMIRING model is, structurally, its ADDITIVE reduct (forget ·, 1,
+# distributivity -> a COMMUTATIVE MONOID) PLUS its MULTIPLICATIVE reduct (forget +, 0, distributivity ->
+# a monoid) PLUS the DISTRIBUTIVITY interaction law that glues the two. This file mints those three edges
+# for the semiring rung: the semiring model-record's + structure IS the existing commutative_monoid
+# model-record, its · structure IS the existing monoid model-record (bridge-never-duplicate: the reducts
+# REUSE the committed one-op model-records by IRI, spine/commutative_monoid.ttl:130 + spine/monoid.ttl:104,
+# never re-mint them), and distributivity (spine/semiring.ttl's characteristic axiom) is the connecting morphism.
+#
+# THE SEMIRING-vs-RING DISTINCTION MADE STRUCTURAL. This is exactly where a semiring differs from a ring:
+# a semiring's ADDITIVE reduct is a COMMUTATIVE MONOID (no additive inverses), whereas a RING's additive
+# reduct is an ABELIAN GROUP (reducts_twoop.ttl, T-RING). The ring UPGRADES the additive commutative monoid
+# to an abelian group by adding the additive-inverse law; the semiring is the base rung with no such upgrade.
+#
+# WHY A NEW FILE (not reducts.ttl OR reducts_twoop.ttl). reducts.ttl is the committed one-operation block
+# (maintainer never-edit list); reducts_twoop.ttl is T-RING's file. A NEW file avoids a shared-file write
+# race with the parallel rung executors (design §6 fan-out), the same reason signatures_twoop.ttl /
+# operations_twoop.ttl / records_twoop.ttl / reducts_twoop.ttl are separate.
+#
+# THE RECORD CLASS IS REUSED (not re-minted). These structure reducts are typed rec:reduct:two:operation:record
+# — the intensional class T-RING minted in reducts_twoop.ttl (subClassOf rec:specimen:record, NOT
+# rec:reduct:record, so the one-law ReductShape does not focus it and the runner's rec:reduct:record count
+# is unchanged). It is REUSED here by IRI (bridge-never-duplicate), never re-declared, so the merged data
+# graph carries exactly one definition of the class.
+#
+# HONESTY (Praeriehund; §7.2). Everything here is SYN (the two-operation line is absent from Helios as
+# algebra, algebra_rings.ttl:30-35); every [S] token is flagged in-line for the maintainer sign-off packet
+# (T-PANEL). Provenance quartet + @rel:authority "SYN" on every RECORD, never on a denotatum.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.9, §3, §6 fan-out; D24 A6).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:482-503 (fnd:Semiring), D24 A6 ring-as-reducts doctrine.
+# Consumes (do not rewrite): spine/semiring.ttl (the semiring model-record + distributivity axiom, the
+# reduct subject + connecting morphism target), spine/commutative_monoid.ttl + spine/monoid.ttl (the reduct
+# targets), reducts_twoop.ttl (the rec:reduct:two:operation:record class), records_twoop.ttl (the additive /
+# multiplicative discriminators).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:reduct:two:operation:record REUSED by IRI:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# 1. THE SEMIRING ADDITIVE REDUCT — semiring model-record |-> commutative_monoid model-record (the + structure).
+# =====================================================================================
+alg:semiring:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:additive:species:commutative:monoid:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "semiring additive reduct -> commutative monoid" ;
+    rel:notation "structure reduct: semiring |-> commutative monoid (the additive + structure; forgets ·, 1, distributivity)" ;
+    rel:reduct:source alg:semiring:kingdom:class:phylum:algebra:class:model:order:declarative:family:semiring:genus:governed:species:semiring:component:class:instance:canonical ;
+    rel:reduct        alg:commutative:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:commutative:monoid:genus:governed:species:commutative:monoid:component:class:instance:canonical ;
+    rel:reduct:theory alg:commutative:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:commutative:monoid:genus:presented:species:commutative:monoid:component:definition:instance:canonical ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The semiring ADDITIVE reduct (D24 A6 semiring-as-reducts, half one; the BASE case of ring-as-reducts): the forgetful structure morphism that projects a semiring model onto its ADDITIVE structure — a COMMUTATIVE MONOID (S,+,0) — by forgetting the multiplicative operation ·, the multiplicative unit 1 and distributivity. @rel:reduct:source -> the semiring model-record class (spine/semiring.ttl), @rel:reduct -> the EXISTING commutative_monoid model-record class (spine/commutative_monoid.ttl:130, REUSED by IRI — bridge-never-duplicate: 'the + structure IS the existing commutative_monoid model-record'), @rel:reduct:theory -> the commutative_monoid presented theory. @rel:operation:discriminator -> the ADDITIVE discriminator (records_twoop.ttl), tagging WHICH of the semiring's two operations survives the reduct — the operation-plane witness that this is the + reduct, not the · reduct. This is the KEY semiring-vs-ring distinction: a semiring's additive reduct is a COMMUTATIVE MONOID (no additive inverses), whereas a RING's additive reduct is an ABELIAN GROUP (reducts_twoop.ttl, T-RING) — the ring adds the additive-inverse law to upgrade the commutative monoid to an abelian group. Typed rec:reduct:two:operation:record (NOT rec:reduct:record: a structure reduct forgets a whole sub-signature, not one law, so it is outside ReductShape's one-law gate and the seven-reduct count). Provenance quartet + @rel:authority SYN on the record, never on a denotatum. [S] order:structure / genus:additive / species:commutative:monoid + the @rel:reduct:source / @rel:reduct:theory predicates UNATTESTED -> §7.2 sign-off." .
+
+# =====================================================================================
+# 2. THE SEMIRING MULTIPLICATIVE REDUCT — semiring model-record |-> monoid model-record (the · structure).
+# =====================================================================================
+alg:semiring:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:multiplicative:species:monoid:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "semiring multiplicative reduct -> monoid" ;
+    rel:notation "structure reduct: semiring |-> monoid (the multiplicative · structure; forgets +, 0, distributivity)" ;
+    rel:reduct:source alg:semiring:kingdom:class:phylum:algebra:class:model:order:declarative:family:semiring:genus:governed:species:semiring:component:class:instance:canonical ;
+    rel:reduct        alg:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical ;
+    rel:reduct:theory alg:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The semiring MULTIPLICATIVE reduct (D24 A6 semiring-as-reducts, half two): the forgetful structure morphism that projects a semiring model onto its MULTIPLICATIVE structure — a MONOID (S,·,1) — by forgetting the additive operation +, the additive unit 0 and distributivity. @rel:reduct:source -> the semiring model-record class (spine/semiring.ttl), @rel:reduct -> the EXISTING monoid model-record class (spine/monoid.ttl:104, REUSED by IRI — bridge-never-duplicate: 'the · structure IS the existing monoid model-record'; the SAME multiplicative-monoid reduct target the ring uses, reducts_twoop.ttl, since both a semiring and a ring have a bare multiplicative monoid), @rel:reduct:theory -> the monoid presented theory. @rel:operation:discriminator -> the MULTIPLICATIVE discriminator (records_twoop.ttl), tagging that the · operation is the one that survives this reduct. Typed rec:reduct:two:operation:record (NOT rec:reduct:record, outside ReductShape's one-law gate and the seven-reduct count). Provenance quartet + @rel:authority SYN on the record. Together with the additive reduct above and the distributivity connecting morphism below, this is the complete D24 semiring-as-reducts decomposition: a semiring is exactly a commutative monoid and a monoid on one carrier, glued by distributivity. [S] order:structure / genus:multiplicative / species:monoid UNATTESTED -> §7.2 sign-off." .
+
+# =====================================================================================
+# 3. THE DISTRIBUTIVITY CONNECTING MORPHISM — glues the additive and multiplicative reducts.
+# =====================================================================================
+alg:semiring:kingdom:mapping:phylum:composition:class:distributivity:order:interaction:family:morphism:genus:distribution:species:gluing:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "semiring distributivity connecting morphism" ;
+    rel:notation "distributivity glues the additive-commutative-monoid reduct and the multiplicative-monoid reduct: · distributes over +" ;
+    rel:reduct        alg:semiring:kingdom:class:phylum:algebra:class:model:order:declarative:family:semiring:genus:governed:species:semiring:component:class:instance:canonical ;
+    rel:connects      alg:semiring:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:additive:species:commutative:monoid:component:definition:instance:canonical ,
+                      alg:semiring:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:multiplicative:species:monoid:component:definition:instance:canonical ;
+    rel:equation      alg:semiring:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:semiring:genus:interaction:species:distribution:component:statement:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The DISTRIBUTIVITY connecting morphism (D24 A6 semiring-as-reducts, the glue): the additive-commutative-monoid reduct and the multiplicative-monoid reduct are two INDEPENDENT one-operation structures on one carrier; distributivity (· distributes over +) is the sole interaction law that BINDS them into a semiring — without it the two reducts are an unrelated commutative monoid and monoid sharing a set, not a semiring. @rel:reduct -> the semiring model-record class (the structure being decomposed), @rel:connects -> BOTH the additive reduct and the multiplicative reduct above (the two halves it glues), @rel:equation -> the semiring distributivity axiom record (spine/semiring.ttl, the characteristic law whose left/right equation split is teeth-proved by SemiringDistributivityShape / probes/semiring_law.rq over the finite B(2) tables). Typed rec:reduct:two:operation:record. It makes the D24 decomposition COMPLETE and checkable: the reducts are the two structures, the distributivity morphism is the gluing law, and the SemiringDistributivityShape tooth is what proves the gluing holds in a concrete model. This is the base case of the ring's distributivity connecting morphism (reducts_twoop.ttl); distributivity is shared by the whole two-operation line (it is the semiring's added law, inherited by ring and field). Provenance quartet + @rel:authority SYN on the record. [S] class:distributivity / genus:distribution / species:gluing + the @rel:connects predicate UNATTESTED -> §7.2 sign-off." .

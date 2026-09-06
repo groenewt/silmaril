@@ -1,0 +1,76 @@
+# =====================================================================================
+# field_pos.ttl — the finite-table CERTIFICATE fixture (POSITIVE) for the field rung (W2 · SP0 · Stage 3a,
+# T-FIELD; the GF(3)=Z/3 witness re-expressing fnd:fieldModel, algebra_rings.ttl:725, in the new idiom).
+# =====================================================================================
+# GF(3) = Z/3 on {0,1,2} viewed as a FIELD: every NONZERO element is its own two-sided multiplicative
+# inverse (1·1 = 1, 2·2 = 4 = 1 mod 3). The multiplicative Cayley rows the inverse pairings read
+# (discriminated by @rel:operation:discriminator = multiplicative, records_twoop.ttl):
+#   1·1 = 1     2·2 = 1
+# with the reified MULTIPLICATIVE-INVERSE PAIRING claims 1^-1 = 1 and 2^-1 = 2 (fnd:mipPairOne /
+# fnd:mipPairTwo, algebra_rings.ttl:742-752). A genuine field: every claimed inverse pairing two-sidedly
+# reaches the field's one. Sparse (only the two rows the pairings read, matching fnd:fieldModel which
+# carries only fnd:appFieldMul_1_1 and fnd:appFieldMul_2_2) — so FieldMultInverseShape is the ONLY tooth
+# that bites on the matching negative, and the ring distributivity tooth finds no closing violating chain.
+# Stamped with the D24 finite-table CERTIFICATE metadata @rel:proof:status "finite:checked" (the pairings
+# were exhaustively checked) + @rel:validation:mode "finite:table" (the mode the field theory record
+# declares, mirroring fnd:fieldModel). Typed rec:model:record so it is a FieldMultInverseShape / ModelShape
+# focus. Merged onto the algebra data graph it MUST still conform (run-algebra-checks.sh step (b) positive
+# polarity): FieldMultInverseShape passes over this genuine inverse structure; ModelShape's identity tooth
+# is vacuous (no @rel:identity:element); the one-operation per-law teeth are vacuous (no reified cell is
+# scoped @rel:structure -> the model — the two-operation rows are scoped to the reified-table node, the
+# T4/T5 two-table isolation). Its matching inverse-VIOLATING negative is fixtures/field_neg.ttl.
+# D24 four-planes: finite-table EVIDENCE under fixtures/, outside the ontology data glob and the CI graph.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type (rec:model:record /
+# rec:application:two:operation:record / @typ:finite:table / @typ:finite:element /
+# @typ:multiplicative:inverse:pairing), never bare, never owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+@prefix alg: <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+
+# --- the finite:checked / finite:table certificate model: GF(3) as a field ---
+<urn:silmaril:fixture:algebra:field:z3>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "GF(3)=Z/3 as a field — finite multiplicative-inverse certificate (every nonzero element self-inverse: 1^-1=1, 2^-1=2)" ;
+    rel:reified:table   <urn:silmaril:fixture:algebra:field:z3:tables> ;
+    rel:zero:element    <urn:silmaril:fixture:algebra:field:z3:elem:0> ;
+    rel:one:element     <urn:silmaril:fixture:algebra:field:z3:elem:1> ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "finite:checked" .
+
+# --- the reified-table scope node (rows scope here, NOT to the model, keeping the two-operation rows out
+#     of the one-operation per-law teeth's `@rel:structure = model` scan) ---
+<urn:silmaril:fixture:algebra:field:z3:tables>
+    a owl:NamedIndividual , typ:finite:table ;
+    rel:notation "GF(3) reified multiplicative Cayley rows (self-inverse pairings 1·1=1, 2·2=1)" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:field:z3:elem:0> a owl:NamedIndividual , typ:finite:element ; rel:notation "0 (the zero; not required to be invertible)" .
+<urn:silmaril:fixture:algebra:field:z3:elem:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "1 (the one)" .
+<urn:silmaril:fixture:algebra:field:z3:elem:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "2" .
+
+# --- MULTIPLICATIVE rows the inverse pairings read (a · b mod 3), discriminator = multiplicative ---
+<urn:silmaril:fixture:algebra:field:z3:mul:1:1> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:field:z3:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:field:z3:elem:1> ; rel:category:second <urn:silmaril:fixture:algebra:field:z3:elem:1> ; rel:category:result <urn:silmaril:fixture:algebra:field:z3:elem:1> .
+<urn:silmaril:fixture:algebra:field:z3:mul:2:2> a owl:NamedIndividual , rec:application:two:operation:record ;
+    rel:structure <urn:silmaril:fixture:algebra:field:z3:tables> ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:category:first <urn:silmaril:fixture:algebra:field:z3:elem:2> ; rel:category:second <urn:silmaril:fixture:algebra:field:z3:elem:2> ; rel:category:result <urn:silmaril:fixture:algebra:field:z3:elem:1> .
+
+# --- MULTIPLICATIVE-INVERSE PAIRING claims (folds fnd:mipPairOne / fnd:mipPairTwo): every nonzero element
+#     is self-inverse in GF(3). Each two-sidedly reaches the one via the multiplicative rows above. ---
+<urn:silmaril:fixture:algebra:field:z3:mip:1> a owl:NamedIndividual , typ:multiplicative:inverse:pairing ;
+    rel:notation "1^-1 = 1 (1·1 = 1)" ;
+    rel:pairing:model   <urn:silmaril:fixture:algebra:field:z3> ;
+    rel:pairing:element <urn:silmaril:fixture:algebra:field:z3:elem:1> ;
+    rel:pairing:inverse <urn:silmaril:fixture:algebra:field:z3:elem:1> .
+<urn:silmaril:fixture:algebra:field:z3:mip:2> a owl:NamedIndividual , typ:multiplicative:inverse:pairing ;
+    rel:notation "2^-1 = 2 (2·2 = 1 mod 3)" ;
+    rel:pairing:model   <urn:silmaril:fixture:algebra:field:z3> ;
+    rel:pairing:element <urn:silmaril:fixture:algebra:field:z3:elem:2> ;
+    rel:pairing:inverse <urn:silmaril:fixture:algebra:field:z3:elem:2> .

@@ -1,0 +1,101 @@
+# =====================================================================================
+# semiring.shapes.ttl — the SEMIRING rung's per-law SHACL tooth (W2 · SP0 · Stage 3a, T-SEMIRING).
+# =====================================================================================
+# The two-operation DISTRIBUTIVITY tooth of the semiring rung (the semiring's CHARACTERISTIC and SOLE
+# added law over the agnostic progenitor, fnd:Semiring fnd:addsLaw fnd:lawDistributivity), authored into
+# its OWN per-rung shapes file (shapes/<rung>.shapes.ttl, the T-2OP-INFRA lockstep convention that keeps
+# parallel rung executors off a shared shapes/algebra.shapes.ttl write race; run-algebra-checks.sh globs
+# shapes/*.shapes.ttl and merges them into ONE shapes graph, so this tooth is loaded, validated and
+# 0-focus-gated alongside the base spine teeth and the ring tooth). It is the semiring analogue of
+# shapes/ring.shapes.ttl RingDistributivityShape: a sh:sparql clause over the reified finite Cayley tables,
+# sh:targetClass rec:model:record (NEVER sh:targetNode, the design §4 anti-pattern the runner's 0-focus
+# gate detects).
+#
+# WHAT IT CHECKS. Left distributivity x·(y+z) = x·y + x·z over a semiring model's TWO reified Cayley tables
+# (the additive + and multiplicative · rows, discriminated by @rel:operation:discriminator,
+# records_twoop.ttl). For every triple (x,y,z) it forms x·(y+z) (an additive row y+z=s then a
+# multiplicative row x·s=lhs) and x·y + x·z (two multiplicative rows then an additive row p+q=rhs) and
+# reddens when lhs != rhs — the distributivity law FAILS. It re-homes fnd:RingDistribShape / q_ring_distrib
+# (which fnd quantifies CLASS-GENERAL over EVERY fnd:Semiring, algebra_rings.ttl:246-250,655, i.e. the
+# SEMIRING class where the law is added) into the folded stratified idiom.
+#
+# TWO-TABLE / ONE-OP-TEETH ISOLATION. The one-operation per-law teeth walk `?cell @rel:structure <model>`
+# with NO discriminator, so a semiring's merged +/· rows scoped @rel:structure -> the model would let those
+# teeth mix additive and multiplicative rows and falsely redden. The folded two-operation rows are
+# therefore scoped @rel:structure -> a per-model REIFIED-TABLE node (linked from the model by
+# @rel:reified:table, fixtures/semiring_pos.ttl), keeping the discriminated rows OUT of the one-operation
+# teeth's model-scoped scan (the T4/T5 isolation of algebra_rings.ttl:79, here via a distinct structure
+# NODE). This tooth reaches the rows THROUGH the model's @rel:reified:table link, so its focus is still
+# rec:model:record (data-graph focus = the semiring model-record class, vacuous since it declares no
+# @rel:reified:table; the finite B(2) witness in fixtures/ is where it bites).
+#
+# RED->GREEN (design §4 fixture polarity). fixtures/semiring_pos.ttl (the saturating semiring B(2) on
+# {0,1,2}, a genuine semiring that is NOT a ring — 2 has no additive inverse — every distributivity triple
+# holds) conforms (0 rows). fixtures/semiring_neg.ttl (the SAME B(2) tables with the SINGLE multiplicative
+# row 1·2 perturbed from 2 to 1) makes the triple (x,y,z)=(1,1,1) fail — x·(y+z) = 1·(1+1) = 1·2 = 1 while
+# x·y + x·z = (1·1)+(1·1) = 1+1 = 2 — so >= 1 row and conforms True->False. The probe of record
+# probes/semiring_law.rq is the executable SPARQL twin.
+#
+# Prefix labels follow the fold-tree convention (shapes/ring.shapes.ttl:44-48): the SHACL namespace is
+# labelled `constraint:` and record ladder `rec:` — same IRIs as sh:/rec:, so pyshacl is unaffected. Full
+# runtime Linnaean-ladder IRIs (relation:*, the algebra discriminators) are written VERBATIM inside the
+# sh:select string (SPARQL does not inherit the file's @prefix, exactly as the base spine teeth do). The
+# additive/multiplicative discriminators are the SHARED two-op discriminators (subdomain 'semiring',
+# records_twoop.ttl), the SAME ones RingDistributivityShape uses.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§4 per-law teeth, §6 fan-out).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:246-250,655 (fnd:lawDistributivity / fnd:RingDistribShape,
+# quantified CLASS-GENERAL over every fnd:Semiring).
+
+@prefix constraint:  <http://www.w3.org/ns/shacl#> .
+@prefix schema:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix relation:    <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:model:record targeted:
+@prefix rec:         <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# SemiringDistributivityShape — the semiring rung's characteristic two-operation tooth (left distributivity
+# x·(y+z) = x·y + x·z) over the reified B(2) tables. sh:targetClass rec:model:record (NEVER sh:targetNode).
+# The sh:sparql joins additive rows (@rel:operation:discriminator = the additive discriminator,
+# records_twoop.ttl) for the sum y+z and the sum (x·y)+(x·z), and multiplicative rows (the multiplicative
+# discriminator) for x·(y+z), x·y and x·z, all scoped @rel:structure -> the model's @rel:reified:table node,
+# and reddens when x·(y+z) != x·y + x·z for some triple. Focus in the data graph = the semiring model-record
+# class (vacuous, no @rel:reified:table -> conforms); it bites on the finite B(2) witnesses in fixtures/.
+# Proven by injection: fixtures/semiring_neg.ttl (1·2 perturbed) flips conforms True->False;
+# fixtures/semiring_pos.ttl stays GREEN.
+# =====================================================================================
+constraint:SemiringDistributivityShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Distributivity violation (semiring): over the reified two-operation Cayley tables of this model, some triple has x·(y+z) != x·y + x·z — multiplication does NOT distribute over addition (re-homes fnd:RingDistribShape / q_ring_distrib class-general over every fnd:Semiring, algebra_rings.ttl:246-250)." ;
+        constraint:select """SELECT $this ?lhs ?rhs WHERE {
+  $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:reified:table> ?t .
+  ?add1 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> ?t ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:operation:discriminator> <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical> ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?y ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?z ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?s .
+  ?mul1 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> ?t ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:operation:discriminator> <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical> ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?s ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?lhs .
+  ?mul2 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> ?t ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:operation:discriminator> <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical> ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?p .
+  ?mul3 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> ?t ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:operation:discriminator> <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical> ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?z ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?q .
+  ?add2 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> ?t ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:operation:discriminator> <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical> ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?p ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?q ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?rhs .
+  FILTER(?lhs != ?rhs)
+}""" ] ;
+    schema:comment "The SemiringDistributivityShape is the added-law tooth of the SEMIRING rung (distributivity, · distributes over + — the semiring's CHARACTERISTIC and SOLE added law over the agnostic progenitor, fnd:Semiring fnd:addsLaw fnd:lawDistributivity) as a SHACL shape (design §4 'per-law teeth ... on a SHAPE not only a probe'), the semiring analogue of shapes/ring.shapes.ttl RingDistributivityShape. It targets rec:model:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) so the semiring model-record class (spine/semiring.ttl, punned owl:Class + rec:model:record) is a counted data-graph focus and the finite B(2) witnesses (fixtures/) are where it bites. The sh:sparql joins the reified two-operation Cayley rows of the model's @rel:reified:table node, selecting additive rows by the additive @rel:operation:discriminator (records_twoop.ttl, the SHARED two-op discriminator) for the sum y+z=s and the sum (x·y)+(x·z)=rhs, and multiplicative rows by the multiplicative discriminator for x·(y+z)=lhs, x·y=p and x·z=q, and reddens when lhs != rhs — left distributivity FAILS for some triple. It reaches the rows THROUGH @rel:reified:table (not @rel:structure = model) precisely so the discriminated two-operation rows stay OUT of the one-operation per-law teeth's model-scoped `@rel:structure = model` scan, avoiding false cross-table reddening (the T4/T5 isolation of algebra_rings.ttl:79). fixtures/semiring_pos.ttl (the saturating semiring B(2) on {0,1,2}, a genuine semiring that is NOT a ring — 2 has no additive inverse — every distributivity triple holds) conforms; fixtures/semiring_neg.ttl (the single multiplicative row 1·2 perturbed 2->1, so the triple (1,1,1) reads x·(y+z)=1·2=1 while x·y+x·z=1+1=2) reddens — the True->False flip probes/semiring_law.rq records, now also on a dedicated SHACL shape. Re-homes fnd:RingDistribShape / q_ring_distrib (algebra_rings.ttl:246-250,655), which fnd quantifies CLASS-GENERAL over EVERY fnd:Semiring — the class where distributivity is added — as an intensional SHACL law-check (D25 no-regression: BOTH probe AND shape). Because both this shape and shapes/ring.shapes.ttl RingDistributivityShape target rec:model:record and share the distributivity clause, each also runs (and conforms) over the other rung's positive witness — distributivity holds in every genuine two-operation model — and both catch the other's non-distributive negative; that overlap is by design (per-rung teeth, like LoopIdentityShape sharing content with ModelShape). The vacuously-satisfied focus (the semiring model-record class, no @rel:reified:table) keeps the data graph GREEN; only a model naming a non-distributive pair of reified tables reddens." .

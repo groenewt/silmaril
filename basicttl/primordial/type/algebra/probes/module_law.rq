@@ -1,0 +1,34 @@
+# =====================================================================================
+# module_law.rq — RED->GREEN probe for T-MODULE (the SCALAR-ACTION typing tooth, W2 · SP0).
+# Re-homes fnd:ModuleScalarShape / q_module_scalar (basicttl/foundation/algebra_rings.ttl:264-267,568)
+# into the folded stratified idiom, over the reified scalar actions (@rel:action:model = the model,
+# @rel:action:scalar = the ring scalar r, @rel:action:vector = the vector m, @rel:action:result = r·m) and
+# the model's enumerated module vectors (@rel:module:vector).
+# =====================================================================================
+# The MODULE scalar-action typing law (R x M -> M): over a module model's reified scalar actions (each
+# scoped @rel:action:model -> the model), every action's result @rel:action:result must be one of the
+# model's @rel:module:vector vectors — the scalar action lands back in M and does not escape. This SELECT
+# returns every (model, action, result) for which the result is NOT a module vector — i.e. a scalar action
+# whose result leaves M, so the action is not a well-typed map R x M -> M.
+#
+#   GREEN (a genuine module, e.g. fixtures/module_pos.ttl — the rank-1 free module {V0,V1,V2} over GF(3),
+#         every action landing in M): 0 rows — every scalar action's result is a module vector, satisfied.
+#   RED   (a broken module, e.g. fixtures/module_neg.ttl — the single action 1·V1 perturbed V1 -> 0_R):
+#         >= 1 row — the action 1·V1 = 0_R has a result (the base ring's zero) that is not a module vector,
+#         so the action escapes M and the tooth bites.
+#
+# Run over the algebra data graph merged with the fixture under test, inference=none. Companion SHACL:
+# shapes/module.shapes.ttl ModuleScalarActionShape (sh:targetClass rec:model:record) carries the SAME
+# clause, so the runner's fixture iteration catches the negative through the shape too.
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT DISTINCT ?model ?action ?result WHERE {
+  # a reified scalar action scoped to the model, with its result r·m
+  ?action rel:action:model  ?model ;
+          rel:action:result ?result .
+  # the result is NOT a module vector of the model: the action escapes M
+  FILTER NOT EXISTS {
+    ?model rel:module:vector ?result .
+  }
+}

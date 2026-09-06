@@ -1,0 +1,78 @@
+# =====================================================================================
+# module_neg.ttl — the scalar-action-VIOLATING negative fixture for the module rung (W2 · SP0 · Stage 3a,
+# T-MODULE). The matching negative of fixtures/module_pos.ttl: byte-identical rank-1 free-module model over
+# GF(3) + scalar actions EXCEPT the SINGLE injected perturbation on the action 1·V1 (result V1 -> the base
+# ring's zero, a non-vector that escapes M).
+# =====================================================================================
+# SINGLE INJECTION (design §4 "a failing negative per shape ... one injected violation"): the scalar action
+# 1·V1 = V1 (the genuine unit action) is corrupted to 1·V1 = 0_R (the base ring's zero element), which is
+# NOT one of the module's vectors {V0,V1,V2}. The scalar action now reads:
+#   1·V1 = 0_R   (a RING element, not a module vector)
+#   -> the result ESCAPES the module vectors M; the action is no longer a well-typed map R x M -> M.
+# ModuleScalarActionShape / probes/module_law.rq bite (conforms True->False): a 'module' with a scalar
+# action whose result leaves M — folding fnd:ModuleScalarShape / q_module_scalar's probe of record
+# fnd:probeEscapingScalarAction (1·V1 = fnd:ringZero, a ring element that is not a module vector,
+# algebra_rings.ttl:568). Every OTHER action and vector is byte-identical to module_pos.ttl, so ONLY the
+# scalar-action typing tooth flips — the RED->GREEN proof of a single, isolated, biting tooth. The model
+# stays rec:model:record with the SAME @rel:action:model scoping (no @rel:reified:table, no
+# @rel:structure -> model cell), so the ring/field two-operation teeth and the one-operation per-law teeth
+# stay vacuous and do NOT falsely redden; ModelShape's identity tooth is vacuous (no @rel:identity:element).
+# Merged onto the algebra data graph this fixture MUST NOT conform (run-algebra-checks.sh step (b) negative
+# polarity).
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type, never bare, never owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model (identical to module_pos: vectors {V0,V1,V2}, base ring GF(3); the ring zero is NOT a vector) ---
+<urn:silmaril:fixture:algebra:module:z3>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "rank-1 free module M={V0,V1,V2} over GF(3) — BROKEN (the action 1·V1 perturbed V1 -> 0_R, a ring element that escapes M)" ;
+    rel:module:ring     <urn:silmaril:fixture:algebra:module:z3:ring> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:module:z3:vec:0> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:module:z3:vec:1> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:module:z3:vec:2> ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "counterexample:known" .
+
+<urn:silmaril:fixture:algebra:module:z3:ring>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "the base ring GF(3) whose elements act on the module vectors by scalar multiplication" .
+
+# --- module vectors (the carrier M ~= Z/3) ---
+<urn:silmaril:fixture:algebra:module:z3:vec:0> a owl:NamedIndividual , typ:finite:element ; rel:notation "V0 (the zero vector 0_M)" .
+<urn:silmaril:fixture:algebra:module:z3:vec:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "V1 (the generator vector)" .
+<urn:silmaril:fixture:algebra:module:z3:vec:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "V2 = 2·V1" .
+
+# --- ring scalars ---
+<urn:silmaril:fixture:algebra:module:z3:scalar:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "1 (the ring's multiplicative unit)" .
+<urn:silmaril:fixture:algebra:module:z3:scalar:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "2 (a ring scalar)" .
+
+# --- the base ring's ZERO 0_R — a RING element, deliberately NOT listed as a @rel:module:vector, so a
+#     scalar action landing here ESCAPES the module vectors M. ---
+<urn:silmaril:fixture:algebra:module:z3:ring:zero> a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "0_R (the base ring's additive zero) — a ring element, NOT a module vector of M" .
+
+# --- reified SCALAR ACTIONS (identical to module_pos EXCEPT act:1:V1's result). ---
+# *** THE SINGLE INJECTION is on act:1:V1 below: result ring:zero (0_R) instead of the genuine vec:1 (V1). ***
+<urn:silmaril:fixture:algebra:module:z3:act:1:V1> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "1·V1 = 0_R (CLAIMED, but 0_R is a ring element that escapes M -> not a well-typed R x M -> M action)" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:module:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:module:z3:scalar:1> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:module:z3:vec:1> ;
+    rel:action:result <urn:silmaril:fixture:algebra:module:z3:ring:zero> .
+<urn:silmaril:fixture:algebra:module:z3:act:2:V1> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "2·V1 = V2 (unchanged, still lands in M)" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:module:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:module:z3:scalar:2> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:module:z3:vec:1> ;
+    rel:action:result <urn:silmaril:fixture:algebra:module:z3:vec:2> .
+<urn:silmaril:fixture:algebra:module:z3:act:2:V2> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "2·V2 = V1 (unchanged, still lands in M)" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:module:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:module:z3:scalar:2> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:module:z3:vec:2> ;
+    rel:action:result <urn:silmaril:fixture:algebra:module:z3:vec:1> .

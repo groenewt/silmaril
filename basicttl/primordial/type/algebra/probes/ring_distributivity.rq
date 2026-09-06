@@ -1,0 +1,51 @@
+# =====================================================================================
+# ring_distributivity.rq — RED->GREEN probe for T-RING (the two-operation DISTRIBUTIVITY tooth, W2 · SP0).
+# Re-homes fnd:RingDistribShape / q_ring_distrib (basicttl/foundation/algebra_rings.ttl:246-250,655) into
+# the folded stratified idiom, over the discriminated reified two-operation Cayley tables
+# (records_twoop.ttl: @rel:structure = the reified-table node, @rel:operation:discriminator = additive /
+# multiplicative, @rel:category:first/second/result = the reified cell).
+# =====================================================================================
+# The RING distributivity law: over a model's two reified Cayley tables (linked from the model by
+# @rel:reified:table), for every triple (x,y,z) the LEFT product x·(y+z) must equal the sum x·y + x·z.
+# This SELECT returns every (model, x, y, z, lhs, rhs) for which x·(y+z) != x·y + x·z — i.e. a triple
+# where distributivity FAILS. It forms x·(y+z) via an ADDITIVE row (y+z=s) then a MULTIPLICATIVE row
+# (x·s=lhs), and x·y + x·z via two MULTIPLICATIVE rows (x·y=p, x·z=q) then an ADDITIVE row (p+q=rhs),
+# selecting additive vs multiplicative rows by @rel:operation:discriminator.
+#
+#   GREEN (a genuine ring, e.g. fixtures/ring_pos.ttl — GF(3)=Z/3, a field-as-ring): 0 rows — every
+#         distributivity triple holds, the tooth is satisfied.
+#   RED   (a broken ring, e.g. fixtures/ring_neg.ttl — the single multiplicative row 1·2 perturbed 2->1):
+#         >= 1 row — the triple (1,1,1) reads x·(y+z)=1·2=1 while x·y+x·z=1+1=2, so distributivity fails
+#         and the tooth bites.
+#
+# Run over the algebra data graph merged with the fixture under test, inference=none. Companion SHACL:
+# shapes/ring.shapes.ttl RingDistributivityShape (sh:targetClass rec:model:record) carries the SAME clause,
+# so the runner's fixture iteration catches the negative through the shape too.
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+PREFIX alg: <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:>
+
+SELECT DISTINCT ?model ?x ?y ?z ?lhs ?rhs WHERE {
+  ?model rel:reified:table ?t .
+  # additive: y + z = s
+  ?add1 rel:structure ?t ;
+        rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+        rel:category:first ?y ; rel:category:second ?z ; rel:category:result ?s .
+  # multiplicative: x · s = lhs   (= x·(y+z))
+  ?mul1 rel:structure ?t ;
+        rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+        rel:category:first ?x ; rel:category:second ?s ; rel:category:result ?lhs .
+  # multiplicative: x · y = p
+  ?mul2 rel:structure ?t ;
+        rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+        rel:category:first ?x ; rel:category:second ?y ; rel:category:result ?p .
+  # multiplicative: x · z = q
+  ?mul3 rel:structure ?t ;
+        rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+        rel:category:first ?x ; rel:category:second ?z ; rel:category:result ?q .
+  # additive: p + q = rhs   (= x·y + x·z)
+  ?add2 rel:structure ?t ;
+        rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+        rel:category:first ?p ; rel:category:second ?q ; rel:category:result ?rhs .
+  FILTER(?lhs != ?rhs)
+}

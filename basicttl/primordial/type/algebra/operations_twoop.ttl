@@ -1,0 +1,122 @@
+# =====================================================================================
+# operations_twoop.ttl — the TWO-OPERATION operation-symbol atoms for the folded algebra
+# spine (W2 · SP0 · Stage 3a, T-2OP-INFRA).
+# =====================================================================================
+# The four primitive operation SYMBOLS of the two-operation ring line (semiring / ring / field),
+# each a first-class atom on the mathematics 12-marker ladder (D26 full runtime Linnaean ladder,
+# VERBATIM head), folded FROM fnd:sigTwoBinary's four fnd:hasOperationSymbol strings
+# (basicttl/foundation/algebra_rings.ttl:330-333):
+#
+#   +  additive product   : S,S -> S   (arity 2)   — the abelian-group operation of a ring
+#   ·  multiplicative prod : S,S -> S   (arity 2)   — the monoid operation of a ring
+#   0  additive unit/zero  : -> S       (arity 0)   — the neutral of + (fnd:hasZeroElement)
+#   1  multiplicative unit : -> S       (arity 0)   — the neutral of · (fnd:hasOneElement)
+#
+#   HEAD = urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:
+#   tail = <subdomain>:kingdom:operation:phylum:primitive:class:<op>:order:<arity>:family:operation:genus:<role>:species:<op>:component:operation:instance:canonical
+#
+# These are the two-operation analogue of the one-operation symbols (operations.ttl: product ·, unit e,
+# inverse inv, left/right division). All four share home subdomain 'semiring' — the rung where the
+# two-operation signature first enters the line (the same per-rung-subdomain logic operations.ttl uses:
+# the symbol's home subdomain is where it first enters the tower) — and are SHARED by semiring, ring and
+# field (which extend sigTwoBinary; records.ttl rec:signature:record, algebra_rings.ttl:328). Each is
+# typed rec:specimen:record (the minimal honest generic seed-carrier type operations.ttl:62-67 uses for
+# an operation-symbol individual, so the depth gate's every-NamedIndividual-has-a-specific-type rule is
+# satisfied without minting a dedicated operation:symbol:record class — a §7.2 sign-off decision).
+#
+# DISJOINTNESS FROM THE ONE-OPERATION SYMBOLS (D25 homonym discipline). The multiplicative product ·
+# and the multiplicative unit 1 are DISTINCT full-ladder IRIs from the one-operation product · (magma,
+# genus:composition) and unit e (monoid, genus:neutral): they differ in BOTH the subdomain segment
+# (semiring vs magma/monoid) AND the genus segment (genus:multiplicative vs genus:composition/neutral),
+# so RDF never conflates the ring's · with the magma's · nor the ring's 1 with the monoid's e. This is
+# the operation-plane echo of the D25 Ring/Field homonym renormalisation (the model-plane owl:differentFrom
+# witnesses are the rung tasks' deliverable).
+#
+# ATTESTATION (Praeriehund honesty; grep-confirmed off refcomp/tar/bash/aob/urn/**, same verdict method
+# as operations.ttl:10-18 — ATTESTED = >=1 aob dir, load-bearing; exact dir-counts omitted). The ladder
+# skeleton is INHERITED from the one-operation operations.ttl:
+#   - kingdom:operation   ATTESTED   - phylum:primitive   ATTESTED
+#   - component:operation ATTESTED   - family:operation   ATTESTED
+# so those four are runtime defaults, NOT [S], on all four symbols below.
+#
+# [S] TOKENS (§7.2 sign-off packet, assembled by T-PANEL):
+#   - order:nullary (the units 0 and 1) — UNATTESTED in the runtime (0 aob dirs; runtime carries
+#     order:unary/binary/eight only), EXACTLY as operations.ttl:26-28 flags the monoid unit e; fallback
+#     order:constant (also UNATTESTED) noted. Flagged on 0 and 1.
+#   - genus:additive / genus:multiplicative — UNATTESTED design-default role tokens (0 aob dirs). They
+#     carry the ADDITIVE vs MULTIPLICATIVE sense that keeps the two Cayley tables apart (the operation
+#     -plane analogue of fnd:additiveOp / fnd:multiplicativeOp, algebra_rings.ttl:66-74), so the two
+#     binary symbols share order:binary and the two units share order:nullary but never collide. Flagged.
+#   - class:sum / class:zero — UNATTESTED (0 aob dirs; the additive counterparts of the ATTESTED
+#     class:product / class:unit reused from operations.ttl). Design-default tokens (§1.8 pattern
+#     class:<op>) flagged exactly as operations.ttl:31-36 flags class:division. class:product and
+#     class:unit are the ATTESTED one-operation tokens reused for the multiplicative symbols.
+#   - species:sum / species:zero / species:one / species:product — UNATTESTED as species leaves (0 aob
+#     dirs), as operations.ttl:37 flags species:division / species:product. Flagged.
+#
+# Each symbol carries @rel:arity (operand count), @rel:domain (the operand sort — omitted for the two
+# nullary units, empty domain) and @rel:codomain (the result sort = the carrier). The shared syntactic
+# carrier sort atom is declared in signatures.ttl:65-69 (one shared one-sorted carrier S); the two
+# binary symbols' @rel:domain/@rel:codomain reference it (this file parses standalone; the merged data
+# graph resolves the reference).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.8, fan-out §6).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:330-333. ADDITIVE — no fnd:/foundation/* edit.
+# Consistent-with: signatures_twoop.ttl (sigTwoBinary rel:operation targets), signatures.ttl (carrier sort).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:specimen:record REUSED (operations.ttl:62-67):
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# -------------------------------------------------------------------------------------
+# additive product +  — the binary addition, S,S -> S.  Introduced at semiring; shared by ring/field.
+# -------------------------------------------------------------------------------------
+alg:semiring:kingdom:operation:phylum:primitive:class:sum:order:binary:family:operation:genus:additive:species:sum:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "addition" ;
+    rel:notation "+ : S,S -> S" ;
+    rel:arity    "2"^^xsd:nonNegativeInteger ;
+    rel:domain   alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The binary ADDITIVE product operation symbol '+ : S,S -> S' (arity 2), the first of the two-operation ring line's two binary operations (folds fnd:sigTwoBinary's '+ : S,S -> S', algebra_rings.ttl:330). In a semiring/ring/field '+' is the commutative(-monoid / abelian-group) operation whose neutral is the zero element 0; it is SHARED by every two-operation rung whose signature extends sigTwoBinary (semiring, ring, field). Home subdomain 'semiring' = where the two-operation line first enters. @rel:arity 2; @rel:domain and @rel:codomain both reference the shared one-sorted carrier sort (signatures.ttl:65-69) — the domain sort listed once with arity 2 encodes S×S (RDF set semantics forbid a duplicate triple). kingdom:operation / phylum:primitive / component:operation / family:operation are ATTESTED runtime defaults. [S]: class:sum, species:sum and genus:additive are UNATTESTED (0 aob dirs) — the additive counterparts of the attested class:product/species/genus vocabulary, flagged for §7.2 sign-off exactly as operations.ttl flags class:division. genus:additive carries the ADDITIVE sense that keeps this symbol's Cayley table separate from the multiplicative '·' (the operation-plane analogue of fnd:additiveOp, algebra_rings.ttl:66-69)." .
+
+# -------------------------------------------------------------------------------------
+# multiplicative product ·  — the binary multiplication, S,S -> S.  Introduced at semiring.
+# -------------------------------------------------------------------------------------
+alg:semiring:kingdom:operation:phylum:primitive:class:product:order:binary:family:operation:genus:multiplicative:species:product:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "multiplication" ;
+    rel:notation "· : S,S -> S" ;
+    rel:arity    "2"^^xsd:nonNegativeInteger ;
+    rel:domain   alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The binary MULTIPLICATIVE product operation symbol '· : S,S -> S' (arity 2), the second of the two-operation ring line's two binary operations (folds fnd:sigTwoBinary's '· : S,S -> S', algebra_rings.ttl:331). In a semiring/ring/field '·' is the monoid operation whose neutral is the one element 1, and it distributes over '+' (the semiring distributivity law E). Shared by semiring, ring, field. @rel:arity 2; @rel:domain and @rel:codomain the shared carrier sort. D25 HOMONYM DISCIPLINE: this symbol is a DISTINCT full-ladder IRI from the one-operation product · (operations.ttl, subdomain 'magma', genus:composition) — they differ in BOTH the subdomain (semiring vs magma) AND the genus (genus:multiplicative vs genus:composition), so the ring's · is never conflated with the magma's ·. kingdom:operation / phylum:primitive / component:operation / family:operation are ATTESTED runtime defaults; class:product is the ATTESTED one-operation token reused. [S]: genus:multiplicative and species:product are UNATTESTED (0 aob dirs) — genus:multiplicative carries the MULTIPLICATIVE sense keeping this table separate from '+' (the operation-plane analogue of fnd:multiplicativeOp, algebra_rings.ttl:71-74); flagged for §7.2 sign-off." .
+
+# -------------------------------------------------------------------------------------
+# additive unit 0 (zero)  — the nullary additive identity, -> S.  Introduced at semiring.
+# -------------------------------------------------------------------------------------
+alg:semiring:kingdom:operation:phylum:primitive:class:zero:order:nullary:family:operation:genus:additive:species:zero:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "zero" ;
+    rel:notation "0 : -> S" ;
+    rel:arity    "0"^^xsd:nonNegativeInteger ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The nullary ADDITIVE unit (zero) constant symbol '0 : -> S' (arity 0), the distinguished neutral element of '+' introduced with the two-operation signature and shared by semiring, ring, field (folds fnd:sigTwoBinary's '0 : -> S', algebra_rings.ttl:332; the model-plane counterpart is fnd:hasZeroElement, algebra_rings.ttl:116-120). A nullary symbol has an EMPTY domain, so it carries @rel:codomain (the carrier sort) but NO @rel:domain; @rel:arity is 0. kingdom:operation / phylum:primitive / component:operation / family:operation are ATTESTED runtime defaults. [S] order:nullary is UNATTESTED in the verified runtime (0 aob dirs; the runtime carries order:unary/binary/eight only) — accepted with fallback order:constant noted, EXACTLY as operations.ttl:26-28 / :90 flags the monoid unit e; flagged for §7.2 sign-off. [S] class:zero, species:zero and genus:additive are UNATTESTED design-default tokens; genus:additive keeps 0 (the neutral of +) distinct from the multiplicative unit 1 on the operation plane (fnd:additiveOp vs fnd:multiplicativeOp, algebra_rings.ttl:66-74). Flagged." .
+
+# -------------------------------------------------------------------------------------
+# multiplicative unit 1 (one)  — the nullary multiplicative identity, -> S.  Introduced at semiring.
+# -------------------------------------------------------------------------------------
+alg:semiring:kingdom:operation:phylum:primitive:class:unit:order:nullary:family:operation:genus:multiplicative:species:one:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "one" ;
+    rel:notation "1 : -> S" ;
+    rel:arity    "0"^^xsd:nonNegativeInteger ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The nullary MULTIPLICATIVE unit (one) constant symbol '1 : -> S' (arity 0), the distinguished neutral element of '·' introduced with the two-operation signature and shared by semiring, ring, field (folds fnd:sigTwoBinary's '1 : -> S', algebra_rings.ttl:333; the model-plane counterpart is fnd:hasOneElement, algebra_rings.ttl:122-126). A nullary symbol has an EMPTY domain, so it carries @rel:codomain (the carrier sort) but NO @rel:domain; @rel:arity is 0. D25 HOMONYM DISCIPLINE: this symbol is a DISTINCT full-ladder IRI from the one-operation monoid unit e (operations.ttl, subdomain 'monoid', class:unit, genus:neutral, species:identity) — they differ in the subdomain, the genus (genus:multiplicative vs genus:neutral) AND the species (species:one vs species:identity), so the ring's 1 is never conflated with the monoid's e. kingdom:operation / phylum:primitive / component:operation / family:operation are ATTESTED; class:unit is the ATTESTED one-operation token reused. [S] order:nullary UNATTESTED (as on 0 and the monoid e, operations.ttl:26-28); [S] genus:multiplicative and species:one UNATTESTED design-default tokens; genus:multiplicative keeps 1 (the neutral of ·) distinct from the additive unit 0. Flagged for §7.2 sign-off." .

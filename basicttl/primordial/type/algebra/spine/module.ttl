@@ -1,0 +1,242 @@
+# =====================================================================================
+# module.ttl — the MODULE rung END-TO-END, the two-operation SCALAR-ACTION rung
+# (W2 · SP0 · Stage 3a, T-MODULE). Folds FROM fnd:Module (basicttl/foundation/algebra_rings.ttl:564-575).
+# =====================================================================================
+# The fully-worked stratified MODULE rung, replicating the signed-off ring/field two-operation exemplar
+# (spine/ring.ttl, spine/field.ttl). It realises the D24 A0 stratification (Syntax ⊥ Theory ⊥ Model ⊥
+# Element ⊥ ProofArtifact) for a structure that is an additive ABELIAN GROUP of vectors (M,+) carrying a
+# SCALAR ACTION R x M -> M by a base ring R, in the D26 full-ladder grammar: a theory record (S,Omega,E)
+# naming sigTwoBinary and the TWO-law equation set E = {two-op closure, scalar action}, the B4 TWO model
+# planes (a [S] denotatum + a declaration-record model class linked by @rel:denotes), the two module axiom
+# records (closure + scalar action, each verbatim-derived from the fnd: law + the ring/field exemplar), the
+# module's CHARACTERISTIC added law the SCALAR ACTION decomposed into TWO equation records (left scalar
+# distributivity r·(x+y)=r·x+r·y, right scalar distributivity (r+s)·x=r·x+s·x — the two-sided bi-distributive
+# split, design §1.6), a theorem (zero-scalar annihilation 0_R·m=0_M) + certificate, the triad-envelope
+# gate, and the provenance quartet on records only.
+#
+# THE D24 MODULE-AS-REDUCTS SHOWCASE. A module is, by A6, its additive-ABELIAN-GROUP reduct (the vectors
+# (M,+) forgetting the scalar action) PLUS a SCALAR-ACTION morphism FROM a base ring R (the external ring
+# whose elements act on the vectors). Unlike a ring/field — TWO operations on ONE carrier reducing to two
+# one-operation structures — a module has ONE internal operation (vector addition, an abelian group) and an
+# EXTERNAL action by a ring: so where the ring reduct is (abelian group + monoid + distributivity) and the
+# field reduct is (abelian group + abelian group + distributivity), the MODULE reduct is (abelian group +
+# a scalar-action morphism from the ring model-record), the scalar action gluing the vector abelian group to
+# the base ring. Those edges — module model-record -> the existing abelian_group model-record (the vector +
+# structure) and the scalar-action morphism connecting it to the existing ring model-record (spine/ring.ttl,
+# the base ring R) — are minted in reducts_twoop_module.ttl (a NEW file, avoiding a write race on
+# reducts_twoop.ttl / reducts_twoop_field.ttl). This file mints the module theory/denotatum/model-record/
+# axioms/equations/theorem/certificate/gate + provenance; the finite rank-1 free-module witness over the
+# GF(3) ring is fixtures/module_pos.ttl (D24 four-planes: named witnesses are EVIDENCE, outside the ontology
+# data glob) with the matching action-law-violating negative fixtures/module_neg.ttl.
+#
+# WHY THE RANK-1 FREE MODULE OVER GF(3). fnd:moduleModel (algebra_rings.ttl:759) is the rank-1 free module
+# M = {V0,V1,V2} (an additive group ~= Z/3) over the base ring fnd:ringModel (GF(3)), with reified scalar
+# actions 1·V1=V1, 2·V1=V2, 2·V2=V1. Re-expressed in the folded reified scalar-action idiom
+# (@typ:scalar:action, fixtures/module_pos.ttl) it is finite:checked and keeps the scalar-action tooth
+# (shapes/module.shapes.ttl ModuleScalarActionShape) non-vacuous and provably biting: a scalar action whose
+# result ESCAPES the module vectors M (the R x M -> M typing fails) -> RED (folding fnd:ModuleScalarShape /
+# q_module_scalar's probe of record fnd:probeEscapingScalarAction 1·V1 = fnd:ringZero, algebra_rings.ttl:568).
+#
+# ISOLATION (the scalar-action / one-op-teeth separation). The one-operation per-law teeth
+# (shapes/algebra.shapes.ttl) walk `?cell @rel:structure <model>` with NO discriminator, and the two-op
+# ring/field teeth (RingDistributivityShape / FieldMultInverseShape) walk `$this @rel:reified:table ?t`.
+# A module carries NEITHER a merged +/· Cayley table scoped @rel:structure -> the model NOR a
+# @rel:reified:table: its scalar actions are scoped @rel:action:model -> the model directly (the analogue
+# of the field's @rel:pairing:model), so RingDistributivityShape / FieldMultInverseShape (which require a
+# @rel:reified:table) never bind on a module model, and the one-operation per-law teeth (which require a
+# @rel:structure -> model cell) never bind either — the module rows stay OUT of both the one-operation and
+# the ring/field two-operation scans. ModuleScalarActionShape walks model -> @rel:action:model scalar
+# actions and reddens when a result is not a @rel:module:vector of the model (the action escapes M).
+#
+# HONESTY (Praeriehund; algebra_rings.ttl:30-39). EVERYTHING folded here is SYN: the module line is FULLY
+# ABSENT from Helios as algebra (02_algebra_tower.md:134-136 "No algebraic ring, field (only record-field),
+# or module (only code-module)"), authored as CITED STANDARD MODULE THEORY (the Directive 19/20 precedent:
+# mathematics is fact and liftable, cite the source, never pretend a Helios lift). So @rel:authority "SYN"
+# on every RECORD, @rel:proof:status "literature:backed" on the theory (the UNIVERSAL module theory is cited
+# standard mathematics, NOT finite:checked-from-engine; only the finite rank-1 WITNESS in fixtures/ carries
+# finite:checked). Every [S] token (no runtime precedent) is flagged in an rdfs:comment for the §7.2
+# maintainer sign-off packet (T-PANEL).
+#
+# SIGNATURE (task-directed reuse). Per the T-MODULE task directive ("Reuse sigTwoBinary + the two-op
+# operation symbols") the module theory record names @rel:signature sigTwoBinary (signatures_twoop.ttl) —
+# the one-sorted two-binary ring signature reused for the module rung rather than minting a separate
+# two-SORTED fnd:sigModule atom (algebra_rings.ttl:335-342). This is an [S] task-scoped SIMPLIFICATION: the
+# module's + is vector addition and its · is read as the scalar action; the honest two-sorted refinement
+# (sorts M,R) is a maintainer sign-off item (§7.2). Flagged.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:), subdomain 'module'. [S] tokens
+# flagged; [V]-shaped tokens (class:module, family:operation) echo the ring/field denotatum shape. B1 n/a
+# (module is not a compound token). B4 two-planes (denotatum kingdom:type…component:type + model-record
+# kingdom:class…:model…component:class). B3(a) additive Stage-3a (fnd:Module stays byte-intact; T-RETIRE is
+# Stage 3c) — skos:exactMatch fnd:Module on the denotatum + @rel:historical:identity fnd:Module on the theory.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.5, §2, §6 fan-out).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:240-244,264-267,564-575,759-785.
+# ADDITIVE — no fnd:/foundation/* edit (demolition is Stage 3c). Consumes (do not rewrite):
+# records.ttl (rec:* classes), signatures_twoop.ttl (sigTwoBinary), operations_twoop.ttl (+ · 0 1),
+# spine/abelian_group.ttl + spine/ring.ttl (the reduct + scalar-action-morphism targets, via
+# reducts_twoop_module.ttl). Tooth: shapes/module.shapes.ttl ModuleScalarActionShape + probes/module_law.rq;
+# fixtures/module_pos.ttl + fixtures/module_neg.ttl.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified scalar-action term atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:module:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+#     E = the TWO module laws (two-op closure + scalar action), each an axiom record below, verbatim-derived
+#     from the fnd: law + the ring/field exemplar.
+# =====================================================================================
+alg:module:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:module:genus:presented:species:module:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "module theory (S,Omega,E)" ;
+    rel:notation   "module" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:module:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:module:genus:presented:species:module:component:definition:instance:canonical" ;
+    rel:signature  alg:semiring:kingdom:definition:phylum:specification:class:signature:order:two:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:module:kingdom:axiom:phylum:operation:class:closure:order:two:binary:family:module:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:module:kingdom:axiom:phylum:operation:class:action:order:scalar:family:module:genus:scalar:species:action:component:statement:instance:canonical ;
+    rel:reduct     alg:abelian:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:abelian:group:genus:presented:species:abelian:group:component:definition:instance:canonical ;
+    rel:denotatum  alg:module:kingdom:type:phylum:algebra:class:module:order:two:binary:family:operation:genus:axiomatic:species:module:component:type:instance:canonical ;
+    rel:assignment alg:module:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:module:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:Module ;
+    skos:closeMatch fnd:Module ;
+    rdfs:comment "[S] The presented module THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6), folding fnd:Module (algebra_rings.ttl:564-575). S,Omega = @rel:signature sigTwoBinary (signatures_twoop.ttl — the task-directed REUSE of the one-sorted two-binary ring signature Sigma={+,·,0,1} for the module rung, where + is read as vector addition and · as the scalar action, rather than minting the two-SORTED fnd:sigModule (M,R) atom; an [S] task-scoped simplification flagged for §7.2); E = @rel:equation the TWO module laws — the two-op CLOSURE (vector addition total, scalar action total) and the SCALAR ACTION R x M -> M — each an axiom record below verbatim-derived from the fnd: law (algebra_rings.ttl:240-244,264-267) plus the ring/field exemplar (spine/ring.ttl, spine/field.ttl). The module's CHARACTERISTIC added law is the SCALAR ACTION (fnd:Module fnd:addsLaw fnd:lawScalarAction, algebra_rings.ttl:572, one-law-per-child off the agnostic fnd:AlgebraicStructure progenitor): the action R x M -> M is unital (1·m=m), associative in scalars ((r·s)·m=r·(s·m)) and BI-DISTRIBUTIVE (r·(m+n)=r·m+r·n and (r+s)·m=r·m+s·m); it is decomposed into the TWO equation records scalar-distribution-left (r·(x+y)=r·x+r·y) and scalar-distribution-right ((r+s)·x=r·x+s·x) below (design §1.6 two-sided-law split, closure.ttl:185-192 precedent). It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 module denotatum, @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the ABELIAN_GROUP theory (spine/abelian_group.ttl, the forgetful theory-morphism module |-> abelian group, forgetting the scalar action — a module hangs off the agnostic progenitor and forgets to the abelian group of its vectors, NOT to the ring line; the abelian_group theory EXISTS, so this @rel:reduct resolves). D24 first-class metadata: @rel:validation:mode 'finite:table' (module models are validated by the finite rank-1 free-module scalar-action witness, matching fnd:moduleModel) and @rel:proof:status 'literature:backed' (the UNIVERSAL module theory is cited standard module theory, NOT finite:checked-from-engine — only the finite rank-1 WITNESS in fixtures/ is finite:checked, honest per Praeriehund). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24). SYN: the module line is FULLY ABSENT from Helios as algebra (module only as code-module, algebra_rings.ttl:30-35). Historical-identity BRIDGE: @rel:historical:identity fnd:Module + skos:closeMatch fnd:Module (Stage-3a ADDITIVE — fnd:Module stays byte-intact; T-RETIRE stubs it in Stage 3c); the denotatum's skos:exactMatch fnd:Module keeps inbound SP1/SP2/SP3 fnd:Module references (the SP3 geometers' coordinate axes re-anchor here at T10, algebra_rings.ttl:568) resolvable through the fold. Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision) + ProofStatusShape + ValidationModeShape + ProvenanceShape; the module's characteristic law is teeth-proved by ModuleScalarActionShape (shapes/module.shapes.ttl) over the finite rank-1 scalar-action witness. [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; the sigTwoBinary reuse is a task-scoped simplification; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object 'a module', NO provenance. skos:exactMatch fnd:Module
+#      (the retire-map bridge SP1/SP2/SP3 fnd:Module references resolve through; BridgeShape focus).
+# =====================================================================================
+alg:module:kingdom:type:phylum:algebra:class:module:order:two:binary:family:operation:genus:axiomatic:species:module:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "module" ;
+    rel:notation   "module" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:module:kingdom:type:phylum:algebra:class:module:order:two:binary:family:operation:genus:axiomatic:species:module:component:type:instance:canonical" ;
+    skos:exactMatch fnd:Module ;
+    rdfs:comment "[S] The module DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a module' itself — an additive abelian group of vectors with a scalar action by a ring — carrying its canonical @rel:identifier and @rel:notation ONLY, and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object; V1DenotatumHygieneShape maxCount-0 tooth). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes. skos:exactMatch fnd:Module is the retire-map alias bridge (design §5.2, BridgeShape focus): it keeps every inbound SP1/SP2/SP3 fnd:Module reference (e.g. the SP3 geometers' coordinate axes re-anchoring on fnd:Module, algebra_rings.ttl:568) resolvable THROUGH the fold while fnd:Module stays byte-intact until Stage-3c T-RETIRE — the module analogue of the ring/field denotatum skos:exactMatch fnd:Ring/fnd:Field (spine/ring.ttl:126, spine/field.ttl:131). Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. [S] order:two:binary / genus:axiomatic UNATTESTED design-default tokens (order:two:binary echoes the ring/field denotatum shape — a module carries an internal + and an external scalar action, read as the two operations here), flagged for §7.2 sign-off." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction bundle +
+#      provenance + disjointness teeth). [S] class:model/genus:governed/component:class. Its VECTOR
+#      structure is an abelian group + it acts over a base RING by a scalar action (the D24 module-as-reducts,
+#      reducts_twoop_module.ttl); the reduct + scalar-action-morphism edges are minted there, this class is
+#      their subject.
+# =====================================================================================
+alg:module:kingdom:class:phylum:algebra:class:model:order:declarative:family:module:genus:governed:species:module:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "module model class" ;
+    rel:notation "module model" ;
+    rel:denotes alg:module:kingdom:type:phylum:algebra:class:module:order:two:binary:family:operation:genus:axiomatic:species:module:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:zero:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:additive:operation ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:module:ring ] ;
+    owl:disjointWith alg:ring:kingdom:class:phylum:algebra:class:model:order:declarative:family:ring:genus:governed:species:ring:component:class:instance:canonical ,
+                     alg:field:kingdom:class:phylum:algebra:class:model:order:declarative:family:field:genus:governed:species:field:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The module MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the [S] denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction) makes 'a module is an abelian group of vectors with exactly one carrier, exactly one additive identity 0_M, exactly one vector-addition operation + and exactly one base ring R it acts over' a graph fact via four cardinality-1 owl:Restrictions on @rel:carrier / @rel:zero:element / @rel:additive:operation / @rel:module:ring. It carries NO @rel:one:element / @rel:multiplicative:operation restriction (UNLIKE the ring/field model-record's five-restriction bundle, spine/ring.ttl:141-145): a module has ONE internal operation (vector addition, an abelian group) and an EXTERNAL scalar action by a ring — the multiplicative unit 1 and the product · live in the BASE RING R (@rel:module:ring), not on the module's own carrier. The D24 MODULE-AS-REDUCTS decomposition — this module model-record's VECTOR structure IS an abelian group (the existing abelian_group model-record) and it acts over the existing RING model-record (spine/ring.ttl) by a scalar-action morphism — is minted as a structure reduct + a scalar-action morphism in reducts_twoop_module.ttl with this class as their subject (bridge-never-duplicate: the reduct/morphism edges live in ONE file, not duplicated here). owl:disjointWith the ring and field model-record classes (spine/ring.ttl, spine/field.ttl — the D25 homonym/distinction teeth: a module is NOT a ring and NOT a field — its · is an external scalar action by a base ring, not an internal second binary operation on its own carrier; DifferentFromWitnessShape reddens any sameAs-collapse). It is NOT disjoint from the vector:space model-record (a vector space IS a module whose scalar ring is a field, fnd:VectorSpace rdfs:subClassOf fnd:Module — that subsumption, not disjointness, is the sibling relation above). Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete rank-1 free module can be typed against it) AND a rec:model:record / rec:declaration:record (so ModelShape / ProvenanceShape sh:targetClass count it as a data-graph focus and the 0-focus gate is satisfied) — legal OWL2 metaclass punning, exactly as spine/ring.ttl / spine/field.ttl and DISTINCT from the frame.ttl domain-class-punning anti-pattern V1 forbids. On this focus ModelShape's identity sh:sparql and ModuleScalarActionShape are vacuously satisfied (the class declares no @rel:identity:element / @rel:action:model scalar actions); the finite rank-1 witness in fixtures/module_pos.ttl is where ModuleScalarActionShape bites (and fixtures/module_neg.ttl, a scalar action whose result escapes the module vectors M, is where its action-law-violating negative flips it). [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM records — the two members of E (design §2c — minimal, NO denotatum/gate/
+#     provenance, NO certificate; axiom != theorem is structural, rec:axiom:record owl:disjointWith
+#     rec:theorem:record, records.ttl:119). Each verbatim-derives its fnd: law (algebra_rings.ttl).
+# =====================================================================================
+alg:module:kingdom:axiom:phylum:operation:class:closure:order:two:binary:family:module:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "module two-operation closure" ;
+    rel:notation "for all m,n in M, r in R: m+n in M and r·m in M" ;
+    rdfs:comment "[S] The two-operation CLOSURE / totality axiom of the module theory (rec:axiom:record), folding fnd:lawTwoOpClosure (algebra_rings.ttl:240-244): the vector addition + : M,M -> M is a total function and the scalar action · : R,M -> M is a total function, so for all vectors m,n in the module carrier M and every scalar r in the base ring R the sum m+n and the scaled vector r·m are defined and lie in M. A membership/totality statement, NOT a left=right equation — an axiom record only, NOT a rec:equation:record, carrying NO @rel:left/@rel:right. It is the closure that the scalar-action typing R x M -> M refines (the ModuleScalarActionShape tooth checks precisely that r·m lands back in M). Minimal per design §2c: no denotatum / gate / provenance, no @rel:certificate (an axiom is asserted, not proved). A member of the module theory's equation set E. SYN, cited standard module theory." .
+
+# --- the CHARACTERISTIC added law: the scalar action R x M -> M (its own atom; the external ring action
+#     that makes an abelian group of vectors a module; unital + scalar-associative + bi-distributive). ---
+alg:module:kingdom:axiom:phylum:operation:class:action:order:scalar:family:module:genus:scalar:species:action:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "module scalar action (unital, associative, bi-distributive)" ;
+    rel:notation "1·m = m ; (r·s)·m = r·(s·m) ; r·(m+n) = r·m + r·n ; (r+s)·m = r·m + s·m" ;
+    rel:equation alg:module:kingdom:axiom:phylum:operation:class:action:order:scalar:family:module:genus:scalar:species:distribution:left:component:statement:instance:canonical ,
+                 alg:module:kingdom:axiom:phylum:operation:class:action:order:scalar:family:module:genus:scalar:species:distribution:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] The SCALAR-ACTION axiom of the module theory (rec:axiom:record, the named parent law, no side segment), folding fnd:lawScalarAction (algebra_rings.ttl:264-267): a module over a ring R carries a scalar action R x M -> M that is UNITAL (1·m = m), ASSOCIATIVE in scalars ((r·s)·m = r·(s·m)) and BI-DISTRIBUTIVE — r·(m+n) = r·m + r·n (over vector addition) AND (r+s)·m = r·m + s·m (over ring addition). This is the CHARACTERISTIC law of the module — the SINGLE law fnd:Module ADDS as its fnd:addsLaw off the agnostic fnd:AlgebraicStructure progenitor (algebra_rings.ttl:572, one-law-per-child) — the external ring action that upgrades a bare abelian group of vectors to a module. As a MULTI-PART bi-distributive law its two distributive halves @rel:equation-decompose into the TWO reified equation records scalar-distribution-left (r·(x+y)=r·x+r·y) and scalar-distribution-right ((r+s)·x=r·x+s·x) below (design §1.6, §3; the ring distributivity split spine/ring.ttl:201-235, the group inverse split closure.ttl:185-192 precedent — the two distributive laws are independent members of E; the unital and scalar-associative sub-clauses are stated in the parent @rel:notation and not separately reified at this rung). It is the D24 module-as-reducts CONNECTING MORPHISM: the additive-abelian-group reduct (the vectors) and the base ring are glued by exactly this scalar action (reducts_twoop_module.ttl @rel:connects both). Its WELL-TYPEDNESS (R x M -> M — the action's result lands back in M) is teeth-proved by shapes/module.shapes.ttl ModuleScalarActionShape / probes/module_law.rq over the finite rank-1 scalar-action witness (fixtures/): a scalar action whose result ESCAPES the module vectors -> RED, folding fnd:ModuleScalarShape / q_module_scalar (algebra_rings.ttl:568). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard module theory. [S] class:action / order:scalar / genus:scalar / species:action UNATTESTED design-default tokens (§7.2 #5) -> sign-off packet." .
+
+# =====================================================================================
+# (d) EQUATION records — the two-sided BI-DISTRIBUTIVITY split of the scalar action (design §2d, §1.6).
+#     The module's characteristic added law reified as an ordered pair per distributive side.
+#     scalar-distribution-left (r·(x+y)=r·x+r·y — over vector addition) + scalar-distribution-right
+#     ((r+s)·x=r·x+s·x — over ring addition). Distinct @rel:left terms so the EquationRecordShape
+#     identity-collision sh:sparql never fires between the twins.
+# =====================================================================================
+alg:module:kingdom:axiom:phylum:operation:class:action:order:scalar:family:module:genus:scalar:species:distribution:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "module scalar distributivity (left: r·(x+y) = r·x + r·y)" ;
+    rel:notation "r·(x+y) = r·x + r·y" ;
+    rel:left  term:scalar:distribution:leftaction ;
+    rel:right term:scalar:distribution:leftsum ;
+    rdfs:comment "[S] The LEFT scalar-distributivity law r·(x+y) = r·x + r·y — a scalar distributes over VECTOR addition, side 1 of the scalar action's bi-distributivity, reified as an equation record (rec:equation:record) with one @rel:left term (the scaled sum r·(x+y)) and one @rel:right term (the sum of scaled vectors r·x + r·y). A multi-part bi-distributive law mints TWO equation records, one per distributive side (design §1.6, §3; the ring distributivity split spine/ring.ttl:221-235 precedent). It is the member the scalar-action parent axiom @rel:equation-decomposes into and the EquationRecordShape cardinality-1 left/right focus. It is the standard module axiom 'scalar multiplication distributes over vector addition'. SYN, cited standard module theory. [S] the species:distribution:left SIDE SEGMENT is UNATTESTED (§7.2 #2 side-segment placement, as the ring distribution-left) -> sign-off packet." .
+
+alg:module:kingdom:axiom:phylum:operation:class:action:order:scalar:family:module:genus:scalar:species:distribution:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "module scalar distributivity (right: (r+s)·x = r·x + s·x)" ;
+    rel:notation "(r+s)·x = r·x + s·x" ;
+    rel:left  term:scalar:distribution:rightaction ;
+    rel:right term:scalar:distribution:rightsum ;
+    rdfs:comment "[S] The RIGHT scalar-distributivity law (r+s)·x = r·x + s·x — a SUM OF SCALARS distributes over a vector, side 2 of the scalar action's bi-distributivity, reified as an equation record (rec:equation:record) with one @rel:left term (the sum-scalar action (r+s)·x) and one @rel:right term (the sum of scaled vectors r·x + s·x). Its twin is the scalar-distribution-LEFT record above; together they are the TWO equation records the ONE bi-distributive scalar-action law decomposes into (design §1.6, §3). The two distributive laws are independent members of E (left distributes a scalar over a VECTOR sum in (M,+); right distributes a RING sum r+s over a vector — a distinct axiom reading ring addition). Distinct @rel:left term (rightaction) from the left record (leftaction), so the EquationRecordShape identity-collision sh:sparql does not fire between the twins. It is the standard module axiom 'the sum of scalars distributes'. SYN, cited standard module theory. [S] species:distribution:right SIDE SEGMENT UNATTESTED (§7.2 #2) -> sign-off packet." .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate, NEVER an
+#     axiom; the closure.ttl / ring / field Yoneda theorem/certificate idiom). Module's natural structure
+#     theorem: the RING ZERO annihilates every vector (0_R·m = 0_M), a consequence of right scalar
+#     distributivity — the module analogue of ring zero-absorption.
+# =====================================================================================
+alg:module:kingdom:theorem:phylum:algebra:class:annihilation:order:declarative:family:module:genus:zero:species:annihilation:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "module zero-scalar annihilation" ;
+    rel:notation "for all m in M: 0_R·m = 0_M" ;
+    rel:certificate alg:module:kingdom:certificate:phylum:algebra:class:annihilation:order:declarative:family:module:genus:zero:species:annihilation:component:statement:instance:canonical ;
+    rel:authority "SYN" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "Theorem, not an additional foundational axiom (design §2f, the closure.ttl / ring / field Yoneda theorem/certificate idiom): in any module M over a ring R the RING ZERO 0_R ANNIHILATES every vector — 0_R·m = 0_M (the module's additive identity) for every m in M. It is a DERIVED consequence of right scalar distributivity together with the abelian-group inverse in (M,+): 0_R·m = (0_R + 0_R)·m = 0_R·m + 0_R·m, then adding the additive inverse -(0_R·m) to both sides gives 0_M = 0_R·m — NOT a new axiom (the D24 A0 ProofArtifact plane). It is the module's natural structure theorem the scalar-action bi-distributivity licenses (the module analogue of the ring zero-absorption theorem, spine/ring.ttl:242, and the field no-zero-divisors theorem, spine/field.ttl:264). It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). Provenance quartet + @rel:authority 'SYN' on the record (the scalar-action law it derives from is SYN, algebra_rings.ttl:264-267)." .
+
+alg:module:kingdom:certificate:phylum:algebra:class:annihilation:order:declarative:family:module:genus:zero:species:annihilation:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "module zero-scalar annihilation certificate" ;
+    rel:digest:value    "7144b39b149c9e93fff63efacfb0cb39696146ba231c0dcdee025353fa4818ae" ;
+    rel:proof:method    "Explicit general mathematical derivation (0_R·m = (0_R+0_R)·m = 0_R·m + 0_R·m by right scalar-distributivity over ring addition; add -(0_R·m) in the abelian group (M,+) to both sides -> 0_M = 0_R·m); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for module zero-scalar annihilation (design §2f; the closure.ttl / ring / field certificate idiom): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Module zero-scalar annihilation: in any module M over a ring R with additive identities 0_R (of R) and 0_M (of M), for every vector m in M, 0_R.m = 0_M. Proof: 0_R.m = (0_R + 0_R).m = 0_R.m + 0_R.m by right scalar-distributivity over ring addition and 0_R + 0_R = 0_R; adding the additive inverse -(0_R.m) in the abelian group (M,+) to both sides gives 0_M = 0_R.m. General mathematical derivation; not proof-assistant checked'), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119)." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:module:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:module:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "module declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:module:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:module:genus:reconciled:species:module:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the module declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the module declaration was RECONCILED against its Plane-2 denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the module rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the module declaration is reconciled, not merely asserted." .

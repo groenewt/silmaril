@@ -1,0 +1,80 @@
+# =====================================================================================
+# vector_space_neg.ttl — the field-scalars-VIOLATING negative fixture for the vector-space rung (W2 · SP0 ·
+# Stage 3a, T-VECTORSPACE). The matching negative of fixtures/vector_space_pos.ttl: byte-identical
+# 1-dimensional space over Z/3 + scalar actions EXCEPT the SINGLE injected perturbation on the scalar
+# structure (its type @typ:field:scalar:structure -> @typ:ring:scalar:structure — the scalars drawn from a
+# non-field RING).
+# =====================================================================================
+# SINGLE INJECTION (design §4 "a failing negative per shape ... one injected violation"): the declared scalar
+# structure <...:z3:field> — a genuine FIELD in the positive (@typ:field:scalar:structure) — is retyped to a
+# non-field RING (@typ:ring:scalar:structure). The vector space now reads:
+#   scalars drawn from a mere RING (not a field: not every nonzero scalar is invertible)
+#   -> the FIELD-SCALARS law FAILS; the structure is a MODULE, not a vector space.
+# VectorSpaceScalarFieldShape / probes/vector_space_law.rq bite (conforms True->False): a 'vector space' whose
+# declared scalar structure is not a field — folding fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms's
+# requirement that fnd:scalarField be a fnd:Field, not merely a ring (algebra_rings.ttl:270-273,204-208,581).
+# Every OTHER node — the vectors, the scalar actions (all still landing in V), the model metadata — is
+# byte-identical to vector_space_pos.ttl, so ONLY the field-scalars tooth flips: the scalar actions stay
+# well-typed K x V -> V, so the INHERITED module tooth ModuleScalarActionShape stays GREEN (a vector space that
+# fails ONLY the field-scalars upgrade is still a valid MODULE — the precise, isolated RED->GREEN proof of a
+# single biting tooth). The model stays rec:model:record with the SAME @rel:action:model scoping (no
+# @rel:reified:table, no @rel:structure -> model cell), so the ring/field two-operation teeth and the
+# one-operation per-law teeth stay vacuous and do NOT falsely redden; ModelShape's identity tooth is vacuous
+# (no @rel:identity:element). Merged onto the algebra data graph this fixture MUST NOT conform
+# (run-algebra-checks.sh step (b) negative polarity).
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type, never bare, never owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model (identical to vector_space_pos: vectors {V0,V1,V2}, scalar actions; the scalar structure is
+#     BROKEN below — retyped a non-field ring) ---
+<urn:silmaril:fixture:algebra:vectorspace:z3>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "1-dimensional space V={V0,V1,V2} over Z/3 — BROKEN (the scalar structure retyped a non-field RING, so the scalars do not form a field)" ;
+    rel:scalar:field    <urn:silmaril:fixture:algebra:vectorspace:z3:field> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:vectorspace:z3:vec:0> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:vectorspace:z3:vec:2> ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "counterexample:known" .
+
+# --- *** THE SINGLE INJECTION: the scalar structure is typed a non-field RING (@typ:ring:scalar:structure)
+#     instead of the genuine FIELD (@typ:field:scalar:structure of vector_space_pos). Its scalars do NOT form
+#     a field -> the field-scalars law fails. *** ---
+<urn:silmaril:fixture:algebra:vectorspace:z3:field>
+    a owl:NamedIndividual , typ:ring:scalar:structure ;
+    rel:notation "the scalar structure Z/? as a mere RING (CLAIMED as scalars, but NOT a field — not every nonzero scalar is invertible; the model is a MODULE, not a vector space)" .
+
+# --- vectors (the carrier V ~= Z/3; unchanged) ---
+<urn:silmaril:fixture:algebra:vectorspace:z3:vec:0> a owl:NamedIndividual , typ:finite:element ; rel:notation "V0 (the zero vector 0_V)" .
+<urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "V1 (the generator vector)" .
+<urn:silmaril:fixture:algebra:vectorspace:z3:vec:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "V2 = 2·V1" .
+
+# --- scalars (unchanged) ---
+<urn:silmaril:fixture:algebra:vectorspace:z3:scalar:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "1 (a scalar; the unit scalar 1·v=v)" .
+<urn:silmaril:fixture:algebra:vectorspace:z3:scalar:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "2 (a scalar)" .
+
+# --- reified SCALAR ACTIONS (byte-identical to vector_space_pos: each result still lands in V, so the
+#     module tooth ModuleScalarActionShape stays GREEN — only the field-scalars tooth flips). ---
+<urn:silmaril:fixture:algebra:vectorspace:z3:act:1:V1> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "1·V1 = V1 (unchanged, still lands in V)" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:vectorspace:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:vectorspace:z3:scalar:1> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> ;
+    rel:action:result <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> .
+<urn:silmaril:fixture:algebra:vectorspace:z3:act:2:V1> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "2·V1 = V2 (unchanged, still lands in V)" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:vectorspace:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:vectorspace:z3:scalar:2> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> ;
+    rel:action:result <urn:silmaril:fixture:algebra:vectorspace:z3:vec:2> .
+<urn:silmaril:fixture:algebra:vectorspace:z3:act:2:V2> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "2·V2 = V1 (unchanged, still lands in V)" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:vectorspace:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:vectorspace:z3:scalar:2> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:vectorspace:z3:vec:2> ;
+    rel:action:result <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> .

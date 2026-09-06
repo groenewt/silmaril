@@ -1,0 +1,94 @@
+# =====================================================================================
+# reducts_twoop_module.ttl — the D24 MODULE-AS-REDUCTS decomposition edges (W2 · SP0 · Stage 3a, T-MODULE).
+# =====================================================================================
+# D24 A6 (the showcase, module half): "Module = additive abelian_group + a ring scalar-action". A module
+# model is, structurally, its ADDITIVE reduct (forget the scalar action -> the abelian group of vectors
+# (M,+)) PLUS a SCALAR-ACTION morphism FROM a base ring R (the external ring whose elements act on the
+# vectors). This file mints those two edges for the module rung: the module model-record's vector + structure
+# IS the existing abelian_group model-record (bridge-never-duplicate: the reduct REUSES the committed one-op
+# abelian_group model-record by IRI, spine/abelian_group.ttl:144, never re-mints it), and the SCALAR-ACTION
+# morphism connects that vector abelian group to the existing RING model-record (spine/ring.ttl, the base
+# ring R), the scalar action being the gluing law.
+#
+# WHY THE MODULE REDUCT IS ASYMMETRIC (one internal structure + one EXTERNAL action). This is the D24
+# module/ring CONTRAST. A ring/field carries TWO binary operations on ONE carrier, so it reduces to TWO
+# one-operation structures on that carrier (ring = abelian group + monoid + distributivity,
+# reducts_twoop.ttl; field = abelian group + abelian group + distributivity, reducts_twoop_field.ttl). A
+# MODULE carries ONE internal operation (vector addition, an abelian group) and an EXTERNAL action by a ring
+# — the scalars, the product · and the unit 1 live in the BASE RING R, not on the module's own carrier. So
+# the module decomposition is (abelian group of vectors) + (a scalar-action morphism FROM the ring), NOT two
+# internal reducts glued by distributivity. The scalar action plays the structural role distributivity plays
+# for a ring: the connecting morphism (algebra_rings.ttl:564-575).
+#
+# WHY A NEW FILE (not reducts_twoop.ttl / reducts_twoop_field.ttl). Exactly as reducts_twoop_field.ttl:22-27:
+# a NEW per-rung file avoids a shared-file write race with the parallel rung executors (design §6 fan-out).
+# It REUSES the two-operation structure-reduct class rec:reduct:two:operation:record declared in
+# reducts_twoop.ttl (bridge-never-duplicate, never re-declared).
+#
+# WHY rec:reduct:two:operation:record (not rec:reduct:record). Exactly as reducts_twoop.ttl:18-26 /
+# reducts_twoop_field.ttl:29-36: the module additive reduct forgets a WHOLE STRUCTURE (the scalar action)
+# and the scalar-action morphism binds two structures — NEITHER is a single-law forgetful theory-morphism —
+# so they are SIGNATURE / STRUCTURE reducts, typed rec:reduct:two:operation:record (subClassOf
+# rec:specimen:record, NOT rec:reduct:record), so ReductShape (the one-law min1/max1 @rel:adds:law tooth)
+# does not focus them and the runner's rec:reduct:record count (reducts = 7 one-operation edges) is
+# unchanged. The module's OWN one-law forgetful reduct (module |-> abelian group, forgets the scalar action)
+# is the theory record's @rel:reduct edge (spine/module.ttl), the standard rec:reduct:record pattern.
+#
+# HONESTY (Praeriehund; §7.2). Everything here is SYN (the module line is absent from Helios as algebra,
+# algebra_rings.ttl:30-35); every [S] token (no runtime/closure precedent for the two-operation structure-
+# reduct / scalar-action morphism) is flagged in-line for the maintainer sign-off packet (T-PANEL).
+# Provenance quartet + @rel:authority "SYN" on every RECORD, never on a denotatum.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.9, §3, §6 fan-out; D24 A6).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:564-575 (fnd:Module), D24 A6 module-as-reducts doctrine.
+# Consumes (do not rewrite): spine/module.ttl (the module model-record + scalar-action axiom, the reduct
+# subject + connecting-morphism equation), spine/abelian_group.ttl (the additive vector-group reduct target),
+# spine/ring.ttl (the base ring model-record the scalar action is over), reducts_twoop.ttl
+# (rec:reduct:two:operation:record class REUSED), records_twoop.ttl (the additive discriminator).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:reduct:two:operation:record REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# 1. THE MODULE ADDITIVE REDUCT — module model-record |-> abelian_group model-record (the vector + structure).
+# =====================================================================================
+alg:module:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:additive:species:group:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "module additive reduct -> abelian group" ;
+    rel:notation "structure reduct: module |-> abelian group (the vector + structure (M,+); forgets the scalar action)" ;
+    rel:reduct:source alg:module:kingdom:class:phylum:algebra:class:model:order:declarative:family:module:genus:governed:species:module:component:class:instance:canonical ;
+    rel:reduct        alg:abelian:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:abelian:group:genus:governed:species:abelian:group:component:class:instance:canonical ;
+    rel:reduct:theory alg:abelian:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:abelian:group:genus:presented:species:abelian:group:component:definition:instance:canonical ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The module ADDITIVE reduct (D24 A6 module-as-reducts, half one): the forgetful structure morphism that projects a module model onto its VECTOR structure — an ABELIAN GROUP (M,+,0_M) — by forgetting the scalar action R x M -> M. @rel:reduct:source -> the module model-record class (spine/module.ttl), @rel:reduct -> the EXISTING abelian_group model-record class (spine/abelian_group.ttl:144, REUSED by IRI — bridge-never-duplicate: 'the vector + structure IS the existing abelian_group model-record'), @rel:reduct:theory -> the abelian_group presented theory. @rel:operation:discriminator -> the ADDITIVE discriminator (records_twoop.ttl), tagging that the vector-addition + operation is the internal structure that survives the reduct (a module has only ONE internal operation, so — unlike a ring/field, which has a second MULTIPLICATIVE reduct on the same carrier — the module's only internal reduct is this additive one; the multiplicative side is the EXTERNAL scalar-action morphism below, not an internal reduct). Identical in shape to the ring/field additive reduct (reducts_twoop.ttl:63-76, reducts_twoop_field.ttl:63-76): a module's vector structure is an abelian group exactly as a ring's additive structure is. Typed rec:reduct:two:operation:record (NOT rec:reduct:record: a structure reduct forgets a whole structure, not one law, so it is outside ReductShape's one-law gate and the seven-reduct count). Provenance quartet + @rel:authority SYN on the record, never on a denotatum. [S] order:structure / genus:additive / species:group + the @rel:reduct:source / @rel:reduct:theory predicates UNATTESTED -> §7.2 sign-off." .
+
+# =====================================================================================
+# 2. THE SCALAR-ACTION MORPHISM — glues the vector abelian-group reduct to the base RING (the module/ring
+#    CONTRAST: the module's second 'structure' is an EXTERNAL ring action, not an internal reduct).
+# =====================================================================================
+alg:module:kingdom:mapping:phylum:composition:class:action:order:interaction:family:morphism:genus:scalar:species:action:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "module scalar-action morphism" ;
+    rel:notation "the scalar action R x M -> M glues the vector abelian-group reduct to the base ring R" ;
+    rel:reduct        alg:module:kingdom:class:phylum:algebra:class:model:order:declarative:family:module:genus:governed:species:module:component:class:instance:canonical ;
+    rel:connects      alg:module:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:additive:species:group:component:definition:instance:canonical ,
+                      alg:ring:kingdom:class:phylum:algebra:class:model:order:declarative:family:ring:genus:governed:species:ring:component:class:instance:canonical ;
+    rel:equation      alg:module:kingdom:axiom:phylum:operation:class:action:order:scalar:family:module:genus:scalar:species:action:component:statement:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The SCALAR-ACTION morphism (D24 A6 module-as-reducts, the glue — the module/ring CONTRAST): a module is an abelian group of vectors (M,+) PLUS an EXTERNAL action by a base ring R; the scalar action R x M -> M is the sole law that BINDS the vector abelian group to the ring — without it the module is just a bare abelian group, not a module. This is the module analogue of the ring/field distributivity connecting morphism (reducts_twoop.ttl:99-112, reducts_twoop_field.ttl:100-113), but where a ring's two reducts are BOTH internal one-operation structures on one carrier glued by distributivity, a module's scalar-action morphism connects an INTERNAL reduct (the vector abelian group) to an EXTERNAL structure (the base ring R): @rel:reduct -> the module model-record class (the structure being decomposed), @rel:connects -> BOTH the additive (vector abelian-group) reduct above AND the EXISTING ring model-record class (spine/ring.ttl, the base ring R the module acts over — REUSED by IRI, bridge-never-duplicate), @rel:equation -> the module scalar-action axiom record (spine/module.ttl, the bi-distributive/unital/associative scalar action whose typing R x M -> M is teeth-proved by ModuleScalarActionShape / probes/module_law.rq over the finite rank-1 witness). Typed rec:reduct:two:operation:record. It makes the D24 module decomposition COMPLETE and checkable: the additive reduct is the vector abelian group, the base ring is the external ring, the scalar-action morphism is the gluing law, and the ModuleScalarActionShape tooth is what proves the action really lands in M (R x M -> M) in a concrete model. Provenance quartet + @rel:authority SYN on the record. [S] class:action / order:interaction / genus:scalar / species:action + the @rel:connects predicate UNATTESTED -> §7.2 sign-off." .

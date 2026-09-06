@@ -1,0 +1,101 @@
+# =====================================================================================
+# field.shapes.ttl — the FIELD rung's per-law SHACL tooth (W2 · SP0 · Stage 3a, T-FIELD).
+# =====================================================================================
+# The two-operation MULTIPLICATIVE-INVERSE tooth of the field rung, authored into its OWN per-rung shapes
+# file (shapes/<rung>.shapes.ttl, the T-2OP-INFRA lockstep convention that keeps parallel rung executors
+# off a shared shapes/algebra.shapes.ttl write race; run-algebra-checks.sh globs shapes/*.shapes.ttl and
+# merges them into ONE shapes graph, so this tooth is loaded, validated and 0-focus-gated alongside the
+# base spine teeth and the ring tooth). It is the two-operation MULTIPLICATIVE analogue of the one-operation
+# GroupInverseShape (shapes/algebra.shapes.ttl:307) and the folded counterpart of fnd:FieldMultInverseShape
+# (basicttl/foundation/foundation.shapes.ttl:824): a sh:sparql clause over the reified finite Cayley table
+# + the multiplicative-inverse PAIRING claims, sh:targetClass rec:model:record (NEVER sh:targetNode, the
+# design §4 anti-pattern the runner's 0-focus gate detects).
+#
+# WHAT IT CHECKS. The GENUINE-INVERSE discipline (T4/SP2, algebra_rings.ttl:824-857, 'a claimed inverse
+# that does not undo -> RED'): over a field model's reified MULTIPLICATIVE Cayley table (the · rows,
+# discriminated by @rel:operation:discriminator, records_twoop.ttl), for every CLAIMED multiplicative-
+# inverse pairing (x, inv(x)) scoped to the model, there MUST exist a multiplicative row x·inv(x) = 1 AND a
+# row inv(x)·x = 1, where 1 is the model's @rel:one:element. It reddens when a claimed pairing does NOT
+# two-sidedly reach the field's one — the multiplicative-inverse law FAILS for that element. It re-homes
+# fnd:FieldMultInverseShape constraint A (genuineness) / q_field_mult_inverse (algebra_rings.ttl:258-262)
+# into the folded stratified idiom.
+#
+# WHY GENUINENESS (constraint A) AND NOT COMPLETENESS (constraint B). The design §4 fixture-polarity gate
+# demands ONE biting tooth per per-rung shapes file with a failing negative that flips it (the ring rung
+# carries the single RingDistributivityShape). The GENUINE-INVERSE branch is the one the task names ('a
+# claimed inverse not multiplying to 1 -> RED') and the one whose RED->GREEN is cleanest over the finite
+# GF(3) witness: the positive declares the genuine self-inverse pairings 1^-1=1 and 2^-1=2 (both reaching
+# 1), the negative perturbs the single multiplicative row 2·2 (2 -> 2 instead of 1) so the CLAIMED pairing
+# 2^-1=2 no longer multiplies to 1 and the tooth bites. (fnd's completeness branch B — every nonzero
+# element carries a pairing — is a fnd class-general refinement; the folded fixture-polarity RED->GREEN
+# rides the genuineness branch, exactly as the group rung's GroupInverseShape rides the reified table.)
+#
+# TWO-TABLE / ONE-OP-TEETH ISOLATION. As the ring rung: the folded two-operation rows are scoped
+# @rel:structure -> a per-model REIFIED-TABLE node (linked from the model by @rel:reified:table,
+# fixtures/field_pos.ttl), keeping the discriminated rows OUT of the one-operation per-law teeth's
+# model-scoped `@rel:structure = model` scan (the T4/T5 isolation of algebra_rings.ttl:79, here via a
+# distinct structure NODE). This tooth reaches the multiplicative rows THROUGH the model's
+# @rel:reified:table link, so its focus is still rec:model:record (data-graph focus = the field model-record
+# class, vacuous since it declares no @rel:reified:table / inverse pairings; the finite GF(3) witness in
+# fixtures/ is where it bites).
+#
+# RED->GREEN (design §4 fixture polarity). fixtures/field_pos.ttl (GF(3)=Z/3, the genuine field, every
+# nonzero element self-inverse with a reified multiplicative row reaching 1) conforms (0 rows).
+# fixtures/field_neg.ttl (the SAME GF(3) model with the SINGLE multiplicative row 2·2 perturbed from 1 to
+# 2, so the CLAIMED pairing 2^-1=2 reads 2·2 = 2 != 1) makes the pairing fail — the multiplicative inverse
+# of 2 does not reach the one — so >= 1 row and conforms True->False. The probe of record
+# probes/field_law.rq is the executable SPARQL twin.
+#
+# Prefix labels follow the fold-tree convention (shapes/algebra.shapes.ttl:22-35 / ring.shapes.ttl): the
+# SHACL namespace is labelled `constraint:` and record ladder `rec:` — same IRIs as sh:/rec:, so pyshacl is
+# unaffected. Full runtime Linnaean-ladder IRIs (relation:*, the algebra discriminators) are written
+# VERBATIM inside the sh:select string (SPARQL does not inherit the file's @prefix, exactly as the base
+# spine teeth and ring.shapes.ttl do).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§4 per-law teeth, §6 fan-out).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:258-262 (fnd:lawMultInverse) + foundation.shapes.ttl:824
+# (fnd:FieldMultInverseShape / q_field_mult_inverse over fnd:fieldModel / fnd:MultInversePairing).
+
+@prefix constraint:  <http://www.w3.org/ns/shacl#> .
+@prefix schema:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix relation:    <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:model:record targeted:
+@prefix rec:         <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# FieldMultInverseShape — the field rung's characteristic two-operation tooth (genuine multiplicative
+# inverse: every claimed pairing x<->inv(x) two-sidedly reaches the one, x·inv(x)=1 AND inv(x)·x=1) over
+# the reified GF(3) multiplicative table. sh:targetClass rec:model:record (NEVER sh:targetNode). The
+# sh:sparql binds a claimed multiplicative-inverse pairing (@rel:pairing:model $this,
+# @rel:pairing:element x, @rel:pairing:inverse y), the model's @rel:one:element (the multiplicative one 1)
+# and @rel:reified:table node, and reddens (FILTER NOT EXISTS) when there is no multiplicative row
+# x·y=1 or no row y·x=1 over that reified-table node — the claimed inverse does not multiply to the field's
+# one. Focus in the data graph = the field model-record class (vacuous, no pairings -> conforms); it bites
+# on the finite GF(3) witnesses in fixtures/. Proven by injection: fixtures/field_neg.ttl (2·2 perturbed
+# 1->2) flips conforms True->False; fixtures/field_pos.ttl stays GREEN.
+# =====================================================================================
+constraint:FieldMultInverseShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Multiplicative-inverse violation (field): a claimed multiplicative-inverse pairing (x, inv(x)) of this model does NOT two-sidedly reach the field's one over the reified multiplicative Cayley table — there is no row x·inv(x) = 1 or no row inv(x)·x = 1, so the claimed inverse is not a genuine two-sided multiplicative inverse (re-homes fnd:FieldMultInverseShape constraint A / q_field_mult_inverse, algebra_rings.ttl:258-262; the T4/SP2 genuine-inverse discipline: a claimed inverse that does not undo -> RED)." ;
+        constraint:select """SELECT $this ?x ?y WHERE {
+  $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:reified:table> ?t ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:one:element> ?one .
+  ?pair <urn:silmaril:type:graph:instance:instruction:code:property:relation:pairing:model> $this ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:pairing:element> ?x ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:pairing:inverse> ?y .
+  FILTER NOT EXISTS {
+    ?xy <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> ?t ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:operation:discriminator> <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical> ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?one .
+    ?yx <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> ?t ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:operation:discriminator> <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical> ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?y ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?x ;
+        <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?one .
+  }
+}""" ] ;
+    schema:comment "The FieldMultInverseShape is the added-law tooth of the FIELD rung (the two-sided multiplicative inverse, the nonzero elements form a group under ·) as a SHACL shape (design §4 'per-law teeth ... on a SHAPE not only a probe'), the two-operation MULTIPLICATIVE analogue of the one-operation GroupInverseShape (shapes/algebra.shapes.ttl:307) and the folded counterpart of fnd:FieldMultInverseShape (foundation.shapes.ttl:824). It targets rec:model:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) so the field model-record class (spine/field.ttl, punned owl:Class + rec:model:record) is a counted data-graph focus and the finite GF(3) witnesses (fixtures/) are where it bites. The sh:sparql implements the GENUINE-INVERSE discipline (T4/SP2, algebra_rings.ttl:824-857): it binds a CLAIMED multiplicative-inverse pairing (@rel:pairing:model $this, @rel:pairing:element x, @rel:pairing:inverse y), the model's @rel:one:element (the multiplicative one 1) and its @rel:reified:table node, and reddens (FILTER NOT EXISTS) when there is no multiplicative row x·y=1 OR no row y·x=1 over that reified-table node — i.e. the claimed inverse does NOT two-sidedly multiply to the field's one, so the multiplicative-inverse law fails for that element. It selects multiplicative rows by the multiplicative @rel:operation:discriminator (records_twoop.ttl) and reaches the rows THROUGH @rel:reified:table (not @rel:structure = model) precisely so the discriminated two-operation rows stay OUT of the one-operation per-law teeth's model-scoped `@rel:structure = model` scan, avoiding false cross-table reddening (the T4/T5 isolation of algebra_rings.ttl:79). fixtures/field_pos.ttl (GF(3), every nonzero element self-inverse with a reified multiplicative row reaching 1: 1·1=1, 2·2=1; pairings 1^-1=1, 2^-1=2) conforms; fixtures/field_neg.ttl (the single multiplicative row 2·2 perturbed 1->2, so the claimed pairing 2^-1=2 reads 2·2 = 2 != 1) reddens — the True->False flip probes/field_law.rq records, now also on a dedicated SHACL shape. Re-homes fnd:FieldMultInverseShape constraint A / q_field_mult_inverse (algebra_rings.ttl:258-262) as an intensional SHACL law-check (D25 no-regression: BOTH probe AND shape). The vacuously-satisfied focus (the field model-record class, no @rel:reified:table / no pairings) keeps the data graph GREEN; only a model naming a claimed inverse pairing that does not reach the one reddens." .

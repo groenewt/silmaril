@@ -1,0 +1,98 @@
+# =====================================================================================
+# vector_space.shapes.ttl — the VECTOR-SPACE rung's per-law SHACL tooth (W2 · SP0 · Stage 3a, T-VECTORSPACE).
+# =====================================================================================
+# The FIELD-SCALARS tooth of the vector-space rung, authored into its OWN per-rung shapes file
+# (shapes/<rung>.shapes.ttl, the T-2OP-INFRA lockstep convention that keeps parallel rung executors off a
+# shared shapes/algebra.shapes.ttl write race; run-algebra-checks.sh globs shapes/*.shapes.ttl and merges
+# them into ONE shapes graph, so this tooth is loaded, validated and 0-focus-gated alongside the base spine
+# teeth, the ring/field teeth and the module tooth). It is the folded counterpart of fnd:VectorSpaceAxiomsShape
+# (basicttl/foundation/foundation.shapes.ttl; q_vectorspace_axioms, algebra_rings.ttl:581) restricted to its
+# distinguishing FIELD-SCALARS requirement, and the vector-space-rung analogue of the ring
+# RingDistributivityShape / field FieldMultInverseShape / module ModuleScalarActionShape: a sh:sparql clause
+# over the vector-space model's declared scalar structure, sh:targetClass rec:model:record (NEVER
+# sh:targetNode, the design §4 anti-pattern the runner's 0-focus gate detects).
+#
+# WHAT IT CHECKS. The FIELD-SCALARS discipline (the scalar ring is a FIELD — the sole law a vector space adds
+# over a module, fnd:lawFieldScalars, algebra_rings.ttl:270-273): over a vector-space model's declared scalar
+# structure (@rel:scalar:field -> the scalar structure), that structure MUST be a field-typed structure
+# (@typ:field:scalar:structure). It reddens when a vector-space model's declared scalar structure is NOT a
+# field-typed structure — i.e. the scalars are drawn from a mere ring, so the model is a MODULE, not a vector
+# space (the field-scalars law FAILS). It re-homes fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms's
+# requirement that fnd:scalarField be a fnd:Field, not merely a ring (algebra_rings.ttl:204-208,581), folding
+# its probe-of-record polarity (a scalar structure that is a non-field ring).
+#
+# WHY FIELD-SCALARS (scalars-form-a-field) AND NOT THE UNIT LAW / BI-DISTRIBUTIVITY. The design §4
+# fixture-polarity gate demands ONE biting tooth per per-rung shapes file with a failing negative that flips
+# it (the ring rung carries the single RingDistributivityShape, the field rung the single FieldMultInverseShape,
+# the module rung the single ModuleScalarActionShape). The FIELD-SCALARS branch is EXACTLY the vector-space
+# rung's OWN added law (fnd:VectorSpace fnd:addsLaw fnd:lawFieldScalars, the module->vector-space upgrade,
+# algebra_rings.ttl:585) and the one whose RED->GREEN is cleanest over the finite 1-dimensional witness: the
+# positive declares a genuine field scalar structure (@typ:field:scalar:structure — GF(3) as a field), the
+# negative retypes that single scalar structure to a non-field ring (@typ:ring:scalar:structure) and the tooth
+# bites. The unit-law / bi-distributivity / scalar-action-typing CONTENT is the INHERITED module scalar-action
+# law, already teeth-proved by the module rung's ModuleScalarActionShape (which DOES focus a vector-space model
+# — a vector space IS a module, so its scalar actions must land in V); the vector-space rung's dedicated tooth
+# rides its DISTINGUISHING law, exactly as the field rung rides the multiplicative-inverse upgrade over the
+# ring's distributivity.
+#
+# FIELD-SCALARS / MODULE-TEETH & RING/FIELD-TEETH ISOLATION. A vector space carries NEITHER a merged +/·
+# Cayley table scoped @rel:structure -> the model NOR a @rel:reified:table: its scalar structure is named
+# @rel:scalar:field -> a field-typed structure and its scalar actions are scoped @rel:action:model -> the model
+# (the module idiom). So the one-operation per-law teeth (which require a @rel:structure -> model cell) never
+# bind on a vector-space model, and RingDistributivityShape / FieldMultInverseShape (which require a
+# @rel:reified:table on $this) never bind either. The MODULE tooth ModuleScalarActionShape (walking
+# @rel:action:model -> the model) DOES bind — and is satisfied in BOTH polarities (the witness's scalar
+# actions land in V in both pos and neg). This tooth's focus is rec:model:record (data-graph focus = the
+# vector-space model-record class, vacuous since it declares no @rel:scalar:field object — only an
+# owl:Restriction; the finite 1-dimensional witness in fixtures/ is where it bites). The scalar structure node
+# is typed @typ:field:scalar:structure / @typ:ring:scalar:structure (NOT rec:model:record), so it is not a
+# focus of any other tooth — no false cross-reddening.
+#
+# RED->GREEN (design §4 fixture polarity). fixtures/vector_space_pos.ttl (the 1-dimensional space {V0,V1,V2}
+# over the GF(3) FIELD, scalar structure typed @typ:field:scalar:structure) conforms (0 rows).
+# fixtures/vector_space_neg.ttl (the SAME space with the SINGLE scalar structure retyped
+# @typ:ring:scalar:structure — the scalars drawn from a non-field ring) makes the field-scalars law fail — so
+# >= 1 row and conforms True->False. The probe of record probes/vector_space_law.rq is the executable SPARQL
+# twin. Note ONLY this tooth flips between pos and neg (the scalar actions are byte-identical and still land in
+# V, so ModuleScalarActionShape stays GREEN in both).
+#
+# Prefix labels follow the fold-tree convention (shapes/algebra.shapes.ttl:22-35 / module.shapes.ttl): the
+# SHACL namespace is labelled `constraint:` and record ladder `rec:` — same IRIs as sh:/rec:, so pyshacl is
+# unaffected. Full runtime Linnaean-ladder IRIs (relation:* / type:*) are written VERBATIM inside the
+# sh:select string (SPARQL does not inherit the file's @prefix, exactly as the base spine teeth and
+# module.shapes.ttl do).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§4 per-law teeth, §6 fan-out).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:270-273 (fnd:lawFieldScalars) + fnd:VectorSpaceAxiomsShape /
+# q_vectorspace_axioms (algebra_rings.ttl:581,204-208 over fnd:vectorSpaceModel / fnd:scalarField).
+
+@prefix constraint:  <http://www.w3.org/ns/shacl#> .
+@prefix schema:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix relation:    <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix type:        <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:model:record targeted:
+@prefix rec:         <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# VectorSpaceScalarFieldShape — the vector-space rung's characteristic tooth (FIELD-SCALARS: the declared
+# scalar structure of a vector-space model must be a field-typed structure, not a mere ring) over the reified
+# 1-dimensional witness. sh:targetClass rec:model:record (NEVER sh:targetNode). The sh:sparql binds a
+# vector-space model's declared scalar structure (@rel:scalar:field $this ?f) and reddens (FILTER NOT EXISTS)
+# when ?f is NOT a @typ:field:scalar:structure — the scalars are not drawn from a field. Focus in the data
+# graph = the vector-space model-record class (vacuous, no @rel:scalar:field object -> conforms); it bites on
+# the finite 1-dimensional witnesses in fixtures/. Proven by injection: fixtures/vector_space_neg.ttl (scalar
+# structure retyped @typ:ring:scalar:structure) flips conforms True->False; fixtures/vector_space_pos.ttl
+# stays GREEN.
+# =====================================================================================
+constraint:VectorSpaceScalarFieldShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Field-scalars violation (vector space): this model declares a scalar structure (@rel:scalar:field) that is NOT a field-typed structure — its scalars are drawn from a mere ring, so the field-scalars law fails and the model is a MODULE, not a vector space (re-homes fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms's requirement that fnd:scalarField be a fnd:Field, not merely a ring, algebra_rings.ttl:270-273,204-208,581; the module->vector-space upgrade: the scalar ring must be a field -> RED when it is not)." ;
+        constraint:select """SELECT $this ?f WHERE {
+  $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:scalar:field> ?f .
+  FILTER NOT EXISTS {
+    ?f a <urn:silmaril:type:graph:instance:instruction:code:property:type:field:scalar:structure> .
+  }
+}""" ] ;
+    schema:comment "The VectorSpaceScalarFieldShape is the added-law tooth of the VECTOR-SPACE rung (the FIELD-SCALARS law: the scalar ring is a field) as a SHACL shape (design §4 'per-law teeth ... on a SHAPE not only a probe'), the folded counterpart of fnd:VectorSpaceAxiomsShape (foundation.shapes.ttl; q_vectorspace_axioms, algebra_rings.ttl:581) restricted to its DISTINGUISHING field-scalars requirement, and the vector-space-rung analogue of the ring RingDistributivityShape / field FieldMultInverseShape / module ModuleScalarActionShape. It targets rec:model:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) so the vector-space model-record class (spine/vector_space.ttl, punned owl:Class + rec:model:record) is a counted data-graph focus and the finite 1-dimensional witnesses (fixtures/) are where it bites. The sh:sparql implements the FIELD-SCALARS discipline (the sole law a vector space adds over a module, fnd:lawFieldScalars): it binds a vector-space model's declared scalar structure (@rel:scalar:field $this ?f) and reddens (FILTER NOT EXISTS) when ?f is NOT a @typ:field:scalar:structure — i.e. the model's scalars are drawn from a mere ring, not a field, so the model is a MODULE and the field-scalars law fails. It reads the scalar structure THROUGH @rel:scalar:field (not @rel:structure = model, not @rel:reified:table, not @rel:action:model) precisely so the vector-space field-scalars check stays OUT of the one-operation per-law teeth's model-scoped scan, the ring/field two-operation teeth's reified-table scan, AND the module tooth's action scan, avoiding false cross-tooth reddening (the T4/T5 isolation of algebra_rings.ttl:79); the INHERITED module tooth ModuleScalarActionShape (walking @rel:action:model) still checks the vector space's scalar-action typing K x V -> V, satisfied in both polarities. fixtures/vector_space_pos.ttl (the 1-dimensional space {V0,V1,V2} over the GF(3) FIELD, scalar structure typed @typ:field:scalar:structure) conforms; fixtures/vector_space_neg.ttl (the single scalar structure retyped @typ:ring:scalar:structure, the scalars drawn from a non-field ring) reddens — the True->False flip probes/vector_space_law.rq records, now also on a dedicated SHACL shape. Re-homes fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms (algebra_rings.ttl:270-273,581) as an intensional SHACL law-check (D25 no-regression: BOTH probe AND shape), folding its scalar-field-must-be-a-field polarity. The vacuously-satisfied focus (the vector-space model-record class, no @rel:scalar:field object) keeps the data graph GREEN; only a model declaring a scalar structure that is not a field reddens." .

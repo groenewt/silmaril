@@ -1,0 +1,270 @@
+# =====================================================================================
+# ring.ttl — the RING rung END-TO-END, the two-operation D24 ring-as-reducts showcase
+# (W2 · SP0 · Stage 3a, T-RING). Folds FROM fnd:Ring (basicttl/foundation/algebra_rings.ttl:505+).
+# =====================================================================================
+# The fully-worked stratified TWO-OPERATION ring rung, the exemplar the ring/field/module/vector
+# siblings replicate. It realises the D24 A0 stratification (Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥
+# ProofArtifact) for a structure with TWO binary operations (+ and ·) on ONE carrier, in the D26
+# full-ladder grammar: a theory record (S,Omega,E) naming sigTwoBinary and the eight-law equation
+# set, the B4 TWO model planes (a [V]-shaped denotatum + a declaration-record model class linked by
+# @rel:denotes), the eight ring axiom records (each verbatim-derived from the fnd: law + the one-op
+# skeleton), the ring's CHARACTERISTIC two-operation law distributivity decomposed into TWO equation
+# records (left x·(y+z)=x·y+x·z, right (y+z)·x=y·x+z·x — the two-sided split, design §1.6), a theorem
+# (zero-absorption) + certificate, the triad-envelope gate, and the provenance quartet on records only.
+#
+# THE D24 RING-AS-REDUCTS SHOWCASE. A ring is, by A6, the additive-abelian-group reduct PLUS the
+# multiplicative-monoid reduct PLUS distributivity (the interaction law gluing them). Those reduct
+# EDGES — ring model-record -> the existing abelian_group model-record (the + structure) and ring
+# model-record -> the existing monoid model-record (the · structure), with distributivity as the
+# connecting morphism — are minted in reducts_twoop.ttl (a NEW file, avoiding a write race on the
+# committed reducts.ttl). This file mints the ring theory/denotatum/model-record/axioms/equations/
+# theorem/certificate/gate + provenance; the finite GF(3)=Z/3 witness tables are fixtures/ring_pos.ttl
+# (D24 four-planes: named witnesses are EVIDENCE, outside the ontology data glob) with the matching
+# distributivity-violating negative fixtures/ring_neg.ttl.
+#
+# WHY GF(3). fnd:ringModel (algebra_rings.ttl:652) is the finite field GF(3)=Z/3 viewed as a ring:
+# additive table + : 0/1/2 mod 3, multiplicative table · : 0/1/2 mod 3, every distributivity triple
+# x·(y+z)=x·y+x·z holds. Re-expressed in the folded discriminated-application idiom
+# (rec:application:two:operation:record, records_twoop.ttl) it is finite:checked and keeps the
+# distributivity tooth (shapes/ring.shapes.ttl RingDistributivityShape) non-vacuous and provably biting.
+#
+# ISOLATION (the two-table / one-op-teeth separation). The one-operation per-law teeth
+# (shapes/algebra.shapes.ttl SemigroupAssociativityShape / the commutativity teeth / QuasigroupDivision
+# / ModelShape identity ...) walk `?cell @rel:structure <model> ; @rel:category:first/second/result` with
+# NO operation discriminator; a ring's MERGED +/· rows scoped @rel:structure -> the model would let those
+# teeth mix additive and multiplicative rows and falsely redden (e.g. commutativity would compare an
+# additive 1+2=0 against a multiplicative 2·1=2). So the folded two-operation rows are scoped
+# @rel:structure -> a per-model REIFIED-TABLE node (linked from the model by @rel:reified:table), keeping
+# the discriminated two-operation rows OUT of the one-operation teeth's `@rel:structure = model` scan —
+# the SAME T4/T5 isolation fnd achieved via the distinct fnd:ringStructure predicate (algebra_rings.ttl:79),
+# here achieved via a distinct structure NODE. RingDistributivityShape walks model -> reified-table -> rows,
+# selecting the additive and multiplicative rows by @rel:operation:discriminator (records_twoop.ttl).
+#
+# HONESTY (Praeriehund; algebra_rings.ttl:30-39). EVERYTHING folded here is SYN: the two-operation line
+# is FULLY ABSENT from Helios as algebra (02_algebra_tower.md:134-136 "No algebraic ring, field (only
+# record-field), or module (only code-module)"), authored as CITED STANDARD RING THEORY (the Directive
+# 19/20 precedent: mathematics is fact and liftable, cite the source, never pretend a Helios lift). So
+# @rel:authority "SYN" on every RECORD, @rel:proof:status "literature:backed" on the theory (the
+# UNIVERSAL ring theory is cited standard mathematics, NOT finite:checked-from-engine; only the finite
+# GF(3) WITNESS in fixtures/ carries finite:checked). Every [S] token (no runtime precedent) is flagged
+# in an rdfs:comment for the §7.2 maintainer sign-off packet (T-PANEL).
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:), subdomain 'ring'. [S] tokens
+# flagged; [V]-shaped tokens (class:ring, family:operation) echo the group denotatum shape. B1 n/a (ring
+# is not a compound token). B4 two-planes (denotatum kingdom:type…component:type + model-record
+# kingdom:class…:model…component:class). B3(a) additive Stage-3a (fnd:Ring stays byte-intact; T-RETIRE
+# is Stage 3c) — skos:exactMatch fnd:Ring on the denotatum + @rel:historical:identity fnd:Ring on the theory.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.5, §2, §6 fan-out).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:246-262,284-312,325-333,361-372,505-528,652-660.
+# ADDITIVE — no fnd:/foundation/* edit (demolition is Stage 3c). Consumes (do not rewrite):
+# records.ttl (rec:* classes), records_twoop.ttl (rec:application:two:operation:record + discriminators),
+# signatures_twoop.ttl (sigTwoBinary), operations_twoop.ttl (+ · 0 1), spine/monoid.ttl + spine/
+# abelian_group.ttl (the reduct model-record targets, via reducts_twoop.ttl). Tooth: shapes/ring.shapes.ttl
+# RingDistributivityShape + probes/ring_distributivity.rq; fixtures/ring_pos.ttl + fixtures/ring_neg.ttl.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified distributivity term atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:ring:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+#     E = the EIGHT ring laws (closure / add-assoc / add-comm / add-identity / mult-assoc / mult-identity /
+#     distributivity / additive-inverse), each an axiom record below, verbatim-derived from the fnd: law.
+# =====================================================================================
+alg:ring:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:ring:genus:presented:species:ring:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "ring theory (S,Omega,E)" ;
+    rel:notation   "ring" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:ring:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:ring:genus:presented:species:ring:component:definition:instance:canonical" ;
+    rel:signature  alg:semiring:kingdom:definition:phylum:specification:class:signature:order:two:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:ring:kingdom:axiom:phylum:operation:class:closure:order:two:binary:family:ring:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:ring:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:ring:genus:additive:species:equality:component:statement:instance:canonical ,
+                   alg:ring:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:ring:genus:additive:species:equality:component:statement:instance:canonical ,
+                   alg:ring:kingdom:axiom:phylum:operation:class:identity:order:binary:family:ring:genus:additive:species:member:component:statement:instance:canonical ,
+                   alg:ring:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:ring:genus:multiplicative:species:equality:component:statement:instance:canonical ,
+                   alg:ring:kingdom:axiom:phylum:operation:class:identity:order:binary:family:ring:genus:multiplicative:species:member:component:statement:instance:canonical ,
+                   alg:ring:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:ring:genus:interaction:species:distribution:component:statement:instance:canonical ,
+                   alg:ring:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:ring:genus:additive:species:inverse:component:statement:instance:canonical ;
+    rel:reduct     alg:semiring:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:semiring:genus:presented:species:semiring:component:definition:instance:canonical ;
+    rel:denotatum  alg:ring:kingdom:type:phylum:algebra:class:ring:order:two:binary:family:operation:genus:axiomatic:species:ring:component:type:instance:canonical ;
+    rel:assignment alg:ring:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:ring:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:Ring ;
+    skos:closeMatch fnd:Ring ;
+    rdfs:comment "[S] The presented ring THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6), folding fnd:Ring (algebra_rings.ttl:505-528). S,Omega = @rel:signature sigTwoBinary (signatures_twoop.ttl, Sigma={+,·,0,1}, one carrier sort S, two binary operations, two nullary units); E = @rel:equation the EIGHT ring laws — two-op closure, additive associativity, additive commutativity, additive identity, multiplicative associativity, multiplicative identity, distributivity and additive inverse — each an axiom record below verbatim-derived from the fnd: law (algebra_rings.ttl:240-262,284-312,361-372) plus the one-operation skeleton (spine/monoid.ttl, spine/abelian_group.ttl). The ring's CHARACTERISTIC two-operation law is DISTRIBUTIVITY (· distributes over +), the interaction that glues the additive and multiplicative structures; it is decomposed into the TWO equation records distribution-left (x·(y+z)=x·y+x·z) and distribution-right ((y+z)·x=y·x+z·x) below (design §1.6 two-sided-law split, closure.ttl:185-192 case precedent), which are ALSO the connecting morphism of the D24 ring-as-reducts decomposition (reducts_twoop.ttl). It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 ring denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the semiring theory (the forgetful theory-morphism ring |-> semiring, forgetting additive inverse; a dangling reference until the semiring sibling lands, valid RDF). D24 first-class metadata: @rel:validation:mode 'finite:table' (ring models are validated by the finite GF(3) Cayley tables, matching fnd:ringModel) and @rel:proof:status 'literature:backed' (the UNIVERSAL ring theory is cited standard ring theory, NOT finite:checked-from-engine — only the finite GF(3) WITNESS in fixtures/ is finite:checked, honest per Praeriehund). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24). SYN: the two-operation line is FULLY ABSENT from Helios as algebra (algebra_rings.ttl:30-35), authored as cited standard ring theory. Historical-identity BRIDGE: @rel:historical:identity fnd:Ring + skos:closeMatch fnd:Ring (Stage-3a ADDITIVE — fnd:Ring stays byte-intact; T-RETIRE stubs it in Stage 3c); the denotatum's skos:exactMatch fnd:Ring keeps inbound SP1/SP2/SP3 fnd:Ring references resolvable through the fold. Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision) + ProofStatusShape + ValidationModeShape + ProvenanceShape. [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object 'a ring', NO provenance. skos:exactMatch fnd:Ring
+#      (the retire-map bridge SP1/SP2/SP3 fnd:Ring references resolve through; BridgeShape focus).
+# =====================================================================================
+alg:ring:kingdom:type:phylum:algebra:class:ring:order:two:binary:family:operation:genus:axiomatic:species:ring:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "ring" ;
+    rel:notation   "ring" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:ring:kingdom:type:phylum:algebra:class:ring:order:two:binary:family:operation:genus:axiomatic:species:ring:component:type:instance:canonical" ;
+    skos:exactMatch fnd:Ring ;
+    rdfs:comment "[S] The ring DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a ring' itself, carrying its canonical @rel:identifier and @rel:notation ONLY — and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object; V1DenotatumHygieneShape maxCount-0 tooth). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes. skos:exactMatch fnd:Ring is the retire-map alias bridge (design §5.2, BridgeShape focus): it keeps every inbound SP1/SP2/SP3 fnd:Ring reference (e.g. a number-tower prim:Integer rdfs:subClassOf / groundsIn fnd:Ring) resolvable THROUGH the fold while fnd:Ring stays byte-intact until Stage-3c T-RETIRE — the two-operation analogue of the group denotatum skos:exactMatch fnd:Group (bridges.ttl:81). Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. [S] order:two:binary / genus:axiomatic UNATTESTED design-default tokens (order:two:binary echoes sigTwoBinary's two-binary profile), flagged for §7.2 sign-off." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction bundle +
+#      provenance + disjointness teeth). [S] class:model/genus:governed/component:class. Its ADDITIVE
+#      structure is an abelian group + its MULTIPLICATIVE structure is a monoid (the D24 ring-as-reducts,
+#      reducts_twoop.ttl); the reduct edges are minted there, this class is their subject.
+# =====================================================================================
+alg:ring:kingdom:class:phylum:algebra:class:model:order:declarative:family:ring:genus:governed:species:ring:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "ring model class" ;
+    rel:notation "ring model" ;
+    rel:denotes alg:ring:kingdom:type:phylum:algebra:class:ring:order:two:binary:family:operation:genus:axiomatic:species:ring:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:zero:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:one:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:additive:operation ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:multiplicative:operation ] ;
+    owl:disjointWith alg:semiring:kingdom:class:phylum:algebra:class:model:order:declarative:family:semiring:genus:governed:species:semiring:component:class:instance:canonical ,
+                     alg:field:kingdom:class:phylum:algebra:class:model:order:declarative:family:field:genus:governed:species:field:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The ring MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the [S] denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction) makes 'a ring is a set with exactly one carrier, exactly one additive identity 0, exactly one multiplicative identity 1, exactly one additive operation + and exactly one multiplicative operation ·' a graph fact via five cardinality-1 owl:Restrictions on @rel:carrier / @rel:zero:element / @rel:one:element / @rel:additive:operation / @rel:multiplicative:operation (the closure.ttl datatype:record cardinality idiom; the two-operation counterpart of the monoid model-record's single identity/operation bundle, spine/monoid.ttl). The D24 RING-AS-REDUCTS decomposition — this ring model-record's ADDITIVE structure IS an abelian group (the existing abelian_group model-record) and its MULTIPLICATIVE structure IS a monoid (the existing monoid model-record), glued by distributivity — is minted as forgetful/structure reduct edges in reducts_twoop.ttl with this class as their subject (bridge-never-duplicate: the reduct edges live in ONE file, not duplicated here). owl:disjointWith the (Stage-3a sibling) semiring and field model-record classes (forward references — T-SEMIRING / T-FIELD mint them; the disjointness triple stands regardless, and DifferentFromWitnessShape reddens any sameAs-collapse) — the D25 homonym/distinction teeth: a ring is not a semiring (no additive inverses) and not a field (no multiplicative inverses / mult-commutativity). Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete GF(3) model can be typed against it) AND a rec:model:record / rec:declaration:record (so ModelShape / ProvenanceShape sh:targetClass count it as a data-graph focus and the 0-focus gate is satisfied) — legal OWL2 metaclass punning, exactly as spine/monoid.ttl / spine/group.ttl and DISTINCT from the frame.ttl domain-class-punning anti-pattern V1 forbids. On this focus ModelShape's identity sh:sparql and RingDistributivityShape are vacuously satisfied (the class declares no @rel:identity:element / @rel:reified:table / reified cells); the finite GF(3) witness in fixtures/ring_pos.ttl is where RingDistributivityShape bites (and fixtures/ring_neg.ttl is where its distributivity-violating negative flips it). [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM records — the eight members of E (design §2c — minimal, NO denotatum/gate/
+#     provenance, NO certificate; axiom != theorem is structural, rec:axiom:record owl:disjointWith
+#     rec:theorem:record, records.ttl:119). Each verbatim-derives its fnd: law (algebra_rings.ttl).
+#     Six are BASELINE two-operation laws (the additive commutative monoid + multiplicative monoid that
+#     PRESENT the ring); distributivity is the CHARACTERISTIC two-op interaction; additive inverse is the
+#     step over a semiring (the additive monoid upgraded to an abelian group).
+# =====================================================================================
+alg:ring:kingdom:axiom:phylum:operation:class:closure:order:two:binary:family:ring:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "ring two-operation closure" ;
+    rel:notation "for all x,y in S: x+y in S and x·y in S" ;
+    rdfs:comment "[S] The two-operation CLOSURE / totality axiom of the ring theory (rec:axiom:record), folding fnd:lawTwoOpClosure (algebra_rings.ttl:240-244): both binary operations + and · are total functions S,S -> S, so for all x,y in the carrier S the sum x+y and the product x·y are defined and lie in S. A membership/totality statement, NOT a left=right equation — an axiom record only, NOT a rec:equation:record, carrying NO @rel:left/@rel:right. Minimal per design §2c: no denotatum / gate / provenance, no @rel:certificate (an axiom is asserted, not proved). A member of the ring theory's equation set E. SYN, cited standard universal algebra." .
+
+alg:ring:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:ring:genus:additive:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "ring additive associativity" ;
+    rel:notation "(a+b)+c = a+(b+c)" ;
+    rdfs:comment "[S] The ADDITIVE-ASSOCIATIVITY axiom of the ring theory (rec:axiom:record), folding fnd:lawAddAssoc (algebra_rings.ttl:284-288): the addition + is associative, (a+b)+c = a+(b+c), because a ring's additive part is an abelian GROUP (at minimum a commutative monoid), which demands associativity. genus:additive keeps it distinct from the multiplicative-associativity axiom (genus:multiplicative) on the same class:associativity — the operation-plane analogue of fnd:additiveOp vs fnd:multiplicativeOp. A BASELINE member of E (the additive commutative-monoid part), NOT the ring's characteristic added law (that is distributivity as the two-op interaction; the step over a semiring is additive inverse). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard ring theory." .
+
+alg:ring:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:ring:genus:additive:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "ring additive commutativity" ;
+    rel:notation "a+b = b+a" ;
+    rdfs:comment "[S] The ADDITIVE-COMMUTATIVITY axiom of the ring theory (rec:axiom:record), folding fnd:lawAddComm (algebra_rings.ttl:290-294): the addition + commutes, a+b = b+a, because a ring's additive part is an ABELIAN group. It is ADDITIVE commutativity ONLY — a ring's MULTIPLICATIVE operation is NOT required to commute (noncommutative rings, e.g. matrix rings, are legitimate algebra; multiplicative commutativity is added exactly at the FIELD rung, fnd:lawFieldMultComm). genus:additive marks the operation. A BASELINE member of E (the additive commutative-monoid part). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard ring theory." .
+
+alg:ring:kingdom:axiom:phylum:operation:class:identity:order:binary:family:ring:genus:additive:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "ring additive identity (two-sided zero)" ;
+    rel:notation "exists 0: 0+x = x and x+0 = x" ;
+    rdfs:comment "[S] The two-sided ADDITIVE-IDENTITY axiom of the ring theory (rec:axiom:record), folding fnd:lawAddIdentity (algebra_rings.ttl:296-300): there exists a two-sided additive identity 0 (the zero element, model-plane @rel:zero:element / fnd:hasZeroElement) with 0+x = x AND x+0 = x for every carrier element x — the neutral of the additive abelian group. genus:additive marks the operation (distinct from the multiplicative-identity axiom's genus:multiplicative). A BASELINE member of E. Held here as a single parent axiom (two-sidedness noted) rather than decomposed into left/right equation records — only the ring's CHARACTERISTIC law distributivity is decomposed at this rung (design §1.6; group.ttl treats inherited two-sided identity likewise). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard ring theory." .
+
+alg:ring:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:ring:genus:multiplicative:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "ring multiplicative associativity" ;
+    rel:notation "(a·b)·c = a·(b·c)" ;
+    rdfs:comment "[S] The MULTIPLICATIVE-ASSOCIATIVITY axiom of the ring theory (rec:axiom:record), folding fnd:lawMultAssoc (algebra_rings.ttl:302-306): the multiplication · is associative, (a·b)·c = a·(b·c), because a ring's multiplicative part is a MONOID. genus:multiplicative keeps it distinct from the additive-associativity axiom (genus:additive) sharing class:associativity — the operation-plane analogue of fnd:multiplicativeOp vs fnd:additiveOp. A BASELINE member of E (the multiplicative-monoid part). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard ring theory." .
+
+alg:ring:kingdom:axiom:phylum:operation:class:identity:order:binary:family:ring:genus:multiplicative:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "ring multiplicative identity (two-sided one)" ;
+    rel:notation "exists 1: 1·x = x and x·1 = x" ;
+    rdfs:comment "[S] The two-sided MULTIPLICATIVE-IDENTITY axiom of the ring theory (rec:axiom:record), folding fnd:lawMultIdentity (algebra_rings.ttl:308-312): there exists a two-sided multiplicative identity 1 (the one element, model-plane @rel:one:element / fnd:hasOneElement) with 1·x = x AND x·1 = x for every carrier element x — the neutral of the multiplicative monoid every ring carries. genus:multiplicative marks the operation (distinct from the additive-identity axiom's genus:additive). A BASELINE member of E. Held as a single parent axiom (two-sidedness noted), not decomposed (only distributivity is decomposed at the ring rung, design §1.6). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard ring theory." .
+
+# --- the CHARACTERISTIC two-operation law: distributivity (its own atom; the interaction that glues
+#     the additive and multiplicative structures; the connecting morphism of the ring-as-reducts). ---
+alg:ring:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:ring:genus:interaction:species:distribution:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "ring distributivity (two-sided)" ;
+    rel:notation "x·(y+z) = x·y + x·z and (y+z)·x = y·x + z·x" ;
+    rel:equation alg:ring:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:ring:genus:interaction:species:distribution:left:component:statement:instance:canonical ,
+                 alg:ring:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:ring:genus:interaction:species:distribution:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] The DISTRIBUTIVITY axiom of the ring theory (rec:axiom:record, the named parent law, no side segment), folding fnd:lawDistributivity (algebra_rings.ttl:246-250): the multiplication · distributes over the addition + on BOTH sides — x·(y+z) = x·y + x·z (left) AND (y+z)·x = y·x + z·x (right). This is the CHARACTERISTIC two-operation law of the ring — the sole law CONNECTING the two operations, the interaction that makes a set with two monoid structures a ring rather than an unrelated pair (Helios has NO +/× distributivity axioms, algebra_rings.ttl:246-250). As a TWO-SIDED law it @rel:equation-decomposes into the TWO reified equation records distribution-left and distribution-right below (design §1.6, §3; closure.ttl:185-192 case precedent; right distributivity does NOT follow from left in a noncommutative ring, so both sides are members of E). It is the D24 ring-as-reducts CONNECTING MORPHISM: the additive-abelian-group reduct and the multiplicative-monoid reduct are glued by exactly this law (reducts_twoop.ttl @rel:connects both). It is a member of the ring theory's equation set E, and its added-law status is teeth-proved CLASS-GENERAL by shapes/ring.shapes.ttl RingDistributivityShape / probes/ring_distributivity.rq over the finite GF(3) reified tables: x·(y+z) != x·y + x·z for some triple -> RED (the probe of record perturbs one multiplicative row so a triple fails). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard ring theory. [S] class:distributivity / genus:interaction / species:distribution UNATTESTED design-default tokens (§7.2 #5) -> sign-off packet." .
+
+alg:ring:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:ring:genus:additive:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "ring additive inverse (two-sided)" ;
+    rel:notation "for all x exists -x: x+(-x) = 0 and (-x)+x = 0" ;
+    rdfs:comment "[S] The two-sided ADDITIVE-INVERSE axiom of the ring theory (rec:axiom:record), folding fnd:lawAdditiveInverse (algebra_rings.ttl:252-256): every element x has an additive inverse -x with x+(-x) = 0 AND (-x)+x = 0 — the additive commutative monoid (S,+,0) of a semiring is UPGRADED to an abelian GROUP. This is the single law RING adds over a SEMIRING (fnd:Ring fnd:addsLaw fnd:lawAdditiveInverse, algebra_rings.ttl:513); the ring's forgetful reduct ring |-> semiring (the theory's @rel:reduct) forgets exactly this law. genus:additive marks the operation (an ADDITIVE inverse over the zero 0, distinct from the FIELD's MULTIPLICATIVE inverse over the one 1). Held as a single parent axiom (two-sidedness noted), not decomposed at this rung (only distributivity is, design §1.6). A member of E. Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard ring theory." .
+
+# =====================================================================================
+# (d) EQUATION records — the two-sided DISTRIBUTIVITY split (design §2d, §1.6). The ring's
+#     characteristic two-operation law reified as an ordered pair per side. distribution-left
+#     (x·(y+z) = x·y+x·z) + distribution-right ((y+z)·x = y·x+z·x). Distinct @rel:left terms so the
+#     EquationRecordShape identity-collision sh:sparql never fires between the twins.
+# =====================================================================================
+alg:ring:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:ring:genus:interaction:species:distribution:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "ring distributivity (left: x·(y+z) = x·y + x·z)" ;
+    rel:notation "x·(y+z) = x·y + x·z" ;
+    rel:left  term:distribution:leftproduct ;
+    rel:right term:distribution:leftsum ;
+    rdfs:comment "[S] The LEFT-DISTRIBUTIVITY law x·(y+z) = x·y + x·z — side 1 of the ring's two-sided distributivity, reified as an equation record (rec:equation:record) with one @rel:left term (the product x·(y+z)) and one @rel:right term (the sum x·y + x·z). A two-sided law mints TWO equation records, one per side (design §1.6, §3; closure.ttl:185-192 precedent). It is the member the distributivity parent axiom @rel:equation-decomposes into and the EquationRecordShape cardinality-1 left/right focus; it is ALSO the arithmetic content the RingDistributivityShape sh:sparql checks over the finite GF(3) reified tables (form x·(y+z) via an additive then a multiplicative row; form x·y + x·z via two multiplicative rows then an additive row; compare). SYN, cited standard ring theory. [S] the species:distribution:left SIDE SEGMENT is UNATTESTED (§7.2 #2 side-segment placement) -> sign-off packet." .
+
+alg:ring:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:ring:genus:interaction:species:distribution:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "ring distributivity (right: (y+z)·x = y·x + z·x)" ;
+    rel:notation "(y+z)·x = y·x + z·x" ;
+    rel:left  term:distribution:rightproduct ;
+    rel:right term:distribution:rightsum ;
+    rdfs:comment "[S] The RIGHT-DISTRIBUTIVITY law (y+z)·x = y·x + z·x — side 2 of the ring's two-sided distributivity, reified as an equation record (rec:equation:record) with one @rel:left term (the product (y+z)·x) and one @rel:right term (the sum y·x + z·x). Its twin is the distribution-LEFT record above; together they are the TWO equation records the ONE two-sided distributivity law decomposes into (design §1.6, §3). Right distributivity does NOT follow from left in a noncommutative ring, so it is an independent member of E (in the commutative GF(3) witness both sides coincide). Distinct @rel:left term (rightproduct) from the left record (leftproduct), so the EquationRecordShape identity-collision sh:sparql does not fire between the twins. SYN, cited standard ring theory. [S] species:distribution:right SIDE SEGMENT UNATTESTED (§7.2 #2) -> sign-off packet." .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate, NEVER an
+#     axiom; the closure.ttl Yoneda theorem/certificate idiom). Ring's natural structure theorem:
+#     the zero element ABSORBS under multiplication (0·x = 0), a consequence of distributivity.
+# =====================================================================================
+alg:ring:kingdom:theorem:phylum:algebra:class:absorption:order:declarative:family:ring:genus:zero:species:absorption:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "ring zero absorption" ;
+    rel:notation "for all x: 0·x = 0 and x·0 = 0" ;
+    rel:certificate alg:ring:kingdom:certificate:phylum:algebra:class:absorption:order:declarative:family:ring:genus:zero:species:absorption:component:statement:instance:canonical ;
+    rel:authority "SYN" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "Theorem, not an additional foundational axiom (design §2f, the closure.ttl Yoneda theorem/certificate idiom): in any ring (S,+,·,0,1) the additive identity 0 ABSORBS under multiplication — 0·x = 0 and x·0 = 0 for every x. It is a DERIVED consequence of distributivity together with the additive-inverse and additive-identity laws (0·x = (0+0)·x = 0·x + 0·x, then adding -(0·x) to both sides gives 0 = 0·x), NOT a new axiom — the D24 A0 ProofArtifact plane. It is the ring's natural structure theorem the distributivity law licenses (the two-operation analogue of the group inverse-uniqueness theorem, spine/group.ttl). It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). Provenance quartet + @rel:authority 'SYN' on the record (the distributivity law it derives from is SYN, algebra_rings.ttl:246-250)." .
+
+alg:ring:kingdom:certificate:phylum:algebra:class:absorption:order:declarative:family:ring:genus:zero:species:absorption:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "ring zero absorption certificate" ;
+    rel:digest:value    "c5970cf3ed73f5fcc4642a78a5cb68f5d4a117ba877c21891fa97d3f807d1977" ;
+    rel:proof:method    "Explicit general mathematical derivation (0·x = (0+0)·x = 0·x + 0·x by right distributivity; add -(0·x) to both sides -> 0 = 0·x); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for ring zero-absorption (design §2f; the closure.ttl certificate idiom): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Ring zero-absorption: in any ring (S,+,·,0,1) for every x in S, 0·x = 0. Proof: 0·x = (0+0)·x = 0·x + 0·x by right distributivity and 0+0=0; adding the additive inverse -(0·x) to both sides gives 0 = 0·x. General mathematical derivation; not proof-assistant checked'), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119)." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:ring:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:ring:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "ring declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:ring:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:ring:genus:reconciled:species:ring:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the ring declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the ring declaration was RECONCILED against its Plane-2 denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the ring rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the ring declaration is reconciled, not merely asserted." .

@@ -1,0 +1,112 @@
+# =====================================================================================
+# reducts_twoop.ttl — the D24 RING-AS-REDUCTS decomposition edges (W2 · SP0 · Stage 3a, T-RING).
+# =====================================================================================
+# D24 A6 (the showcase): "ring = additive-abelian-group reduct + multiplicative-monoid reduct +
+# distributivity". A ring model is, structurally, its ADDITIVE reduct (forget ·, 1, distributivity ->
+# an abelian group) PLUS its MULTIPLICATIVE reduct (forget +, 0, distributivity -> a monoid) PLUS the
+# DISTRIBUTIVITY interaction law that glues the two. This file mints those three edges for the ring
+# rung: the ring model-record's + structure IS the existing abelian_group model-record, its · structure
+# IS the existing monoid model-record (bridge-never-duplicate: the reducts REUSE the committed one-op
+# model-records by IRI, spine/abelian_group.ttl:144 + spine/monoid.ttl:104, never re-mint them), and
+# distributivity (spine/ring.ttl's characteristic axiom) is the connecting morphism.
+#
+# WHY A NEW FILE (not the committed reducts.ttl). reducts.ttl is the committed one-operation block (the
+# seven forgetful reduct edges + three obligation-counting extension morphisms) and is on the maintainer
+# never-edit list; a NEW file avoids a shared-file write race with the parallel rung executors (design
+# §6 fan-out; the same reason signatures_twoop.ttl / operations_twoop.ttl / records_twoop.ttl are separate).
+#
+# WHY A DISTINCT RECORD CLASS (not rec:reduct:record). The committed rec:reduct:record is the ONE-LAW
+# forgetful theory-morphism (reducts.ttl: exactly one @rel:reduct parent + exactly one @rel:adds:law,
+# gated by ReductShape's min1/max1 @rel:adds:law "one law per child"). The ring-as-reducts additive edge
+# forgets a WHOLE SUB-SIGNATURE (·, 1) plus distributivity — NOT a single law — so it is a SIGNATURE /
+# STRUCTURE reduct, a different construct that would violate ReductShape's one-law rule. It is therefore
+# typed rec:reduct:two:operation:record (a NEW class subClassOf rec:specimen:record, NOT rec:reduct:record),
+# so ReductShape does not focus it, and the runner's rec:reduct:record count (reducts = 7) is unchanged.
+# The ring's OWN one-law forgetful reduct (ring |-> semiring, forgets additive inverse) is the theory
+# record's @rel:reduct edge (spine/ring.ttl), the standard rec:reduct:record pattern.
+#
+# HONESTY (Praeriehund; §7.2). Everything here is SYN (the two-operation line is absent from Helios as
+# algebra, algebra_rings.ttl:30-35); every [S] token (no runtime/closure precedent for the two-operation
+# structure-reduct) is flagged in-line for the maintainer sign-off packet (T-PANEL). Provenance quartet +
+# @rel:authority "SYN" on every RECORD, never on a denotatum.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.9, §3, §6 fan-out; D24 A6).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:505-528 (fnd:Ring), D24 A6 ring-as-reducts doctrine.
+# Consumes (do not rewrite): spine/ring.ttl (the ring model-record + distributivity axiom, the reduct
+# subject + connecting morphism target), spine/abelian_group.ttl + spine/monoid.ttl (the reduct targets),
+# records.ttl (rec:specimen:record parent), records_twoop.ttl (the additive / multiplicative discriminators).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:specimen:record REUSED as parent:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# rec:reduct:two:operation:record — the intensional class of TWO-OPERATION structure/signature reducts
+# (analogue-and-distinct-from rec:reduct:record). subClassOf rec:specimen:record (NOT rec:reduct:record),
+# so the one-law ReductShape does not gate it (a structure reduct forgets a whole sub-signature, not one law).
+# =====================================================================================
+rec:reduct:two:operation:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:reduct ] ;
+    rdfs:comment "[S] The intensional class of TWO-OPERATION structure reducts: the forgetful morphism that projects a two-operation model onto ONE of its one-operation reducts (a ring model -> its additive abelian group by forgetting ·/1/distributivity, or -> its multiplicative monoid by forgetting +/0/distributivity). It realises the D24 A6 ring-as-reducts decomposition ('ring = additive-abelian-group reduct + multiplicative-monoid reduct + distributivity') as first-class edges. owl:Restriction tooth: exactly one @rel:reduct (the one-operation target structure the morphism projects onto). It is held DISTINCT from the committed rec:reduct:record (reducts.ttl, the ONE-LAW forgetful theory-morphism gated by ReductShape's min1/max1 @rel:adds:law) precisely because a structure reduct forgets a WHOLE sub-signature (two operation symbols + distributivity), NOT a single added law — so it is subClassOf rec:specimen:record (bridge-never-duplicate: closure.ttl:411 parent REUSED by IRI), NOT rec:reduct:record, and ReductShape does not focus it (nor does the runner count it among the seven one-operation reducts). This is the two-operation analogue of records_twoop.ttl's rec:application:two:operation:record: the one-operation record class is insufficient for the two-operation construct, so a parallel discriminated class is minted. [S]: no two-operation structure-reduct precedent on the seed ladder; minted under §7.2 #1 mint-more-than-runtime and flagged for maintainer sign-off." .
+
+# =====================================================================================
+# 1. THE RING ADDITIVE REDUCT — ring model-record |-> abelian_group model-record (the + structure).
+# =====================================================================================
+alg:ring:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:additive:species:group:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "ring additive reduct -> abelian group" ;
+    rel:notation "structure reduct: ring |-> abelian group (the additive + structure; forgets ·, 1, distributivity)" ;
+    rel:reduct:source alg:ring:kingdom:class:phylum:algebra:class:model:order:declarative:family:ring:genus:governed:species:ring:component:class:instance:canonical ;
+    rel:reduct        alg:abelian:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:abelian:group:genus:governed:species:abelian:group:component:class:instance:canonical ;
+    rel:reduct:theory alg:abelian:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:abelian:group:genus:presented:species:abelian:group:component:definition:instance:canonical ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The ring ADDITIVE reduct (D24 A6 ring-as-reducts, half one): the forgetful structure morphism that projects a ring model onto its ADDITIVE structure — an ABELIAN GROUP (S,+,0) — by forgetting the multiplicative operation ·, the multiplicative unit 1 and distributivity. @rel:reduct:source -> the ring model-record class (spine/ring.ttl), @rel:reduct -> the EXISTING abelian_group model-record class (spine/abelian_group.ttl:144, REUSED by IRI — bridge-never-duplicate: 'the + structure IS the existing abelian_group model-record'), @rel:reduct:theory -> the abelian_group presented theory. @rel:operation:discriminator -> the ADDITIVE discriminator (records_twoop.ttl), tagging WHICH of the ring's two operations survives the reduct — the operation-plane witness that this is the + reduct, not the · reduct. Typed rec:reduct:two:operation:record (NOT rec:reduct:record: a structure reduct forgets a whole sub-signature, not one law, so it is outside ReductShape's one-law gate and the seven-reduct count). Provenance quartet + @rel:authority SYN on the record, never on a denotatum. [S] order:structure / genus:additive / species:group + the @rel:reduct:source / @rel:reduct:theory predicates UNATTESTED -> §7.2 sign-off." .
+
+# =====================================================================================
+# 2. THE RING MULTIPLICATIVE REDUCT — ring model-record |-> monoid model-record (the · structure).
+# =====================================================================================
+alg:ring:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:multiplicative:species:monoid:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "ring multiplicative reduct -> monoid" ;
+    rel:notation "structure reduct: ring |-> monoid (the multiplicative · structure; forgets +, 0, distributivity)" ;
+    rel:reduct:source alg:ring:kingdom:class:phylum:algebra:class:model:order:declarative:family:ring:genus:governed:species:ring:component:class:instance:canonical ;
+    rel:reduct        alg:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical ;
+    rel:reduct:theory alg:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The ring MULTIPLICATIVE reduct (D24 A6 ring-as-reducts, half two): the forgetful structure morphism that projects a ring model onto its MULTIPLICATIVE structure — a MONOID (S,·,1) — by forgetting the additive operation +, the additive unit 0 and distributivity. @rel:reduct:source -> the ring model-record class (spine/ring.ttl), @rel:reduct -> the EXISTING monoid model-record class (spine/monoid.ttl:104, REUSED by IRI — bridge-never-duplicate: 'the · structure IS the existing monoid model-record'), @rel:reduct:theory -> the monoid presented theory. @rel:operation:discriminator -> the MULTIPLICATIVE discriminator (records_twoop.ttl), tagging that the · operation is the one that survives this reduct. Typed rec:reduct:two:operation:record (NOT rec:reduct:record, outside ReductShape's one-law gate and the seven-reduct count). Provenance quartet + @rel:authority SYN on the record. Together with the additive reduct above and the distributivity connecting morphism below, this is the complete D24 ring-as-reducts decomposition: a ring is exactly an abelian group and a monoid on one carrier, glued by distributivity. [S] order:structure / genus:multiplicative / species:monoid UNATTESTED -> §7.2 sign-off." .
+
+# =====================================================================================
+# 3. THE DISTRIBUTIVITY CONNECTING MORPHISM — glues the additive and multiplicative reducts.
+# =====================================================================================
+alg:ring:kingdom:mapping:phylum:composition:class:distributivity:order:interaction:family:morphism:genus:distribution:species:gluing:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "ring distributivity connecting morphism" ;
+    rel:notation "distributivity glues the additive-group reduct and the multiplicative-monoid reduct: · distributes over +" ;
+    rel:reduct        alg:ring:kingdom:class:phylum:algebra:class:model:order:declarative:family:ring:genus:governed:species:ring:component:class:instance:canonical ;
+    rel:connects      alg:ring:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:additive:species:group:component:definition:instance:canonical ,
+                      alg:ring:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:multiplicative:species:monoid:component:definition:instance:canonical ;
+    rel:equation      alg:ring:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:ring:genus:interaction:species:distribution:component:statement:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The DISTRIBUTIVITY connecting morphism (D24 A6 ring-as-reducts, the glue): the additive-abelian-group reduct and the multiplicative-monoid reduct are two INDEPENDENT one-operation structures on one carrier; distributivity (· distributes over +) is the sole interaction law that BINDS them into a ring — without it the two reducts are an unrelated abelian group and monoid sharing a set, not a ring. @rel:reduct -> the ring model-record class (the structure being decomposed), @rel:connects -> BOTH the additive reduct and the multiplicative reduct above (the two halves it glues), @rel:equation -> the ring distributivity axiom record (spine/ring.ttl, the characteristic law whose left/right equation split is teeth-proved by RingDistributivityShape / probes/ring_distributivity.rq over the finite GF(3) tables). Typed rec:reduct:two:operation:record. It makes the D24 decomposition COMPLETE and checkable: the reducts are the two structures, the distributivity morphism is the gluing law, and the RingDistributivityShape tooth is what proves the gluing holds in a concrete model. Provenance quartet + @rel:authority SYN on the record. [S] class:distributivity / genus:distribution / species:gluing + the @rel:connects predicate UNATTESTED -> §7.2 sign-off." .

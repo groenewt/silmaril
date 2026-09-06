@@ -1,0 +1,89 @@
+# =====================================================================================
+# module.shapes.ttl — the MODULE rung's per-law SHACL tooth (W2 · SP0 · Stage 3a, T-MODULE).
+# =====================================================================================
+# The SCALAR-ACTION tooth of the module rung, authored into its OWN per-rung shapes file
+# (shapes/<rung>.shapes.ttl, the T-2OP-INFRA lockstep convention that keeps parallel rung executors off a
+# shared shapes/algebra.shapes.ttl write race; run-algebra-checks.sh globs shapes/*.shapes.ttl and merges
+# them into ONE shapes graph, so this tooth is loaded, validated and 0-focus-gated alongside the base spine
+# teeth, the ring tooth and the field tooth). It is the folded counterpart of fnd:ModuleScalarShape
+# (basicttl/foundation/foundation.shapes.ttl; q_module_scalar, algebra_rings.ttl:568) and the module-rung
+# analogue of the ring RingDistributivityShape / field FieldMultInverseShape: a sh:sparql clause over the
+# reified scalar actions, sh:targetClass rec:model:record (NEVER sh:targetNode, the design §4 anti-pattern
+# the runner's 0-focus gate detects).
+#
+# WHAT IT CHECKS. The scalar-action TYPING discipline (R x M -> M — the well-typedness half of the
+# scalar-action law, algebra_rings.ttl:264-267): over a module model's reified scalar actions (each scoped
+# @rel:action:model -> the model), EVERY action's result @rel:action:result MUST be a @rel:module:vector of
+# the model — i.e. the scalar action lands back in the module's vectors M and does not escape. It reddens
+# when a scalar action's result is NOT one of the model's module vectors — the scalar-action law FAILS for
+# that action (the action is not a well-defined map R x M -> M). It re-homes fnd:ModuleScalarShape /
+# q_module_scalar (algebra_rings.ttl:568) into the folded stratified idiom, folding the fnd probe of record
+# fnd:probeEscapingScalarAction (1·V1 = fnd:ringZero, a RING element that is not a module vector).
+#
+# WHY TYPING (result-lands-in-M) AND NOT BI-DISTRIBUTIVITY. The design §4 fixture-polarity gate demands ONE
+# biting tooth per per-rung shapes file with a failing negative that flips it (the ring rung carries the
+# single RingDistributivityShape, the field rung the single FieldMultInverseShape). The scalar-action TYPING
+# branch is EXACTLY the module rung's own fnd tooth (fnd:Module 'Its scalar action's TYPING (R x M -> M) is
+# teeth-proved by q_module_scalar / fnd:ModuleScalarShape ... the probe of record injects an action whose
+# result escapes M -> RED', algebra_rings.ttl:568) and the one whose RED->GREEN is cleanest over the finite
+# rank-1 witness: the positive declares the genuine actions 1·V1=V1, 2·V1=V2, 2·V2=V1 (all landing in M),
+# the negative perturbs the single action 1·V1 so its result becomes a non-vector element (the base ring's
+# zero) and the tooth bites. (fnd's bi-distributivity branch q_module_scalar_law is a fnd refinement over a
+# reified vector-addition table; the folded fixture-polarity RED->GREEN rides the typing branch, exactly as
+# the field rung rides the genuineness branch and the ring rung rides the reified table.) The bi-distributive
+# CONTENT of the scalar-action law is reified in the two equation records of spine/module.ttl.
+#
+# SCALAR-ACTION / ONE-OP-TEETH & RING/FIELD-TEETH ISOLATION. A module carries NEITHER a merged +/· Cayley
+# table scoped @rel:structure -> the model NOR a @rel:reified:table: its scalar actions are scoped
+# @rel:action:model -> the model directly (the analogue of the field's @rel:pairing:model). So the
+# one-operation per-law teeth (which require a @rel:structure -> model cell) never bind on a module model,
+# and RingDistributivityShape / FieldMultInverseShape (which require a @rel:reified:table on $this) never
+# bind either — the module scalar actions stay OUT of every other tooth's scan. This tooth's focus is
+# rec:model:record (data-graph focus = the module model-record class, vacuous since it declares no
+# @rel:action:model actions; the finite rank-1 witness in fixtures/ is where it bites).
+#
+# RED->GREEN (design §4 fixture polarity). fixtures/module_pos.ttl (the rank-1 free module {V0,V1,V2} over
+# the GF(3) ring, every scalar action landing in M) conforms (0 rows). fixtures/module_neg.ttl (the SAME
+# module with the SINGLE action 1·V1 perturbed so its result is the base ring's zero, a non-vector) makes
+# the action escape M — so >= 1 row and conforms True->False. The probe of record probes/module_law.rq is
+# the executable SPARQL twin.
+#
+# Prefix labels follow the fold-tree convention (shapes/algebra.shapes.ttl:22-35 / ring.shapes.ttl /
+# field.shapes.ttl): the SHACL namespace is labelled `constraint:` and record ladder `rec:` — same IRIs as
+# sh:/rec:, so pyshacl is unaffected. Full runtime Linnaean-ladder IRIs (relation:*) are written VERBATIM
+# inside the sh:select string (SPARQL does not inherit the file's @prefix, exactly as the base spine teeth
+# and ring/field.shapes.ttl do).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§4 per-law teeth, §6 fan-out).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:264-267 (fnd:lawScalarAction) + fnd:ModuleScalarShape /
+# q_module_scalar (algebra_rings.ttl:568 over fnd:moduleModel / fnd:ScalarAction).
+
+@prefix constraint:  <http://www.w3.org/ns/shacl#> .
+@prefix schema:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix relation:    <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:model:record targeted:
+@prefix rec:         <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# ModuleScalarActionShape — the module rung's characteristic tooth (scalar-action typing R x M -> M: every
+# scalar action's result lands back in the module vectors M) over the reified rank-1 scalar actions.
+# sh:targetClass rec:model:record (NEVER sh:targetNode). The sh:sparql binds a scalar action scoped to the
+# model (@rel:action:model $this) and its result (@rel:action:result), and reddens (FILTER NOT EXISTS) when
+# the result is NOT a @rel:module:vector of $this — the action escapes M. Focus in the data graph = the
+# module model-record class (vacuous, no @rel:action:model actions -> conforms); it bites on the finite
+# rank-1 witnesses in fixtures/. Proven by injection: fixtures/module_neg.ttl (1·V1 result perturbed off M)
+# flips conforms True->False; fixtures/module_pos.ttl stays GREEN.
+# =====================================================================================
+constraint:ModuleScalarActionShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Scalar-action typing violation (module): a reified scalar action of this model has a result that is NOT one of the model's module vectors — the scalar action escapes M, so the action is not a well-typed map R x M -> M and the scalar-action law fails (re-homes fnd:ModuleScalarShape / q_module_scalar, algebra_rings.ttl:264-267,568; the R x M -> M typing discipline: an action whose result leaves M -> RED)." ;
+        constraint:select """SELECT $this ?a ?result WHERE {
+  ?a <urn:silmaril:type:graph:instance:instruction:code:property:relation:action:model> $this ;
+     <urn:silmaril:type:graph:instance:instruction:code:property:relation:action:result> ?result .
+  FILTER NOT EXISTS {
+    $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:module:vector> ?result .
+  }
+}""" ] ;
+    schema:comment "The ModuleScalarActionShape is the added-law tooth of the MODULE rung (the scalar action R x M -> M) as a SHACL shape (design §4 'per-law teeth ... on a SHAPE not only a probe'), the folded counterpart of fnd:ModuleScalarShape (foundation.shapes.ttl; q_module_scalar, algebra_rings.ttl:568) and the module-rung analogue of the ring RingDistributivityShape / field FieldMultInverseShape. It targets rec:model:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) so the module model-record class (spine/module.ttl, punned owl:Class + rec:model:record) is a counted data-graph focus and the finite rank-1 witnesses (fixtures/) are where it bites. The sh:sparql implements the scalar-action TYPING discipline (R x M -> M): it binds a reified scalar action scoped to the model (@rel:action:model $this) and its result (@rel:action:result ?result), and reddens (FILTER NOT EXISTS) when ?result is NOT a @rel:module:vector of $this — i.e. the scalar action's result ESCAPES the module's vectors M, so the action is not a well-defined map R x M -> M and the scalar-action law fails. It scopes actions THROUGH @rel:action:model (not @rel:structure = model and not @rel:reified:table) precisely so the module scalar actions stay OUT of the one-operation per-law teeth's model-scoped `@rel:structure = model` scan AND the ring/field two-operation teeth's `$this @rel:reified:table ?t` scan, avoiding false cross-tooth reddening (the T4/T5 isolation of algebra_rings.ttl:79). fixtures/module_pos.ttl (the rank-1 free module {V0,V1,V2} over the GF(3) ring, actions 1·V1=V1, 2·V1=V2, 2·V2=V1 all landing in M) conforms; fixtures/module_neg.ttl (the single action 1·V1 perturbed so its result is the base ring's zero, a non-vector) reddens — the True->False flip probes/module_law.rq records, now also on a dedicated SHACL shape. Re-homes fnd:ModuleScalarShape / q_module_scalar (algebra_rings.ttl:264-267,568) as an intensional SHACL law-check (D25 no-regression: BOTH probe AND shape), folding its probe of record fnd:probeEscapingScalarAction (1·V1 = fnd:ringZero, a RING element that is not a module vector). The vacuously-satisfied focus (the module model-record class, no @rel:action:model actions) keeps the data graph GREEN; only a model naming a scalar action whose result escapes its module vectors reddens." .

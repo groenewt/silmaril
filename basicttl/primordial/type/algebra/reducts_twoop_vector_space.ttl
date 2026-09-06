@@ -1,0 +1,101 @@
+# =====================================================================================
+# reducts_twoop_vector_space.ttl — the D24 VECTOR-SPACE-AS-REDUCTS decomposition edges (W2 · SP0 · Stage 3a,
+# T-VECTORSPACE).
+# =====================================================================================
+# D24 A6 (the showcase, vector-space half): "VectorSpace = Module over a Field". A vector-space model is,
+# structurally, its MODULE reduct (forget that the scalars form a field, keeping the WHOLE module structure —
+# an abelian group of vectors with a scalar action by a ring) PLUS a SCALAR-FIELD morphism strengthening the
+# base RING of that module to a FIELD (the scalars form a field, not merely a ring — every nonzero scalar
+# invertible). This file mints those two edges for the vector-space rung: the vector-space model-record's
+# structure IS the existing MODULE model-record (bridge-never-duplicate: the reduct REUSES the committed
+# module model-record by IRI, spine/module.ttl:145, never re-mints it), and the SCALAR-FIELD morphism connects
+# that module to the existing FIELD model-record (spine/field.ttl, the base field K), the field-scalars law
+# being the strengthening.
+#
+# WHY THE VECTOR-SPACE REDUCT IS MODULE-PLUS-FIELD (one structural reduct + one strengthening morphism). This
+# is the D24 module/vector-space CONTRAST. A module carries an abelian group of vectors + a scalar action by a
+# RING, so it reduces to (an abelian group) + (a scalar-action morphism from a ring, reducts_twoop_module.ttl).
+# A VECTOR SPACE is EXACTLY a module whose scalars form a FIELD (fnd:VectorSpace rdfs:subClassOf fnd:Module,
+# algebra_rings.ttl:579): its whole MODULE structure survives the reduct, and the ONLY thing it adds is that
+# the base ring is strengthened to a field. So the vector-space decomposition is (the module structure) + (a
+# scalar-FIELD strengthening morphism to the field), NOT two internal reducts glued by distributivity (ring)
+# and NOT an internal abelian-group reduct + an external ring action (module). The scalar-field morphism plays
+# the structural role distributivity plays for a ring and the scalar action plays for a module: the connecting/
+# strengthening morphism (algebra_rings.ttl:577-590).
+#
+# WHY A NEW FILE (not reducts_twoop.ttl / reducts_twoop_field.ttl / reducts_twoop_module.ttl). Exactly as
+# reducts_twoop_field.ttl:22-27 / reducts_twoop_module.ttl:23-26: a NEW per-rung file avoids a shared-file
+# write race with the parallel rung executors (design §6 fan-out). It REUSES the two-operation structure-reduct
+# class rec:reduct:two:operation:record declared in reducts_twoop.ttl (bridge-never-duplicate, never
+# re-declared).
+#
+# WHY rec:reduct:two:operation:record (not rec:reduct:record). Exactly as reducts_twoop.ttl:18-26 /
+# reducts_twoop_module.ttl:28-35: the vector-space module reduct forgets a WHOLE STRUCTURE (the field-scalars
+# strengthening, keeping the whole module) and the scalar-field morphism binds two structures — NEITHER is a
+# single-law forgetful theory-morphism — so they are SIGNATURE / STRUCTURE reducts, typed
+# rec:reduct:two:operation:record (subClassOf rec:specimen:record, NOT rec:reduct:record), so ReductShape (the
+# one-law min1/max1 @rel:adds:law tooth) does not focus them and the runner's rec:reduct:record count (reducts
+# = 7 one-operation edges) is unchanged. The vector-space's OWN one-law forgetful reduct (vector-space |->
+# module, forgets the field-scalars law) is the theory record's @rel:reduct edge (spine/vector_space.ttl), the
+# standard rec:reduct:record pattern.
+#
+# HONESTY (Praeriehund; §7.2). Everything here is SYN (the vector-space line is absent from Helios as an
+# algebra rung, only incidental 'ambient vector spaces', algebra_rings.ttl:581, 02_algebra_tower.md:136);
+# every [S] token (no runtime/closure precedent for the two-operation structure-reduct / scalar-field
+# morphism) is flagged in-line for the maintainer sign-off packet (T-PANEL). Provenance quartet +
+# @rel:authority "SYN" on every RECORD, never on a denotatum.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.9, §3, §6 fan-out; D24 A6).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:577-590 (fnd:VectorSpace), D24 A6 vector-space-as-reducts
+# doctrine. Consumes (do not rewrite): spine/vector_space.ttl (the vector-space model-record + field-scalars
+# axiom, the reduct subject + connecting-morphism equation), spine/module.ttl (the whole-module reduct target),
+# spine/field.ttl (the base field the scalars form), reducts_twoop.ttl (rec:reduct:two:operation:record class
+# REUSED), records_twoop.ttl (the algebraic discriminator).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:reduct:two:operation:record REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# 1. THE VECTOR-SPACE MODULE REDUCT — vector-space model-record |-> module model-record (the whole module
+#    structure; a vector space IS a module, forgetting only that its scalars form a field).
+# =====================================================================================
+alg:vector:space:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:module:species:structure:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "vector space module reduct -> module" ;
+    rel:notation "structure reduct: vector space |-> module (the whole module structure; forgets that the scalars form a field)" ;
+    rel:reduct:source alg:vector:space:kingdom:class:phylum:algebra:class:model:order:declarative:family:vector:space:genus:governed:species:vector:space:component:class:instance:canonical ;
+    rel:reduct        alg:module:kingdom:class:phylum:algebra:class:model:order:declarative:family:module:genus:governed:species:module:component:class:instance:canonical ;
+    rel:reduct:theory alg:module:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:module:genus:presented:species:module:component:definition:instance:canonical ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:algebraic:species:discriminator:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The vector-space MODULE reduct (D24 A6 vector-space-as-reducts, half one): the forgetful structure morphism that projects a vector-space model onto its whole MODULE structure — an abelian group of vectors with a scalar action by a ring — by forgetting that the scalars form a FIELD (the field-scalars strengthening). @rel:reduct:source -> the vector-space model-record class (spine/vector_space.ttl), @rel:reduct -> the EXISTING module model-record class (spine/module.ttl:145, REUSED by IRI — bridge-never-duplicate: 'a vector space IS a module', the fnd:VectorSpace rdfs:subClassOf fnd:Module subsumption made a reduct edge), @rel:reduct:theory -> the module presented theory. @rel:operation:discriminator -> the ALGEBRAIC (generic) discriminator (records_twoop.ttl), tagging that the WHOLE two-operation module structure survives the reduct (unlike the ring/module ADDITIVE / MULTIPLICATIVE reducts, which each keep only one operation — a vector space forgets no operation, only the field-scalars law, so the generic algebraic discriminator marks 'the whole structure survives'). It is the vector-space analogue of the field |-> ring / module |-> abelian-group structural relation, but where a field STRENGTHENS a ring's multiplicative monoid to a group and a module hangs an external ring action off an abelian group, a vector space's whole module structure is intact and only its base ring is strengthened to a field (the scalar-field morphism below). Typed rec:reduct:two:operation:record (NOT rec:reduct:record: a structure reduct forgets a whole strengthening, not one law, so it is outside ReductShape's one-law gate and the seven-reduct count). Provenance quartet + @rel:authority SYN on the record, never on a denotatum. [S] order:structure / genus:module / species:structure + the @rel:reduct:source / @rel:reduct:theory predicates UNATTESTED -> §7.2 sign-off." .
+
+# =====================================================================================
+# 2. THE SCALAR-FIELD MORPHISM — strengthens the module reduct's base ring to a FIELD (the module/vector-space
+#    CONTRAST: the vector space's 'second structure' is that its scalars form a field, not merely a ring).
+# =====================================================================================
+alg:vector:space:kingdom:mapping:phylum:composition:class:field:order:interaction:family:morphism:genus:scalar:species:field:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "vector space scalar-field morphism" ;
+    rel:notation "the field-scalars law strengthens the module's base ring to a FIELD (the scalars form a field)" ;
+    rel:reduct        alg:vector:space:kingdom:class:phylum:algebra:class:model:order:declarative:family:vector:space:genus:governed:species:vector:space:component:class:instance:canonical ;
+    rel:connects      alg:vector:space:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:module:species:structure:component:definition:instance:canonical ,
+                      alg:field:kingdom:class:phylum:algebra:class:model:order:declarative:family:field:genus:governed:species:field:component:class:instance:canonical ;
+    rel:equation      alg:vector:space:kingdom:axiom:phylum:scalar:class:field:order:structure:family:vector:space:genus:field:species:scalars:component:statement:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The SCALAR-FIELD morphism (D24 A6 vector-space-as-reducts, the strengthening — the module/vector-space CONTRAST): a vector space is a module (an abelian group of vectors with a scalar action) whose scalars form a FIELD; the field-scalars law is the sole law that STRENGTHENS the module's base ring to a field — without it the structure is just a module over a ring, not a vector space. This is the vector-space analogue of the ring/field distributivity connecting morphism (reducts_twoop.ttl:99-112) and the module scalar-action morphism (reducts_twoop_module.ttl:81-94), but where a ring's morphism glues two internal reducts and a module's morphism hangs an external ring action off the vector abelian group, a vector-space's scalar-field morphism STRENGTHENS the base ring of an existing module to a field: @rel:reduct -> the vector-space model-record class (the structure being decomposed), @rel:connects -> BOTH the module reduct above AND the EXISTING FIELD model-record class (spine/field.ttl, the base field K the scalars form — REUSED by IRI, bridge-never-duplicate; STRONGER than the module scalar-action morphism's @rel:connects to the RING model-record, precisely the module->vector-space upgrade), @rel:equation -> the vector-space field-scalars axiom record (spine/vector_space.ttl, the scalars-form-a-field law whose polarity is teeth-proved by VectorSpaceScalarFieldShape / probes/vector_space_law.rq over the finite 1-dimensional witness). Typed rec:reduct:two:operation:record. It makes the D24 vector-space decomposition COMPLETE and checkable: the module reduct is the whole module structure, the base field is the strengthened scalar ring, the scalar-field morphism is the strengthening law, and the VectorSpaceScalarFieldShape tooth is what proves the scalars really form a field in a concrete model. Provenance quartet + @rel:authority SYN on the record. [S] class:field / order:interaction / genus:scalar / species:field + the @rel:connects predicate UNATTESTED -> §7.2 sign-off." .

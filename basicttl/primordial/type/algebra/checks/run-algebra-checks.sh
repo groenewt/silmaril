@@ -14,7 +14,10 @@
 #
 #   (a) DATA CONFORMANCE. Auto-discover every basicttl/primordial/type/algebra/**/*.ttl EXCEPT the
 #       shapes graph (*.shapes.ttl) and EXCEPT fixtures/** (evidence plane, D24 four-planes) as the
-#       data graph, and validate it against shapes/algebra.shapes.ttl with pyshacl (inference=rdfs).
+#       data graph, and validate it against the MERGED shapes graph — EVERY shapes/*.shapes.ttl file
+#       (T-2OP-INFRA lockstep: the base shapes/algebra.shapes.ttl PLUS the per-rung two-op shape files
+#       shapes/<rung>.shapes.ttl that T-RING and the ring/field/module/vector siblings author, so their
+#       teeth are actually loaded and gated) with pyshacl (inference=rdfs).
 #   (b) FIXTURE POLARITY (witnesses cannot go silent). Iterate fixtures/** — every POSITIVE fixture,
 #       merged onto the conformant data graph, MUST still conform; every NEGATIVE fixture MUST NOT
 #       conform (its single injected violation must bite); the empty.ttl control MUST be an admission
@@ -40,17 +43,17 @@ set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
 ALG="basicttl/primordial/type/algebra"
-SHAPES="${ALG}/shapes/algebra.shapes.ttl"
+SHAPES_DIR="${ALG}/shapes"
 
 echo "== folded algebra spine gate (${ALG}) =="
-python3 - "$ALG" "$SHAPES" <<'PY'
+python3 - "$ALG" "$SHAPES_DIR" <<'PY'
 import glob, os, sys, re
 import yaml
 from rdflib import Graph, URIRef
 from rdflib.namespace import RDF, RDFS
 from pyshacl import validate
 
-ALG, SHAPES = sys.argv[1], sys.argv[2]
+ALG, SHAPES_DIR = sys.argv[1], sys.argv[2]
 SH = "http://www.w3.org/ns/shacl#"
 SH_NODESHAPE   = URIRef(SH + "NodeShape")
 SH_TARGETCLASS = URIRef(SH + "targetClass")
@@ -77,12 +80,24 @@ if not fixture_files:
     sys.exit(1)
 
 # ---- shapes graph must declare >= 1 NodeShape --------------------------------------------------
-if not os.path.exists(SHAPES):
-    print(f"  REJECT: shapes graph {SHAPES} absent"); sys.exit(1)
-shapes = Graph(); shapes.parse(SHAPES)
+# T-2OP-INFRA LOCKSTEP: discover EVERY shapes/*.shapes.ttl (not only the base algebra.shapes.ttl) and
+# merge them into ONE shapes graph, so the per-rung two-op shape files (shapes/<rung>.shapes.ttl authored
+# by T-RING + the ring/field/module/vector siblings) are actually loaded, validated and 0-focus-gated.
+# The base shapes/algebra.shapes.ttl remains the anchor; a missing base file or an empty merged graph is
+# still a REJECT (never silently vacuous).
+if not os.path.isdir(SHAPES_DIR):
+    print(f"  REJECT: shapes dir {SHAPES_DIR} absent"); sys.exit(1)
+shape_files = sorted(glob.glob(f"{SHAPES_DIR}/*.shapes.ttl"))
+if not shape_files:
+    print(f"  REJECT: no shapes/*.shapes.ttl discovered under {SHAPES_DIR}; gate would be vacuous")
+    sys.exit(1)
+shapes = Graph()
+for sf in shape_files:
+    shapes.parse(sf)
+print(f"  shapes graphs merged: {len(shape_files)} file(s) -> {[os.path.basename(f) for f in shape_files]}")
 declared = sorted(set(shapes.subjects(RDF.type, SH_NODESHAPE)), key=str)
 if not declared:
-    print("  REJECT: no NodeShape declared in shapes/algebra.shapes.ttl; gate would be vacuous")
+    print("  REJECT: no NodeShape declared across shapes/*.shapes.ttl; gate would be vacuous")
     sys.exit(1)
 
 # any targetNode shape is the design's anti-pattern (§4): all algebra shapes MUST use targetClass

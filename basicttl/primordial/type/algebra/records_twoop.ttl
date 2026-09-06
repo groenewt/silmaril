@@ -1,0 +1,100 @@
+# =====================================================================================
+# records_twoop.ttl — the TWO-OPERATION discriminated reified-application record class +
+# its additive/multiplicative discriminator vocabulary (W2 · SP0 · Stage 3a, T-2OP-INFRA).
+# =====================================================================================
+# WHY THIS FILE EXISTS (records.ttl is insufficient for two Cayley tables). The one-operation reified
+# table is walked by the ModelShape/per-law teeth over @rel:structure + @rel:category:first/second/result
+# (shapes/algebra.shapes.ttl:110, :294 ...) — a SINGLE Cayley table with NO operation discriminator. A
+# semiring/ring/field carries TWO binary operations (+ and ·) on ONE carrier, so a single reified-
+# application class needs a DISCRIMINATOR to keep the additive and multiplicative tables apart; records.ttl
+# mints no such class (its model:record / equation:record carry no discriminator). This file supplies the
+# two-operation analogue of fnd:RingOperationApplication (algebra_rings.ttl:76-79) + fnd:RingOperation /
+# fnd:additiveOp / fnd:multiplicativeOp (algebra_rings.ttl:61-74), folded into the primordial idiom, so
+# the two-operation rung teeth (T-RING distributivity, field multiplicative-inverse) can read
+# additive-table rows and multiplicative-table rows of ONE model without conflating them.
+#
+# WHAT IT DOES NOT DO. It mints only the CLASS layer + the two enum discriminator members (vocabulary,
+# exactly as fnd:additiveOp / fnd:multiplicativeOp live in the fnd ontology module, not in a witness). The
+# actual reified Cayley ROWS (rec:application:two:operation:record INSTANCES) are D24 four-planes EVIDENCE
+# and belong in fixtures/** (authored by T-RING and the ring/field siblings), NEVER in this ontology module
+# (design §2b, D24 A0: named witnesses are evidence). No instance is minted here.
+#
+# TWO-LADDER RULING (records.ttl:9-15). The reified-application record CLASS lives on closure.ttl's
+# seed-carrier record-class ladder
+#   rec: … :kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:<leaf>:record
+# parallel to the seven algebra record classes (records.ttl:46-109); the discriminator CLASS + its two
+# members are DEFINITION atoms on the mathematics 12-marker ladder (alg:, kingdom:definition — NEVER
+# kingdom:operation, so they do not inflate the runner's operation count). Do NOT cross the ladders.
+#
+# BRIDGE-NEVER-DUPLICATE (D24 TODO-11). closure.ttl's specimen:record (closure.ttl:411) is REUSED by IRI
+# as the parent of the new record class, never re-declared; the discriminator @rel:operation:discriminator
+# and the reified-table @rel:structure / @rel:category:first/second/result predicates REUSE the existing
+# unified relation vocabulary (shapes/algebra.shapes.ttl:110 / bridges.ttl:249-291) so the two-operation
+# tables are walked with the SAME reified-cell idiom as the one-operation tables plus one discriminator edge.
+#
+# [S] HONESTY (Praeriehund; §7.2). closure.ttl carries an application:record leaf but NO two-operation /
+# discriminated variant, and no discriminator vocabulary; every leaf/token minted below is therefore [S]
+# (no runtime/closure precedent for the discriminated two-table shape) and is flagged in-line for the §7.2
+# maintainer sign-off packet (T-PANEL). The folded fnd counterparts are all fnd:authority fnd:SYN
+# (algebra_rings.ttl:63/68/73/78), consistent with these being SYN two-operation tower machinery.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§2 record classes, fan-out §6).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:61-109 (fnd:RingOperation / additiveOp / multiplicativeOp
+# / RingOperationApplication + ringStructure/ringOp/ringLeft/ringRight/ringResult). ADDITIVE — no fnd:/
+# foundation/* edit (demolition is Stage 3c). Consistent-with: records.ttl (rec: ladder, rec:specimen:record
+# parent), shapes/algebra.shapes.ttl (the reified-cell @rel:* vocabulary the two-op rung teeth reuse).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+# mathematics 12-marker ladder head (D26) — the discriminator class + members:
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:specimen:record REUSED, never re-minted:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# -------------------------------------------------------------------------------------
+# The operation DISCRIMINATOR class (analogue of fnd:RingOperation) — an owl:Class on the
+# mathematics ladder whose exactly two members tag each reified row with WHICH operation it belongs to.
+# -------------------------------------------------------------------------------------
+alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:algebraic:species:discriminator:component:definition:instance:canonical
+    a owl:Class ;
+    rdfs:label "operation discriminator (two-operation)" ;
+    rdfs:comment "[S] The operation-discriminator class of a two-operation algebraic structure — the two-membered enumerated type whose members (the additive discriminator and the multiplicative discriminator below) tag each reified two-operation application (rec:application:two:operation:record) with WHICH of the structure's two operations, + or ·, it is a row of. Folds fnd:RingOperation (algebra_rings.ttl:61-64) into the primordial idiom: a semiring/ring/field carries two binary operations on one carrier (Sigma={+,·} of sigTwoBinary, signatures_twoop.ttl), so a single reified-application class needs this discriminator to keep the additive and multiplicative Cayley tables apart — the two-operation analogue of NOT needing a discriminator in the one-operation reified table (a magma/group has ONE operation, so operations.ttl / the ModelShape need no such tag). It has exactly two members. [S]: closure.ttl carries no discriminator vocabulary; class:discriminator / order:enumeration / genus:algebraic / species:discriminator are UNATTESTED tokens (0 aob dirs) minted parallel to fnd:RingOperation (fnd:authority fnd:SYN, algebra_rings.ttl:63) and flagged for the §7.2 sign-off packet. Its members carry kingdom:definition (NEVER kingdom:operation), so they are vocabulary — not counted as operation symbols by the runner." .
+
+# --- additive discriminator (+) — analogue of fnd:additiveOp ---
+alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical
+    a owl:NamedIndividual ,
+      alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:algebraic:species:discriminator:component:definition:instance:canonical ;
+    rdfs:label "additive discriminator (+)" ;
+    rel:notation "+" ;
+    skos:closeMatch <urn:silmaril:fnd:additiveOp> ;
+    rdfs:comment "[S] The ADDITIVE-operation discriminator (+) of a two-operation structure (folds fnd:additiveOp, algebra_rings.ttl:66-69, SYN). A rec:application:two:operation:record whose @rel:operation:discriminator is this member is one row of the structure's ADDITIVE Cayley table — the commutative-monoid / abelian-group operation of a ring, whose neutral is the additive unit 0 (operations_twoop.ttl; the model-plane fnd:hasZeroElement). The T-RING distributivity tooth reads these additive rows for the sum y+z and for (x·y)+(x·z). Typed against the operation-discriminator class above (kingdom:definition, so it is not counted as an operation symbol). skos:closeMatch to the retired fnd:additiveOp keeps inbound references resolvable through the fold (design §5.2). [S] genus:additive / species:discriminator UNATTESTED -> §7.2 sign-off." .
+
+# --- multiplicative discriminator (·) — analogue of fnd:multiplicativeOp ---
+alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical
+    a owl:NamedIndividual ,
+      alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:algebraic:species:discriminator:component:definition:instance:canonical ;
+    rdfs:label "multiplicative discriminator (·)" ;
+    rel:notation "·" ;
+    skos:closeMatch <urn:silmaril:fnd:multiplicativeOp> ;
+    rdfs:comment "[S] The MULTIPLICATIVE-operation discriminator (·) of a two-operation structure (folds fnd:multiplicativeOp, algebra_rings.ttl:71-74, SYN). A rec:application:two:operation:record whose @rel:operation:discriminator is this member is one row of the structure's MULTIPLICATIVE Cayley table — the monoid operation of a ring, whose neutral is the multiplicative unit 1 (operations_twoop.ttl; the model-plane fnd:hasOneElement). The T-RING distributivity tooth reads these multiplicative rows for x·(y+z), x·y, x·z; the field multiplicative-inverse tooth reads them for the two-sided undo x·inv(x)=1. Typed against the operation-discriminator class above (kingdom:definition, not counted as an operation symbol). skos:closeMatch to the retired fnd:multiplicativeOp keeps inbound references resolvable through the fold. [S] genus:multiplicative / species:discriminator UNATTESTED -> §7.2 sign-off." .
+
+# -------------------------------------------------------------------------------------
+# rec:application:two:operation:record — the discriminated reified two-operation application
+# record CLASS (analogue of fnd:RingOperationApplication). One row of an additive OR multiplicative
+# Cayley table of ONE two-operation witness model.
+# -------------------------------------------------------------------------------------
+rec:application:two:operation:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:structure ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation:discriminator ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:category:first ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:category:second ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:category:result ] ;
+    skos:closeMatch <urn:silmaril:fnd:RingOperationApplication> ;
+    rdfs:comment "[S] The intensional class of DISCRIMINATED reified two-operation application records: one row of an additive OR multiplicative Cayley table of ONE two-operation witness model. It reifies 'first OP second = result' where OP is chosen by the @rel:operation:discriminator (the additive or multiplicative discriminator member above) and the row is scoped to its model by @rel:structure. Folds fnd:RingOperationApplication (algebra_rings.ttl:76-79, SYN) into the primordial idiom and REUSES the one-operation reified-cell vocabulary (@rel:structure = fnd:opStructure/ringStructure; @rel:category:first/second/result = fnd:ringLeft/ringRight/ringResult, bridges.ttl:249-291) PLUS the new @rel:operation:discriminator edge (the analogue of fnd:ringOp) that keeps the additive and multiplicative tables of one carrier apart. owl:Restriction teeth (the records.ttl:76-81 datatype-cardinality idiom): exactly one @rel:structure, exactly one @rel:operation:discriminator, and exactly one each of @rel:category:first / @rel:category:second / @rel:category:result — so a two-operation Cayley row missing its discriminator, its scope, an operand or its result is malformed. Parent rec:specimen:record REUSED by IRI (closure.ttl:411, bridge-never-duplicate). It is held DISTINCT from the one-operation reified cells precisely so a two-operation rung tooth walks ONLY discriminated rows (selecting additive vs multiplicative by @rel:operation:discriminator) and no one-operation ModelShape/per-law tooth is scoped to it — the same T4/T5 isolation fnd:RingOperationApplication asserts (algebra_rings.ttl:79). INSTANCES are D24 four-planes EVIDENCE and live in fixtures/** (T-RING / ring / field), NEVER in this ontology module. [S]: no discriminated two-operation application:record precedent on the seed ladder; minted under §7.2 #1 mint-more-than-runtime and flagged for sign-off. skos:closeMatch keeps inbound fnd:RingOperationApplication references resolvable through the fold (design §5.2)." .

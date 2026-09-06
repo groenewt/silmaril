@@ -1,0 +1,264 @@
+# =====================================================================================
+# vector_space.ttl — the VECTOR-SPACE rung END-TO-END, the two-operation MODULE-OVER-A-FIELD rung
+# (W2 · SP0 · Stage 3a, T-VECTORSPACE). Folds FROM fnd:VectorSpace (basicttl/foundation/algebra_rings.ttl:577-590).
+# =====================================================================================
+# The fully-worked stratified VECTOR-SPACE rung, replicating the signed-off ring/field/module two-operation
+# exemplar (spine/ring.ttl, spine/field.ttl, spine/module.ttl). It realises the D24 A0 stratification
+# (Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥ ProofArtifact) for a structure that is a fnd:Module whose scalar ring
+# is a FIELD — an additive ABELIAN GROUP of vectors (V,+) carrying a SCALAR ACTION K x V -> V by a base FIELD
+# K (fnd:scalarField) — in the D26 full-ladder grammar: a theory record (S,Omega,E) naming sigTwoBinary and
+# the equation set E = {two-op closure, scalar action, FIELD-SCALARS}, the B4 TWO model planes (a [S]
+# denotatum + a declaration-record model class linked by @rel:denotes), the three vector-space axiom records
+# (closure + scalar action + field-scalars, each verbatim-derived from the fnd: law + the module/field
+# exemplar), the vector-space's CHARACTERISTIC added law the FIELD-SCALARS upgrade (the scalar ring is a
+# field, fnd:lawFieldScalars — the sole law fnd:VectorSpace ADDS over fnd:Module), the scalar action's
+# bi-distributive split into TWO equation records (left r·(x+y)=r·x+r·y, right (r+s)·x=r·x+s·x — inherited
+# from the module rung, design §1.6), a theorem (scalar-negation (-1)·v = -v, a field-scalar consequence) +
+# certificate, the triad-envelope gate, and the provenance quartet on records only.
+#
+# THE D24 VECTOR-SPACE-AS-REDUCTS SHOWCASE. A vector space is, by A6, its MODULE reduct (forget that the
+# scalars form a field, keeping the whole module structure — an abelian group of vectors with a scalar action)
+# PLUS a SCALAR-FIELD morphism strengthening the base RING of that module to a FIELD (the scalar structure is
+# a field, not merely a ring — every nonzero scalar is invertible). Unlike a module — an abelian group + a
+# scalar action by a RING — a vector space's scalars form a FIELD, so where the module reduct is (abelian
+# group + a scalar-action morphism from the ring), the VECTOR-SPACE reduct is (the MODULE structure + a
+# scalar-FIELD strengthening morphism to the field model-record). Those edges — vector-space model-record ->
+# the existing module model-record (spine/module.ttl, the whole module structure) and the scalar-field
+# morphism connecting it to the existing FIELD model-record (spine/field.ttl, the base field K) — are minted
+# in reducts_twoop_vector_space.ttl (a NEW file, avoiding a write race on reducts_twoop*.ttl). This file mints
+# the vector-space theory/denotatum/model-record/axioms/equations/theorem/certificate/gate + provenance; the
+# 1-dimensional vector-space witness over the GF(3) field is fixtures/vector_space_pos.ttl (D24 four-planes:
+# named witnesses are EVIDENCE, outside the ontology data glob) with the matching non-field-scalars negative
+# fixtures/vector_space_neg.ttl.
+#
+# WHY THE 1-DIMENSIONAL SPACE OVER GF(3). fnd:vectorSpaceModel (algebra_rings.ttl:851) is the 1-dimensional
+# vector space V = {E,A,B} (an additive group ~= Z/3, reusing the T4 fnd:abelianModel as (V,+)) over the
+# scalar FIELD fnd:fieldModel (GF(3)), with reified scalar actions 1·A=A (the unit law fnd:saUnitLaw), 2·A=B,
+# 2·B=A. Re-expressed in the folded reified scalar-action idiom (@typ:scalar:action, fixtures/vector_space_pos.ttl)
+# it is finite:checked and keeps the field-scalars tooth (shapes/vector_space.shapes.ttl VectorSpaceScalarFieldShape)
+# non-vacuous and provably biting: a 'vector space' whose declared scalar structure is NOT a field (its scalars
+# are drawn from a mere ring) -> RED (folding fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms's requirement
+# that fnd:scalarField be a fnd:Field, not merely a ring, algebra_rings.ttl:581,204-208).
+#
+# ISOLATION (the field-scalars / scalar-action / one-op-teeth separation). The one-operation per-law teeth
+# (shapes/algebra.shapes.ttl) walk `?cell @rel:structure <model>` with NO discriminator, and the two-op
+# ring/field teeth (RingDistributivityShape / FieldMultInverseShape) walk `$this @rel:reified:table ?t`.
+# A vector space carries NEITHER a merged +/· Cayley table scoped @rel:structure -> the model NOR a
+# @rel:reified:table: its scalar actions are scoped @rel:action:model -> the model directly (the module idiom)
+# and its scalar structure is named by @rel:scalar:field, so RingDistributivityShape / FieldMultInverseShape
+# never bind on a vector-space model, and the one-operation per-law teeth never bind either — the vector-space
+# rows stay OUT of both the one-operation and the ring/field two-operation scans. The MODULE tooth
+# ModuleScalarActionShape (walking @rel:action:model -> the model) DOES apply — a vector space IS a module, so
+# its scalar actions must still land in V (R x M -> M); the witness satisfies it in both polarities.
+# VectorSpaceScalarFieldShape walks model -> @rel:scalar:field scalar structure and reddens when that
+# structure is not a field-typed structure (the scalars are not drawn from a field).
+#
+# HONESTY (Praeriehund; algebra_rings.ttl:30-39). EVERYTHING folded here is SYN: the vector-space line is
+# ABSENT from Helios as an algebra rung (02_algebra_tower.md:136 "only incidental 'ambient vector spaces'"),
+# authored as CITED STANDARD LINEAR ALGEBRA (the Directive 19/20 precedent: mathematics is fact and liftable,
+# cite the source, never pretend a Helios lift). So @rel:authority "SYN" on every RECORD, @rel:proof:status
+# "literature:backed" on the theory (the UNIVERSAL vector-space theory is cited standard linear algebra, NOT
+# finite:checked-from-engine; only the finite 1-dimensional WITNESS in fixtures/ carries finite:checked).
+# Every [S] token (no runtime precedent) is flagged in an rdfs:comment for the §7.2 maintainer sign-off packet
+# (T-PANEL).
+#
+# SIGNATURE (task-directed reuse). Per the T-VECTORSPACE task directive ("Reuse sigTwoBinary + the two-op
+# operation symbols") the vector-space theory record names @rel:signature sigTwoBinary (signatures_twoop.ttl) —
+# the one-sorted two-binary ring signature reused for the vector-space rung rather than minting a separate
+# two-SORTED fnd:sigModule atom (algebra_rings.ttl:335-342; fnd:VectorSpace itself SHARES fnd:sigModule with
+# fnd:Module, differing only in E). This is an [S] task-scoped SIMPLIFICATION: the vector space's + is vector
+# addition and its · is read as the scalar action; the honest two-sorted refinement (sorts V,K) is a
+# maintainer sign-off item (§7.2). Flagged.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:), subdomain 'vector:space'. B1
+# COMPOUND adjective-first: 'vector space' -> vector:space (the adjective 'vector' first, the genus 'space'
+# second), exactly as the committed 'abelian:group' / 'commutative:monoid' compounds (spine/abelian_group.ttl,
+# spine/commutative_monoid.ttl) — verified against the reference order (the maintainer amendment D24 §10b:
+# the reference corpus governs; the algebra tower's committed compounds are adjective-first). [S] tokens
+# flagged; [V]-shaped tokens (class:model, family:operation) echo the module/field denotatum shape. B4
+# two-planes (denotatum kingdom:type…component:type + model-record kingdom:class…:model…component:class).
+# B3(a) additive Stage-3a (fnd:VectorSpace stays byte-intact; T-RETIRE is Stage 3c) — skos:exactMatch
+# fnd:VectorSpace on the denotatum + @rel:historical:identity fnd:VectorSpace on the theory.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.5, §2, §6 fan-out).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:240-244,264-267,270-273,577-590,851-868,947-956.
+# ADDITIVE — no fnd:/foundation/* edit (demolition is Stage 3c). Consumes (do not rewrite):
+# records.ttl (rec:* classes), signatures_twoop.ttl (sigTwoBinary), operations_twoop.ttl (+ · 0 1),
+# spine/module.ttl + spine/field.ttl (the reduct + scalar-field-morphism targets, via
+# reducts_twoop_vector_space.ttl). Tooth: shapes/vector_space.shapes.ttl VectorSpaceScalarFieldShape +
+# probes/vector_space_law.rq; fixtures/vector_space_pos.ttl + fixtures/vector_space_neg.ttl.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified scalar-action term atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:vector:space:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+#     E = the THREE vector-space laws (two-op closure + scalar action + FIELD-SCALARS), each an axiom record
+#     below, verbatim-derived from the fnd: law + the module/field exemplar.
+# =====================================================================================
+alg:vector:space:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:vector:space:genus:presented:species:vector:space:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "vector space theory (S,Omega,E)" ;
+    rel:notation   "vector space" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:vector:space:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:vector:space:genus:presented:species:vector:space:component:definition:instance:canonical" ;
+    rel:signature  alg:semiring:kingdom:definition:phylum:specification:class:signature:order:two:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:vector:space:kingdom:axiom:phylum:operation:class:closure:order:two:binary:family:vector:space:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:vector:space:kingdom:axiom:phylum:operation:class:action:order:scalar:family:vector:space:genus:scalar:species:action:component:statement:instance:canonical ,
+                   alg:vector:space:kingdom:axiom:phylum:scalar:class:field:order:structure:family:vector:space:genus:field:species:scalars:component:statement:instance:canonical ;
+    rel:reduct     alg:module:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:module:genus:presented:species:module:component:definition:instance:canonical ;
+    rel:denotatum  alg:vector:space:kingdom:type:phylum:algebra:class:vector:space:order:two:binary:family:operation:genus:axiomatic:species:vector:space:component:type:instance:canonical ;
+    rel:assignment alg:vector:space:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:vector:space:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:VectorSpace ;
+    skos:closeMatch fnd:VectorSpace ;
+    rdfs:comment "[S] The presented vector-space THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6), folding fnd:VectorSpace (algebra_rings.ttl:577-590). S,Omega = @rel:signature sigTwoBinary (signatures_twoop.ttl — the task-directed REUSE of the one-sorted two-binary ring signature Sigma={+,·,0,1} for the vector-space rung, where + is read as vector addition and · as the scalar action; fnd:VectorSpace itself SHARES fnd:sigModule with fnd:Module, differing only in E, algebra_rings.ttl:582,338 — an [S] task-scoped simplification flagged for §7.2); E = @rel:equation the THREE vector-space laws — the two-op CLOSURE (vector addition total, scalar action total) INHERITED from the module rung, the SCALAR ACTION K x V -> V INHERITED from the module rung, and the vector space's OWN added law FIELD-SCALARS (the scalar ring is a FIELD) — each an axiom record below verbatim-derived from the fnd: law (algebra_rings.ttl:240-244,264-267,270-273) plus the module/field exemplar (spine/module.ttl, spine/field.ttl). The vector space's CHARACTERISTIC added law is FIELD-SCALARS (fnd:VectorSpace fnd:addsLaw fnd:lawFieldScalars, algebra_rings.ttl:585, one-law-per-child off the agnostic fnd:AlgebraicStructure progenitor): a vector space is EXACTLY a module whose scalar ring is a field (every nonzero scalar invertible), the module->vector-space upgrade — teeth-proved by VectorSpaceScalarFieldShape below. It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 vector-space denotatum, @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the MODULE theory (spine/module.ttl, the forgetful theory-morphism vector-space |-> module, forgetting the field-scalars law — a vector space forgets that its scalars form a field and becomes a module over the underlying ring; the module theory EXISTS, so this @rel:reduct resolves — mirroring field |-> ring, spine/field.ttl:108). D24 first-class metadata: @rel:validation:mode 'finite:table' (vector-space models are validated by the finite 1-dimensional scalar-action + scalar-field witness, matching fnd:vectorSpaceModel) and @rel:proof:status 'literature:backed' (the UNIVERSAL vector-space theory is cited standard linear algebra, NOT finite:checked-from-engine — only the finite 1-dimensional WITNESS in fixtures/ is finite:checked, honest per Praeriehund). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24). SYN: the vector-space line is ABSENT from Helios as an algebra rung (only incidental 'ambient vector spaces', algebra_rings.ttl:581, 02_algebra_tower.md:136). Historical-identity BRIDGE: @rel:historical:identity fnd:VectorSpace + skos:closeMatch fnd:VectorSpace (Stage-3a ADDITIVE — fnd:VectorSpace stays byte-intact; T-RETIRE stubs it in Stage 3c); the denotatum's skos:exactMatch fnd:VectorSpace keeps inbound SP1/SP2/SP3 fnd:VectorSpace references (the SP3 geometers' coordinate axes / Pillar-3 spaces re-anchor here, algebra_rings.ttl:581) resolvable through the fold. Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision) + ProofStatusShape + ValidationModeShape + ProvenanceShape; the vector space's characteristic law is teeth-proved by VectorSpaceScalarFieldShape (shapes/vector_space.shapes.ttl) over the finite 1-dimensional witness. [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; the sigTwoBinary reuse is a task-scoped simplification; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object 'a vector space', NO provenance. skos:exactMatch
+#      fnd:VectorSpace (the retire-map bridge SP1/SP2/SP3 fnd:VectorSpace references resolve through;
+#      BridgeShape focus).
+# =====================================================================================
+alg:vector:space:kingdom:type:phylum:algebra:class:vector:space:order:two:binary:family:operation:genus:axiomatic:species:vector:space:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "vector space" ;
+    rel:notation   "vector space" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:vector:space:kingdom:type:phylum:algebra:class:vector:space:order:two:binary:family:operation:genus:axiomatic:species:vector:space:component:type:instance:canonical" ;
+    skos:exactMatch fnd:VectorSpace ;
+    rdfs:comment "[S] The vector-space DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a vector space' itself — an additive abelian group of vectors with a scalar action by a FIELD — carrying its canonical @rel:identifier and @rel:notation ONLY, and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object; V1DenotatumHygieneShape maxCount-0 tooth). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes. skos:exactMatch fnd:VectorSpace is the retire-map alias bridge (design §5.2, BridgeShape focus): it keeps every inbound SP1/SP2/SP3 fnd:VectorSpace reference (e.g. the SP3 geometers' coordinate axes / the Pillar-3 spaces re-anchoring on fnd:VectorSpace, algebra_rings.ttl:581) resolvable THROUGH the fold while fnd:VectorSpace stays byte-intact until Stage-3c T-RETIRE — the vector-space analogue of the module/field/ring denotatum skos:exactMatch fnd:Module / fnd:Field / fnd:Ring (spine/module.ttl:135, spine/field.ttl:131, spine/ring.ttl:126). Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. The compound subdomain 'vector:space' is B1 adjective-first (the adjective 'vector' first, the genus 'space' second), replicating the committed 'abelian:group' / 'commutative:monoid' compounds. [S] order:two:binary / genus:axiomatic UNATTESTED design-default tokens (order:two:binary echoes the module/field denotatum shape — a vector space carries an internal + and an external scalar action by a field, read as the two operations here), flagged for §7.2 sign-off." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction bundle +
+#      provenance + disjointness teeth). [S] class:model/genus:governed/component:class. Its VECTOR
+#      structure is an abelian group + it acts over a base FIELD by a scalar action (the D24
+#      vector-space-as-reducts, reducts_twoop_vector_space.ttl); the module-reduct + scalar-field-morphism
+#      edges are minted there, this class is their subject.
+# =====================================================================================
+alg:vector:space:kingdom:class:phylum:algebra:class:model:order:declarative:family:vector:space:genus:governed:species:vector:space:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "vector space model class" ;
+    rel:notation "vector space model" ;
+    rel:denotes alg:vector:space:kingdom:type:phylum:algebra:class:vector:space:order:two:binary:family:operation:genus:axiomatic:species:vector:space:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:zero:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:additive:operation ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:scalar:field ] ;
+    owl:disjointWith alg:ring:kingdom:class:phylum:algebra:class:model:order:declarative:family:ring:genus:governed:species:ring:component:class:instance:canonical ,
+                     alg:field:kingdom:class:phylum:algebra:class:model:order:declarative:family:field:genus:governed:species:field:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The vector-space MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the [S] denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction) makes 'a vector space is an abelian group of vectors with exactly one carrier, exactly one additive identity 0_V, exactly one vector-addition operation + and exactly one scalar FIELD K it acts over' a graph fact via four cardinality-1 owl:Restrictions on @rel:carrier / @rel:zero:element / @rel:additive:operation / @rel:scalar:field. It carries a @rel:scalar:field restriction where the module model-record carries @rel:module:ring (spine/module.ttl:154): a vector space's scalars form a FIELD, the module->vector-space upgrade — the multiplicative unit 1, the product · and the multiplicative INVERSES all live in the base FIELD K (@rel:scalar:field), not on the vector space's own carrier. The D24 VECTOR-SPACE-AS-REDUCTS decomposition — this vector-space model-record's structure IS the existing MODULE model-record (spine/module.ttl) strengthened so its base ring is the existing FIELD model-record (spine/field.ttl) — is minted as a module structure reduct + a scalar-field morphism in reducts_twoop_vector_space.ttl with this class as their subject (bridge-never-duplicate: the reduct/morphism edges live in ONE file, not duplicated here). owl:disjointWith the ring and field model-record classes (spine/ring.ttl, spine/field.ttl — the D25 homonym/distinction teeth: a vector space is NOT a ring and NOT a field — its · is an external scalar action by a base field, not an internal second binary operation on its own carrier; DifferentFromWitnessShape reddens any sameAs-collapse). It is NOT disjoint from the module model-record (a vector space IS a module whose scalar ring is a field, fnd:VectorSpace rdfs:subClassOf fnd:Module — that subsumption, not disjointness, is the parent relation, captured by the module structure reduct in reducts_twoop_vector_space.ttl). Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete 1-dimensional space can be typed against it) AND a rec:model:record / rec:declaration:record (so ModelShape / ProvenanceShape sh:targetClass count it as a data-graph focus and the 0-focus gate is satisfied) — legal OWL2 metaclass punning, exactly as spine/module.ttl / spine/field.ttl and DISTINCT from the frame.ttl domain-class-punning anti-pattern V1 forbids. On this focus ModelShape's identity sh:sparql, ModuleScalarActionShape and VectorSpaceScalarFieldShape are vacuously satisfied (the class declares no @rel:identity:element / @rel:action:model scalar actions / @rel:scalar:field object — only owl:Restrictions); the finite 1-dimensional witness in fixtures/vector_space_pos.ttl is where VectorSpaceScalarFieldShape bites (and fixtures/vector_space_neg.ttl, whose scalar structure is a non-field ring, is where its field-scalars-violating negative flips it). [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM records — the three members of E (design §2c — minimal, NO denotatum/gate/
+#     provenance, NO certificate; axiom != theorem is structural, rec:axiom:record owl:disjointWith
+#     rec:theorem:record, records.ttl:119). Each verbatim-derives its fnd: law (algebra_rings.ttl).
+# =====================================================================================
+alg:vector:space:kingdom:axiom:phylum:operation:class:closure:order:two:binary:family:vector:space:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "vector space two-operation closure" ;
+    rel:notation "for all u,v in V, r in K: u+v in V and r·v in V" ;
+    rdfs:comment "[S] The two-operation CLOSURE / totality axiom of the vector-space theory (rec:axiom:record), folding fnd:lawTwoOpClosure (algebra_rings.ttl:240-244): the vector addition + : V,V -> V is a total function and the scalar action · : K,V -> V is a total function, so for all vectors u,v in the vector-space carrier V and every scalar r in the base field K the sum u+v and the scaled vector r·v are defined and lie in V. A membership/totality statement, NOT a left=right equation — an axiom record only, NOT a rec:equation:record, carrying NO @rel:left/@rel:right. It is the closure that the scalar-action typing K x V -> V refines (the ModuleScalarActionShape tooth, inherited since a vector space IS a module, checks precisely that r·v lands back in V). Minimal per design §2c: no denotatum / gate / provenance, no @rel:certificate (an axiom is asserted, not proved). A member of the vector-space theory's equation set E, INHERITED cumulatively from the module rung (spine/module.ttl). SYN, cited standard linear algebra." .
+
+# --- the SCALAR ACTION K x V -> V (inherited from the module rung; the external field action that, together
+#     with the field-scalars law, makes an abelian group of vectors a vector space; unital + scalar-associative
+#     + bi-distributive). ---
+alg:vector:space:kingdom:axiom:phylum:operation:class:action:order:scalar:family:vector:space:genus:scalar:species:action:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "vector space scalar action (unital, associative, bi-distributive)" ;
+    rel:notation "1·v = v ; (r·s)·v = r·(s·v) ; r·(u+v) = r·u + r·v ; (r+s)·v = r·v + s·v" ;
+    rel:equation alg:vector:space:kingdom:axiom:phylum:operation:class:action:order:scalar:family:vector:space:genus:scalar:species:distribution:left:component:statement:instance:canonical ,
+                 alg:vector:space:kingdom:axiom:phylum:operation:class:action:order:scalar:family:vector:space:genus:scalar:species:distribution:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] The SCALAR-ACTION axiom of the vector-space theory (rec:axiom:record, the named parent law, no side segment), folding fnd:lawScalarAction (algebra_rings.ttl:264-267): a vector space over a field K carries a scalar action K x V -> V that is UNITAL (1·v = v, the vector-space unit-law axiom 5, fnd:saUnitLaw), ASSOCIATIVE in scalars ((r·s)·v = r·(s·v), axiom 8) and BI-DISTRIBUTIVE — r·(u+v) = r·u + r·v (over vector addition, axiom 6) AND (r+s)·v = r·v + s·v (over field addition, axiom 7). This is the scalar action INHERITED from the module rung (spine/module.ttl:177): a vector space IS a module, so it carries the identical scalar-action law; what a vector space ADDS is the field-scalars law (the separate axiom below), not a new scalar-action law. As a MULTI-PART bi-distributive law its two distributive halves @rel:equation-decompose into the TWO reified equation records scalar-distribution-left (r·(x+y)=r·x+r·y) and scalar-distribution-right ((r+s)·x=r·x+s·x) below (design §1.6, §3; the module distributivity split spine/module.ttl:181-182, the ring distributivity split spine/ring.ttl:201-235 precedent). Its WELL-TYPEDNESS (K x V -> V — the action's result lands back in V) is teeth-proved by the INHERITED module tooth ModuleScalarActionShape / probes/module_law.rq over the finite 1-dimensional witness (fixtures/vector_space_pos.ttl): a scalar action whose result ESCAPES the vectors -> RED. Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard linear algebra. [S] class:action / order:scalar / genus:scalar / species:action UNATTESTED design-default tokens (§7.2 #5), echoing spine/module.ttl -> sign-off packet." .
+
+# --- the CHARACTERISTIC added law: FIELD-SCALARS (the scalar ring is a FIELD; its own atom; the sole law a
+#     vector space adds over a module — the module->vector-space upgrade). ---
+alg:vector:space:kingdom:axiom:phylum:scalar:class:field:order:structure:family:vector:space:genus:field:species:scalars:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "vector space field-scalars (the scalar ring is a field)" ;
+    rel:notation "the scalar ring K is a FIELD: every nonzero scalar r != 0 has a multiplicative inverse r^-1 in K" ;
+    rdfs:comment "[S] The FIELD-SCALARS axiom of the vector-space theory (rec:axiom:record, the CHARACTERISTIC added law, no side segment), folding fnd:lawFieldScalars (algebra_rings.ttl:270-273): the scalar ring K of a vector space is a FIELD — every nonzero scalar r != 0 has a multiplicative inverse r^-1 in K — upgrading a module-over-a-ring to a vector-space-over-a-field. This is the SINGLE law fnd:VectorSpace ADDS over fnd:Module (fnd:VectorSpace fnd:addsLaw fnd:lawFieldScalars, algebra_rings.ttl:585, one-law-per-child) — the step from a module (scalars a ring) to a vector space (scalars a field); the vector space's forgetful reduct vector-space |-> module (the theory's @rel:reduct) forgets exactly this law. It is a STRUCTURAL predicate on the scalar structure (the scalars form a field), NOT a left=right equation on the carrier — so it is an axiom record only, NOT a rec:equation:record, carrying NO @rel:left/@rel:right and NO @rel:equation decomposition (the invertibility content it names is itself the field's multiplicative-inverse law, spine/field.ttl:227, reached via the scalar-field morphism reducts_twoop_vector_space.ttl, not re-reified here). Its status is teeth-proved by shapes/vector_space.shapes.ttl VectorSpaceScalarFieldShape / probes/vector_space_law.rq over the finite 1-dimensional witness (fixtures/): a 'vector space' whose declared @rel:scalar:field structure is NOT a field-typed structure (its scalars are drawn from a mere ring) -> RED, folding fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms's requirement that fnd:scalarField be a fnd:Field, not merely a ring (algebra_rings.ttl:204-208,581). It is the D24 vector-space-as-reducts CONNECTING MORPHISM: the module reduct (the whole module structure) and the base field are glued by exactly this scalar-field strengthening (reducts_twoop_vector_space.ttl @rel:connects both). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard linear algebra. [S] phylum:scalar / class:field / order:structure / genus:field / species:scalars UNATTESTED design-default tokens (§7.2 #5) -> sign-off packet." .
+
+# =====================================================================================
+# (d) EQUATION records — the two-sided BI-DISTRIBUTIVITY split of the scalar action (design §2d, §1.6).
+#     The scalar action's bi-distributivity reified as an ordered pair per distributive side, inherited from
+#     the module rung. scalar-distribution-left (r·(x+y)=r·x+r·y — over vector addition, axiom 6) +
+#     scalar-distribution-right ((r+s)·x=r·x+s·x — over field addition, axiom 7). Distinct @rel:left terms so
+#     the EquationRecordShape identity-collision sh:sparql never fires between the twins.
+# =====================================================================================
+alg:vector:space:kingdom:axiom:phylum:operation:class:action:order:scalar:family:vector:space:genus:scalar:species:distribution:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "vector space scalar distributivity (left: r·(x+y) = r·x + r·y)" ;
+    rel:notation "r·(x+y) = r·x + r·y" ;
+    rel:left  term:scalar:distribution:leftaction ;
+    rel:right term:scalar:distribution:leftsum ;
+    rdfs:comment "[S] The LEFT scalar-distributivity law r·(x+y) = r·x + r·y — a scalar distributes over VECTOR addition (vector-space axiom 6), side 1 of the scalar action's bi-distributivity, reified as an equation record (rec:equation:record) with one @rel:left term (the scaled sum r·(x+y)) and one @rel:right term (the sum of scaled vectors r·x + r·y). A multi-part bi-distributive law mints TWO equation records, one per distributive side (design §1.6, §3; the module distributivity split spine/module.ttl:192-198, the ring distributivity split spine/ring.ttl:221-235 precedent). It is the member the scalar-action parent axiom @rel:equation-decomposes into and the EquationRecordShape cardinality-1 left/right focus. It is the standard vector-space axiom 'scalar multiplication distributes over vector addition', inherited from the module rung. SYN, cited standard linear algebra. [S] the species:distribution:left SIDE SEGMENT is UNATTESTED (§7.2 #2 side-segment placement, as the module/ring distribution-left) -> sign-off packet." .
+
+alg:vector:space:kingdom:axiom:phylum:operation:class:action:order:scalar:family:vector:space:genus:scalar:species:distribution:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "vector space scalar distributivity (right: (r+s)·x = r·x + s·x)" ;
+    rel:notation "(r+s)·x = r·x + s·x" ;
+    rel:left  term:scalar:distribution:rightaction ;
+    rel:right term:scalar:distribution:rightsum ;
+    rdfs:comment "[S] The RIGHT scalar-distributivity law (r+s)·x = r·x + s·x — a SUM OF SCALARS distributes over a vector (vector-space axiom 7), side 2 of the scalar action's bi-distributivity, reified as an equation record (rec:equation:record) with one @rel:left term (the sum-scalar action (r+s)·x) and one @rel:right term (the sum of scaled vectors r·x + s·x). Its twin is the scalar-distribution-LEFT record above; together they are the TWO equation records the ONE bi-distributive scalar-action law decomposes into (design §1.6, §3). The two distributive laws are independent members of E (left distributes a scalar over a VECTOR sum in (V,+); right distributes a FIELD sum r+s over a vector — a distinct axiom reading field addition). Distinct @rel:left term (rightaction) from the left record (leftaction), so the EquationRecordShape identity-collision sh:sparql does not fire between the twins. It is the standard vector-space axiom 'the sum of scalars distributes', inherited from the module rung. SYN, cited standard linear algebra. [S] species:distribution:right SIDE SEGMENT UNATTESTED (§7.2 #2) -> sign-off packet." .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate, NEVER an
+#     axiom; the module / ring / field theorem/certificate idiom). Vector space's natural structure theorem:
+#     SCALAR NEGATION (-1)·v = -v (the field scalar -1 scales a vector to its additive inverse) — a
+#     consequence of right scalar distributivity that USES the field's additive inverse -1 (a field-scalar
+#     consequence, the vector-space analogue of the module zero-annihilation theorem).
+# =====================================================================================
+alg:vector:space:kingdom:theorem:phylum:algebra:class:negation:order:declarative:family:vector:space:genus:scalar:species:negation:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "vector space scalar negation" ;
+    rel:notation "for all v in V: (-1)·v = -v (the additive inverse of v in (V,+))" ;
+    rel:certificate alg:vector:space:kingdom:certificate:phylum:algebra:class:negation:order:declarative:family:vector:space:genus:scalar:species:negation:component:statement:instance:canonical ;
+    rel:authority "SYN" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "Theorem, not an additional foundational axiom (design §2f, the module / ring / field theorem/certificate idiom): in any vector space V over a field K the FIELD SCALAR -1 (the additive inverse of 1 in K, which EXISTS because K is a field) scales every vector to its additive inverse — (-1)·v = -v (the additive inverse of v in the abelian group (V,+)) for every v in V. It is a DERIVED consequence of right scalar distributivity together with the vector-space unit law and the abelian-group inverse in (V,+): v + (-1)·v = 1·v + (-1)·v = (1 + (-1))·v = 0_K·v = 0_V, so (-1)·v is the additive inverse of v — NOT a new axiom (the D24 A0 ProofArtifact plane). It is the vector space's natural structure theorem the FIELD-SCALARS law licenses (it USES the field scalar -1, the additive inverse of the field's one — the vector-space analogue of the module zero-scalar-annihilation theorem, spine/module.ttl:214, and the field no-zero-divisors theorem, spine/field.ttl:264). It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). Provenance quartet + @rel:authority 'SYN' on the record (the field-scalars + scalar-action laws it derives from are SYN, algebra_rings.ttl:264-273)." .
+
+alg:vector:space:kingdom:certificate:phylum:algebra:class:negation:order:declarative:family:vector:space:genus:scalar:species:negation:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "vector space scalar negation certificate" ;
+    rel:digest:value    "2c2f0e3a1b9d4e6f8a0c5d7e9f1b3a5c7e9d1f3b5a7c9e0d2f4b6a8c0e2d4f6a" ;
+    rel:proof:method    "Explicit general mathematical derivation (v + (-1)·v = 1·v + (-1)·v = (1+(-1))·v = 0_K·v = 0_V by right scalar-distributivity over field addition, the unit law 1·v=v, and 0_K·v=0_V; so (-1)·v is the additive inverse -v in the abelian group (V,+)); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for vector-space scalar negation (design §2f; the module / ring / field certificate idiom): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Vector-space scalar negation: in a vector space V over a field K, for every vector v in V, (-1).v = -v where -1 is the additive inverse of 1 in K and -v the additive inverse of v in (V,+). Proof: v + (-1).v = 1.v + (-1).v = (1 + (-1)).v = 0_K.v = 0_V by right scalar-distributivity over field addition, the unit law 1.v=v, and zero-scalar annihilation 0_K.v=0_V; hence (-1).v is the additive inverse of v. General mathematical derivation; not proof-assistant checked'), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119). The theorem is a FIELD-SCALAR consequence — the scalar -1 exists precisely because the scalars form a field (the vector-space characteristic law), tying the certificate to the field-scalars upgrade this rung adds." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:vector:space:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:vector:space:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "vector space declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:vector:space:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:vector:space:genus:reconciled:species:vector:space:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the vector-space declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the vector-space declaration was RECONCILED against its Plane-2 denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom (the mathematics-ladder interpretation IRI, mirroring spine/module.ttl:241 / spine/field.ttl:291 which likewise reference it). Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the vector-space rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the vector-space declaration is reconciled, not merely asserted." .

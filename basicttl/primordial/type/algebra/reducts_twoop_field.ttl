@@ -1,0 +1,113 @@
+# =====================================================================================
+# reducts_twoop_field.ttl — the D24 FIELD-AS-REDUCTS decomposition edges (W2 · SP0 · Stage 3a, T-FIELD).
+# =====================================================================================
+# D24 A6 (the showcase, field half): "Field = additive abelian_group + multiplicative (nonzero)
+# abelian-group-like reduct + distributivity + field-mult-comm". A field model is, structurally, its
+# ADDITIVE reduct (forget ·, 1, distributivity -> an abelian group) PLUS its MULTIPLICATIVE (NONZERO)
+# reduct (forget +, 0, distributivity -> the nonzero elements as a COMMUTATIVE group, i.e. an abelian
+# group) PLUS the DISTRIBUTIVITY interaction law that glues the two. This file mints those three edges for
+# the field rung: the field model-record's + structure IS the existing abelian_group model-record, its ·
+# (nonzero) structure IS ALSO the existing abelian_group model-record (bridge-never-duplicate: the reducts
+# REUSE the committed one-op abelian_group model-record by IRI, spine/abelian_group.ttl:144, never re-mint
+# it), and distributivity (spine/field.ttl's inherited interaction axiom) is the connecting morphism.
+#
+# WHY THE MULTIPLICATIVE REDUCT TARGETS abelian_group (NOT monoid). This is the D24 field/ring CONTRAST:
+# the RING multiplicative reduct targets the MONOID model-record (a ring's · is only a monoid,
+# reducts_twoop.ttl:81-94), but a FIELD's nonzero elements form a COMMUTATIVE GROUP under · (every nonzero
+# x has x^-1, and a·b = b·a — the field's two added laws multiplicative inverse + multiplicative
+# commutativity), so the field multiplicative reduct targets the ABELIAN GROUP model-record. This is
+# exactly how the reduct edges encode the field-mult-comm + mult-inverse upgrade over a ring at the
+# structure-plane (algebra_rings.ttl:530-557).
+#
+# WHY A NEW FILE (not reducts_twoop.ttl). reducts_twoop.ttl is the T-RING two-operation reduct block (the
+# ring additive/multiplicative reducts + the distributivity morphism); a NEW per-rung file avoids a
+# shared-file write race with the parallel rung executors (design §6 fan-out; the same reason
+# signatures_twoop.ttl / operations_twoop.ttl / records_twoop.ttl / reducts_twoop.ttl are separate). It
+# REUSES the two-operation structure-reduct class rec:reduct:two:operation:record declared in
+# reducts_twoop.ttl (bridge-never-duplicate, never re-declared).
+#
+# WHY rec:reduct:two:operation:record (not rec:reduct:record). Exactly as reducts_twoop.ttl:20-26: the
+# field-as-reducts additive/multiplicative edges forget a WHOLE SUB-SIGNATURE (·, 1 / +, 0) plus
+# distributivity — NOT a single law — so they are SIGNATURE / STRUCTURE reducts, typed
+# rec:reduct:two:operation:record (subClassOf rec:specimen:record, NOT rec:reduct:record), so ReductShape
+# (the one-law min1/max1 @rel:adds:law tooth) does not focus them and the runner's rec:reduct:record count
+# (reducts = 7 one-operation edges) is unchanged. The field's OWN one-law forgetful reduct (field |-> ring,
+# forgets multiplicative inverse) is the theory record's @rel:reduct edge (spine/field.ttl), the standard
+# rec:reduct:record pattern.
+#
+# HONESTY (Praeriehund; §7.2). Everything here is SYN (the two-operation line is absent from Helios as
+# algebra, algebra_rings.ttl:30-35); every [S] token (no runtime/closure precedent for the two-operation
+# structure-reduct) is flagged in-line for the maintainer sign-off packet (T-PANEL). Provenance quartet +
+# @rel:authority "SYN" on every RECORD, never on a denotatum.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.9, §3, §6 fan-out; D24 A6).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:530-557 (fnd:Field), D24 A6 field-as-reducts doctrine.
+# Consumes (do not rewrite): spine/field.ttl (the field model-record + distributivity axiom, the reduct
+# subject + connecting morphism target), spine/abelian_group.ttl (the additive + multiplicative reduct
+# targets), reducts_twoop.ttl (rec:reduct:two:operation:record class REUSED), records_twoop.ttl (the
+# additive / multiplicative discriminators).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:reduct:two:operation:record REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# 1. THE FIELD ADDITIVE REDUCT — field model-record |-> abelian_group model-record (the + structure).
+# =====================================================================================
+alg:field:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:additive:species:group:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "field additive reduct -> abelian group" ;
+    rel:notation "structure reduct: field |-> abelian group (the additive + structure; forgets ·, 1, distributivity)" ;
+    rel:reduct:source alg:field:kingdom:class:phylum:algebra:class:model:order:declarative:family:field:genus:governed:species:field:component:class:instance:canonical ;
+    rel:reduct        alg:abelian:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:abelian:group:genus:governed:species:abelian:group:component:class:instance:canonical ;
+    rel:reduct:theory alg:abelian:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:abelian:group:genus:presented:species:abelian:group:component:definition:instance:canonical ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:additive:species:discriminator:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The field ADDITIVE reduct (D24 A6 field-as-reducts, half one): the forgetful structure morphism that projects a field model onto its ADDITIVE structure — an ABELIAN GROUP (S,+,0) — by forgetting the multiplicative operation ·, the multiplicative unit 1 and distributivity. @rel:reduct:source -> the field model-record class (spine/field.ttl), @rel:reduct -> the EXISTING abelian_group model-record class (spine/abelian_group.ttl:144, REUSED by IRI — bridge-never-duplicate: 'the + structure IS the existing abelian_group model-record'), @rel:reduct:theory -> the abelian_group presented theory. @rel:operation:discriminator -> the ADDITIVE discriminator (records_twoop.ttl), tagging WHICH of the field's two operations survives the reduct — the operation-plane witness that this is the + reduct, not the · reduct. Identical in shape to the ring additive reduct (reducts_twoop.ttl:63-76): a field's additive structure is an abelian group exactly as a ring's is (the field/ring contrast is on the MULTIPLICATIVE side — see half two). Typed rec:reduct:two:operation:record (NOT rec:reduct:record: a structure reduct forgets a whole sub-signature, not one law, so it is outside ReductShape's one-law gate and the seven-reduct count). Provenance quartet + @rel:authority SYN on the record, never on a denotatum. [S] order:structure / genus:additive / species:group + the @rel:reduct:source / @rel:reduct:theory predicates UNATTESTED -> §7.2 sign-off." .
+
+# =====================================================================================
+# 2. THE FIELD MULTIPLICATIVE (NONZERO) REDUCT — field model-record |-> abelian_group model-record.
+#    The D24 field/ring CONTRAST: a field's nonzero · structure is an ABELIAN GROUP (not a monoid).
+# =====================================================================================
+alg:field:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:multiplicative:species:group:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "field multiplicative (nonzero) reduct -> abelian group" ;
+    rel:notation "structure reduct: field |-> abelian group (the nonzero multiplicative · structure; forgets +, 0, distributivity)" ;
+    rel:reduct:source alg:field:kingdom:class:phylum:algebra:class:model:order:declarative:family:field:genus:governed:species:field:component:class:instance:canonical ;
+    rel:reduct        alg:abelian:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:abelian:group:genus:governed:species:abelian:group:component:class:instance:canonical ;
+    rel:reduct:theory alg:abelian:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:abelian:group:genus:presented:species:abelian:group:component:definition:instance:canonical ;
+    rel:operation:discriminator alg:semiring:kingdom:definition:phylum:specification:class:discriminator:order:enumeration:family:operation:genus:multiplicative:species:discriminator:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The field MULTIPLICATIVE (NONZERO) reduct (D24 A6 field-as-reducts, half two — the field/ring CONTRAST): the forgetful structure morphism that projects a field model onto its MULTIPLICATIVE structure — the NONZERO elements as a COMMUTATIVE GROUP (S\\{0},·,1), i.e. an ABELIAN GROUP — by forgetting the additive operation +, the additive unit 0 and distributivity. @rel:reduct:source -> the field model-record class (spine/field.ttl), @rel:reduct -> the EXISTING abelian_group model-record class (spine/abelian_group.ttl:144, REUSED by IRI — bridge-never-duplicate: 'the nonzero · structure IS the existing abelian_group model-record'). This is the D24 SHOWCASE CONTRAST with the ring: the RING multiplicative reduct targets the MONOID model-record (a ring's · is only a monoid, reducts_twoop.ttl:81-94), but a FIELD's nonzero elements form a COMMUTATIVE GROUP under · (the field's two added laws multiplicative INVERSE — every nonzero x has x^-1 — and multiplicative COMMUTATIVITY — a·b=b·a — algebra_rings.ttl:538,547), so THIS reduct targets the ABELIAN GROUP model-record. The reduct edge is therefore exactly where the field-mult-comm + mult-inverse upgrade over a ring is encoded at the structure-plane. @rel:reduct:theory -> the abelian_group presented theory; @rel:operation:discriminator -> the MULTIPLICATIVE discriminator (records_twoop.ttl), tagging that the · operation is the one that survives this reduct. Typed rec:reduct:two:operation:record (NOT rec:reduct:record, outside ReductShape's one-law gate and the seven-reduct count). Provenance quartet + @rel:authority SYN on the record. Together with the additive reduct above and the distributivity connecting morphism below, this is the complete D24 field-as-reducts decomposition: a field is exactly TWO abelian groups on one carrier (the whole carrier under +, the nonzero elements under ·), glued by distributivity. [S] order:structure / genus:multiplicative / species:group UNATTESTED -> §7.2 sign-off." .
+
+# =====================================================================================
+# 3. THE DISTRIBUTIVITY CONNECTING MORPHISM — glues the additive and multiplicative (nonzero) reducts.
+# =====================================================================================
+alg:field:kingdom:mapping:phylum:composition:class:distributivity:order:interaction:family:morphism:genus:distribution:species:gluing:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:two:operation:record ;
+    rdfs:label "field distributivity connecting morphism" ;
+    rel:notation "distributivity glues the additive-group reduct and the multiplicative (nonzero) abelian-group reduct: · distributes over +" ;
+    rel:reduct        alg:field:kingdom:class:phylum:algebra:class:model:order:declarative:family:field:genus:governed:species:field:component:class:instance:canonical ;
+    rel:connects      alg:field:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:additive:species:group:component:definition:instance:canonical ,
+                      alg:field:kingdom:mapping:phylum:composition:class:reduct:order:structure:family:morphism:genus:multiplicative:species:group:component:definition:instance:canonical ;
+    rel:equation      alg:field:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:field:genus:interaction:species:distribution:component:statement:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The DISTRIBUTIVITY connecting morphism (D24 A6 field-as-reducts, the glue): the additive-abelian-group reduct and the multiplicative (nonzero) abelian-group reduct are two INDEPENDENT one-operation structures on one carrier; distributivity (· distributes over +) is the sole interaction law that BINDS them into a field — without it the two reducts are an unrelated pair of abelian groups sharing a set, not a field. @rel:reduct -> the field model-record class (the structure being decomposed), @rel:connects -> BOTH the additive reduct and the multiplicative (nonzero) reduct above (the two halves it glues), @rel:equation -> the field distributivity axiom record (spine/field.ttl, the interaction law inherited cumulatively from the ring/semiring rung). Typed rec:reduct:two:operation:record. It makes the D24 field decomposition COMPLETE and checkable: the reducts are the two abelian-group structures, the distributivity morphism is the gluing law, and the field's OWN characteristic tooth FieldMultInverseShape (shapes/field.shapes.ttl) is what proves the multiplicative reduct really is a group (every nonzero element genuinely invertible) in a concrete model. Provenance quartet + @rel:authority SYN on the record. [S] class:distributivity / genus:distribution / species:gluing + the @rel:connects predicate UNATTESTED -> §7.2 sign-off." .

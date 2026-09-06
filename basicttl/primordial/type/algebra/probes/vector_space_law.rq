@@ -1,0 +1,38 @@
+# =====================================================================================
+# vector_space_law.rq — RED->GREEN probe for T-VECTORSPACE (the FIELD-SCALARS tooth, W2 · SP0).
+# Re-homes fnd:VectorSpaceAxiomsShape / q_vectorspace_axioms (basicttl/foundation/algebra_rings.ttl:270-273,
+# 204-208,581) — restricted to its distinguishing field-scalars requirement — into the folded stratified
+# idiom, over the vector-space model's declared scalar structure (@rel:scalar:field = the scalar structure,
+# typed @typ:field:scalar:structure when it is genuinely a field).
+# =====================================================================================
+# The VECTOR-SPACE field-scalars law (the scalar ring is a FIELD — the sole law a vector space adds over a
+# module): a vector-space model's declared scalar structure (@rel:scalar:field) must be a field-typed
+# structure (@typ:field:scalar:structure). This SELECT returns every (model, scalarStructure) for which the
+# scalar structure is NOT a field-typed structure — i.e. the scalars are drawn from a mere ring, so the model
+# is a MODULE, not a vector space.
+#
+#   GREEN (a genuine vector space, e.g. fixtures/vector_space_pos.ttl — the 1-dimensional space {V0,V1,V2}
+#         over the GF(3) FIELD, scalar structure typed @typ:field:scalar:structure): 0 rows — the scalar
+#         structure is a field, satisfied.
+#   RED   (a broken vector space, e.g. fixtures/vector_space_neg.ttl — the scalar structure retyped
+#         @typ:ring:scalar:structure): >= 1 row — the declared scalar structure is a non-field ring, so the
+#         field-scalars law fails and the tooth bites.
+#
+# Run over the algebra data graph merged with the fixture under test, inference=none. Companion SHACL:
+# shapes/vector_space.shapes.ttl VectorSpaceScalarFieldShape (sh:targetClass rec:model:record) carries the
+# SAME clause, so the runner's fixture iteration catches the negative through the shape too. NOTE the INHERITED
+# module scalar-action typing law (probes/module_law.rq) still applies — a vector space IS a module — and is
+# satisfied in BOTH polarities of this fixture pair (the scalar actions land in V in pos and neg); ONLY this
+# field-scalars probe flips.
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+PREFIX typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:>
+
+SELECT DISTINCT ?model ?scalarStructure WHERE {
+  # a vector-space model's declared scalar structure
+  ?model rel:scalar:field ?scalarStructure .
+  # the scalar structure is NOT a field-typed structure: the scalars are not drawn from a field
+  FILTER NOT EXISTS {
+    ?scalarStructure a typ:field:scalar:structure .
+  }
+}

@@ -1,0 +1,82 @@
+# =====================================================================================
+# signatures_twoop.ttl — the shared TWO-OPERATION signature atom for the folded algebra
+# spine (W2 · SP0 · Stage 3a, T-2OP-INFRA).
+# =====================================================================================
+# The one shared signature Sigma of the TWO-operation algebra line (semiring / ring / field), a
+# first-class atom on the mathematics 12-marker ladder (D26 full runtime Linnaean ladder, VERBATIM
+# head), typed against the T-CLASSES intensional signature class (records.ttl:67-71,
+# rec:signature:record — min-cardinality-1 on rel:operation). It is the two-operation analogue of the
+# one-operation sigOneBinary/sigMonoid/sigGroup atoms (signatures.ttl), folded FROM fnd:sigTwoBinary
+# (basicttl/foundation/algebra_rings.ttl:325-333).
+#
+#   HEAD = urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:
+#   tail = <subdomain>:kingdom:definition:phylum:specification:class:signature:order:<profile>:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical
+#
+# A signature is the (S, Omega) half of a Lawvere theory (design §1.7, D24 A6): the carrier SORT S plus
+# the operation SYMBOLS Omega. It carries NO equations (those are the theory's E — distributivity,
+# additive-inverse, multiplicative-inverse — minted by the rung tasks T-RING/T-FIELD into their own
+# equation records). sigTwoBinary is SHARED across the three two-operation rungs that differ only in
+# their equation set (algebra_rings.ttl:328 "Shared by fnd:Semiring, fnd:Ring and fnd:Field ... that
+# differ only in their equation set ... not their signature"): semiring (E = {closure, distributivity}),
+# ring (E adds additive inverse), field (E adds multiplicative inverse + mult-commutativity). Home
+# subdomain 'semiring' = the rung where this signature first enters the two-operation line.
+#
+# NOTE (two-sorted signatures out of scope here). The module/vector-space line uses a DISTINCT
+# two-SORTED signature (fnd:sigModule, algebra_rings.ttl:335-342: sorts M and R, ops +_M and ·_scalar);
+# that atom is authored by the module rung sibling, NOT by T-2OP-INFRA (this file mints only the
+# one-sorted two-BINARY ring signature Sigma = {+, ·, 0, 1}).
+#
+# ATTESTATION (Praeriehund honesty; grep-confirmed off refcomp/tar/bash/aob/urn/**, same verdict method
+# as signatures.ttl:20-27 — ATTESTED = >=1 aob dir, load-bearing; exact dir-counts omitted). The ladder
+# skeleton is INHERITED byte-for-byte from the one-operation signatures.ttl (same
+# kingdom:definition:phylum:specification:class:signature:...:family:operation:genus:algebraic:species:signature:component:definition
+# spine), so its attestation carries over:
+#   - kingdom:definition   ATTESTED   - phylum:specification ATTESTED
+#   - family:operation     ATTESTED   - component:definition ATTESTED
+# and its already-flagged [S] tokens (class:signature, genus:algebraic, species:signature) are flagged
+# once more here, not silently reused.
+#
+# [S] TOKENS (§7.2 sign-off packet, assembled by T-PANEL):
+#   - class:signature / genus:algebraic / species:signature — UNATTESTED (0 aob dirs), inherited from
+#     signatures.ttl:31-33; flagged.
+#   - order:two:binary — the arity-profile descriptor distinguishing THIS signature from the five
+#     one-operation profiles (order:binary / unital / invertible / divisible / divisible:unital,
+#     signatures.ttl:36-39). UNATTESTED design-default profile token (§1.7 pattern order:<profile>),
+#     chosen to name the two-operation presentation strength (two binary operations + two units, the
+#     characteristic that separates the ring line from the one-operation tower) and echoing the folded
+#     fnd name "sigTwoBinary". The subdomain segment ('semiring') already uniquely distinguishes the IRI;
+#     the profile carries the arity story. Flagged.
+#
+# The shared syntactic carrier SORT atom is DECLARED in signatures.ttl:65-69 (one shared sort S for the
+# whole one-sorted spine — the two-operation ring line is also one-sorted, so it reuses that SAME sort by
+# IRI reference; this file parses standalone, the merged algebra data graph resolves it).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.7, fan-out §6).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:325-333 (fnd:sigTwoBinary). ADDITIVE — no fnd:/
+# foundation/* edit (demolition is Stage 3c). Consistent-with: signatures.ttl (shared carrier sort,
+# rec:signature:record), operations_twoop.ttl (rel:operation targets: + · 0 1).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:signature:record REUSED, never re-minted:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# -------------------------------------------------------------------------------------
+# sigTwoBinary  Sigma = {+, ·, 0, 1}  — semiring + ring + field (differ only in E).
+# -------------------------------------------------------------------------------------
+alg:semiring:kingdom:definition:phylum:specification:class:signature:order:two:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:signature:record ;
+    rdfs:label "sigTwoBinary" ;
+    rel:notation "Sigma = { + : S,S -> S ; · : S,S -> S ; 0 : -> S ; 1 : -> S }" ;
+    rel:sort      alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:operation alg:semiring:kingdom:operation:phylum:primitive:class:sum:order:binary:family:operation:genus:additive:species:sum:component:operation:instance:canonical ,
+                  alg:semiring:kingdom:operation:phylum:primitive:class:product:order:binary:family:operation:genus:multiplicative:species:product:component:operation:instance:canonical ,
+                  alg:semiring:kingdom:operation:phylum:primitive:class:zero:order:nullary:family:operation:genus:additive:species:zero:component:operation:instance:canonical ,
+                  alg:semiring:kingdom:operation:phylum:primitive:class:unit:order:nullary:family:operation:genus:multiplicative:species:one:component:operation:instance:canonical ;
+    rdfs:comment "The two-operation ring signature Sigma = { +, ·, 0, 1 } : one carrier sort S, the two binary product symbols additive '+ : S,S -> S' and multiplicative '· : S,S -> S', and the two nullary units additive '0 : -> S' (the zero/neutral of +) and multiplicative '1 : -> S' (the one/neutral of ·) — the four operation symbols of operations_twoop.ttl. Folds fnd:sigTwoBinary (algebra_rings.ttl:325-333) into the primordial idiom. Shared by semiring, ring and field — the three rungs of the two-operation line that differ only in their equation set (semiring E={closure,distributivity}; ring E adds additive inverse; field E adds multiplicative inverse + mult-commutativity), NOT in their signature (algebra_rings.ttl:328). Typed rec:signature:record (records.ttl:67-71): the min-cardinality-1 rel:operation tooth is satisfied by naming FOUR operation symbols. Home subdomain 'semiring' = where the two-operation signature first enters. This is one-SORTED (single carrier S over which both operations range) — DISTINCT from the two-SORTED module signature fnd:sigModule (sorts M,R; algebra_rings.ttl:335-342), which the module rung authors separately. [S] TOKENS: class:signature, genus:algebraic, species:signature UNATTESTED (inherited from signatures.ttl:31-33); order:two:binary is an UNATTESTED design-default profile token (§1.7) naming this signature's presentation strength (two binary operations + two units over the one-operation tower) and echoing the folded fnd name sigTwoBinary. The nullary unit symbols it names (0, 1) are themselves [S] on order:nullary (operations_twoop.ttl). All [S] uses flagged for the §7.2 sign-off packet (T-PANEL)." .

@@ -1,0 +1,80 @@
+# =====================================================================================
+# vector_space_pos.ttl — the finite-table CERTIFICATE fixture (POSITIVE) for the vector-space rung (W2 · SP0 ·
+# Stage 3a, T-VECTORSPACE; the 1-dimensional witness re-expressing fnd:vectorSpaceModel, algebra_rings.ttl:851,
+# in the new idiom).
+# =====================================================================================
+# The 1-dimensional vector space V = {V0,V1,V2} (an additive group ~= Z/3, reusing the T4 abelian-group idea
+# as (V,+)) over the scalar FIELD GF(3), with its declared scalar FIELD structure (@rel:scalar:field, typed
+# @typ:field:scalar:structure — the scalars form a FIELD, the vector-space characteristic law) AND its reified
+# SCALAR ACTIONS K x V -> V (discriminated by the reified @typ:scalar:action node, scoped @rel:action:model ->
+# the model):
+#   1·V1 = V1 (the unit law 1·v=v)     2·V1 = V2     2·V2 = V1   (2·2 = 1 mod 3)
+# every action's result is a module vector (V0/V1/V2), so the scalar action lands back in V (K x V -> V), AND
+# the declared scalar structure is a field. A genuine vector space: a module whose scalars form a field.
+# Stamped with the D24 finite-table CERTIFICATE metadata @rel:proof:status "finite:checked" (the scalar
+# structure + actions were exhaustively checked) + @rel:validation:mode "finite:table" (the mode the
+# vector-space theory record declares, mirroring fnd:vectorSpaceModel). Typed rec:model:record so it is a
+# VectorSpaceScalarFieldShape / ModuleScalarActionShape / ModelShape focus. Merged onto the algebra data graph
+# it MUST still conform (run-algebra-checks.sh step (b) positive polarity): VectorSpaceScalarFieldShape passes
+# (the scalar structure IS a field); the INHERITED ModuleScalarActionShape passes over these well-typed actions
+# (a vector space IS a module); ModelShape's identity tooth is vacuous (no @rel:identity:element); the
+# one-operation per-law teeth are vacuous (no reified cell is scoped @rel:structure -> the model) and the
+# ring/field two-operation teeth are vacuous (no @rel:reified:table — the scalar actions are scoped
+# @rel:action:model and the scalar structure @rel:scalar:field, the isolation). Its matching
+# field-scalars-VIOLATING negative is fixtures/vector_space_neg.ttl.
+# D24 four-planes: finite-table EVIDENCE under fixtures/, outside the ontology data glob and the CI graph.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type (rec:model:record /
+# @typ:field:scalar:structure / @typ:scalar:action / @typ:finite:element), never bare, never owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the finite:checked / finite:table certificate model: the 1-dimensional vector space over the GF(3) field ---
+<urn:silmaril:fixture:algebra:vectorspace:z3>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "1-dimensional vector space V={V0,V1,V2} over the FIELD GF(3) — finite field-scalars + scalar-action certificate (scalars form a field; every action lands in V: 1·V1=V1, 2·V1=V2, 2·V2=V1)" ;
+    rel:scalar:field    <urn:silmaril:fixture:algebra:vectorspace:z3:field> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:vectorspace:z3:vec:0> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> ;
+    rel:module:vector   <urn:silmaril:fixture:algebra:vectorspace:z3:vec:2> ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "finite:checked" .
+
+# --- the scalar FIELD structure the vector space acts over (GF(3) as a FIELD; typed @typ:field:scalar:structure
+#     so VectorSpaceScalarFieldShape passes — the scalars are drawn from a field, the vector-space char. law) ---
+<urn:silmaril:fixture:algebra:vectorspace:z3:field>
+    a owl:NamedIndividual , typ:field:scalar:structure ;
+    rel:notation "the scalar field GF(3) — a FIELD (every nonzero scalar invertible: 1·1=1, 2·2=1); its elements act on the vectors by scalar multiplication" .
+
+# --- vectors (the carrier V ~= Z/3) ---
+<urn:silmaril:fixture:algebra:vectorspace:z3:vec:0> a owl:NamedIndividual , typ:finite:element ; rel:notation "V0 (the zero vector 0_V)" .
+<urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "V1 (the generator vector)" .
+<urn:silmaril:fixture:algebra:vectorspace:z3:vec:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "V2 = 2·V1" .
+
+# --- field scalars (elements of the base field GF(3) that act) ---
+<urn:silmaril:fixture:algebra:vectorspace:z3:scalar:1> a owl:NamedIndividual , typ:finite:element ; rel:notation "1 (the field's multiplicative unit; the unit scalar 1·v=v)" .
+<urn:silmaril:fixture:algebra:vectorspace:z3:scalar:2> a owl:NamedIndividual , typ:finite:element ; rel:notation "2 (a field scalar; 2^-1 = 2 since 2·2 = 1 mod 3)" .
+
+# --- reified SCALAR ACTIONS (folds fnd:saUnitLaw / fnd:saTwoA / fnd:saTwoB): each result is a vector, so the
+#     action lands back in V (K x V -> V). Scoped @rel:action:model -> the model (the module idiom). ---
+<urn:silmaril:fixture:algebra:vectorspace:z3:act:1:V1> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "1·V1 = V1 (the unit law 1·v=v, vector-space axiom 5)" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:vectorspace:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:vectorspace:z3:scalar:1> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> ;
+    rel:action:result <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> .
+<urn:silmaril:fixture:algebra:vectorspace:z3:act:2:V1> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "2·V1 = V2" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:vectorspace:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:vectorspace:z3:scalar:2> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> ;
+    rel:action:result <urn:silmaril:fixture:algebra:vectorspace:z3:vec:2> .
+<urn:silmaril:fixture:algebra:vectorspace:z3:act:2:V2> a owl:NamedIndividual , typ:scalar:action ;
+    rel:notation "2·V2 = V1 (2·2 = 1 mod 3)" ;
+    rel:action:model  <urn:silmaril:fixture:algebra:vectorspace:z3> ;
+    rel:action:scalar <urn:silmaril:fixture:algebra:vectorspace:z3:scalar:2> ;
+    rel:action:vector <urn:silmaril:fixture:algebra:vectorspace:z3:vec:2> ;
+    rel:action:result <urn:silmaril:fixture:algebra:vectorspace:z3:vec:1> .

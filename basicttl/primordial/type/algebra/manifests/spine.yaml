@@ -40,43 +40,43 @@ MATERIALIZATION:
     THEORIES:
       CARDINALITY:
         NOTATION:
-          VALUE: '8'
+          VALUE: '13'
     MODELS:
       CARDINALITY:
         NOTATION:
-          VALUE: '8'
+          VALUE: '13'
     DENOTATA:
       CARDINALITY:
         NOTATION:
-          VALUE: '8'
+          VALUE: '13'
     DECLARATIONS:
       CARDINALITY:
         NOTATION:
-          VALUE: '8'
+          VALUE: '13'
     SIGNATURES:
       CARDINALITY:
         NOTATION:
-          VALUE: '5'
+          VALUE: '6'
     OPERATIONS:
       CARDINALITY:
         NOTATION:
-          VALUE: '5'
+          VALUE: '9'
     AXIOMS:
       CARDINALITY:
         NOTATION:
-          VALUE: '24'
+          VALUE: '54'
     THEOREMS:
       CARDINALITY:
         NOTATION:
-          VALUE: '6'
+          VALUE: '11'
     CERTIFICATES:
       CARDINALITY:
         NOTATION:
-          VALUE: '6'
+          VALUE: '11'
     EQUATIONS:
       CARDINALITY:
         NOTATION:
-          VALUE: '21'
+          VALUE: '31'
     REDUCTS:
       CARDINALITY:
         NOTATION:
@@ -92,27 +92,27 @@ MATERIALIZATION:
     RUNGS:
       CARDINALITY:
         NOTATION:
-          VALUE: '8'
+          VALUE: '13'
     SHAPES:
       CARDINALITY:
         NOTATION:
-          VALUE: '23'
+          VALUE: '28'
     PROBES:
       CARDINALITY:
         NOTATION:
-          VALUE: '17'
+          VALUE: '22'
     FIXTURES:
       CARDINALITY:
         NOTATION:
-          VALUE: '46'
+          VALUE: '56'
     DATA_FILES:
       CARDINALITY:
         NOTATION:
-          VALUE: '27'
+          VALUE: '41'
     TRIPLES:
       CARDINALITY:
         NOTATION:
-          VALUE: '1778'
+          VALUE: '2834'
 EVIDENCE:
   SOURCE:
     PACKAGE RELATIVE PATH:
@@ -149,7 +149,7 @@ GAPS:
   DISCHARGED:
     PROVENANCE_CLOSURE:
       DISPOSITION:
-        VALUE: 'gate V7 (dual executor/shadow provenance) is now BUILT (T-PROV): the executor + tandem-shadow review lane lives under reviews/{executor,shadow,resolved}/ + receipts/, all 29 reshaped records (rel:authority-bearing) are attributed to >=1 executor AND >=1 shadow via prov:wasAttributedTo + prov:wasGeneratedBy, and the runner block (f) V7 dual-count + ProvenanceClosureShape + probes/provenance_closure.rq gate it; the SHAPES/PROBES/FIXTURES/DATA_FILES/TRIPLES figures above already include the review lane'
+        VALUE: 'gate V7 (dual executor/shadow provenance) is BUILT (T-PROV) and CLOSED for the two-operation rungs (T-PROV-2OP, Stage 3a consolidation): the executor + tandem-shadow review lane lives under reviews/{executor,shadow,resolved}/ + receipts/, and all 57 reshaped records (rel:authority-bearing: 29 one-op + 28 two-op) are attributed to >=1 executor AND >=1 shadow via prov:wasAttributedTo + prov:wasGeneratedBy. The 28 two-op records (5 model + 5 theory + 13 reduct/morphism + 5 theorem across semiring/ring/field/module/vector:space) are closed by reviews/resolved/resolution_lane_twoop.ttl, which reuses the committed scope-marker class + Draft activity + generic SP0-fold executor/shadow agents by IRI. The runner V7 dual-count + ProvenanceClosureShape + probes/provenance_closure.rq gate it; the DATA_FILES/TRIPLES figures above include the two-op lane'
 RECEIPT:
   MATERIALIZATION:
     VALUE: 'present; not a constitutional acceptance seal'

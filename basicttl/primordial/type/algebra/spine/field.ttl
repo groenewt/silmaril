@@ -1,0 +1,292 @@
+# =====================================================================================
+# field.ttl — the FIELD rung END-TO-END, the two-operation multiplicative-inverse rung
+# (W2 · SP0 · Stage 3a, T-FIELD). Folds FROM fnd:Field (basicttl/foundation/algebra_rings.ttl:530-557).
+# =====================================================================================
+# The fully-worked stratified TWO-OPERATION field rung, replicating the signed-off ring exemplar
+# (spine/ring.ttl). It realises the D24 A0 stratification (Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥
+# ProofArtifact) for a structure with TWO binary operations (+ and ·) on ONE carrier whose NONZERO
+# elements form a commutative group under ·, in the D26 full-ladder grammar: a theory record (S,Omega,E)
+# naming sigTwoBinary and the TEN-law equation set E = eqsRing + {field-mult-comm, mult-inverse}, the B4
+# TWO model planes (a [S] denotatum + a declaration-record model class linked by @rel:denotes), the ten
+# field axiom records (each verbatim-derived from the fnd: law + the ring exemplar), the field's
+# CHARACTERISTIC added law MULTIPLICATIVE-INVERSE decomposed into TWO equation records (left x·inv(x)=1,
+# right inv(x)·x=1 — the two-sided split, design §1.6, mirroring the group inverse split), a theorem
+# (no-zero-divisors / integral domain) + certificate, the triad-envelope gate, and the provenance
+# quartet on records only.
+#
+# THE D24 FIELD-AS-REDUCTS SHOWCASE. A field is, by A6, the additive-abelian-group reduct PLUS the
+# multiplicative (NONZERO) abelian-group reduct PLUS distributivity + field-mult-commutativity. A field's
+# multiplicative structure is STRONGER than a ring's: the nonzero elements form a COMMUTATIVE GROUP under
+# · (every nonzero x has x^-1, and a·b = b·a), so where the RING multiplicative reduct targets the monoid
+# model-record (spine/ring.ttl -> monoid), the FIELD multiplicative reduct targets the ABELIAN GROUP
+# model-record (the commutative-group-of-nonzeros). Those reduct EDGES — field model-record -> the
+# abelian_group model-record twice (once for the additive + structure, once for the multiplicative ·
+# structure), with distributivity as the connecting morphism — are minted in reducts_twoop_field.ttl (a
+# NEW file, avoiding a write race on reducts_twoop.ttl). This file mints the field theory/denotatum/
+# model-record/axioms/equations/theorem/certificate/gate + provenance; the finite GF(3) witness (the
+# multiplicative-inverse pairings 1^-1=1, 2^-1=2) is fixtures/field_pos.ttl (D24 four-planes: named
+# witnesses are EVIDENCE, outside the ontology data glob) with the matching inverse-violating negative
+# fixtures/field_neg.ttl.
+#
+# WHY GF(3). fnd:fieldModel (algebra_rings.ttl:725) is the finite field GF(3)=Z/3 viewed as a field:
+# every NONZERO element is self-inverse (1·1=1, 2·2=4=1 mod 3). Re-expressed in the folded discriminated-
+# application idiom (rec:application:two:operation:record, records_twoop.ttl) with reified MULTIPLICATIVE-
+# INVERSE PAIRING claims it is finite:checked and keeps the genuine-inverse tooth (shapes/field.shapes.ttl
+# FieldMultInverseShape) non-vacuous and provably biting: a claimed inverse that does NOT multiply to the
+# field's one -> RED (the T4/SP2 genuine-inverse discipline, algebra_rings.ttl:824-857).
+#
+# ISOLATION (the two-table / one-op-teeth separation). Exactly as the ring rung: the discriminated
+# two-operation rows are scoped @rel:structure -> a per-model REIFIED-TABLE node (linked from the model by
+# @rel:reified:table), keeping the two-operation rows OUT of the one-operation per-law teeth's
+# `@rel:structure = model` scan — the SAME T4/T5 isolation fnd achieved via fnd:ringStructure
+# (algebra_rings.ttl:79). FieldMultInverseShape walks model -> multiplicative-inverse pairing -> the
+# reified multiplicative row selected by @rel:operation:discriminator, and reddens when the claimed
+# inverse pairing does NOT two-sidedly reach the field's @rel:one:element.
+#
+# HONESTY (Praeriehund; algebra_rings.ttl:30-39). EVERYTHING folded here is SYN: the two-operation line
+# (ring/field/module) is FULLY ABSENT from Helios as algebra (02_algebra_tower.md:134-136 "No algebraic
+# ring, field (only record-field), or module"), authored as CITED STANDARD FIELD THEORY (the Directive
+# 19/20 precedent). So @rel:authority "SYN" on every RECORD, @rel:proof:status "literature:backed" on the
+# theory (the UNIVERSAL field theory is cited standard mathematics, NOT finite:checked-from-engine; only
+# the finite GF(3) WITNESS in fixtures/ carries finite:checked). Every [S] token (no runtime precedent)
+# is flagged in an rdfs:comment for the §7.2 maintainer sign-off packet (T-PANEL).
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:), subdomain 'field'. [S] tokens
+# flagged; [V]-shaped tokens (class:field, family:operation) echo the ring/group denotatum shape. B1 n/a
+# (field is not a compound token). B4 two-planes (denotatum kingdom:type…component:type + model-record
+# kingdom:class…:model…component:class). B3(a) additive Stage-3a (fnd:Field stays byte-intact; T-RETIRE is
+# Stage 3c) — skos:exactMatch fnd:Field on the denotatum + @rel:historical:identity fnd:Field on the theory.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.5, §2, §6 fan-out).
+# Folds FROM: basicttl/foundation/algebra_rings.ttl:246-262,284-318,530-557,725-752.
+# ADDITIVE — no fnd:/foundation/* edit (demolition is Stage 3c). Consumes (do not rewrite):
+# records.ttl (rec:* classes), records_twoop.ttl (rec:application:two:operation:record + discriminators),
+# signatures_twoop.ttl (sigTwoBinary), operations_twoop.ttl (+ · 0 1), spine/ring.ttl (the reduct/theory
+# parent — field |-> ring), spine/abelian_group.ttl (the additive + multiplicative reduct targets, via
+# reducts_twoop_field.ttl). Tooth: shapes/field.shapes.ttl FieldMultInverseShape + probes/field_law.rq;
+# fixtures/field_pos.ttl + fixtures/field_neg.ttl.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified multiplicative-inverse term atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:field:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+#     E = the TEN field laws (eqsRing's eight + field-mult-comm + mult-inverse), each an axiom record below,
+#     verbatim-derived from the fnd: law + the ring exemplar.
+# =====================================================================================
+alg:field:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:field:genus:presented:species:field:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "field theory (S,Omega,E)" ;
+    rel:notation   "field" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:field:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:field:genus:presented:species:field:component:definition:instance:canonical" ;
+    rel:signature  alg:semiring:kingdom:definition:phylum:specification:class:signature:order:two:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:field:kingdom:axiom:phylum:operation:class:closure:order:two:binary:family:field:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:field:genus:additive:species:equality:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:field:genus:additive:species:equality:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:identity:order:binary:family:field:genus:additive:species:member:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:field:genus:multiplicative:species:equality:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:identity:order:binary:family:field:genus:multiplicative:species:member:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:field:genus:interaction:species:distribution:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:field:genus:additive:species:inverse:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:field:genus:multiplicative:species:equality:component:statement:instance:canonical ,
+                   alg:field:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:field:genus:multiplicative:species:inverse:component:statement:instance:canonical ;
+    rel:reduct     alg:ring:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:ring:genus:presented:species:ring:component:definition:instance:canonical ;
+    rel:denotatum  alg:field:kingdom:type:phylum:algebra:class:field:order:two:binary:family:operation:genus:axiomatic:species:field:component:type:instance:canonical ;
+    rel:assignment alg:field:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:field:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:Field ;
+    skos:closeMatch fnd:Field ;
+    rdfs:comment "[S] The presented field THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6), folding fnd:Field (algebra_rings.ttl:530-557). S,Omega = @rel:signature sigTwoBinary (signatures_twoop.ttl, Sigma={+,·,0,1}, one carrier sort S, two binary operations, two nullary units — SHARED with ring/semiring, which differ only in E, algebra_rings.ttl:328); E = @rel:equation the TEN field laws E = eqsRing + {field-mult-comm, mult-inverse} — the two-op closure, additive associativity, additive commutativity, additive identity, multiplicative associativity, multiplicative identity, distributivity and additive inverse INHERITED cumulatively from the ring rung (eqsRing, algebra_rings.ttl:361-372) PLUS the field's two OWN added laws multiplicative COMMUTATIVITY (fnd:lawFieldMultComm) and multiplicative INVERSE (fnd:lawMultInverse) — each an axiom record below verbatim-derived from the fnd: law (algebra_rings.ttl:258-262,314-318) plus the ring exemplar (spine/ring.ttl). The field's CHARACTERISTIC step over a ring is the two-sided MULTIPLICATIVE INVERSE (every NONZERO x has x^-1 with x·x^-1 = 1 AND x^-1·x = 1 — the nonzero elements form a GROUP under ·, fnd:Field fnd:addsLaw fnd:lawMultInverse, algebra_rings.ttl:538); it is decomposed into the TWO equation records mult-inverse-left (x·inv(x)=1) and mult-inverse-right (inv(x)·x=1) below (design §1.6 two-sided-law split, the group inverse-split precedent spine/group.ttl:190-206). BOTH added laws are required: a ring with multiplicative inverses but NO multiplicative commutativity is a DIVISION RING, not a field, so fnd:lawFieldMultComm in E removes that mischaracterisation (algebra_rings.ttl:314-318). It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 field denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the RING theory (spine/ring.ttl, the forgetful theory-morphism field |-> ring, forgetting multiplicative inverse + multiplicative commutativity; the ring theory EXISTS, so this @rel:reduct resolves — unlike the ring's dangling @rel:reduct to the not-yet-landed semiring). D24 first-class metadata: @rel:validation:mode 'finite:table' (field models are validated by the finite GF(3) Cayley table + inverse pairings, matching fnd:fieldModel) and @rel:proof:status 'literature:backed' (the UNIVERSAL field theory is cited standard field theory, NOT finite:checked-from-engine — only the finite GF(3) WITNESS in fixtures/ is finite:checked, honest per Praeriehund). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24). SYN: the two-operation line is FULLY ABSENT from Helios as algebra (field only as record-field, algebra_rings.ttl:30-35), authored as cited standard field theory. Historical-identity BRIDGE: @rel:historical:identity fnd:Field + skos:closeMatch fnd:Field (Stage-3a ADDITIVE — fnd:Field stays byte-intact; T-RETIRE stubs it in Stage 3c); the denotatum's skos:exactMatch fnd:Field keeps inbound SP1/SP2/SP3 fnd:Field references (prim:Rational/prim:Real/prim:Complex re-anchor here at T10 as field consumers, algebra_rings.ttl:534) resolvable through the fold. Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision) + ProofStatusShape + ValidationModeShape + ProvenanceShape; the field's characteristic law is teeth-proved by FieldMultInverseShape (shapes/field.shapes.ttl) over the finite GF(3) inverse pairings. [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object 'a field', NO provenance. skos:exactMatch fnd:Field
+#      (the retire-map bridge SP1/SP2/SP3 fnd:Field references resolve through; BridgeShape focus).
+# =====================================================================================
+alg:field:kingdom:type:phylum:algebra:class:field:order:two:binary:family:operation:genus:axiomatic:species:field:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "field" ;
+    rel:notation   "field" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:field:kingdom:type:phylum:algebra:class:field:order:two:binary:family:operation:genus:axiomatic:species:field:component:type:instance:canonical" ;
+    skos:exactMatch fnd:Field ;
+    rdfs:comment "[S] The field DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a field' itself, carrying its canonical @rel:identifier and @rel:notation ONLY — and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object; V1DenotatumHygieneShape maxCount-0 tooth). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes. skos:exactMatch fnd:Field is the retire-map alias bridge (design §5.2, BridgeShape focus): it keeps every inbound SP1/SP2/SP3 fnd:Field reference (e.g. the number-tower prim:Rational / prim:Real / prim:Complex re-anchoring on fnd:Field, algebra_rings.ttl:534) resolvable THROUGH the fold while fnd:Field stays byte-intact until Stage-3c T-RETIRE — the two-operation analogue of the ring denotatum skos:exactMatch fnd:Ring (spine/ring.ttl:126) and the group denotatum skos:exactMatch fnd:Group (bridges.ttl:81). Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. [S] order:two:binary / genus:axiomatic UNATTESTED design-default tokens (order:two:binary echoes sigTwoBinary's two-binary profile, replicating the ring denotatum shape), flagged for §7.2 sign-off." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction bundle +
+#      provenance + disjointness teeth). [S] class:model/genus:governed/component:class. Its ADDITIVE
+#      structure is an abelian group, its MULTIPLICATIVE (nonzero) structure is ALSO an abelian group (the
+#      D24 field-as-reducts, reducts_twoop_field.ttl); the reduct edges are minted there, this class is
+#      their subject.
+# =====================================================================================
+alg:field:kingdom:class:phylum:algebra:class:model:order:declarative:family:field:genus:governed:species:field:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "field model class" ;
+    rel:notation "field model" ;
+    rel:denotes alg:field:kingdom:type:phylum:algebra:class:field:order:two:binary:family:operation:genus:axiomatic:species:field:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:zero:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:one:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:additive:operation ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:multiplicative:operation ] ;
+    owl:disjointWith alg:ring:kingdom:class:phylum:algebra:class:model:order:declarative:family:ring:genus:governed:species:ring:component:class:instance:canonical ,
+                     alg:semiring:kingdom:class:phylum:algebra:class:model:order:declarative:family:semiring:genus:governed:species:semiring:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The field MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the [S] denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction) makes 'a field is a set with exactly one carrier, exactly one additive identity 0, exactly one multiplicative identity 1, exactly one additive operation + and exactly one multiplicative operation ·' a graph fact via five cardinality-1 owl:Restrictions on @rel:carrier / @rel:zero:element / @rel:one:element / @rel:additive:operation / @rel:multiplicative:operation (the SAME five-restriction bundle as the ring model-record, spine/ring.ttl:141-145: a field IS a ring on its signature, differing only in E). The D24 FIELD-AS-REDUCTS decomposition — this field model-record's ADDITIVE structure IS an abelian group AND its MULTIPLICATIVE (NONZERO) structure IS ALSO an abelian group (a field's nonzero elements form a COMMUTATIVE group under ·, STRONGER than a ring's multiplicative monoid), glued by distributivity — is minted as forgetful/structure reduct edges in reducts_twoop_field.ttl with this class as their subject (bridge-never-duplicate: the reduct edges live in ONE file, not duplicated here). owl:disjointWith the ring model-record class (spine/ring.ttl, which SYMMETRICALLY declares owl:disjointWith this field model, :147) AND the (Stage-3a sibling) semiring model-record class (a forward reference — T-SEMIRING mints it; the disjointness triple stands regardless, and DifferentFromWitnessShape reddens any sameAs-collapse) — the D25 homonym/distinction teeth: a field is not a ring (a ring need not have multiplicative inverses or commutativity) and not a semiring (no additive inverses). Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete GF(3) model can be typed against it) AND a rec:model:record / rec:declaration:record (so ModelShape / ProvenanceShape sh:targetClass count it as a data-graph focus and the 0-focus gate is satisfied) — legal OWL2 metaclass punning, exactly as spine/ring.ttl / spine/monoid.ttl and DISTINCT from the frame.ttl domain-class-punning anti-pattern V1 forbids. On this focus ModelShape's identity sh:sparql, RingDistributivityShape and FieldMultInverseShape are vacuously satisfied (the class declares no @rel:identity:element / @rel:reified:table / inverse pairings); the finite GF(3) witness in fixtures/field_pos.ttl is where FieldMultInverseShape bites (and fixtures/field_neg.ttl, the 2·2 product perturbed so the inverse pairing 2^-1=2 ceases to reach 1, is where its inverse-violating negative flips it). [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM records — the ten members of E (design §2c — minimal, NO denotatum/gate/
+#     provenance, NO certificate; axiom != theorem is structural, rec:axiom:record owl:disjointWith
+#     rec:theorem:record, records.ttl:119). Each verbatim-derives its fnd: law (algebra_rings.ttl).
+#     Eight are INHERITED cumulatively from the ring rung (eqsRing); two are the field's OWN added laws
+#     (multiplicative commutativity + multiplicative inverse — the step over a ring). Restated at the
+#     field level with family:field, exactly as the ring restated the semiring-inherited laws at
+#     family:ring and the group restated the magma/semigroup/monoid laws at family:group.
+# =====================================================================================
+alg:field:kingdom:axiom:phylum:operation:class:closure:order:two:binary:family:field:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field two-operation closure" ;
+    rel:notation "for all x,y in S: x+y in S and x·y in S" ;
+    rdfs:comment "[S] The two-operation CLOSURE / totality axiom of the field theory (rec:axiom:record), folding fnd:lawTwoOpClosure (algebra_rings.ttl:240-244): both binary operations + and · are total functions S,S -> S, so for all x,y in the carrier S the sum x+y and the product x·y are defined and lie in S. A membership/totality statement, NOT a left=right equation — an axiom record only, NOT a rec:equation:record, carrying NO @rel:left/@rel:right. Minimal per design §2c: no denotatum / gate / provenance, no @rel:certificate (an axiom is asserted, not proved). An INHERITED (cumulative from eqsRing) member of the field theory's equation set E, restated at the field level with family:field. SYN, cited standard universal algebra." .
+
+alg:field:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:field:genus:additive:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field additive associativity" ;
+    rel:notation "(a+b)+c = a+(b+c)" ;
+    rdfs:comment "[S] The ADDITIVE-ASSOCIATIVITY axiom of the field theory (rec:axiom:record), folding fnd:lawAddAssoc (algebra_rings.ttl:284-288): the addition + is associative, (a+b)+c = a+(b+c), because a field's additive part is an abelian GROUP. genus:additive keeps it distinct from the multiplicative-associativity axiom (genus:multiplicative) on the same class:associativity — the operation-plane analogue of fnd:additiveOp vs fnd:multiplicativeOp. An INHERITED (cumulative from eqsRing) member of E (the additive abelian-group part), NOT one of the field's OWN added laws (those are multiplicative commutativity and multiplicative inverse). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory." .
+
+alg:field:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:field:genus:additive:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field additive commutativity" ;
+    rel:notation "a+b = b+a" ;
+    rdfs:comment "[S] The ADDITIVE-COMMUTATIVITY axiom of the field theory (rec:axiom:record), folding fnd:lawAddComm (algebra_rings.ttl:290-294): the addition + commutes, a+b = b+a, because a field's additive part is an ABELIAN group. It is ADDITIVE commutativity, INHERITED cumulatively from eqsRing; a field ADDITIONALLY requires MULTIPLICATIVE commutativity (its own added law fnd:lawFieldMultComm, the field-mult-comm axiom below) — distinguishing a field from a noncommutative division ring. genus:additive marks the operation (distinct from the field-mult-comm axiom's genus:multiplicative on the same class:commutativity). An INHERITED member of E. Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory." .
+
+alg:field:kingdom:axiom:phylum:operation:class:identity:order:binary:family:field:genus:additive:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field additive identity (two-sided zero)" ;
+    rel:notation "exists 0: 0+x = x and x+0 = x" ;
+    rdfs:comment "[S] The two-sided ADDITIVE-IDENTITY axiom of the field theory (rec:axiom:record), folding fnd:lawAddIdentity (algebra_rings.ttl:296-300): there exists a two-sided additive identity 0 (the zero element, model-plane @rel:zero:element / fnd:hasZeroElement) with 0+x = x AND x+0 = x for every carrier element x — the neutral of the additive abelian group. genus:additive marks the operation (distinct from the multiplicative-identity axiom's genus:multiplicative). An INHERITED (cumulative from eqsRing) member of E. The zero 0 is EXACTLY the one element a field is NOT required to have a multiplicative inverse for (the multiplicative-inverse law quantifies over NONZERO elements, algebra_rings.ttl:261). Held here as a single parent axiom (two-sidedness noted) rather than decomposed into left/right equation records — only the field's CHARACTERISTIC added law multiplicative inverse is decomposed at this rung (design §1.6). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory." .
+
+alg:field:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:field:genus:multiplicative:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field multiplicative associativity" ;
+    rel:notation "(a·b)·c = a·(b·c)" ;
+    rdfs:comment "[S] The MULTIPLICATIVE-ASSOCIATIVITY axiom of the field theory (rec:axiom:record), folding fnd:lawMultAssoc (algebra_rings.ttl:302-306): the multiplication · is associative, (a·b)·c = a·(b·c), because a field's multiplicative part is (on the NONZERO elements) a commutative GROUP, at minimum a monoid on the whole carrier. genus:multiplicative keeps it distinct from the additive-associativity axiom (genus:additive) sharing class:associativity — the operation-plane analogue of fnd:multiplicativeOp vs fnd:additiveOp. An INHERITED (cumulative from eqsRing) member of E (the multiplicative-group part). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory." .
+
+alg:field:kingdom:axiom:phylum:operation:class:identity:order:binary:family:field:genus:multiplicative:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field multiplicative identity (two-sided one)" ;
+    rel:notation "exists 1: 1·x = x and x·1 = x" ;
+    rdfs:comment "[S] The two-sided MULTIPLICATIVE-IDENTITY axiom of the field theory (rec:axiom:record), folding fnd:lawMultIdentity (algebra_rings.ttl:308-312): there exists a two-sided multiplicative identity 1 (the one element, model-plane @rel:one:element / fnd:hasOneElement) with 1·x = x AND x·1 = x for every carrier element x — the neutral of the multiplicative group every field carries, and the target the multiplicative-inverse law drives to (x·inv(x)=1). genus:multiplicative marks the operation (distinct from the additive-identity axiom's genus:additive). An INHERITED (cumulative from eqsRing) member of E. Held as a single parent axiom (two-sidedness noted), not decomposed (only the multiplicative inverse is decomposed at the field rung, design §1.6). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory." .
+
+alg:field:kingdom:axiom:phylum:operation:class:distributivity:order:two:binary:family:field:genus:interaction:species:distribution:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field distributivity (two-sided)" ;
+    rel:notation "x·(y+z) = x·y + x·z and (y+z)·x = y·x + z·x" ;
+    rdfs:comment "[S] The DISTRIBUTIVITY axiom of the field theory (rec:axiom:record), folding fnd:lawDistributivity (algebra_rings.ttl:246-250): the multiplication · distributes over the addition + on BOTH sides — x·(y+z) = x·y + x·z (left) AND (y+z)·x = y·x + z·x (right). This is the two-operation interaction that CONNECTS the additive and multiplicative structures. It is INHERITED cumulatively from the ring/semiring rung (distributivity is the SEMIRING rung's own added law, algebra_rings.ttl:359, inherited by ring and field), NOT the field's OWN added law (the field's own added laws are multiplicative commutativity and multiplicative inverse). Held here as a single parent axiom, NOT re-decomposed into the left/right equation split at this rung — only the field's OWN characteristic added law multiplicative inverse is decomposed (design §1.6; the ring rung decomposed distributivity, spine/ring.ttl:201-235, and the group restated inherited identity without re-decomposing it, spine/group.ttl:169-173). It is the D24 field-as-reducts CONNECTING MORPHISM: the additive-abelian-group reduct and the multiplicative-abelian-group reduct are glued by exactly this law (reducts_twoop_field.ttl @rel:connects both). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory. [S] class:distributivity / genus:interaction / species:distribution UNATTESTED design-default tokens (§7.2 #5) -> sign-off packet." .
+
+alg:field:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:field:genus:additive:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field additive inverse (two-sided)" ;
+    rel:notation "for all x exists -x: x+(-x) = 0 and (-x)+x = 0" ;
+    rdfs:comment "[S] The two-sided ADDITIVE-INVERSE axiom of the field theory (rec:axiom:record), folding fnd:lawAdditiveInverse (algebra_rings.ttl:252-256): every element x has an additive inverse -x with x+(-x) = 0 AND (-x)+x = 0 — the additive part (S,+,0) is an abelian GROUP. This is the law the RING rung adds over a SEMIRING (fnd:Ring fnd:addsLaw fnd:lawAdditiveInverse, algebra_rings.ttl:513), INHERITED cumulatively by the field. genus:additive marks the operation (an ADDITIVE inverse over the zero 0, DISTINCT from the field's OWN MULTIPLICATIVE inverse over the one 1 — the mult-inverse axiom below, which is the field's characteristic added law). Held as a single parent axiom (two-sidedness noted), not decomposed at this rung (only the multiplicative inverse is, design §1.6). An INHERITED member of E. Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory." .
+
+# --- the field's FIRST added law: multiplicative commutativity (the division-ring exclusion). ---
+alg:field:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:field:genus:multiplicative:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field multiplicative commutativity" ;
+    rel:notation "a·b = b·a" ;
+    rdfs:comment "[S] The FIELD MULTIPLICATIVE-COMMUTATIVITY axiom of the field theory (rec:axiom:record), folding fnd:lawFieldMultComm (algebra_rings.ttl:314-318): in a field the multiplication · commutes, a·b = b·a. It is a member of eqsField ONLY — NOT of eqsRing/eqsSemiring, because noncommutative rings and semirings (matrix rings) are legitimate algebra, so multiplicative commutativity is added exactly at the FIELD rung (algebra_rings.ttl:317). It is NOT the field's fnd:addsLaw (that is multiplicative inverse); rather it and the multiplicative inverse TOGETHER are the two laws E gains from ring to field, and its presence in E is precisely what REMOVES the DIVISION-RING mischaracterisation — a ring with multiplicative inverses but no multiplicative commutativity is a division ring (e.g. the quaternions), NOT a field. genus:multiplicative marks the operation (distinct from the additive-commutativity axiom's genus:additive on the same class:commutativity — the ADDITIVE side is inherited from the ring, the MULTIPLICATIVE side is the field's own upgrade). A single-equation law, NOT decomposed (only the multiplicative inverse is, design §1.6). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory (fnd:FieldMultCommShape / q_field_mult_comm check it CLASS-GENERAL over every fnd:Field, algebra_rings.ttl:314-318)." .
+
+# --- the field's CHARACTERISTIC added law (fnd:addsLaw): multiplicative inverse (its own atom; the two-sided
+#     undo x·inv(x)=1 that upgrades a ring's multiplicative monoid to the nonzero elements forming a group). ---
+alg:field:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:field:genus:multiplicative:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "field multiplicative inverse (two-sided, nonzero)" ;
+    rel:notation "for all x != 0 exists inv(x): x·inv(x) = 1 and inv(x)·x = 1" ;
+    rel:equation alg:field:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:field:genus:multiplicative:species:inverse:left:component:statement:instance:canonical ,
+                 alg:field:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:field:genus:multiplicative:species:inverse:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] The two-sided MULTIPLICATIVE-INVERSE axiom of the field theory (rec:axiom:record, the named parent law, no side segment), folding fnd:lawMultInverse (algebra_rings.ttl:258-262): every NONZERO element x (x != 0) has a two-sided multiplicative inverse inv(x) = x^-1 with x·x^-1 = 1 AND x^-1·x = 1 — the NONZERO elements form a GROUP under ·. This is the SINGLE law FIELD ADDS over a RING as its fnd:addsLaw (fnd:Field fnd:addsLaw fnd:lawMultInverse, algebra_rings.ttl:538, one-law-per-child) — the step from a ring (multiplicative monoid) to a field (nonzero elements a group); the field's forgetful reduct field |-> ring (the theory's @rel:reduct) forgets exactly this law together with multiplicative commutativity. As a TWO-SIDED law it @rel:equation-decomposes into the TWO reified equation records multiplicative-inverse-left (x·inv(x)=1) and multiplicative-inverse-right (inv(x)·x=1) below (design §1.6, §3; the group inverse split spine/group.ttl:190-206, closure.ttl:185-192 case precedent — right inverse need not follow from left before commutativity is proved, so both sides are members of E). genus:multiplicative marks the operation (a MULTIPLICATIVE inverse over the one 1, DISTINCT from the field's ADDITIVE inverse over the zero 0). Its added-law status is teeth-proved by shapes/field.shapes.ttl FieldMultInverseShape / probes/field_law.rq over the finite GF(3) inverse pairings (fixtures/): a claimed multiplicative-inverse pairing whose product does NOT two-sidedly reach the field's one -> RED, reusing the T4/SP2 GENUINE-INVERSE discipline (a retract that does not undo -> RED, algebra_rings.ttl:824-857). Minimal per design §2c: no denotatum / gate / provenance / certificate. SYN, cited standard field theory. [S] genus:multiplicative / species:inverse UNATTESTED design-default tokens (§7.2 #5) -> sign-off packet." .
+
+# =====================================================================================
+# (d) EQUATION records — the two-sided MULTIPLICATIVE-INVERSE split (design §2d, §1.6). The field's
+#     characteristic added law reified as an ordered pair per side. multiplicative-inverse-left
+#     (x·inv(x)=1) + multiplicative-inverse-right (inv(x)·x=1). Distinct @rel:left terms so the
+#     EquationRecordShape identity-collision sh:sparql never fires between the twins (the group
+#     inverse-split precedent, spine/group.ttl:190-206).
+# =====================================================================================
+alg:field:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:field:genus:multiplicative:species:inverse:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "field multiplicative inverse (left: x·inv(x) = 1)" ;
+    rel:notation "x·inv(x) = 1" ;
+    rel:left  term:multiplicative:inverse:leftproduct ;
+    rel:right term:multiplicative:one ;
+    rdfs:comment "[S] The LEFT multiplicative-inverse law x·inv(x) = 1 — side 1 of the field's two-sided multiplicative inverse, reified as an equation record (rec:equation:record) with one @rel:left term (the product x·inv(x)) and one @rel:right term (the multiplicative one 1). A two-sided law mints TWO equation records, one per side (design §1.6, §3; the group inverse split spine/group.ttl:190-206, closure.ttl:185-192 precedent). It is the member the multiplicative-inverse parent axiom @rel:equation-decomposes into and the EquationRecordShape cardinality-1 left/right focus; it is ALSO the arithmetic content the FieldMultInverseShape sh:sparql checks over the finite GF(3) reified multiplicative table and the inverse pairings (given a claimed pairing x<->inv(x), require a multiplicative row x·inv(x)=1). SYN, cited standard field theory. [S] the species:inverse:left SIDE SEGMENT is UNATTESTED (§7.2 #2 side-segment placement, as the group inverse-left) -> sign-off packet." .
+
+alg:field:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:field:genus:multiplicative:species:inverse:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "field multiplicative inverse (right: inv(x)·x = 1)" ;
+    rel:notation "inv(x)·x = 1" ;
+    rel:left  term:multiplicative:inverse:rightproduct ;
+    rel:right term:multiplicative:one ;
+    rdfs:comment "[S] The RIGHT multiplicative-inverse law inv(x)·x = 1 — side 2 of the field's two-sided multiplicative inverse, reified as an equation record (rec:equation:record) with one @rel:left term (the product inv(x)·x) and one @rel:right term (the multiplicative one 1). Its twin is the multiplicative-inverse-LEFT record above; together they are the TWO equation records the ONE two-sided multiplicative-inverse law decomposes into (design §1.6, §3). Right inverse need not follow from left before multiplicative commutativity is proved, so it is an independent member of E (in the commutative GF(3) witness both sides coincide, each nonzero element being self-inverse). Distinct @rel:left term (rightproduct) from the left record (leftproduct), so the EquationRecordShape identity-collision sh:sparql does not fire between the twins. SYN, cited standard field theory. [S] species:inverse:right SIDE SEGMENT UNATTESTED (§7.2 #2) -> sign-off packet." .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate, NEVER an
+#     axiom; the closure.ttl / ring Yoneda theorem/certificate idiom). Field's natural structure theorem:
+#     a field has NO ZERO DIVISORS (an integral domain) — if a·b = 0 then a = 0 or b = 0, a consequence of
+#     the multiplicative-inverse law.
+# =====================================================================================
+alg:field:kingdom:theorem:phylum:algebra:class:integrity:order:declarative:family:field:genus:zero:species:divisor:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "field has no zero divisors (integral domain)" ;
+    rel:notation "for all a,b: if a·b = 0 then a = 0 or b = 0" ;
+    rel:certificate alg:field:kingdom:certificate:phylum:algebra:class:integrity:order:declarative:family:field:genus:zero:species:divisor:component:statement:instance:canonical ;
+    rel:authority "SYN" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "Theorem, not an additional foundational axiom (design §2f, the closure.ttl / ring Yoneda theorem/certificate idiom): in any field (S,+,·,0,1) there are NO ZERO DIVISORS — if a·b = 0 then a = 0 or b = 0 (equivalently, a field is an INTEGRAL DOMAIN). It is a DERIVED consequence of the multiplicative-inverse law: if a·b = 0 and a != 0, then a has an inverse a^-1, so b = 1·b = (a^-1·a)·b = a^-1·(a·b) = a^-1·0 = 0 (using zero-absorption, the ring theorem). It is NOT a new axiom — the D24 A0 ProofArtifact plane. It is the field's natural structure theorem the multiplicative-inverse law licenses (the field analogue of the ring zero-absorption theorem, spine/ring.ttl:242, and the group inverse-uniqueness theorem, spine/group.ttl:222). It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). Provenance quartet + @rel:authority 'SYN' on the record (the multiplicative-inverse law it derives from is SYN, algebra_rings.ttl:258-262)." .
+
+alg:field:kingdom:certificate:phylum:algebra:class:integrity:order:declarative:family:field:genus:zero:species:divisor:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "field no-zero-divisors certificate" ;
+    rel:digest:value    "f5a72c1b0e4d3968a2c1f847b6e59d0c3a71e28f4b6d9c0518a3f27e64b1d9a05" ;
+    rel:proof:method    "Explicit general mathematical derivation (if a·b = 0 and a != 0 then b = 1·b = (a^-1·a)·b = a^-1·(a·b) = a^-1·0 = 0, using the multiplicative inverse and ring zero-absorption); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for field no-zero-divisors (design §2f; the closure.ttl / ring certificate idiom): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Field no zero divisors: in any field (S,+,·,0,1), if a·b = 0 then a = 0 or b = 0. Proof: suppose a·b = 0 and a != 0; then a has a multiplicative inverse a^-1, so b = 1·b = (a^-1·a)·b = a^-1·(a·b) = a^-1·0 = 0. General mathematical derivation; not proof-assistant checked'), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119)." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:field:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:field:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "field declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:field:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:field:genus:reconciled:species:field:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the field declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the field declaration was RECONCILED against its Plane-2 denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the field rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the field declaration is reconciled, not merely asserted." .
