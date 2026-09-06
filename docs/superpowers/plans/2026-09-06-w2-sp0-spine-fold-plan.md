@@ -24,10 +24,9 @@
   the fixed head `urn:silmaril:type:graph:instance:instruction:code:property:` — verified verbatim in the
   aob corpus, e.g. group closure axiom on disk at
   `refcomp/tar/bash/aob/urn/silmaril/type/graph/instance/instruction/code/property/domain/mathematics/realm/algebra/subdomain/group/kingdom/axiom/phylum/operation/class/closure/order/binary/family/group/genus/product/species/membership/component/statement/instance/canonical/atom.spec.yaml`.
-  Segment order = natural-language; the compound-token ORDER (`abelian:group` vs `group:abelian` /
-  `commutative:monoid` vs `monoid:commutative`) is **OPEN — §7.2 #9, B1**: the doctrine file →
-  adjective-last, the verified runtime (1156 occ) + D26's natural-language principle → adjective-first;
-  a maintainer ruling precedes minting. Final marker pair =
+  Segment order = natural-language; the compound-token ORDER is **LOCKED adjective-first (§7.2 #9, B1):
+  `abelian:group` / `commutative:monoid`** (maintainer ruling — verified-runtime + natural-language
+  reading). Final marker pair =
   `component:instance` (NOT the drop's `specimen:instance`). Directory PLACEMENT is under
   `basicttl/primordial/type/algebra/**`; the short primordial root `urn:silmaril:primordial:type:` is
   **bridged to, never minted under** (placement ≠ IRI root).
@@ -90,7 +89,12 @@ provenance quartet; no provenance on a mathematical denotatum.
 
 Dependency order: **T-INFRA → T-CLASSES → {T-BRIDGE, T-SIG-OP} → T-PROG → T-MONOID (exemplar, SIGN-OFF
 GATE) → {T-MAGMA, T-SEMI, T-CMON, T-GROUP, T-ABEL, T-QGRP, T-LOOP} (parallel) → T-REDUCT → T-SHAPES →
-T-FIX → T-GATES → T-MANIFEST → T-PROV → T-INTEGRATION → T-PANEL.** Each task = one executor E# + one
+T-FIX → T-GATES → T-MANIFEST → T-PROV → T-RETIRE → T-INTEGRATION → T-PANEL.**
+**Build is staged around the maintainer sign-off gate.** *Stage 1* = T-INFRA → T-CLASSES →
+{T-BRIDGE, T-SIG-OP} → T-PROG → T-MONOID, materialising the infra + the monoid exemplar rung end-to-end,
+self-validating non-vacuously; it stays **additive** (`fnd:` intact, bridges added — the retire needs the
+full tower first). Build stops at the realized monoid rung for maintainer sign-off (design §7.3). *Stage 2*
+(after sign-off) = the 7 sibling rungs + T-REDUCT…T-PANEL, including **T-RETIRE** (B3(a) true full retire). Each task = one executor E# + one
 tandem shadow S# (parallel executors listed run only with their own shadow). All executors write ONLY
 under `basicttl/primordial/type/algebra/**` (+ the lockstep files named in T-INFRA:
 `run-algebra-checks.sh`, `ci.yml`, `dag_instances.ttl`, and — B2 — `run-foundation-checks.sh` whose SP0
@@ -163,8 +167,10 @@ rdfs:subClassOf`-reaches the group model class through the map. Run before autho
 exactMatch); `seed:conservativeBridge` for AlgebraicStructure/Magma/Semigroup/Monoid (to the engine group
 type/axiom atoms — quote the `[V]` engine IRIs verbatim); honest-red BUILD (no engine edge, proof-status
 `asserted`/`literature:backed`) for CommutativeMonoid/AbelianGroup/Quasigroup/Loop; `seed:implementationBridge`
-for carriers. Retire every `fnd:` local name with `skos:exactMatch`/`rdfs:subClassOf`/`owl:equivalentProperty`
-+ a `urn:silmaril:seed:…` legacy edge; bridge the primordial short root via `schema:seeAlso` (never adopt it
+for carriers. Bridge every `fnd:` local name with `skos:exactMatch`/`rdfs:subClassOf`/`owl:equivalentProperty`
++ a `urn:silmaril:seed:…` legacy edge (ADDITIVE — Stage 1 only adds these edges; the actual stub-reduction
+of `algebra_spine.ttl` + the inbound `fnd:*` edge REDIRECT is the B3(a) true-full-retire done in T-RETIRE,
+Stage 2, once the whole tower exists); bridge the primordial short root via `schema:seeAlso` (never adopt it
 as grammar). Demote reified-table WITNESS vocab to `fixtures/` and re-express its predicates as `@rel:*` with
 `owl:equivalentProperty`/`rdfs:subPropertyOf` bridges to `closure.ttl` `ns3:*` (predicate-unification, design
 §7.2 obligation 2 — avoids a silent fork). Add `Byte ≠ Octet` `owl:differentFrom` witness (engine OCTET WIDTH
@@ -272,9 +278,10 @@ associativity = ONE equation + model + reduct edge semigroup→magma (obligation
 `fixtures/commutative_monoid_neg.ttl`, `probes/commmonoid_comm.rq`.
 **RED.** `fixtures/commutative_monoid_neg.ttl` = a monoid table with `a·b ≠ b·a`; `commmonoid_comm.rq`
 bites → RED.
-**GREEN.** theory (subdomain `monoid:commutative`, compound value `[S]`; sigMonoid; adds commutativity) +
-commutativity axiom `[D]` (`subdomain monoid:commutative:…:class:commutativity:…:family:monoid:commutative:
-genus:composition:species:equality`) + one equation + model (`owl:disjointWith` non-comm siblings) + reduct
+**GREEN.** theory (subdomain `commutative:monoid`, compound order LOCKED §7.2 #9; sigMonoid; adds
+commutativity) + commutativity axiom `[D]` (`subdomain commutative:monoid:…:class:commutativity:…:family:
+commutative:monoid:genus:composition:species:equality`) + one equation + model (`owl:disjointWith`
+non-comm siblings) + reduct
 edge commutative-monoid→monoid (obligation-count 1) + fixtures. **NO engine anchor** → honest-red BUILD,
 proof-status `literature:backed`, NOT `finite:checked`-from-engine. **E9 / S9 (parallel).**
 
@@ -301,9 +308,10 @@ validation-mode `finite:table`); `skos:exactMatch` to the engine group type (`pr
 `fixtures/abelian_group_neg.ttl`, `probes/abelian_comm.rq`.
 **RED.** `fixtures/abelian_group_neg.ttl` = a non-commutative group table (e.g. S_3 fragment);
 `abelian_comm.rq` bites → RED.
-**GREEN.** theory (subdomain `group:abelian`, compound `[D]`; sigGroup; adds commutativity as its OWN atom
-`…subdomain group:abelian:…:class:commutativity:…:family:group:abelian:genus:composition:species:equality`
-— no-cram, NOT reusing the monoid commutativity atom); one equation; model (`owl:disjointWith` group model);
+**GREEN.** theory (subdomain `abelian:group`, compound order LOCKED §7.2 #9; sigGroup; adds commutativity
+as its OWN atom `…subdomain abelian:group:…:class:commutativity:…:family:abelian:group:genus:composition:
+species:equality` — no-cram, NOT reusing the monoid commutativity atom); one equation; model
+(`owl:disjointWith` group model);
 reduct edge abelian→group (obligation-count 1); fixtures. **NO engine anchor** → honest-red BUILD,
 `literature:backed`. **E11 / S11 (parallel).**
 
@@ -431,6 +439,30 @@ exists); D24 lane lifecycle Draft→ExecutorValidation→ShadowCritique→Resolu
 resolution records, and receipts; wire the dual-count V7 tooth into the runner. Provenance on every RECORD,
 never on a mathematical denotatum. **Probe:** remove a shadow attribution → V7 RED. **E19 / S19.**
 
+### T-RETIRE — B3(a) TRUE FULL RETIRE of the `fnd:` tower (Stage 2, after all 8 rungs exist)
+**Interfaces.** *Consumes:* the complete folded tower (all 8 rung denotatum + record atoms, T-BRIDGE map);
+`basicttl/foundation/algebra_spine.ttl` (the `fnd:` tower to reduce); the inbound-edge sites — SP2
+`basicttl/aob/*.ttl` (`aob:SealedGroup rdfs:subClassOf fnd:Group`, `group_law.ttl`), any SP1
+`basicttl/primitives/*.ttl` / SP3 `basicttl/crs/*.ttl` `groundsIn*`/`subClassOf fnd:*` edges (enumerate by
+grep before editing); `run-foundation-checks.sh` (merged-graph gate). *Produces:* `algebra_spine.ttl`
+reduced to bridge stubs; inbound `fnd:*` references redirected to the new full-ladder IRIs.
+**Target files.** `basicttl/foundation/algebra_spine.ttl` (EDIT — strip math content, keep each `fnd:` rung
+as a stub `owl:equivalentClass`/`skos:exactMatch` → new IRI); the specific SP1/SP2/SP3 files carrying
+inbound `fnd:*` edges (EDIT — redirect to the new IRIs). **This is the sanctioned override of the earlier
+"SP1/SP2/SP3 byte-untouched" assumption (maintainer B3(a) lock); touch ONLY the `fnd:*` reference lines.**
+**RED.** `probes/retire_no_orphan.rq` + `probes/no_duplicate_content.rq`: (i) no `fnd:` rung still asserts
+math content (signature/addsLaw/equation/restriction) — TODO-11 one-place; (ii) every former inbound
+`fnd:*` edge now reaches the new IRI (directly or via the surviving stub's `owl:equivalentClass`); (iii)
+`aob:SealedGroup` is still a subclass of the group model in the merged graph. Run before the retire → RED
+(content still duplicated).
+**GREEN.** Reduce each `fnd:` rung in `algebra_spine.ttl` to a stub (identity + one bridge edge to its new
+denotatum/record IRI, all math content removed); redirect each inbound `fnd:*` edge to the new IRI (or
+leave it pointing at the now-stubbed `fnd:` name, whichever keeps the merged graph green — prefer explicit
+redirect for the doctrinally-clean end-state). Re-run `run-foundation-checks.sh` over the merged
+SP0+SP1+SP2+SP3 graph: MUST stay green, `aob:SealedGroup` MUST still resolve, no orphaned `fnd:*`
+reference. **Probe:** delete a stub's bridge edge → `retire_no_orphan.rq` RED (SealedGroup dangles). **E20a
+/ S20a.**
+
 ### T-INTEGRATION — full gate green + aliases resolve + CI coherent + commit signed
 **Interfaces.** *Consumes:* every prior task; `run-foundation-checks.sh:49` (SP1+SP2+SP3 invariant chain);
 `ci.yml`; `commit_signing_trust.ttl`. *Produces:* the green merged pass + the signed reshape commit.
@@ -473,11 +505,14 @@ The build is re-mint-expensive if any of these 8 change post-materialisation; ea
 [PIVOTAL]; (2) left/right side-segment placement (6 atoms + 2 extension morphisms); (3) `order:nullary`;
 (4) reduct tokens `order:forgetful`+`genus:theory`; (5) quasigroup `genus:latin`+`species:unique`;
 (6) signature `genus:algebraic` + extension `genus:obligation`/`species:count:two`; (7) equation-identity
-(reuse axiom atom vs mint `component:equation`); (8) two-ladder split; **(9) compound-token order (B1) —
-`abelian:group`/`commutative:monoid` (runtime-canonical + D26 natural-language) vs `group:abelian`/
-`monoid:commutative` (doctrine file); PIVOTAL naming lock**; **(10) model-class plane (B4) — the runtime
-`kingdom:type` atom IS the model (one IRI) vs a distinct `kingdom:class…:model` declaration plane (two
-IRIs)**. Plus the B3 Pass-1 disposition (additive-authoritative-bridge [rec] vs keep-both-defer vs
-full-retire, design §7.4). Plus two build obligations flagged but not discharged by the plan: V7 provenance
-closure (T-PROV, BUILT from scratch) and predicate-unification (`@rel:*` ↔ `closure.ttl` `ns3:*`
-`owl:equivalentProperty`/`rdfs:subPropertyOf`, T-BRIDGE). **#9, #10, and B3 gate minting.**
+(reuse axiom atom vs mint `component:equation`); (8) two-ladder split. **Tokens 1–8 ride at design defaults,
+[S]-flagged, into the realized-spine sign-off packet (T-PANEL).** Three decisions are now **LOCKED by the
+maintainer** and baked into this plan + design: **(9, B1) compound-token order = `abelian:group` /
+`commutative:monoid`** (adjective-first, runtime-canonical); **(10, B4) model-class plane = TWO planes** —
+`kingdom:type…component:type` = denotatum (Plane-2, no provenance), `kingdom:class…:model…component:class`
+= declaration-record (Plane-1); **(B3) disposition = (a) TRUE FULL RETIRE** — the folded tower is
+authoritative, `algebra_spine.ttl` `fnd:` rungs become bridge stubs AND inbound `fnd:*` edges (incl. SP2
+`aob:SealedGroup`) are redirected to the new IRIs (Stage-2 retire task, after all rungs exist; merged-graph
+green is the hard gate; overrides the prior SP1/SP2/SP3-byte-untouched working assumption). Plus two build
+obligations: V7 provenance closure (T-PROV, BUILT from scratch) and predicate-unification (`@rel:*` ↔
+`closure.ttl` `ns3:*` `owl:equivalentProperty`/`rdfs:subPropertyOf`, T-BRIDGE).

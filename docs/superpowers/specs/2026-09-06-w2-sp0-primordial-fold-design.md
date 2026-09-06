@@ -49,9 +49,9 @@ species:component:instance` under the leading path
 `urn:silmaril:type:graph:instance:instruction:code:property:…`, VERBATIM as the verified runtime
 realizes it (`bash aob/urn/**`, 293/293 markers). Use the runtime's **`component:instance`**, NOT the
 drop's collapsed `specimen:instance`. Segment order = the reference's **natural-language order**
-(`natural:transformation`, `category:of:elements`, `monoid:commutative`, `group:abelian` — stop-words
-kept), NOT D24 §10b's genus-first forms (0 occurrences in the reference; **D24 §10b is amended, the
-reference governs**). The short primordial root `urn:silmaril:primordial:type:` is **bridged to, never
+(`natural:transformation`, `category:of:elements`, and — LOCKED adjective-first, §7.2 #9 —
+`commutative:monoid`, `abelian:group`; stop-words kept), NOT D24 §10b's genus-first forms (0 occurrences
+in the reference; **D24 §10b is amended, the reference governs**). The short primordial root `urn:silmaril:primordial:type:` is **bridged to, never
 the IRI grammar**. Directory PLACEMENT (`basicttl/primordial/type/algebra/**`) still stands —
 placement ≠ IRI root.
 
@@ -110,16 +110,22 @@ Grep-confirmed at `refcomp/tar/bash/aob/urn/.../subdomain/primordial/...` + `con
 primordials.yaml:395-402` (ABSTRACT VALUE `true`). This is exactly `fnd:AlgebraicStructure`
 ("grounds nothing", `basicttl/foundation/algebra_spine.ttl:408-411`).
 
-### 1.4 Model classes — descent `kingdom:type:phylum:algebra:…:family:operation:genus:axiomatic:…:component:type:instance:canonical`
+### 1.4 Denotatum atoms — descent `kingdom:type:phylum:algebra:…:family:operation:genus:axiomatic:…:component:type:instance:canonical`
 
-| rung | subdomain | tail (after HEAD) | tag |
+**B4 LOCKED — two planes.** The IRIs in THIS table are the **denotatum** atoms (Plane-2: the mathematical
+object; identifier/notation/source only, NO provenance; group `[V]`, others `[D]`). Each rung ALSO gets a
+distinct **declaration-record** atom `kingdom:class:…:model:…:component:class` (Plane-1; carries the
+`owl:Restriction` bundle + provenance + `owl:disjointWith` teeth; `[S]`) — see §2b — linked to its
+denotatum by `@rel:denotes`. "Model class" below = the denotatum column; the record column is §2b.
+
+| rung | subdomain | denotatum tail (after HEAD) | tag |
 |---|---|---|---|
 | group `[V]` | `group` | `group:kingdom:type:phylum:algebra:class:group:order:binary:family:operation:genus:axiomatic:species:group:component:type:instance:canonical` | grep-confirmed `primordials.yaml:441` / `aob/.../subdomain/group/kingdom/type/...` |
 | magma | `magma` | `magma:kingdom:type:phylum:algebra:class:magma:order:binary:family:operation:genus:axiomatic:species:magma:component:type:instance:canonical` | `[D]` |
 | semigroup | `semigroup` | `semigroup:kingdom:type:phylum:algebra:class:semigroup:order:binary:family:operation:genus:axiomatic:species:semigroup:component:type:instance:canonical` | `[D]` |
 | monoid | `monoid` | `monoid:kingdom:type:phylum:algebra:class:monoid:order:binary:family:operation:genus:axiomatic:species:monoid:component:type:instance:canonical` | `[D]` |
-| commutative-monoid | `monoid:commutative` | `monoid:commutative:kingdom:type:phylum:algebra:class:monoid:commutative:order:binary:family:operation:genus:axiomatic:species:monoid:commutative:component:type:instance:canonical` | `[D]` (compound `[S]`, see risks) |
-| abelian-group | `group:abelian` | `group:abelian:kingdom:type:phylum:algebra:class:group:abelian:order:binary:family:operation:genus:axiomatic:species:group:abelian:component:type:instance:canonical` | `[D]` |
+| commutative-monoid | `commutative:monoid` | `commutative:monoid:kingdom:type:phylum:algebra:class:commutative:monoid:order:binary:family:operation:genus:axiomatic:species:commutative:monoid:component:type:instance:canonical` | `[D]` (compound order LOCKED adjective-first, §7.2 #9) |
+| abelian-group | `abelian:group` | `abelian:group:kingdom:type:phylum:algebra:class:abelian:group:order:binary:family:operation:genus:axiomatic:species:abelian:group:component:type:instance:canonical` | `[D]` (compound order LOCKED adjective-first, §7.2 #9) |
 | quasigroup | `quasigroup` | `quasigroup:kingdom:type:phylum:algebra:class:quasigroup:order:binary:family:operation:genus:axiomatic:species:quasigroup:component:type:instance:canonical` | `[D]` |
 | loop | `loop` | `loop:kingdom:type:phylum:algebra:class:loop:order:binary:family:operation:genus:axiomatic:species:loop:component:type:instance:canonical` | `[D]` |
 
@@ -132,9 +138,10 @@ re-mint-expensive.** Honest disclosure of both corpora (B1): the doctrine file
 `abelian:group` occurs 1156 times (→ adjective-FIRST). D26's own natural-language principle
 (`natural:transformation` = adjective→noun, `design_constraints.md:524-527`) ALSO points to
 `abelian:group` / `commutative:monoid`. The task-prompt's D26 gloss lists `group:abelian`, so the
-doctrine reading is defensible. The table below tentatively shows the doctrine-file order; a maintainer
-ruling (§7.2 #9) settles it before minting. The multi-segment subdomain value itself is consistent with
-the runtime's `subdomain:bit:width` / `subdomain:open:set` idiom but has no algebra precedent to copy.
+doctrine reading is defensible. **MAINTAINER RULING (LOCKED): adjective-FIRST — `abelian:group` /
+`commutative:monoid`** (the verified-runtime + natural-language reading). The table above now shows the
+locked order. The multi-segment subdomain value itself is consistent with the runtime's
+`subdomain:bit:width` / `subdomain:open:set` idiom but has no algebra precedent to copy.
 
 ### 1.5 Added-law axiom atoms — descent `kingdom:axiom:phylum:operation:class:<law>:order:binary:family:<theory>:genus:<role>:species:<leaf>:component:statement:instance:canonical`
 
@@ -147,8 +154,8 @@ identity→`genus:neutral:species:member`; inverse→`genus:member:species:inver
 |---|---|---|
 | closure (magma) | `magma:kingdom:axiom:phylum:operation:class:closure:order:binary:family:magma:genus:product:species:membership:component:statement:instance:canonical` | `[D]` |
 | associativity (semigroup) | `semigroup:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:semigroup:genus:composition:species:equality:component:statement:instance:canonical` | `[D]` |
-| commutativity (comm-monoid) | `monoid:commutative:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:monoid:commutative:genus:composition:species:equality:component:statement:instance:canonical` | `[D]` |
-| commutativity (abelian) | `group:abelian:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:group:abelian:genus:composition:species:equality:component:statement:instance:canonical` | `[D]` (own atom, off group — no-cram) |
+| commutativity (comm-monoid) | `commutative:monoid:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:commutative:monoid:genus:composition:species:equality:component:statement:instance:canonical` | `[D]` |
+| commutativity (abelian) | `abelian:group:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:abelian:group:genus:composition:species:equality:component:statement:instance:canonical` | `[D]` (own atom, off group — no-cram) |
 | latin-division (quasigroup) | `quasigroup:kingdom:axiom:phylum:operation:class:division:order:binary:family:quasigroup:genus:latin:species:unique:component:statement:instance:canonical` | `[S]` (`genus:latin`/`species:unique` unattested) |
 
 The reference group anchors, quoted for the executor to copy verbatim:
@@ -252,10 +259,14 @@ classes (`axiom:record`/`theorem:record`/`construction:record`/`specimen:record`
      <urn:silmaril:ontology:primordial:algebra:structure:monoid> . # bridges (§5)
 ```
 
-**(b) Model class + intensional bundle.**
+**(b) Model class (declaration-record plane, B4) + intensional bundle.** This is the Plane-1
+declaration-record atom (`kingdom:class…:model…component:class`) — DISTINCT from the §1.4 denotatum atom
+(`kingdom:type…component:type`); it `@rel:denotes` the denotatum. It carries the OWL restriction bundle,
+provenance, and disjointness teeth; the denotatum carries none of these.
 ```
-<@Am:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical>   [S: class:model/genus:governed]
+<@Am:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical>   [S: class:model/genus:governed — the Plane-1 record IRI, B4]
   a owl:Class ;
+  <@rel:denotes> <@Am:kingdom:type:…:component:type:instance:canonical> ;   # → §1.4 denotatum atom (B4)
   rdfs:subClassOf
     [ a owl:Restriction; owl:cardinality "1"^^xsd:nonNegativeInteger; owl:onProperty <@rel:carrier> ],
     [ a owl:Restriction; owl:cardinality "1"; owl:onProperty <@rel:identity:element> ],
@@ -332,8 +343,9 @@ the reference has NO `equation:record` `owl:Class`, and `left`/`right` appear on
 
 **MONOID rung assembly (the complete atom set).** 1 theory record + 1 signature record (sigMonoid,
 `@rel:operation:symbol "· : S,S→S"`, `"e : →S"`, mirrors `algebra_spine.ttl:187-193`) + 3 axiom
-records (closure/assoc/identity, identity → 2 cases) + 3 equation records (identity = 2) + 1 model
-class (carrier + identity:element cardinality-1, `owl:disjointWith` group model) + 1 reduct edge
+records (closure/assoc/identity, identity → 2 cases) + 3 equation records (identity = 2) + **1 denotatum
+atom + 1 model-record class (B4 two planes)** (record: carrier + identity:element cardinality-1,
+`owl:disjointWith` group model-record, `@rel:denotes` its denotatum) + 1 reduct edge
 (monoid→semigroup, obligation-count 3: adds `e` + 2-case identity) + 1 theorem + 1 certificate
 (identity uniqueness) + `fixtures/monoid_z2.ttl` (positive) + `fixtures/monoid_z2_negative.ttl`
 (broken identity row) + declaration triad envelope + provenance quartet + 3 bridges (§5) + 2 SHACL
@@ -555,19 +567,16 @@ locked up front):
    equation` records.
 8. **Two-ladder split** — algebra rungs on the *mathematics* 12-marker ladder, gate/clause specs on the
    *core:entity* gate ladder (both verbatim from the reference) — confirm per layer.
-9. **Compound-token order (B1) — `abelian:group` vs `group:abelian` / `commutative:monoid` vs
-   `monoid:commutative`.** The two named authorities DISAGREE: the doctrine file
-   `silmaril.final.consolidated.ttl` → adjective-LAST (`group:abelian`, 4 occ); the verified runtime
-   (`refcomp/zip/silmaril/ontology/consolidated.ttl`, 1156 `abelian:group` across `refcomp/`) + D26's
-   natural-language `natural:transformation` principle → adjective-FIRST (`abelian:group`). D26-locked,
-   re-mint-expensive, threads through the comm-monoid + abelian rungs' subdomain/family/species/axiom
-   values everywhere. *Pivotal naming lock.*
-10. **Model-class plane (B4) — one IRI or two.** §1.4 names each model class as the runtime's
-    `kingdom:type:…:component:type` atom (group `[V]`); §2b mints the monoid model class as a DIFFERENT
-    `kingdom:class:…:model:…:component:class` IRI `[S]`. Decide: (a) the runtime `kingdom:type` atom IS
-    the model denotatum (one IRI; §2b's form dropped), or (b) `kingdom:type` = the denotatum plane and
-    `kingdom:class:…:model` = a distinct declaration-record plane (two IRIs, named consistently). Re-mint-
-    expensive.
+9. **Compound-token order (B1) — LOCKED: adjective-FIRST `abelian:group` / `commutative:monoid`.**
+   Maintainer ruling — the verified-runtime + D26 natural-language reading (runtime `abelian:group` 1156
+   occ; D26's `natural:transformation` = adjective→noun). Baked into §1.4/§1.5 tables + plan T-CMON/T-ABEL.
+10. **Model-class plane (B4) — LOCKED: TWO planes.** Every rung mints BOTH (i) a DENOTATUM atom
+    `kingdom:type:…:component:type` (Plane-2; the mathematical object; identifier/notation/source only, NO
+    provenance — group `[V]`, others `[D]`) AND (ii) a DECLARATION-RECORD atom
+    `kingdom:class:…:model:…:component:class` (Plane-1; the model-class record carrying the
+    `owl:Restriction` bundle + provenance + `owl:disjointWith` teeth — `[S]`). §1.4's table is the
+    denotatum column; §2b is the record column; the two are named consistently per rung and linked by
+    `@rel:denotes` (record → denotatum).
 
 Plus two build obligations the plan flags but cannot discharge: **V7 provenance closure**
 (executor≥1 AND shadow≥1) must be BUILT from scratch (reference `governance/` empty), and **the
@@ -586,27 +595,32 @@ the template fan out.
 
 The planner/validator shadow returned FAIL(conditional) on four blocking issues. Dispositions:
 
-- **B1 (naming corpus conflict) — RESOLVED to honest disclosure + escalation.** §1.4 now discloses BOTH
-  corpora truthfully and no longer asserts a uniform "abelian:group 0". The order is routed to §7.2 #9
-  for a maintainer ruling; nothing is minted until it is locked.
+- **B1 (naming corpus conflict) — RESOLVED + LOCKED.** §1.4 disclosed both corpora truthfully; the
+  maintainer ruled **adjective-FIRST `abelian:group` / `commutative:monoid`** (verified-runtime +
+  natural-language reading). Baked into the §1.4/§1.5 tables, the D26 recap example (§0), and plan
+  T-CMON/T-ABEL. §7.2 #9 records the lock.
 - **B2 (fold validated in isolation) — RESOLVED in design.** §4 step 0 extends
   `run-foundation-checks.sh`'s SP0 loader to include `basicttl/primordial/type/algebra/**/*.ttl`, so the
   folded tower lives in the SAME merged SP0+SP1+SP2+SP3 graph the alias map is validated in;
   `run-foundation-checks.sh` is added to the write scope. `run-algebra-checks.sh` keeps the
   algebra-specific shapes/fixtures/gates. The `aob:SealedGroup → fnd:Group → new IRI` promise is now
   exercised in one graph.
-- **B3 (retire-vs-duplicate) — DISPOSITION PROPOSED, maintainer-gated.** TODO-11 (bridge-never-duplicate)
-  forbids two towers asserting the same math content at once. Three Pass-1 options: **(c) additive-
-  authoritative-bridge [RECOMMENDED]** — the folded tower is authoritative; `algebra_spine.ttl` is edited
-  so its `fnd:` rungs become thin bridge STUBS (`owl:equivalentClass`/`skos:exactMatch` to the new IRIs,
-  math content stripped), keeping SP1/SP2/SP3's `subClassOf fnd:*` edges resolvable while content lives in
-  ONE place; scope expands to `algebra_spine.ttl` (already an SP0 file) + `run-foundation-checks.sh` (B2).
-  **(b) additive keep-both, retire deferred** — mint the new tower, leave `algebra_spine.ttl` intact;
-  transient TODO-11 duplication during Pass 1, retire in Pass 2. **(a) true full retire** — like (c) but
-  also redirect every inbound edge now (largest Pass-1 blast). Recommendation (c) fixes B3 + B2 together
-  and is doctrinally clean; the choice is §7.2-gated because it sets the Pass-1 blast radius.
-- **B4 (model-class IRI inconsistency) — ESCALATED.** Routed to §7.2 #10; the two "model class" IRIs are
-  reconciled to one plane-choice before minting.
+- **B3 (retire-vs-duplicate) — RESOLVED + LOCKED: (a) TRUE FULL RETIRE.** Maintainer ruling. The folded
+  tower is authoritative; in a Stage-2 retire task (after all 8 rungs exist), `algebra_spine.ttl`'s `fnd:`
+  rungs are reduced to thin bridge STUBS (`owl:equivalentClass`/`skos:exactMatch` to the new IRIs, math
+  content stripped) AND every inbound `fnd:*` edge is redirected to the new IRIs — including SP2
+  `aob:SealedGroup rdfs:subClassOf fnd:Group` and any SP1/SP3 `groundsIn*`/`subClassOf fnd:*`. **This
+  overrides the prior "SP1/SP2/SP3 byte-untouched this pass" working assumption** (the maintainer chose
+  (a) knowing it redirects inbound edges); the hard gate is that the merged SP0+SP1+SP2+SP3 graph stays
+  green through `run-foundation-checks.sh` after the redirect (`aob:SealedGroup` must still resolve as a
+  subclass of the group model, now transitively/directly through the new IRI). Scope adds
+  `algebra_spine.ttl` (an SP0 file) + `run-foundation-checks.sh` (B2) + the specific SP1/SP2/SP3 files that
+  carry inbound `fnd:*` edges. Stage-1 (the monoid exemplar to the sign-off gate) stays additive — `fnd:`
+  intact, bridges added — because the retire needs the full tower first.
+- **B4 (model-class IRI inconsistency) — RESOLVED + LOCKED: TWO planes.** Maintainer ruling. Each rung
+  mints a DENOTATUM atom (`kingdom:type…component:type`, Plane-2, no provenance) AND a DECLARATION-RECORD
+  atom (`kingdom:class…:model…component:class`, Plane-1, the `owl:Restriction` bundle + provenance +
+  disjointness teeth), linked by `@rel:denotes`. §7.2 #10 + §1.4 record the lock.
 
 **Non-blocking notes folded in:** §4 glob cite corrected 76→70; §4 targetClass counts split
 (`closure.ttl` 4 / `consolidated.shacl.ttl` 33); §2 equation-record class re-cited as the `datatype:record`
