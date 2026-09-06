@@ -8,4 +8,5 @@
 77481DD960B9CBE52BEC60CFC998590FAEA8530A  release   herodotus.asc        Herodotus <herodotus@silmaril.internal>
 968479A1AFF927E37D1A566BB5690EEEBB952194  web-flow  github-web-flow.asc  GitHub <noreply@github.com>
 27044DC503CD3A5EE470CE4E15B79D364040C858  agent     claude.asc           Claude <claude@silmaril.internal>
+B6F41C924ED120B6E42A7D5A2D292981114A752A  agent     claude-2026b.asc     Claude <claude@silmaril.internal>
 1649618A5612CC75132F9336F52E907F309C73B3  agent     aster.asc            Aster <aster@silmaril.internal>

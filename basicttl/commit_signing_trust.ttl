@@ -102,8 +102,8 @@ silm:signing_identity_github_web_flow a owl:NamedIndividual, silm:signingidentit
 silm:signing_identity_claude a owl:NamedIndividual, silm:signingidentity ;
     rdfs:label "Claude" ;
     silm:hasEmail "claude@silmaril.internal" ;
-    silm:signsWith silm:signing_key_claude_2026 ;
-    rdfs:comment """The Claude session agent — a signing identity deliberately distinct 
+    silm:signsWith silm:signing_key_claude_2026, silm:signing_key_claude_2026b ;
+    rdfs:comment """The Claude session agent — a signing identity deliberately distinct
 from the openclaw agent (Herodotus). This is a cryptographic entity: a key pair, an 
 email, and a policy class. It is NOT the Claude model (a TrainedModel), NOT the 
 Anthropic API harness (a ComputationalHarness), and NOT any specific inference session 
@@ -130,6 +130,17 @@ silm:signing_key_claude_2026 a owl:NamedIndividual, silm:signingkey ;
     silm:hasFingerprint "27044DC503CD3A5EE470CE4E15B79D364040C858" ;
     silm:hasKeyAlgorithm "ed25519" ;
     silm:hasKeyFile "claude.asc" ;
+    silm:hasPolicyClass silm:trust_policy_agent .
+
+# Reprovisioned Claude session key (a VARIATION of claude_2026): the original's secret
+# half was lost to a container reclaim, so a new key pair was minted for the SAME Claude
+# signing identity. Per trust_policy_agent doctrine the superseded key (claude_2026) stays
+# listed so any historical commit it signed keeps verifying; new commits sign with 2026b.
+silm:signing_key_claude_2026b a owl:NamedIndividual, silm:signingkey ;
+    rdfs:label "ClaudeKey2026b" ;
+    silm:hasFingerprint "B6F41C924ED120B6E42A7D5A2D292981114A752A" ;
+    silm:hasKeyAlgorithm "ed25519" ;
+    silm:hasKeyFile "claude-2026b.asc" ;
     silm:hasPolicyClass silm:trust_policy_agent .
 
 # User-authorized session identity; maintainer endorsement establishes trust.

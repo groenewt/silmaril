@@ -393,8 +393,15 @@ non-total/associativity-violating table.
 **Gates V0–V8** (mapped onto the reference's realized gate model; no literal "V0..V8" string exists in
 the reference — recognise under its vocabulary, `R4_docs_doctrine_gates.md`):
 - **V0** syntax = Turtle parse.
-- **V1** OWL-profile + hygiene = no punning (FIX `algebra/product/frame.ttl:7` `a ontology:Class,
-  model:Product, model:Frame` class-punning), no class as a provenance participant.
+- **V1** OWL-profile + hygiene = no DENOTATUM/domain-class punning (FIX `algebra/product/frame.ttl:7`
+  `a ontology:Class, model:Product, model:Frame` — a domain class conflating denotatum planes).
+  **REFINED (maintainer ruling): a DECLARATION-RECORD that is an `owl:Class` AND carries provenance is
+  PERMITTED** — the B4 model-record (`kingdom:class…:model…component:class`, typed `owl:Class` +
+  `rec:model:record` with the provenance quartet) is legal OWL2 DL metaclass punning, NOT the forbidden
+  denotatum pun. So V1 forbids: (a) a domain/denotatum class being several model-type classes at once
+  (frame.ttl:7), and (b) a DENOTATUM (Plane-2, `kingdom:type…component:type`) carrying provenance. V1
+  PERMITS: a Plane-1 declaration-record being an `owl:Class` with provenance. The V1 tooth targets the
+  denotatum plane + the frame.ttl pattern, and explicitly EXEMPTS declaration-records.
 - **V2** SHACL non-vacuous = `empty ⇒ REJECT` + a 0-focus shape is **unexercised (REJECT)**, not
   passing.
 - **V3** categorical probes = `sh:sparql`/`sh:select` clauses.
@@ -630,3 +637,28 @@ for the executor. Continuity: the `q_monoid_is_endo` "monoid = one-object catego
 outside the one-operation spine) — recorded so it is not silently dropped. Authority granularity: the
 per-atom DS/PD/SYN tags (`algebra_spine.ttl`, 151 tags — associativity/identity=PD, inverse/latin/
 commutativity=SYN) carry onto the folded `@rel:authority` per record.
+
+### 7.5 Stage-1 sign-off + Stage-2 directives (maintainer ruling)
+
+The realized monoid rung (Build Stage 1 — `ledger/W2/sp0-reshape/stage1/REALIZED_MONOID.md`) was brought
+to the maintainer and **SIGNED OFF**: the B4 two-plane pattern is the accepted fan-out template.
+Independent verification on disk: `run-algebra-checks.sh` GREEN (exit 0), non-vacuous (4 shapes each ≥1
+focus; `monoid_z2_negative` + `progenitor_neg` flip RED; `empty ⇒ REJECT`; depth gate 20 files); `[V]`
+anchors byte-exact vs `primordials.yaml`; B1 adjective-first only; additive (`algebra_spine.ttl` untouched);
+no placeholders. **B2 fully closed GREEN:** the merged SP0+SP0ALG+SP1+SP2+SP3 graph (15987 triples, SP0ALG
+picks up the 7 spine files) conforms — `primitives.shapes` True (9s), `foundation.shapes` True (479s),
+`crs.shapes` structurally unaffected (spine adds no `crs:` node).
+
+Three Stage-2 directives, LOCKED:
+- **Fan out Stage 2** — the 7 sibling rungs + T-REDUCT/SHAPES/FIX/GATES/MANIFEST/PROV + T-RETIRE (B3(a)) +
+  T-INTEGRATION + adversarial T-PANEL, off the monoid template.
+- **V1 refined** (§4) — a declaration-record that is an `owl:Class` carrying provenance is PERMITTED (legal
+  OWL2 metaclass punning); V1 forbids only the denotatum/domain-class pun (frame.ttl:7) + provenance on a
+  denotatum. T-GATES wires this refinement.
+- **Signing key reprovisioned** — the container reclaim wiped the original Claude private key
+  (`silm:signing_key_claude_2026`, fp `27044DC5…`). A NEW key was minted for the SAME Claude identity
+  (`silm:signing_key_claude_2026b`, fp `B6F41C924ED120B6E42A7D5A2D292981114A752A`, ed25519,
+  `keys/claude-2026b.asc`, `trust_policy_agent`), registered in `commit_signing_trust.ttl` (original stays
+  listed so history verifies), `keys/trust-manifest.txt` regenerated in sync. Git signs with it going
+  forward; the CI provenance `policy-default` fails only on `bad-signature`/`unknown` (unsigned passes), so
+  the earlier unsigned WIP checkpoints are policy-clean and the reshape commits from here are `good`-signed.
