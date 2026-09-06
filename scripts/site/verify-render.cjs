@@ -88,6 +88,7 @@ const server = http.createServer((request, response) => {
           await page.locator('#ontology-tree details details').first().waitFor();
           assert((await page.locator('#ontology-tree details').count())>1);
           await page.locator('#ontology-kind').selectOption('class');await page.locator('#ontology-search').fill('urn:silmaril:fnd:#Magma');
+          assert.equal(await page.locator('#ontology-tree').getByRole('button',{name:'Show more',exact:true}).isVisible(),false,'exhausted pagination stays hidden');
           await page.getByRole('button',{name:'Magma',exact:true}).click();
           await page.locator('.neighborhood-diagram').waitFor();
           assert.equal(await page.locator('.neighborhood-diagram').evaluate(node=>node.namespaceURI),'http://www.w3.org/2000/svg');

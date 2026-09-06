@@ -1705,7 +1705,7 @@
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:159:display> a style:Declaration ;
     style:name "display" ;
-    style:value "none" .
+    style:value "none !important" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:159:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 159)"^^geometry:wktLiteral .
