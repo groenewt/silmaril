@@ -289,7 +289,7 @@
 <urn:silmaril:user:interface:cascading:style:sheet:rule:133> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:133:geometry> ;
     style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:133:margin-left> ;
-    style:selector ".document-toc li[data-level=\"H3\"], .document-toc li[data-level=\"H4\"]" .
+    style:selector ".document-toc li" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:134> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:134:geometry> ;
@@ -309,7 +309,7 @@
     style:declaration <urn:silmaril:user:interface:cascading:style:sheet:rule:136:display>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:136:font-size>,
         <urn:silmaril:user:interface:cascading:style:sheet:rule:136:line-height> ;
-    style:selector ".document-chapter summary h2" .
+    style:selector ".document-chapter summary :is(h2, h3, h4, h5, h6)" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:137> a style:Rule ;
     geometry:hasGeometry <urn:silmaril:user:interface:cascading:style:sheet:rule:137:geometry> ;
@@ -1252,7 +1252,7 @@
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:133:margin-left> a style:Declaration ;
     style:name "margin-left" ;
-    style:value "1rem" .
+    style:value "0" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:134:flex> a style:Declaration ;
     style:name "flex" ;
@@ -1705,7 +1705,7 @@
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:159:display> a style:Declaration ;
     style:name "display" ;
-    style:value "none" .
+    style:value "none !important" .
 
 <urn:silmaril:user:interface:cascading:style:sheet:rule:159:geometry> a geometry:Geometry ;
     geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 159)"^^geometry:wktLiteral .

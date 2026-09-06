@@ -1,0 +1,11 @@
+{
+  "name": "silmaril-site-preview",
+  "private": true,
+  "description": "Browser preview of the generated Jekyll artifact",
+  "scripts": {
+    "dev": "vite --config scripts/site/preview.config.mjs"
+  },
+  "devDependencies": {
+    "vite": "7.3.1"
+  }
+}

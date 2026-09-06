@@ -60,11 +60,18 @@ const server = http.createServer((request, response) => {
           const frame=await shelf.locator('iframe').elementHandle().then(handle=>handle.contentFrame());
           await frame.locator('#document-toc li').first().waitFor();
           assert((await frame.locator('#document-content').textContent()).includes('Universal Unary Byte-Frame Law'));
+          assert((await frame.locator('#document-content').textContent()).replace(/\s+/g,' ').includes('vectors retain their semantic geometry.'),'the embedded document includes its final paragraph');
           assert.equal(await frame.locator('#document-content').getAttribute('data-document-digest'),documents.find(document=>document.source==='docs/unary-byte-frame-law.md').digest);
+          assert((await frame.locator('#document-toc ol ol').count())>0,'the contents preserve the h1/h2/h3 hierarchy');
+          assert((await frame.locator('.document-chapter .document-chapter').count())>0,'subsections have their own disclosure');
           await frame.getByRole('button',{name:'Collapse sections'}).click();
           assert.equal(await frame.locator('.document-chapter[open]').count(),0);
-          const target=frame.locator('#document-toc a').filter({hasText:'Surface spelling'});
-          if(await target.count())await target.first().click();
+          const target=frame.getByRole('link',{name:'Python process form',exact:true});
+          await target.click();
+          assert(await frame.getByRole('heading',{name:'Python process form',exact:true}).isVisible(),'deep navigation opens ancestor sections');
+          await frame.getByRole('button',{name:'Collapse sections'}).click();
+          await target.click();
+          assert(await frame.getByRole('heading',{name:'Python process form',exact:true}).isVisible(),'the current fragment reopens when selected again');
           await frame.getByRole('button',{name:'Expand sections'}).click();
           assert((await frame.locator('.document-chapter[open]').count())>0);
           const frameDimensions=await frame.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
@@ -81,6 +88,7 @@ const server = http.createServer((request, response) => {
           await page.locator('#ontology-tree details details').first().waitFor();
           assert((await page.locator('#ontology-tree details').count())>1);
           await page.locator('#ontology-kind').selectOption('class');await page.locator('#ontology-search').fill('urn:silmaril:fnd:#Magma');
+          assert.equal(await page.locator('#ontology-tree').getByRole('button',{name:'Show more',exact:true}).isVisible(),false,'exhausted pagination stays hidden');
           await page.getByRole('button',{name:'Magma',exact:true}).click();
           await page.locator('.neighborhood-diagram').waitFor();
           assert.equal(await page.locator('.neighborhood-diagram').evaluate(node=>node.namespaceURI),'http://www.w3.org/2000/svg');

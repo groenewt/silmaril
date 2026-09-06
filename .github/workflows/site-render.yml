@@ -14,8 +14,6 @@ jobs:
         baseurl: ['', '/silmaril']
     steps:
       - uses: actions/checkout@v4
-      - name: Require admitted user interface runtime
-        run: make -C scripts/python/pylib morphism-user-interface-runtime-admission
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

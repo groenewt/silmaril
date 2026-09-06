@@ -37,7 +37,7 @@ def test_catalog_preserves_blank_nodes_literals_and_parse_failures(tmp_path, mon
 
 def test_chart_order_and_species_are_projected():
     output = MODULE.render_elements(MODULE.SPECIFICATION.value(MODULE.PORTAL.HomeInclude, MODULE.PORTAL.root))
-    assert output.index('A little world') < output.index('journey-diagram') < output.index('A traveler brings a claim')
+    assert output.index('Every claim has a story') < output.index('journey-diagram') < output.index('The tortoise asks for the operation')
     assert 'viewBox="0 0 640 200"' in output
     assert '{{ \'/explore/\' | relative_url }}' in output
 

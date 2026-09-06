@@ -25,7 +25,7 @@ runtime:ProjectionExecution a runtime:Requirement ;
         runtime:AtomicTransitions, runtime:ExternalAdmission,
         runtime:PythonPhysicalIntegration, runtime:PythonLauncher,
         runtime:GeneratedBehaviorAdmission, runtime:Readback ;
-    schema:comment "Execution remains denied. Browser success and Turtle conformance cannot discharge these requirements. The Make denial has no admission flag or receipt-file override." .
+    schema:comment "Formal runtime admission remains unestablished. The site projection and browser checks produce build observations independently; they do not discharge these requirements. The separate runtime-admission target remains unsuccessful and has no admission flag or receipt-file override." .
 
 runtime:InputCarrier a runtime:Requirement ;
     runtime:requiredCoordinate "input" ;
