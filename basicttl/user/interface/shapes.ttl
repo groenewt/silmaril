@@ -1,6 +1,7 @@
 @prefix interface: <urn:silmaril:user:interface:> .
 @prefix language: <urn:silmaril:user:interface:hypertext:markup:language:> .
 @prefix projection: <urn:silmaril:user:interface:projection:> .
+@prefix portal: <urn:silmaril:user:interface:portal:> .
 @prefix style: <urn:silmaril:user:interface:cascading:style:sheet:> .
 @prefix status: <urn:silmaril:user:interface:build:status:> .
 @prefix geometry: <http://www.opengis.net/ont/geosparql#> .
@@ -11,16 +12,18 @@
 
 projection:DocumentShape a constraint:NodeShape ;
     constraint:targetClass projection:Document ;
-    constraint:property [ constraint:path projection:root ; constraint:class interface:Element ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:targetSubjectsOf portal:root ;
+    constraint:property [ constraint:path [ constraint:alternativePath (projection:root portal:root) ] ; constraint:class interface:Element ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
     constraint:sparql [ constraint:message "The document root must not have a parent." ; constraint:select """
         SELECT $this WHERE {
-          $this <urn:silmaril:user:interface:projection:root> ?root .
+          $this (<urn:silmaril:user:interface:projection:root>|<urn:silmaril:user:interface:portal:root>) ?root .
           ?parent <urn:silmaril:user:interface:child> ?root .
         }""" ] .
 
 interface:ElementShape a constraint:NodeShape ;
     constraint:targetClass interface:Element ;
-    constraint:property [ constraint:path description:type ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:in (language:Section language:Heading language:Paragraph language:List language:Item language:Link language:Span language:Graphic language:Circle language:Line status:Indicator) ] ;
+    constraint:property [ constraint:path description:type ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:in (language:Section language:Heading language:Paragraph language:List language:Item language:Link language:Span language:Graphic language:Circle language:Line status:Indicator portal:AccessibleDescription portal:AccessibleTitle portal:Button portal:Line portal:SearchInput portal:Selector portal:VectorDiagram portal:LabelElement portal:MathematicalExpression portal:Paragraph portal:Navigation portal:PageHeading portal:Circle portal:Choice portal:Container portal:SectionHeading portal:VectorText portal:Link portal:Section) ] ;
+    constraint:property [ constraint:path (description:type projection:tag) ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
     constraint:property [ constraint:path interface:child ; constraint:class interface:Element ] ;
     constraint:property [ constraint:path [ constraint:inversePath interface:child ] ; constraint:maxCount 1 ] ;
     constraint:property [ constraint:path interface:attribute ; constraint:class interface:Attribute ] ;
@@ -32,8 +35,11 @@ interface:ElementShape a constraint:NodeShape ;
     """ ] ;
     constraint:sparql [ constraint:message "Every element must be reachable from the document root." ; constraint:select """
         SELECT $this WHERE { FILTER NOT EXISTS {
-          ?document a <urn:silmaril:user:interface:projection:Document> ;
-            <urn:silmaril:user:interface:projection:root>/<urn:silmaril:user:interface:child>* $this .
+          { ?document a <urn:silmaril:user:interface:projection:Document> ;
+              <urn:silmaril:user:interface:projection:root>/<urn:silmaril:user:interface:child>* $this . }
+          UNION
+          { ?document a <urn:silmaril:user:interface:portal:Artifact> ;
+              <urn:silmaril:user:interface:portal:root>/<urn:silmaril:user:interface:child>* $this . }
         }}""" ] ;
     constraint:sparql [ constraint:message "A state label is projected from its state; it cannot be overridden by text." ; constraint:select """
         SELECT $this WHERE { $this <urn:silmaril:user:interface:build:status:state> ?state ; <urn:silmaril:user:interface:text> ?text }
@@ -60,13 +66,16 @@ geometry:ChartShape a constraint:NodeShape ;
 interface:AttributeShape a constraint:NodeShape ;
     constraint:targetClass interface:Attribute ;
     constraint:property [ constraint:path interface:name ; constraint:minCount 1 ; constraint:maxCount 1 ;
-      constraint:in ("class" "href" "aria-label" "aria-hidden" "focusable" "role" "xmlns" "viewBox" "width" "height" "fill" "stroke" "stroke-width" "stroke-linecap" "stroke-linejoin" "points" "x1" "y1" "x2" "y2" "cx" "cy" "r") ] ;
+      constraint:in ("class" "href" "aria-label" "aria-hidden" "focusable" "role" "xmlns" "viewBox" "width" "height" "fill" "stroke" "stroke-width" "stroke-linecap" "stroke-linejoin" "points" "x1" "y1" "x2" "y2" "cx" "cy" "r" "aria-labelledby" "aria-live" "autocomplete" "data-mathematics" "for" "id" "placeholder" "text-anchor" "type" "value" "x" "y") ] ;
     constraint:property [ constraint:path interface:value ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:minLength 1 ] ;
     constraint:property [ constraint:path [constraint:inversePath interface:attribute] ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
-    constraint:sparql [ constraint:message "Links must use an explicit https destination." ; constraint:select """
+    constraint:sparql [ constraint:message "Links require https; portal links may also use an explicit local page path." ; constraint:select """
         SELECT $this WHERE {
           $this <urn:silmaril:user:interface:name> "href" ; <urn:silmaril:user:interface:value> ?value .
-          FILTER (!REGEX(STR(?value), "^https://[^ /]+/[^ ]*$"))
+          FILTER (!REGEX(STR(?value), "^https://[^ /]+/[^ ]*$") && !(
+            EXISTS { ?owner a <urn:silmaril:user:interface:portal:Link> ; <urn:silmaril:user:interface:attribute> $this }
+            && (REGEX(STR(?value), "^/([A-Za-z0-9][A-Za-z0-9_./?=#%&+:-]*)?$")
+                || REGEX(STR(?value), "^#[A-Za-z][A-Za-z0-9_-]*$"))))
         }""" ] .
 
 status:UnknownShape a constraint:NodeShape ;

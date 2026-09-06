@@ -10,7 +10,7 @@ portal:ArchitecturePage a portal:Artifact ;
 permalink: /architecture/
 layout: default
 title: "Architecture | Silmaril"
-description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the typed morphism families (provenance and ontology pipelines) that realize it."
+description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the implementation obligations that remain open."
 ---
 
 <header class="page-hero">
@@ -18,10 +18,9 @@ description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the
     <h1>Architecture</h1>
     <p class="hero-subtitle">
         One law governs every callable in this repository: one explicit input, one
-        explicit physical frame result. The tooling that signs, verifies, and
-        consolidates is built as small typed arrows composed by <code>make</code> —
-        and where the implementation falls short of the law, the gap is recorded in
-        red, never papered over.
+        explicit physical frame result. The repository declares a typed arrow architecture. Its current tooling
+        still has migration gaps: the renderer is not admitted, and the physical
+        carrier types, dependency effects, and unary launcher remain incomplete.
     </p>
 </header>
 
@@ -32,11 +31,11 @@ description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the
         <p class="section-eyebrow">The law in brief</p>
         <h2>One Input, One Frame</h2>
 
-        <div class="law-display">T &rarr; Frame(output: X, error|effect: Y)</div>
+        <div class="law-display" data-mathematics="display">f:T\\longrightarrow\\operatorname{Frame}(X,Y)</div>
 
         <p>
             Every exposed callable — independent of language, file type, path, or
-            generated status — is inventoried as a typed arrow with one explicit input
+            generated status — must be inventoried as a typed arrow with one explicit input
             and one explicit physical frame result. The frame is a typed product, not a
             tuple, <code>Either</code>, <code>Try</code>, or implicit exception: input,
             output, and error-or-effect are separately navigable coordinates.
@@ -53,10 +52,9 @@ description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the
                 <code>resource/description/framework</code> — spellings like
                 <code>SHACL</code>, <code>SPARQL</code>, <code>gpg</code> survive only as
                 immutable external evidence on the far side of a registered bridge.</li>
-            <li><strong>Bridges, registered.</strong> Anything whose protocol cannot be a
-                lawful unary callable — git hooks, CI workflow steps — is a registered
-                external bridge: it declares its findings in a header and delegates all
-                policy to the typed tree.</li>
+            <li><strong>Boundary evidence.</strong> Git hooks, workflow steps, and browser
+                behavior remain in scope. A boundary needs typed registration, explicit
+                effects, and readback evidence; a header or import alias cannot provide admission.</li>
         </ul>
         <p>
             The full law — semantic ancestry, build bootstrap boundary, normative boundary,
@@ -84,44 +82,38 @@ description: "The unary byte-frame law in brief — T -> Frame(X, Y) — and the
                     <tr>
                         <td><code>value.py</code></td>
                         <td><code>VALUE</code></td>
-                        <td>A constant leaf: one byte string or command tuple under
-                            <code>config/constants/&hellip;</code>. Identities are URNs of the form
-                            <code>urn:silmaril:&lt;colon-path&gt;:v1</code>.</td>
+                        <td>A typed value leaf. Type identity, occurrence identity, schema,
+                            exact ancestry, and physical byte descent must remain distinct.
+                            A raw host byte string or tuple does not establish that contract.</td>
                     </tr>
                     <tr>
                         <td><code>library.py</code></td>
                         <td><code>DEPENDENCY</code></td>
-                        <td>A gate leaf: the only place an external import may occur
-                            (<code>import X as DEPENDENCY</code>) under
-                            <code>config/gate/external/&hellip;</code>. Explicit spelling elsewhere is
-                            not admission.</td>
+                        <td>An explicit dependency boundary. The binding needs a typed
+                            contract, effect carrier, and readback evidence. An external
+                            import renamed <code>DEPENDENCY</code> is not sufficient.</td>
                     </tr>
                     <tr>
                         <td><code>process.py</code></td>
                         <td><code>MAIN</code></td>
-                        <td>An arrow leaf: exactly <em>one semantic application</em> — one
-                            subprocess run of a command tuple, or one gated library call chain
-                            reading stdin bytes and writing stdout bytes — ending
-                            <code>raise SystemExit(MAIN())</code>.</td>
+                        <td>A unary arrow: <code>MAIN(input: Input) -&gt; Frame</code>, with
+                            one explicit typed non-default input. Importing the module
+                            performs no invocation. A separately typed host-exit boundary
+                            observes both frame coordinates before host termination.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <ul class="doc-links">
-            <li><strong>The make envelope.</strong> Every target guards
-                <code>SILMARIL_PYTHON</code> (absent &rarr; exit 64), runs with
-                <code>PYTHONDONTWRITEBYTECODE=1</code> and <code>PYTHONPATH=src</code>, writes
-                stdout to <code>$@.pending</code>, stderr to <code>$@.stderr</code>, the exit
-                status to <code>$@.status</code>, and promotes the artifact with an atomic
-                <code>mv</code> only on success. Bytes in, bytes out, evidence on disk.</li>
-            <li><strong>The ledgers.</strong> Every <code>process.py</code> owns a row in a
-                committed process ledger (<code>tests/fixtures/*_process_ledger.csv</code>)
-                declaring, among eleven columns, its
-                <code>semantic_application_count&nbsp;=&nbsp;1</code>. The runtime test suite is the
-                enforcement oracle: it walks the tree and rejects loops, <code>try</code>/
-                <code>except</code>, prints, multiple symbols, and unregistered imports.</li>
-            <li><strong>The gates in one place.</strong> Four composite targets gate the whole
-                system, and CI runs them all:</li>
+            <li><strong>The make envelope.</strong> Build targets compose the existing
+                tools. Their process receipts are useful observations, but they do not
+                substitute for typed output and effect carriers.</li>
+            <li><strong>The ledgers.</strong> A declared application count does not prove
+                unary behavior. The required runtime suite must check the actual
+                implementation, imports, constructor behavior, and host boundary.</li>
+            <li><strong>Separate gates.</strong> Foundation and folded-algebra checks,
+                consolidation, provenance, runtime contracts, and browser rendering
+                answer separate questions. The site admission gate currently rejects execution.</li>
         </ul>
         <pre class="command-block">export SILMARIL_PYTHON=$(command -v python3)
 make -C scripts/python/pylib morphism-provenance-trust-manifest-check
@@ -138,8 +130,8 @@ make -C scripts/python/pylib morphism-ontology-validation</pre>
         <p>
             The families live under
             <code>silmaril/sparky/morphism/&hellip;</code> with mirrored constants and gates.
-            Each step below is one <code>process.py</code> — one arrow, one semantic
-            application — composed by <code>make</code>.
+            The map below describes the intended process families composed by
+            <code>make</code>. It does not certify their unary implementation or admission.
         </p>
 
         <div class="pipeline-grid">
@@ -1469,7 +1461,7 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:attribute:46:href> a interface:Attribute ;
     interface:name "href" ;
-    interface:value "/explore/" .
+    interface:value "/reading/#document-docs-superpowers-specs-2026-09-06-w2-sp0-primordial-fold-design" .
 
 <urn:silmaril:user:interface:portal:attribute:47:class> a interface:Attribute ;
     interface:name "class" ;
@@ -1489,7 +1481,7 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:attribute:4:href> a interface:Attribute ;
     interface:name "href" ;
-    interface:value "/explore/?file=basicttl/foundation/algebra_spine.ttl" .
+    interface:value "/explore/?file=basicttl/primordial/type/algebra/spine/monoid.ttl" .
 
 <urn:silmaril:user:interface:portal:attribute:52:aria-live> a interface:Attribute ;
     interface:name "aria-live" ;
@@ -1617,7 +1609,7 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:attribute:9:href> a interface:Attribute ;
     interface:name "href" ;
-    interface:value "/explore/?file=basicttl/crs/towers.ttl" .
+    interface:value "/explore/?file=basicttl/primordial/type/algebra/reducts.ttl" .
 
 <urn:silmaril:user:interface:portal:element:1> a portal:Paragraph ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:1> ;
@@ -1639,11 +1631,11 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:element:12> a portal:SectionHeading ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:12> ;
-    interface:text "Bring back what happened" .
+    interface:text "The archivist keeps the receipt" .
 
 <urn:silmaril:user:interface:portal:element:13> a portal:Paragraph ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:13> ;
-    interface:text "A journey returns more than a trophy. The frame carries an output together with its errors or effects. The archive keeps the occurrence, even when a later journey restores an earlier state." .
+    interface:text "An equation, a finite witness, and a runtime result answer different questions. The archive keeps each in its own place. The byte-frame law requires a runtime result to carry its output together with its error or effect; a successful example does not discharge that law." .
 
 <urn:silmaril:user:interface:portal:element:14> a portal:Link ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:14> ;
@@ -1667,7 +1659,7 @@ portal:VectorDiagram a owl:Class ;
 <urn:silmaril:user:interface:portal:element:17> a portal:AccessibleDescription ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:17> ;
     interface:attribute <urn:silmaril:user:interface:portal:attribute:17:id> ;
-    interface:text "Three connected, labeled stations. The diagram introduces a reading route; it is not a proof of admission." .
+    interface:text "Three reading stations: inspect the declared structure, examine its evidence, and check the runtime frame obligation. The route is a guide, not a proof or a deployment receipt." .
 
 <urn:silmaril:user:interface:portal:element:18> a portal:Line ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:18> ;
@@ -1689,7 +1681,7 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:element:2> a portal:SectionHeading ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:2> ;
-    interface:text "A traveler brings a claim" .
+    interface:text "The tortoise asks for the operation" .
 
 <urn:silmaril:user:interface:portal:element:20> a portal:VectorText ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:20> ;
@@ -1783,16 +1775,16 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:element:3> a portal:Paragraph ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:3> ;
-    interface:text "At the edge of the archive, a traveler arrives with a splendid claim: “This operation is a group.” The tortoise at the desk asks for its carrier, its operation, and its laws. A handsome name will not fill a missing table row." .
+    interface:text "A traveler reaches the archive with a splendid claim: “This is a group.” The tortoise asks for the carrier and the operation. Does every pair have exactly one result? Does regrouping change it? A name is the beginning of the investigation." .
 
 <urn:silmaril:user:interface:portal:element:30> a portal:PageHeading ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:30> ;
-    interface:text "A little world, with its rules showing." .
+    interface:text "Every claim has a story. Every law leaves a trail." .
 
 <urn:silmaril:user:interface:portal:element:31> a portal:Paragraph ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:31> ;
     interface:attribute <urn:silmaril:user:interface:portal:attribute:31:class> ;
-    interface:text "Economics brings the questions. Algebra gives the objects their shape. Ontology records the relationships. Come through the story, then open the actual declarations and decide what the evidence earns." .
+    interface:text "Start with an operation and see how much it can become. Silmaril connects algebra, category theory, and economic questions through declarations you can open, equations you can read, and evidence you can question." .
 
 <urn:silmaril:user:interface:portal:element:32> a portal:Link ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:32> ;
@@ -1839,31 +1831,31 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:element:38> a portal:SectionHeading ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:38> ;
-    interface:text "What the traveler owes" .
+    interface:text "Two obligations, written out" .
 
 <urn:silmaril:user:interface:portal:element:39> a portal:Paragraph ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:39> ;
-    interface:text "A magma needs a total, single-valued operation on its carrier. A runtime result needs a frame. These are obligations to check, not powers conferred by a label." .
+    interface:text "For the declared carrier A, every ordered pair needs exactly one result in A. For a callable f, the output and the error-or-effect remain separate projections of one physical frame. Neither formula certifies the current implementation." .
 
 <urn:silmaril:user:interface:portal:element:4> a portal:Link ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:4> ;
     interface:attribute <urn:silmaril:user:interface:portal:attribute:4:class>,
         <urn:silmaril:user:interface:portal:attribute:4:href> ;
-    interface:text "Meet the algebraic cast" .
+    interface:text "Open the monoid declaration →" .
 
 <urn:silmaril:user:interface:portal:element:40> a portal:MathematicalExpression ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:40> ;
     interface:attribute <urn:silmaril:user:interface:portal:attribute:40:data-mathematics> ;
-    interface:text "\\mu:A\\times A\\to A" .
+    interface:text "\\begin{aligned}\\mu &: A\\times A\\longrightarrow A \\\\\\forall\\,a,b\\in A\\;&\\exists!\\,c\\in A:\\ \\mu(a,b)=c\\end{aligned}" .
 
 <urn:silmaril:user:interface:portal:element:41> a portal:MathematicalExpression ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:41> ;
     interface:attribute <urn:silmaril:user:interface:portal:attribute:41:data-mathematics> ;
-    interface:text "T\\longrightarrow\\operatorname{Frame}(X,E)" .
+    interface:text "\\begin{aligned}f &: T\\longrightarrow\\operatorname{Frame}(X,Y) \\\\\\pi_{\\mathrm{output}} &: \\operatorname{Frame}(X,Y)\\longrightarrow X \\\\\\pi_{\\mathrm{error\\mid effect}} &: \\operatorname{Frame}(X,Y)\\longrightarrow Y\\end{aligned}" .
 
 <urn:silmaril:user:interface:portal:element:42> a portal:Paragraph ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:42> ;
-    interface:text "The current repository still records an active-red migration toward the unary byte-frame law. The atlas lets you inspect declarations; it does not turn them into proofs." .
+    interface:text "The algebra spine distinguishes theory records, model declarations, equations, and evidence. The runtime still owes physically integrated byte-carrier types, dependency gates, a unary launcher, and inverse readback before site generation is admitted." .
 
 <urn:silmaril:user:interface:portal:element:43> a portal:Section ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:43> ;
@@ -1876,17 +1868,17 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:element:44> a portal:SectionHeading ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:44> ;
-    interface:text "Open the cupboards." .
+    interface:text "Open the workshop notebook." .
 
 <urn:silmaril:user:interface:portal:element:45> a portal:Paragraph ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:45> ;
-    interface:text "The atlas follows the complete basicttl file tree. Switch from files to classes, properties, or individuals; trace a superclass, inspect a literal, and return to the source. The reading room keeps the project’s Markdown inside the site, with room to unfold one chapter at a time." .
+    interface:text "The eight-rung algebra fold now has a design, a monoid worked example, and gate records. Read them in full in the reading room, then use the atlas to follow the actual Turtle declarations. Proof status describes the evidence claimed by a record; it is not a live build result." .
 
 <urn:silmaril:user:interface:portal:element:46> a portal:Link ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:46> ;
     interface:attribute <urn:silmaril:user:interface:portal:attribute:46:class>,
         <urn:silmaril:user:interface:portal:attribute:46:href> ;
-    interface:text "Explore the living repository →" .
+    interface:text "Read the algebra design here →" .
 
 <urn:silmaril:user:interface:portal:element:47> a portal:Section ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:47> ;
@@ -2043,155 +2035,224 @@ portal:VectorDiagram a owl:Class ;
 
 <urn:silmaril:user:interface:portal:element:7> a portal:SectionHeading ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:7> ;
-    interface:text "The map is allowed to lose things" .
+    interface:text "Each new law opens a door" .
 
 <urn:silmaril:user:interface:portal:element:8> a portal:Paragraph ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:8> ;
-    interface:text "The cartographer draws a small map of a large world. Coordinates help the traveler find a place; they do not become the place. Every projection owes an account of what it preserves and what it leaves behind." .
+    interface:text "Magma, semigroup, and monoid add operation, associativity, and identity. Commutative monoids add symmetry; groups add inverses; abelian groups have both. Quasigroups and loops take the division branch. Follow the reduct records to see which structure is forgotten." .
 
 <urn:silmaril:user:interface:portal:element:9> a portal:Link ;
     geometry:hasGeometry <urn:silmaril:user:interface:portal:geometry:9> ;
     interface:attribute <urn:silmaril:user:interface:portal:attribute:9:class>,
         <urn:silmaril:user:interface:portal:attribute:9:href> ;
-    interface:text "Follow the coordinate trail" .
+    interface:text "Trace the reduct lattice →" .
 
-<urn:silmaril:user:interface:portal:geometry:1> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:1> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:10> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:10> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:11> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:11> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:12> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:12> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:13> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:13> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:14> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:14> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:15> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:15> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:16> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:16> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:17> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:17> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:18> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:18> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:19> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:19> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:2> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:2> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:20> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:20> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:21> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 5)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:21> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 5)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:22> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 6)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:22> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 6)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:23> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 7)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:23> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 7)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:24> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 8)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:24> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 8)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:25> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 9)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:25> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 9)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:26> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 10)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:26> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 10)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:27> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 11)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:27> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 11)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:28> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:28> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:29> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:29> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:3> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:3> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:30> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:30> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:31> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:31> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:32> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:32> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:33> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:33> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:34> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:34> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:35> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:35> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:36> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:36> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:37> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:37> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:38> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:38> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:39> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:39> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:4> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:4> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:40> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:40> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:41> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:41> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:42> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:42> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:43> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:43> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:44> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:44> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:45> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:45> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:46> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:46> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:47> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:47> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:48> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 48)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:48> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 48)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:49> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:49> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:5> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:5> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:50> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:50> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:51> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:51> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:52> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:52> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:53> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:53> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:54> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:54> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:55> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:55> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:56> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:56> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:57> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:57> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:58> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:58> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:59> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:59> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:6> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:6> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:60> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:60> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:61> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:61> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:62> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:62> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 4)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:63> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:63> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:64> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:64> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:65> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:65> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:66> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:66> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:67> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:67> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:68> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:68> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:69> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 69)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:69> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 69)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:7> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:7> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:8> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:8> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
 
-<urn:silmaril:user:interface:portal:geometry:9> geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+<urn:silmaril:user:interface:portal:geometry:9> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
 
 <urn:silmaril:user:interface:portal:namespace:cceo> a portal:NamespaceBinding ;
     portal:namespace "https://www.commoncoreontologies.org/cpo#" ;
