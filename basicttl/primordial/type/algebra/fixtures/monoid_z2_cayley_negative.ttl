@@ -1,0 +1,69 @@
+# =====================================================================================
+# monoid_z2_cayley_negative.ttl — the NON-TOTAL matching negative for the monoid Z/2 Cayley
+# certificate (W2 · SP0, T-FIX). The materialized RED (D24: a positive AND a failing negative
+# per certificate; sh:conforms true alone is vacuous).
+# =====================================================================================
+# The Z/2 carrier {e,a} declared as an explicit @rel:carrier:member set, with a Cayley table whose
+# product ESCAPES the carrier: a·a = c, where c is NOT a declared carrier member (the SINGLE
+# injected violation — the finite operation is NON-TOTAL / not closed on {e,a}; the positive twin
+# fixtures/monoid_z2_cayley.ttl closes a·a=e). Merged onto the algebra data graph the graph MUST
+# NOT conform: MagmaClosureShape (shapes/algebra.shapes.ttl:287-292) — guarded by @rel:carrier:member,
+# firing precisely because a member set IS declared — finds a @rel:category:result (c) not among the
+# members and returns >= 1 row. No @rel:identity:element is declared, so the ModelShape / GroupInverse /
+# LoopIdentity identity teeth stay vacuous; the remaining cells (e·e=e, e·a=a, a·e=a) form no
+# associativity, commutativity or division collision, so exactly the closure/totality tooth
+# (MagmaClosureShape) flips conforms True->False. D24 four-planes: finite-table evidence UNDER fixtures/.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare, never an owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the NON-TOTAL certificate model: carrier {e,a} declared, but a·a escapes to c ---
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/2-carrier Cayley table whose product ESCAPES the carrier (NON-TOTAL, INJECTED VIOLATION)" ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "counterexample:known" ;
+    rel:carrier:member  <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:e> ,
+                        <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:a> .
+
+# --- carrier elements {e,a}; c is DELIBERATELY not a member (the escape target) ---
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:c>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "c — OFF-CARRIER (not a declared member): the closure-escape target" .
+
+# --- the reified Cayley cells: e·e=e, e·a=a, a·e=a, a·a=c (c OFF-CARRIER) ---
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:e> .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:a> .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:a> .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:cayley:negative:elem:c> .  # INJECTED VIOLATION: a·a = c escapes carrier {e,a} -> MagmaClosureShape RED

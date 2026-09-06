@@ -1,21 +1,23 @@
 # =====================================================================================
 # algebra.shapes.ttl — SHACL tooth set for the folded algebra spine (W2 · SP0, T-INFRA scaffold).
 # =====================================================================================
-# PLACEHOLDER (prefixes only). T-SHAPES / T-MONOID author the NodeShapes here (TheoryShape,
-# ModelShape, ReductShape, EquationRecordShape, CarrierGroundingShape, ProofStatusShape,
-# ValidationModeShape, ProvenanceShape, BridgeShape, DifferentFromWitnessShape,
-# AlgebraProgenitorShape, + the V1 no-punning hygiene shape). Every shape MUST use
-# constraint:targetClass (NEVER constraint:targetNode — design §4 anti-pattern) so
-# run-algebra-checks.sh's 0-focus gate can count focus nodes per shape.
+# REALIZED (Stage 2b-i). This file declares the full SHACL tooth set for the folded algebra
+# spine: 23 NodeShapes, ALL constraint:targetClass (zero constraint:targetNode — design §4
+# anti-pattern), carrying 20 constraint:sparql clauses. TheoryShape, ModelShape,
+# EquationRecordShape, ReductShape, CarrierGroundingShape, ProofStatusShape, ValidationModeShape,
+# ProvenanceShape, ProvenanceClosureShape (V7), BridgeShape, DifferentFromWitnessShape, the seven
+# per-law teeth (MagmaClosure/SemigroupAssociativity/GroupInverse/CommutativeMonoidCommutativity/
+# AbelianGroupCommutativity/QuasigroupDivision/LoopIdentity), the two V1-refined hygiene shapes
+# (V1DenotatumHygieneShape + V1ClassDeclarationPunShape — design §7.5: denotatum/domain-class pun
+# forbidden, declaration-record owl:Class-with-provenance EXEMPT), AlgebraProgenitorShape, and the
+# gate/clause identity twins (GateIdentityShape/ClauseIdentityShape, core:entity ladder). Every
+# shape has >=1 focus node over the merged data graph; run-algebra-checks.sh's block (c) REJECTs
+# any 0-focus (unexercised) shape.
 #
 # Prefix labels follow the fold-tree convention (basicttl/primordial/type/shapes.ttl:1-6):
 # the SHACL namespace is labelled `constraint:` and the primordial short root `model:` — same
 # IRIs as sh:/owl:, so pyshacl is unaffected (design §4 prefix gotcha). The algebra atoms
 # themselves mint the full runtime Linnaean ladder under `algebra:` (HEAD, D26).
-#
-# While this file declares ZERO NodeShapes the runner treats the gate as VACUOUS and exits
-# non-zero ("no NodeShape declared; gate would be vacuous"); that is the RED state of record
-# for the shapes layer until T-SHAPES lands the teeth.
 
 @prefix constraint:  <http://www.w3.org/ns/shacl#> .
 @prefix description: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -133,3 +135,313 @@ constraint:EquationRecordShape a constraint:NodeShape ;
         constraint:message "Equation-record collision: two DISTINCT equation records share the same @rel:left AND @rel:right term pair — a law duplicated under two IRIs (non-vacuity/identity separation, shapes.ttl:276-282)." ;
         constraint:select """SELECT $this ?other WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:left> ?l ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:right> ?r . ?other a <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:equation:record> ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:left> ?l ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:right> ?r . FILTER($this != ?other) }""" ] ;
     schema:comment "The EquationRecordShape is the SHACL tooth for a reified equation record — one law of E as an ordered pair t_left = t_right (D24 A0 Theory plane, design §2d). It targets rec:equation:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the 0-focus gate detects) so the three monoid equation records (associativity, identity-left, identity-right in equations.ttl) are counted foci. It carries the design §4 'SHACL pair per class': (i) min1/max1 @rel:left AND min1/max1 @rel:right property shapes — the datatype:record cardinality-restriction idiom (closure.ttl:153-169, cited as the PATTERN because the reference has NO equation:record owl:Class; records.ttl:76-81 mirrors it in the class layer, this shape mirrors it in the SHACL plane since pyshacl does not enforce owl:Restriction) — so an equation record missing either side, or carrying two of a side, reddens; and (ii) a sh:sparql identity-collision clause (the IdentitySeparationShape idiom, shapes.ttl:276-282) reddening when two distinct equation records duplicate one (left,right) pair. A TWO-SIDED law (monoid identity e·x=x AND x·e=x) is realised as TWO equation records, member:left and member:right (design §1.6, closure.ttl:185-192 case:zero/case:one precedent), each conforming with its single left/right pair." .
+
+# =====================================================================================
+# ReductShape (T-SHAPES) — a forgetful reduct record names its parent theory and EXACTLY ONE
+# added law (D24 A6 tower = theories + models + reducts; one-law-per-child, algebra_spine.ttl:99-103).
+# sh:targetClass rec:reduct:record (NEVER sh:targetNode). (i) min1/max1 @rel:reduct (the parent
+# theory the morphism forgets to) + min1/max1 @rel:adds:law (the single law the child adds); (ii)
+# a sh:sparql identity-collision clause (no two distinct reduct records forget to the same parent
+# AND add the same law — a duplicated reduct edge). Focus = the 7 reducts.ttl edges + reduct_pos;
+# the 3 extension morphisms are rec:equation:record (EquationRecordShape's focus), NOT reduct foci.
+# =====================================================================================
+constraint:ReductShape a constraint:NodeShape ;
+    constraint:targetClass rec:reduct:record ;
+    constraint:property [
+        constraint:path relation:reduct ;
+        constraint:minCount 1 ;
+        constraint:maxCount 1 ;
+        constraint:message "Reduct-shape violation: a forgetful reduct record (rec:reduct:record) MUST name EXACTLY ONE @rel:reduct parent theory (the theory it forgets to; design §1.9, reducts.ttl:80-90). Zero -> the morphism has no codomain; two -> it is not a single forgetful reduct." ] ;
+    constraint:property [
+        constraint:path relation:adds:law ;
+        constraint:minCount 1 ;
+        constraint:maxCount 1 ;
+        constraint:message "Reduct-shape violation: a reduct record MUST name EXACTLY ONE @rel:adds:law — the SINGLE law the child adds over its parent (Directive-17 one-law-per-child / no-cram, algebra_spine.ttl:99-103 constraints B+C). A two-sided law is ONE added law that discharges TWO obligations (the @rel:extension morphism), not two added laws." ] ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Reduct-identity collision: two DISTINCT reduct records forget to the same @rel:reduct parent AND add the same @rel:adds:law — a duplicated forgetful edge (the IdentitySeparationShape idiom, shapes.ttl:276-282)." ;
+        constraint:select """SELECT $this ?other WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:reduct> ?p ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:adds:law> ?l . ?other a <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:reduct:record> ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:reduct> ?p ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:adds:law> ?l . FILTER($this != ?other) }""" ] ;
+    schema:comment "The ReductShape is the SHACL tooth for a forgetful theory-morphism record (D24 A6: the tower is theories + model-classes + REDUCTS, NOT a subclass ladder of witness-defined classes). It targets rec:reduct:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) so the seven reducts.ttl forgetful edges (semigroup->magma, monoid->semigroup, commutative:monoid->monoid, group->monoid, abelian:group->group, quasigroup->magma, loop->quasigroup) and the reduct_pos fixture are counted foci. It carries the design §4 'SHACL pair per class': (i) min1/max1 @rel:reduct (the parent theory the morphism forgets to, records.ttl:86-90 cardinality-1) AND min1/max1 @rel:adds:law (the SINGLE added law, re-homing fnd:addsLaw / Directive-17 one-law-per-child, made a graph fact together with probes/one_law_per_rung.rq) — so a reduct with no parent, no added law, two parents, or a crammed second law reddens; and (ii) a sh:sparql collision clause reddening two distinct reducts that duplicate the (parent, added-law) pair. The three obligation-counting extension morphisms (reducts.ttl:200-227) are dual-typed rec:equation:record, NOT rec:reduct:record, so they are EquationRecordShape's focus (their one-sided-law bite), not ReductShape's — keeping the one-law tooth and the two-obligation tooth cleanly separated. All seven reducts and reduct_pos declare exactly one @rel:reduct + one @rel:adds:law, so they conform; a one-sided or crammed reduct reddens (its dedicated negative is a T-FIX deliverable)." .
+
+# =====================================================================================
+# CarrierGroundingShape (T-SHAPES) — V5 grounding half: a model that NAMES a carrier must ground
+# it in the set floor (@rel:grounds:in) or the engine carrier bridge (seed:implementationBridge),
+# so a carrier can never dangle ungrounded (D24 A6 'every model names ... a carrier'; design §4 V5,
+# §5.1 carrier bridge). sh:targetClass rec:model:record (NEVER sh:targetNode). CONDITIONAL by
+# sh:sparql (fires ONLY when @rel:carrier is present) so the model-record classes and the finite
+# model witnesses (which name a carrier via cardinality-1 owl:Restriction / carrier:member elements,
+# not a @rel:carrier assertion) stay conformant; a model that DOES assert @rel:carrier to an
+# ungrounded set reddens. Positive: fixtures/carrier_grounding_pos.ttl; negative: ..._neg.ttl.
+# =====================================================================================
+constraint:CarrierGroundingShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Carrier-grounding violation: a model names a @rel:carrier that is NOT grounded — it carries neither a @rel:grounds:in edge to the set floor nor a seed:implementationBridge to an engine carrier atom (design §4 V5 / §5.1; a carrier must ground in the set-theory floor or the physical engine carrier, never dangle)." ;
+        constraint:select """SELECT $this ?carrier WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:carrier> ?carrier . FILTER NOT EXISTS { ?carrier <urn:silmaril:type:graph:instance:instruction:code:property:relation:grounds:in> ?g } FILTER NOT EXISTS { ?carrier <urn:silmaril:seed:implementationBridge> ?e } }""" ] ;
+    schema:comment "The CarrierGroundingShape is the grounding half of the D24 A6 / design §4 V5 algebraic-law gate ('every model names a theory + carrier + operations + laws'): it makes 'a model's carrier is grounded' a graph fact. It targets rec:model:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern) so the eight per-rung model-record classes and the finite Z/n model witnesses (fixtures/) are counted foci and the 0-focus gate is satisfied. The tooth is a CONDITIONAL sh:sparql that fires ONLY when a model asserts @rel:carrier (the carrier SET) and that carrier is grounded by NEITHER a @rel:grounds:in edge to the set-theory floor NOR a seed:implementationBridge to a physical engine carrier atom (bridges.ttl:219-230 prim:Bit/Octet/ByteVector/Frame idiom) — so a carrier can never dangle ungrounded (D24: definitions ground into the algebraic-set-theoretic foundation, Directive 18). It is conditional because the folded model-record classes name their carrier INTENSIONALLY (cardinality-1 owl:Restriction on @rel:carrier, records.ttl:60) and the finite witnesses name carrier elements via @rel:carrier:member, neither asserting a @rel:carrier object — so both are vacuously satisfied and the data graph stays green; the tooth bites only a model that explicitly names an ungrounded @rel:carrier (fixtures/carrier_grounding_neg.ttl), while a model naming a grounded carrier conforms (fixtures/carrier_grounding_pos.ttl). The full carrier-naming requirement (every model MUST name a carrier) is the set-fan-out's obligation once the free-algebra carrier atoms (bridges.ttl:200-215) are grounded in the set floor; here the grounding invariant is the biting tooth." .
+
+# =====================================================================================
+# ProofStatusShape (T-SHAPES) — every presented theory declares its proof-status from the D24
+# 8-value enum (asserted / finite:checked / literature:backed / mechanically:proved /
+# counterexample:known / open / conditional / rejected). sh:targetClass rec:theory:record
+# (NEVER sh:targetNode). min1/max1 @rel:proof:status + constraint:in the 8 values. Focus = the 8
+# theory records (all "literature:backed"); a theory with a bogus or missing status reddens.
+# =====================================================================================
+constraint:ProofStatusShape a constraint:NodeShape ;
+    constraint:targetClass rec:theory:record ;
+    constraint:property [
+        constraint:path relation:proof:status ;
+        constraint:minCount 1 ;
+        constraint:maxCount 1 ;
+        constraint:in ( "asserted" "finite:checked" "literature:backed" "mechanically:proved" "counterexample:known" "open" "conditional" "rejected" ) ;
+        constraint:message "Proof-status violation: a presented theory record (rec:theory:record) MUST declare EXACTLY ONE @rel:proof:status drawn from the D24 8-value enum {asserted, finite:checked, literature:backed, mechanically:proved, counterexample:known, open, conditional, rejected} (D24 A0; design §0). A missing, doubled, or off-enum status is REJECT." ] ;
+    schema:comment "The ProofStatusShape makes the D24 first-class proof-status metadata a graph fact for every presented theory. It targets rec:theory:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the 0-focus gate detects) so the eight rung theory records (magma..loop, spine/*.ttl) are counted foci. The min1/max1 @rel:proof:status property shape with constraint:in the D24 EIGHT-value enum {asserted, finite:checked, literature:backed, mechanically:proved, counterexample:known, open, conditional, rejected} (Directive 24 A0: 'an 8-value proof-status') reddens a theory that omits the status, doubles it, or carries a value outside the closed vocabulary. All eight rung theories declare exactly one status 'literature:backed' (the honest Praeriehund value: the universal theories are cited standard mathematics, NOT finite:checked-from-engine — only the finite Z/n WITNESSES in fixtures/ carry 'finite:checked', and those are rec:model:record, not gated here), so they conform; a theory with a bogus status reddens (its dedicated negative is a T-FIX deliverable). This is the proof-status leg of the design §4 V5 algebraic-law gate ('law-witness MODE declared') paired with ValidationModeShape." .
+
+# =====================================================================================
+# ValidationModeShape (T-SHAPES) — every presented theory declares its law-witness MODE from the
+# D24 4-value enum (finite:table / rewrite / external:certificate / bounded:diagnostic).
+# sh:targetClass rec:theory:record (NEVER sh:targetNode). min1/max1 @rel:validation:mode +
+# constraint:in the 4 values. Focus = the 8 theory records (monoid "rewrite", group "finite:table", …).
+# =====================================================================================
+constraint:ValidationModeShape a constraint:NodeShape ;
+    constraint:targetClass rec:theory:record ;
+    constraint:property [
+        constraint:path relation:validation:mode ;
+        constraint:minCount 1 ;
+        constraint:maxCount 1 ;
+        constraint:in ( "finite:table" "rewrite" "external:certificate" "bounded:diagnostic" ) ;
+        constraint:message "Validation-mode violation: a presented theory record (rec:theory:record) MUST declare EXACTLY ONE @rel:validation:mode drawn from the D24 4-value enum {finite:table, rewrite, external:certificate, bounded:diagnostic} (D24 A0: 'each structure declares a validation MODE'; design §0). A missing, doubled, or off-enum mode is REJECT." ] ;
+    schema:comment "The ValidationModeShape makes the D24 first-class law-witness MODE a graph fact for every presented theory (Directive 24 A0: 'each structure declares a validation MODE: finite table / rewrite / external certificate / bounded diagnostic'). It targets rec:theory:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the 0-focus gate detects) so the eight rung theory records are counted foci. The min1/max1 @rel:validation:mode property shape with constraint:in the D24 FOUR-value enum {finite:table, rewrite, external:certificate, bounded:diagnostic} reddens a theory that omits, doubles, or mis-values the mode. All eight rung theories declare exactly one mode (monoid 'rewrite' — laws checked by term rewriting; group 'finite:table' — validated by finite Cayley table matching the engine group::validate; the siblings likewise), so they conform; a theory with a bogus mode reddens (its dedicated negative is a T-FIX deliverable). This is the validation-mode leg of the design §4 V5 algebraic-law gate paired with ProofStatusShape — together they discharge 'a declared law-witness MODE'." .
+
+# =====================================================================================
+# ProvenanceShape (T-SHAPES) — every RECORD carries the provenance quartet (created / modified /
+# version / state) + an @rel:authority (D24 Modular Option A+: provenance on every RECORD; the
+# complementary 'NEVER on a denotatum' rule is V1DenotatumHygieneShape below). sh:targetClass
+# rec:theory:record + rec:declaration:record (the primary declaration records; NOT rec:model:record
+# — the finite witnesses are evidence, no provenance — NOT rec:reduct:record — reduct_pos is a
+# minimal fixture, NOT rec:axiom/equation:record — those are minimal per design §2c). Focus = the 8
+# theory records + the 8 model-record declaration classes (all carry the quartet + authority).
+# =====================================================================================
+constraint:ProvenanceShape a constraint:NodeShape ;
+    constraint:targetClass rec:theory:record , rec:declaration:record ;
+    constraint:property [ constraint:path relation:created ;  constraint:minCount 1 ;
+        constraint:message "Provenance violation: a declaration record (theory / declaration-record model class) MUST carry @rel:created (the provenance quartet; D24 Modular Option A+: provenance on every RECORD, never on a denotatum)." ] ;
+    constraint:property [ constraint:path relation:modified ; constraint:minCount 1 ;
+        constraint:message "Provenance violation: a declaration record MUST carry @rel:modified (the provenance quartet; D24)." ] ;
+    constraint:property [ constraint:path relation:version ;  constraint:minCount 1 ;
+        constraint:message "Provenance violation: a declaration record MUST carry @rel:version (the provenance quartet; D24)." ] ;
+    constraint:property [ constraint:path relation:state ;    constraint:minCount 1 ;
+        constraint:message "Provenance violation: a declaration record MUST carry @rel:state (the provenance quartet; D24)." ] ;
+    constraint:property [ constraint:path relation:authority ; constraint:minCount 1 ;
+        constraint:message "Provenance violation: a declaration record MUST carry an @rel:authority tag (DS/PD/SYN honesty ledger, algebra_spine.ttl:41; D24 provenance on every RECORD)." ] ;
+    schema:comment "The ProvenanceShape makes 'provenance lives on every RECORD' a graph fact (D24 Modular Option A+: 'provenance on every RECORD (prov:wasAttributedTo + prov:wasGeneratedBy), never on mathematical denotata — Group was not authored by an executor; the GroupTermRecord was'). It targets rec:theory:record AND rec:declaration:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern) — the two PRIMARY declaration-record planes: the eight presented-theory records (spine/*.ttl) and the eight B4 Plane-1 model-record declaration classes (dual-typed owl:Class + rec:model:record + rec:declaration:record). All sixteen carry the provenance quartet @rel:created/@rel:modified/@rel:version/@rel:state plus an @rel:authority (DS for the monoid-lifted rung, SYN for the synthesized rungs), so they conform; a record stripped of any quartet member or the authority tag reddens (its dedicated negative is a T-FIX deliverable). It deliberately does NOT target rec:model:record (the finite Z/n witnesses are D24 four-planes EVIDENCE — they carry validation-mode/proof-status but no provenance, and requiring it would falsely redden them), nor rec:reduct:record (reduct_pos is a minimal obligation fixture), nor the minimal axiom/equation records (design §2c: axiom records carry no denotatum/gate/provenance). The complementary prohibition — provenance NEVER on a Plane-2 denotatum — is the V1DenotatumHygieneShape below (the maxCount-0 tooth); together they realise the D24 provenance-plane discipline and the design §4 V1 gate 'no class as a provenance participant'." .
+
+# =====================================================================================
+# BridgeShape (T-SHAPES) — every rung DENOTATUM carries its fnd: alias bridge, so the retire map
+# keeps SP1/SP2/SP3 inbound fnd:* references resolvable through the fold (design §5.2; the edge
+# SP2 aob:SealedGroup rdfs:subClassOf fnd:Group resolves through). sh:targetClass rec:denotatum:record
+# (NEVER sh:targetNode). sh:sparql: a denotatum with NO skos:exactMatch/closeMatch edge to a
+# urn:silmaril:fnd: name (either direction) reddens. Focus = the 8 rung denotata (all bridged, bridges.ttl:81-126).
+# =====================================================================================
+constraint:BridgeShape a constraint:NodeShape ;
+    constraint:targetClass rec:denotatum:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Bridge violation: a rung denotatum (rec:denotatum:record) carries NO fnd: alias bridge — no skos:exactMatch / skos:closeMatch edge (either direction) to a urn:silmaril:fnd: legacy name, so an inbound SP1/SP2/SP3 fnd:* reference (e.g. aob:SealedGroup rdfs:subClassOf fnd:Group) would not resolve through the fold (design §5.2, bridges.ttl:81-126)." ;
+        constraint:select """SELECT $this WHERE { FILTER NOT EXISTS { { $this <http://www.w3.org/2004/02/skos/core#exactMatch> ?f } UNION { ?f <http://www.w3.org/2004/02/skos/core#exactMatch> $this } UNION { $this <http://www.w3.org/2004/02/skos/core#closeMatch> ?f } UNION { ?f <http://www.w3.org/2004/02/skos/core#closeMatch> $this } FILTER(STRSTARTS(STR(?f), "urn:silmaril:fnd:")) } }""" ] ;
+    schema:comment "The BridgeShape makes 'every rung is bridged back to its retired fnd: name' a graph fact (design §5.2, D26 alias/retire map). It targets rec:denotatum:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the 0-focus gate detects) so the eight rung DENOTATUM atoms (the B4 Plane-2 mathematical objects, magma..loop) are counted foci. The sh:sparql tooth reddens a denotatum with NO skos:exactMatch / skos:closeMatch edge, in EITHER direction, to a urn:silmaril:fnd: legacy name — because the retire map's whole purpose is to keep inbound SP1/SP2/SP3 fnd:* references resolvable THROUGH the fold (the load-bearing example being SP2 aob:SealedGroup rdfs:subClassOf fnd:Group, which resolves through <group denotatum> skos:exactMatch fnd:Group, bridges.ttl:81-83). All eight denotata are bridged in bridges.ttl (group is the SUBJECT of skos:exactMatch fnd:Group; magma/semigroup/monoid/commutative:monoid/abelian:group/quasigroup/loop are the OBJECTS of fnd:X skos:exactMatch <denotatum>, hence the bidirectional UNION), so they conform; a denotatum minted without its retire bridge reddens (its dedicated negative is a T-FIX deliverable). Bite-preservation: drop the Group skos:exactMatch and BridgeShape + probes/aliases_resolve.rq both RED (SealedGroup no longer resolves), design T-BRIDGE probe." .
+
+# =====================================================================================
+# DifferentFromWitnessShape (T-SHAPES) — the owl:differentFrom distinction teeth are never
+# contradicted, and disjoint model records are never collapsed (D24 sameness: owl:differentFrom
+# forbidding witnesses; unsignedByte != machine byte != Z/256Z; Byte != Octet, bridges.ttl:238-244).
+# sh:targetClass rec:model:record (NEVER sh:targetNode). Two sh:sparql teeth: (i) a model owl:sameAs
+# a sibling it is owl:disjointWith / owl:differentFrom (model-record disjointness collapse); (ii) any
+# owl:differentFrom pair also asserted owl:sameAs (the Byte=Octet collapse, bridges.ttl DifferentFrom witness).
+# =====================================================================================
+constraint:DifferentFromWitnessShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Model-disjointness collapse: a model record is owl:sameAs a sibling model record it is declared DISTINCT from (owl:disjointWith / owl:differentFrom) — the D25 homonym/distinction tooth violated (a group collapsed into a monoid / abelian group, spine/group.ttl:141-142)." ;
+        constraint:select """SELECT $this ?other WHERE { $this <http://www.w3.org/2002/07/owl#sameAs> ?other . { $this <http://www.w3.org/2002/07/owl#disjointWith> ?other } UNION { ?other <http://www.w3.org/2002/07/owl#disjointWith> $this } UNION { $this <http://www.w3.org/2002/07/owl#differentFrom> ?other } UNION { ?other <http://www.w3.org/2002/07/owl#differentFrom> $this } }""" ] ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "owl:differentFrom witness contradicted: two atoms asserted owl:differentFrom are ALSO asserted owl:sameAs — a distinction collapse (the Byte != Octet forbidding witness, bridges.ttl:238-244; D24 unsignedByte != machine byte != Z/256Z)." ;
+        constraint:select """SELECT $this ?a ?b WHERE { $this a <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:model:record> . ?a <http://www.w3.org/2002/07/owl#differentFrom> ?b . ?a <http://www.w3.org/2002/07/owl#sameAs> ?b . }""" ] ;
+    schema:comment "The DifferentFromWitnessShape is the SHACL forbidding tooth for the D24 sameness discipline (owl:equivalentClass only with a bidirectional EquivalenceWitness; else the weaker relations; owl:sameAs never for isomorphism; forbidding teeth keep the owl:differentFrom-witnessed distinctions — unsignedByte != machine byte != Z/256Z, Byte != Octet). It targets rec:model:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern) so the eight model-record classes are counted foci. It carries TWO sh:sparql teeth: (i) MODEL-RECORD DISJOINTNESS — a model owl:sameAs a sibling it is declared owl:disjointWith or owl:differentFrom from (the D25 homonym/distinction teeth of spine/group.ttl:141-142, monoid<->group<->abelian:group), so collapsing a group into a monoid reddens; and (ii) the DIFFERENTFROM-WITNESS contradiction — any pair asserted BOTH owl:differentFrom AND owl:sameAs, the Byte != Octet forbidding witness (bridges.ttl:238-244, engine OCTET WIDTH AXIOM: 'an octet has exactly eight bit width while Byte remains width independent'). Tooth (ii) is a graph-global invariant anchored on the model-record focus (it reports per focus when the collapse exists anywhere), so on the clean tower it returns 0 rows and the data graph conforms; a fixture that owl:sameAs-collapses Byte and Octet, or collapses two disjoint model records, reddens (the dedicated negatives are T-FIX deliverables — bridges.ttl:236 earmarks the sameAs-collapse graph)." .
+
+# =====================================================================================
+# PER-LAW TEETH (T-SHAPES) — the added-law tooth of each rung as sh:sparql over the reified finite
+# Cayley table, so the runner's SHACL fixture-polarity catches EACH rung's negative on a SHAPE (not
+# only on its probes/*.rq). sh:targetClass rec:model:record (NEVER sh:targetNode). All eight rung
+# model-record classes are foci (their sh:sparql is vacuous — no reified cells); the finite Z/n
+# witnesses in fixtures/ are where the teeth bite. Every POSITIVE witness is a Z/n table (an abelian
+# group), so it satisfies EVERY law tooth; each rung's NEGATIVE injects the characteristic-law
+# violation its dedicated tooth isolates. (Reviewer note, honest: these teeth are law-CHECKS applied
+# to all finite model witnesses; the tower carries no law-relaxed witness — e.g. a non-associative
+# magma positive — so no conformant atom is wrongly reddened. A per-rung law-scope marker is the
+# fan-out's refinement.)
+# =====================================================================================
+
+# --- MagmaClosureShape: a product ESCAPES the declared carrier (magma_neg: e·a=c, c not a member) ---
+constraint:MagmaClosureShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Closure violation (magma): a model that declares a @rel:carrier:member set has a reified composition cell whose @rel:category:result is NOT a declared carrier member — the binary product ESCAPES the carrier (totality/closure broken; re-homes probes/magma_law.rq)." ;
+        constraint:select """SELECT $this ?result WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:carrier:member> ?m . ?cell <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?result . FILTER NOT EXISTS { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:carrier:member> ?result } }""" ] ;
+    schema:comment "The MagmaClosureShape is the added-law tooth of the MAGMA rung (closure/totality) as a SHACL shape (design §4 'per-law teeth ... on a SHAPE not only a probe'). It targets rec:model:record by sh:targetClass (never sh:targetNode) so the model-record classes are counted foci and the finite witnesses (fixtures/) are where it bites. The sh:sparql tooth is GUARDED by @rel:carrier:member: it fires only on a model that declares a carrier (so models without a declared carrier:member set — the semigroup/monoid/group witnesses — are vacuously satisfied, never falsely reddened) and whose reified Cayley cell (scoped by @rel:structure) returns a @rel:category:result that is NOT among the declared @rel:carrier:member elements — the binary product ESCAPING the carrier. fixtures/magma_pos.ttl (Z/2, carrier {e,a}, every result in {e,a}) conforms; fixtures/magma_neg.ttl (e·a=c, c off-carrier) reddens — the same True->False flip probes/magma_law.rq records, now also on a dedicated SHACL shape. Re-homes the master magma-totality tooth as an intensional SHACL law-check (D25 no-regression: BOTH probe AND shape)." .
+
+# --- SemigroupAssociativityShape: (x·y)·z != x·(y·z) over the reified table (semigroup_neg) ---
+constraint:SemigroupAssociativityShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Associativity violation (semigroup): the reified Cayley table has a triple with (x·y)·z != x·(y·z) — the product is NOT associative (re-homes probes/semigroup_law.rq)." ;
+        constraint:select """SELECT $this ?xy_z ?x_yz WHERE { ?cxy <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?xy . ?cyz <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?z ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?yz . ?cl <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?xy ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?z ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?xy_z . ?cr <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?yz ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?x_yz . FILTER(?xy_z != ?x_yz) }""" ] ;
+    schema:comment "The SemigroupAssociativityShape is the added-law tooth of the SEMIGROUP rung (associativity) as a SHACL shape (design §4 per-law teeth). It targets rec:model:record by sh:targetClass (never sh:targetNode) so the model-record classes are foci and the finite witnesses bite. The sh:sparql tooth joins four reified cells scoped by @rel:structure to $this — the products x·y=xy, y·z=yz, (x·y)·z=xy_z and x·(y·z)=x_yz — and reddens when xy_z != x_yz for some triple, i.e. the product is NON-ASSOCIATIVE. fixtures/semigroup_pos.ttl (Z/3, associative) conforms; fixtures/semigroup_neg.ttl (e·a corrupted to b, making e.g. (e·a)·a = b·a = e while e·(a·a) = e·b = b) reddens — the True->False flip probes/semigroup_law.rq records, now also on a dedicated SHACL shape. Every Z/n positive across the tower is associative, so none is falsely reddened." .
+
+# --- GroupInverseShape: an element (given the identity e) with no two-sided inverse (group_neg) ---
+constraint:GroupInverseShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Inverse violation (group): a model declares an @rel:identity:element e but some element x has NO two-sided inverse y (no y with x·y=e AND y·x=e) — the group inverse law fails for x (re-homes probes/group_law.rq)." ;
+        constraint:select """SELECT $this ?x WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:identity:element> ?e . ?c <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x . FILTER NOT EXISTS { ?cl <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?e . ?cr <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?e } }""" ] ;
+    schema:comment "The GroupInverseShape is the added-law tooth of the GROUP rung (two-sided inverse) as a SHACL shape (design §4 per-law teeth; the one law group adds over monoid, algebra_spine.ttl inverse). It targets rec:model:record by sh:targetClass (never sh:targetNode) so the model-record classes are foci and the finite witnesses bite. The sh:sparql tooth: given a declared @rel:identity:element e, it finds an element x (a reified-cell first operand) for which NO y exists with x·y=e AND y·x=e — i.e. x has no two-sided inverse. fixtures/group_pos.ttl (Z/3, inverses 0<->0 1<->2 2<->1) conforms; fixtures/group_neg.ttl (e·e corrupted to a, so 0 has no y with 0·y=0) reddens — the True->False flip probes/group_law.rq records, now also on a dedicated SHACL shape. Every finite Z/n witness in the tower is a group (each element has an inverse), so no positive is falsely reddened; the tooth isolates the missing-inverse violation." .
+
+# --- CommutativeMonoidCommutativityShape: x·y != y·x over the reified table (commutative_monoid_neg) ---
+constraint:CommutativeMonoidCommutativityShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Commutativity violation (commutative monoid): the reified Cayley table has a pair with x·y != y·x — the product is NOT commutative (re-homes probes/commutative_monoid_law.rq)." ;
+        constraint:select """SELECT $this ?xy ?yx WHERE { ?c1 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?xy . ?c2 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?yx . FILTER(?xy != ?yx) }""" ] ;
+    schema:comment "The CommutativeMonoidCommutativityShape is the added-law tooth of the COMMUTATIVE-MONOID rung (commutativity, its own atom off the compound subdomain commutative:monoid, adjective-first B1) as a SHACL shape (design §4 per-law teeth). It targets rec:model:record by sh:targetClass (never sh:targetNode) so the model-record classes are foci and the finite witnesses bite. The sh:sparql tooth joins the two reified cells x·y=xy and y·x=yx scoped to $this and reddens when xy != yx for some pair — the product is NON-COMMUTATIVE. fixtures/commutative_monoid_pos.ttl (Z/3, commutative) conforms; fixtures/commutative_monoid_neg.ttl (e·b corrupted to a while b·e=b) reddens — the True->False flip probes/commutative_monoid_law.rq records, now also on a dedicated SHACL shape. It is the SAME commutativity law shape as AbelianGroupCommutativityShape but a DISTINCT tooth per the Directive-17 no-cram doctrine (the law is added at TWO spine points, each its own atom, bridges.ttl:178-181); every Z/n positive is commutative so none is falsely reddened." .
+
+# --- AbelianGroupCommutativityShape: x·y != y·x over the reified table (abelian_group_neg) ---
+constraint:AbelianGroupCommutativityShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Commutativity violation (abelian group): the reified Cayley table has a pair with x·y != y·x — a group that is NOT abelian (re-homes probes/abelian_group_law.rq)." ;
+        constraint:select """SELECT $this ?xy ?yx WHERE { ?c1 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?xy . ?c2 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?yx . FILTER(?xy != ?yx) }""" ] ;
+    schema:comment "The AbelianGroupCommutativityShape is the added-law tooth of the ABELIAN-GROUP rung (commutativity, its OWN atom off the compound subdomain abelian:group — the same law abelian:group adds over group that commutative:monoid adds over monoid, but a DISTINCT atom per Directive-17 no-cram, bridges.ttl:178-181) as a SHACL shape. It targets rec:model:record by sh:targetClass (never sh:targetNode) so the model-record classes are foci and the finite witnesses bite. The sh:sparql tooth joins the cells x·y=xy and y·x=yx and reddens when xy != yx — a group that is NOT abelian. fixtures/abelian_group_pos.ttl (Z/3, commutative) conforms; fixtures/abelian_group_neg.ttl (e·b corrupted to a while b·e=b, non-commutative) reddens — the True->False flip probes/abelian_group_law.rq records, now also on a dedicated SHACL shape. Distinct-tooth-same-law with CommutativeMonoidCommutativityShape (both fire on a non-commutative witness, which is doctrinally correct: a non-commutative table is neither a commutative monoid nor an abelian group); every Z/n positive is commutative so none is falsely reddened." .
+
+# --- QuasigroupDivisionShape: a left/right division collision breaks the Latin-square law (quasigroup_neg) ---
+constraint:QuasigroupDivisionShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Latin-division violation (quasigroup): two reified cells share the same first operand and the same result with DISTINCT second operands (a left-division collision) OR the same second operand and same result with distinct first operands (a right-division collision) — unique left/right division fails, the Latin-square law is broken (re-homes probes/quasigroup_law.rq)." ;
+        constraint:select """SELECT $this ?r WHERE { { ?c1 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y1 ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?r . ?c2 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y2 ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?r . FILTER(?y1 != ?y2) } UNION { ?c3 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x1 ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?r . ?c4 <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?x2 ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?y ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?r . FILTER(?x1 != ?x2) } }""" ] ;
+    schema:comment "The QuasigroupDivisionShape is the added-law tooth of the QUASIGROUP rung (unique latin left/right division — the Latin-square law) as a SHACL shape (design §4 per-law teeth; [S] genus:latin/species:unique, §7.2 #5). It targets rec:model:record by sh:targetClass (never sh:targetNode) so the model-record classes are foci and the finite witnesses bite. The sh:sparql tooth reddens on a LEFT-division collision (two cells with the same first operand x and same result r but distinct second operands — so x\\r is not unique) OR a RIGHT-division collision (same second operand, same result, distinct first operands — r/y not unique); either breaks the Latin-square / unique-division law. fixtures/quasigroup_pos.ttl (Z/3, a genuine Latin square) conforms; fixtures/quasigroup_neg.ttl (e·a corrupted to b so row e reads e·a=b and e·b=b, a left-division collision on result b) reddens — the True->False flip probes/quasigroup_law.rq records, now also on a dedicated SHACL shape. Every Z/n addition table is a Latin square, so no positive across the tower is falsely reddened." .
+
+# --- LoopIdentityShape: a declared identity that is NOT actually two-sided (loop_neg) ---
+constraint:LoopIdentityShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Two-sided identity violation (loop): the model declares @rel:identity:element e but a reified cell shows e·x != x (left-unit fails) or x·e != x (right-unit fails) — e is not actually a two-sided identity (re-homes probes/loop_law.rq)." ;
+        constraint:select """SELECT $this ?x ?result WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:identity:element> ?e . ?cell <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?first ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?second ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?result . FILTER( ( ?first = ?e && ?result != ?second ) || ( ?second = ?e && ?result != ?first ) ) BIND(IF(?first = ?e, ?second, ?first) AS ?x) }""" ] ;
+    schema:comment "The LoopIdentityShape is the added-law tooth of the LOOP rung (the two-sided identity a loop adds over a quasigroup — loop's OWN atom off the division sub-family) as a SHACL shape (design §4 per-law teeth). It targets rec:model:record by sh:targetClass (never sh:targetNode) so the model-record classes are foci and the finite witnesses bite. The sh:sparql tooth — the same left-unit/right-unit two-sided identity check the ModelShape carries (design §2b, algebra_spine.ttl q_monoid_identity), re-expressed for the loop rung — reddens when a model declaring @rel:identity:element e has a reified cell with e as the first operand and result != the second (left-unit e·x=x fails) or e as the second operand and result != the first (right-unit x·e=x fails). fixtures/loop_pos.ttl (Z/3, genuine two-sided identity e) conforms; fixtures/loop_neg.ttl (a Latin square where e·a=b, so e is not a two-sided identity — every inherited law holds, only loop's added identity fails) reddens — the True->False flip probes/loop_law.rq records, now also on a dedicated SHACL shape. It shares its law-content with ModelShape's identity tooth (loop and monoid both add a two-sided identity) but is a distinct rung-scoped tooth, keeping the fixture-polarity SHAPE coverage complete across all eight rungs." .
+
+# =====================================================================================
+# V1DenotatumHygieneShape (T-SHAPES; V1 REFINED, design §4/§7.5, maintainer lock) — a DENOTATUM
+# (B4 Plane-2, rec:denotatum:record) MUST NOT carry provenance and MUST NOT be punned into several
+# domain classes. sh:targetClass rec:denotatum:record (NEVER sh:targetNode). maxCount 0 on each
+# provenance predicate (never provenance on a denotatum) + a sh:sparql multi-domain-class-pun tooth.
+# EXEMPT: the B4 model-record declaration classes (owl:Class + rec:model:record + provenance) — legal
+# OWL2 metaclass punning — are rec:declaration:record, disjoint from rec:denotatum:record, so never foci.
+# =====================================================================================
+constraint:V1DenotatumHygieneShape a constraint:NodeShape ;
+    constraint:targetClass rec:denotatum:record ;
+    constraint:property [ constraint:path relation:created ;  constraint:maxCount 0 ;
+        constraint:message "V1 hygiene violation: a DENOTATUM (rec:denotatum:record, B4 Plane-2 mathematical object) MUST NOT carry @rel:created provenance — provenance lives on the declaration RECORD, never on the denoted object (D24; design §4 V1 REFINED / §7.5)." ] ;
+    constraint:property [ constraint:path relation:modified ; constraint:maxCount 0 ;
+        constraint:message "V1 hygiene violation: a DENOTATUM MUST NOT carry @rel:modified provenance (D24; design §4 V1 REFINED / §7.5)." ] ;
+    constraint:property [ constraint:path relation:version ;  constraint:maxCount 0 ;
+        constraint:message "V1 hygiene violation: a DENOTATUM MUST NOT carry @rel:version provenance (D24; design §4 V1 REFINED / §7.5)." ] ;
+    constraint:property [ constraint:path relation:state ;    constraint:maxCount 0 ;
+        constraint:message "V1 hygiene violation: a DENOTATUM MUST NOT carry @rel:state provenance (D24; design §4 V1 REFINED / §7.5)." ] ;
+    constraint:property [ constraint:path relation:authority ; constraint:maxCount 0 ;
+        constraint:message "V1 hygiene violation: a DENOTATUM MUST NOT carry an @rel:authority tag — authority is a RECORD attribution, not a property of the denoted mathematical object (D24; design §4 V1 REFINED / §7.5)." ] ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "V1 pun violation: a DENOTATUM is typed as TWO OR MORE distinct primordial domain classes (urn:silmaril:primordial:type:*) at once — the frame.ttl:7 'a model:Product, model:Frame' conflation, forbidden on the denotatum plane (design §4 V1 REFINED)." ;
+        constraint:select """SELECT $this ?c1 ?c2 WHERE { $this a ?c1, ?c2 . FILTER(STR(?c1) < STR(?c2)) FILTER(STRSTARTS(STR(?c1), "urn:silmaril:primordial:type:")) FILTER(STRSTARTS(STR(?c2), "urn:silmaril:primordial:type:")) }""" ] ;
+    schema:comment "The V1DenotatumHygieneShape is the denotatum-plane half of the design §4 V1 hygiene gate, REFINED per the maintainer ruling (design §7.5): it targets rec:denotatum:record by sh:targetClass (never sh:targetNode) so the eight rung DENOTATUM atoms (B4 Plane-2) are counted foci. It FORBIDS (a) provenance on a denotatum — maxCount 0 on @rel:created/@rel:modified/@rel:version/@rel:state/@rel:authority, because 'Group was not authored by an executor; the GroupTermRecord was' (D24) — and (b) a denotatum punned into several primordial domain classes at once (the sh:sparql multi-class tooth, the frame.ttl:7 'a model:Product, model:Frame' anti-pattern V1 fixes). It PERMITS — by never targeting them — the B4 model-record declaration classes, which ARE owl:Class carrying provenance: those are rec:declaration:record (owl:disjointWith rec:denotatum:record, records.ttl:99), legal OWL2 metaclass punning, EXEMPT (design §7.5). All eight denotata carry identifier/notation only (no provenance, single domain type), so they conform; a denotatum given provenance or a second domain type reddens (a T-FIX / T-GATES negative). Paired with V1ClassDeclarationPunShape (the primordial-tree frame.ttl focus) and ProvenanceShape (the positive 'provenance on every record')." .
+
+# =====================================================================================
+# V1ClassDeclarationPunShape (T-SHAPES; V1 REFINED, design §4/§7.5, maintainer lock) — the frame.ttl:7
+# fix as a biting tooth: a primordial ClassDeclaration MUST NOT be punned into MULTIPLE domain
+# classes (model:Product AND model:Frame). sh:targetClass model:ClassDeclaration (the primordial
+# declaration metaclass; NEVER sh:targetNode). A ClassDeclaration typed as >= 2 domain classes other
+# than ClassDeclaration reddens; ClassDeclaration + ONE structural kind (model:Product / ClosedSum /
+# Alternative — the sum/* sibling pattern) is PERMITTED. frame.ttl:7 was FIXED to match (a model:Product).
+# =====================================================================================
+constraint:V1ClassDeclarationPunShape a constraint:NodeShape ;
+    constraint:targetClass model:ClassDeclaration ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "V1 domain-class pun violation: a primordial ClassDeclaration is typed as TWO OR MORE domain classes (urn:silmaril:primordial:type:*) beyond model:ClassDeclaration itself — the frame.ttl:7 'a model:Product, model:Frame' conflation of denotatum planes, forbidden (design §4 V1 REFINED / §7.5). A declaration may carry ClassDeclaration + exactly ONE structural kind." ;
+        constraint:select """SELECT $this ?c1 ?c2 WHERE { $this a ?c1, ?c2 . FILTER(STR(?c1) < STR(?c2)) FILTER(STRSTARTS(STR(?c1), "urn:silmaril:primordial:type:")) FILTER(STRSTARTS(STR(?c2), "urn:silmaril:primordial:type:")) FILTER(STR(?c1) != "urn:silmaril:primordial:type:ClassDeclaration") FILTER(STR(?c2) != "urn:silmaril:primordial:type:ClassDeclaration") }""" ] ;
+    schema:comment "The V1ClassDeclarationPunShape is the primordial-tree half of the design §4 V1 hygiene gate, REFINED per the maintainer ruling (design §7.5) — the biting tooth for the frame.ttl:7 fix. It targets model:ClassDeclaration (urn:silmaril:primordial:type:ClassDeclaration) by sh:targetClass (never sh:targetNode) so the seven primordial declarations in the algebra data glob (product/frame.ttl, sum/byte/vector.ttl + empty/link, sum/admission.ttl + accepted/rejected) are counted foci. The sh:sparql tooth reddens a ClassDeclaration typed as TWO OR MORE domain classes under the primordial root beyond ClassDeclaration itself — the exact frame.ttl:7 anti-pattern 'family:Frame a ontology:Class, model:ClassDeclaration, model:Product, model:Frame' (model:Product AND model:Frame, two domain classes conflating the denotatum planes, design §4 V1 'a domain/denotatum class being several model-type classes at once'). frame.ttl:7 was FIXED (this task) to 'a ontology:Class, model:ClassDeclaration, model:Product' — ClassDeclaration + exactly ONE structural kind, matching the sum/* sibling pattern (ClassDeclaration + model:ClosedSum / model:Alternative) — so all seven declarations now conform; re-injecting a second domain type reddens (the T-GATES/T-FIX negative). It PERMITS the legal metaclass punning ClassDeclaration + one structural kind, and does not touch the algebra rec:model:record declaration classes (they are not model:ClassDeclaration). Design §7.5 EXEMPTION (declaration-record owl:Class + provenance permitted) holds because ClassDeclaration + one kind is not a multi-domain pun." .
+
+# =====================================================================================
+# GateIdentityShape (T-GATES) — the gate-identity uniqueness sh:select tooth for the folded gate
+# ladder (consolidated.shacl.ttl:1317-1327 source80, VERBATIM idiom): no two DISTINCT gate:specification
+# records share one gate:identifier. sh:targetClass <…core:entity:structure:class:gate:specification>
+# (NEVER sh:targetNode) so the runner's 0-focus gate counts the nine V0-V8 gate spec records
+# (gates/gates.ttl) as focus nodes. Two-ladder ruling (design §4 / §7.2 #8): this tooth rides the
+# reference core:entity gate ladder, not the mathematics ladder. Materialized RED:
+# fixtures/gate_identity_neg.ttl injects a second gate spec colliding on gate:identifier -> conforms
+# True->False; fixtures/gate_identity_pos.ttl (a fresh gate with a unique identifier) stays GREEN.
+# =====================================================================================
+constraint:GateIdentityShape a constraint:NodeShape ;
+    constraint:targetClass <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:specification> ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Gate-identity collision: two DISTINCT gate:specification records share one gate:identifier — gate identity must separate (the reference gate-identity uniqueness sh:select, consolidated.shacl.ttl:1317-1327; 'gateIdentifier must identify at most one GateSpecification in the validation graph')." ;
+        constraint:select """SELECT $this ?other WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:gate:identifier> ?id . ?other a <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:specification> ; <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:gate:identifier> ?id . FILTER($this != ?other) }""" ] ;
+    schema:comment "The GateIdentityShape is the gate-identity uniqueness tooth of the folded V0-V8 gate ladder (design §4; the reference core:entity gate ladder, two-ladder ruling §7.2 #8). It targets the gate-ladder root urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:specification by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) so the nine gate spec records V0-V8 (gates/gates.ttl, each punned a owl:Class + gate:specification) are counted foci. The sh:sparql clause is the reference gate-identity uniqueness sh:select VERBATIM in idiom (consolidated.shacl.ttl:1317-1327, source80 'gateIdentifier must identify at most one GateSpecification'): it reddens when two DISTINCT gate:specification records carry the same core:entity:property:data:gate:identifier. All nine gates declare distinct identifiers (algebra:gate:V0:syntax .. V8:shacl:discipline), so the clean tree conforms; fixtures/gate_identity_neg.ttl injects a second gate spec reusing algebra:gate:V0:syntax and flips conforms True->False (the materialized RED), while fixtures/gate_identity_pos.ttl adds a fresh gate with a unique identifier and stays GREEN." .
+
+# =====================================================================================
+# ClauseIdentityShape (T-GATES) — the clause-identity twin (consolidated.shacl.ttl:1301-1311 source79,
+# VERBATIM idiom): no two DISTINCT gate:clause:specification records share one clause:identifier.
+# sh:targetClass <…gate:clause:specification> (NEVER sh:targetNode) so the runner's 0-focus gate counts
+# the nine V0-V8 clause spec records (gates/gates.ttl) as focus nodes. Materialized RED:
+# fixtures/clause_identity_neg.ttl injects a colliding clause:identifier -> conforms True->False.
+# =====================================================================================
+constraint:ClauseIdentityShape a constraint:NodeShape ;
+    constraint:targetClass <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:clause:specification> ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Clause-identity collision: two DISTINCT gate:clause:specification records share one clause:identifier — clause identity must separate (the reference clause-identity twin sh:select, consolidated.shacl.ttl:1301-1311; 'clauseIdentifier must identify at most one GateClauseSpecification in the validation graph')." ;
+        constraint:select """SELECT $this ?other WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:clause:identifier> ?id . ?other a <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:clause:specification> ; <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:clause:identifier> ?id . FILTER($this != ?other) }""" ] ;
+    schema:comment "The ClauseIdentityShape is the clause-identity twin of GateIdentityShape (design §4; the reference core:entity gate ladder, two-ladder ruling §7.2 #8). It targets the clause-ladder root urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:clause:specification by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the 0-focus gate detects) so the nine gate:clause:specification records V0-V8 (gates/gates.ttl, one clause per gate, each punned a owl:Class + gate:clause:specification) are counted foci. The sh:sparql clause is the reference clause-identity twin sh:select VERBATIM in idiom (consolidated.shacl.ttl:1301-1311, source79 'clauseIdentifier must identify at most one GateClauseSpecification'): it reddens when two DISTINCT gate:clause:specification records carry the same core:entity:property:data:clause:identifier. All nine clauses declare distinct identifiers, so the clean tree conforms; fixtures/clause_identity_neg.ttl injects a second clause reusing algebra:clause:V0:turtle:parse and flips conforms True->False (the materialized RED), while fixtures/clause_identity_pos.ttl adds a fresh clause with a unique identifier and stays GREEN." .
+
+# =====================================================================================
+# ProvenanceClosureShape (T-PROV) — the V7 dual executor/shadow attribution tooth (design §4 V7,
+# BUILT from scratch — reference governance/ is empty). sh:targetClass the reshaped-record scope
+# marker gprov:class:reshaped:record:scope (NEVER sh:targetNode) so the runner's 0-focus gate counts
+# the 29 reshaped records (8 theory + 8 model + 7 reduct + 6 theorem, stamped in
+# reviews/resolved/resolution_lane.ttl) as focus nodes — and NOT a fixture's fresh rec:*:record node
+# (which carries no scope marker). Every focus MUST be attributed to >= 1 executor AND >= 1 shadow
+# (prov:wasAttributedTo) plus carry a prov:wasGeneratedBy. Materialized RED:
+# fixtures/provenance_closure_neg.ttl (shadow stripped) flips conforms True->False;
+# fixtures/provenance_closure_pos.ttl stays GREEN.
+# =====================================================================================
+constraint:ProvenanceClosureShape a constraint:NodeShape ;
+    constraint:targetClass <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:class:reshaped:record:scope> ;
+    constraint:property [
+        constraint:path prov:wasGeneratedBy ;
+        constraint:minCount 1 ;
+        constraint:message "V7 provenance-closure violation: a reshaped record MUST carry prov:wasGeneratedBy a generation activity (D24 provenance closure)." ] ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "V7 provenance-closure violation: a reshaped record MUST be attributed to >= 1 executor AND >= 1 shadow (prov:wasAttributedTo) plus a prov:wasGeneratedBy — the dual-count the reference governance/ layer left empty (design §4 V7). A record attributed only to an executor (no shadow), only to a shadow (no executor), or lacking a generation edge, reddens." ;
+        constraint:select """SELECT $this WHERE { $this a <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:class:reshaped:record:scope> . FILTER( NOT EXISTS { $this <http://www.w3.org/ns/prov#wasAttributedTo> ?e . ?e a <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:class:agent:executor> } || NOT EXISTS { $this <http://www.w3.org/ns/prov#wasAttributedTo> ?s . ?s a <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:class:agent:shadow> } || NOT EXISTS { $this <http://www.w3.org/ns/prov#wasGeneratedBy> ?g } ) }""" ] ;
+    schema:comment "The ProvenanceClosureShape is the V7 PROVENANCE-CLOSURE tooth (design §4 V7, BUILT from scratch — the reference governance/ layer is empty, only one-sided PROV existed). It makes 'every reshaped RECORD is attributed to an executor AND a tandem shadow' a graph fact (D24 gate V7: 'provenance closure — executor >= 1 AND shadow >= 1', prov:wasAttributedTo + prov:wasGeneratedBy). It targets the dedicated reshaped-record scope marker gprov:class:reshaped:record:scope by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) — a marker stamped in reviews/resolved/resolution_lane.ttl on EXACTLY the 29 records carrying the D24 provenance quartet (@rel:authority): the 8 presented-theory records, the 8 B4 model-record declaration classes, the 7 forgetful reduct morphisms and the 6 theorem records. Targeting the marker (not the generic rec:theory:record / rec:declaration:record classes) is deliberate non-vacuity hygiene: it keeps the focus on the reshaped records and off the evidence-plane fixtures' fresh record nodes, and it keeps V7 off the Plane-2 denotata (V1: no provenance on a denotatum). The sh:sparql dual-count clause reddens a focus lacking an executor attribution, lacking a shadow attribution, or lacking a prov:wasGeneratedBy; the companion min1 prov:wasGeneratedBy property shape carries the generation obligation as a cardinality tooth. On the clean tree all 29 records carry both attributions + a generation edge (reviews/{executor,shadow,resolved}/*.ttl), so the graph conforms; fixtures/provenance_closure_neg.ttl injects a marker record with an executor but NO shadow and flips conforms True->False (the materialized RED, design §4 V7 'remove a shadow attribution -> V7 RED'), while fixtures/provenance_closure_pos.ttl carries both and stays GREEN. The runner block (f) V7 assertion is the authoritative independent dual-count over the same 29 records, and probes/provenance_closure.rq is the executable SPARQL twin." .

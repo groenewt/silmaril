@@ -1,0 +1,32 @@
+# =====================================================================================
+# provenance_pos.ttl — the POSITIVE fixture for ProvenanceShape (W2 · SP0, T-FIX).
+# =====================================================================================
+# ProvenanceShape (shapes/algebra.shapes.ttl:224-236) targets rec:theory:record AND
+# rec:declaration:record and demands the D24 Modular-Option-A+ provenance quartet
+# (@rel:created / @rel:modified / @rel:version / @rel:state) PLUS an @rel:authority tag on
+# every declaration RECORD ("provenance on every RECORD, never on a mathematical denotatum").
+# This positive is a lone rec:declaration:record (the Plane-1 plane) carrying the complete
+# quartet + authority, so it CONFORMS. It is typed ONLY rec:declaration:record — a plane that
+# no OTHER algebra shape targets — so it is a focus of ProvenanceShape alone and cannot be
+# reddened by an unrelated tooth. Its single-injected-violation twin is
+# fixtures/provenance_neg.ttl (the @rel:authority stripped).
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:declaration:record), never an owl:Class (no 200-char comment obligation in a fixture);
+# the @rel:denotes object is a bare node, like the reified objects of the rung fixtures.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a declaration record carrying the FULL provenance quartet + authority (CONFORMS) ---
+<urn:silmaril:fixture:algebra:provenance:positive>
+    a owl:NamedIndividual , rec:declaration:record ;
+    rel:notation "declaration record with the complete D24 provenance quartet + authority" ;
+    rel:denotes  <urn:silmaril:fixture:algebra:provenance:positive:denotatum> ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" .

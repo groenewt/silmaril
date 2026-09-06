@@ -1,0 +1,27 @@
+# =====================================================================================
+# carrier_grounding_pos.ttl — the POSITIVE fixture for CarrierGroundingShape (W2 · SP0, T-SHAPES).
+# =====================================================================================
+# A model that NAMES a @rel:carrier (a carrier SET) which IS grounded — here via @rel:grounds:in
+# to a set-theory floor node (the set-fan-out's future setMagma..setLoop; design §4 V5, §5.1). Merged
+# onto the algebra data graph it MUST still conform (run-algebra-checks.sh step (b) positive polarity):
+# CarrierGroundingShape's conditional sh:sparql finds the @rel:carrier grounded, so 0 rows. The model
+# carries no reified cells / identity:element, so the per-law and identity teeth are vacuous. Its single
+# injected-violation twin is fixtures/carrier_grounding_neg.ttl (the carrier left ungrounded).
+#
+# Depth-gate compliance: the model subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record); the carrier and set-floor nodes are bare objects (untyped), like the reified
+# term/case objects of equations.ttl / spine/group.ttl.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a model naming a carrier that IS grounded in the set floor ---
+<urn:silmaril:fixture:algebra:carrier:grounding:positive>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "model naming a grounded carrier (set-floor grounded)" ;
+    rel:carrier <urn:silmaril:fixture:algebra:carrier:grounding:positive:carrier> .
+
+# --- the carrier, grounded in the set-theory floor (the CarrierGroundingShape passes) ---
+<urn:silmaril:fixture:algebra:carrier:grounding:positive:carrier>
+    rel:grounds:in <urn:silmaril:fixture:algebra:set:floor:setwitness> .

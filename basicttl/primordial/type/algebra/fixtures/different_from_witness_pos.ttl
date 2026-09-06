@@ -1,0 +1,27 @@
+# =====================================================================================
+# different_from_witness_pos.ttl — the POSITIVE fixture for DifferentFromWitnessShape
+# (W2 · SP0, T-FIX).
+# =====================================================================================
+# DifferentFromWitnessShape (shapes/algebra.shapes.ttl:261-271) targets rec:model:record and
+# carries two forbidding teeth: (i) a model owl:sameAs a sibling it is declared DISTINCT from
+# (owl:disjointWith / owl:differentFrom); (ii) any pair asserted BOTH owl:differentFrom AND
+# owl:sameAs (the Byte != Octet distinction witness). This positive is a rec:model:record that
+# carries a PROPER distinction — owl:differentFrom a sibling, with NO owl:sameAs collapse — which
+# is exactly the D24 sameness discipline the shape protects, so both teeth return 0 rows and it
+# CONFORMS. It carries @rel:notation (ModelShape) and no carrier / identity:element / reified
+# cells, so every other model-targeting tooth is vacuously satisfied. Its single-injected-
+# violation twin is fixtures/different_from_witness_neg.ttl (a sameAs collapse across a
+# disjointWith).
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record), never an owl:Class; the sibling is a bare node.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a model record carrying a PROPER distinction witness (differentFrom, NO sameAs) ---
+<urn:silmaril:fixture:algebra:different:from:positive>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "model record with a proper owl:differentFrom distinction witness (no sameAs collapse)" ;
+    owl:differentFrom <urn:silmaril:fixture:algebra:different:from:positive:sibling> .

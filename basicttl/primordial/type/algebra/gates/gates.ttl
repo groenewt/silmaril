@@ -1,0 +1,170 @@
+# =====================================================================================
+# gates.ttl — the gate/clause SPECIFICATION records for the folded algebra spine
+# (W2 · SP0, T-GATES). The V0-V8 verification gates modelled AS owl:Class on the REFERENCE
+# core:entity gate ladder (consolidated.shacl.ttl:1324 / consolidated.ttl:70846
+# '...core:entity:structure:class:gate:specification'), with a gate:clause specification per
+# gate ('...gate:clause:specification', consolidated.shacl.ttl:1308) linked by
+# '...core:entity:property:object:has:clause' and carrying the uniqueness key
+# '...core:entity:property:data:gate:identifier' / ':clause:identifier'.
+# =====================================================================================
+# TWO-LADDER RULING (design §4 / §7.2 #8, MAINTAINER LOCK): the algebra rung/axiom/equation
+# atoms mint the MATHEMATICS 12-marker ladder (…:domain:mathematics:realm:algebra:subdomain:…);
+# the RECORD CLASSES they are rdf:type'd against ride closure.ttl's seed-carrier ladder; and the
+# GATE/CLAUSE SPECS in THIS file ride the reference core:entity gate ladder — VERBATIM from the
+# reference. The three ladders never cross. This file is the third.
+#
+# Each gate is PUNNED `a owl:Class, <…gate:specification>` — an owl:Class (design §4 'gates are
+# modelled AS owl:Class', + the depth gate's ≥200-char rdfs:comment applies) AND a direct instance
+# of the gate-ladder root (so a sh:targetClass <…gate:specification> tooth counts it as a focus
+# node). This is the SAME legal OWL2 metaclass punning the signed-off monoid model-record uses
+# (spine/monoid.ttl:105 `a owl:Class, rec:model:record, rec:declaration:record`) — DISTINCT from
+# the frame.ttl:7 denotatum/domain-class pun V1 forbids (that puns ONE denotatum into several
+# primordial DOMAIN classes; this puns a gate spec into owl:Class + its own ladder root).
+#
+# The gate-identity uniqueness sh:select tooth (consolidated.shacl.ttl:1317-1327, source80) and its
+# clause-identity twin (:1301-1311, source79) are authored as GateIdentityShape / ClauseIdentityShape
+# in shapes/algebra.shapes.ttl (the shapes graph the runner validates the data graph against); the
+# gates/clauses below are their focus nodes, and fixtures/gate_identity_neg.ttl +
+# fixtures/clause_identity_neg.ttl are the materialized RED that proves each bites.
+#
+# The runner run-algebra-checks.sh asserts each gate V0-V8 explicitly (block (f)); V4 is a fan-out
+# deferral marker (Yoneda-density, design §4/§6), V6's full self-check is T-MANIFEST, V7's dual
+# provenance lane is T-PROV — each status is stated honestly in the gate's rdfs:comment, never
+# claimed green here.
+#
+# Design spec: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§4 V0-V8, V1 REFINED)
+# Plan:        docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (Task T-GATES)
+
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+# reference core:entity gate ladder (consolidated.shacl.ttl:1324 / consolidated.ttl:70846), VERBATIM:
+@prefix cls:   <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:> .
+@prefix gdata: <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:> .
+@prefix gobj:  <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:object:> .
+
+# =====================================================================================
+# V0 — SYNTAX gate (Turtle parse). design §4 V0.
+# =====================================================================================
+cls:algebra:syntax:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V0:syntax" ;
+    gobj:has:clause cls:algebra:syntax:clause:specification ;
+    rdfs:comment "V0 SYNTAX gate (design §4): every *.ttl under basicttl/primordial/type/algebra/** MUST parse as well-formed Turtle before any deeper check runs — a parse failure is the earliest and hardest RED. It is a prescriptive contract on the whole folded tree (spine records, records/bridges/signatures/operations/equations/reducts, gates, shapes and every fixture). The runner run-algebra-checks.sh block (f) discharges it by parsing each file individually into a throwaway rdflib Graph and reddening on the first RDFLib parse exception; on the clean tree all files parse, so V0 is GREEN. Modelled AS an owl:Class punned onto the reference core:entity gate:specification ladder (the two-ladder ruling, design §7.2 #8)." .
+
+cls:algebra:syntax:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V0:turtle:parse" ;
+    rdfs:comment "The single clause of the V0 SYNTAX gate: EVERY Turtle document in the folded algebra tree parses without error under an RDF 1.1 Turtle parser (rdflib 7.6.0). A gate:clause:specification on the reference clause ladder (consolidated.shacl.ttl:1308 gate:clause:specification), linked from the V0 gate by core:entity:property:object:has:clause, carrying a unique core:entity:property:data:clause:identifier so the ClauseIdentityShape twin tooth can prove no two clauses collide on their identifier. Its verdict is evidence, not the parse itself (the reference elucidation: clause results are evidence records; the categories are not collapsed)." .
+
+# =====================================================================================
+# V1 — OWL-profile + HYGIENE gate (REFINED, design §4/§7.5, MAINTAINER LOCK). No denotatum pun,
+# no provenance on a denotatum; a declaration-record owl:Class carrying provenance is EXEMPT.
+# =====================================================================================
+cls:algebra:hygiene:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V1:hygiene" ;
+    gobj:has:clause cls:algebra:hygiene:clause:specification ;
+    rdfs:comment "V1 OWL-profile + HYGIENE gate, REFINED per the maintainer ruling (design §4/§7.5): it FORBIDS (a) the denotatum/domain-class pun — a DENOTATUM (B4 Plane-2, rec:denotatum:record) or a primordial ClassDeclaration typed as two or more primordial domain classes at once, the frame.ttl:7 'a model:Product, model:Frame' anti-pattern this task fixed — and (b) provenance on a DENOTATUM (Group was not authored by an executor; the GroupTermRecord was). It PERMITS a Plane-1 declaration-record that is an owl:Class carrying provenance (the B4 model-record, legal OWL2 metaclass punning), which is EXEMPT. The tooth pair is V1DenotatumHygieneShape + V1ClassDeclarationPunShape (shapes/algebra.shapes.ttl); the runner block (f) also recomputes it directly (no denotatum carries @rel:created/modified/version/state/authority; no ClassDeclaration is multi-domain-punned)." .
+
+cls:algebra:hygiene:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V1:no:denotatum:pun:no:denotatum:provenance" ;
+    rdfs:comment "The single clause of the V1 HYGIENE gate: no rec:denotatum:record and no primordial model:ClassDeclaration is punned into two or more distinct urn:silmaril:primordial:type:* domain classes, AND no rec:denotatum:record carries any member of the provenance quartet (@rel:created / @rel:modified / @rel:version / @rel:state) or an @rel:authority tag. The declaration-record exemption (design §7.5) is expressed by SCOPE — the clause never ranges over rec:declaration:record, so a model-record owl:Class-with-provenance is untouched. Materialized RED: fixtures/v1_class_pun_neg.ttl and fixtures/v1_denotatum_provenance_neg.ttl each flip conforms True->False; the model-record classes stay conformant." .
+
+# =====================================================================================
+# V2 — SHACL NON-VACUOUS gate. empty ⇒ REJECT, and a 0-focus shape is unexercised = REJECT.
+# =====================================================================================
+cls:algebra:non:vacuous:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V2:non:vacuous" ;
+    gobj:has:clause cls:algebra:non:vacuous:clause:specification ;
+    rdfs:comment "V2 SHACL NON-VACUITY gate (design §4): a validation that a naive `sh:conforms true` would pass silently MUST be REJECTED. Two teeth: (i) the empty.ttl admission control — a submission with zero focus over any declared shape's target class is a REJECT, never a vacuous pass (validation.log:34 empty ⇒ REJECT idiom); and (ii) the 0-focus inversion — every declared NodeShape MUST have at least one focus node over the data graph, so a shape with zero foci is UNEXERCISED = REJECT (the inversion of run-foundation-checks.sh:90-102's skip-when-shapeless). The runner discharges both in blocks (b)/(c); block (f) asserts V2 by confirming the empty control was a REJECT and no declared shape has zero focus." .
+
+cls:algebra:non:vacuous:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V2:empty:reject:and:zero:focus:reject" ;
+    rdfs:comment "The single clause of the V2 NON-VACUITY gate: fixtures/empty.ttl is an admission REJECT (0 focus over every declared target class — a vacuous submission never conforms silently), AND every NodeShape declared in shapes/algebra.shapes.ttl has >= 1 focus node over the folded data graph (subclass closure honored, so an rdfs-subclass instance still counts for its ancestor's shape). A gate:clause:specification carrying a unique clause:identifier. Its RED witness is the empty.ttl control itself plus, structurally, any shape whose target class has no instance in the tree (which the runner would flag as (c) REJECT 0-focus)." .
+
+# =====================================================================================
+# V3 — CATEGORICAL PROBE gate. sh:sparql / sh:select clauses are present (not only cardinality).
+# =====================================================================================
+cls:algebra:categorical:probe:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V3:categorical:probe" ;
+    gobj:has:clause cls:algebra:categorical:probe:clause:specification ;
+    rdfs:comment "V3 CATEGORICAL-PROBE gate (design §4): the tooth set is not merely cardinality bounds — it MUST carry sh:sparql / sh:select clauses (the IdentitySeparationShape idiom, shapes.ttl:276-282; the gate-identity uniqueness sh:select, consolidated.shacl.ttl:1317-1327) that express the real relational invariants (two-sided identity over the reified Cayley table, identity-collision separation, Latin-square division, differentFrom-witness contradiction, gate/clause identity uniqueness). The runner block (f) discharges it by counting sh:SPARQLConstraint nodes in the shapes graph and reddening if none is present; the folded tooth set declares many, so V3 is GREEN. Paired probes/*.rq (the executable SPARQL law probes) are the companion evidence." .
+
+cls:algebra:categorical:probe:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V3:sparql:clauses:present" ;
+    rdfs:comment "The single clause of the V3 CATEGORICAL-PROBE gate: the shapes graph shapes/algebra.shapes.ttl declares at least one sh:SPARQLConstraint (in practice a dozen-plus — TheoryShape/ModelShape/EquationRecordShape/ReductShape identity-collision selects, the per-law reified-table teeth, BridgeShape, DifferentFromWitnessShape, and the GateIdentityShape/ClauseIdentityShape uniqueness twins minted for this very gate ladder). A gate:clause:specification with a unique clause:identifier; a shape set reduced to pure cardinality bounds with zero sh:sparql would redden this clause." .
+
+# =====================================================================================
+# V4 — YONEDA-DENSITY gate. FAN-OUT (deferred). design §4 V4 / §6.
+# =====================================================================================
+cls:algebra:yoneda:density:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V4:yoneda:density" ;
+    gobj:has:clause cls:algebra:yoneda:density:clause:specification ;
+    rdfs:comment "V4 YONEDA-DENSITY gate (design §4): the density / representable-functor fixtures that seal the tighter Yoneda realization of ologs-of-ologs (D2 turtles-all-the-way; the Frame is the Yoneda point). It is DEFERRED to the Pass-2 fan-out (design §6: V4 is a fan-out gate, alongside the category seam q_monoid_is_endo explicitly deferred at design §7.4) — the one-operation spine carries no representable-density fixtures. It is authored here as a first-class gate spec so the V0-V8 ladder is COMPLETE and its deferred status is on-record and honest (Praeriehund: a gate that has not run is never claimed green), NOT so it can be asserted GREEN. The runner block (f) reports V4 DEFERRED (fan-out), never a pass." .
+
+cls:algebra:yoneda:density:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V4:density:fixtures:fan:out:deferred" ;
+    rdfs:comment "The single clause of the V4 YONEDA-DENSITY gate: representable-functor / density fixtures over the tower's model category. It carries an honest-red DEFERRAL: the spine (Pass 1) mints no density witness, so the clause is neither GREEN nor RED here but explicitly OUT-OF-SCOPE, discharged in the fan-out (design §6). A gate:clause:specification with a unique clause:identifier, present so the clause ladder is complete and the deferral is a recorded obligation rather than a silent gap." .
+
+# =====================================================================================
+# V5 — ALGEBRAIC-LAW gate. every model names theory + carrier + operations + laws + a MODE.
+# =====================================================================================
+cls:algebra:law:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V5:algebraic:law" ;
+    gobj:has:clause cls:algebra:law:clause:specification ;
+    rdfs:comment "V5 ALGEBRAIC-LAW gate (design §4, D24 A6): every presented theory in the tower MUST name its signature (S,Omega), a non-empty equation set E (its laws), a declared law-witness validation MODE (the D24 4-value enum, ValidationModeShape) and a proof-status (the D24 8-value enum, ProofStatusShape); every model MUST ground its carrier (CarrierGroundingShape). It is the doctrinal core that the tower is theories + models + reducts with declared witness modes, not a bare subclass ladder. The runner block (f) discharges it by asserting every rec:theory:record carries exactly the required @rel:signature + @rel:equation + @rel:validation:mode + @rel:proof:status; on the eight rung theories all hold, so V5 is GREEN." .
+
+cls:algebra:law:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V5:theory:names:signature:equations:mode:status" ;
+    rdfs:comment "The single clause of the V5 ALGEBRAIC-LAW gate: for every rec:theory:record, the record names >= 1 @rel:signature, >= 1 @rel:equation, exactly one @rel:validation:mode drawn from {finite:table, rewrite, external:certificate, bounded:diagnostic} and exactly one @rel:proof:status drawn from the D24 8-value enum. A gate:clause:specification with a unique clause:identifier. Materialized RED: a theory stripped of its validation:mode reddens ValidationModeShape (fixtures/validation_mode_neg.ttl) and an off-enum proof:status reddens ProofStatusShape (fixtures/proof_status_neg.ttl); the runner's direct V5 recomputation catches the same omissions independently of pyshacl." .
+
+# =====================================================================================
+# V6 — MANIFEST-COVERAGE gate. N_manifest = N_materialized (recomputed from disk). T-MANIFEST.
+# =====================================================================================
+cls:algebra:manifest:coverage:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V6:manifest:coverage" ;
+    gobj:has:clause cls:algebra:manifest:coverage:clause:specification ;
+    rdfs:comment "V6 MANIFEST-COVERAGE gate (design §4): every algebra figure stated in a manifest (manifests/*.yaml) MUST equal the figure recomputed from disk — counts are DERIVED, never hard-coded (D24 Modular Option A+). The FULL self-check (recompute theory/model/axiom/equation/reduct/shape/fixture counts and assert == manifest == DAG node) is the T-MANIFEST deliverable, which also edits the runner. Until a manifest states a figure the runner reports V6 PENDING (block (d)); a STATED figure that disagrees with disk is RED. Authored here as a first-class gate spec so the ladder is complete; the runner block (f) reports V6's PENDING/GREEN state honestly from block (d), never a fabricated pass." .
+
+cls:algebra:manifest:coverage:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V6:disk:equals:manifest:count" ;
+    rdfs:comment "The single clause of the V6 MANIFEST-COVERAGE gate: for every count key a manifest states (data_files, nodeshapes, fixtures, triples, and the per-rung figures T-MANIFEST adds), the stated integer equals the value recomputed from disk at runner time. A gate:clause:specification with a unique clause:identifier. Its state is PENDING while no manifest states a figure (the honest non-vacuous default — a coverage gate over zero stated figures is not GREEN); it becomes RED the moment a stated figure drifts from disk, which is the perturbation probe T-MANIFEST wires." .
+
+# =====================================================================================
+# V7 — PROVENANCE-CLOSURE gate. executor >=1 AND shadow >=1 on every record. T-PROV (BUILD).
+# =====================================================================================
+cls:algebra:provenance:closure:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V7:provenance:closure" ;
+    gobj:has:clause cls:algebra:provenance:closure:clause:specification ;
+    rdfs:comment "V7 PROVENANCE-CLOSURE gate (design §4, GAP to be BUILT): every reshaped RECORD MUST be attributed to at least one EXECUTOR and at least one SHADOW (prov:wasAttributedTo, both counts) plus a prov:wasGeneratedBy — the dual-count review closure the reference governance/ layer leaves empty (only one-sided PROV exists). The executor+tandem-shadow review lane and the dual-count tooth are the T-PROV deliverable, BUILT from scratch (design §7.2 obligation 1). Authored here as a first-class gate spec so the V0-V8 ladder is complete; the runner block (f) reports V7 DELEGATED to T-PROV (not yet wired), honestly — never claimed green by T-GATES, which owns only the gate SPECS and the V0/V1/V2/V3/V5/V8 assertions." .
+
+cls:algebra:provenance:closure:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V7:executor:and:shadow:attribution" ;
+    rdfs:comment "The single clause of the V7 PROVENANCE-CLOSURE gate: for every reshaped record, there exists >= 1 executor attribution AND >= 1 shadow attribution (prov:wasAttributedTo) plus a prov:wasGeneratedBy generation record. A gate:clause:specification with a unique clause:identifier. Its state is DELEGATED to T-PROV, which builds the reviews/{executor,shadow,resolved}/ lane and the biting probes/provenance_closure.rq; the RED witness (remove a shadow attribution -> V7 RED) is that task's probe, recorded here as the obligation this clause names." .
+
+# =====================================================================================
+# V8 — SHACL-2017 DISCIPLINE gate. targetClass-only, valid SHACL constructs.
+# =====================================================================================
+cls:algebra:shacl:discipline:gate:specification
+    a owl:Class , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V8:shacl:discipline" ;
+    gobj:has:clause cls:algebra:shacl:discipline:clause:specification ;
+    rdfs:comment "V8 SHACL-2017 DISCIPLINE gate (design §4): the tooth set obeys SHACL-2017 discipline — the shapes graph loads as a valid SHACL graph, every NodeShape targets by sh:targetClass (NEVER sh:targetNode, the design §4 anti-pattern that would blind the 0-focus gate: closure.ttl 4 targetClass / 0 targetNode, consolidated.shacl.ttl 33 / 0), and constraints use recognised SHACL constructs (property shapes + sh:sparql SPARQLConstraint). The runner discharges it by rejecting any sh:targetNode shape (block top) and, in block (f), asserting the shapes graph parsed, declares >= 1 NodeShape all via targetClass, and carries >= 1 sh:SPARQLConstraint; on the folded tooth set all hold, so V8 is GREEN." .
+
+cls:algebra:shacl:discipline:clause:specification
+    a owl:Class , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V8:targetclass:only:valid:shacl" ;
+    rdfs:comment "The single clause of the V8 SHACL-2017 DISCIPLINE gate: shapes/algebra.shapes.ttl parses as a SHACL graph, declares at least one sh:NodeShape, EVERY declared NodeShape carries sh:targetClass and NONE carries sh:targetNode, and at least one sh:SPARQLConstraint is present. A gate:clause:specification with a unique clause:identifier. Materialized RED: switching any shape to sh:targetNode drops its rung's focus set and the runner rejects the targetNode shape outright (block top) — the perturbation probe design T-SHAPES names — so this clause reddens on the first targetNode." .

@@ -1,0 +1,76 @@
+# =====================================================================================
+# quasigroup.yaml — per-rung coverage manifest for the quasigroup rung (W2 · SP0, T-MANIFEST).
+# =====================================================================================
+# Engine Flavor-B AOB envelope (refcomp/tar/bash/aob/urn/**/atom.spec.yaml). Every COUNT figure
+# is DERIVED FROM DISK by run-algebra-checks.sh V6, which recomputes the quasigroup rung's records by
+# matching the subdomain segment ':subdomain:quasigroup:kingdom:' over the merged algebra data graph and
+# asserts disk == this manifest. Never hard-coded. PROBE: perturb any VALUE -> V6 RED; restore -> GREEN.
+# Design §2 (record templates), §4 V6. Plan T-MANIFEST.
+ATOM:
+  IDENTITY:
+    VALUE: 'urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:quasigroup:kingdom:manifest:phylum:coverage:class:rung:order:declarative:family:quasigroup:genus:coverage:species:rung:component:manifest:instance:canonical'
+  UNIVERSAL ROOT:
+    VALUE: 'urn:silmaril:type:graph:instance:instruction:code:property'
+  KIND:
+    VALUE: 'per-rung coverage manifest'
+  SCOPE:
+    VALUE: 'quasigroup'
+GROUNDING:
+  CARRIER:
+    NOTATION:
+      VALUE: 'the quasigroup rung records in the on-disk merged algebra data graph, matched by the subdomain segment; lexical byte stream under locale C'
+MATERIALIZATION:
+  DISPOSITION:
+    VALUE: 'every COUNT figure is recomputed from disk by run-algebra-checks.sh V6 (subdomain-segment match on quasigroup); never a fixed constant'
+  COUNT:
+    THEORY:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '1'
+    MODEL:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '1'
+    DENOTATUM:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '1'
+    DECLARATION:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '1'
+    AXIOMS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '2'
+    THEOREMS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '0'
+    EQUATIONS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '0'
+    REDUCTS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '1'
+EVIDENCE:
+  SOURCE:
+    PACKAGE RELATIVE PATH:
+      VALUE: 'basicttl/primordial/type/algebra/spine/quasigroup.ttl'
+    LINE:
+      NOTATION:
+        VALUE: 'the quasigroup rung spine record; the V6 self-check recomputes these figures from the merged graph'
+PROVENANCE:
+  AUTHORITY:
+    VALUE: 'W2 SP0 spine-fold, T-MANIFEST executor'
+  STATE:
+    VALUE: 'provisional'
+GAPS:
+  CARDINALITY:
+    NOTATION:
+      VALUE: '0'
+RECEIPT:
+  MATERIALIZATION:
+    VALUE: 'present; not a constitutional acceptance seal'

@@ -1,0 +1,157 @@
+# =====================================================================================
+# spine.yaml — the whole-spine coverage manifest for the folded algebra tower (W2 · SP0, T-MANIFEST).
+# =====================================================================================
+# The engine Flavor-B AOB envelope (refcomp/tar/bash/aob/urn/**/atom.spec.yaml — the ATOM / GROUNDING /
+# EVIDENCE:SOURCE:…:LINE / PROVENANCE:STATE / GAPS / RECEIPT nested-KV shape) applied to the folded
+# algebra spine as a WHOLE. Every figure in the MATERIALIZATION:COUNT block below is DERIVED FROM DISK
+# by the runner and never hard-coded: run-algebra-checks.sh block (d) / gate V6 recomputes each figure by
+# RDF-parsing the merged algebra data graph (rec:*:record rdf:type counts; operation-symbol atoms by IRI;
+# gate/clause specs on the core:entity ladder; shapes graph sh:NodeShape; probes/*.rq; fixtures/**) and
+# asserts disk == this manifest == the phase_w2_sp0_fold DAG node (basicttl/dag/dag_instances.ttl). Any
+# figure here that disagrees with a fresh disk recount -> runner RED (V6). PROBE OF RECORD: perturb any
+# VALUE below (e.g. THEORIES 8 -> 7) -> V6 RED; restore -> GREEN.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§2 record templates, §4 V6).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (Task T-MANIFEST).
+ATOM:
+  IDENTITY:
+    VALUE: 'urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:primordial:kingdom:manifest:phylum:coverage:class:spine:order:declarative:family:primordial:genus:coverage:species:spine:component:manifest:instance:canonical'
+  UNIVERSAL ROOT:
+    VALUE: 'urn:silmaril:type:graph:instance:instruction:code:property'
+  KIND:
+    VALUE: 'folded-spine coverage manifest'
+  SCOPE:
+    VALUE: 'spine'
+GROUNDING:
+  CARRIER:
+    BYTE:
+      VALUE: 'urn:silmaril:type:graph:instance:instruction:code:property:domain:computation:realm:representation:subdomain:physical:carrier:kingdom:type:phylum:carrier:class:byte:order:registered:family:width:genus:general:species:byte:component:type:instance:canonical'
+    NOTATION:
+      VALUE: 'the on-disk merged algebra data graph (basicttl/primordial/type/algebra/**/*.ttl excluding *.shapes.ttl and fixtures/**), lexical byte stream interpreted under locale C, is the carrier every COUNT figure is recomputed from'
+  ONTOLOGY:
+    PRIMARY:
+      VALUE: 'urn:silmaril:type:graph:instance:instruction:code:property:domain:knowledge:realm:ontology:subdomain:upper:ontology:kingdom:bridge:phylum:ontology:class:basic:formal:order:internal:family:anchor:genus:semantic:species:bridge:component:ontology:instance:canonical'
+    STATUS:
+      VALUE: 'internal bridge evidence and not an external import claim'
+MATERIALIZATION:
+  DISPOSITION:
+    VALUE: 'every COUNT figure is recomputed from disk by run-algebra-checks.sh (V6); never authored as a fixed constant'
+  COUNT:
+    THEORIES:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '8'
+    MODELS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '8'
+    DENOTATA:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '8'
+    DECLARATIONS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '8'
+    SIGNATURES:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '5'
+    OPERATIONS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '5'
+    AXIOMS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '24'
+    THEOREMS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '6'
+    CERTIFICATES:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '6'
+    EQUATIONS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '21'
+    REDUCTS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '7'
+    GATE_SPECS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '9'
+    CLAUSE_SPECS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '9'
+    RUNGS:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '8'
+    SHAPES:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '23'
+    PROBES:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '17'
+    FIXTURES:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '46'
+    DATA_FILES:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '27'
+    TRIPLES:
+      CARDINALITY:
+        NOTATION:
+          VALUE: '1778'
+EVIDENCE:
+  SOURCE:
+    PACKAGE RELATIVE PATH:
+      VALUE: 'basicttl/primordial/type/algebra/checks/run-algebra-checks.sh'
+    LINE:
+      TYPE:
+        VALUE: 'urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:number:subdomain:natural:kingdom:type:phylum:carrier:class:scalar:order:unsigned:family:integer:genus:natural:species:notation:component:type:instance:canonical'
+      NOTATION:
+        VALUE: 'the V6 count self-check (block (d) / gate V6) recomputes every COUNT figure here from the merged algebra data graph'
+  ANCHOR:
+    PACKAGE RELATIVE PATH:
+      VALUE: 'config/algebra/primordials.yaml'
+    LINE:
+      NOTATION:
+        VALUE: '441'
+    DISPOSITION:
+      VALUE: 'the [V] group denotatum + its four axioms (refcomp/tar/bash config/algebra/primordials.yaml:441-467) are the byte-verbatim anchors the [D] rungs derive from; the counts above are the materialized result of that derivation'
+  DIGEST:
+    DISPOSITION:
+      VALUE: 'integrity evidence only and never semantic identity'
+PROVENANCE:
+  AUTHORITY:
+    VALUE: 'W2 SP0 spine-fold, T-MANIFEST executor under the operator loop; session rulings through September six two thousand twenty six'
+  STATE:
+    VALUE: 'provisional'
+GAPS:
+  CARDINALITY:
+    NOTATION:
+      VALUE: '1'
+  ITEM:
+    YONEDA_DENSITY:
+      DISPOSITION:
+        VALUE: 'gate V4 (Yoneda-density fixtures) is the Pass-2 fan-out (design §6); the spine mints none, so no V4 figure is counted here'
+  DISCHARGED:
+    PROVENANCE_CLOSURE:
+      DISPOSITION:
+        VALUE: 'gate V7 (dual executor/shadow provenance) is now BUILT (T-PROV): the executor + tandem-shadow review lane lives under reviews/{executor,shadow,resolved}/ + receipts/, all 29 reshaped records (rel:authority-bearing) are attributed to >=1 executor AND >=1 shadow via prov:wasAttributedTo + prov:wasGeneratedBy, and the runner block (f) V7 dual-count + ProvenanceClosureShape + probes/provenance_closure.rq gate it; the SHAPES/PROBES/FIXTURES/DATA_FILES/TRIPLES figures above already include the review lane'
+RECEIPT:
+  MATERIALIZATION:
+    VALUE: 'present; not a constitutional acceptance seal'
+  COVERAGE:
+    VALUE: 'the 19 COUNT figures above are the whole-spine coverage surface the runner V6 self-check gates against a fresh disk recount and the phase_w2_sp0_fold DAG node'
