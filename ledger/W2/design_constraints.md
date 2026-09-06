@@ -336,3 +336,173 @@ maintainer in the W2 brainstorming gate before any authoring.
       consolidating SP1 (material/ZFC set theory = honest-red deferral); external appendix-39
       `compass_artifact` space survey = reference-only (cite, never author-from). Functionality is a
       co-equal fourth pillar under the same floor.
+
+---
+
+> **RECOVERY NOTE (2026-09-06):** Directives 21–25 below were RECONSTRUCTED FROM SESSION
+> CONTEXT after a container **reclaim + fresh clone** wiped all uncommitted work (the committed
+> ledger topped out at Directive 20). Also lost, never committed: the SP0b **A+B pass**
+> (`functionality_epi.ttl` ~756 triples, `group_action.ttl`), the full **reshape MAP** (31 evidence
+> files / ~10.6k lines under `ledger/W2/sp0-reshape/map/` + 451-line synthesis), and the planner
+> design/plan. The A+B verification had passed (all teeth GENUINE) and the MAP was complete before
+> the reclaim; their DESIGN survives in these directives + this session, but the authored TTL/evidence
+> bytes are gone and are rebuilt as part of the Directive-25 fold. **Lesson, now binding: commit +
+> push WIP checkpoints to the working branch regularly** — the "reserved commit call" governs the
+> final SP0 *seal* only, not infra-survival checkpointing. 21/22 are reconstructed in substance
+> (21 from the SP0b plan + the prior Directive-21 text; 22 from a full prior read); 23/24/25 are
+> reconstructed verbatim from this session's turns.
+
+21. **Curry → Rosarch → JEPA → Certificate: the epistemology stratum** (maintainer infusion,
+    `curry_rosarch_jepa` PDF; reconstructed). Completes the SP0 functionality/Curry-F pillar and opens
+    a new epistemology stratum. Landed (pre-reclaim) as `functionality_epi.ttl` (B-tasks):
+    - **B1 Frame = packed RosarchQueryFrame + A7 frame-closure.** `RosarchQueryFrame` = a dependent
+      record with typed fields (context `x_C`, target-descriptor `p_T`, observer-state `s`,
+      ontology-query `o`, admissible-fiber `Γ`, evidence `e`, time `t`, action `a`, delegation-scope
+      `u`); `prim:Frame`/`crs:CoordinateDerivation` recognised as packed frames. Tooth A7/Corollary
+      5.3 (unary ≠ context-free): a unary transition whose dependency is NOT a typed field or
+      referenced certificate of its single packed argument → RED.
+    - **B2 F-APP typed application (A2).** An application `f x` for `F(X,Y;f)` with no established
+      domain-membership witness `x:X` → RED (typing ≠ realization, A1/Remark 1.2).
+    - **B3 D≤1 sub-probability effect category (A4/I14).** `SubDistribution` (finitely supported,
+      total mass ≤ 1; missing mass = nonrealization) as the effect on `frameEffect`; Kleisli
+      composition. An unknown/censored outcome silently coerced to `false` (not kept explicit in
+      Option/D≤1) → RED.
+    - **B4 certificate-gated application (A10–A14).** `Certificate` Π = Π_type ∧ Π_provenance ∧ Π_time
+      ∧ Π_evidence ∧ Π_path ∧ Π_scope ∧ Π_task; `admits` only if Π holds. Teeth: assert/execute a
+      candidate whose Π fails → RED (scoring ≠ asserting ≠ executing); A11 no-self-cert (a payload's
+      own authority claim as its witness → RED); A12 scope-non-amplification (action scope ⊄
+      verified-delegation ∩ policy → RED). A13 provenance persistence (external/derived content stays
+      tagged through parse/embed/predict/ground).
+    - **B5 arrow-type reification** — reify coordinate-derivation dom/cod as `ArrowType` so the
+      functor-variance tooth bites the real §4 contravariant-domain/covariant-codomain signature.
+    - **B6 blocked-implication boundaries (gospel):** existence ⇏ membership ⇏ functionality ⇏
+      realization ⇏ observation ⇏ correct interpretation ⇏ causal effect; comprehension ≠
+      authorization; prediction ≠ proof; succession ≠ causation (A9, A14). Each boundary crossed ONLY
+      via an explicit typed map + certificate; a bare crossing → RED. The 14 App-A axioms + 15
+      invariants I1–I15 + App-C per-transition obligations are the formal spec. This IS the trust/
+      provenance system + ContractGate + render-authority + CI gates, rigorized. Corpus-agnostic v1;
+      JEPA/observer machinery = typed SHAPE, never trained.
+
+22. **The Lambda-Blotto engine's game is a GROUP ACTION, NOT a group** (maintainer correction,
+    verbatim: *"The correct formulation is not 'the discrete allocations form a group.' They do
+    not."*; reconstructed from a full prior read). Lambda-Blotto = discrete Colonel Blotto; correct
+    ontology:
+    - **Allocation simplex** `X_{N,m} = { x ∈ ℤ≥0^m : Σx_i = N }` = weak compositions, `|X| =
+      C(N+m-1,m-1)` — a `Set` of lattice points, NOT a group (adding two budget-N allocations gives
+      budget 2N). A tooth FORBIDS typing the simplex a Magma/Group/etc. under `+`.
+    - **Two genuine groups hide in the geometry:** the differences `x−y ∈ A_{m-1} = {d∈ℤ^m:Σd_i=0}`,
+      the abelian **root lattice `A_{m-1}`** (a genuine AbelianGroup, the canonical Blotto witness of
+      the SP0 abelian rung); and the **symmetric group `S_m`** acting by `(g·x)_i = x_{g⁻¹(i)}` —
+      and `S_m` is the **Weyl group** of `A_{m-1}`.
+    - **The right object is a GROUP ACTION / G-set** `G ↷ X_{N,m}` (G ≤ S_m or a battlefield
+      automorphism group ≤ Aut(Γ)): orbits, stabilizers, quotient `X/G`, **Burnside** `|X/G| =
+      (1/|G|)Σ|Fix(g)|`, double-coset payoff compression. NEW algebra the tower must carry:
+      `GroupAction`/`GSet` (e·x=x, (gh)·x=g·(h·x)), teeth-proven.
+    - **Colonel Lotto = Colonel Blotto / S_m** (Hart symmetrization): orbital payoff
+      `Ū([x],[y]) = (1/|G|) Σ_g U(x, gy)`; orbits = integer partitions of N into ≤ m parts; strategy
+      count `C(N+m-1,m-1) → p_{≤m}(N)`. **G-Blotto** generalizes G to `S_{m1}×…×S_{mr}` / `C_m` /
+      `D_m` / `Aut(Γ)`.
+    - **Rep-theory (honest role):** the payoff operator is an **intertwiner** of the players'
+      permutation reps, block-decomposing into irreps; the invariant quotient game = the trivial
+      isotypic component. **CORRECTION:** minimax equilibrium is an **LP/complementarity object on the
+      probability simplex, NOT an eigenvalue** — rep theory block-diagonalizes the operator, it does
+      not turn equilibrium probabilities into eigenvalues. (DS-reinforced: `lambda_blotto_model.tex`
+      L154 minimax = max-min LP; L19/208 the graph-spectral operator is a SEPARATE modal coordinate.)
+    - **Build consequence:** the algebra tower gains `GroupAction`/`GSet` (orbit/stabilizer/quotient/
+      Burnside/double-coset), teeth-proven; the Blotto ontology (simplex-Set + A_{m-1}-abelian +
+      S_m-action + Lotto-quotient + G-Blotto) is the correct grounding. DS the raw game to
+      `helios/srcy/shared/components/math/lambda_blotto_model.tex`; SYN the group-action layer to the
+      maintainer note + standard rep theory. Framing: "Orbital Colonel Blotto: Exact Equilibrium
+      Reduction under Battlefield Automorphism Groups."
+
+23. **Deeper modeling: intensional taxonomic definition + polymorphism, NOT named-individual
+    proliferation** (maintainer directive, verbatim: *"just ensure we are being deeper with modeling
+    bc im seeing too many named individuals which is not proper taxonomic definition and
+    polymorphism"*). On-disk diagnostic: the SP0 floor carried ~910 distinct `fnd:` names / 486
+    individuals against ~102 `owl:Class`, with **ZERO** `owl:Restriction`/`owl:equivalentClass`/
+    `owl:onProperty`/`owl:someValuesFrom`/`owl:allValuesFrom`. Every class defined only by
+    `rdfs:subClassOf` + prose + reified witness tables the SHACL teeth bite on — EXTENSIONAL, not
+    INTENSIONAL; no polymorphism (a conforming structure is never classified; laws re-enumerated per
+    witness). Superseded in MECHANISM by Directive 24 (the deeper modeling is the Seed-Carrier
+    doctrine — theory/model/reduct stratification + four planes + naming law — NOT primarily OWL
+    restrictions); scope fork answered by Directive 25 (whole-floor reshape, folded into primordial).
+
+24. **The Seed Carrier doctrine is the deeper-modeling gospel** (maintainer infusion 2026-09-04,
+    `docs_anchor_map_consolidated_20260819.zip`). Authority stack: `SEED_00/01/02.md` → resolved by
+    **`docs/specs/2026-08-19-seed-carrier-rewrite-design.md`** (THE spec); `USER_REF_00.md` + spec §10b
+    (naming law); `USER_NOTE.md` (operator loop); the **validated exemplar `docs/research/anchor/map/`**
+    (428 sources, 18 gates PASS — MATCH, don't reinvent); `OPERATOR_TODOS.md` TODO-11 (leverage, never
+    reinvent). (Corpus was cached in scratchpad; the zip is NOT committed.)
+    - **A0 stratification:** Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥ ProofArtifact. `fnd:Group a owl:Class,
+      fnd:PresentedAlgebra` is the forbidden collapse — split into theory individual / model class /
+      operation-symbol individuals / equation individuals / carrier elements / proof records, distinct
+      IRIs.
+    - **A6 algebraic-theory axiom:** every structure is a model of a declared theory T=(S,Ω,E) (Lawvere);
+      the tower = theories + model-classes + reducts/theory-morphisms, NOT a subclass ladder of
+      witness-defined classes; ring = additive-abelian-group reduct + multiplicative-monoid reduct +
+      distributivity witnesses.
+    - **Four disjoint planes:** Denotatum / DeclarationRecord / EvidenceArtifact / ProvenanceArtifact.
+      Named witnesses are EVIDENCE — move OUT of ontology modules into `fixtures/` (positive + a
+      failing negative per shape; `sh:conforms true` alone is vacuous) + `probes/*.rq`; definitions
+      stay parametric/derived. Each structure declares a validation MODE (finite table / rewrite /
+      external certificate / bounded diagnostic) + an 8-value proof-status (asserted / finite:checked /
+      literature:backed / mechanically:proved / counterexample:known / open / conditional / rejected).
+      Yoneda is a theorem record with a certificate, never an axiom (theorem/axiom collapse = a SHACL
+      violation).
+    - **Sameness:** `owl:equivalentClass` ONLY with a bidirectional EquivalenceWitness; else
+      `rdfs:subClassOf` / `skos:exactMatch` / `skos:closeMatch` / `seed:conservativeBridge` /
+      `seed:implementationBridge`; `owl:sameAs` never for isomorphism. Forbidding teeth keep the
+      `owl:differentFrom`-witnessed distinction idiom (unsignedByte ≠ machine byte ≠ Z/256Z).
+    - **Naming law (spec §10b):** ALL LOWERCASE, every segment; compounds decompose into `:` descents,
+      GENUS-FIRST (`NaturalTransformation`→`transformation:natural`; `CategoryOfElements`→
+      `category:elements`); no `-`/`_` in any typed identifier (file names keep the repo underscore
+      convention). Consequence: every CamelCase/underscore `fnd:` local name is renormalized with an
+      alias/bridge map so nothing is silently lost.
+    - **Modular Option A+:** a compact knitting root (`owl:imports`; `rdfs:seeAlso` documentary only) +
+      foundation modules + lanes + `external/` + `shapes/` + `probes/` + `fixtures/` + `manifests/`
+      (deep-KV YAML) + `reviews/{executor,shadow,resolved}/` + `receipts/`. Counts DERIVED from
+      manifests, never hard-coded; digests recorded. Provenance on every RECORD (`prov:wasAttributedTo`
+      + `prov:wasGeneratedBy`), never on mathematical denotata ("Group was not authored by an executor;
+      the GroupTermRecord was").
+    - **Bridge, never duplicate (TODO-11):** the reshaped floor LEVERAGES the substrate — compat
+      bridges to the prior carrier's `silmaril:kind:algebra:*`/`silmaril:axiom:*`/`silmaril:type:Being`
+      and the engine's `Primordial::Algebra::*`; the parallel hierarchies knit through the seed, never
+      via a third `fnd:` ladder.
+    - **Gates V0–V8 + lane lifecycle:** syntax / OWL-profile+hygiene (no punning, no class as a
+      provenance participant) / SHACL non-vacuous / categorical probes / Yoneda-density fixtures /
+      algebraic-law probes (every model names theory+carrier+operations+laws; law-witness mode
+      declared) / manifest coverage (N_manifest = N_materialized) / provenance closure (executor ≥1 AND
+      shadow ≥1) / SHACL-2017 discipline. Lifecycle Draft → ExecutorValidation → ShadowCritique →
+      Resolution → ShadowRevalidation → Accepted; executors parallelize ONLY with tandem shadows.
+    - **Operator loop (USER_NOTE):** map/explore → planner/validator → executor(s) + parallel shadow →
+      validate, ×2 (double-dip), per section, ≥5 agents, until full closure; maps write EVIDENCE to
+      disk (file:line), never opinions.
+
+25. **The reshaped floor FOLDS INTO `basicttl/primordial/type/**`** (maintainer design-gate 2026-09-06,
+    answering the Directive-24 open questions; OVERRIDES the MAP's keep-`fnd:`-and-bridge rec).
+    - **Fold target = the master primordial tree** (310 files merged via PR#7). The reshaped algebra
+      floor lands INSIDE `basicttl/primordial/type/**`, adopting its IRI root + directory/file layout +
+      lowercase-colon-descent grammar, and BRINGING the Directive-24 stratification (theory/model/
+      reduct/equation/element records, proof-status, validation-mode, provenance, fixtures, manifests,
+      gates V0–V8) that primordial lacks — **fixing** primordial's own punning/extensional flaws in the
+      algebra subtree it touches, never importing them. `fnd:` as a separate root is retired into the
+      primordial idiom; an exhaustive alias/bridge map keeps every inbound SP1/SP2/SP3 `groundsIn*` /
+      `subClassOf fnd:*` reference resolvable.
+    - **Cadence = spine first, then fan out.** Pass 1 reshapes ONLY the algebra tower
+      (magma→semigroup→monoid→commutative-monoid→group→abelian + quasigroup/loop) fully to the doctrine
+      as the exemplar-conformant TEMPLATE; maintainer signs off on the realized pattern; then it fans
+      across rings/fields/modules/vector-spaces, set, spaces, functionality, combinators, logic,
+      group-action, Blotto, and the D21 epistemology stratum.
+    - **Epistemology (D21) is IN-SCOPE** (reshaped in the fan-out, not deferred).
+    - **Technical resolutions (maintainer-delegated, MAP-recommended):** two-sided identity/inverse =
+      TWO Equation records + an obligation-counting extension morphism; Blotto = a SUB-lane under the
+      group-action module (shared `theory:action:group`, own fixtures + simplex≠group `owl:differentFrom`
+      tooth); Ring/Field/Module/Vector homonym collisions = renormalize + `owl:differentFrom` witness +
+      forbidding tooth + negative fixture each; master's strengthened magma-totality/field-nontriviality
+      teeth = re-homed BOTH as intensional theory-law records AND probes+fixtures (no regression); the
+      stale 29MB `ontology/silmaril-consolidated.ttl` pipeline = deferred to W4/render-seal.
+    - **CI lockstep:** master's `ci.yml` `ontology-floors` job auto-discovers `basicttl/foundation/*.ttl`
+      + a depth gate; folding into `basicttl/primordial/type/**` and moving witnesses to `fixtures/`
+      (outside that glob) goes VACUOUS unless the runner + CI discovery + gates V0–V8 move IN LOCKSTEP.
+      The reshape MUST extend the committed runner and `ci.yml`, and honor `commit_signing_trust.ttl`
+      (sign reshape commits under it).
