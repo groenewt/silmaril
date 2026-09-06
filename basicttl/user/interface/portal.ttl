@@ -270,17 +270,33 @@ portal:BrowserBehavior a portal:Artifact,
   if (documentContent) {
     const contents = document.getElementById('document-toc');
     const used = new Set();
+    let outline = [];
     documentContent.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((heading, index) => {
       let identifier = heading.id || heading.textContent.trim().toLowerCase().replace(/[^\\p{L}\\p{N}]+/gu, '-').replace(/^-|-$/g, '') || `section-${index}`;
       if (used.has(identifier)) identifier += `-${index}`;
       used.add(identifier); heading.id = identifier;
       const item = make('li'); item.dataset.level = heading.tagName;
-      item.append(make('a', heading.textContent, {href: '#' + encodeURIComponent(identifier)})); contents.append(item);
+      const level = Number(heading.tagName.slice(1));
+      outline = outline.filter(entry => entry.level < level);
+      const parent = outline.at(-1);
+      if (parent && !parent.children) { parent.children = make('ol'); parent.item.append(parent.children); }
+      item.append(make('a', heading.textContent, {href: '#' + encodeURIComponent(identifier)}));
+      (parent ? parent.children : contents).append(item);
+      outline.push({level, item});
     });
-    [...documentContent.querySelectorAll(':scope > h2')].forEach(heading => {
-      const disclosure = make('details', undefined, {class: 'document-chapter'}); disclosure.open = true;
-      const summary = make('summary'); heading.before(disclosure); summary.append(heading); disclosure.append(summary);
-      while (disclosure.nextSibling && !(disclosure.nextSibling.nodeType === 1 && /^H[12]$/.test(disclosure.nextSibling.tagName))) disclosure.append(disclosure.nextSibling);
+    let sections = [];
+    [...documentContent.childNodes].forEach(node => {
+      if (node.nodeType === 1 && /^H[1-6]$/.test(node.tagName)) {
+        const level = Number(node.tagName.slice(1));
+        sections = sections.filter(entry => entry.level < level);
+        if (level === 1) return;
+        const disclosure = make('details', undefined, {class: 'document-chapter'}); disclosure.open = true;
+        disclosure.dataset.level = node.tagName;
+        const parent = sections.at(-1)?.disclosure;
+        if (parent) parent.append(disclosure); else node.before(disclosure);
+        const summary = make('summary'); summary.append(node); disclosure.append(summary);
+        sections.push({level, disclosure});
+      } else if (sections.length) sections.at(-1).disclosure.append(node);
     });
     document.querySelectorAll('[data-fold]').forEach(control => control.addEventListener('click', () => documentContent.querySelectorAll('details').forEach(section => { section.open = control.dataset.fold === 'open'; })));
     // Keep links between repository Markdown documents inside the reading surface.

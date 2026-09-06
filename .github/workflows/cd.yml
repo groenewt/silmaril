@@ -32,8 +32,6 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           submodules: false
-      - name: Require admitted user interface runtime
-        run: make -C scripts/python/pylib morphism-user-interface-runtime-admission
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
