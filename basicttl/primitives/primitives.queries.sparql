@@ -1,0 +1,553 @@
+# =====================================================================================
+# primitives.queries.sparql — the executable acceptance suite for the Primitive Floor
+# =====================================================================================
+# W2 · SP1 — the twin-olog colimit-taiji Primitive Floor (remediated, spec §9).
+# Design spec: docs/superpowers/specs/2026-08-07-w2-primitive-floor-design.md (§6, §9).
+# Plan:        docs/superpowers/plans/2026-08-08-w2-sp1-floor-remediation.md (Task R3).
+#
+# Each query is a named EXPECT-TRUE ASK. The runner (checks/run-floor-checks.sh) splits
+# this file on the "# EXPECT-TRUE <name>" markers, strips the comment lines, evaluates the
+# remaining SPARQL against the merged DATA graph (formal + physical + realization + taiji,
+# NOT the shapes graph), and requires every ASK to return true. The "what's a number"
+# litmus is q_number_tower + q_number_realized; the class-level grounding litmus is
+# q_universality; the monad laws are q_monad_unit (two-sided unit) + q_monad_assoc (associativity),
+# over compositions first proven well-typed by q_kleisli_welltyped (f.kCod = g.kDom and the result
+# spans them); the colimit seal is q_colimit_reflexive (identity round-trip). None is vacuous.
+#
+# Fixed property-name contract (binding across every floor file):
+#   realizesAs     : FormalType   -> Realization
+#   realizesFrom   : Realization  -> FormalType
+#   encoding       : Realization  -> PhysicalEncoding
+#   interpretAs    : Encoding     -> FormalType         (the mutual-colimit back-pointer)
+#   frameOutput    : Realization  -> PhysicalEncoding
+#   frameEffect    : Realization  -> Effect             (typed Frame effect individual)
+#   formalFacet    : Primitive    -> FormalType
+#   physicalFacet  : Primitive    -> PhysicalEncoding
+#   gluedBy        : Primitive    -> Realization
+#   composeFirst/composeSecond/composeInto : Composition -> KleisliArrow  (reified >=>)
+# Namespace: prim: <urn:silmaril:prim:#>
+# =====================================================================================
+
+
+# EXPECT-TRUE q_number_tower : the number tower resolves as a real subtyping chain.
+#   The litmus half #1 — every step of the mathematics-ISA is a genuine rdfs:subClassOf arrow.
+#   DATA CONTRACT (formal.ttl):
+#     prim:Natural rdfs:subClassOf prim:Integer ; prim:Integer rdfs:subClassOf prim:Rational ;
+#     prim:Rational rdfs:subClassOf prim:Real ; prim:Real rdfs:subClassOf prim:Complex ;
+#     prim:Imaginary rdfs:subClassOf prim:Complex .
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  prim:Integer   rdfs:subClassOf prim:Rational .
+  prim:Natural   rdfs:subClassOf prim:Integer .
+  prim:Rational  rdfs:subClassOf prim:Real .
+  prim:Real      rdfs:subClassOf prim:Complex .
+  prim:Imaginary rdfs:subClassOf prim:Complex .
+}
+
+
+# EXPECT-TRUE q_number_realized : the whole number tower is dual-grounded (litmus half #2, spec §9b).
+#   ℝ has both a 64-bit and a 32-bit ISA/UEFI realization and ℤ a 32-bit one (the original core),
+#   AND — the panel-mandated extension — ℚ realizes into a composite (Product) whose interpretAs
+#   is Rational, ℂ into a Product interpreting as Complex, Imaginary into a Real-carrier (Float64)
+#   interpreting as Imaginary, and Bignum into a ByteVector interpreting as Bignum. So the full
+#   litmus chain ℕ⊂ℤ⊂ℚ⊂ℝ⊂ℂ + imaginary each carries a correct-width or composite realization,
+#   reached FormalType --realizesAs--> Realization --encoding--> PhysicalEncoding --interpretAs-->.
+#   DATA CONTRACT (realization.ttl + physical.ttl): each conjunct below is emitted.
+# Each requirement is an independent FILTER EXISTS (an existence check that goes false the
+# instant that grounding is missing) so the seven checks are NOT joined into a cross product;
+# this is both faster and manifestly non-vacuous per conjunct.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER EXISTS { prim:Real      prim:realizesAs/prim:encoding ?e1 . ?e1 prim:bitWidth 64 }
+  FILTER EXISTS { prim:Real      prim:realizesAs/prim:encoding ?e2 . ?e2 prim:bitWidth 32 }
+  FILTER EXISTS { prim:Integer   prim:realizesAs/prim:encoding ?e3 . ?e3 prim:bitWidth 32 }
+  FILTER EXISTS { prim:Rational  prim:realizesAs/prim:encoding/prim:interpretAs prim:Rational }
+  FILTER EXISTS { prim:Complex   prim:realizesAs/prim:encoding/prim:interpretAs prim:Complex }
+  FILTER EXISTS { prim:Imaginary prim:realizesAs/prim:encoding/prim:interpretAs prim:Imaginary }
+  FILTER EXISTS { prim:Bignum    prim:realizesAs/prim:encoding/prim:interpretAs prim:Bignum }
+}
+
+
+# EXPECT-TRUE q_universality : every tower CLASS is dual-grounded (the class-level litmus, spec §9a).
+#   The class-form of the dual-grounding law (mirrors the SHACL prim:DualGroundingShape): every
+#   class that is rdfs:subClassOf+ prim:FormalType (all 59 tower classes) has a prim:Realization on
+#   itself, a realized ancestor, or a realized descendant. Grounding is read in both edge directions
+#   (?g prim:realizesAs ?r OR ?r prim:realizesFrom ?g). This is the ASK that the earlier decoy shape
+#   scoped away from; it goes false the instant any tower class is left ungrounded (a bare leaf).
+#   DATA CONTRACT: no ?c rdfs:subClassOf+ prim:FormalType lacks grounding on its subClassOf* line.
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  FILTER NOT EXISTS {
+    ?c rdfs:subClassOf+ prim:FormalType .
+    FILTER NOT EXISTS {
+      { ?c rdfs:subClassOf* ?g } UNION { ?g rdfs:subClassOf* ?c }
+      { ?g prim:realizesAs ?r } UNION { ?r prim:realizesFrom ?g }
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_colimit_roundtrip : every physical encoding closes back to a formal type.
+#   The mutual-colimit non-danglingness seal — physical --interpretAs--> formal is total over
+#   PhysicalEncoding, so no encoding dangles. (q_colimit_reflexive below strengthens this to a
+#   true identity at the Primitive level.)
+#   DATA CONTRACT (physical.ttl / realization.ttl): every ?e a prim:PhysicalEncoding has prim:interpretAs ?f, ?f a prim:FormalType.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?e a prim:PhysicalEncoding .
+    FILTER NOT EXISTS { ?e prim:interpretAs ?f . ?f a prim:FormalType }
+  }
+}
+
+
+# EXPECT-TRUE q_colimit_reflexive : every primitive's round-trip is a TRUE IDENTITY (spec §9d).
+#   Not mere non-danglingness — for EVERY prim:Primitive the walk physicalFacet --interpretAs-->
+#   MUST return the primitive's OWN formalFacet. This is what the three former proxy atoms
+#   (Bignum→Uint128→Natural, Instant→Int64→Integer, Decimal→Ascii→Codepoint) violated; they were
+#   fixed at the source (reflexive packed-BCD / ByteVector / epoch carriers), so identity now holds.
+#   DATA CONTRACT (taiji.ttl + physical.ttl): for every ?p a prim:Primitive with formalFacet ?f and
+#     physicalFacet ?pe, ?pe prim:interpretAs ?f.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?p a prim:Primitive ; prim:formalFacet ?f ; prim:physicalFacet ?pe .
+    FILTER NOT EXISTS { ?pe prim:interpretAs ?f }
+  }
+}
+
+
+# EXPECT-TRUE q_frame_effect : every realization is a Frame carrying an output AND an effect.
+#   The monadic-realization = Frame law — a bare mapping without a typed effect is not a Kleisli
+#   arrow of the Frame monad and is rejected.
+#   DATA CONTRACT (realization.ttl): every ?r a prim:Realization has prim:frameOutput ?o AND prim:frameEffect ?ef.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?r a prim:Realization .
+    FILTER NOT EXISTS { ?r prim:frameOutput ?o . ?r prim:frameEffect ?ef }
+  }
+}
+
+
+# EXPECT-TRUE q_bytevector_cap : the TWO enforced width caps hold (spec §9c).
+#   The two-cap model with teeth: a fixed-width SCALAR encoding is capped at prim:bitWidth ≤ 128,
+#   and a ByteVector-family encoding is capped at prim:byteCount ≤ 128 (byte occurrences, up to
+#   1024 bits). This tests the ENFORCED caps (matching SHACL EncodingShape + ByteVectorEncodingShape),
+#   not a decoy 1024-bit filter: injecting a scalar prim:bitWidth 900 OR a prim:byteCount 129 makes
+#   this ASK go false. Float128/Int128 (128 bits) and the 128-occurrence vectors sit exactly at the caps.
+#   DATA CONTRACT: no ?e a prim:PhysicalEncoding has prim:bitWidth > 128 or prim:byteCount > 128.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?e a prim:PhysicalEncoding .
+    { ?e prim:byteCount ?bc . FILTER(?bc > 128) }
+    UNION
+    { ?e prim:bitWidth ?b . FILTER(?b > 128) }
+  }
+}
+
+
+# EXPECT-TRUE q_kleisli_welltyped : EVERY reified Kleisli composition is well-typed (spec §9e).
+#   The prerequisite of the monad laws: a Composition (composeFirst f, composeSecond g,
+#   composeInto h) is a genuine >=> application only when the operands meet (f.kCod = g.kDom) and
+#   the result spans them (h.kDom = f.kDom AND h.kCod = g.kCod). This ASK holds iff NO Composition
+#   violates any of those three object equalities — the EXPECT-TRUE mirror of SHACL
+#   prim:KleisliCompositionShape. It reads the kDom/kCod signatures directly, so it is non-vacuous:
+#   injecting an ill-typed composition (composeSecond.kDom != composeFirst.kCod) flips it to false.
+#   DATA CONTRACT (realization.ttl): every prim:Composition's three arrows carry kDom/kCod and
+#     satisfy f.kCod = g.kDom, h.kDom = f.kDom, h.kCod = g.kCod (comp_leftUnit, comp_rightUnit,
+#     comp_fg, comp_fg_h, comp_gh, comp_f_gh are all well-typed).
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?c a prim:Composition ;
+       prim:composeFirst  ?f ;
+       prim:composeSecond ?g ;
+       prim:composeInto   ?h .
+    ?f prim:kCod ?fcod . ?f prim:kDom ?fdom .
+    ?g prim:kDom ?gdom . ?g prim:kCod ?gcod .
+    ?h prim:kDom ?hdom . ?h prim:kCod ?hcod .
+    FILTER ( ?fcod != ?gdom || ?hdom != ?fdom || ?hcod != ?gcod )
+  }
+}
+
+
+# EXPECT-TRUE q_monad_unit : the LEFT and RIGHT unit laws of Kleisli composition hold (spec §9e).
+#   Not a boolean flag — the actual two-sided law η_A >=> f ≡ f ≡ f >=> η_B, read off the reified
+#   Composition witnesses over WELL-TYPED compositions (kDom/kCod referenced throughout):
+#     LEFT  unit: the unit is η at the DOMAIN A — composeFirst ?idA has isMonadUnit true and
+#                 kDom = kCod = A; composeSecond ?fL departs from A (kDom A); composeInto = ?fL.
+#     RIGHT unit: the unit is η at the CODOMAIN B — composeSecond ?idB has isMonadUnit true and
+#                 kDom = kCod = B; composeFirst ?fR lands on B (kCod B); composeInto = ?fR.
+#   The right-unit operand is the identity at the codomain (prim:k_id_Float64), NOT at the domain:
+#   the earlier decorative witness used prim:k_id_Real (η at the domain Real) and was ill-typed, so
+#   it is now caught by q_kleisli_welltyped / prim:KleisliCompositionShape. A wrong composeInto or a
+#   domain/codomain mismatch makes this ASK false; on an empty graph it is false (non-vacuous).
+#   DATA CONTRACT (realization.ttl): prim:k_id_Real (η at Real) and prim:k_id_Float64 (η at Float64)
+#     both prim:isMonadUnit true with kDom = kCod; prim:comp_leftUnit reifies η_Real >=> f ≡ f and
+#     prim:comp_rightUnit reifies f >=> η_Float64 ≡ f, each composeInto = the non-unit operand.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  # LEFT unit η_A >=> f ≡ f — unit at the domain A
+  ?cl prim:composeFirst ?idA ; prim:composeSecond ?fL ; prim:composeInto ?intoL .
+  ?idA prim:isMonadUnit true ; prim:kDom ?a ; prim:kCod ?a .
+  ?fL   prim:kDom ?a ; prim:kCod ?bL .
+  ?intoL prim:kDom ?a ; prim:kCod ?bL .
+  FILTER(?intoL = ?fL)
+  # RIGHT unit f >=> η_B ≡ f — unit at the CODOMAIN B
+  ?cr prim:composeFirst ?fR ; prim:composeSecond ?idB ; prim:composeInto ?intoR .
+  ?idB prim:isMonadUnit true ; prim:kDom ?b ; prim:kCod ?b .
+  ?fR    prim:kDom ?aR ; prim:kCod ?b .
+  ?intoR prim:kDom ?aR ; prim:kCod ?b .
+  FILTER(?intoR = ?fR)
+}
+
+
+# EXPECT-TRUE q_monad_assoc : the ASSOCIATIVITY law of Kleisli composition holds (spec §9e).
+#   (f >=> g) >=> h ≡ f >=> (g >=> h), read off the reified Composition witnesses over the concrete
+#   byte-descent chain f = Real⤳Float64, g = Float64⤳ByteVector, h = ByteVector⤳Bit. The left
+#   bracketing composes prim:comp_fg then h; the right composes g then h then f; both composeInto the
+#   SAME arrow prim:k_Real_Bit. If the two bracketings disagreed, this ASK would be false.
+#   DATA CONTRACT (realization.ttl): prim:comp_fg / prim:comp_fg_h / prim:comp_gh / prim:comp_f_gh.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  VALUES (?f ?g ?h) { (prim:k_Real_Float64 prim:k_Float64_ByteVector prim:k_ByteVector_Bit) }
+  ?c1 prim:composeFirst ?f  ; prim:composeSecond ?g  ; prim:composeInto ?fg .
+  ?c2 prim:composeFirst ?fg ; prim:composeSecond ?h  ; prim:composeInto ?left .
+  ?c3 prim:composeFirst ?g  ; prim:composeSecond ?h  ; prim:composeInto ?gh .
+  ?c4 prim:composeFirst ?f  ; prim:composeSecond ?gh ; prim:composeInto ?right .
+  FILTER(?left = ?right)
+}
+
+
+# EXPECT-TRUE q_byte_descent : the physical carrier ladder byte-descends to the prim:Bit floor.
+#   Byte-descent = Kleisli composition of carriers down to the width-1 Bit floor. prim:Bit is a
+#   PhysicalCarrier class, and the ByteVector carrier reaches it through a transitive chain of
+#   prim:byteDescendsTo edges (ByteVector -> Octet -> Nibble -> Bit).
+#   DATA CONTRACT (physical.ttl):
+#     prim:Bit a owl:Class ; rdfs:subClassOf prim:PhysicalCarrier .
+#     prim:ByteVector prim:byteDescendsTo prim:Octet . prim:Octet prim:byteDescendsTo prim:Nibble .
+#     prim:Nibble prim:byteDescendsTo prim:Bit .
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+ASK {
+  prim:Bit a owl:Class .
+  prim:ByteVector prim:byteDescendsTo+ prim:Bit .
+}
+
+
+# EXPECT-TRUE q_rgb : the RGB colour code space is exactly Red/Green/Blue, each an Octet 0..255.
+#   The JEPA colour substrate (unary law): three channels, each one Octet of cardinality 256 and
+#   ordinal range 0..255.
+#   DATA CONTRACT (physical.ttl):
+#     prim:RGB prim:hasChannel prim:Red , prim:Green , prim:Blue .
+#     prim:Red/Green/Blue a prim:Octet ; prim:ordinalMin 0 ; prim:ordinalMax 255 .
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  prim:RGB prim:hasChannel prim:Red , prim:Green , prim:Blue .
+  prim:Red   a prim:Octet ; prim:ordinalMin 0 ; prim:ordinalMax 255 .
+  prim:Green a prim:Octet ; prim:ordinalMin 0 ; prim:ordinalMax 255 .
+  prim:Blue  a prim:Octet ; prim:ordinalMin 0 ; prim:ordinalMax 255 .
+}
+
+
+# =====================================================================================
+# STEP D — the FUNCTOR + LITERAL-YONEDA teeth (enrich, never strip).
+# =====================================================================================
+# The six ASKs below give the STEP A/B/C enrichment its teeth: rho is now a genuine
+# FUNCTOR ON ARROWS (formal.ttl SubtypeArrow/IdentityArrow/CompositeArrow -> realization.ttl
+# RealizationTransport) closed as LITERAL YONEDA (taiji.ttl representables, YonedaArrows,
+# rho-as-natural-transformation squares, Yoneda evaluations). Every one is a FILTER NOT EXISTS
+# universal (returns true iff NO counterexample), non-vacuous by injection exactly as the prior
+# FILTER-NOT-EXISTS ASKs are: each flips to false under a targeted violating injection
+# (documented in the README verification block / STEP D probe log). They read the genuine
+# graph edges (transportOf/transportDom/transportCod, composeArrow*, rhoObject, yonedaObject,
+# yonedaArrowOf, natComponent*, natCommutes), never a decorative flag alone.
+# Additional property-name contract (STEP A/B/C, binding):
+#   arrowDom/arrowCod                        : FormalArrow   -> FormalType   (formal category)
+#   composeArrowFirst/Second/Into            : CompositeArrow-> FormalArrow  (formal composition)
+#   rhoObject                                : FormalType    -> PhysicalObject (rho on objects)
+#   transportOf                              : RealizationTransport -> FormalArrow (rho on arrows)
+#   transportDom/transportCod                : RealizationTransport -> PhysicalObject
+#   isTransportIdentity                      : RealizationTransport -> xsd:boolean
+#   transportComposeFirst/Second/Into        : RealizationTransport -> RealizationTransport
+#   ancestralSubtype/ancestralAncestor       : AncestralGroundingPath -> FormalType
+#   ancestralViaArrow/ancestralViaTransport  : AncestralGroundingPath -> FormalArrow / RealizationTransport
+#   ancestralLandsIn                         : AncestralGroundingPath -> PhysicalObject
+#   yonedaObject                             : FormalType    -> RepresentablePresheaf (yo on objects)
+#   yonedaPoint                              : RepresentablePresheaf -> IdentityArrow (universal element)
+#   yonedaArrowOf/yonedaArrowDom/yonedaArrowCod : YonedaArrow -> FormalArrow / RepresentablePresheaf (yo on arrows)
+#   rhoComponentAt/Source/Target             : RhoComponent  -> FormalType / RepresentablePresheaf / PhysicalObject
+#   natOfArrow/natYonedaArrow/natTransport/natComponentDom/natComponentCod/natCommutes : NaturalitySquare edges
+# =====================================================================================
+
+
+# EXPECT-TRUE q_functor_identity : rho preserves identities — rho(id_A) = id on rho(A) (STEP B).
+#   The functor identity law made a graph fact: for EVERY object A of the thin formal category
+#   (every prim:IdentityArrow id_A of formal.ttl) the realization functor's image is a genuine
+#   IDENTITY transport at rho(A) — a prim:RealizationTransport that is prim:transportOf id_A,
+#   carries prim:isTransportIdentity true, and whose prim:transportDom equals its prim:transportCod
+#   equals prim:rhoObject(A) (the reflexive loop at A's canonical carrier). This is what makes rho
+#   a real functor rather than a bare object map: identities are total over the objects. It goes
+#   false the instant an identity arrow lacks its identity transport or that transport's endpoints
+#   drift off rho(A) (e.g. an injected wrong transportCod on an identity transport).
+#   DATA CONTRACT (realization.ttl): every prim:IdentityArrow id_A has a prim:rt_id_A with
+#     transportOf id_A, isTransportIdentity true, transportDom = transportCod = rhoObject(A).
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?id a prim:IdentityArrow ; prim:arrowDom ?a .
+    ?a prim:rhoObject ?ra .
+    FILTER NOT EXISTS {
+      ?t prim:transportOf ?id ; prim:isTransportIdentity true ;
+         prim:transportDom ?ra ; prim:transportCod ?ra .
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_functor_composition : rho preserves composition — rho(g after f) = rho(g) after rho(f) (STEP B).
+#   The functor composition law made a graph fact: for EVERY composite subtyping arrow of the thin
+#   formal category (prim:CompositeArrow with prim:composeArrowFirst f, prim:composeArrowSecond g)
+#   the realization functor's image is the composed transport whose reified decomposition through
+#   prim:transportComposeFirst/Second/Into is exactly (rho(f), rho(g), itself), well-typed on the
+#   nose: the transported legs are the rho-images of the very formal legs (?tf transportOf f,
+#   ?tg transportOf g), they MEET (rho(f).transportCod = rho(g).transportDom), and the composite
+#   SPANS them (transportDom = rho(f).transportDom, transportCod = rho(g).transportCod) and is its
+#   own witness (transportComposeInto = itself). Because the category is thin the decomposition is
+#   unique, so this is associativity-on-the-nose. It flips false if any transported leg's cod is
+#   broken (an injected wrong transportCod on a subtype transport used as a leg) or the endpoints
+#   fail to span — the same defect prim:FunctorTransportShape catches at the arrow level.
+#   DATA CONTRACT (realization.ttl): every prim:rt_comp_* over a CompositeArrow reifies its
+#     transportComposeFirst/Second/Into edge-for-edge from the formal composeArrowFirst/Second/Into.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?ca a prim:CompositeArrow ; prim:composeArrowFirst ?f ; prim:composeArrowSecond ?g .
+    ?t prim:transportOf ?ca ;
+       prim:transportComposeFirst ?tf ; prim:transportComposeSecond ?tg ; prim:transportComposeInto ?ti ;
+       prim:transportDom ?td ; prim:transportCod ?tc .
+    ?tf prim:transportOf ?f ; prim:transportDom ?tfd ; prim:transportCod ?tfc .
+    ?tg prim:transportOf ?g ; prim:transportDom ?tgd ; prim:transportCod ?tgc .
+    FILTER ( ?tfc != ?tgd || ?td != ?tfd || ?tc != ?tgc || ?ti != ?t )
+  }
+}
+
+
+# EXPECT-TRUE q_ancestral_transport_resolves : every subtype's ancestral grounding resolves (STEP B).
+#   The panel residual "X is also grounded through its ancestor" made a real, terminating edge —
+#   and here proven COMPLETE (coverage, not merely per-path soundness): for EVERY pair (A, B) where
+#   A is a tower subtype below a realized proper ancestor B (B rdfs:subClassOf+ prim:FormalType,
+#   B genuinely realized-reflexively — its rho(B) carrier prim:interpretAs closes back to B — and
+#   A != B; the unrealized apex prim:FormalType is thereby excluded), there MUST exist a
+#   prim:AncestralGroundingPath from A to B whose prim:ancestralViaTransport (the rho-image of the
+#   subtyping arrow A -> B) resolves via prim:transportCod onto rho(B) = the path's ancestralLandsIn.
+#   This makes "dual-grounded two ways" (direct + transported) a checkable, terminating fact for
+#   Currency, URI, Categorical, Longitude and every similar subtype. It flips false if any such path
+#   is REMOVED (the pair goes uncovered) OR its transport is mis-resolved (transportCod drifts off
+#   rho(B)). Verified: 45 realized-proper-ancestor pairs, 45 resolving paths, 0 uncovered.
+#   DATA CONTRACT (realization.ttl): one prim:agp_A_B per realized-proper-ancestor pair, each with
+#     ancestralViaTransport whose transportCod = ancestralLandsIn = rhoObject(B).
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  FILTER NOT EXISTS {
+    ?a rdfs:subClassOf+ ?b .
+    ?a rdfs:subClassOf+ prim:FormalType .
+    ?b rdfs:subClassOf+ prim:FormalType .
+    ?b prim:rhoObject ?rb . ?rb prim:interpretAs ?b .
+    FILTER(?a != ?b)
+    FILTER NOT EXISTS {
+      ?p a prim:AncestralGroundingPath ;
+         prim:ancestralSubtype ?a ; prim:ancestralAncestor ?b ;
+         prim:ancestralViaTransport ?t ; prim:ancestralLandsIn ?rb .
+      ?t prim:transportCod ?rb .
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_yoneda_faithful : distinct types have distinct representables (STEP C).
+#   Yoneda faithfulness in checkable finite form: the object action of the Yoneda embedding
+#   yo: A |-> yo(A) = Hom(-, A) = prim:repr_<A> is INJECTIVE — no two distinct FormalType objects
+#   share a representable presheaf. This is the object-level witness that yo is faithful (an
+#   embedding). It goes false the instant two distinct types are made to point (prim:yonedaObject)
+#   at the SAME representable — an injected collision prim:Bool prim:yonedaObject prim:repr_Bag
+#   makes ?a = Bool and ?b = Bag share prim:repr_Bag and flips the ASK to false.
+#   DATA CONTRACT (taiji.ttl): prim:yonedaObject is injective — 60 objects, 60 distinct repr_<A>.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?a prim:yonedaObject ?r . ?b prim:yonedaObject ?r .
+    FILTER (?a != ?b)
+  }
+}
+
+
+# EXPECT-TRUE q_yoneda_full : Hom(A,B) ~ Nat(yo(A),yo(B)) — Yoneda fullness in finite form (STEP C).
+#   Because the formal category is THIN, the arrow map f |-> yo(f) is a BIJECTION between the
+#   hom-set Hom(A,B) (the SubtypeArrow generators) and the natural transformations Nat(yo(A),yo(B))
+#   (the prim:YonedaArrows), the checkable finite form of Yoneda fullness. Three conjuncts pin it:
+#   (i) each prim:YonedaArrow yo(f) is FUNCTORIAL on endpoints — its yonedaArrowDom/Cod equal
+#   yo(arrowDom(f))/yo(arrowCod(f)) = prim:yonedaObject of f's domain/codomain; (ii) yonedaArrowOf
+#   is INJECTIVE (no two YonedaArrows share one formal arrow); (iii) it is SURJECTIVE onto the
+#   generators (every prim:SubtypeArrow has a YonedaArrow). Together: exactly one natural
+#   transformation of representables per generating arrow, endpoints matching — a bijection. It
+#   flips false if a yonedaArrowDom/Cod is broken, a YonedaArrow is duplicated onto one arrow, or a
+#   SubtypeArrow's YonedaArrow is removed.
+#   DATA CONTRACT (formal.ttl + taiji.ttl): 59 SubtypeArrows <-> 59 YonedaArrows, endpoints via yonedaObject.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?ya a prim:YonedaArrow ; prim:yonedaArrowOf ?f ;
+        prim:yonedaArrowDom ?yd ; prim:yonedaArrowCod ?yc .
+    ?f prim:arrowDom ?a ; prim:arrowCod ?b .
+    ?a prim:yonedaObject ?ra . ?b prim:yonedaObject ?rb .
+    FILTER (?yd != ?ra || ?yc != ?rb)
+  }
+  FILTER NOT EXISTS {
+    ?y1 prim:yonedaArrowOf ?f . ?y2 prim:yonedaArrowOf ?f . FILTER (?y1 != ?y2)
+  }
+  FILTER NOT EXISTS {
+    ?s a prim:SubtypeArrow . FILTER NOT EXISTS { ?ys prim:yonedaArrowOf ?s }
+  }
+}
+
+
+# EXPECT-TRUE q_naturality_commutes : rho: yo => R is natural — every square commutes (STEP C).
+#   rho promoted to a NATURAL TRANSFORMATION from the Yoneda embedding yo to the physical
+#   realization functor R: for EVERY subtype arrow f: A -> B a prim:NaturalitySquare pins its four
+#   edges — TOP yo(f) (prim:natYonedaArrow), BOTTOM rho(f) (prim:natTransport, the STEP B
+#   RealizationTransport), LEFT rho_A and RIGHT rho_B (prim:natComponentDom/Cod, prim:RhoComponents)
+#   — and asserts commutation. This ASK reads the PINNED CORNER EQUALITIES that make the two
+#   composite paths yo(A) -> rho(B) share endpoints: yonedaArrowDom(top) = rhoComponentSource(left),
+#   yonedaArrowCod(top) = rhoComponentSource(right), transportDom(bottom) = rhoComponentTarget(left),
+#   transportCod(bottom) = rhoComponentTarget(right); and it requires prim:natCommutes true on every
+#   square. In this thin category and its carrier image both paths are the SAME arrow, so commutation
+#   holds on the nose. It flips false if any corner is mis-wired (an injected wrong natComponentCod,
+#   whether that value is a DIFFERENT valid prim:RhoComponent — caught by the corner-equality clause —
+#   or a dangling/malformed node lacking rhoComponentSource/Target — caught by the well-formedness
+#   clause below), or a square's natCommutes flag is dropped, or a square is missing a corner entirely.
+#   The third conjunct closes the vacuous-match escape: the corner-equality clause only binds when
+#   both corners carry rhoComponentSource/Target, so a NaturalitySquare whose natComponentDom or
+#   natComponentCod does not resolve to a well-formed prim:RhoComponent (source AND target present) is
+#   rejected here regardless — making "an injected wrong natComponentCod" flip the ASK false for ANY
+#   wrong value, not only a wrong-but-valid component. Verified over the graph: 0 malformed corners.
+#   DATA CONTRACT (taiji.ttl): 59 NaturalitySquares, one per SubtypeArrow, corners pinned to
+#     well-formed RhoComponents (source+target), natCommutes true.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?sq a prim:NaturalitySquare ;
+        prim:natYonedaArrow ?top ; prim:natTransport ?bot ;
+        prim:natComponentDom ?ld ; prim:natComponentCod ?rt .
+    ?top prim:yonedaArrowDom ?yad ; prim:yonedaArrowCod ?yac .
+    ?bot prim:transportDom ?btd ; prim:transportCod ?btc .
+    ?ld prim:rhoComponentSource ?lsrc ; prim:rhoComponentTarget ?ltgt .
+    ?rt prim:rhoComponentSource ?rsrc ; prim:rhoComponentTarget ?rtgt .
+    FILTER ( ?yad != ?lsrc || ?yac != ?rsrc || ?btd != ?ltgt || ?btc != ?rtgt )
+  }
+  FILTER NOT EXISTS {
+    ?sq2 a prim:NaturalitySquare . FILTER NOT EXISTS { ?sq2 prim:natCommutes true }
+  }
+  FILTER NOT EXISTS {
+    ?sq3 a prim:NaturalitySquare .
+    FILTER NOT EXISTS {
+      ?sq3 prim:natComponentDom ?d3 ; prim:natComponentCod ?c3 .
+      ?d3 prim:rhoComponentSource ?s1 ; prim:rhoComponentTarget ?t1 .
+      ?c3 prim:rhoComponentSource ?s2 ; prim:rhoComponentTarget ?t2 .
+    }
+  }
+}
+
+
+# =====================================================================================
+# STEP E — RESIDUAL teeth: give the two DECORATIVE residuals real teeth (enrich, never strip).
+# =====================================================================================
+# RESIDUAL 1 — Frame = Yoneda-point / Yoneda-evaluation soundness was materialised but UNENFORCED:
+# prim:Frame prim:isYonedaPoint and the 60 prim:YonedaEvaluation edges (evalPresheaf/evalAtPoint/
+# evalYields/evalComponent) were read by NO ASK and NO SHACL shape, so injecting isYonedaPoint=false
+# or a wrong evalYields left the floor GREEN. q_yoneda_point + q_yoneda_evaluation_sound (mirrored by
+# prim:FrameYonedaPointShape + prim:YonedaEvaluationShape) close that.
+# RESIDUAL 2 — composite-transport EXISTENCE/COVERAGE was UNENFORCED: q_functor_composition +
+# prim:FunctorTransportShape catch a MIS-WIRED composite transport but NOT a MISSING one, and nothing
+# forced a composable subtype pair to actually HAVE a composite arrow. q_functor_composition_total
+# (mirrored by prim:CompositeTransportCoverageShape) closes both existence/coverage gaps.
+# Each new ASK was proven to BITE by injection (baseline True -> after-injection False), documented in
+# the README STEP E verification block, exactly as the prior STEP A/B/C/D teeth were.
+# =====================================================================================
+
+
+# EXPECT-TRUE q_yoneda_point : the Frame IS the Yoneda point (RESIDUAL 1a).
+#   The unary byte-frame law names the Frame the physical Yoneda point ("The Frame remains the
+#   physical Yoneda point for one such input stream"); taiji.ttl records that as prim:Frame
+#   prim:isYonedaPoint true. This ASK holds iff that identification is present AND not negated:
+#   prim:Frame must carry prim:isYonedaPoint true and must NOT also carry prim:isYonedaPoint false.
+#   Before this tooth the flag was materialised but read by NO ASK and NO shape, so injecting
+#   isYonedaPoint=false left the floor GREEN; now it flips this ASK false (and fires
+#   prim:FrameYonedaPointShape). On an empty graph it is false — non-vacuous: it demands the triple.
+#   DATA CONTRACT (taiji.ttl): prim:Frame prim:isYonedaPoint true (and no prim:Frame ...false).
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  prim:Frame prim:isYonedaPoint true .
+  FILTER NOT EXISTS { prim:Frame prim:isYonedaPoint false }
+}
+
+
+# EXPECT-TRUE q_yoneda_evaluation_sound : every Yoneda evaluation yields rho of its own type (RESIDUAL 1b).
+#   The literal content of "realization = Yoneda evaluation at the representable": evaluating
+#   yo(A) = prim:repr_<A> at its Yoneda point yields R(A) = rho(A), the canonical realization carrier
+#   of A. So EVERY prim:YonedaEvaluation's prim:evalYields MUST equal rho of the type whose
+#   representable it evaluates — the prim:rhoObject of the FormalType ?t whose prim:yonedaObject is the
+#   evaluation's prim:evalPresheaf (realization.ttl pins ?t prim:rhoObject ?carrier; taiji.ttl pins
+#   ?t prim:yonedaObject ?r and ?ye prim:evalPresheaf ?r prim:evalYields ?y). This ASK holds iff NO
+#   YonedaEvaluation yields anything other than that carrier. Before this tooth evalYields was
+#   materialised but read by no ASK/shape, so a wrong evalYields left the floor GREEN; now a wrong
+#   evalYields on any one evaluation makes ?y != ?carrier and flips this ASK false (and fires
+#   prim:YonedaEvaluationShape). Verified over the graph: 60 evaluations, 0 mismatches.
+#   DATA CONTRACT (taiji.ttl + realization.ttl): for every ?ye a prim:YonedaEvaluation with
+#     prim:evalPresheaf ?r and prim:evalYields ?y, the type ?t with ?t prim:yonedaObject ?r and
+#     ?t prim:rhoObject ?carrier has ?y = ?carrier (evalYields = rho of the evaluated type).
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?ye a prim:YonedaEvaluation ; prim:evalPresheaf ?r ; prim:evalYields ?y .
+    ?t prim:yonedaObject ?r ; prim:rhoObject ?carrier .
+    FILTER ( ?y != ?carrier )
+  }
+}
+
+
+# EXPECT-TRUE q_functor_composition_total : composite transport EXISTS and composable pairs are COVERED (RESIDUAL 2).
+#   q_functor_composition + prim:FunctorTransportShape catch a MIS-WIRED composite transport but NOT a
+#   MISSING one, and nothing forced a composable subtype pair to actually HAVE a composite arrow. This
+#   ASK closes both existence/coverage gaps as a single universal that holds iff:
+#     (a) EVERY prim:CompositeArrow has a prim:RealizationTransport that is prim:transportOf it —
+#         rho transports every composite subtyping arrow (no composite arrow is left un-transported); AND
+#     (b) EVERY composable pair of prim:SubtypeArrow generators (f: A -> B, g: B -> C, meeting at B, i.e.
+#         f.arrowCod = g.arrowDom) has a prim:CompositeArrow whose prim:composeArrowFirst is f and
+#         prim:composeArrowSecond is g — the distance-2 composite of that adjacent cover-edge pair
+#         exists (no composable pair is left without its composite).
+#   It flips false when a composite transport is REMOVED (part a) or a composite arrow is REMOVED for a
+#   still-composable pair (part b) — the two omissions the mis-wiring checks cannot see. Verified over
+#   the graph: 45 composite arrows, each transported; every adjacent subtype pair covered.
+#   DATA CONTRACT (formal.ttl + realization.ttl): every prim:CompositeArrow is prim:transportOf'd by
+#     some prim:RealizationTransport, and every adjacent SubtypeArrow pair (f.arrowCod = g.arrowDom) has
+#     a prim:CompositeArrow with prim:composeArrowFirst = f and prim:composeArrowSecond = g.
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  FILTER NOT EXISTS {
+    ?ca a prim:CompositeArrow .
+    FILTER NOT EXISTS { ?t prim:transportOf ?ca }
+  }
+  FILTER NOT EXISTS {
+    ?f a prim:SubtypeArrow ; prim:arrowDom ?a ; prim:arrowCod ?b .
+    ?g a prim:SubtypeArrow ; prim:arrowDom ?b ; prim:arrowCod ?c .
+    FILTER NOT EXISTS {
+      ?ca a prim:CompositeArrow ; prim:composeArrowFirst ?f ; prim:composeArrowSecond ?g .
+    }
+  }
+}

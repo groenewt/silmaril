@@ -1,0 +1,51 @@
+@prefix silm:  <urn:silmaril:entity#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# The DAG's structural law, made executable (Message 12: understood in SHACL).
+# These shapes are the authored gate against which dag_instances.ttl is
+# validated: every workflow carries phases, produces an artifact, is governed
+# by a skill and bound to a doctrine; every phase is ordinal; no workflow
+# depends on itself (the local half of acyclicity — the global half is proven
+# by the topological-order query terminating with every vertex emitted).
+# =============================================================================
+
+silm:WorkflowShape a sh:NodeShape ;
+    sh:targetClass silm:Workflow ;
+    sh:property [ sh:path silm:hasPhase ;      sh:minCount 1 ;
+                  sh:message "every Workflow must decompose into at least one Phase (no one-hammer pass)" ] ;
+    sh:property [ sh:path silm:producesArtifact ; sh:minCount 1 ;
+                  sh:message "every Workflow must produce at least one named Artifact (observable output)" ] ;
+    sh:property [ sh:path silm:governedBySkill ;  sh:minCount 1 ;
+                  sh:message "every Workflow must be governed by at least one superpowers skill" ] ;
+    sh:property [ sh:path silm:honorsDoctrine ;   sh:minCount 1 ;
+                  sh:message "every Workflow must honor at least one Doctrine (Praeriehund / Unary law)" ] ;
+    sh:sparql [
+        sh:message "a Workflow must not depend on itself (acyclicity, local check)" ;
+        sh:prefixes silm: ;
+        sh:select """
+            PREFIX silm: <urn:silmaril:entity#>
+            SELECT $this WHERE { $this silm:dependsOn $this . }
+        """ ] .
+
+silm:PhaseShape a sh:NodeShape ;
+    sh:targetClass silm:Phase ;
+    sh:property [ sh:path silm:hasOrdinal ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:integer ;
+                  sh:message "every Phase must carry exactly one integer ordinal" ] .
+
+silm:TaskShape a sh:NodeShape ;
+    sh:targetClass silm:Task ;
+    sh:property [ sh:path silm:consumesArtifact ; sh:minCount 1 ;
+                  sh:message "every Task must declare what it consumes (Interfaces contract)" ] ;
+    sh:property [ sh:path silm:producesArtifact ; sh:minCount 1 ;
+                  sh:message "every Task must declare what it produces (Interfaces contract)" ] .
+
+silm:DirectedAcyclicGraphShape a sh:NodeShape ;
+    sh:targetClass silm:DirectedAcyclicGraph ;
+    sh:property [ sh:path silm:hasWorkflow ; sh:minCount 1 ;
+                  sh:message "the graph must contain at least one Workflow" ] .

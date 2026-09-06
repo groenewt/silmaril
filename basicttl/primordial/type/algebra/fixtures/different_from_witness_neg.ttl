@@ -1,0 +1,29 @@
+# =====================================================================================
+# different_from_witness_neg.ttl — the FAILING NEGATIVE fixture for DifferentFromWitnessShape
+# (W2 · SP0, T-FIX). The materialized RED (D24: sh:conforms true alone is vacuous — a positive
+# AND a failing negative per shape).
+# =====================================================================================
+# A rec:model:record that is owl:sameAs a sibling it is ALSO declared owl:disjointWith — the
+# D25 homonym/distinction collapse (a model collapsed into a record it is declared DISTINCT from;
+# the SINGLE injected violation). Merged onto the algebra data graph the graph MUST NOT conform:
+# DifferentFromWitnessShape tooth (i) (shapes/algebra.shapes.ttl:266) matches $this owl:sameAs
+# ?other with $this owl:disjointWith ?other and returns >= 1 row. The collapse uses owl:disjointWith
+# (NOT owl:differentFrom), so tooth (ii) — which requires an owl:differentFrom + owl:sameAs pair —
+# stays quiet, isolating the failure to tooth (i) of exactly DifferentFromWitnessShape. The node
+# carries @rel:notation (ModelShape satisfied) and no carrier / identity:element / cells, so no
+# other model-targeting tooth fires.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record), never an owl:Class; the sibling is a bare node.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a model record COLLAPSED (owl:sameAs) into a sibling it is owl:disjointWith (INVALID) ---
+<urn:silmaril:fixture:algebra:different:from:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "model record owl:sameAs a sibling it is owl:disjointWith (INJECTED VIOLATION)" ;
+    owl:disjointWith <urn:silmaril:fixture:algebra:different:from:negative:sibling> ;
+    owl:sameAs       <urn:silmaril:fixture:algebra:different:from:negative:sibling> .
+    # INJECTED VIOLATION: sameAs a declared-disjoint sibling -> DifferentFromWitnessShape tooth (i) RED

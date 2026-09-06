@@ -1,0 +1,100 @@
+# =====================================================================================
+# commutative_monoid_pos.ttl — the POSITIVE fixture for the commutativity tooth (W2 · SP0, T-CMON).
+# =====================================================================================
+# Z/3 under addition {e=0, a=1, b=2}, a genuine COMMUTATIVE MONOID (it is the cyclic group Z/3,
+# hence a fortiori a commutative monoid — abelian, associative, with identity e=0) with the full,
+# correct Cayley table:
+#   e·e=e  e·a=a  e·b=b   a·e=a  a·a=b  a·b=e   b·e=b  b·a=e   b·b=a
+# Every ordered pair commutes: e·a=a=a·e, e·b=b=b·e, a·b=e=b·a. Merged onto the algebra data graph
+# it MUST still conform (run-algebra-checks.sh step (b) positive polarity) and
+# probes/commutative_monoid_law.rq returns 0 rows over it — every pair x,y has x·y = y·x. It also
+# declares an identity element e, so the existing ModelShape identity tooth (shapes/algebra.shapes.ttl)
+# is genuinely satisfied here (making it a valid commutative witness whose single-cell corruption twin,
+# fixtures/commutative_monoid_neg.ttl, breaks BOTH the commutativity probe AND that identity tooth).
+# It is the finite:checked / finite:table witness the design demotes to fixtures/ (D24 four-planes:
+# element / finite-table evidence lives OUTSIDE the ontology data glob and the CI data graph). Typed
+# rec:model:record so it is a focus of the ModelShape.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare and never an
+# owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/3 (commutative), declared identity e, finite:checked ---
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/3 under + (genuine commutative monoid, identity e)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> ;
+    rel:validation:mode  "finite:table" ;
+    rel:proof:status     "finite:checked" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "b = 2" .
+
+# --- the reified Cayley cells (Z/3 addition table — total, correct, commutative) ---
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:eb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:ab>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:be>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:ba>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:e> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:cell:bb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:positive:elem:a> .

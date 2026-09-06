@@ -1,0 +1,103 @@
+# =====================================================================================
+# group_z3_cayley_negative.ttl — the ASSOCIATIVITY-VIOLATING matching negative for the group Z/3
+# Cayley certificate (W2 · SP0, T-FIX). The materialized RED (D24: a positive AND a failing
+# negative per certificate; sh:conforms true alone is vacuous).
+# =====================================================================================
+# A 3-element carrier {x0,x1,x2} whose reified Cayley table is a genuine Latin square (every row
+# and column a permutation — so unique left/right division HOLDS, QuasigroupDivisionShape stays
+# quiet) and is commutative (symmetric — the commutativity shapes stay quiet), but is NOT
+# ASSOCIATIVE — the group law associativity fails (the SINGLE injected defect; the positive twin
+# fixtures/group_z3_cayley.ttl is the associative Z/3 group). The table (first·second=result):
+#   x0·x0=x0  x0·x1=x2  x0·x2=x1
+#   x1·x0=x2  x1·x1=x1  x1·x2=x0
+#   x2·x0=x1  x2·x1=x0  x2·x2=x2
+# witnesses (x0·x1)·x2 = x2·x2 = x2  while  x0·(x1·x2) = x0·x0 = x0  (x2 != x0). Merged onto the
+# algebra data graph the graph MUST NOT conform: SemigroupAssociativityShape (shapes/algebra.shapes.ttl:296-301)
+# joins the four cells x0·x1, x1·x2, (x0·x1)·x2, x0·(x1·x2) and returns >= 1 row. No
+# @rel:identity:element is declared (this non-associative quasigroup has none), so the ModelShape /
+# GroupInverse / LoopIdentity identity teeth stay vacuous; the Latin-square + commutative structure
+# keeps the division and commutativity teeth quiet; no @rel:carrier:member is declared so
+# MagmaClosureShape is vacuous — exactly SemigroupAssociativityShape flips conforms True->False.
+# D24 four-planes: finite-table evidence UNDER fixtures/.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare, never an owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the NON-ASSOCIATIVE certificate model (a commutative Latin square, no identity) ---
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "3-element commutative Latin square that is NON-ASSOCIATIVE (INJECTED VIOLATION: not a group)" ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "counterexample:known" .
+
+# --- carrier elements {x0,x1,x2} ---
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "x0" .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "x1" .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "x2" .
+
+# --- the reified Cayley cells: a Latin square, commutative, NON-ASSOCIATIVE ---
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:00>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:01>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:02>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:10>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:11>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:12>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:20>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:21>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x1> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x0> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:negative:cell:22>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:negative:elem:x2> .  # (x0·x1)·x2 = x2·x2 = x2 != x0 = x0·(x1·x2) -> SemigroupAssociativityShape RED

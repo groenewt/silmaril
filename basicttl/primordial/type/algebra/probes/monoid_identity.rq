@@ -1,0 +1,40 @@
+# =====================================================================================
+# monoid_identity.rq — RED->GREEN probe for T-MONOID (the two-sided identity tooth,
+# W2 · SP0). Re-homes algebra_spine.ttl q_monoid_identity / fnd:MonoidIdentityShape
+# (:631-653) into the folded stratified idiom, over the unified @rel:* reified-table
+# vocabulary (bridges.ttl:249-291: relation:structure = fnd:opStructure,
+# relation:category:first/second/result = fnd:opLeft/opRight/opResult).
+# =====================================================================================
+# The MONOID two-sided identity law: for every model carrying an identity element e
+# (@rel:identity:element e), no reified composition row (a Cayley-table cell scoped to
+# the model by @rel:structure) with e as its FIRST operand may yield a result != its
+# SECOND operand (left-unit e·x = x), and no row with e as its SECOND operand may yield
+# a result != its FIRST operand (right-unit x·e = x). This SELECT returns every row that
+# VIOLATES that — the model, the offending cell, the two operands and the wrong result.
+#
+#   GREEN (a genuine monoid, e.g. fixtures/monoid_z2.ttl — Z/2 under + with e=0):
+#         0 rows — every identity row yields the other operand, the tooth is satisfied.
+#   RED   (a broken monoid, e.g. fixtures/monoid_z2_negative.ttl — the row e·1 yields e
+#         instead of 1): >= 1 row — the left-unit law fails and the tooth bites.
+#
+# Run over the algebra data graph merged with the fixture under test, inference=none.
+# Companion SHACL tooth: shapes/algebra.shapes.ttl MonoidModelIdentityShape (sh:sparql,
+# sh:targetClass rec:model:record) flips conforms True->False under the same injection.
+# The complementary "monoid = one-object category" seam (algebra_spine.ttl:445
+# q_monoid_is_endo / fnd:MonoidIsEndoShape / fnd:endoMonoidWitness) is a Pillar-4 category
+# seam OUTSIDE the one-operation spine and is EXPLICITLY DEFERRED to the category fan-out
+# (design §7.4) — it is NOT dropped, it re-homes there.
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?model ?cell ?first ?second ?result WHERE {
+  ?model rel:identity:element ?e .
+  ?cell  rel:structure        ?model ;
+         rel:category:first   ?first ;
+         rel:category:second  ?second ;
+         rel:category:result  ?result .
+  FILTER(
+       ( ?first  = ?e && ?result != ?second )   # left-unit  e·x = x  violated
+    || ( ?second = ?e && ?result != ?first  )   # right-unit x·e = x  violated
+  )
+}

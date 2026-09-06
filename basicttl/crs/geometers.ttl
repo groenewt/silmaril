@@ -1,0 +1,743 @@
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# geometers.ttl — the per-geometer floor + the per-geometer dimension law of the CRS floor (W2 · SP3, Task T5).
+# =====================================================================================
+# LIFTED (Directive 1: lift, do not invent) from the Helios carrier-towers source
+# helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex and the
+# quark-grid template helios/00_src_specs/templates/_urn/identity.j2 (::quark / quark_block, whose
+# module-level tables _QUARK_CATEGORY_URNS = {quark_category_cat, quark_category_econ,
+# quark_category_lang} and _QUARK_AXIS_URNS = {quark_axis_node_or_arrow, quark_axis_shape,
+# quark_axis_color} fix the 3x3 discriminator grid). The whitepaper's terminal drill states the S/O/P
+# tower files "each own a separate dimension value"; the per-Frame perceptual tessellation
+# T_f=(V_f,E_f,F_f,w_f,l_f,e_f) (def:whitepaper-frame-perceptual-tessellation) is the archetype that
+# DIMENSION IS PER-Frame/PER-geometer, never a jump straight to S-O-P.
+#
+# WHAT THIS FILE MATERIALISES (T5): the per-geometer floor BELOW the towers — "we cannot jump to
+# towers" (design spec 2.4). A crs:Geometer is fixed by its atlas glossary (crs:fixedByGlossary, an SP6
+# forward reference marked silm:isProvisional true), declares its OWN axis system (crs:hasAxis, each
+# member a URN tower — Q2), its OWN dimension (crs:hasDimension = the arity of that axis system), and
+# sits above the low-order 3x3 quark grid (crs:hasQuarkGrid). Two geometers are materialised as
+# witnesses of DIFFERENT dimension so the per-geometer law is genuinely exercised: crs:RoleGeometer
+# (the S-O-P role-tower geometer, dimension 3, whose three axes ARE the three independent role URN
+# towers K_S/K_O/K_P of towers.ttl) and crs:QuarkGridGeometer (the rank-2 low-order quark-grid
+# geometer, dimension 2, whose two axes are the quark category axis and the quark discriminator axis).
+# The S-O-P role geometer is thereby a rank-3 SIBLING geometer (not a presumed jump); T6 will build the
+# agnostic crs:PlaneGeometer family as rank-2 projections off this same rank-3 role geometer.
+#
+# Directive 17 (be MORE agnostic/progenitor on ALL): rather than mint the concrete geometers bare and
+# privilege one, this file mints the AGNOSTIC PROGENITOR crs:Geometer (the geometer category that
+# grounds NO concrete axis and declares NO concrete dimension) with crs:RoleGeometer and
+# crs:QuarkGridGeometer as composable children, none privileged — the byte-order/carrier-tag progenitor
+# pattern applied to the geometer. The progenitor carries no crs:hasAxis, so crs:DimensionCountShape
+# (which targets crs:Geometer instances) never sees it as a geometer with a coordinate system.
+#
+# THE HEADLINE LAW (Q2, the W4 blocking gate "chart coord-count==dimension"): PER-GEOMETER,
+# count(DISTINCT crs:hasAxis) == crs:hasDimension, counting TOWER-AXES not scalars. The scalar reading
+# (three scalar ordinals collapsed from the towers) is the forbidden positional-collapse; dimension
+# counts the AXIS ARITY. This is enforced by crs:DimensionCountShape (crs.shapes.ttl), a sh:sparql
+# per-geometer aggregate — NOT a range-inference-vacuous sh:class (SP1 defang discipline).
+#
+# GROUNDING: crs:hasDimension is a prim:Natural (typed xsd:nonNegativeInteger); the role geometer's
+# axes are the SP3 tower witnesses of towers.ttl (crs:subjectTowerWitness/objectTowerWitness/
+# predicateTowerWitness, each a crs:UrnRoleTower functor prim:Ordinal -> prim:URN); the quark axes are
+# crs:UrnTowerAxis positions (crs:axisComponentType prim:URN, crs:axisComposite prim:Vector), so the T3
+# tooth crs:AxisUrnTowerShape governs them too. Corpus-agnostic v1 (Directive 13): the only individuals
+# are floor WITNESSES (two geometers, one shared quark grid, its two axes, two provisional glossaries),
+# minted only to keep crs:DimensionCountShape / q_dimension_equals_count / q_geometer_below_towers
+# non-vacuous — zero corpus instances. The geometer/axis/grid OBJECT classes (crs:Geometer /
+# crs:RoleGeometer / crs:QuarkGridGeometer / crs:GeometerAxis / crs:QuarkGrid) are bare owl:Classes NOT
+# rdfs:subClassOf* prim:FormalType at T5, so SP1's prim:DualGroundingShape / prim:YonedaShape do not yet
+# target them here; their reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl).
+# crs:AtlasGlossary is EXCEPTED: it is a PROVISIONAL SP6 forward reference (silm:isProvisional true) whose
+# grounding belongs to SP6, so it stays outside prim:FormalType in v1 and is deliberately NOT grounded by T11.
+#
+# TOOTH (this task): crs:DimensionCountShape (crs.shapes.ttl) + q_dimension_equals_count +
+# q_geometer_below_towers (crs.queries.sparql). Probe of record (conforms/ASK True->False): inject one
+# crs:probeXyGeometer a crs:QuarkGridGeometer ; crs:hasDimension 2 ; crs:hasAxis (three axes) — an
+# (x,y) geometer with 3 axes (or equally a S-O-P geometer declaring dimension 2) -> conforms=False and
+# q_dimension_equals_count True->False. T6 (plane-geometer family) and T7 (five-factor product K) add
+# to this same file next.
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (2.4)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T5)
+# =====================================================================================
+
+
+# ---- The agnostic geometer progenitor + its two symmetric children (S-O-P role / quark grid) --------
+
+crs:Geometer a owl:Class ;
+    rdfs:label "Geometer (agnostic per-geometer progenitor)" ;
+    rdfs:comment "The AGNOSTIC geometer progenitor, lifted from the Helios per-Frame discipline (05_carrier_towers_triad.tex, def:whitepaper-frame-perceptual-tessellation: dimension is per-Frame/per-geometer) and the design's load-bearing rule 'we cannot jump to towers' (spec 2.4). A crs:Geometer is a coordinate reference frame FIXED BY ITS ATLAS GLOSSARY (crs:fixedByGlossary -> crs:AtlasGlossary, the SP6 glossary that names its axes, a forward reference marked silm:isProvisional true) that declares its OWN axis system (crs:hasAxis, each member a URN tower per Q2), its OWN dimension (crs:hasDimension, the arity of that axis system), and the low-order 3x3 quark grid beneath it (crs:hasQuarkGrid). Per Directive 17 (be more agnostic on all) this progenitor grounds NO concrete axis and declares NO concrete dimension — it is the frame-neutral join of the concrete geometers, exactly the byte-order/carrier-tag progenitor pattern applied to the geometer — and its composable children crs:RoleGeometer (the rank-3 S-O-P role-tower geometer) and crs:QuarkGridGeometer (the rank-2 low-order quark-grid geometer) supply the concrete frames, none privileged. The headline law crs:DimensionCountShape (Q2, the W4 chart coord-count==dimension gate) enforces PER-GEOMETER that count(crs:hasAxis) equals crs:hasDimension, counting tower-axes never scalars; because the progenitor carries no crs:hasAxis it is not a coordinate frame and the plane geometers of T6 descend from it as a symmetric family. GROUNDS-NOTHING IS ENFORCED SYMMETRICALLY AT THIS TOP LEVEL (Directive 17 no-privilege, closing the round-1 G1 residual): the top crs:Geometer is NOT privileged over the plane progenitor — a node typed BARE crs:Geometer (at none of the seven concrete geometer leaves) carrying a concrete crs:hasAxis is RED via the generalised crs:PlaneProgenitorShape constraint A (the same grounds-nothing axis tooth that guards crs:PlaneGeometer, now guarded on crs:Geometer with the seven-concrete-leaf enumeration), and one carrying a concrete crs:hasDimension is RED via crs:DimensionCountShape's top-progenitor grounds-nothing clause (this progenitor 'declares NO concrete dimension', so it may carry none). The two plane progenitors crs:PlaneGeometer / crs:RolePairProjectionPlane are the ONLY progenitors that may still declare a dimension — their rank-2 FAMILY ARITY (crs:hasDimension 2), exempt from that dimension clause — while remaining exempt (grounds nothing) from the axis tooth and the count law." .
+
+crs:RoleGeometer a owl:Class ;
+    rdfs:subClassOf crs:Geometer ;
+    rdfs:label "RoleGeometer (the rank-3 S-O-P role-tower geometer)" ;
+    rdfs:comment "The S-O-P role-tower geometer, lifted from the whitepaper's decisive non-collapse witness (05_carrier_towers_triad.tex, Color/Triple/Pair/Input/Value.scala, digest 3fe64391...): 'one input carries an Atlas triple, a Graph triple, and three separately typed Subject, Object, and Predicate tower values'. It is the geometer whose axis system IS the three independent role URN towers K_S/K_O/K_P (crs:hasAxis -> crs:subjectTowerWitness / crs:objectTowerWitness / crs:predicateTowerWitness of towers.ttl), so its own crs:hasDimension is 3 — three TOWER projections (Q2), NEVER three scalar ordinals collapsed from the towers (the forbidden positional-collapse of T4). It is one of the two symmetric composable children of the agnostic progenitor crs:Geometer (Directive 17), a co-equal sibling of crs:QuarkGridGeometer, and it is itself just a geometer fixed by its atlas glossary (crs:fixedByGlossary) — NOT a presumed jump to towers ('we cannot jump to towers'). It stays a RANK-3 SIBLING: the agnostic crs:PlaneGeometer family of T6 is built as rank-2 lawful projections OFF this rank-3 role geometer (each dropping one role), so no role pair is privileged. The per-geometer law count(crs:hasAxis)==crs:hasDimension is enforced by crs:DimensionCountShape." .
+
+crs:QuarkGridGeometer a owl:Class ;
+    rdfs:subClassOf crs:Geometer ;
+    rdfs:label "QuarkGridGeometer (the rank-2 low-order quark-grid geometer)" ;
+    rdfs:comment "The low-order quark-grid geometer, lifted from helios/00_src_specs _urn/identity.j2::quark (the 9-cell quark_block whose module tables fix the 3x3 grid {cat,econ,lang} x {node_or_arrow,shape,color}). It is the rank-2 geometer BENEATH the towers (design spec 2.4: the per-geometer quark grid is 'the low-order axis layer beneath the towers'), whose axis system is the two grid axes crs:quarkCategoryAxis (the {cat,econ,lang} category axis) and crs:quarkDiscriminatorAxis (the {node_or_arrow,shape,color} discriminator axis) — so its own crs:hasDimension is 2. It is one of the two symmetric composable children of the agnostic progenitor crs:Geometer (Directive 17), a co-equal sibling of the rank-3 crs:RoleGeometer with neither privileged; the two witnesses declaring DIFFERENT dimensions (2 vs 3) is exactly what makes dimension PER-geometer rather than one presumed rank-3 jump (q_geometer_below_towers). It is fixed by its atlas glossary (crs:fixedByGlossary) and carries the shared 3x3 quark grid (crs:hasQuarkGrid -> crs:QuarkGrid, whose crs:quarkGridCellCount is 9). Each of its two axes is a URN tower (crs:UrnTowerAxis, crs:axisComponentType prim:URN, governed by the T3 crs:AxisUrnTowerShape); the per-geometer law count(crs:hasAxis)==crs:hasDimension is enforced by crs:DimensionCountShape." .
+
+
+# ---- The geometer axis (range of crs:hasAxis — a URN tower, counted for the dimension law) ----------
+
+crs:GeometerAxis a owl:Class ;
+    rdfs:label "GeometerAxis (an axis of a geometer coordinate system — a URN tower)" ;
+    rdfs:comment "An axis of a geometer's coordinate system — one member of the geometer's axis system, the unit whose ARITY (count of crs:hasAxis) IS the geometer's crs:hasDimension per Q2. Lifted from the whitepaper's insistence (05_carrier_towers_triad.tex) that a geometer's coordinates are TOWER-axes, never scalars: every crs:GeometerAxis is a URN TOWER — either a role URN tower (a crs:UrnRoleTower, e.g. the Subject/Object/Predicate tower witnesses that are the three axes of the S-O-P role geometer) or a URN-tower axis position (a crs:UrnTowerAxis, e.g. the two quark grid axes), both of which carry prim:URN components and a prim:Vector/prim:Tensor composite (never a prim:Real scalar). It is the declared rdfs:range of crs:hasAxis, so under rdfs inference every object of crs:hasAxis is a crs:GeometerAxis; this is what makes the crs:DimensionCountShape aggregate count TOWER-axes (the arity of the axis system) rather than the scalar ordinals a positional-collapse would produce. At T5 it is a bare owl:Class NOT rdfs:subClassOf* prim:FormalType, so SP1's prim:DualGroundingShape does not yet target it here; its reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl), which puns it a prim:FormalType with its own prim:Realization + reflexive octet-vector carrier + prim:Primitive + Yoneda apparatus, so SP1's prim:DualGroundingShape and prim:YonedaShape target and are satisfied by it over the merged graph." .
+
+
+# ---- The 3x3 quark grid (the low-order {cat,econ,lang}x{node_or_arrow,shape,color} layer) -----------
+
+crs:QuarkGrid a owl:Class ;
+    rdfs:label "QuarkGrid (the 3x3 {cat,econ,lang}x{node_or_arrow,shape,color} discriminator grid)" ;
+    rdfs:comment "The 3x3 quark grid, lifted octet-for-octet from helios/00_src_specs _urn/identity.j2 (the quark_block macro and its module-level tables _QUARK_CATEGORY_URNS = {urn:silmaril:entity#types.prelude.quark_category_cat, ...quark_category_econ, ...quark_category_lang} and _QUARK_AXIS_URNS = {urn:silmaril:entity#types.prelude.quark_axis_node_or_arrow, ...quark_axis_shape, ...quark_axis_color}). It is the low-order discriminator plane BENEATH the towers (design spec 2.4: 'the 3x3 low-order geometer plane {cat,econ,lang} x {node_or_arrow,shape,color}', the a,b/x,y-style axis layer). Its two axes are crs:quarkCategoryAxis (the three categories CAT = object identity in category Atom, ECON = economic/state discriminator, LANG = language/edge discriminator) and crs:quarkDiscriminatorAxis (the three discriminators node-vs-arrow identity, shape, colour), related by crs:quarkGridAxis; the product of the two three-valued axes is the 9-cell grid, recorded by crs:quarkGridCellCount 9. Every geometer carries the shared grid via crs:hasQuarkGrid — the concrete graph statement that a geometer sits ABOVE the low-order quark grid and does not jump straight to the towers ('we cannot jump to towers'). Its members are lifted as immutable full-lexical entity URNs (STRICTNESS Rule 3: external spellings survive only as bridge evidence). At T5 it is a bare owl:Class NOT rdfs:subClassOf* prim:FormalType, so SP1's prim:DualGroundingShape does not yet target it here; its reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl), which puns it a prim:FormalType with its own prim:Realization + reflexive octet-vector carrier + prim:Primitive + Yoneda apparatus, so SP1's prim:DualGroundingShape and prim:YonedaShape target and are satisfied by it over the merged graph." .
+
+crs:AtlasGlossary a owl:Class ;
+    rdfs:label "AtlasGlossary (the SP6 glossary that fixes a geometer's axes — PROVISIONAL forward ref)" ;
+    rdfs:comment "The atlas glossary that FIXES a geometer — the SP6 glossary that names a geometer's axes and thereby fixes its axis system and dimension (design spec 2.4: 'A crs:Geometer is fixed by its atlas glossary'; Interfaces/Produces: 'every crs:Geometer is fixed by its atlas glossary -- SP6 supplies the glossaries that name each geometer's axes'). It is a FORWARD REFERENCE to SP6 (the glossary polysemy sub-project, lower in the batch): the glossary INTERNALS belong to SP6, so SP3 mints only the mechanism — the crs:fixedByGlossary edge from a geometer to its glossary — and marks every glossary witness silm:isProvisional true (Praeriehund honesty: name the forward dependency, do not fabricate SP6's content). The whitepaper's Atlas ring ordinals ride prim:Ordinal axes named by such a glossary. It is the honest statement that a geometer is not free-floating: its axes are FIXED by a named glossary, PROVISIONALLY until SP6 supplies the concrete glossaries. As a PROVISIONAL SP6 forward reference (silm:isProvisional true) whose grounding belongs to SP6, it is deliberately NOT rdfs:subClassOf* prim:FormalType and is deliberately NOT grounded by Task T11 (which grounds only the concrete coordinate-chart OBJECT classes, never a provisional forward-ref); SP1's prim:DualGroundingShape does not target it, honestly deferred to SP6 in v1." .
+
+
+# ---- The geometer relations (axis system, dimension, glossary-fixing, quark grid) ------------------
+
+crs:hasAxis a owl:ObjectProperty ;
+    rdfs:domain crs:Geometer ;
+    rdfs:range crs:GeometerAxis ;
+    rdfs:label "hasAxis" ;
+    rdfs:comment "Relates a crs:Geometer to one axis of its coordinate system — one member of its axis system, a crs:GeometerAxis (a URN tower). The ARITY of crs:hasAxis (the count of DISTINCT axes a geometer carries) IS the geometer's dimension: crs:DimensionCountShape enforces PER-GEOMETER that count(crs:hasAxis) == crs:hasDimension (Q2, the W4 chart coord-count==dimension gate). The role geometer carries exactly its three role URN towers (crs:subjectTowerWitness/objectTowerWitness/predicateTowerWitness -> dimension 3); the quark-grid geometer carries exactly its two grid axes (crs:quarkCategoryAxis/quarkDiscriminatorAxis -> dimension 2). Because each axis is a URN TOWER (Q2), crs:hasAxis counts tower-axes, never the scalar ordinals a positional-collapse would produce. It is the edge q_dimension_equals_count aggregates and the edge the probe of record over-supplies (an (x,y) geometer with 3 axes) to make the tooth bite." .
+
+crs:hasDimension a owl:DatatypeProperty ;
+    rdfs:domain crs:Geometer ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "hasDimension" ;
+    rdfs:comment "The geometer's OWN dimension — a prim:Natural (here typed xsd:nonNegativeInteger) equal to the ARITY of its axis system (count of crs:hasAxis), PER-GEOMETER (Q2). Lifted from the whitepaper's terminal drill (05_carrier_towers_triad.tex: the S/O/P tower files 'each own a separate dimension value') and the per-Frame tessellation archetype (dimension is per-Frame/per-geometer). The S-O-P role geometer declares crs:hasDimension 3 (three tower projections); the low-order quark-grid geometer declares crs:hasDimension 2 (two grid axes). This is DISTINCT from a tower's own internal crs:hasTowerDimension (towers.ttl): crs:hasDimension is the geometer's AXIS-ARITY, kept separate from each axis tower's internal nth. It is what crs:DimensionCountShape compares the crs:hasAxis count to; a geometer declaring a dimension that does not equal its axis count (a S-O-P geometer declaring 2, or an (x,y) geometer with 3 axes) is rejected. Counting tower-axes NEVER scalars is the load-bearing Q2 reading: the scalar count would be the forbidden positional-collapse." .
+
+crs:fixedByGlossary a owl:ObjectProperty ;
+    rdfs:domain crs:Geometer ;
+    rdfs:range crs:AtlasGlossary ;
+    rdfs:label "fixedByGlossary" ;
+    rdfs:comment "Relates a crs:Geometer to the crs:AtlasGlossary that FIXES it — the SP6 glossary that names the geometer's axes and thereby fixes its axis system and dimension (design spec 2.4: 'A crs:Geometer is fixed by its atlas glossary'). It is a FORWARD REFERENCE to SP6 (glossary internals belong to SP6): SP3 mints only this fixing edge and marks the glossary witness silm:isProvisional true. It is the concrete graph statement that a geometer is not free-floating but FIXED by a named glossary; q_geometer_below_towers reads it to confirm each geometer declares its own glossary-fixed axis system rather than presuming a jump to the towers." .
+
+crs:hasQuarkGrid a owl:ObjectProperty ;
+    rdfs:domain crs:Geometer ;
+    rdfs:range crs:QuarkGrid ;
+    rdfs:label "hasQuarkGrid" ;
+    rdfs:comment "Relates a crs:Geometer to the low-order 3x3 crs:QuarkGrid beneath it — the {cat,econ,lang} x {node_or_arrow,shape,color} discriminator plane (helios/00_src_specs _urn/identity.j2::quark) that is 'the low-order axis layer beneath the towers' (design spec 2.4). Both geometer witnesses carry the SAME shared crs:quarkGridWitness, the concrete statement that every geometer sits ABOVE the low-order quark grid and does not jump straight to the towers ('we cannot jump to towers'). It is the edge q_geometer_below_towers reads to confirm the quark grid (9 cells) is present beneath the geometer." .
+
+
+# ---- The quark-grid axis + cell-count relations (the 3x3 grid structure) ---------------------------
+
+crs:quarkGridAxis a owl:ObjectProperty ;
+    rdfs:domain crs:QuarkGrid ;
+    rdfs:range crs:GeometerAxis ;
+    rdfs:label "quarkGridAxis" ;
+    rdfs:comment "Relates a crs:QuarkGrid to one of its two axes — crs:quarkCategoryAxis (the {cat,econ,lang} category axis) or crs:quarkDiscriminatorAxis (the {node_or_arrow,shape,color} discriminator axis), each a crs:GeometerAxis (a crs:UrnTowerAxis URN tower). The product of the two three-valued axes is the 9-cell grid (crs:quarkGridCellCount 9), lifted from the quark_block 3x3 tables of helios/00_src_specs _urn/identity.j2. It records which two axes span the low-order quark plane, the axes the quark-grid geometer carries via crs:hasAxis and whose arity (2) is that geometer's dimension." .
+
+crs:quarkGridCellCount a owl:DatatypeProperty ;
+    rdfs:domain crs:QuarkGrid ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "quarkGridCellCount" ;
+    rdfs:comment "The number of cells in a crs:QuarkGrid — 9 for the canonical grid, the product of its two three-valued axes {cat,econ,lang} x {node_or_arrow,shape,color} (helios/00_src_specs _urn/identity.j2 quark_block, which emits exactly 9 quark.<category>.<axis> lines). It records the 3x3 shape of the low-order discriminator plane as a graph fact; q_geometer_below_towers reads crs:quarkGridCellCount 9 to confirm the full quark grid sits beneath the geometer. The cell count (9) is the grid's cardinality and must not be confused with the grid geometer's DIMENSION (2, its axis arity) — a scalar cardinality is not an axis count (Q2)." .
+
+crs:quarkAxisMember a owl:DatatypeProperty ;
+    rdfs:domain crs:GeometerAxis ;
+    rdfs:range xsd:string ;
+    rdfs:label "quarkAxisMember" ;
+    rdfs:comment "Names one member of a quark grid axis, carried full-lexically as an immutable entity URN string (STRICTNESS Rule 3: the external entity spelling survives only as bridge evidence, never re-declares an internal namespace). The category axis crs:quarkCategoryAxis carries the three members 'urn:silmaril:entity#types.prelude.quark_category_cat' / '...quark_category_econ' / '...quark_category_lang'; the discriminator axis crs:quarkDiscriminatorAxis carries 'urn:silmaril:entity#types.prelude.quark_axis_node_or_arrow' / '...quark_axis_shape' / '...quark_axis_color'. These are lifted verbatim from the module tables _QUARK_CATEGORY_URNS and _QUARK_AXIS_URNS of helios/00_src_specs _urn/identity.j2, the concrete 3x3 = 3+3 members of the low-order quark grid; each axis carrying three members is why the grid has 9 cells." .
+
+
+# =====================================================================================
+# The floor WITNESSES (corpus-agnostic v1: two geometers of DIFFERENT dimension + the shared 3x3 quark
+# grid + its two axes + two provisional glossaries). Minted only to keep crs:DimensionCountShape,
+# q_dimension_equals_count and q_geometer_below_towers non-vacuous. Zero corpus instances.
+# =====================================================================================
+
+# -- The two provisional atlas glossaries (SP6 forward reference) ------------------------------------
+
+crs:roleAtlasGlossary a crs:AtlasGlossary ;
+    silm:isProvisional true ;
+    rdfs:label "roleAtlasGlossary (fixes the S-O-P role geometer's axes — PROVISIONAL SP6 ref)" ;
+    rdfs:comment "The atlas glossary that fixes the S-O-P role geometer's axis system (the three role URN towers K_S/K_O/K_P). It is a FORWARD REFERENCE to SP6 (glossary internals belong to SP6), marked silm:isProvisional true — SP3 mints only the crs:fixedByGlossary edge, not the glossary's concrete axis names. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:quarkAtlasGlossary a crs:AtlasGlossary ;
+    silm:isProvisional true ;
+    rdfs:label "quarkAtlasGlossary (fixes the quark-grid geometer's axes — PROVISIONAL SP6 ref)" ;
+    rdfs:comment "The atlas glossary that fixes the low-order quark-grid geometer's axis system (the {cat,econ,lang} category axis and the {node_or_arrow,shape,color} discriminator axis). It is a FORWARD REFERENCE to SP6 (glossary internals belong to SP6), marked silm:isProvisional true — SP3 mints only the crs:fixedByGlossary edge, not the glossary's concrete axis names. A co-equal sibling of crs:roleAtlasGlossary, neither privileged. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The shared 3x3 quark grid + its two three-valued URN-tower axes ---------------------------------
+
+crs:quarkCategoryAxis a crs:UrnTowerAxis ;
+    crs:axisComponentType prim:URN ;
+    crs:axisComposite prim:Vector ;
+    crs:quarkAxisMember "urn:silmaril:entity#types.prelude.quark_category_cat" ,
+                        "urn:silmaril:entity#types.prelude.quark_category_econ" ,
+                        "urn:silmaril:entity#types.prelude.quark_category_lang" ;
+    rdfs:label "quarkCategoryAxis (the {cat,econ,lang} quark category axis)" ;
+    rdfs:comment "The quark category axis of the low-order 3x3 grid — the {cat,econ,lang} axis, lifted from _QUARK_CATEGORY_URNS of helios/00_src_specs _urn/identity.j2 (quark_category_cat = object identity in category Atom, quark_category_econ, quark_category_lang). It is a crs:UrnTowerAxis (crs:axisComponentType prim:URN, crs:axisComposite prim:Vector), so the T3 crs:AxisUrnTowerShape governs it as a genuine URN tower and not a scalar; its three members ride crs:quarkAxisMember as immutable full-lexical entity URNs. It is one of the two axes of crs:quarkGridWitness and one of the two crs:hasAxis of crs:quarkGridGeometerWitness (its arity 2 = that geometer's dimension). Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:quarkDiscriminatorAxis a crs:UrnTowerAxis ;
+    crs:axisComponentType prim:URN ;
+    crs:axisComposite prim:Vector ;
+    crs:quarkAxisMember "urn:silmaril:entity#types.prelude.quark_axis_node_or_arrow" ,
+                        "urn:silmaril:entity#types.prelude.quark_axis_shape" ,
+                        "urn:silmaril:entity#types.prelude.quark_axis_color" ;
+    rdfs:label "quarkDiscriminatorAxis (the {node_or_arrow,shape,color} quark discriminator axis)" ;
+    rdfs:comment "The quark discriminator axis of the low-order 3x3 grid — the {node_or_arrow,shape,color} axis, lifted from _QUARK_AXIS_URNS of helios/00_src_specs _urn/identity.j2 (quark_axis_node_or_arrow = node-vs-arrow identity, quark_axis_shape, quark_axis_color). It is a crs:UrnTowerAxis (crs:axisComponentType prim:URN, crs:axisComposite prim:Vector), so the T3 crs:AxisUrnTowerShape governs it as a genuine URN tower and not a scalar; its three members ride crs:quarkAxisMember as immutable full-lexical entity URNs. It is one of the two axes of crs:quarkGridWitness and one of the two crs:hasAxis of crs:quarkGridGeometerWitness (its arity 2 = that geometer's dimension). Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:quarkGridWitness a crs:QuarkGrid ;
+    crs:quarkGridAxis crs:quarkCategoryAxis , crs:quarkDiscriminatorAxis ;
+    crs:quarkGridCellCount 9 ;
+    rdfs:label "quarkGridWitness (the shared 3x3 quark grid, 9 cells)" ;
+    rdfs:comment "The single shared 3x3 quark grid witness that every geometer carries beneath it (crs:hasQuarkGrid) — spanned by its two three-valued axes crs:quarkCategoryAxis ({cat,econ,lang}) and crs:quarkDiscriminatorAxis ({node_or_arrow,shape,color}) via crs:quarkGridAxis, whose product is the 9-cell grid (crs:quarkGridCellCount 9), lifted from the quark_block 3x3 tables of helios/00_src_specs _urn/identity.j2. It is the low-order axis layer beneath the towers (design spec 2.4); it is the non-vacuity anchor of the quark-grid clause of q_geometer_below_towers. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The two geometer witnesses (DIFFERENT dimension: role = 3 tower axes, quark grid = 2 axes) ------
+
+crs:roleGeometerWitness a crs:RoleGeometer ;
+    crs:fixedByGlossary crs:roleAtlasGlossary ;
+    crs:hasQuarkGrid crs:quarkGridWitness ;
+    crs:hasAxis crs:subjectTowerWitness , crs:objectTowerWitness , crs:predicateTowerWitness ;
+    crs:hasDimension 3 ;
+    rdfs:label "roleGeometerWitness (S-O-P role geometer: 3 tower axes, dimension 3)" ;
+    rdfs:comment "The S-O-P role-tower geometer witness: fixed by its atlas glossary crs:roleAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref), sitting above the shared low-order quark grid (crs:hasQuarkGrid crs:quarkGridWitness), whose axis system is exactly the three independent role URN towers crs:subjectTowerWitness / crs:objectTowerWitness / crs:predicateTowerWitness (crs:hasAxis), so its own crs:hasDimension is 3 — count(crs:hasAxis) == crs:hasDimension, three TOWER projections not scalars (Q2). It is the rank-3 sibling geometer the T6 plane-geometer family projects OFF; it is itself a geometer fixed by a glossary, NOT a presumed jump to towers. It is the non-vacuity anchor of q_dimension_equals_count (dimension 3) and q_geometer_below_towers, and the positive (conforming) side of crs:DimensionCountShape. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:quarkGridGeometerWitness a crs:QuarkGridGeometer ;
+    crs:fixedByGlossary crs:quarkAtlasGlossary ;
+    crs:hasQuarkGrid crs:quarkGridWitness ;
+    crs:hasAxis crs:quarkCategoryAxis , crs:quarkDiscriminatorAxis ;
+    crs:hasDimension 2 ;
+    rdfs:label "quarkGridGeometerWitness (low-order quark-grid geometer: 2 axes, dimension 2)" ;
+    rdfs:comment "The low-order quark-grid geometer witness: fixed by its atlas glossary crs:quarkAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref), carrying the shared 3x3 quark grid (crs:hasQuarkGrid crs:quarkGridWitness), whose axis system is exactly the two grid axes crs:quarkCategoryAxis and crs:quarkDiscriminatorAxis (crs:hasAxis), so its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2). It is the rank-2 sibling of the rank-3 crs:roleGeometerWitness with neither privileged; the two witnesses declaring DIFFERENT dimensions (2 vs 3) is exactly what makes dimension PER-geometer (q_geometer_below_towers) rather than one presumed rank-3 jump. It is the second non-vacuity anchor of q_dimension_equals_count (dimension 2) and the positive (conforming) side of crs:DimensionCountShape. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# =====================================================================================
+# geometers.ttl (continued) — the agnostic plane-geometer PROGENITOR family (W2 · SP3, Task T6, Q3).
+# =====================================================================================
+# LIFTED (Directive 1) from the Helios per-Frame dimension discipline
+# (helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex: dimension is
+# per-Frame/per-geometer, and "a plane geometer (x,y) has dimension 2 without ever touching the towers")
+# and the source-attested Honeycomb planar coordinate of
+# helios/srcy/shared/components/diagrams/patterns/projection/source_dimension_planes.tex (the Honeycomb
+# "concentric-ring map\\radius and angle\\to (x,y)" pair, tag shared-dimensional-honeycomb-planar-coordinate:
+# "rounded horizontal and vertical render position of one admitted node"). SP1 supplies the geospatial pair
+# (prim:CRS / prim:Longitude / prim:Latitude, formal.ttl).
+#
+# WHAT THIS ADDS (T6, Directive 17 Q3 pinned — "do all, be more agnostic on ALL; no privilege"): the
+# AGNOSTIC plane-geometer progenitor crs:PlaneGeometer (dimension 2, grounds NO concrete axis) as a child of
+# the T5 agnostic crs:Geometer, with ALL planes minted as composable children, none privileged:
+#   * crs:HoneycombPlaneGeometer   — axes (x,y), the source-attested render plane (source_dimension_planes.tex);
+#   * crs:GeographicPlaneGeometer  — axes (lon,lat) over prim:CRS (SP1 prim:Longitude/prim:Latitude);
+#   * crs:RolePairProjectionPlane  — an AGNOSTIC sub-progenitor (also grounds nothing) carrying the FULL
+#     SYMMETRIC role-pair family crs:SubjectObjectPlane (pi_S,pi_O; drops P) / crs:SubjectPredicatePlane
+#     (pi_S,pi_P; drops O) / crs:ObjectPredicatePlane (pi_O,pi_P; drops S), each a lawful rank-2 pi-projection
+#     off the RANK-3 crs:roleGeometerWitness (crs:projectsFromRoleGeometer) that DROPS exactly one role
+#     (crs:dropsRole -> the dropped tower witness) with a typed crs:RoleDropEffect loss seeding SP4. No role
+#     pair is privileged/special-cased; the S-O-P role geometer stays a rank-3 SIBLING (this dissolves the
+#     D1 asymmetry worry by making the role-pair plane a symmetric composable family, not a special (S,O)).
+#
+# TWO KINDS OF PLANE AXIS: the Honeycomb/geographic axes are NON-tower planar/geospatial coordinates (a
+# plane geometer has dimension 2 WITHOUT touching the towers, design spec 2.4) typed crs:GeometerAxis and
+# grounded into SP1 via crs:groundsAxisIn (prim:Coordinate for the render (x,y); prim:Longitude/prim:Latitude
+# for (lon,lat)); the role-pair pi axes ARE genuine URN-tower projections onto the role towers, typed
+# crs:UrnTowerAxis (crs:axisComponentType prim:URN, crs:axisComposite prim:Vector, so the T3
+# crs:AxisUrnTowerShape governs them) with crs:landsInRoleTower naming the role tower each pi lands in. Each
+# role tower's pi appears in exactly TWO of the three role-pair planes and each role is dropped exactly ONCE
+# — the symmetry that makes the family co-equal.
+#
+# TOOTH (this task): crs:PlaneProgenitorShape (crs.shapes.ttl) — (A) the progenitor + sub-progenitor GROUND
+# NOTHING (no bare non-concrete-leaf crs:PlaneGeometer instance carries a concrete axis); (B) every concrete
+# plane child has EXACTLY 2 crs:hasAxis; (C) the role-pair family is SYMMETRIC (every role dropped by some
+# plane projecting off the role geometer — none privileged/missing) — plus q_plane_progenitor_symmetric.
+# Probe of record (conforms/ASK True->False): crs:probePlaneProgenitorAxis a crs:PlaneGeometer ;
+# crs:hasAxis crs:honeycombXAxis (the agnostic progenitor carrying a concrete axis). Two further variants
+# also bite: a concrete plane child with 3 axes, and a role-pair family missing one of the three planes.
+# The plane OBJECT classes (crs:PlaneGeometer / crs:HoneycombPlaneGeometer / crs:GeographicPlaneGeometer /
+# crs:RolePairProjectionPlane / crs:SubjectObjectPlane / crs:SubjectPredicatePlane / crs:ObjectPredicatePlane)
+# are bare owl:Classes NOT rdfs:subClassOf* prim:FormalType at T6, so SP1's prim:DualGroundingShape does not
+# yet target them here; their reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl).
+# crs:RoleDropEffect is EXCEPTED: it is a crs-minted effect LOSS (a bare owl:Class seeding SP4, never a
+# prim:frameEffect value) that stays OUTSIDE prim:FormalType and is deliberately NOT grounded by T11.
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (2.4, Q3)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T6)
+# =====================================================================================
+
+
+# ---- The agnostic plane-geometer progenitor (dim 2, grounds nothing) + its concrete + agnostic children --
+
+crs:PlaneGeometer a owl:Class ;
+    rdfs:subClassOf crs:Geometer ;
+    rdfs:label "PlaneGeometer (agnostic 2-axis plane-geometer progenitor — grounds nothing)" ;
+    rdfs:comment "The AGNOSTIC plane-geometer progenitor (Directive 17 Q3, pinned: 'do all, be more agnostic on all; no privilege'), lifted from the whitepaper's per-Frame/per-geometer dimension discipline (05_carrier_towers_triad.tex) and the design's load-bearing rule that 'a plane geometer (x,y) has dimension 2 WITHOUT ever touching the towers' (spec 2.4). A crs:PlaneGeometer is the rank-2 geometer category: the family of coordinate frames whose axis system has arity 2, a child of the T5 agnostic crs:Geometer. Per the progenitor pattern it GROUNDS NOTHING — it asserts NO crs:hasAxis AND NO crs:hasDimension triple of its OWN; it is the plane-neutral join of the concrete plane children, exactly the byte-order/carrier-tag progenitor pattern applied to the 2-axis plane. Its rank-2 arity is a DECLARED FAMILY ARITY — the characteristic dimension every concrete plane child carries (crs:hasDimension 2 with exactly 2 crs:hasAxis) — NOT a claim that the progenitor itself grounds two axes; the progenitor GROUNDS NOTHING (no concrete crs:hasAxis) and is EXEMPT from the axis-grounding count law. Accordingly crs:DimensionCountShape (the count==dimension law) is CONCRETENESS-SCOPED (E1) to the concrete geometer leaves and never targets this progenitor, so a bare crs:PlaneGeometer instance at zero axes stays GREEN — coherent with 'grounds nothing' rather than contradicting it. Per the round-2 family-arity doctrine (G1b), the plane progenitor is one of the two levels (with crs:RolePairProjectionPlane) that MAY declare its rank-2 family arity crs:hasDimension 2 and stay GREEN: it is EXEMPT from crs:DimensionCountShape's top-progenitor grounds-nothing DIMENSION clause, which fires ONLY on the bare TOP crs:Geometer (which declares NO dimension). It remains RED, symmetrically with the top progenitor, if it carries a concrete crs:hasAxis (crs:PlaneProgenitorShape constraint A, now generalised to crs:Geometer with the seven-concrete-leaf enumeration). Its composable children, none privileged, are the source-attested crs:HoneycombPlaneGeometer (render axes (x,y)), the geospatial crs:GeographicPlaneGeometer (axes (lon,lat) over prim:CRS), and the agnostic sub-progenitor crs:RolePairProjectionPlane carrying the full symmetric role-pair family — so 'all' planes co-exist rather than one being privileged (the whitepaper seeds all; SP1 provides the geospatial pair). crs:PlaneProgenitorShape enforces that this progenitor and its sub-progenitor ground no concrete axis and that every concrete plane child has exactly 2 axes (the concrete children carry crs:hasDimension 2 AND exactly 2 crs:hasAxis); the S-O-P role geometer stays a rank-3 sibling above, off which the role-pair planes project." .
+
+crs:HoneycombPlaneGeometer a owl:Class ;
+    rdfs:subClassOf crs:PlaneGeometer ;
+    rdfs:label "HoneycombPlaneGeometer (the source-attested (x,y) render-plane geometer)" ;
+    rdfs:comment "The Honeycomb render-plane geometer, lifted verbatim from helios/srcy/shared/components/diagrams/patterns/projection/source_dimension_planes.tex (the Honeycomb 'concentric-ring map\\radius and angle\\to (x,y)' node, tag shared-dimensional-honeycomb-planar-coordinate: the 'Honeycomb planar coordinate pair', 'rounded horizontal and vertical render position of one admitted node'). It is a concrete rank-2 plane child of the agnostic crs:PlaneGeometer (Directive 17 Q3), a co-equal sibling of crs:GeographicPlaneGeometer and crs:RolePairProjectionPlane with none privileged. Its axis system is the two render axes crs:honeycombXAxis and crs:honeycombYAxis (crs:hasAxis), so its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2). Its axes are NON-tower planar coordinates (a plane geometer has dimension 2 WITHOUT touching the S/O/P towers, design spec 2.4): each is a crs:GeometerAxis grounded into SP1 via crs:groundsAxisIn -> prim:Coordinate (the render position), NOT a crs:UrnTowerAxis. It is fixed by its atlas glossary crs:planeAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref) and sits above the shared low-order quark grid (crs:hasQuarkGrid). crs:PlaneProgenitorShape requires it carry exactly 2 axes; the exactly-2 tooth bites on a 3-axis probe." .
+
+crs:GeographicPlaneGeometer a owl:Class ;
+    rdfs:subClassOf crs:PlaneGeometer ;
+    rdfs:label "GeographicPlaneGeometer (the (lon,lat) geospatial-plane geometer over prim:CRS)" ;
+    rdfs:comment "The geographic plane geometer, grounded in the SP1 geospatial primitives (formal.ttl prim:CRS / prim:Longitude / prim:Latitude, both subClassOf prim:Coordinate): the maintainer's geospatial seed for the 2-axis plane (design Q3: 'the geographic (Longitude,Latitude) seed; SP1 provides the geospatial pair'). It is a concrete rank-2 plane child of the agnostic crs:PlaneGeometer (Directive 17 Q3), a co-equal sibling of crs:HoneycombPlaneGeometer and crs:RolePairProjectionPlane with none privileged. Its axis system is the two geospatial axes crs:geographicLonAxis and crs:geographicLatAxis (crs:hasAxis), so its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2). Its axes are NON-tower geospatial coordinates (a plane geometer has dimension 2 WITHOUT touching the S/O/P towers, design spec 2.4): each is a crs:GeometerAxis grounded via crs:groundsAxisIn -> prim:Longitude / prim:Latitude, and the geometer names its coordinate reference system via crs:overCRS -> prim:CRS. It is fixed by its atlas glossary crs:planeAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref) and sits above the shared low-order quark grid (crs:hasQuarkGrid). crs:PlaneProgenitorShape requires it carry exactly 2 axes." .
+
+crs:RolePairProjectionPlane a owl:Class ;
+    rdfs:subClassOf crs:PlaneGeometer ;
+    rdfs:label "RolePairProjectionPlane (agnostic role-pair-plane sub-progenitor — grounds nothing)" ;
+    rdfs:comment "The AGNOSTIC role-pair-plane sub-progenitor (Directive 17 Q3, pinned): the plane-geometer category obtained by PROJECTING the rank-3 S-O-P role geometer down to a rank-2 role pair, dropping exactly one role. It is a child of the agnostic crs:PlaneGeometer and itself an agnostic progenitor that GROUNDS NOTHING — it asserts NO concrete crs:hasAxis AND NO crs:hasDimension triple of its own and privileges NO role pair; it is the pair-neutral join of the three concrete role-pair planes, the progenitor pattern applied one level deeper. Like its parent progenitor it is EXEMPT from the axis-grounding count law crs:DimensionCountShape (concreteness-scoped, E1) — its rank-2 character is the DECLARED FAMILY ARITY of its three concrete children (each crs:hasDimension 2 with exactly 2 crs:hasAxis), not a claim it grounds two axes itself — so a bare crs:RolePairProjectionPlane instance at zero axes stays GREEN, coherent with 'grounds nothing'. Per the round-2 family-arity doctrine (G1b) it is, with crs:PlaneGeometer, one of the two plane-progenitor levels that MAY declare that rank-2 family arity crs:hasDimension 2 and stay GREEN (exempt from crs:DimensionCountShape's top-progenitor grounds-nothing DIMENSION clause, which fires only on the bare TOP crs:Geometer); it remains RED, symmetrically with the top progenitor, if it carries a concrete crs:hasAxis (crs:PlaneProgenitorShape constraint A, now generalised to crs:Geometer). Its three composable children form the FULL SYMMETRIC family, none privileged: crs:SubjectObjectPlane (retains pi_S,pi_O; drops Predicate), crs:SubjectPredicatePlane (retains pi_S,pi_P; drops Object), crs:ObjectPredicatePlane (retains pi_O,pi_P; drops Subject). Each is a lawful pi-projection off the rank-3 crs:roleGeometerWitness (crs:projectsFromRoleGeometer) that drops one role (crs:dropsRole -> the dropped tower witness) with a typed crs:RoleDropEffect loss seeding SP4. Making the role-pair plane a symmetric composable family (rather than a special-cased (S,O)) is exactly what dissolves the D1 asymmetry worry; the S-O-P role geometer stays a rank-3 sibling ABOVE this family. crs:PlaneProgenitorShape enforces that this sub-progenitor grounds no concrete axis and that the family is symmetric — every role dropped by some plane, none missing." .
+
+crs:SubjectObjectPlane a owl:Class ;
+    rdfs:subClassOf crs:RolePairProjectionPlane ;
+    rdfs:label "SubjectObjectPlane (the (pi_S,pi_O) role-pair plane; drops Predicate)" ;
+    rdfs:comment "The Subject-Object role-pair plane: the rank-2 lawful projection of the rank-3 S-O-P role geometer that RETAINS the Subject and Object role coordinates (axes crs:piSubject, crs:piObject) and DROPS the Predicate role (crs:dropsRole crs:predicateTowerWitness), a documented loss carried as crs:hasRoleDropEffect crs:dropPredicateEffect (a crs:RoleDropEffect seeding SP4). It is one of the three SYMMETRIC children of the agnostic crs:RolePairProjectionPlane sub-progenitor (Directive 17 Q3), a co-equal sibling of crs:SubjectPredicatePlane and crs:ObjectPredicatePlane with none privileged. Its two retained-role axes are genuine URN-tower projections (crs:UrnTowerAxis) landing in the Subject and Object towers via crs:landsInRoleTower, so its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2), a rank-2 plane projected OFF the rank-3 crs:roleGeometerWitness (crs:projectsFromRoleGeometer), never a presumed jump. It is fixed by its atlas glossary crs:rolePairAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref) and sits above the shared low-order quark grid (crs:hasQuarkGrid). crs:PlaneProgenitorShape requires it carry exactly 2 axes and that its dropped role (Predicate) be part of the complete symmetric drop-set {S,O,P}." .
+
+crs:SubjectPredicatePlane a owl:Class ;
+    rdfs:subClassOf crs:RolePairProjectionPlane ;
+    rdfs:label "SubjectPredicatePlane (the (pi_S,pi_P) role-pair plane; drops Object)" ;
+    rdfs:comment "The Subject-Predicate role-pair plane: the rank-2 lawful projection of the rank-3 S-O-P role geometer that RETAINS the Subject and Predicate role coordinates (axes crs:piSubject, crs:piPredicate) and DROPS the Object role (crs:dropsRole crs:objectTowerWitness), a documented loss carried as crs:hasRoleDropEffect crs:dropObjectEffect (a crs:RoleDropEffect seeding SP4). It is one of the three SYMMETRIC children of the agnostic crs:RolePairProjectionPlane sub-progenitor (Directive 17 Q3), a co-equal sibling of crs:SubjectObjectPlane and crs:ObjectPredicatePlane with none privileged. Its two retained-role axes are genuine URN-tower projections (crs:UrnTowerAxis) landing in the Subject and Predicate towers via crs:landsInRoleTower, so its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2), a rank-2 plane projected OFF the rank-3 crs:roleGeometerWitness (crs:projectsFromRoleGeometer), never a presumed jump. It is fixed by its atlas glossary crs:rolePairAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref) and sits above the shared low-order quark grid (crs:hasQuarkGrid). crs:PlaneProgenitorShape requires it carry exactly 2 axes and that its dropped role (Object) be part of the complete symmetric drop-set {S,O,P}." .
+
+crs:ObjectPredicatePlane a owl:Class ;
+    rdfs:subClassOf crs:RolePairProjectionPlane ;
+    rdfs:label "ObjectPredicatePlane (the (pi_O,pi_P) role-pair plane; drops Subject)" ;
+    rdfs:comment "The Object-Predicate role-pair plane: the rank-2 lawful projection of the rank-3 S-O-P role geometer that RETAINS the Object and Predicate role coordinates (axes crs:piObject, crs:piPredicate) and DROPS the Subject role (crs:dropsRole crs:subjectTowerWitness), a documented loss carried as crs:hasRoleDropEffect crs:dropSubjectEffect (a crs:RoleDropEffect seeding SP4). It is one of the three SYMMETRIC children of the agnostic crs:RolePairProjectionPlane sub-progenitor (Directive 17 Q3), a co-equal sibling of crs:SubjectObjectPlane and crs:SubjectPredicatePlane with none privileged. Its two retained-role axes are genuine URN-tower projections (crs:UrnTowerAxis) landing in the Object and Predicate towers via crs:landsInRoleTower, so its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2), a rank-2 plane projected OFF the rank-3 crs:roleGeometerWitness (crs:projectsFromRoleGeometer), never a presumed jump. It is fixed by its atlas glossary crs:rolePairAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref) and sits above the shared low-order quark grid (crs:hasQuarkGrid). crs:PlaneProgenitorShape requires it carry exactly 2 axes and that its dropped role (Subject) be part of the complete symmetric drop-set {S,O,P}." .
+
+crs:RoleDropEffect a owl:Class ;
+    rdfs:label "RoleDropEffect (the typed loss of a role-pair projection dropping one role — seeds SP4)" ;
+    rdfs:comment "The typed LOSS incurred when a role-pair projection plane drops one of the three S-O-P roles, lifted from the whitepaper's role-projection discipline (05_carrier_towers_triad.tex): projecting the rank-3 role geometer down to a rank-2 role pair FORGETS one role coordinate, and forgetting a coordinate is a genuine loss, never a free operation. A crs:RoleDropEffect is minted per SP1's extensible-Effect discipline (a concrete consumer — the role-pair plane — needs it) and names which role the projection drops: crs:dropPredicateEffect (the (S,O) plane drops P), crs:dropObjectEffect (the (S,P) plane drops O), crs:dropSubjectEffect (the (O,P) plane drops S). It is carried on each plane via crs:hasRoleDropEffect, the graph statement that a role-pair plane is a LOSSY projection off the rank-3 crs:roleGeometerWitness rather than a lossless coordinate change. It SEEDS SP4 (the forgetful/effect layer): SP4 consumes these role-drop losses alongside the crs:OrderProjection/crs:RoleOrderEffect (T10) and the crs:HashPrefixTruncation (T9). As a crs-minted effect loss it is deliberately NOT rdfs:subClassOf* prim:FormalType and is deliberately NOT grounded by Task T11 (which grounds only the coordinate-chart OBJECT classes): SP1's prim:DualGroundingShape does not target it, exactly as SP1 keeps its own prim:Effect handling outside prim:FormalType." .
+
+
+# ---- The plane-geometer relations (CRS-naming, axis-grounding, role-pair projection + drop) ----------
+
+crs:overCRS a owl:ObjectProperty ;
+    rdfs:domain crs:GeographicPlaneGeometer ;
+    rdfs:range prim:CRS ;
+    rdfs:label "overCRS" ;
+    rdfs:comment "Relates a crs:GeographicPlaneGeometer to the SP1 coordinate reference system (prim:CRS, formal.ttl) its geospatial (lon,lat) axes are read against — the concrete graph statement that the geographic plane is not a bare pair of numbers but a coordinate frame over a named CRS (design Q3: 'SP1 prim:CRS/prim:Latitude/prim:Longitude'). crs:geographicPlaneWitness crs:overCRS prim:CRS; q_plane_progenitor_symmetric reads it to confirm the geographic child is grounded over the SP1 CRS." .
+
+crs:groundsAxisIn a owl:ObjectProperty ;
+    rdfs:domain crs:GeometerAxis ;
+    rdfs:range prim:FormalType ;
+    rdfs:label "groundsAxisIn" ;
+    rdfs:comment "Relates a NON-tower crs:GeometerAxis (a planar render axis or a geospatial axis of a plane geometer) to the SP1 formal type it grounds into — the honest statement that a plane axis, though NOT a URN tower, still bottoms out at an SP1 primitive rather than floating free. The Honeycomb render axes crs:honeycombXAxis/crs:honeycombYAxis crs:groundsAxisIn prim:Coordinate (the rounded (x,y) render position, source_dimension_planes.tex); the geographic axes crs:geographicLonAxis crs:groundsAxisIn prim:Longitude and crs:geographicLatAxis crs:groundsAxisIn prim:Latitude (SP1 formal.ttl). rdfs:range is the broad prim:FormalType so all three SP1 anchor classes (prim:Coordinate/prim:Longitude/prim:Latitude, each subClassOf* prim:FormalType) are admitted; the property is used ONLY for the non-tower plane axes — the role-pair pi axes are URN-tower projections governed instead by crs:axisComponentType/crs:axisComposite (crs:AxisUrnTowerShape)." .
+
+crs:projectsFromRoleGeometer a owl:ObjectProperty ;
+    rdfs:domain crs:RolePairProjectionPlane ;
+    rdfs:range crs:RoleGeometer ;
+    rdfs:label "projectsFromRoleGeometer" ;
+    rdfs:comment "Relates a crs:RolePairProjectionPlane to the rank-3 crs:RoleGeometer it is a lawful rank-2 projection OF — the concrete graph statement that a role-pair plane is BUILT DOWN from the S-O-P role geometer (dropping one role), never a presumed rank-2 jump. All three symmetric role-pair witnesses crs:projectsFromRoleGeometer crs:roleGeometerWitness, so the rank-3 role geometer stays a SIBLING above the rank-2 family (Directive 17 Q3). It is the edge crs:PlaneProgenitorShape's symmetry constraint walks from the role geometer to confirm every role is dropped by some plane projecting off it (none privileged/missing), and the edge q_plane_progenitor_symmetric reads to anchor each plane to the rank-3 geometer." .
+
+crs:dropsRole a owl:ObjectProperty ;
+    rdfs:domain crs:RolePairProjectionPlane ;
+    rdfs:range crs:UrnRoleTower ;
+    rdfs:label "dropsRole" ;
+    rdfs:comment "Relates a crs:RolePairProjectionPlane to the role tower it DROPS — the one of the three S-O-P role coordinates the rank-2 projection forgets (a lossy projection off the rank-3 role geometer). crs:subjectObjectPlaneWitness crs:dropsRole crs:predicateTowerWitness (drops P), crs:subjectPredicatePlaneWitness crs:dropsRole crs:objectTowerWitness (drops O), crs:objectPredicatePlaneWitness crs:dropsRole crs:subjectTowerWitness (drops S) — so the three dropped roles are exactly {P,O,S}, the complete symmetric drop-set with none privileged/missing. It points at the role-tower WITNESS individuals (already crs:UrnRoleTower instances, so no class-as-instance punning), the canonical role identities. crs:PlaneProgenitorShape's symmetry constraint requires each of the three role witnesses be dropped by some plane; the missing-plane probe (a family missing one plane) leaves a role undropped and flips conforms True->False." .
+
+crs:hasRoleDropEffect a owl:ObjectProperty ;
+    rdfs:domain crs:RolePairProjectionPlane ;
+    rdfs:range crs:RoleDropEffect ;
+    rdfs:label "hasRoleDropEffect" ;
+    rdfs:comment "Relates a crs:RolePairProjectionPlane to the typed crs:RoleDropEffect it incurs — the concrete graph statement that dropping a role in a rank-2 role-pair projection is a genuine LOSS (a forgotten coordinate), not a free operation, minted per SP1's extensible-Effect discipline because a concrete consumer (the plane) needs it. Each of the three symmetric planes carries its own effect (crs:dropPredicateEffect / crs:dropObjectEffect / crs:dropSubjectEffect), the role-drop losses that SEED SP4's forgetful/effect layer alongside the crs:RoleOrderEffect (T10) and crs:HashPrefixTruncation (T9)." .
+
+crs:landsInRoleTower a owl:ObjectProperty ;
+    rdfs:domain crs:UrnTowerAxis ;
+    rdfs:range crs:UrnRoleTower ;
+    rdfs:label "landsInRoleTower" ;
+    rdfs:comment "Relates a role-pair pi projection axis (a crs:UrnTowerAxis) to the role tower it lands in — the codomain of the pi_S/pi_O/pi_P projection off the rank-3 role geometer. crs:piSubject crs:landsInRoleTower crs:subjectTowerWitness, crs:piObject -> crs:objectTowerWitness, crs:piPredicate -> crs:predicateTowerWitness: the three role-tower projections, each a genuine URN-tower axis (crs:axisComponentType prim:URN, crs:axisComposite prim:Vector, governed by crs:AxisUrnTowerShape). Each pi appears as a retained axis in exactly TWO of the three role-pair planes, which is the symmetry that makes the family co-equal; it forward-seeds the T7 five-factor product's pi_S/pi_O/pi_P projections." .
+
+
+# =====================================================================================
+# The T6 floor WITNESSES (corpus-agnostic v1): two provisional plane glossaries, the four non-tower plane
+# axes (honeycomb x/y, geographic lon/lat), the three role-pair pi URN-tower axes, the three role-drop
+# effects, and the five concrete plane witnesses (honeycomb, geographic, and the symmetric role-pair triple).
+# Minted only to keep crs:PlaneProgenitorShape + q_plane_progenitor_symmetric non-vacuous. Zero corpus instances.
+# =====================================================================================
+
+# -- The two provisional plane atlas glossaries (SP6 forward reference) ------------------------------
+
+crs:planeAtlasGlossary a crs:AtlasGlossary ;
+    silm:isProvisional true ;
+    rdfs:label "planeAtlasGlossary (fixes the Honeycomb + geographic plane geometers' axes — PROVISIONAL SP6 ref)" ;
+    rdfs:comment "The atlas glossary that fixes the axis systems of the two concrete non-role plane geometers — crs:HoneycombPlaneGeometer's render axes (x,y) and crs:GeographicPlaneGeometer's geospatial axes (lon,lat). A FORWARD REFERENCE to SP6 (glossary internals belong to SP6), marked silm:isProvisional true — SP3 mints only the crs:fixedByGlossary edge, not the concrete axis names. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:rolePairAtlasGlossary a crs:AtlasGlossary ;
+    silm:isProvisional true ;
+    rdfs:label "rolePairAtlasGlossary (fixes the symmetric role-pair plane family's axes — PROVISIONAL SP6 ref)" ;
+    rdfs:comment "The atlas glossary that fixes the axis systems of the three symmetric role-pair projection planes (the (S,O)/(S,P)/(O,P) planes, whose axes are the role-tower pi projections). A FORWARD REFERENCE to SP6 (glossary internals belong to SP6), marked silm:isProvisional true — SP3 mints only the crs:fixedByGlossary edge, not the concrete axis names. A co-equal sibling of crs:planeAtlasGlossary, neither privileged. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The four NON-tower plane axes (Honeycomb render (x,y) + geographic (lon,lat)) --------------------
+
+crs:honeycombXAxis a crs:GeometerAxis ;
+    crs:groundsAxisIn prim:Coordinate ;
+    rdfs:label "honeycombXAxis (the Honeycomb render x axis — a non-tower planar coordinate)" ;
+    rdfs:comment "The x render axis of the Honeycomb plane geometer, lifted from source_dimension_planes.tex (the Honeycomb 'concentric-ring map radius and angle to (x,y)' pair, the 'rounded horizontal render position of one admitted node'). It is a NON-tower planar coordinate: a crs:GeometerAxis grounded into SP1 via crs:groundsAxisIn -> prim:Coordinate, deliberately NOT a crs:UrnTowerAxis (a plane geometer has dimension 2 WITHOUT touching the S/O/P towers). It is one of the two crs:hasAxis of crs:honeycombPlaneWitness (its arity 2 = that geometer's dimension). Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:honeycombYAxis a crs:GeometerAxis ;
+    crs:groundsAxisIn prim:Coordinate ;
+    rdfs:label "honeycombYAxis (the Honeycomb render y axis — a non-tower planar coordinate)" ;
+    rdfs:comment "The y render axis of the Honeycomb plane geometer, lifted from source_dimension_planes.tex (the Honeycomb 'concentric-ring map radius and angle to (x,y)' pair, the 'rounded vertical render position of one admitted node'). It is a NON-tower planar coordinate: a crs:GeometerAxis grounded into SP1 via crs:groundsAxisIn -> prim:Coordinate, deliberately NOT a crs:UrnTowerAxis (a plane geometer has dimension 2 WITHOUT touching the S/O/P towers). It is one of the two crs:hasAxis of crs:honeycombPlaneWitness (its arity 2 = that geometer's dimension). Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:geographicLonAxis a crs:GeometerAxis ;
+    crs:groundsAxisIn prim:Longitude ;
+    rdfs:label "geographicLonAxis (the geographic longitude axis — a non-tower geospatial coordinate)" ;
+    rdfs:comment "The longitude axis of the geographic plane geometer, grounded into the SP1 geospatial primitive prim:Longitude (formal.ttl, subClassOf prim:Coordinate) via crs:groundsAxisIn. It is a NON-tower geospatial coordinate: a crs:GeometerAxis, deliberately NOT a crs:UrnTowerAxis (a plane geometer has dimension 2 WITHOUT touching the S/O/P towers, design spec 2.4). It is one of the two crs:hasAxis of crs:geographicPlaneWitness (its arity 2 = that geometer's dimension), read against the SP1 prim:CRS the geometer names via crs:overCRS. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:geographicLatAxis a crs:GeometerAxis ;
+    crs:groundsAxisIn prim:Latitude ;
+    rdfs:label "geographicLatAxis (the geographic latitude axis — a non-tower geospatial coordinate)" ;
+    rdfs:comment "The latitude axis of the geographic plane geometer, grounded into the SP1 geospatial primitive prim:Latitude (formal.ttl, subClassOf prim:Coordinate) via crs:groundsAxisIn. It is a NON-tower geospatial coordinate: a crs:GeometerAxis, deliberately NOT a crs:UrnTowerAxis (a plane geometer has dimension 2 WITHOUT touching the S/O/P towers, design spec 2.4). It is one of the two crs:hasAxis of crs:geographicPlaneWitness (its arity 2 = that geometer's dimension), read against the SP1 prim:CRS the geometer names via crs:overCRS. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The three role-pair pi URN-tower axes (pi_S/pi_O/pi_P projections off the rank-3 role geometer) --
+
+crs:piSubject a crs:UrnTowerAxis ;
+    crs:axisComponentType prim:URN ;
+    crs:axisComposite prim:Vector ;
+    crs:landsInRoleTower crs:subjectTowerWitness ;
+    rdfs:label "piSubject (the pi_S projection axis — lands in the Subject role tower)" ;
+    rdfs:comment "The Subject-role projection axis pi_S off the rank-3 S-O-P role geometer, landing in the Subject role tower (crs:landsInRoleTower crs:subjectTowerWitness). Unlike the Honeycomb/geographic plane axes it IS a genuine URN-tower projection: a crs:UrnTowerAxis with crs:axisComponentType prim:URN and crs:axisComposite prim:Vector, so the T3 crs:AxisUrnTowerShape governs it as a real URN tower and not a scalar. It is a retained axis of exactly TWO of the three role-pair planes — crs:subjectObjectPlaneWitness (with pi_O) and crs:subjectPredicatePlaneWitness (with pi_P) — the symmetry that makes the role-pair family co-equal. It forward-seeds the T7 five-factor product's pi_S. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:piObject a crs:UrnTowerAxis ;
+    crs:axisComponentType prim:URN ;
+    crs:axisComposite prim:Vector ;
+    crs:landsInRoleTower crs:objectTowerWitness ;
+    rdfs:label "piObject (the pi_O projection axis — lands in the Object role tower)" ;
+    rdfs:comment "The Object-role projection axis pi_O off the rank-3 S-O-P role geometer, landing in the Object role tower (crs:landsInRoleTower crs:objectTowerWitness). Unlike the Honeycomb/geographic plane axes it IS a genuine URN-tower projection: a crs:UrnTowerAxis with crs:axisComponentType prim:URN and crs:axisComposite prim:Vector, so the T3 crs:AxisUrnTowerShape governs it as a real URN tower and not a scalar. It is a retained axis of exactly TWO of the three role-pair planes — crs:subjectObjectPlaneWitness (with pi_S) and crs:objectPredicatePlaneWitness (with pi_P) — the symmetry that makes the role-pair family co-equal. It forward-seeds the T7 five-factor product's pi_O. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:piPredicate a crs:UrnTowerAxis ;
+    crs:axisComponentType prim:URN ;
+    crs:axisComposite prim:Vector ;
+    crs:landsInRoleTower crs:predicateTowerWitness ;
+    rdfs:label "piPredicate (the pi_P projection axis — lands in the Predicate role tower)" ;
+    rdfs:comment "The Predicate-role projection axis pi_P off the rank-3 S-O-P role geometer, landing in the Predicate role tower (crs:landsInRoleTower crs:predicateTowerWitness). Unlike the Honeycomb/geographic plane axes it IS a genuine URN-tower projection: a crs:UrnTowerAxis with crs:axisComponentType prim:URN and crs:axisComposite prim:Vector, so the T3 crs:AxisUrnTowerShape governs it as a real URN tower and not a scalar. It is a retained axis of exactly TWO of the three role-pair planes — crs:subjectPredicatePlaneWitness (with pi_S) and crs:objectPredicatePlaneWitness (with pi_O) — the symmetry that makes the role-pair family co-equal. It forward-seeds the T7 five-factor product's pi_P. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The three role-drop effects (the typed loss each role-pair projection incurs — seeds SP4) --------
+
+crs:dropPredicateEffect a crs:RoleDropEffect ;
+    rdfs:label "dropPredicateEffect (the Predicate-role drop loss of the (S,O) plane)" ;
+    rdfs:comment "The typed role-drop loss incurred by crs:subjectObjectPlaneWitness: projecting the rank-3 role geometer to the (Subject,Object) plane FORGETS the Predicate role coordinate. It is the concrete graph statement that the (S,O) projection is lossy, minted per SP1's extensible-Effect discipline and seeding SP4's forgetful layer. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:dropObjectEffect a crs:RoleDropEffect ;
+    rdfs:label "dropObjectEffect (the Object-role drop loss of the (S,P) plane)" ;
+    rdfs:comment "The typed role-drop loss incurred by crs:subjectPredicatePlaneWitness: projecting the rank-3 role geometer to the (Subject,Predicate) plane FORGETS the Object role coordinate. It is the concrete graph statement that the (S,P) projection is lossy, minted per SP1's extensible-Effect discipline and seeding SP4's forgetful layer. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:dropSubjectEffect a crs:RoleDropEffect ;
+    rdfs:label "dropSubjectEffect (the Subject-role drop loss of the (O,P) plane)" ;
+    rdfs:comment "The typed role-drop loss incurred by crs:objectPredicatePlaneWitness: projecting the rank-3 role geometer to the (Object,Predicate) plane FORGETS the Subject role coordinate. It is the concrete graph statement that the (O,P) projection is lossy, minted per SP1's extensible-Effect discipline and seeding SP4's forgetful layer. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The five concrete plane witnesses (honeycomb + geographic + the symmetric role-pair triple) ------
+# NOTE: NO witness is minted directly at crs:PlaneGeometer or crs:RolePairProjectionPlane — the agnostic
+# progenitor and sub-progenitor GROUND NOTHING (crs:PlaneProgenitorShape enforces that a bare progenitor
+# instance carrying a concrete axis is a violation; the probe of record injects exactly that).
+
+crs:honeycombPlaneWitness a crs:HoneycombPlaneGeometer ;
+    crs:fixedByGlossary crs:planeAtlasGlossary ;
+    crs:hasQuarkGrid crs:quarkGridWitness ;
+    crs:hasAxis crs:honeycombXAxis , crs:honeycombYAxis ;
+    crs:hasDimension 2 ;
+    rdfs:label "honeycombPlaneWitness (the (x,y) Honeycomb render-plane geometer: 2 axes, dimension 2)" ;
+    rdfs:comment "The Honeycomb render-plane geometer witness: fixed by its atlas glossary crs:planeAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref), sitting above the shared low-order quark grid (crs:hasQuarkGrid crs:quarkGridWitness), whose axis system is exactly the two NON-tower render axes crs:honeycombXAxis and crs:honeycombYAxis (crs:hasAxis), so its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2). It is the source-attested concrete plane child of the agnostic crs:PlaneGeometer (Directive 17 Q3), a co-equal sibling of the geographic and role-pair planes. It is a non-vacuity anchor of q_plane_progenitor_symmetric and a conforming (exactly-2-axis) side of crs:PlaneProgenitorShape. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:geographicPlaneWitness a crs:GeographicPlaneGeometer ;
+    crs:fixedByGlossary crs:planeAtlasGlossary ;
+    crs:hasQuarkGrid crs:quarkGridWitness ;
+    crs:overCRS prim:CRS ;
+    crs:hasAxis crs:geographicLonAxis , crs:geographicLatAxis ;
+    crs:hasDimension 2 ;
+    rdfs:label "geographicPlaneWitness (the (lon,lat) geographic-plane geometer over prim:CRS: 2 axes, dimension 2)" ;
+    rdfs:comment "The geographic plane geometer witness: fixed by its atlas glossary crs:planeAtlasGlossary (crs:fixedByGlossary, PROVISIONAL SP6 ref), sitting above the shared low-order quark grid (crs:hasQuarkGrid crs:quarkGridWitness), read against the SP1 coordinate reference system prim:CRS (crs:overCRS), whose axis system is exactly the two NON-tower geospatial axes crs:geographicLonAxis and crs:geographicLatAxis (crs:hasAxis), so its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2). It is the geospatial concrete plane child of the agnostic crs:PlaneGeometer (Directive 17 Q3), a co-equal sibling of the Honeycomb and role-pair planes. It is a non-vacuity anchor of q_plane_progenitor_symmetric and a conforming (exactly-2-axis) side of crs:PlaneProgenitorShape. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:subjectObjectPlaneWitness a crs:SubjectObjectPlane ;
+    crs:fixedByGlossary crs:rolePairAtlasGlossary ;
+    crs:hasQuarkGrid crs:quarkGridWitness ;
+    crs:projectsFromRoleGeometer crs:roleGeometerWitness ;
+    crs:dropsRole crs:predicateTowerWitness ;
+    crs:hasRoleDropEffect crs:dropPredicateEffect ;
+    crs:hasAxis crs:piSubject , crs:piObject ;
+    crs:hasDimension 2 ;
+    rdfs:label "subjectObjectPlaneWitness (the (pi_S,pi_O) role-pair plane; drops P: 2 axes, dimension 2)" ;
+    rdfs:comment "The (Subject,Object) role-pair plane witness: a lawful rank-2 projection off the rank-3 crs:roleGeometerWitness (crs:projectsFromRoleGeometer) that RETAINS the pi_S and pi_O URN-tower axes (crs:hasAxis crs:piSubject, crs:piObject) and DROPS the Predicate role (crs:dropsRole crs:predicateTowerWitness) with the typed loss crs:dropPredicateEffect (crs:hasRoleDropEffect). Its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2). Fixed by crs:rolePairAtlasGlossary (PROVISIONAL SP6 ref), above the shared quark grid (crs:hasQuarkGrid). One of the three SYMMETRIC role-pair witnesses, none privileged; a non-vacuity anchor of q_plane_progenitor_symmetric and of crs:PlaneProgenitorShape's symmetry constraint (it is the plane dropping P). Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:subjectPredicatePlaneWitness a crs:SubjectPredicatePlane ;
+    crs:fixedByGlossary crs:rolePairAtlasGlossary ;
+    crs:hasQuarkGrid crs:quarkGridWitness ;
+    crs:projectsFromRoleGeometer crs:roleGeometerWitness ;
+    crs:dropsRole crs:objectTowerWitness ;
+    crs:hasRoleDropEffect crs:dropObjectEffect ;
+    crs:hasAxis crs:piSubject , crs:piPredicate ;
+    crs:hasDimension 2 ;
+    rdfs:label "subjectPredicatePlaneWitness (the (pi_S,pi_P) role-pair plane; drops O: 2 axes, dimension 2)" ;
+    rdfs:comment "The (Subject,Predicate) role-pair plane witness: a lawful rank-2 projection off the rank-3 crs:roleGeometerWitness (crs:projectsFromRoleGeometer) that RETAINS the pi_S and pi_P URN-tower axes (crs:hasAxis crs:piSubject, crs:piPredicate) and DROPS the Object role (crs:dropsRole crs:objectTowerWitness) with the typed loss crs:dropObjectEffect (crs:hasRoleDropEffect). Its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2). Fixed by crs:rolePairAtlasGlossary (PROVISIONAL SP6 ref), above the shared quark grid (crs:hasQuarkGrid). One of the three SYMMETRIC role-pair witnesses, none privileged; a non-vacuity anchor of q_plane_progenitor_symmetric and of crs:PlaneProgenitorShape's symmetry constraint (it is the plane dropping O). Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:objectPredicatePlaneWitness a crs:ObjectPredicatePlane ;
+    crs:fixedByGlossary crs:rolePairAtlasGlossary ;
+    crs:hasQuarkGrid crs:quarkGridWitness ;
+    crs:projectsFromRoleGeometer crs:roleGeometerWitness ;
+    crs:dropsRole crs:subjectTowerWitness ;
+    crs:hasRoleDropEffect crs:dropSubjectEffect ;
+    crs:hasAxis crs:piObject , crs:piPredicate ;
+    crs:hasDimension 2 ;
+    rdfs:label "objectPredicatePlaneWitness (the (pi_O,pi_P) role-pair plane; drops S: 2 axes, dimension 2)" ;
+    rdfs:comment "The (Object,Predicate) role-pair plane witness: a lawful rank-2 projection off the rank-3 crs:roleGeometerWitness (crs:projectsFromRoleGeometer) that RETAINS the pi_O and pi_P URN-tower axes (crs:hasAxis crs:piObject, crs:piPredicate) and DROPS the Subject role (crs:dropsRole crs:subjectTowerWitness) with the typed loss crs:dropSubjectEffect (crs:hasRoleDropEffect). Its own crs:hasDimension is 2 — count(crs:hasAxis) == crs:hasDimension (Q2). Fixed by crs:rolePairAtlasGlossary (PROVISIONAL SP6 ref), above the shared quark grid (crs:hasQuarkGrid). One of the three SYMMETRIC role-pair witnesses, none privileged; a non-vacuity anchor of q_plane_progenitor_symmetric and of crs:PlaneProgenitorShape's symmetry constraint (it is the plane dropping S). Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# =====================================================================================
+# geometers.ttl (continued) — the five-factor Helios product K + joint-faithfulness seal (W2 · SP3, Task T7).
+# =====================================================================================
+# LIFTED (Directive 1: lift, do not invent) VERBATIM from the Helios carrier-towers source
+# helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex:
+#   * Def. "Project-authored five-factor Helios carrier" (def:whitepaper-five-factor-carrier,
+#     v00-towers-five-factor-helios-product-category): K := K_A x K_G x K_S x K_O x K_P, "the categorical
+#     product of Atlas Graph Subject Object and Predicate carrier towers", with product projections pi_j
+#     (v00-towers-five-factor-product-projection), j in {A,G,S,O,P} (v00-towers-five-factor-projection-index-set).
+#     "pi_A K in K_A and pi_G K in K_G retain their outer nominal tags" (v00-towers-atlas/graph-product-projection-codomain),
+#     "while pi_S K, pi_O K, and pi_P K land in the three role-tower categories and never in a color component"
+#     (v00-towers-subject/object/predicate-product-projection).
+#   * Thm. "Five projections are jointly faithful" (thm:whitepaper-five-projections,
+#     v00-towers-joint-faithfulness-equation): for parallel u,v : K -> K', u = v <=> pi_j u = pi_j v for every
+#     j in {A,G,S,O,P}; "The five projections also jointly reflect isomorphisms". Proof
+#     (v00-towers-componentwise-product-inverse): "An arrow in a product category is exactly its five-tuple of
+#     component arrows, so equality is componentwise."
+#
+# WHAT THIS ADDS (T7): the apex of the whole SP3 floor — the five-factor product K reified as crs:CarrierProduct,
+# its five factors (the SP3 carriers crs:AtlasByteCarrier/crs:GraphByteCarrier = K_A/K_G of carriers.ttl and the
+# SP3 role towers crs:SubjectTower/crs:ObjectTower/crs:PredicateTower = K_S/K_O/K_P of towers.ttl) named by
+# crs:hasFactor, and the five product projections pi_j each reified as a first-class projection arrow
+# (crs:hasProjection). Each pi_j LANDS IN ITS FACTOR CATEGORY (crs:landsInFactor) and NEVER in a colour component
+# (crs:ColourChannel of towers.ttl) — the whitepaper's "never in a color component" made a shape. The
+# joint-faithfulness SEAL is materialised as the reversibility round-trip: a crs:ProductArrow is EXACTLY its
+# five-tuple of component arrows (crs:piAComponent/piGComponent/piSComponent/piOComponent/piPComponent, each a
+# crs:FactorComponentArrow = the arrow's image under pi_j in one factor category), so no two DISTINCT product
+# arrows may carry an identical five-tuple.
+#
+# Directive 17 (be MORE agnostic/progenitor on ALL): rather than mint the five projections bare and privilege
+# one, this file mints the AGNOSTIC PROGENITOR crs:FactorProjection (the projection category that grounds NO
+# concrete factor) with two SYMMETRIC composable children lifted from the whitepaper's own two-sentence split —
+# crs:CarrierTagProjection (pi_A, pi_G: "retain their outer nominal tags") and crs:RoleTowerProjection (pi_S,
+# pi_O, pi_P: "land in the three role-tower categories and never in a color component") — none privileged, the
+# byte-order/carrier-tag progenitor pattern applied to the product projection. The three role projections REUSE
+# the T6 role-pair pi axes crs:piSubject/crs:piObject/crs:piPredicate (T6 authored them as
+# "forward-seeds the T7 five-factor product's pi_S/pi_O/pi_P"): the SAME arrows that select a role coordinate of
+# the rank-3 role geometer ARE the product's three role projections; crs:piAtlas/crs:piGraph are the two
+# carrier-tag projections newly minted here.
+#
+# TOOTH (this task): crs:FiveProjectionShape (crs.shapes.ttl) + q_five_projections_faithful (crs.queries.sparql).
+# Probe of record (conforms/ASK True->False): (A) inject crs:probeFaithlessArrow a crs:ProductArrow carrying the
+# SAME five-tuple of component images as crs:productArrowWitnessU (two DISTINCT K-arrows, one five-tuple — a
+# joint-faithfulness break) -> conforms=True->False and q_five_projections_faithful True->False; (B) inject
+# crs:piSubject crs:landsInFactor crs:RedChannel (a pi_S landing in a colour component) -> conforms=True->False
+# and q_five_projections_faithful True->False. The five-factor product OBJECT class crs:CarrierProduct is a
+# bare owl:Class NOT rdfs:subClassOf* prim:FormalType at T7, so SP1's prim:DualGroundingShape does not yet
+# target it here; its reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl). The
+# product's ARROWS and PROJECTIONS (crs:ProductArrow / crs:FactorComponentArrow / crs:FactorProjection and its
+# children crs:CarrierTagProjection / crs:RoleTowerProjection) are EXCEPTED: as arrows/morphisms SP1's own
+# YonedaShape doctrine keeps them OUTSIDE prim:FormalType, so they are deliberately NOT grounded by T11.
+#
+# GROUNDING/SCOPE: the five factors are the ALREADY-COMMITTED SP3 carrier/tower classes (carriers.ttl/towers.ttl);
+# corpus-agnostic v1 (Directive 13) — the only individuals are floor WITNESSES (one product, five projections, six
+# component arrows, two product arrows), minted only to keep crs:FiveProjectionShape + q_five_projections_faithful
+# non-vacuous. Zero corpus instances. SP3 keeps the INTERNAL product projections pi_j : K -> K_j (in scope, the
+# joint-faithfulness seal) DISTINCT from the EXTERNAL cross-framework map chi : Ob(K) -> W (Q4, deferred; T12's
+# honest-red marker in derivation.ttl).
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (2.1, 4)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T7)
+# =====================================================================================
+
+
+# ---- The five-factor Helios product category K = K_A x K_G x K_S x K_O x K_P -----------------------
+
+crs:CarrierProduct a owl:Class ;
+    rdfs:label "CarrierProduct (the five-factor Helios product category K = K_A x K_G x K_S x K_O x K_P)" ;
+    rdfs:comment "The five-factor Helios product category K, lifted verbatim from the whitepaper's declared project synthesis (05_carrier_towers_triad.tex, Def. 'Project-authored five-factor Helios carrier', v00-towers-five-factor-helios-product-category): K := K_A x K_G x K_S x K_O x K_P, 'the categorical product of Atlas Graph Subject Object and Predicate carrier towers'. It is the APEX of the SP3 floor: the categorical product whose five factors are the already-committed SP3 classes — K_A = crs:AtlasByteCarrier and K_G = crs:GraphByteCarrier (carriers.ttl, the two nominally-tagged copies of B_rgb) and K_S = crs:SubjectTower, K_O = crs:ObjectTower, K_P = crs:PredicateTower (towers.ttl, the three independent role URN towers), named by crs:hasFactor. It carries the five product projections pi_j (crs:hasProjection -> crs:FactorProjection children), j in {A,G,S,O,P}, each selecting one declared carrier coordinate. Its arrows (crs:ProductArrow) are governed by the joint-faithfulness seal (crs:FiveProjectionShape): an arrow of K is EXACTLY its five-tuple of component arrows, so the five projections jointly determine an arrow — the reversibility round-trip. At T7 it is a bare owl:Class NOT rdfs:subClassOf* prim:FormalType; its reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl), which puns it a prim:FormalType with its own prim:Realization + reflexive octet-vector carrier + prim:Primitive + Yoneda apparatus, so SP1's prim:DualGroundingShape and prim:YonedaShape target and are satisfied by it over the merged graph." .
+
+crs:ProductArrow a owl:Class ;
+    rdfs:label "ProductArrow (an arrow of the five-factor product category K)" ;
+    rdfs:comment "An arrow of the five-factor Helios product category K (crs:CarrierProduct), lifted from the whitepaper's joint-faithfulness proof (05_carrier_towers_triad.tex, Thm. 'Five projections are jointly faithful', proof v00-towers-componentwise-product-inverse): 'An arrow in a product category is exactly its five-tuple of component arrows, so equality is componentwise.' A crs:ProductArrow therefore carries EXACTLY five component images — crs:piAComponent, crs:piGComponent, crs:piSComponent, crs:piOComponent, crs:piPComponent — each a crs:FactorComponentArrow, the arrow's image pi_j(u) in one of the five factor categories. The joint-faithfulness / reversibility seal is that this five-tuple UNIQUELY determines the arrow: u = v iff pi_j u = pi_j v for every j in {A,G,S,O,P}, so no two DISTINCT crs:ProductArrow may share an identical five-tuple of component images. crs:FiveProjectionShape enforces exactly this (a second distinct arrow with the same five-tuple is a faithfulness break -> conforms=False); the probe of record injects crs:probeFaithlessArrow duplicating crs:productArrowWitnessU's five-tuple. As an ARROW of the product category (a morphism, not an object) it is deliberately NOT rdfs:subClassOf* prim:FormalType and is deliberately NOT grounded by Task T11 (which grounds only the coordinate-chart OBJECT classes): SP1's own YonedaShape doctrine keeps the arrow classes outside prim:FormalType." .
+
+crs:FactorComponentArrow a owl:Class ;
+    rdfs:label "FactorComponentArrow (a component arrow pi_j(u) in one factor category of K)" ;
+    rdfs:comment "A component arrow of a crs:ProductArrow — the image pi_j(u) of a product arrow u under one of the five product projections, an arrow living in exactly one factor category K_j (j in {A,G,S,O,P}), lifted from the whitepaper's proof that 'an arrow in a product category is exactly its five-tuple of component arrows' (05_carrier_towers_triad.tex, thm:whitepaper-five-projections). Each crs:ProductArrow carries five of these, one per projection, via crs:piAComponent/crs:piGComponent/crs:piSComponent/crs:piOComponent/crs:piPComponent; the five together ARE the arrow (the reversibility round-trip). Two product arrows are equal iff their five component arrows agree pointwise, so distinguishing product arrows requires distinguishing at least one component arrow: the floor witnesses crs:productArrowWitnessU and crs:productArrowWitnessV share four components and differ only in the Predicate component (crs:componentArrowP1 vs crs:componentArrowP2), giving two DISTINCT five-tuples — the non-vacuity anchor that makes the joint-faithfulness tooth bite when a probe duplicates a tuple. It is corpus-agnostic v1 (symbolic component arrows, no corpus instances). As a component ARROW (a morphism, not an object) it is deliberately NOT rdfs:subClassOf* prim:FormalType and is deliberately NOT grounded by Task T11 (which grounds only the coordinate-chart OBJECT classes): SP1's own YonedaShape doctrine keeps the arrow classes outside prim:FormalType." .
+
+
+# ---- The agnostic product-projection progenitor pi_j + its two symmetric children (Directive 17) ----
+
+crs:FactorProjection a owl:Class ;
+    rdfs:label "FactorProjection (agnostic five-factor product-projection progenitor pi_j)" ;
+    rdfs:comment "The AGNOSTIC product-projection progenitor pi_j, lifted from the whitepaper's indexed product projection (05_carrier_towers_triad.tex, Def. 'Project-authored five-factor Helios carrier', v00-towers-five-factor-product-projection): the projection 'selects one declared carrier coordinate from the Helios product category' K, indexed by j in {A,G,S,O,P} (v00-towers-five-factor-projection-index-set). A crs:FactorProjection lands in exactly one factor category of K (crs:landsInFactor) and names its index (crs:projectionIndex). Per Directive 17 (be more agnostic on all) this progenitor grounds NO concrete factor — it is the index-neutral join of the five projections, exactly the byte-order/carrier-tag progenitor pattern applied to the product projection — and its two SYMMETRIC composable children lift the whitepaper's own two-sentence split: crs:CarrierTagProjection (pi_A, pi_G, 'retain their outer nominal tags') and crs:RoleTowerProjection (pi_S, pi_O, pi_P, 'land in the three role-tower categories and never in a color component'), none privileged. crs:FiveProjectionShape enforces on every crs:FactorProjection that its crs:landsInFactor is NEVER on the crs:ColourChannel line (the whitepaper's 'never in a color component'); the probe of record crs:piSubject crs:landsInFactor crs:RedChannel flips conforms True->False." .
+
+crs:CarrierTagProjection a owl:Class ;
+    rdfs:subClassOf crs:FactorProjection ;
+    rdfs:label "CarrierTagProjection (pi_A / pi_G — the two carrier-tag projections that retain the outer tag)" ;
+    rdfs:comment "The carrier-tag product projection, lifted verbatim from the whitepaper (05_carrier_towers_triad.tex, Def. 'Project-authored five-factor Helios carrier'): 'pi_A K in K_A and pi_G K in K_G retain their outer nominal tags' (v00-towers-atlas-product-projection-codomain / v00-towers-graph-product-projection-codomain). A crs:CarrierTagProjection is a product projection pi_j (j in {A,G}) that lands in one of the two nominally-tagged byte-carrier factors — pi_A (crs:piAtlas) lands in K_A = crs:AtlasByteCarrier, pi_G (crs:piGraph) lands in K_G = crs:GraphByteCarrier (carriers.ttl) — retaining that factor's outer nominal tag (aTag / gTag). It is one of the two SYMMETRIC composable children of the agnostic progenitor crs:FactorProjection (Directive 17), a co-equal sibling of crs:RoleTowerProjection with neither privileged. Like every crs:FactorProjection it lands in ITS factor category (crs:landsInFactor) and never in a colour component; crs:FiveProjectionShape enforces the never-in-colour law over it too. Corpus-agnostic v1. As a product PROJECTION arrow (a morphism, not an object) it is deliberately NOT rdfs:subClassOf* prim:FormalType and is deliberately NOT grounded by Task T11 (which grounds only the coordinate-chart OBJECT classes): SP1's own YonedaShape doctrine keeps the arrow/projection classes outside prim:FormalType." .
+
+crs:RoleTowerProjection a owl:Class ;
+    rdfs:subClassOf crs:FactorProjection ;
+    rdfs:label "RoleTowerProjection (pi_S / pi_O / pi_P — the three role projections that never land in colour)" ;
+    rdfs:comment "The role-tower product projection, lifted verbatim from the whitepaper (05_carrier_towers_triad.tex, Def. 'Project-authored five-factor Helios carrier'): 'pi_S K, pi_O K, and pi_P K land in the three role-tower categories and never in a color component' (v00-towers-subject/object/predicate-product-projection). A crs:RoleTowerProjection is a product projection pi_j (j in {S,O,P}) that selects the Subject/Object/Predicate role component of an arrow of K, landing in K_S = crs:SubjectTower, K_O = crs:ObjectTower, or K_P = crs:PredicateTower (towers.ttl) and NEVER in an RGB colour component — the type distinction the T4 positional-collapse obstruction turns on (a role tower is not a colour channel). It is one of the two SYMMETRIC composable children of the agnostic progenitor crs:FactorProjection (Directive 17), a co-equal sibling of crs:CarrierTagProjection with neither privileged. Its three witnesses REUSE the T6 role-pair pi axes crs:piSubject/crs:piObject/crs:piPredicate (T6 authored them as 'forward-seeds the T7 five-factor product's pi_S/pi_O/pi_P'): the same arrows that select a role coordinate of the rank-3 role geometer ARE the product's three role projections. crs:FiveProjectionShape enforces the never-in-colour law; the probe crs:piSubject crs:landsInFactor crs:RedChannel flips conforms True->False. Corpus-agnostic v1. As a product PROJECTION arrow (a morphism, not an object) it is deliberately NOT rdfs:subClassOf* prim:FormalType and is deliberately NOT grounded by Task T11 (which grounds only the coordinate-chart OBJECT classes): SP1's own YonedaShape doctrine keeps the arrow/projection classes outside prim:FormalType." .
+
+
+# ---- The product / projection / component relations ------------------------------------------------
+
+crs:hasFactor a owl:ObjectProperty ;
+    rdfs:domain crs:CarrierProduct ;
+    rdfs:range rdfs:Class ;
+    rdfs:label "hasFactor" ;
+    rdfs:comment "Relates a crs:CarrierProduct (the five-factor Helios product K) to one of its five factor CATEGORIES — the classes K_A = crs:AtlasByteCarrier, K_G = crs:GraphByteCarrier (carriers.ttl) and K_S = crs:SubjectTower, K_O = crs:ObjectTower, K_P = crs:PredicateTower (towers.ttl), lifted from the whitepaper's K := K_A x K_G x K_S x K_O x K_P (05_carrier_towers_triad.tex, def:whitepaper-five-factor-carrier). Its rdfs:range is rdfs:Class because a factor is a categorical FACTOR (a category/class), not an individual — the product is a product of categories. crs:carrierProductWitness carries exactly the five crs:hasFactor edges to the five committed SP3 carrier/tower classes; q_five_projections_faithful reads them to confirm the product is the whitepaper's five-factor product over exactly those factors, none invented." .
+
+crs:hasProjection a owl:ObjectProperty ;
+    rdfs:domain crs:CarrierProduct ;
+    rdfs:range crs:FactorProjection ;
+    rdfs:label "hasProjection" ;
+    rdfs:comment "Relates a crs:CarrierProduct (the five-factor Helios product K) to one of its five product projections pi_j (a crs:FactorProjection child), lifted from the whitepaper's 'product projections pi_j, j in {A,G,S,O,P}' (05_carrier_towers_triad.tex, v00-towers-five-factor-product-projection). crs:carrierProductWitness carries exactly five crs:hasProjection edges — to crs:piAtlas and crs:piGraph (the two crs:CarrierTagProjection) and to crs:piSubject, crs:piObject, crs:piPredicate (the three crs:RoleTowerProjection, reused from T6) — the five projections that jointly, faithfully determine an arrow of K. It is the edge q_five_projections_faithful reads to confirm all five projections are present and each lands in its factor category." .
+
+crs:landsInFactor a owl:ObjectProperty ;
+    rdfs:domain crs:FactorProjection ;
+    rdfs:range rdfs:Class ;
+    rdfs:label "landsInFactor" ;
+    rdfs:comment "Relates a product projection pi_j (a crs:FactorProjection) to the factor CATEGORY it lands in — the codomain of pi_j : K -> K_j, lifted from the whitepaper (05_carrier_towers_triad.tex): 'pi_A K in K_A and pi_G K in K_G retain their outer nominal tags, while pi_S K, pi_O K, and pi_P K land in the three role-tower categories and never in a color component'. crs:piAtlas crs:landsInFactor crs:AtlasByteCarrier, crs:piGraph -> crs:GraphByteCarrier, crs:piSubject -> crs:SubjectTower, crs:piObject -> crs:ObjectTower, crs:piPredicate -> crs:PredicateTower. Its rdfs:range is rdfs:Class because a projection lands in a factor CATEGORY (a class), not an individual. The load-bearing law it carries is the whitepaper's 'never in a color component': crs:FiveProjectionShape flags any crs:FactorProjection whose crs:landsInFactor is on the crs:ColourChannel line (rdfs:subClassOf* crs:ColourChannel), and the probe of record crs:piSubject crs:landsInFactor crs:RedChannel makes the tooth bite (conforms=True->False)." .
+
+crs:projectionIndex a owl:DatatypeProperty ;
+    rdfs:domain crs:FactorProjection ;
+    rdfs:range xsd:string ;
+    rdfs:label "projectionIndex" ;
+    rdfs:comment "The projection index j in {A,G,S,O,P} a crs:FactorProjection carries — 'A' for crs:piAtlas, 'G' for crs:piGraph, 'S' for crs:piSubject, 'O' for crs:piObject, 'P' for crs:piPredicate — lifted from the whitepaper's five-factor projection index set (05_carrier_towers_triad.tex, v00-towers-five-factor-projection-index-set: j enumerates the Atlas Graph Subject Object and Predicate product coordinates). It records which of the five product coordinates a projection selects, as an immutable full-lexical index string; the five distinct indices are what make the five projections a co-equal symmetric family, none privileged (Directive 17)." .
+
+crs:piAComponent a owl:ObjectProperty ;
+    rdfs:domain crs:ProductArrow ;
+    rdfs:range crs:FactorComponentArrow ;
+    rdfs:label "piAComponent" ;
+    rdfs:comment "Relates a crs:ProductArrow u to its Atlas component image pi_A(u) — a crs:FactorComponentArrow, the arrow's image under the Atlas product projection pi_A, an arrow of the factor category K_A = crs:AtlasByteCarrier. It is one of the five component-image edges (with crs:piGComponent/piSComponent/piOComponent/piPComponent) that together ARE the product arrow (the whitepaper's 'an arrow in a product category is exactly its five-tuple of component arrows'). crs:FiveProjectionShape's joint-faithfulness constraint reads all five component edges of each product arrow to forbid two DISTINCT arrows sharing an identical five-tuple; this A-component is one coordinate of that tuple." .
+
+crs:piGComponent a owl:ObjectProperty ;
+    rdfs:domain crs:ProductArrow ;
+    rdfs:range crs:FactorComponentArrow ;
+    rdfs:label "piGComponent" ;
+    rdfs:comment "Relates a crs:ProductArrow u to its Graph component image pi_G(u) — a crs:FactorComponentArrow, the arrow's image under the Graph product projection pi_G, an arrow of the factor category K_G = crs:GraphByteCarrier. It is one of the five component-image edges (with crs:piAComponent/piSComponent/piOComponent/piPComponent) that together ARE the product arrow (the whitepaper's 'an arrow in a product category is exactly its five-tuple of component arrows'). crs:FiveProjectionShape's joint-faithfulness constraint reads all five component edges of each product arrow to forbid two DISTINCT arrows sharing an identical five-tuple; this G-component is one coordinate of that tuple." .
+
+crs:piSComponent a owl:ObjectProperty ;
+    rdfs:domain crs:ProductArrow ;
+    rdfs:range crs:FactorComponentArrow ;
+    rdfs:label "piSComponent" ;
+    rdfs:comment "Relates a crs:ProductArrow u to its Subject component image pi_S(u) — a crs:FactorComponentArrow, the arrow's image under the Subject role projection pi_S, an arrow of the factor category K_S = crs:SubjectTower (a role tower, never a colour component). It is one of the five component-image edges (with crs:piAComponent/piGComponent/piOComponent/piPComponent) that together ARE the product arrow (the whitepaper's 'an arrow in a product category is exactly its five-tuple of component arrows'). crs:FiveProjectionShape's joint-faithfulness constraint reads all five component edges of each product arrow to forbid two DISTINCT arrows sharing an identical five-tuple; this S-component is one coordinate of that tuple." .
+
+crs:piOComponent a owl:ObjectProperty ;
+    rdfs:domain crs:ProductArrow ;
+    rdfs:range crs:FactorComponentArrow ;
+    rdfs:label "piOComponent" ;
+    rdfs:comment "Relates a crs:ProductArrow u to its Object component image pi_O(u) — a crs:FactorComponentArrow, the arrow's image under the Object role projection pi_O, an arrow of the factor category K_O = crs:ObjectTower (a role tower, never a colour component). It is one of the five component-image edges (with crs:piAComponent/piGComponent/piSComponent/piPComponent) that together ARE the product arrow (the whitepaper's 'an arrow in a product category is exactly its five-tuple of component arrows'). crs:FiveProjectionShape's joint-faithfulness constraint reads all five component edges of each product arrow to forbid two DISTINCT arrows sharing an identical five-tuple; this O-component is one coordinate of that tuple." .
+
+crs:piPComponent a owl:ObjectProperty ;
+    rdfs:domain crs:ProductArrow ;
+    rdfs:range crs:FactorComponentArrow ;
+    rdfs:label "piPComponent" ;
+    rdfs:comment "Relates a crs:ProductArrow u to its Predicate component image pi_P(u) — a crs:FactorComponentArrow, the arrow's image under the Predicate role projection pi_P, an arrow of the factor category K_P = crs:PredicateTower (a role tower, never a colour component). It is one of the five component-image edges (with crs:piAComponent/piGComponent/piSComponent/piOComponent) that together ARE the product arrow (the whitepaper's 'an arrow in a product category is exactly its five-tuple of component arrows'). It is the coordinate in which the two floor witnesses crs:productArrowWitnessU and crs:productArrowWitnessV DIFFER (crs:componentArrowP1 vs crs:componentArrowP2), giving them distinct five-tuples; crs:FiveProjectionShape's joint-faithfulness constraint reads all five component edges to forbid two DISTINCT arrows sharing an identical five-tuple." .
+
+
+# =====================================================================================
+# The T7 floor WITNESSES (corpus-agnostic v1): the five-factor product K, its two newly-minted carrier-tag
+# projections (pi_A/pi_G) + the three reused role projections (pi_S/pi_O/pi_P) each landing in its factor, six
+# symbolic factor-component arrows, and two DISTINCT product arrows differing only in the Predicate component.
+# Minted only to keep crs:FiveProjectionShape + q_five_projections_faithful non-vacuous. Zero corpus instances.
+# =====================================================================================
+
+# -- The five-factor product witness K (its five factors + its five projections) ---------------------
+
+crs:carrierProductWitness a crs:CarrierProduct ;
+    crs:hasFactor crs:AtlasByteCarrier , crs:GraphByteCarrier ,
+                  crs:SubjectTower , crs:ObjectTower , crs:PredicateTower ;
+    crs:hasProjection crs:piAtlas , crs:piGraph ,
+                      crs:piSubject , crs:piObject , crs:piPredicate ;
+    rdfs:label "carrierProductWitness (the five-factor Helios product K over its five committed SP3 factors)" ;
+    rdfs:comment "The five-factor Helios product witness K = K_A x K_G x K_S x K_O x K_P: its five factor categories (crs:hasFactor) are exactly the already-committed SP3 classes crs:AtlasByteCarrier (K_A) and crs:GraphByteCarrier (K_G) from carriers.ttl and crs:SubjectTower (K_S), crs:ObjectTower (K_O), crs:PredicateTower (K_P) from towers.ttl, and its five product projections (crs:hasProjection) are crs:piAtlas / crs:piGraph (the carrier-tag projections) and crs:piSubject / crs:piObject / crs:piPredicate (the role projections reused from T6). It is the non-vacuity anchor of q_five_projections_faithful — the concrete graph statement that the SP3 floor's apex product is the whitepaper's five-factor product over exactly those five committed factors, none invented. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The two carrier-tag projections pi_A / pi_G (newly minted; retain the outer nominal tag) ---------
+
+crs:piAtlas a crs:CarrierTagProjection ;
+    crs:landsInFactor crs:AtlasByteCarrier ;
+    crs:projectionIndex "A" ;
+    rdfs:label "piAtlas (pi_A — the Atlas product projection, lands in K_A retaining aTag)" ;
+    rdfs:comment "The Atlas product projection pi_A of the five-factor Helios product K: it selects the Atlas byte-carrier coordinate, landing in K_A = crs:AtlasByteCarrier (crs:landsInFactor) and retaining that factor's outer nominal Atlas tag aTag (05_carrier_towers_triad.tex: 'pi_A K in K_A ... retain their outer nominal tags'). It is a crs:CarrierTagProjection (index 'A', crs:projectionIndex), a co-equal sibling of pi_G, and one of the five crs:hasProjection of crs:carrierProductWitness. It lands in a byte-carrier factor, NEVER a colour component. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:piGraph a crs:CarrierTagProjection ;
+    crs:landsInFactor crs:GraphByteCarrier ;
+    crs:projectionIndex "G" ;
+    rdfs:label "piGraph (pi_G — the Graph product projection, lands in K_G retaining gTag)" ;
+    rdfs:comment "The Graph product projection pi_G of the five-factor Helios product K: it selects the Graph byte-carrier coordinate, landing in K_G = crs:GraphByteCarrier (crs:landsInFactor) and retaining that factor's outer nominal Graph tag gTag (05_carrier_towers_triad.tex: 'pi_G K in K_G retain their outer nominal tags'). It is a crs:CarrierTagProjection (index 'G', crs:projectionIndex), a co-equal sibling of pi_A, and one of the five crs:hasProjection of crs:carrierProductWitness. It lands in a byte-carrier factor, NEVER a colour component. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The three role projections pi_S / pi_O / pi_P (REUSED from T6: crs:piSubject/piObject/piPredicate) --
+# T6 authored these as crs:UrnTowerAxis role-pair pi axes "forward-seeds the T7 five-factor product's pi_S/O/P".
+# T7 additionally types them crs:RoleTowerProjection and records their landing factor + index (append-only; the
+# T6 crs:UrnTowerAxis type, axis component/composite, and crs:landsInRoleTower are untouched and still bite T3).
+
+crs:piSubject a crs:RoleTowerProjection ;
+    crs:landsInFactor crs:SubjectTower ;
+    crs:projectionIndex "S" .
+
+crs:piObject a crs:RoleTowerProjection ;
+    crs:landsInFactor crs:ObjectTower ;
+    crs:projectionIndex "O" .
+
+crs:piPredicate a crs:RoleTowerProjection ;
+    crs:landsInFactor crs:PredicateTower ;
+    crs:projectionIndex "P" .
+
+
+# -- The six symbolic factor-component arrows (one per factor; a SECOND for K_P to distinguish U from V) --
+
+crs:componentArrowA a crs:FactorComponentArrow ;
+    rdfs:label "componentArrowA (a component arrow in K_A = crs:AtlasByteCarrier)" ;
+    rdfs:comment "A symbolic component arrow pi_A(u) in the Atlas factor category K_A = crs:AtlasByteCarrier — the Atlas coordinate of a product arrow's five-tuple. Shared by both product-arrow witnesses crs:productArrowWitnessU and crs:productArrowWitnessV (they agree in the Atlas coordinate). Corpus-agnostic v1 floor witness (symbolic, no corpus instance)." .
+
+crs:componentArrowG a crs:FactorComponentArrow ;
+    rdfs:label "componentArrowG (a component arrow in K_G = crs:GraphByteCarrier)" ;
+    rdfs:comment "A symbolic component arrow pi_G(u) in the Graph factor category K_G = crs:GraphByteCarrier — the Graph coordinate of a product arrow's five-tuple. Shared by both product-arrow witnesses crs:productArrowWitnessU and crs:productArrowWitnessV (they agree in the Graph coordinate). Corpus-agnostic v1 floor witness (symbolic, no corpus instance)." .
+
+crs:componentArrowS a crs:FactorComponentArrow ;
+    rdfs:label "componentArrowS (a component arrow in K_S = crs:SubjectTower)" ;
+    rdfs:comment "A symbolic component arrow pi_S(u) in the Subject role-tower factor category K_S = crs:SubjectTower — the Subject coordinate of a product arrow's five-tuple. Shared by both product-arrow witnesses crs:productArrowWitnessU and crs:productArrowWitnessV (they agree in the Subject coordinate). Corpus-agnostic v1 floor witness (symbolic, no corpus instance)." .
+
+crs:componentArrowO a crs:FactorComponentArrow ;
+    rdfs:label "componentArrowO (a component arrow in K_O = crs:ObjectTower)" ;
+    rdfs:comment "A symbolic component arrow pi_O(u) in the Object role-tower factor category K_O = crs:ObjectTower — the Object coordinate of a product arrow's five-tuple. Shared by both product-arrow witnesses crs:productArrowWitnessU and crs:productArrowWitnessV (they agree in the Object coordinate). Corpus-agnostic v1 floor witness (symbolic, no corpus instance)." .
+
+crs:componentArrowP1 a crs:FactorComponentArrow ;
+    rdfs:label "componentArrowP1 (the Predicate component arrow of crs:productArrowWitnessU, in K_P)" ;
+    rdfs:comment "A symbolic component arrow pi_P(u) in the Predicate role-tower factor category K_P = crs:PredicateTower — the Predicate coordinate of crs:productArrowWitnessU's five-tuple. It DIFFERS from crs:componentArrowP2 (the Predicate coordinate of crs:productArrowWitnessV): this single differing coordinate is what makes U and V two DISTINCT arrows with DISTINCT five-tuples (the componentwise-equality of the joint-faithfulness proof), the non-vacuity anchor that lets the faithfulness tooth bite when a probe duplicates U's tuple. Corpus-agnostic v1 floor witness (symbolic, no corpus instance)." .
+
+crs:componentArrowP2 a crs:FactorComponentArrow ;
+    rdfs:label "componentArrowP2 (the Predicate component arrow of crs:productArrowWitnessV, in K_P)" ;
+    rdfs:comment "A symbolic component arrow pi_P(v) in the Predicate role-tower factor category K_P = crs:PredicateTower — the Predicate coordinate of crs:productArrowWitnessV's five-tuple. It DIFFERS from crs:componentArrowP1 (the Predicate coordinate of crs:productArrowWitnessU): this single differing coordinate is what makes U and V two DISTINCT arrows with DISTINCT five-tuples (the componentwise-equality of the joint-faithfulness proof), so on the clean graph no two distinct product arrows share a five-tuple and crs:FiveProjectionShape conforms. Corpus-agnostic v1 floor witness (symbolic, no corpus instance)." .
+
+
+# -- The two DISTINCT product arrows (agree in A/G/S/O; differ only in the P component) ---------------
+
+crs:productArrowWitnessU a crs:ProductArrow ;
+    crs:piAComponent crs:componentArrowA ;
+    crs:piGComponent crs:componentArrowG ;
+    crs:piSComponent crs:componentArrowS ;
+    crs:piOComponent crs:componentArrowO ;
+    crs:piPComponent crs:componentArrowP1 ;
+    rdfs:label "productArrowWitnessU (a product arrow of K; five-tuple (A,G,S,O,P1))" ;
+    rdfs:comment "A product-arrow witness u of the five-factor Helios product K (crs:CarrierProduct): its five component images are pi_A=crs:componentArrowA, pi_G=crs:componentArrowG, pi_S=crs:componentArrowS, pi_O=crs:componentArrowO, pi_P=crs:componentArrowP1 — the five-tuple (A,G,S,O,P1) that, per the whitepaper's proof, EXACTLY is this arrow. It shares four coordinates with crs:productArrowWitnessV and differs only in the Predicate component (P1 vs P2), so U and V are two DISTINCT arrows with DISTINCT five-tuples — the non-vacuity anchor of the joint-faithfulness seal. The probe of record crs:probeFaithlessArrow duplicates exactly this five-tuple to make crs:FiveProjectionShape bite (two distinct arrows, one five-tuple -> conforms=False). Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:productArrowWitnessV a crs:ProductArrow ;
+    crs:piAComponent crs:componentArrowA ;
+    crs:piGComponent crs:componentArrowG ;
+    crs:piSComponent crs:componentArrowS ;
+    crs:piOComponent crs:componentArrowO ;
+    crs:piPComponent crs:componentArrowP2 ;
+    rdfs:label "productArrowWitnessV (a product arrow of K; five-tuple (A,G,S,O,P2))" ;
+    rdfs:comment "A product-arrow witness v of the five-factor Helios product K (crs:CarrierProduct): its five component images are pi_A=crs:componentArrowA, pi_G=crs:componentArrowG, pi_S=crs:componentArrowS, pi_O=crs:componentArrowO, pi_P=crs:componentArrowP2 — the five-tuple (A,G,S,O,P2). It shares four coordinates with crs:productArrowWitnessU and differs only in the Predicate component (P2 vs P1), so u != v exactly because pi_P u != pi_P v (the componentwise-equality of the joint-faithfulness theorem, u = v <=> pi_j u = pi_j v for every j). Two distinct arrows with distinct five-tuples is the conforming (green) baseline of crs:FiveProjectionShape. Corpus-agnostic v1 floor witness, not a corpus instance." .

@@ -1,0 +1,20 @@
+# =====================================================================================
+# progenitor_pos.ttl — POSITIVE fixture for the AlgebraProgenitorShape (W2 · SP0, T-PROG).
+# =====================================================================================
+# A conformant agnostic progenitor witness: typed rec:progenitor:record, it GROUNDS NOTHING
+# (no @rel:signature, no @rel:adds:law, no @rel:carrier) and is NOT a model. Merged onto the
+# algebra data graph it MUST still conform (run-algebra-checks.sh step (b) positive polarity),
+# and progenitor_grounds_nothing.rq returns 0 rows over it. Distinct from the base spine
+# progenitor so it is an independent positive witness (D24 four-planes: witnesses live in
+# fixtures/, outside the ontology data glob). Typed owl:NamedIndividual (NOT owl:Class) so the
+# depth gate treats it as a typed individual, not a class needing a 200-char comment.
+#
+# Companion negative: fixtures/progenitor_neg.ttl (an over-specified progenitor -> RED).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+<urn:silmaril:fixture:algebra:progenitor:positive>
+    a owl:NamedIndividual , rec:progenitor:record ;
+    rel:notation "candidate agnostic progenitor (grounds nothing)" .

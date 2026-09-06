@@ -1,0 +1,107 @@
+# =====================================================================================
+# executor_lane.ttl — the EXECUTOR half of the V7 provenance-closure review lane (W2 SP0, T-PROV).
+# =====================================================================================
+# D24 gate V7 (provenance closure): every reshaped RECORD MUST be attributed to >= 1 EXECUTOR
+# AND >= 1 SHADOW (prov:wasAttributedTo) plus a prov:wasGeneratedBy. The reference governance/
+# layer is EMPTY (design §4 V7 GAP) so this lane is BUILT from scratch. This file is the executor
+# half: the executor prov:Agent, the D24 ExecutorValidation lifecycle activity + its review record,
+# and the executor attribution edge on all twenty-nine provenance-bearing (rel:authority) records
+# of the folded spine (8 theory + 8 model/declaration + 7 reduct + 6 theorem). The tandem SHADOW
+# half is reviews/shadow/shadow_lane.ttl; the resolution + marker + wasGeneratedBy is
+# reviews/resolved/resolution_lane.ttl; the acceptance seal is receipts/receipts.ttl. RED-FIRST
+# doctrine: with THIS file (executor) but WITHOUT shadow_lane.ttl the dual-count V7 tooth is RED
+# (every record lacks a shadow attribution); adding the shadow half turns it GREEN.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§4 V7, §2g).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (Task T-PROV).
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix gprov: <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:> .
+
+# --- the EXECUTOR agent class + instance (Plane-4 ProvenanceArtifact; the operator-loop executor role) ---
+<urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:class:agent:executor>
+    a owl:Class ;
+    rdfs:subClassOf prov:SoftwareAgent ;
+    rdfs:label "algebra reshape executor agent" ;
+    rdfs:comment "The EXECUTOR agent class of the SP0 spine-fold provenance lane (D24 operator loop: 'executors parallelize ONLY with tandem shadows'; gate V7 executor >= 1). A subclass of prov:SoftwareAgent: the agent that AUTHORED a reshaped record (minted the theory / model / reduct / theorem atom in the D24 stratified idiom). It is a Plane-4 ProvenanceArtifact participant, DISTINCT from the mathematical denotatum it helped declare (D24: 'Group was not authored by an executor; the GroupTermRecord was') — provenance rides the RECORD, never the denoted object. Every prov:wasAttributedTo edge whose object is typed with this class satisfies the executor half of the V7 dual-count; the ShadowAgent class carries the independent-review half, and the two together close the lane." .
+
+<urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold>
+    a owl:NamedIndividual , <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:class:agent:executor> , prov:Agent , prov:SoftwareAgent ;
+    rdfs:label "SP0 spine-fold executor (operator loop, signing key claude 2026b)" ;
+    prov:actedOnBehalfOf <urn:silmaril:signing_key_claude_2026b> .
+
+# --- the D24 ExecutorValidation lifecycle activity + its review record (Draft -> ExecutorValidation) ---
+<urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:activity:lifecycle:executor:validation:sp0:spine:fold>
+    a owl:NamedIndividual , prov:Activity ;
+    rdfs:label "lifecycle: ExecutorValidation (D24 lane step 2)" ;
+    prov:wasAssociatedWith <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> ;
+    prov:wasInformedBy <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:activity:lifecycle:draft:sp0:spine:fold> .
+
+<urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:record:executor:validation:sp0:spine:fold>
+    a owl:NamedIndividual , prov:Entity ;
+    rdfs:label "executor validation record (SP0 spine-fold)" ;
+    prov:wasGeneratedBy <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:activity:lifecycle:executor:validation:sp0:spine:fold> ;
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> ;
+    prov:value "ExecutorValidation: the 29 reshaped records (8 theory + 8 model + 7 reduct + 6 theorem) were authored and self-validated non-vacuously against shapes/algebra.shapes.ttl before shadow critique." .
+
+# --- executor attribution on every reshaped (rel:authority-bearing) record of the folded spine ---
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:abelian:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:abelian:group:genus:governed:species:abelian:group:component:class:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:abelian:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:abelian:group:genus:presented:species:abelian:group:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:abelian:group:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:abelian:group:to:group:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:abelian:group:kingdom:theorem:phylum:algebra:class:inverse:order:declarative:family:abelian:group:genus:product:species:inverse:component:statement:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:commutative:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:commutative:monoid:genus:governed:species:commutative:monoid:component:class:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:commutative:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:commutative:monoid:genus:presented:species:commutative:monoid:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:commutative:monoid:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:commutative:monoid:to:monoid:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:commutative:monoid:kingdom:theorem:phylum:algebra:class:commutativity:order:declarative:family:commutative:monoid:genus:generalized:species:composition:component:statement:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:group:genus:governed:species:group:component:class:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:group:genus:presented:species:group:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:group:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:group:to:monoid:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:group:kingdom:theorem:phylum:algebra:class:inverse:order:declarative:family:group:genus:uniqueness:species:inverse:component:statement:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:loop:kingdom:class:phylum:algebra:class:model:order:declarative:family:loop:genus:governed:species:loop:component:class:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:loop:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:loop:genus:presented:species:loop:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:loop:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:loop:to:quasigroup:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:loop:kingdom:theorem:phylum:algebra:class:identity:order:declarative:family:loop:genus:uniqueness:species:member:component:statement:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:magma:kingdom:class:phylum:algebra:class:model:order:declarative:family:magma:genus:governed:species:magma:component:class:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:magma:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:magma:genus:presented:species:magma:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:monoid:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:monoid:to:semigroup:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:monoid:kingdom:theorem:phylum:algebra:class:identity:order:declarative:family:monoid:genus:uniqueness:species:member:component:statement:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:quasigroup:kingdom:class:phylum:algebra:class:model:order:declarative:family:quasigroup:genus:governed:species:quasigroup:component:class:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:quasigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:quasigroup:genus:presented:species:quasigroup:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:quasigroup:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:quasigroup:to:magma:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semigroup:kingdom:class:phylum:algebra:class:model:order:declarative:family:semigroup:genus:governed:species:semigroup:component:class:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:semigroup:genus:presented:species:semigroup:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semigroup:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:semigroup:to:magma:component:definition:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semigroup:kingdom:theorem:phylum:algebra:class:associativity:order:declarative:family:semigroup:genus:generalized:species:composition:component:statement:instance:canonical>
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> .

@@ -1,0 +1,57 @@
+@prefix process: <urn:silmaril:user:interface:runtime:process:> .
+@prefix parameter: <urn:silmaril:user:interface:runtime:process:parameter:> .
+@prefix result: <urn:silmaril:user:interface:runtime:process:result:> .
+@prefix module: <urn:silmaril:user:interface:runtime:process:module:> .
+@prefix boundary: <urn:silmaril:user:interface:runtime:process:boundary:> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Syntax observations are necessary evidence, never runtime admission.
+# The source observer must independently prove census completeness and resolve
+# all annotated types and dependency gates at the exact source revision.
+process:Shape a constraint:NodeShape ;
+    constraint:targetClass process:Observation ;
+    constraint:property [ constraint:path process:source ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:string ; constraint:pattern "^scripts/python/pylib/src/.+/process[.]py$" ] ;
+    constraint:property [ constraint:path process:revision ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:string ; constraint:pattern "^[0-9a-f]{40}$" ] ;
+    constraint:property [ constraint:path process:export ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:hasValue "MAIN" ] ;
+    constraint:property [ constraint:path process:parameter ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:node parameter:Shape ] ;
+    constraint:property [ constraint:path process:result ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:node result:Shape ] ;
+    constraint:property [ constraint:path process:module ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:node module:Shape ] ;
+    constraint:property [ constraint:path process:boundary ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:node boundary:Shape ] ;
+    constraint:property [ constraint:path process:termination ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:integer ; constraint:hasValue 0 ] ;
+    constraint:property [ constraint:path process:implicit ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:integer ; constraint:hasValue 0 ] ;
+    constraint:sparql [
+        constraint:message "The host boundary must occupy a separate source coordinate from MAIN." ;
+        constraint:select """
+            PREFIX process: <urn:silmaril:user:interface:runtime:process:>
+            PREFIX boundary: <urn:silmaril:user:interface:runtime:process:boundary:>
+            SELECT $this WHERE {
+                $this process:source ?source ; process:boundary ?boundary .
+                ?boundary boundary:source ?source .
+            }
+        """
+    ] .
+
+parameter:Shape a constraint:NodeShape ;
+    constraint:class parameter:Observation ;
+    constraint:property [ constraint:path parameter:annotation ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:nodeKind constraint:IRI ] ;
+    constraint:property [ constraint:path parameter:kind ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:in ( parameter:Positional parameter:Exclusive parameter:Keyword ) ] ;
+    constraint:property [ constraint:path parameter:default ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:boolean ; constraint:hasValue false ] .
+
+result:Shape a constraint:NodeShape ;
+    constraint:class result:Observation ;
+    constraint:property [ constraint:path result:annotation ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:nodeKind constraint:IRI ] ;
+    constraint:property [ constraint:path result:product ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:boolean ; constraint:hasValue true ] .
+
+module:Shape a constraint:NodeShape ;
+    constraint:class module:Observation ;
+    constraint:property [ constraint:path module:invocation ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:integer ; constraint:hasValue 0 ] ;
+    constraint:property [ constraint:path module:termination ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:integer ; constraint:hasValue 0 ] .
+
+boundary:Shape a constraint:NodeShape ;
+    constraint:class boundary:Observation ;
+    constraint:property [ constraint:path boundary:source ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:string ; constraint:pattern "^scripts/python/pylib/src/.+/process[.]py$" ] ;
+    constraint:property [ constraint:path boundary:gate ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:nodeKind constraint:IRI ] ;
+    constraint:property [ constraint:path boundary:output ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:boolean ; constraint:hasValue true ] ;
+    constraint:property [ constraint:path boundary:effect ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:datatype datatype:boolean ; constraint:hasValue true ] .

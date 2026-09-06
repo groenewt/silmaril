@@ -1,0 +1,282 @@
+# =====================================================================================
+# commutative_monoid.ttl — the COMMUTATIVE-MONOID rung END-TO-END (W2 · SP0, T-CMON).
+# Fans out from monoid.ttl.
+# =====================================================================================
+# The stratified commutative-monoid rung, replicating the maintainer-signed-off monoid exemplar
+# (spine/monoid.ttl, design §2 "MONOID rung assembly") with the rung swapped: parent = monoid, the
+# SINGLE added law = COMMUTATIVITY (ONE equation, not two-sided), signature = sigMonoid (shared with
+# monoid). The D24 A0 stratification (Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥ ProofArtifact) is realised
+# as DISTINCT atoms in the D26 full-ladder grammar: a theory record (S,Omega,E), the B4 TWO model
+# planes (a denotatum + a declaration-record model class linked by @rel:denotes), the foundation axiom
+# records (closure + identity restated) and THIS rung's associativity/identity/commutativity equation
+# records INLINE, a theorem + certificate (finite-product order-independence), the declaration triad
+# envelope and the provenance quartet.
+#
+# B1 LOCKED (§7.2 #9). subdomain / family / species compound token is ADJECTIVE-FIRST:
+# commutative:monoid (NEVER monoid:commutative). The commutativity axiom IRI is BYTE-IDENTICAL to
+# bridges.ttl:179 (the fnd:lawCommutativity closeMatch target) and the denotatum IRI is
+# BYTE-IDENTICAL to bridges.ttl:113 (the fnd:CommutativeMonoid skos:exactMatch target).
+#
+# WHAT LIVES WHERE. This rung's reified equation records (associativity, identity-left, identity-right,
+# commutativity) are INLINE in this file (the rung task's disjoint-file rule: sibling rungs do not edit
+# the shared equations.ttl, which carries the monoid block only). The element / finite-table witnesses
+# (the commutative positive + the non-commutative negative) are in fixtures/ (D24 four-planes:
+# witnesses are EVIDENCE, outside the ontology data glob). This file mints the theory / denotatum /
+# model-record / axiom / equation / theorem / certificate / gate atoms + the historical bridges + the
+# provenance.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:). The commutative-monoid
+# theory IRI is BYTE-IDENTICAL to the dangling @rel:reduct reference a future abelian-nothing carries;
+# its @rel:reduct points at the monoid theory (spine/monoid.ttl:65, BYTE-IDENTICAL). Rank values off
+# the [V] group skeleton with family:group -> family:commutative:monoid; the commutativity rank values
+# genus:composition:species:equality are VERBATIM off the [V] group ASSOCIATIVITY axiom (both are
+# left=right equational laws, bridges.ttl:172/179). [D] = derived; [S] = no runtime precedent ->
+# flagged for the §7.2 sign-off packet (T-PANEL).
+#
+# HONESTY LEDGER (design §5.1, honest-red — the load-bearing Praeriehund honesty). CommutativeMonoid
+# has NO ENGINE ANCHOR (the engine carries only the flat subdomain:group collapse; there is no engine
+# commutative-monoid atom): it is an honest-red BUILD, proof-status "literature:backed", NOT
+# finite:checked-from-engine, and NO seed:conservativeBridge is minted for it (bridges.ttl:112-114
+# deliberately gives fnd:CommutativeMonoid a skos:exactMatch alias ONLY, no engine edge). @rel:authority
+# is "SYN" — commutativity is a SYN (synthesized cited-standard-math) atom in the fnd: tower (design
+# §7.4 "inverse/latin/commutativity=SYN"), NOT the DS-lifted monoid or the PD associativity.
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #1 mint-more-than-runtime : the theory record + the declaration-record model class + the theorem
+#      have NO algebra precedent in the runtime (the runtime shows only the flat subdomain:group
+#      collapse) — minted per D24, PIVOTAL/pre-locked.
+#   theory     : class:theory / genus:presented (kingdom:definition:phylum:algebra) — UNATTESTED.
+#   model rec. : class:model / genus:governed / component:class — UNATTESTED (B4 Plane-1, §7.2 #10).
+#   theorem    : class:commutativity theorem / genus:generalized / species:composition — UNATTESTED.
+#   #2 side-seg : the RESTATED identity split species:member:left / species:member:right — UNATTESTED.
+#   @rel D24   : @rel:validation:mode "rewrite" (4-value) + @rel:proof:status "literature:backed"
+#      (8-value) — the D24 validation-mode / proof-status vocab, no runtime precedent.
+#   @typ       : @typ:declaration / @typ:certificate / @typ:gate — the plane-type tokens (design §2).
+#   LOCKED (no sign-off): B1 adjective-first commutative:monoid (§7.2 #9); B4 two-planes; B3(a) additive
+#      Stage 1 (fnd:CommutativeMonoid intact, bridges added; T-RETIRE is Stage 2).
+#   ATTESTED (NOT [S]): the added commutativity axiom rank values genus:composition:species:equality
+#      are VERBATIM off the [V] group associativity axiom (bridges.ttl:172) — [D], not [S].
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.5, §2, §2b, §2c, §2f, §2g).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-CMON).
+# Consumes (do not rewrite): records.ttl (rec:* classes), signatures.ttl (sigMonoid), operations.ttl
+# (product/unit), spine/progenitor.ttl (theory root), spine/monoid.ttl (the parent monoid theory +
+# monoid model-record, reduct/disjoint targets), bridges.ttl (fnd:CommutativeMonoid alias, no engine
+# edge). Tooth: shapes/algebra.shapes.ttl TheoryShape / ModelShape / EquationRecordShape +
+# probes/commutative_monoid_law.rq (commutativity).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified term / case atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:commutative:monoid:> .
+@prefix case: <urn:silmaril:type:graph:instance:instruction:code:property:relation:case:commutative:monoid:> .
+# seed-carrier record-class ladder (records.ttl:38-39, closure.ttl:1-3) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+# =====================================================================================
+alg:commutative:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:commutative:monoid:genus:presented:species:commutative:monoid:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "commutative monoid theory (S,Omega,E)" ;
+    rel:notation   "commutative monoid" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:commutative:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:commutative:monoid:genus:presented:species:commutative:monoid:component:definition:instance:canonical" ;
+    rel:signature  alg:monoid:kingdom:definition:phylum:specification:class:signature:order:unital:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:commutative:monoid:kingdom:axiom:phylum:operation:class:closure:order:binary:family:commutative:monoid:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:commutative:monoid:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:commutative:monoid:genus:composition:species:equality:component:statement:instance:canonical ,
+                   alg:commutative:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:commutative:monoid:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                   alg:commutative:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:commutative:monoid:genus:neutral:species:member:right:component:statement:instance:canonical ,
+                   alg:commutative:monoid:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:commutative:monoid:genus:composition:species:equality:component:statement:instance:canonical ;
+    rel:reduct     alg:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical ;
+    rel:denotatum  alg:commutative:monoid:kingdom:type:phylum:algebra:class:commutative:monoid:order:binary:family:operation:genus:axiomatic:species:commutative:monoid:component:type:instance:canonical ;
+    rel:assignment alg:commutative:monoid:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:commutative:monoid:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "rewrite" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:CommutativeMonoid , <urn:silmaril:ontology:primordial:algebra:structure:commutative:monoid> ;
+    skos:closeMatch fnd:CommutativeMonoid ;
+    rdfs:comment "[S] The presented commutative-monoid THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6): S,Omega = @rel:signature sigMonoid (signatures.ttl, Sigma={·,e}, SHARED with monoid — commutative-monoid and monoid differ only in E, not their signature); E = @rel:equation the five members {closure, associativity, identity-left, identity-right, commutativity} — the two-sided identity inherited from monoid split into TWO equation records (design §1.6) and COMMUTATIVITY the SINGLE law commutative-monoid adds over monoid (one-law-per-child, algebra_spine.ttl:99-103,224). Commutativity is ONE equation (not two-sided), so it does NOT split into left/right records. It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 commutative-monoid denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the monoid theory (the forgetful theory-morphism commutative-monoid->monoid; the monoid theory atom lives in spine/monoid.ttl:65, BYTE-IDENTICAL, so this reduct resolves in the merged graph). D24 first-class metadata: @rel:validation:mode 'rewrite' (commutative-monoid laws are checked by term rewriting) and @rel:proof:status 'literature:backed'. HONEST-RED (design §5.1): commutative-monoid has NO engine anchor (the engine carries only the flat subdomain:group collapse), so proof-status is literature:backed NOT finite:checked-from-engine and NO seed:conservativeBridge is minted (bridges.ttl:112-114 gives fnd:CommutativeMonoid a skos:exactMatch alias only, no engine edge). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24: 'the commutative monoid was not authored by an executor; the CommutativeMonoidTheoryRecord was'); SYN because commutativity is a synthesized cited-standard-math atom in the fnd: tower (design §7.4 commutativity=SYN), NOT the DS-lifted monoid or the PD associativity. Historical-identity BRIDGES: @rel:historical:identity fnd:CommutativeMonoid and the seed legacy IRI urn:silmaril:ontology:primordial:algebra:structure:commutative:monoid; skos:closeMatch fnd:CommutativeMonoid (Stage-1 ADDITIVE — fnd:CommutativeMonoid stays intact; T-RETIRE stubs it in Stage 2). Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision). [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; B1 adjective-first commutative:monoid is LOCKED (§7.2 #9); all [S] flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object, NO provenance. [D]
+#      BYTE-IDENTICAL to bridges.ttl:113 (fnd:CommutativeMonoid skos:exactMatch target).
+# =====================================================================================
+alg:commutative:monoid:kingdom:type:phylum:algebra:class:commutative:monoid:order:binary:family:operation:genus:axiomatic:species:commutative:monoid:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "commutative monoid" ;
+    rel:notation   "commutative monoid" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:commutative:monoid:kingdom:type:phylum:algebra:class:commutative:monoid:order:binary:family:operation:genus:axiomatic:species:commutative:monoid:component:type:instance:canonical" ;
+    rdfs:comment "[D] The commutative-monoid DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a commutative monoid' itself, carrying its canonical @rel:identifier and @rel:notation ONLY — and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes — and is BYTE-IDENTICAL to bridges.ttl:113 (fnd:CommutativeMonoid skos:exactMatch this denotatum) so the merged alias map resolves and SP1/SP2/SP3 inbound fnd:CommutativeMonoid references stay reachable through the fold. The subdomain / class / family / species compound token is ADJECTIVE-FIRST commutative:monoid (B1 LOCKED §7.2 #9). Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. Rank values [D] off the [V] group denotatum skeleton (bridges.ttl:81) with subdomain/family group -> commutative:monoid." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction
+#      bundle + provenance + disjointness teeth). [S] class:model/genus:governed/component:class
+# =====================================================================================
+alg:commutative:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:commutative:monoid:genus:governed:species:commutative:monoid:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "commutative monoid model class" ;
+    rel:notation "commutative monoid model" ;
+    rel:denotes alg:commutative:monoid:kingdom:type:phylum:algebra:class:commutative:monoid:order:binary:family:operation:genus:axiomatic:species:commutative:monoid:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:identity:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    owl:disjointWith alg:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical ,
+                     alg:abelian:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:abelian:group:genus:governed:species:abelian:group:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The commutative-monoid MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the denotatum atom's kingdom:type:…:component:type IRI (the two B4 planes), ADJECTIVE-FIRST commutative:monoid (B1 LOCKED §7.2 #9). The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction, closure.ttl has 13) makes 'a commutative monoid is a set with exactly one carrier, exactly one identity element and exactly one operation' a graph fact via cardinality-1 owl:Restriction on @rel:carrier, @rel:identity:element and @rel:operation (it retains the monoid model-record's identity:element restriction, spine/monoid.ttl:111 — a commutative monoid IS a monoid; commutativity is a law on the operation, adding no new carrier/element cardinality). owl:disjointWith BOTH the monoid model-record class (spine/monoid.ttl:104 — a declaration is a commutative-monoid-model-record OR a plain-monoid-model-record, never both) AND the (Stage-2, forward-ref) abelian-group model-record class (alg:abelian:group:…:model:…, minted by T-ABEL; the disjointness triple stands regardless as the D25 homonym/distinction tooth). Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete model can be typed against it) AND a rec:model:record / rec:declaration:record (so the ModelShape sh:targetClass tooth counts it as a data-graph focus node and the runner's 0-focus gate is satisfied) — OWL2 metaclass punning, exactly as spine/progenitor.ttl / spine/monoid.ttl / spine/semigroup.ttl, and DISTINCT from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids. On this focus the ModelShape identity sh:sparql tooth is vacuously satisfied (the class declares no @rel:identity:element / reified cells); the finite Z/3 commutative model witness in fixtures/ is where the commutativity probe bites. [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM record — CLOSURE (design §2c — minimal, NO denotatum/gate/provenance, NO
+#     certificate; axiom != theorem is structural). Membership/totality statement, NOT a left=right
+#     equation, so it is a rec:axiom:record only, NOT a rec:equation:record. Rank values VERBATIM off
+#     the [V] group closure axiom with family:group -> family:commutative:monoid. Inherited from monoid,
+#     restated at family:commutative:monoid (design §2a) so this rung's theory E is self-contained.
+# =====================================================================================
+alg:commutative:monoid:kingdom:axiom:phylum:operation:class:closure:order:binary:family:commutative:monoid:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "commutative monoid closure" ;
+    rel:notation "for all x,y in S: x·y in S" ;
+    rdfs:comment "[D] The CLOSURE / totality axiom of the commutative-monoid theory (rec:axiom:record): the binary product · is a total function S,S -> S, so for all x,y in the carrier S the product x·y is defined and lies in S. A membership/totality statement, NOT a left=right equation — so it is an axiom record only, NOT a rec:equation:record (unlike associativity/identity/commutativity), and carries NO @rel:left/@rel:right. Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (an axiom is asserted, not proved — axiom != theorem is structural, and rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119). Rank values VERBATIM off the [V] group closure axiom (genus:product:species:membership, bridges.ttl:170) with family:group -> family:commutative:monoid. It is inherited from the monoid theory and RESTATED at family:commutative:monoid (design §2a) so the commutative-monoid theory's equation set E={closure, associativity, identity-left, identity-right, commutativity} is self-contained; it is a member of that E (this rung's theory @rel:equation)." .
+
+# =====================================================================================
+# (d1) EQUATION record — ASSOCIATIVITY (inherited, restated): (x·y)·z = x·(y·z). Dual-typed
+#      rec:equation:record + rec:axiom:record (design §1.9 reuse side, §7.2 #7). ONE equation (single
+#      member), not two-sided — mirrors closure.ttl category:associativity (closure.ttl:180-183). [D]
+# =====================================================================================
+alg:commutative:monoid:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:commutative:monoid:genus:composition:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record , rec:axiom:record ;
+    rdfs:label "commutative monoid associativity" ;
+    rel:notation "(x·y)·z = x·(y·z)" ;
+    rel:left   term:assoc:left ;
+    rel:right  term:assoc:right ;
+    rel:member case:assoc:zero ;
+    rdfs:comment "[D] The ASSOCIATIVITY law of the commutative-monoid theory — INHERITED from monoid (via semigroup) and restated at family:commutative:monoid so this rung's theory E is self-contained (design §2a) — as a reified equation record (rec:equation:record): the ordered pair (x·y)·z = x·(y·z), one @rel:left term and one @rel:right term (the EquationRecordShape cardinality-1 tooth). Dual-typed rec:axiom:record too (design §1.9: the runtime models each law as ONE kingdom:axiom…component:statement atom that is simultaneously the equation, avoiding the unattested component:equation — the §7.2 #7 reuse side, consistent with bridges.ttl and records.ttl:76-81). Associativity is a SINGLE equation (not two-sided): it does NOT decompose into member:left/member:right records the way the identity does (design §1.6) — it mirrors closure.ttl category:associativity's single member (closure.ttl:180-183). Rank values VERBATIM off the [V] group associativity axiom (genus:composition:species:equality) with family:group -> family:commutative:monoid. It is a member of the commutative-monoid theory's equation set E (this rung's theory @rel:equation). Its term IRIs live in the commutative:monoid-scoped term: namespace so they never collide with the monoid-scoped associativity terms (EquationRecordShape identity-collision tooth)." .
+
+# per-side reified term/case node (closure.ttl:185-192 case precedent; equations.ttl:97 idiom). Bare
+# subject (no `a`): the datatype:record cardinality-1 left/right on the record above is the enforced tooth.
+case:assoc:zero rel:left term:assoc:left ; rel:right term:assoc:right .
+
+# =====================================================================================
+# (d2) FOUNDATION AXIOM record — IDENTITY (inherited two-sided parent, restated). rec:axiom:record
+#      only (the named parent law, no side segment); it @rel:equation-decomposes into the two reified
+#      equation records (d3/d4). Rank values off the [V] group identity axiom with family:group ->
+#      family:commutative:monoid. [D]
+# =====================================================================================
+alg:commutative:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:commutative:monoid:genus:neutral:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "commutative monoid identity (two-sided)" ;
+    rel:notation "exists e: e·x = x and x·e = x" ;
+    rel:equation alg:commutative:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:commutative:monoid:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                 alg:commutative:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:commutative:monoid:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rdfs:comment "[D] The two-sided IDENTITY axiom of the commutative-monoid theory (rec:axiom:record, the named parent law, no side segment) — INHERITED from monoid and restated at family:commutative:monoid (design §2a): there exists a neutral element e with e·x = x AND x·e = x for all x. As a TWO-SIDED law it @rel:equation-decomposes into the TWO reified equation records identity-left (e·x=x) and identity-right (x·e=x) below (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent). Minimal per design §2c: no denotatum / gate / provenance, no certificate. It is inherited (NOT the law this rung adds — commutative-monoid adds COMMUTATIVITY over monoid, one-law-per-child, algebra_spine.ttl:99-103). Rank values off the [V] group identity axiom (genus:neutral:species:member, bridges.ttl:104) with family:group -> family:commutative:monoid. [S] the two-sided split's species:member:left/right side segment is UNATTESTED (§7.2 #2), carried at the design default." .
+
+# =====================================================================================
+# (d3) EQUATION record — identity-LEFT (inherited, restated): e·x = x. rec:equation:record. [S] side seg
+# =====================================================================================
+alg:commutative:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:commutative:monoid:genus:neutral:species:member:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "commutative monoid identity (left unit)" ;
+    rel:notation "e·x = x" ;
+    rel:left   term:identity:left ;
+    rel:right  term:identity:x ;
+    rel:member case:identity:zero ;
+    rdfs:comment "[S] The LEFT unit law e·x = x — side 1 of the commutative-monoid two-sided identity, INHERITED from monoid and restated at family:commutative:monoid, reified as an equation record (rec:equation:record) with one @rel:left term (e·x) and one @rel:right term (x). A two-sided law mints TWO equation records, one per side (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent). [S] the species:member:left SIDE SEGMENT is UNATTESTED in the runtime (design §7.2 #2, side-segment placement) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group identity axiom (genus:neutral:species:member, bridges.ttl:104) with family:group -> family:commutative:monoid, plus the :left side segment. Its term IRIs are in the commutative:monoid-scoped term: namespace so they never collide with the monoid identity-left terms (EquationRecordShape identity-collision tooth)." .
+
+# =====================================================================================
+# (d4) EQUATION record — identity-RIGHT (inherited, restated): x·e = x. rec:equation:record. [S] side seg
+# =====================================================================================
+alg:commutative:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:commutative:monoid:genus:neutral:species:member:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "commutative monoid identity (right unit)" ;
+    rel:notation "x·e = x" ;
+    rel:left   term:identity:right ;
+    rel:right  term:identity:x ;
+    rel:member case:identity:one ;
+    rdfs:comment "[S] The RIGHT unit law x·e = x — side 2 of the commutative-monoid two-sided identity, INHERITED from monoid and restated at family:commutative:monoid, reified as an equation record (rec:equation:record) with one @rel:left term (x·e) and one @rel:right term (x). Its twin is the identity-LEFT record above; together they are the TWO equation records the ONE two-sided identity law decomposes into (design §1.6, §3). NOTE that although a commutative monoid's operation commutes (so the left and right unit laws are provably equivalent), the two equation records are still minted DISTINCTLY at the syntactic/theory plane — the equivalence is a THEOREM about models, not a syntactic collapse of the presentation. [S] the species:member:right SIDE SEGMENT is UNATTESTED (design §7.2 #2) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group identity axiom (genus:neutral:species:member) with family:group -> family:commutative:monoid, plus the :right side segment. Its term IRIs are in the commutative:monoid-scoped term: namespace (no collision with the monoid identity-right terms)." .
+
+# per-side reified case nodes for the identity split (closure.ttl:185-192 case precedent).
+case:identity:zero rel:left term:identity:left  ; rel:right term:identity:x .
+case:identity:one  rel:left term:identity:right ; rel:right term:identity:x .
+
+# =====================================================================================
+# (d5) EQUATION record — COMMUTATIVITY, the SINGLE ADDED LAW: x·y = y·x. Dual-typed
+#      rec:equation:record + rec:axiom:record (design §1.9 reuse side). ONE equation (single member),
+#      not two-sided. BYTE-IDENTICAL to bridges.ttl:179 (fnd:lawCommutativity closeMatch target). [D]
+# =====================================================================================
+alg:commutative:monoid:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:commutative:monoid:genus:composition:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record , rec:axiom:record ;
+    rdfs:label "commutative monoid commutativity" ;
+    rel:notation "x·y = y·x" ;
+    rel:left   term:comm:left ;
+    rel:right  term:comm:right ;
+    rel:member case:comm:zero ;
+    rdfs:comment "[D] The COMMUTATIVITY law of the commutative-monoid theory — the SINGLE law commutative-monoid adds over monoid (one-law-per-child, algebra_spine.ttl:99-103,224) — as a reified equation record (rec:equation:record): the ordered pair x·y = y·x, one @rel:left term (x·y) and one @rel:right term (y·x) (the EquationRecordShape cardinality-1 tooth). Dual-typed rec:axiom:record too (design §1.9: the runtime models each law as ONE kingdom:axiom…component:statement atom that is simultaneously the equation, avoiding the unattested component:equation — the §7.2 #7 reuse side, consistent with bridges.ttl:179 and records.ttl:76-81). Commutativity is a SINGLE equation (not two-sided): it does NOT decompose into member:left/member:right records the way the identity does (design §1.6). Rank values VERBATIM off the [V] group ASSOCIATIVITY axiom (genus:composition:species:equality — both are left=right equational laws over the binary product) with family:group -> family:commutative:monoid; this IRI is BYTE-IDENTICAL to bridges.ttl:179 (the fnd:lawCommutativity closeMatch target — the ONE fnd:lawCommutativity decomposes into this commutative:monoid atom AND the abelian:group commutativity atom, Directive-17 no-cram) so the merged alias map resolves. Its added-law status is teeth-proved by probes/commutative_monoid_law.rq (the commutativity probe) over the fixtures/ Z/3 witnesses (the non-commutative negative flips it RED, and — its single corrupted cell involving e — also flips the ModelShape identity tooth so the runner's fixture iteration catches it)." .
+
+# per-side reified case node for commutativity (single member; closure.ttl:180-183 single-member idiom).
+case:comm:zero rel:left term:comm:left ; rel:right term:comm:right .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate, NEVER an
+#     axiom; the closure.ttl Yoneda theorem/certificate idiom, :129-142). The natural STRUCTURE theorem
+#     of a commutative monoid: finite-product ORDER-INDEPENDENCE (generalized commutativity).
+# =====================================================================================
+alg:commutative:monoid:kingdom:theorem:phylum:algebra:class:commutativity:order:declarative:family:commutative:monoid:genus:generalized:species:composition:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "commutative monoid finite-product order-independence" ;
+    rel:notation "any permutation of a1·…·an gives the same product" ;
+    rel:certificate alg:commutative:monoid:kingdom:certificate:phylum:algebra:class:commutativity:order:declarative:family:commutative:monoid:genus:generalized:species:composition:component:statement:instance:canonical ;
+    rel:authority "SYN" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "The natural STRUCTURE theorem of a commutative monoid — finite-product ORDER-INDEPENDENCE (generalized commutativity), a theorem NOT an additional foundational axiom (design §2f, the closure.ttl Yoneda theorem/certificate idiom, :129-142): in any commutative monoid (S,·,e) the product of a finite sequence of elements a1,…,an is INDEPENDENT OF THE ORDER of the factors, so for any permutation sigma the product a_sigma(1)·…·a_sigma(n) equals a1·…·an. It is a DERIVED CONSEQUENCE of the single commutativity axiom together with generalized associativity (the semigroup theorem, spine/semigroup.ttl): every permutation is a composition of adjacent transpositions, and each adjacent transposition is an instance of the commutativity axiom a·b=b·a applied inside the (bracketing-independent) product — the D24 A0 ProofArtifact plane, not a new axiom, and precisely WHY commutativity is the commutative-monoid's characteristic addition. It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). Provenance quartet + @rel:authority 'SYN' on the record (synthesized cited-standard-math). [S] class:commutativity theorem / genus:generalized / species:composition are UNATTESTED (§7.2 #1) -> sign-off packet." .
+
+alg:commutative:monoid:kingdom:certificate:phylum:algebra:class:commutativity:order:declarative:family:commutative:monoid:genus:generalized:species:composition:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "commutative monoid finite-product order-independence certificate" ;
+    rel:digest:value    "1602291fa2945c7320c1089527c014e6033931aa558c24cbf0ba77da3a18c18f" ;
+    rel:proof:method    "Explicit general mathematical derivation (every permutation is a composition of adjacent transpositions, each an instance of the commutativity axiom applied within the bracketing-independent product); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for commutative-monoid finite-product order-independence (design §2f; the closure.ttl certificate idiom, :132/137/142): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Commutative monoid finite-product order-independence: in any commutative monoid (S,.,e) the product of a finite sequence of elements a1,...,an is independent of the order of the factors, so for any permutation sigma of {1,...,n} the product a_sigma(1).....a_sigma(n) equals a1.....an. Proof: by induction on n using associativity (independence of bracketing, the semigroup generalized associative law) together with the commutativity axiom a.b = b.a to transpose adjacent factors; any permutation is a composition of adjacent transpositions, each of which preserves the product. General mathematical derivation; not proof-assistant checked.'), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119). The digest is reproducible: sha256 of the quoted canonical statement equals the recorded value." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:commutative:monoid:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:commutative:monoid:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "commutative monoid declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:commutative:monoid:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:commutative:monoid:genus:reconciled:species:commutative:monoid:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the commutative-monoid declaration was RECONCILED against its denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the commutative-monoid rung, adjective-first B1). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the commutative-monoid declaration is reconciled, not merely asserted." .
+
+# =====================================================================================
+# BRIDGES (design §5, Stage-1 ADDITIVE). CommutativeMonoid has NO ENGINE ANCHOR (honest-red BUILD,
+# design §5.1): bridges.ttl:112-114 gives fnd:CommutativeMonoid a skos:exactMatch alias to the
+# denotatum ONLY, with NO seed:conservativeBridge — and that alias is NOT duplicated here
+# (bridge-never-duplicate, TODO-11). The three edges on the theory record above are the rung's
+# historical bridges: @rel:historical:identity fnd:CommutativeMonoid, @rel:historical:identity
+# <seed legacy commutative:monoid IRI>, skos:closeMatch fnd:CommutativeMonoid — keeping SP1/SP2/SP3
+# fnd:CommutativeMonoid refs resolvable THROUGH the folded rung while fnd:CommutativeMonoid stays
+# byte-intact until Stage-2 T-RETIRE.
+# =====================================================================================

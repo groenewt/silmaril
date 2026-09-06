@@ -1,0 +1,50 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix atomic: <urn:silmaril:aob:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+family:Primordial a ontology:Class, model:ClassDeclaration ;
+    model:parameter family:FormalParameter, family:PhysicalParameter, family:RealizationParameter ;
+    model:field family:TypeIdentityField, family:OccurrenceIdentityField, family:FormalField, family:PhysicalField, family:RealizationField, family:AncestryField ;
+    model:admissionState model:Pending ;
+    schema:comment "Primordial[Formal, Physical, Realization] is the common polymorphic declaration, with separate nominal type and occurrence identities and independent ancestry evidence. Formal, physical and realization arguments remain distinct and constrained by their source ontology classes. A class declaration does not manufacture an admitted occurrence." .
+family:FormalParameter a model:Parameter ; model:owner family:Primordial ; model:bound primitive:FormalType ; model:variance model:Invariant .
+family:PhysicalParameter a model:Parameter ; model:owner family:Primordial ; model:bound primitive:PhysicalCarrier ; model:variance model:Invariant .
+family:RealizationParameter a model:Parameter ; model:owner family:Primordial ; model:bound primitive:Realization ; model:variance model:Invariant .
+
+family:TypeIdentity a ontology:Class, model:ClassDeclaration ; schema:subClassOf primitive:URN ; model:admissionState model:Pending ;
+    ontology:disjointWith family:OccurrenceIdentity ;
+    schema:comment "The identity of a type definition, refined from the existing uniform-resource-name tower. It addresses the nominal class and its semantic lineage rather than one occurrence of a value. The same characters in a host string provide no implicit conversion into this type or into an occurrence identity." .
+family:OccurrenceIdentity a ontology:Class, model:ClassDeclaration ; schema:subClassOf primitive:URN ; model:admissionState model:Pending ;
+    schema:comment "The identity of one admitted occurrence of a typed value, independently refined from the uniform-resource-name tower. It cannot substitute for the identity of the class, schema or stream revision. A constructor's Type identity therefore remains separate from the identity of its first empty or linked occurrence." .
+
+family:TypeIdentityField a model:Field ; model:owner family:Primordial ; model:range family:TypeIdentity ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:OccurrenceIdentityField a model:Field ; model:owner family:Primordial ; model:range family:OccurrenceIdentity ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:FormalField a model:Field ; model:owner family:Primordial ; model:range family:FormalParameter ; model:referenceKind model:ClassReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable ; schema:seeAlso primitive:formalFacet .
+family:PhysicalField a model:Field ; model:owner family:Primordial ; model:range family:PhysicalParameter ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:RealizationField a model:Field ; model:owner family:Primordial ; model:range family:RealizationParameter ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable ; schema:seeAlso primitive:gluedBy .
+family:AncestryField a model:Field ; model:owner family:Primordial ; model:range atomic:Ancestry ; model:referenceKind model:ValueReference ; model:multiplicity model:UnorderedMany ; model:mutability model:Immutable ; schema:seeAlso atomic:hasAncestry .
+
+# No formal-to-physical coercion follows from inheritance. This application checks
+# only class argument bounds; the realization and byte readback still need proof.
+family:NaturalDeclaration a model:Application ; model:constructor family:Primordial ;
+    model:binding family:NaturalFormal, family:NaturalPhysical, family:NaturalRealization .
+family:NaturalFormal a model:Binding ; model:binds family:FormalParameter ; model:argument primitive:Natural .
+family:NaturalPhysical a model:Binding ; model:binds family:PhysicalParameter ; model:argument primitive:ByteVector .
+family:NaturalRealization a model:Binding ; model:binds family:RealizationParameter ; model:argument family:NaturalRealizationDeclaration .
+
+family:Realization a ontology:Class, model:ClassDeclaration ;
+    schema:subClassOf primitive:Realization ;
+    model:parameter family:RealizedFormalParameter, family:RealizedPhysicalParameter, family:RealizedEffectParameter ;
+    model:admissionState model:Pending ;
+    schema:comment "Realization[Formal, Physical, Effect] is the class-level contract of the gluing arrow. Its formal and physical arguments must coincide exactly with those of the Primordial declaration that selects it; the effect remains independently typed. Merely binding an unrelated Realization superclass cannot prove that the two chosen facets are connected." .
+family:RealizedFormalParameter a model:Parameter ; model:owner family:Realization ; model:bound primitive:FormalType ; model:variance model:Invariant .
+family:RealizedPhysicalParameter a model:Parameter ; model:owner family:Realization ; model:bound primitive:PhysicalCarrier ; model:variance model:Invariant .
+family:RealizedEffectParameter a model:Parameter ; model:owner family:Realization ; model:bound primitive:Effect ; model:variance model:Invariant .
+family:NaturalRealizationDeclaration a model:Application ; model:constructor family:Realization ;
+    model:binding family:RealizedNaturalFormal, family:RealizedNaturalPhysical, family:RealizedNaturalEffect .
+family:RealizedNaturalFormal a model:Binding ; model:binds family:RealizedFormalParameter ; model:argument primitive:Natural .
+family:RealizedNaturalPhysical a model:Binding ; model:binds family:RealizedPhysicalParameter ; model:argument primitive:ByteVector .
+family:RealizedNaturalEffect a model:Binding ; model:binds family:RealizedEffectParameter ; model:argument primitive:Effect .

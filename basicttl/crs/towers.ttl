@@ -1,0 +1,386 @@
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# towers.ttl — the three INDEPENDENT role URN towers K_S/K_O/K_P of the CRS floor (W2 · SP3, Task T3).
+# =====================================================================================
+# LIFTED (Directive 1: lift, do not invent) from the Helios carrier-towers source
+# helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex.
+# The whitepaper is explicit (§"Disjoint Carriers"): "Subject, Object, and Predicate live in three
+# other typed towers K_S, K_O, K_P. There are no implicit positional maps S->R, O->G, P->B." and the
+# TOWERS terminal drill (Color/Triple/Pair/Input/Value.scala, digest 3fe64391…): "The Subject,
+# Object, and Predicate tower files each descend from Octet.Pair.Sequence.Value, each owns a separate
+# dimension value" (digests 96e412c9… / c6849b8d… / 84cc4652…), "It does not support a scalar
+# RGB-to-S/O/P identification." So each role is a TOWER, not a colour channel and not a scalar.
+#
+# WHAT THIS FILE MATERIALISES (T3): each role tower is a URN TOWER — a functor from an ordinal index
+# (SP1 prim:Ordinal) into prim:URN (SP1 identifier tower, the load-bearing root S/O/P are URN towers
+# of), whose nth-dim composite is an SP1 prim:Vector/prim:Tensor of URN components, NEVER a prim:Real
+# scalar (unary law, docs/unary-byte-frame-law.md: "a scalar triple, raw tuple, or three unrelated URN
+# strings is not an admissible substitute for those towers"). Each tower descends from the octet-vector
+# floor (mirroring the live Octet.Pair.Sequence.Value descent, here SP1 prim:ByteVector) and OWNS its
+# own crs:hasTowerDimension (per-geometer counting is Q2/T5; here each tower simply owns its separate
+# dimension declaration, the whitepaper's "separate dimension value").
+#
+# Directive 17 (be MORE agnostic/progenitor on ALL): rather than mint the three role towers bare and
+# privilege one, this file mints the AGNOSTIC PROGENITOR crs:UrnRoleTower (the role-tower category
+# K_* that grounds NO concrete role) with crs:SubjectTower (K_S) / crs:ObjectTower (K_O) /
+# crs:PredicateTower (K_P) as its three SYMMETRIC children — the byte_order/carrier-tag progenitor
+# pattern applied to the semantic-role tower. No role is privileged; S-O-P stays a rank-3 sibling of
+# every other geometer (the plane geometers of T6), never a presumed jump ("we cannot jump to towers").
+#
+# THE LEX->URN BRIDGE (unary full-lexical idiom): SP2 carries the S/O/P triple full-lexically as three
+# xsd:string coordinates on aob:YonedaHomLeg (aob:sourceNodeUrn = S, aob:targetNodeUrn = O,
+# aob:cpoProcessIri = P). This file LIFTS those lexical strings onto the prim:URN tower via
+# crs:LexToUrnBridge — a Frame (rdfs:subClassOf prim:Realization, so SP1's prim:RealizationShape
+# governs it directly): each bridge witness carries prim:frameOutput prim:UrnUtf8 (X = the URN carrier
+# the lexical term reads as) and prim:frameEffect prim:EncodingLoss (Y = the honest lexical->URN typing
+# / normalization cost), and points crs:bridgesLexFrom the SP2 leg aob:witnessLeg, crs:bridgesLexToUrn
+# the matching role tower, naming the exact SP2 coordinate lifted (crs:liftsLexProperty). This is the
+# concrete graph statement that the S/O/P strings ARE the three URN towers, not three unrelated strings.
+#
+# GROUNDING: prim:Ordinal / prim:URN / prim:Vector / prim:Tensor / prim:ByteVector are consumed from the
+# committed SP1 floor; the bridge's frameOutput prim:UrnUtf8 + frameEffect prim:EncodingLoss are SP1
+# individuals. Corpus-agnostic v1 (Directive 13): the only individuals are floor WITNESSES (three tower
+# witnesses over three URN-tower axes + three lex->URN bridges), minted only to keep crs:AxisUrnTowerShape
+# and q_towers_independent non-vacuous — zero corpus instances. The reused SP1 dual-grounding of the tower/
+# axis OBJECT classes (crs:UrnRoleTower / crs:SubjectTower / crs:ObjectTower / crs:PredicateTower /
+# crs:UrnTowerAxis) IS added in Task T11 (basicttl/crs/dual_grounding.ttl) — at T3 they are still bare
+# owl:Classes NOT rdfs:subClassOf* prim:FormalType, so SP1's prim:DualGroundingShape does not yet target
+# them here; crs:LexToUrnBridge is a physical Frame (rdfs:subClassOf prim:Realization) kept OUTSIDE
+# prim:FormalType by SP1's YonedaShape doctrine, so it is deliberately NOT grounded by T11.
+#
+# TOOTH (this task): crs:AxisUrnTowerShape (crs.shapes.ttl) + q_towers_independent (crs.queries.sparql).
+# Probe of record (conforms/ASK True->False): inject one crs:probeScalarAxis a crs:UrnTowerAxis ;
+# crs:axisComponentType prim:Real (a tower axis position typed as a scalar). The positional-collapse
+# obstruction (S=R/O=G/P=B forbidden) is T4's tooth (crs:NoPositionalMapShape), authored next.
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (§2.3)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T3)
+# =====================================================================================
+
+
+# ---- The agnostic role-tower progenitor K_* + its three symmetric children K_S / K_O / K_P ---------
+
+crs:UrnRoleTower a owl:Class ;
+    rdfs:label "UrnRoleTower (agnostic role-tower progenitor K_*)" ;
+    rdfs:comment "The AGNOSTIC role-tower progenitor, lifted from the whitepaper's three typed role towers K_S/K_O/K_P (05_carrier_towers_triad.tex, §'Disjoint Carriers': 'Subject, Object, and Predicate live in three other typed towers'). A crs:UrnRoleTower is a URN TOWER: a functor from an ordinal index (SP1 prim:Ordinal, its crs:towerIndexDomain) into prim:URN (SP1 identifier tower, its crs:towerValueCodomain — the load-bearing root of the identifier tower since S/O/P are URN towers), whose nth-dim composite (crs:towerComposite) is an SP1 prim:Vector or prim:Tensor of URN components, NEVER a prim:Real scalar. It descends from the octet-vector floor (crs:descendsFromOctetVector -> SP1 prim:ByteVector, mirroring the live Octet.Pair.Sequence.Value descent) and OWNS its own crs:hasTowerDimension (the whitepaper's 'each owns a separate dimension value'). Per Directive 17 (be more agnostic on all) this progenitor grounds NO concrete role — it is the role-neutral join of the three concrete towers, exactly the byte-order/carrier-tag progenitor pattern applied to the semantic role — and its three SYMMETRIC children crs:SubjectTower (K_S), crs:ObjectTower (K_O) and crs:PredicateTower (K_P) supply the concrete roles, none privileged. There is NO positional map S->R/O->G/P->B (the T4 obstruction): a role tower is not a colour channel." .
+
+crs:SubjectTower a owl:Class ;
+    rdfs:subClassOf crs:UrnRoleTower ;
+    rdfs:label "SubjectTower (K_S — the Subject role URN tower)" ;
+    rdfs:comment "The Subject role tower K_S, lifted verbatim from the whitepaper (05_carrier_towers_triad.tex): one of the three independent typed role towers, the URN tower carrying the Subject (S) coordinate of an arrow's S/O/P triple. It is one of the three SYMMETRIC children of the agnostic progenitor crs:UrnRoleTower (Directive 17), a co-equal sibling of crs:ObjectTower and crs:PredicateTower with none privileged. Its tower file 'descends from Octet.Pair.Sequence.Value' (crs:descendsFromOctetVector -> SP1 prim:ByteVector) and 'owns a separate dimension value' (its own crs:hasTowerDimension). As a URN tower it is a functor prim:Ordinal -> prim:URN whose nth-dim composite is a prim:Vector/prim:Tensor of prim:URN components, never a prim:Real scalar — the unary law forbids a scalar triple or three unrelated URN strings standing in for the tower. It lifts SP2's lexical Subject coordinate aob:sourceNodeUrn (an xsd:string on aob:YonedaHomLeg) onto prim:URN via the crs:LexToUrnBridge crs:bridgeSubjectLexToUrn. There is NO positional map S->R: this tower is independent of the Red colour channel (the T4 obstruction). The URN-tower discipline is enforced by crs:AxisUrnTowerShape." .
+
+crs:ObjectTower a owl:Class ;
+    rdfs:subClassOf crs:UrnRoleTower ;
+    rdfs:label "ObjectTower (K_O — the Object role URN tower)" ;
+    rdfs:comment "The Object role tower K_O, lifted verbatim from the whitepaper (05_carrier_towers_triad.tex): one of the three independent typed role towers, the URN tower carrying the Object (O) coordinate of an arrow's S/O/P triple. It is one of the three SYMMETRIC children of the agnostic progenitor crs:UrnRoleTower (Directive 17), a co-equal sibling of crs:SubjectTower and crs:PredicateTower with none privileged. Its tower file 'descends from Octet.Pair.Sequence.Value' (crs:descendsFromOctetVector -> SP1 prim:ByteVector) and 'owns a separate dimension value' (its own crs:hasTowerDimension). As a URN tower it is a functor prim:Ordinal -> prim:URN whose nth-dim composite is a prim:Vector/prim:Tensor of prim:URN components, never a prim:Real scalar — the unary law forbids a scalar triple or three unrelated URN strings standing in for the tower. It lifts SP2's lexical Object coordinate aob:targetNodeUrn (an xsd:string on aob:YonedaHomLeg) onto prim:URN via the crs:LexToUrnBridge crs:bridgeObjectLexToUrn. There is NO positional map O->G: this tower is independent of the Green colour channel (the T4 obstruction). The URN-tower discipline is enforced by crs:AxisUrnTowerShape." .
+
+crs:PredicateTower a owl:Class ;
+    rdfs:subClassOf crs:UrnRoleTower ;
+    rdfs:label "PredicateTower (K_P — the Predicate role URN tower)" ;
+    rdfs:comment "The Predicate role tower K_P, lifted verbatim from the whitepaper (05_carrier_towers_triad.tex): one of the three independent typed role towers, the URN tower carrying the Predicate (P) coordinate of an arrow's S/O/P triple. It is one of the three SYMMETRIC children of the agnostic progenitor crs:UrnRoleTower (Directive 17), a co-equal sibling of crs:SubjectTower and crs:ObjectTower with none privileged. Its tower file 'descends from Octet.Pair.Sequence.Value' (crs:descendsFromOctetVector -> SP1 prim:ByteVector) and 'owns a separate dimension value' (its own crs:hasTowerDimension) — here materialised as a rank-2 prim:Tensor tower to witness that a role tower's nth-dim composite may be a prim:Tensor as well as a prim:Vector, both admitted by crs:AxisUrnTowerShape. As a URN tower it is a functor prim:Ordinal -> prim:URN whose components are prim:URN, never a prim:Real scalar — the unary law forbids a scalar triple or three unrelated URN strings standing in for the tower. It lifts SP2's lexical Predicate coordinate aob:cpoProcessIri (an xsd:string on aob:YonedaHomLeg) onto prim:URN via the crs:LexToUrnBridge crs:bridgePredicateLexToUrn. There is NO positional map P->B: this tower is independent of the Blue colour channel (the T4 obstruction). The URN-tower discipline is enforced by crs:AxisUrnTowerShape." .
+
+
+# ---- The URN-tower axis position (component prim:URN, composite prim:Vector/prim:Tensor) -----------
+
+crs:UrnTowerAxis a owl:Class ;
+    rdfs:label "UrnTowerAxis (a URN-tower axis position)" ;
+    rdfs:comment "An axis position of a role tower — the tower's coordinate at an ordinal index, whose value type is a URN-tower term and NEVER a scalar (05_carrier_towers_triad.tex: 'It does not support a scalar RGB-to-S/O/P identification'; unary law: a role tower is not a prim:Real scalar). Every crs:UrnTowerAxis MUST carry crs:axisComponentType on the prim:URN line (prim:URN itself or its taxonomic descendants prim:URI/prim:IRI/prim:QName — the per-component value type read out of the tower) AND crs:axisComposite drawn from {prim:Vector, prim:Tensor} (the nth-dim composite the ordinal-indexed URN components assemble into: a rank-1 prim:Vector or a rank-n prim:Tensor). This is exactly what makes a tower a URN TOWER rather than a scalar coordinate: a functor prim:Ordinal -> prim:URN whose composite is an SP1 prim:Vector/prim:Tensor of URN components. The discipline is enforced (not merely declared) by crs:AxisUrnTowerShape, whose probe of record injects an axis with crs:axisComponentType prim:Real (a scalar) and is caught (conforms=True->False). At T3 it is still a bare owl:Class NOT rdfs:subClassOf* prim:FormalType, so SP1's prim:DualGroundingShape does not yet target it here; its reused SP1 dual-grounding IS added in Task T11 (basicttl/crs/dual_grounding.ttl), which puns it a prim:FormalType (rdfs:subClassOf prim:FormalType) with its own prim:Realization + reflexive octet-vector carrier + prim:Primitive + Yoneda apparatus, so SP1's prim:DualGroundingShape and prim:YonedaShape target and are satisfied by it over the merged graph." .
+
+
+# ---- The Lex->URN bridge Frame (lifts SP2's xsd:string S/O/P triple onto the prim:URN tower) -------
+
+crs:LexToUrnBridge a owl:Class ;
+    rdfs:subClassOf prim:Realization ;
+    rdfs:label "LexToUrnBridge (the full-lexical Lex->URN tower Frame)" ;
+    rdfs:comment "The Lex->URN bridge Frame — the full-lexical idiom that LIFTS SP2's xsd:string S/O/P triple onto the prim:URN tower (unary law, docs/unary-byte-frame-law.md). SP2 carries the arrow's S/O/P coordinate full-lexically as three xsd:string properties on aob:YonedaHomLeg: aob:sourceNodeUrn (S), aob:targetNodeUrn (O), aob:cpoProcessIri (P). Those strings ARE URN-tower terms; this bridge makes that a graph fact rather than a naming coincidence. It is authored as rdfs:subClassOf prim:Realization so every instance IS a Frame / Kleisli arrow of the SP1 realization monad (the unary law's Yoneda point T -> Frame(output: X, error|effect: Y)), reusing the SP1 Frame law rather than re-deriving it: each instance carries exactly one prim:frameOutput (X = the SP1 URN carrier prim:UrnUtf8, the octet stream the lexical term reads as) and a prim:frameEffect (Y = the SP1 typed prim:EncodingLoss, the honest lexical->URN typing / Unicode-normalization cost), so SP1's prim:RealizationShape governs it directly. It relates the SP2 leg it reads (crs:bridgesLexFrom -> aob:YonedaHomLeg), names the exact lexical coordinate lifted (crs:liftsLexProperty), and points at the role tower it lands on (crs:bridgesLexToUrn -> crs:UrnRoleTower). It is a physical Frame (NOT rdfs:subClassOf* prim:FormalType), so the SP1 dual-grounding / Yoneda class laws do not target it; it seeds nothing beyond the S/O/P->URN lift the towers stand on." .
+
+
+# ---- The tower functor coordinates (index domain, value codomain, composite, octet-vector descent) --
+
+crs:towerIndexDomain a owl:ObjectProperty ;
+    rdfs:domain crs:UrnRoleTower ;
+    rdfs:range prim:FormalType ;
+    rdfs:label "towerIndexDomain" ;
+    rdfs:comment "The domain of a role tower read as a functor prim:Ordinal -> prim:URN: the ordinal index (SP1 prim:Ordinal) over which the tower's URN components are laid out. Every crs:UrnRoleTower carries crs:towerIndexDomain prim:Ordinal — the tower is a functor from an ORDINAL index (a totally-ordered enumeration of positions), never from a bare scalar. Paired with crs:towerValueCodomain (prim:URN), it records the whole functor signature of the URN tower as a graph fact." .
+
+crs:towerValueCodomain a owl:ObjectProperty ;
+    rdfs:domain crs:UrnRoleTower ;
+    rdfs:range prim:FormalType ;
+    rdfs:label "towerValueCodomain" ;
+    rdfs:comment "The codomain of a role tower read as a functor prim:Ordinal -> prim:URN: the identifier tower (SP1 prim:URN) each ordinal-indexed position of the tower lands in. Every crs:UrnRoleTower carries crs:towerValueCodomain prim:URN — the tower's values are URN-tower terms, the load-bearing root of the identifier tower (S/O/P are URN towers), NEVER a prim:Real scalar. Paired with crs:towerIndexDomain (prim:Ordinal), it fixes the URN-tower functor signature; it is what q_towers_independent reads to confirm each of K_S/K_O/K_P is a genuine URN tower." .
+
+crs:towerComposite a owl:ObjectProperty ;
+    rdfs:domain crs:UrnRoleTower ;
+    rdfs:range prim:FormalType ;
+    rdfs:label "towerComposite" ;
+    rdfs:comment "The nth-dim COMPOSITE type a role tower's ordinal-indexed URN components assemble into — an SP1 prim:Vector (the rank-1 case) or prim:Tensor (rank-n), NEVER a prim:Real scalar (05_carrier_towers_triad.tex: 'It does not support a scalar RGB-to-S/O/P identification'). This is the tower's composite face: a functor prim:Ordinal -> prim:URN produces a sequence of URN components, and crs:towerComposite records the SP1 aggregate type that sequence IS (prim:Vector for a rank-1 URN vector tower, prim:Tensor for a higher-rank tower). Mirrors the whitepaper's tower files each descending from Octet.Pair.Sequence.Value into a composite value." .
+
+crs:descendsFromOctetVector a owl:ObjectProperty ;
+    rdfs:domain crs:UrnRoleTower ;
+    rdfs:range prim:PhysicalCarrier ;
+    rdfs:label "descendsFromOctetVector" ;
+    rdfs:comment "The octet-vector floor a role tower descends from, lifted from the whitepaper's terminal drill (05_carrier_towers_triad.tex): 'The Subject, Object, and Predicate tower files each descend from Octet.Pair.Sequence.Value' (digests 96e412c9… / c6849b8d… / 84cc4652…). Every crs:UrnRoleTower carries crs:descendsFromOctetVector -> SP1 prim:ByteVector (the finite octet-vector carrier that byteDescendsTo prim:Octet -> prim:Nibble -> prim:Bit), the concrete graph statement that a URN tower bottoms out at the SP1 byte floor rather than floating free — the same octet-vector floor the disjoint carriers of carriers.ttl are built over, kept separate from the colour channels by the T4 obstruction." .
+
+crs:hasTowerDimension a owl:DatatypeProperty ;
+    rdfs:domain crs:UrnRoleTower ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "hasTowerDimension" ;
+    rdfs:comment "The tower's OWN dimension, lifted from the whitepaper's terminal drill (05_carrier_towers_triad.tex: the S/O/P tower files 'each own a separate dimension value'). Every crs:UrnRoleTower independently declares its own crs:hasTowerDimension (a prim:Natural, here typed xsd:nonNegativeInteger) — the whitepaper's per-tower separate dimension. This is the tower's INTRINSIC nth-dim (a rank-1 prim:Vector tower owns dimension 1, a rank-2 prim:Tensor tower owns dimension 2); it is NOT the per-geometer coord-count law (that is Q2/T5's crs:hasDimension counting a geometer's crs:hasAxis tower-axes). The three role towers declaring their dimensions SEPARATELY is exactly what makes them INDEPENDENT rather than one presumed rank-3 jump (q_towers_independent)." .
+
+
+# ---- The tower<->axis and axis value-type relations -----------------------------------------------
+
+crs:hasAxisPosition a owl:ObjectProperty ;
+    rdfs:domain crs:UrnRoleTower ;
+    rdfs:range crs:UrnTowerAxis ;
+    rdfs:label "hasAxisPosition" ;
+    rdfs:comment "Relates a role tower to a crs:UrnTowerAxis it carries — the tower's coordinate position at an ordinal index. Because every crs:UrnRoleTower is a functor prim:Ordinal -> prim:URN, each ordinal index picks out an axis position whose value is a URN-tower term; crs:hasAxisPosition makes that position a first-class node so crs:AxisUrnTowerShape can enforce its component type is on the prim:URN line and its composite is a prim:Vector/prim:Tensor, never a scalar. It is the edge q_towers_independent walks from each of K_S/K_O/K_P to prove the tower is a genuine URN tower and not three unrelated strings." .
+
+crs:axisComponentType a owl:ObjectProperty ;
+    rdfs:domain crs:UrnTowerAxis ;
+    rdfs:range prim:FormalType ;
+    rdfs:label "axisComponentType" ;
+    rdfs:comment "The per-COMPONENT value type of a URN-tower axis — the SP1 formal type each URN component of the tower position IS. For a lawful URN tower this MUST lie on the prim:URN line (prim:URN itself or its taxonomic descendants prim:URI/prim:IRI/prim:QName): a role tower's values are URN-tower terms, never a prim:Real scalar. This is the coordinate crs:AxisUrnTowerShape reads (via rdfs:subClassOf* prim:URN, defang-proof: the check reads the genuine value type, and rdfs inference never fabricates a subClassOf-URN edge for prim:Real) and the coordinate the probe of record corrupts to prim:Real to prove the tooth bites (conforms=True->False)." .
+
+crs:axisComposite a owl:ObjectProperty ;
+    rdfs:domain crs:UrnTowerAxis ;
+    rdfs:range prim:FormalType ;
+    rdfs:label "axisComposite" ;
+    rdfs:comment "The nth-dim COMPOSITE type a URN-tower axis assembles its ordinal-indexed URN components into — an SP1 prim:Vector (rank-1) or prim:Tensor (rank-n), the aggregate face of the tower position. crs:AxisUrnTowerShape requires this value be drawn from {prim:Vector, prim:Tensor} (checked by a closed VALUES set, not a range-inference-vacuous sh:class), so a tower position whose composite is a scalar or any non-aggregate type is rejected. Together with crs:axisComponentType (prim:URN line) it is the full URN-tower witness: URN components (never a scalar) assembled into a Vector/Tensor composite (never a bare scalar)." .
+
+
+# ---- The Lex->URN bridge relations (SP2 leg read, coordinate named, target tower) -----------------
+
+crs:bridgesLexFrom a owl:ObjectProperty ;
+    rdfs:domain crs:LexToUrnBridge ;
+    rdfs:range aob:YonedaHomLeg ;
+    rdfs:label "bridgesLexFrom" ;
+    rdfs:comment "Relates a crs:LexToUrnBridge Frame to the SP2 arrow atom (aob:YonedaHomLeg) whose lexical S/O/P coordinate it lifts onto the prim:URN tower. The SP2 leg carries the three xsd:string coordinates aob:sourceNodeUrn (S) / aob:targetNodeUrn (O) / aob:cpoProcessIri (P); crs:bridgesLexFrom names WHICH leg the bridge reads (on this floor the SP2 witness aob:witnessLeg), and crs:liftsLexProperty names WHICH of the three coordinates. It is the source (domain) end of the full-lexical lift, the concrete statement that the CRS towers stand on the SP2 S/O/P triple rather than re-inventing it." .
+
+crs:liftsLexProperty a owl:DatatypeProperty ;
+    rdfs:domain crs:LexToUrnBridge ;
+    rdfs:range xsd:string ;
+    rdfs:label "liftsLexProperty" ;
+    rdfs:comment "Names the exact SP2 lexical coordinate a crs:LexToUrnBridge lifts onto the prim:URN tower, carried full-lexically as a string: 'aob:sourceNodeUrn' for the Subject bridge, 'aob:targetNodeUrn' for the Object bridge, 'aob:cpoProcessIri' for the Predicate bridge (the three xsd:string properties SP2 defines on aob:YonedaHomLeg). The single external-style spelling survives only as immutable bridge evidence on the lexical side of a registered lift (STRICTNESS Rule 3): it records the source coordinate's name, never re-declares an internal namespace. It is what makes each of the three symmetric bridges distinct — one per S/O/P coordinate, none privileged." .
+
+crs:bridgesLexToUrn a owl:ObjectProperty ;
+    rdfs:domain crs:LexToUrnBridge ;
+    rdfs:range crs:UrnRoleTower ;
+    rdfs:label "bridgesLexToUrn" ;
+    rdfs:comment "Relates a crs:LexToUrnBridge Frame to the role tower (crs:UrnRoleTower child) its lifted lexical coordinate lands on — the codomain end of the full-lexical lift onto the prim:URN tower. The Subject bridge crs:bridgesLexToUrn crs:SubjectTower, the Object bridge -> crs:ObjectTower, the Predicate bridge -> crs:PredicateTower: the three symmetric bridges carry the SP2 S/O/P strings onto the three symmetric role towers, one-to-one, none privileged. It is the concrete graph fact that SP2's xsd:string aob:sourceNodeUrn/aob:targetNodeUrn/aob:cpoProcessIri ARE the Subject/Object/Predicate URN towers — the unary full-lexical idiom made a lift rather than a naming coincidence." .
+
+
+# =====================================================================================
+# The floor WITNESSES (corpus-agnostic v1: three tower witnesses, one per role, each over a URN-tower
+# axis; three lex->URN bridges, one per SP2 S/O/P coordinate). Minted only to keep crs:AxisUrnTowerShape
+# and q_towers_independent non-vacuous. Zero corpus instances.
+# =====================================================================================
+
+# -- The three URN-tower axis positions (component prim:URN; composite prim:Vector / prim:Tensor) ----
+
+crs:subjectAxisWitness a crs:UrnTowerAxis ;
+    crs:axisComponentType prim:URN ;
+    crs:axisComposite prim:Vector ;
+    rdfs:label "subjectAxisWitness (K_S axis: URN component, Vector composite)" ;
+    rdfs:comment "The Subject tower's URN-tower axis witness: a rank-1 position whose per-component value type is prim:URN (on the URN line) and whose composite is prim:Vector — a URN vector tower position, never a scalar. It exists only as the non-vacuity anchor of q_towers_independent and the positive (conforming) side of crs:AxisUrnTowerShape. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:objectAxisWitness a crs:UrnTowerAxis ;
+    crs:axisComponentType prim:URN ;
+    crs:axisComposite prim:Vector ;
+    rdfs:label "objectAxisWitness (K_O axis: URN component, Vector composite)" ;
+    rdfs:comment "The Object tower's URN-tower axis witness: a rank-1 position whose per-component value type is prim:URN (on the URN line) and whose composite is prim:Vector — a URN vector tower position, never a scalar. It exists only as the non-vacuity anchor of q_towers_independent and the positive (conforming) side of crs:AxisUrnTowerShape. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:predicateAxisWitness a crs:UrnTowerAxis ;
+    crs:axisComponentType prim:URN ;
+    crs:axisComposite prim:Tensor ;
+    rdfs:label "predicateAxisWitness (K_P axis: URN component, Tensor composite)" ;
+    rdfs:comment "The Predicate tower's URN-tower axis witness: a position whose per-component value type is prim:URN (on the URN line) and whose composite is prim:Tensor — witnessing that a URN-tower axis's nth-dim composite may be a rank-n prim:Tensor as well as a rank-1 prim:Vector, both admitted by crs:AxisUrnTowerShape, and never a scalar. It exists only as the non-vacuity anchor of q_towers_independent and the positive (conforming) side of crs:AxisUrnTowerShape. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The three role-tower witnesses (K_S / K_O / K_P), each a URN-tower functor with its own dimension --
+
+crs:subjectTowerWitness a crs:SubjectTower ;
+    crs:towerIndexDomain prim:Ordinal ;
+    crs:towerValueCodomain prim:URN ;
+    crs:towerComposite prim:Vector ;
+    crs:descendsFromOctetVector prim:ByteVector ;
+    crs:hasTowerDimension 1 ;
+    crs:hasAxisPosition crs:subjectAxisWitness ;
+    rdfs:label "subjectTowerWitness (K_S: functor Ordinal->URN, Vector, dim 1)" ;
+    rdfs:comment "The Subject role tower witness K_S: a URN tower read as a functor from prim:Ordinal (crs:towerIndexDomain) into prim:URN (crs:towerValueCodomain), whose nth-dim composite is a prim:Vector (crs:towerComposite), descending from the octet-vector floor prim:ByteVector (crs:descendsFromOctetVector), owning its own separate dimension 1 (crs:hasTowerDimension), and carrying the URN-tower axis crs:subjectAxisWitness (crs:hasAxisPosition). It is the non-vacuity anchor of q_towers_independent for the Subject role; a co-equal sibling of the Object and Predicate tower witnesses, none privileged. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:objectTowerWitness a crs:ObjectTower ;
+    crs:towerIndexDomain prim:Ordinal ;
+    crs:towerValueCodomain prim:URN ;
+    crs:towerComposite prim:Vector ;
+    crs:descendsFromOctetVector prim:ByteVector ;
+    crs:hasTowerDimension 1 ;
+    crs:hasAxisPosition crs:objectAxisWitness ;
+    rdfs:label "objectTowerWitness (K_O: functor Ordinal->URN, Vector, dim 1)" ;
+    rdfs:comment "The Object role tower witness K_O: a URN tower read as a functor from prim:Ordinal (crs:towerIndexDomain) into prim:URN (crs:towerValueCodomain), whose nth-dim composite is a prim:Vector (crs:towerComposite), descending from the octet-vector floor prim:ByteVector (crs:descendsFromOctetVector), owning its own separate dimension 1 (crs:hasTowerDimension), and carrying the URN-tower axis crs:objectAxisWitness (crs:hasAxisPosition). It is the non-vacuity anchor of q_towers_independent for the Object role; a co-equal sibling of the Subject and Predicate tower witnesses, none privileged. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:predicateTowerWitness a crs:PredicateTower ;
+    crs:towerIndexDomain prim:Ordinal ;
+    crs:towerValueCodomain prim:URN ;
+    crs:towerComposite prim:Tensor ;
+    crs:descendsFromOctetVector prim:ByteVector ;
+    crs:hasTowerDimension 2 ;
+    crs:hasAxisPosition crs:predicateAxisWitness ;
+    rdfs:label "predicateTowerWitness (K_P: functor Ordinal->URN, Tensor, dim 2)" ;
+    rdfs:comment "The Predicate role tower witness K_P: a URN tower read as a functor from prim:Ordinal (crs:towerIndexDomain) into prim:URN (crs:towerValueCodomain), whose nth-dim composite is a prim:Tensor (crs:towerComposite — witnessing a rank-2 tower alongside the rank-1 Vector siblings, the whitepaper's 'separate dimension value' made concrete), descending from the octet-vector floor prim:ByteVector (crs:descendsFromOctetVector), owning its own separate dimension 2 (crs:hasTowerDimension), and carrying the URN-tower axis crs:predicateAxisWitness (crs:hasAxisPosition). It is the non-vacuity anchor of q_towers_independent for the Predicate role; a co-equal sibling of the Subject and Object tower witnesses, none privileged. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# -- The three Lex->URN bridge witnesses (one per SP2 S/O/P coordinate, onto its role tower) ---------
+
+crs:bridgeSubjectLexToUrn a crs:LexToUrnBridge ;
+    crs:bridgesLexFrom aob:witnessLeg ;
+    crs:liftsLexProperty "aob:sourceNodeUrn" ;
+    crs:bridgesLexToUrn crs:subjectTowerWitness ;
+    prim:frameOutput prim:UrnUtf8 ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "bridgeSubjectLexToUrn (aob:sourceNodeUrn -> K_S)" ;
+    rdfs:comment "The Lex->URN bridge Frame for the Subject coordinate: it lifts SP2's xsd:string aob:sourceNodeUrn (S) — read off the SP2 leg aob:witnessLeg (crs:bridgesLexFrom) — onto the Subject URN tower (crs:bridgesLexToUrn crs:subjectTowerWitness). As an instance of crs:LexToUrnBridge it IS a Frame / Kleisli arrow of the SP1 realization monad: prim:frameOutput prim:UrnUtf8 (X = the URN carrier the lexical term reads as) and prim:frameEffect prim:EncodingLoss (Y = the lexical->URN typing / normalization cost), so SP1's prim:RealizationShape governs it directly. A co-equal sibling of the Object and Predicate bridges, none privileged. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:bridgeObjectLexToUrn a crs:LexToUrnBridge ;
+    crs:bridgesLexFrom aob:witnessLeg ;
+    crs:liftsLexProperty "aob:targetNodeUrn" ;
+    crs:bridgesLexToUrn crs:objectTowerWitness ;
+    prim:frameOutput prim:UrnUtf8 ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "bridgeObjectLexToUrn (aob:targetNodeUrn -> K_O)" ;
+    rdfs:comment "The Lex->URN bridge Frame for the Object coordinate: it lifts SP2's xsd:string aob:targetNodeUrn (O) — read off the SP2 leg aob:witnessLeg (crs:bridgesLexFrom) — onto the Object URN tower (crs:bridgesLexToUrn crs:objectTowerWitness). As an instance of crs:LexToUrnBridge it IS a Frame / Kleisli arrow of the SP1 realization monad: prim:frameOutput prim:UrnUtf8 (X = the URN carrier the lexical term reads as) and prim:frameEffect prim:EncodingLoss (Y = the lexical->URN typing / normalization cost), so SP1's prim:RealizationShape governs it directly. A co-equal sibling of the Subject and Predicate bridges, none privileged. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+crs:bridgePredicateLexToUrn a crs:LexToUrnBridge ;
+    crs:bridgesLexFrom aob:witnessLeg ;
+    crs:liftsLexProperty "aob:cpoProcessIri" ;
+    crs:bridgesLexToUrn crs:predicateTowerWitness ;
+    prim:frameOutput prim:UrnUtf8 ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "bridgePredicateLexToUrn (aob:cpoProcessIri -> K_P)" ;
+    rdfs:comment "The Lex->URN bridge Frame for the Predicate coordinate: it lifts SP2's xsd:string aob:cpoProcessIri (P) — read off the SP2 leg aob:witnessLeg (crs:bridgesLexFrom) — onto the Predicate URN tower (crs:bridgesLexToUrn crs:predicateTowerWitness). As an instance of crs:LexToUrnBridge it IS a Frame / Kleisli arrow of the SP1 realization monad: prim:frameOutput prim:UrnUtf8 (X = the URN carrier the lexical term reads as) and prim:frameEffect prim:EncodingLoss (Y = the lexical->URN typing / normalization cost), so SP1's prim:RealizationShape governs it directly. A co-equal sibling of the Subject and Object bridges, none privileged. Corpus-agnostic v1 floor witness, not a corpus instance." .
+
+
+# =====================================================================================
+# T4 — THE POSITIONAL-COLLAPSE OBSTRUCTION (the law's negative space): S=R / O=G / P=B forbidden.
+# =====================================================================================
+# LIFTED (Directive 1) from the whitepaper Prop. "TOWERS positional-collapse obstruction"
+# (05_carrier_towers_triad.tex, prop:whitepaper-towers-positional-collapse + proof) and its
+# forbidden-map tags v00-towers-forbidden-{subject-red,object-green,predicate-blue}-{map,equation}:
+# "There are no implicit positional maps S->R, O->G, P->B." The three role towers K_S/K_O/K_P
+# (towers.ttl above) and the three RGB colour channels (SP1 prim:Red/prim:Green/prim:Blue, carried
+# INSIDE the byte carriers of carriers.ttl as a constructor, NOT a role) are INDEPENDENTLY typed
+# factors of the five-factor product D_tower = A x G x T_S x T_O x T_P; the colour channels are a
+# separate concern (the inner colour tag of a byte carrier), never the semantic roles.
+#
+# THE OBSTRUCTION AS A MATERIALISED LAW (not prose): the whitepaper proves the three-colour payload
+# projection c : D_tower -> R x G x B (which retains ONLY the colour payloads, forgetting the
+# Atlas/Graph identity and the three role-tower values) is NON-INJECTIVE — two inputs differing only
+# in a forgotten non-colour coordinate (a role tower or a carrier tag) have equal colour images, so
+# c has no left inverse and cannot recover the five-factor input. THEREFORE the assignments S=R, O=G,
+# P=B are UNDERIVABLE from the carrier construction. This file materialises c as crs:colourOnly (an
+# instance of crs:ColourOnlyProjection) carrying the declared crs:isNonInjective true, and mints the
+# colour channels crs:RedChannel/crs:GreenChannel/crs:BlueChannel (grounding to SP1 prim:Red/Green/Blue)
+# under the agnostic progenitor crs:ColourChannel (Directive 17) so the forbidden identifications have
+# a concrete right-hand side to be forbidden AGAINST.
+#
+# TOOTH (this task): crs:NoPositionalMapShape (crs.shapes.ttl) forbids ANY edge identifying a role
+# tower (crs:UrnRoleTower or a child) with a colour channel (owl:sameAs / owl:equivalentClass /
+# rdfs:subClassOf, either direction) — the forbidden maps encoded as asserted-absent negative space;
+# and the T3 ASK q_towers_independent is extended with the "no positional colour map exists" clause
+# (design §4). Probe of record (conforms/ASK True->False): inject crs:SubjectTower owl:sameAs
+# crs:RedChannel (S=R smuggled in) -> crs:NoPositionalMapShape conforms=True->False and
+# q_towers_independent True->False.
+#
+# GROUNDING: prim:Red/prim:Green/prim:Blue (each a prim:Octet 0..255) and the SP1 prim:RGB
+# prim:ColourSpace are consumed from SP1; crs:ColourOnlyProjection is a prim:Realization (SP1 Frame
+# law) whose prim:frameOutput prim:ByteVectorBlob (the retained R,G,B octet triple read as a byte
+# vector) and prim:frameEffect prim:EncodingLoss (the honest loss of the forgotten Atlas/Graph/role
+# coordinates — the non-injectivity itself) reuse the SP1 realization monad. Corpus-agnostic v1: the
+# only individual is the projection witness crs:colourOnly. The colour-channel classes (crs:ColourChannel /
+# crs:RedChannel / crs:GreenChannel / crs:BlueChannel) and the projection class crs:ColourOnlyProjection are
+# deliberately NOT rdfs:subClassOf* prim:FormalType, and are deliberately NOT grounded by T11: the colour
+# channels are SP1's prim:RGB code space RE-VIEWED — already floor-grounded via crs:groundsColourOctet ->
+# prim:Red/prim:Green/prim:Blue (each a fully SP1-dual-grounded prim:Octet) — the T4 positional-collapse
+# NEGATIVE SPACE, not a new SP3 formal chart object; and crs:ColourOnlyProjection is a physical Frame
+# (rdfs:subClassOf prim:Realization) SP1's YonedaShape doctrine keeps outside prim:FormalType. T11 grounds
+# only the coordinate-chart OBJECT classes (the towers/axis of this file), never these.
+#
+# Design spec: docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md (§2.3)
+# Plan:        docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md (Task T4)
+# =====================================================================================
+
+
+# ---- The agnostic colour-channel progenitor + its three symmetric children R/G/B (SP1-grounded) ----
+
+crs:ColourChannel a owl:Class ;
+    rdfs:label "ColourChannel (agnostic RGB colour-channel progenitor)" ;
+    rdfs:comment "The AGNOSTIC colour-channel progenitor, lifted from the whitepaper's three RGB colour payloads R/G/B (05_carrier_towers_triad.tex, Prop. 'TOWERS positional-collapse obstruction': the three-colour projection c retains R x G x B). A crs:ColourChannel is one nominal colour channel of the SP1 prim:RGB code space — an octet-valued carrier (SP1 prim:Octet 0..255) that is the INNER colour tag of a byte carrier (carriers.ttl crs:TaggedByteCarrier), a constructor carried WITH the vectorized byte stream and explicitly NOT a semantic role. Per Directive 17 (be more agnostic on all) this progenitor grounds NO concrete channel — it is the channel-neutral join of the three concrete channels, exactly the byte-order/carrier-tag progenitor pattern applied to the RGB channel — and its three SYMMETRIC children crs:RedChannel / crs:GreenChannel / crs:BlueChannel supply the concrete channels, none privileged. The whole point of the positional-collapse obstruction is that a colour channel is NOT a role tower: there is no positional map S->R / O->G / P->B, and crs:NoPositionalMapShape forbids any edge identifying a crs:UrnRoleTower with a crs:ColourChannel. It grounds into SP1 via crs:groundsColourOctet -> a prim:Octet channel of prim:RGB." .
+
+crs:RedChannel a owl:Class ;
+    rdfs:subClassOf crs:ColourChannel ;
+    crs:groundsColourOctet prim:Red ;
+    rdfs:label "RedChannel (R — the Red colour channel, grounds SP1 prim:Red)" ;
+    rdfs:comment "The Red colour channel R, lifted from the whitepaper's three-colour projection c : D_tower -> R x G x B (05_carrier_towers_triad.tex): the R factor of the retained colour triple, an octet-valued nominal channel grounding into SP1 as prim:Red (a prim:Octet of cardinality 256, ordinal range 0..255, one prim:hasChannel member of prim:RGB) via crs:groundsColourOctet. It is one of the three SYMMETRIC children of the agnostic progenitor crs:ColourChannel (Directive 17), a co-equal sibling of crs:GreenChannel and crs:BlueChannel with none privileged. It is the inner colour tag of a byte carrier, a constructor carried WITH the byte stream, NOT the Subject semantic role: the whitepaper's forbidden equation S=R (tag v00-towers-forbidden-subject-red-equation) 'cannot be derived from the independently typed terminal carrier factors', because the three-colour projection that would recover it is non-injective. crs:NoPositionalMapShape enforces that negative space: any edge identifying crs:SubjectTower (K_S) with crs:RedChannel — the probe of record crs:SubjectTower owl:sameAs crs:RedChannel — flips conforms True->False." .
+
+crs:GreenChannel a owl:Class ;
+    rdfs:subClassOf crs:ColourChannel ;
+    crs:groundsColourOctet prim:Green ;
+    rdfs:label "GreenChannel (G — the Green colour channel, grounds SP1 prim:Green)" ;
+    rdfs:comment "The Green colour channel G, lifted from the whitepaper's three-colour projection c : D_tower -> R x G x B (05_carrier_towers_triad.tex): the G factor of the retained colour triple, an octet-valued nominal channel grounding into SP1 as prim:Green (a prim:Octet of cardinality 256, ordinal range 0..255, one prim:hasChannel member of prim:RGB) via crs:groundsColourOctet. It is one of the three SYMMETRIC children of the agnostic progenitor crs:ColourChannel (Directive 17), a co-equal sibling of crs:RedChannel and crs:BlueChannel with none privileged. It is the inner colour tag of a byte carrier, a constructor carried WITH the byte stream, NOT the Object semantic role: the whitepaper's forbidden equation O=G (tag v00-towers-forbidden-object-green-equation) 'cannot be derived from the independently typed terminal carrier factors', because the three-colour projection that would recover it is non-injective. crs:NoPositionalMapShape enforces that negative space: any edge identifying crs:ObjectTower (K_O) with crs:GreenChannel flips conforms True->False." .
+
+crs:BlueChannel a owl:Class ;
+    rdfs:subClassOf crs:ColourChannel ;
+    crs:groundsColourOctet prim:Blue ;
+    rdfs:label "BlueChannel (B — the Blue colour channel, grounds SP1 prim:Blue)" ;
+    rdfs:comment "The Blue colour channel B, lifted from the whitepaper's three-colour projection c : D_tower -> R x G x B (05_carrier_towers_triad.tex): the B factor of the retained colour triple, an octet-valued nominal channel grounding into SP1 as prim:Blue (a prim:Octet of cardinality 256, ordinal range 0..255, one prim:hasChannel member of prim:RGB) via crs:groundsColourOctet. It is one of the three SYMMETRIC children of the agnostic progenitor crs:ColourChannel (Directive 17), a co-equal sibling of crs:RedChannel and crs:GreenChannel with none privileged. It is the inner colour tag of a byte carrier, a constructor carried WITH the byte stream, NOT the Predicate semantic role: the whitepaper's forbidden equation P=B (tag v00-towers-forbidden-predicate-blue-equation) 'cannot be derived from the independently typed terminal carrier factors', because the three-colour projection that would recover it is non-injective. crs:NoPositionalMapShape enforces that negative space: any edge identifying crs:PredicateTower (K_P) with crs:BlueChannel flips conforms True->False." .
+
+
+# ---- The non-injective three-colour payload projection c : D_tower -> R x G x B --------------------
+
+crs:ColourOnlyProjection a owl:Class ;
+    rdfs:subClassOf prim:Realization ;
+    rdfs:label "ColourOnlyProjection (the non-injective three-colour payload projection c)" ;
+    rdfs:comment "The three-colour payload projection c : D_tower -> R x G x B, lifted from the whitepaper Prop. 'TOWERS positional-collapse obstruction' (05_carrier_towers_triad.tex, tag v00-towers-three-colour-payload-projection): 'any projection that retains only three colour payloads', forgetting the Atlas/Graph identity and the three role-tower values of the five-factor domain D_tower = A x G x T_S x T_O x T_P. It is authored as rdfs:subClassOf prim:Realization so every instance IS a Frame / Kleisli arrow of the SP1 realization monad (the unary law's Yoneda point T -> Frame(output: X, error|effect: Y)), reusing the SP1 Frame law rather than re-deriving it: each instance carries exactly one prim:frameOutput (X = the SP1 byte-vector encoding prim:ByteVectorBlob, the retained R,G,B octet triple read as a byte vector) and a prim:frameEffect (Y = the SP1 typed prim:EncodingLoss, the honest loss of the forgotten Atlas/Graph/role coordinates), so SP1's prim:RealizationShape governs it directly. Crucially it is declared crs:isNonInjective true: two inputs differing only in a forgotten non-colour coordinate have EQUAL colour images, so c has no left inverse and 'colour position cannot recover the five-factor TOWERS input'. This non-injectivity is exactly WHY the positional maps S=R/O=G/P=B are underivable — the obstruction crs:NoPositionalMapShape then forbids as asserted-absent negative space. It relates its colour codomain factors by crs:projectsToColour (the three crs:ColourChannel children). It is NOT rdfs:subClassOf* prim:FormalType, so SP1's dual-grounding / Yoneda class laws do not target it (a physical Frame, not a formal tower class)." .
+
+
+# ---- The colour-grounding, projection-codomain, and non-injectivity relations ---------------------
+
+crs:groundsColourOctet a owl:ObjectProperty ;
+    rdfs:domain crs:ColourChannel ;
+    rdfs:range prim:Octet ;
+    rdfs:label "groundsColourOctet" ;
+    rdfs:comment "Relates a crs:ColourChannel to the SP1 prim:Octet channel of prim:RGB it grounds into — crs:RedChannel crs:groundsColourOctet prim:Red, crs:GreenChannel -> prim:Green, crs:BlueChannel -> prim:Blue (each a prim:Octet of cardinality 256, ordinal range 0..255, a prim:hasChannel member of the SP1 prim:RGB colour space). It is the concrete graph statement that the CRS colour channels ride the SP1 byte floor's RGB code space rather than re-inventing colour, and that they are octet-valued byte-carrier constructors, NOT the semantic role towers — the type distinction the positional-collapse obstruction turns on." .
+
+crs:projectsToColour a owl:ObjectProperty ;
+    rdfs:domain crs:ColourOnlyProjection ;
+    rdfs:range crs:ColourChannel ;
+    rdfs:label "projectsToColour" ;
+    rdfs:comment "Relates the three-colour payload projection c (crs:ColourOnlyProjection) to a colour-channel factor of its codomain R x G x B — the projection witness crs:colourOnly crs:projectsToColour crs:RedChannel, crs:GreenChannel, crs:BlueChannel, the three retained colour payloads. It records that c retains ONLY the colour coordinates (the Atlas/Graph identity and the role-tower values are dropped, not projected to), the exact forgetting that makes c non-injective and the positional maps S=R/O=G/P=B underivable. It is the codomain end of the whitepaper's c : D_tower -> R x G x B made a graph fact." .
+
+crs:isNonInjective a owl:DatatypeProperty ;
+    rdfs:domain crs:ColourOnlyProjection ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "isNonInjective" ;
+    rdfs:comment "Declares that a crs:ColourOnlyProjection is NON-INJECTIVE (value true), lifting the whitepaper's conclusion (05_carrier_towers_triad.tex, tag v00-towers-noninjective-projection-conclusion): the three-colour projection c 'is not injective' because two inputs differing only in a forgotten non-colour coordinate (a role tower or an Atlas/Graph tag) have equal colour images, so c has no left inverse on that pair and 'colour position cannot recover the five-factor TOWERS input'. This non-injectivity is the load-bearing REASON the positional identifications S=R/O=G/P=B are underivable — the very obstruction crs:NoPositionalMapShape enforces as asserted-absent negative space. It is carried as a boolean fact on the projection witness crs:colourOnly (crs:isNonInjective true), the graph statement of the proposition's conclusion." .
+
+
+# =====================================================================================
+# The floor WITNESS (corpus-agnostic v1: the single non-injective three-colour projection c, the
+# WHY of the positional-collapse obstruction). Minted only to materialise the obstruction as a fact.
+# =====================================================================================
+
+crs:colourOnly a crs:ColourOnlyProjection ;
+    crs:projectsToColour crs:RedChannel , crs:GreenChannel , crs:BlueChannel ;
+    crs:isNonInjective true ;
+    prim:frameOutput prim:ByteVectorBlob ;
+    prim:frameEffect prim:EncodingLoss ;
+    rdfs:label "colourOnly (the three-colour payload projection c : D_tower -> R x G x B)" ;
+    rdfs:comment "The three-colour payload projection witness c, lifted from the whitepaper Prop. 'TOWERS positional-collapse obstruction' (05_carrier_towers_triad.tex): the projection that retains ONLY the R, G, B colour payloads (crs:projectsToColour crs:RedChannel/crs:GreenChannel/crs:BlueChannel) while forgetting the Atlas/Graph identity and the three role-tower values of D_tower. As an instance of crs:ColourOnlyProjection it IS a Frame / Kleisli arrow of the SP1 realization monad — prim:frameOutput prim:ByteVectorBlob (X = the retained colour octet triple read as a byte vector) and prim:frameEffect prim:EncodingLoss (Y = the honest loss of the forgotten Atlas/Graph/role coordinates) — so SP1's prim:RealizationShape governs it directly. It carries crs:isNonInjective true: distinct five-factor inputs differing only in a forgotten non-colour coordinate collide under c, so c cannot recover the input and the positional maps S=R/O=G/P=B are underivable. It is the materialised WHY of the obstruction crs:NoPositionalMapShape forbids. Corpus-agnostic v1 floor witness, not a corpus instance." .

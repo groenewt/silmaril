@@ -1,0 +1,88 @@
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# upper_anchor.ttl — the load-bearing CCO/BFO upper anchor (W2 · SP2, plan Task 3).
+# =====================================================================================
+# LIFTS the Layer-0 upper-anchor law verbatim from helios/01_data_src_specs/universal_anchors.spec.yaml
+# (algebra_role: pure_seed, layer: 0, total_anchors: 11): every NODE atom grounds via EXACTLY ONE
+# cco:ont######## IRI matching ^cco:ont[0-9]{8}$; every ARROW atom via EXACTLY ONE cceo: process IRI
+# matching ^cceo:[A-Za-z0-9_]+$. The two load-bearing anchors are lifted as first-class aob:UpperAnchor
+# NODES carrying their pattern as data (aob:anchorPattern) — NOT inlined into aob.shapes.ttl. The
+# aob:UpperAnchorShape references the anchor node via a atom's aob:patternAnchorUrn and reads the pattern
+# with SPARQL REGEX (pattern-by-anchor, never inline; the pattern lives in ONE place, MD6). Card-1..1 both
+# sides. MD2: the resolution artifact is pinned as MergedAllCoreOntology.ttl via SIL_CCO_TTL_FILE (CCO 2.x,
+# under BFO), with the universal_anchors.spec.yaml cco-merged/cco.ttl + SIL_CCO_TTL_DIR spelling recorded
+# as an HONEST DIVERGENCE below, to be reconciled when the two Helios specs merge into submodules. MD6:
+# live external TTL resolution (does cco:ont00000958 actually resolve against the merged CCO TTL?) is a
+# deferred, re-runnable W5 gate — the v1 tooth is cardinality-1..1 + pattern-via-anchor ONLY. New anchors
+# remain human_review_required, never_auto_merge (governance note, not a runtime). The single external
+# cco:/cceo: spellings survive only as immutable bridge evidence (STRICTNESS Rule 3), never as internal
+# namespaces. Grows the ONE lifted witness pair (aob:witnessAnchor node, aob:witnessLeg arrow) authored in
+# meta.ttl with its upper-anchor grounding; zero live-corpus data. Namespace: aob: <urn:silmaril:aob:#>.
+# =====================================================================================
+
+
+# ---- The upper-anchor node class + the pattern-by-anchor coordinates -----------------------------
+
+aob:UpperAnchor a owl:Class ;
+    rdfs:label "UpperAnchor" ;
+    rdfs:comment "A lifted Layer-0 universal anchor node (helios/01_data_src_specs/universal_anchors.spec.yaml, algebra_role: pure_seed, layer: 0). An aob:UpperAnchor is the SINGLE place a grounding pattern lives: it carries the anchor's regular expression as data (aob:anchorPattern) plus the environment coordinate (aob:resolvesInEnv) and resolution artifact (aob:resolutionArtifact) that a deferred W5 gate would resolve the matched IRI against. Every AOB atom that grounds into CCO/BFO references its anchor by URN (aob:patternAnchorUrn -> this node), and aob:UpperAnchorShape reads the pattern FROM here with SPARQL REGEX — never as an inline sh:pattern literal in the shape (MD6: pattern-by-anchor, so the regex exists in exactly one authoritative location and cannot drift). This is a lifted structure, not an invented one: the two load-bearing anchors (node cco_grounding_iri, arrow cpo_process_iri) are the exact universal_anchors the Helios seed law authors as load-bearing; new anchors are human_review_required, never_auto_merge as a governance note, not a runtime." .
+
+aob:ccoGroundingIri a owl:DatatypeProperty ;
+    rdfs:domain aob:ConcreteAnchor ; rdfs:range xsd:string ;
+    rdfs:label "ccoGroundingIri" ;
+    rdfs:comment "The one CCO grounding IRI of a node atom (cco_grounding_iri in the Helios seed), lifted full-lexically as a cco:ont######## CURIE string. Card-1..1 on aob:ConcreteAnchor (aob:UpperAnchorShape) and REGEX-matched against the referenced aob:anchor_cco_grounding_iri pattern ^cco:ont[0-9]{8}$; the external cco: spelling is immutable bridge evidence only (STRICTNESS Rule 3), never an internal namespace." .
+
+aob:patternAnchorUrn a owl:ObjectProperty ;
+    rdfs:domain aob:AOBAtom ; rdfs:range aob:UpperAnchor ;
+    rdfs:label "patternAnchorUrn" ;
+    rdfs:comment "Links an AOB atom to the lifted aob:UpperAnchor whose aob:anchorPattern governs its grounding IRI — the pattern-BY-ANCHOR reference (never an inline regex). aob:UpperAnchorShape follows this edge to read the pattern with SPARQL REGEX, so the regex lives in exactly one place (the anchor node); a node atom references aob:anchor_cco_grounding_iri, an arrow atom aob:anchor_cpo_process_iri. This is the no-inline discipline SP7 consumes as the AOB upper-anchor law." .
+
+aob:anchorPattern a owl:DatatypeProperty ;
+    rdfs:domain aob:UpperAnchor ; rdfs:range xsd:string ;
+    rdfs:label "anchorPattern" ;
+    rdfs:comment "The regular-expression pattern of a lifted aob:UpperAnchor (universal_anchors.spec.yaml -> anchors[].pattern), carried as data on the anchor node so it is referenced, never inlined into a shape. aob:UpperAnchorShape reads it via SPARQL REGEX through a atom's aob:patternAnchorUrn edge; e.g. ^cco:ont[0-9]{8}$ (node) / ^cceo:[A-Za-z0-9_]+$ (arrow). The pattern living once here (MD6) is what lets a grep of aob.shapes.ttl for a cco/cceo regex literal return zero." .
+
+aob:resolvesInEnv a owl:DatatypeProperty ;
+    rdfs:domain aob:UpperAnchor ; rdfs:range xsd:string ;
+    rdfs:label "resolvesInEnv" ;
+    rdfs:comment "The environment-variable coordinate a matched grounding IRI would resolve in (universal_anchors.spec.yaml -> anchors[].resolves_in_env), carried as an honest governance note, not a runtime. Per MD2 the CCO anchor pins SIL_CCO_TTL_FILE (the project_env.spec.yaml source-of-truth spelling); the cco-merged/cco.ttl + SIL_CCO_TTL_DIR spelling from universal_anchors is recorded as the honest divergence. Live resolution is a deferred W5 gate (MD6)." .
+
+aob:resolutionArtifact a owl:DatatypeProperty ;
+    rdfs:domain aob:UpperAnchor ; rdfs:range xsd:string ;
+    rdfs:label "resolutionArtifact" ;
+    rdfs:comment "The concrete TTL artifact a matched grounding IRI would resolve against (universal_anchors.spec.yaml -> anchors[].resolution_artifact), carried as an honest governance note. Per MD2 the CCO anchor pins MergedAllCoreOntology.ttl (CCO 2.x, under BFO); the universal_anchors cco-merged/cco.ttl spelling is the recorded divergence. Not resolved at v1 — live external TTL resolution is the deferred, re-runnable W5 gate (MD6)." .
+
+
+# ---- The two load-bearing anchor nodes (lifted verbatim; pattern carried as data) ----------------
+
+aob:anchor_cco_grounding_iri a aob:UpperAnchor ;
+    rdfs:label "anchor_cco_grounding_iri" ;
+    aob:anchorPattern "^cco:ont[0-9]{8}$" ;
+    aob:resolvesInEnv "SIL_CCO_TTL_FILE" ;
+    aob:resolutionArtifact "MergedAllCoreOntology.ttl" ;
+    rdfs:comment "The NODE upper anchor, lifted verbatim from universal_anchors.spec.yaml -> urn:silmaril:universal-anchor:node:identifier:cco_grounding_iri (primitive StringNode, pattern ^cco:ont[0-9]{8}$, max_len 64). Every aob:ConcreteAnchor grounds via EXACTLY ONE cco:ont######## IRI matching this pattern (card-1..1, aob:UpperAnchorShape, read pattern-by-anchor). MD2 HONEST DIVERGENCE: universal_anchors.spec.yaml declares resolves_in_env: SIL_CCO_TTL_DIR with resolution_artifact: cco-merged/cco.ttl, whereas project_env.spec.yaml (the declared env source-of-truth, 61 SIL_* vars) and the SP1/SP2 designs cite SIL_CCO_TTL_FILE -> MergedAllCoreOntology.ttl (CCO 2.x, under BFO). SP2 pins the project_env spelling (aob:resolvesInEnv SIL_CCO_TTL_FILE + aob:resolutionArtifact MergedAllCoreOntology.ttl) and records the cco-merged/cco.ttl divergence here, to be reconciled when the two Helios specs merge into submodules. MD6: live resolution is a deferred W5 gate; the v1 tooth is cardinality-1..1 + pattern only. Governance: human_review_required, never_auto_merge." .
+
+aob:anchor_cpo_process_iri a aob:UpperAnchor ;
+    rdfs:label "anchor_cpo_process_iri" ;
+    aob:anchorPattern "^cceo:[A-Za-z0-9_]+$" ;
+    aob:resolvesInEnv "SIL_CPO_TTL_FILE" ;
+    rdfs:comment "The ARROW upper anchor, lifted verbatim from universal_anchors.spec.yaml -> urn:silmaril:universal-anchor:arrow:identifier:cpo_process_iri (primitive StringNode, pattern ^cceo:[A-Za-z0-9_]+$, max_len 128, resolves_in_env: SIL_CPO_TTL_FILE). Every aob:YonedaHomLeg grounds via EXACTLY ONE cceo: process IRI (its P coordinate, aob:cpoProcessIri from Task 2) matching this pattern (card-1..1, aob:UpperAnchorShape, read pattern-by-anchor). The cceo: process CURIE resolves (deferred W5, MD6) against SIL_CPO_TTL_FILE — the CPO/CCEO extension merged under CCO 2.x/BFO. The single external cceo: spelling survives only as immutable bridge evidence (STRICTNESS Rule 3), never as an internal namespace. Governance: human_review_required, never_auto_merge; live external TTL resolution is the deferred, re-runnable W5 gate, not a v1 runtime." .
+
+
+# ---- Grow the ONE lifted witness pair with its upper-anchor grounding (non-vacuity) --------------
+# aob:witnessAnchor (node) + aob:witnessLeg (arrow) are declared in meta.ttl; here they receive their
+# load-bearing CCO/BFO grounding (the extra triples merge into the one graph the runner loads).
+
+aob:witnessAnchor
+    aob:ccoGroundingIri "cco:ont00000958" ;
+    aob:patternAnchorUrn aob:anchor_cco_grounding_iri .
+
+aob:witnessLeg
+    aob:patternAnchorUrn aob:anchor_cpo_process_iri .

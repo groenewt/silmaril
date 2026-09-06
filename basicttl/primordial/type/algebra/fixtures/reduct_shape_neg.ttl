@@ -1,0 +1,25 @@
+# =====================================================================================
+# reduct_shape_neg.ttl — the FAILING NEGATIVE fixture for ReductShape (W2 · SP0, T-SHAPES).
+# The materialized RED (D24: sh:conforms true alone is vacuous).
+# =====================================================================================
+# A forgetful reduct record that violates the one-law-per-child law: it names its @rel:reduct parent
+# theory but carries NO @rel:adds:law (the SINGLE injected violation; the positive twin
+# fixtures/reduct_pos.ttl names exactly one @rel:reduct + one @rel:adds:law). Merged onto the algebra
+# data graph the graph MUST NOT conform: ReductShape (sh:targetClass rec:reduct:record) requires
+# min1 @rel:adds:law (Directive-17 one-law-per-child, algebra_spine.ttl:99-103) and reddens; the
+# parallel probes/one_law_per_rung.rq likewise returns >= 1 row. This complements fixtures/reduct_neg.ttl
+# (which bites the two-obligation EquationRecordShape via the extension morphism): here the reduct
+# record ITSELF is malformed (no added law), isolating the ReductShape one-law tooth.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type (rec:reduct:record);
+# the parent is a bare object (untyped).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a reduct record with a parent but NO added law (INVALID: violates one-law-per-child) ---
+<urn:silmaril:fixture:algebra:reduct:shape:negative>
+    a owl:NamedIndividual , rec:reduct:record ;
+    rel:notation "reduct witness (BROKEN: names a parent but adds NO law)" ;
+    rel:reduct <urn:silmaril:fixture:algebra:reduct:shape:negative:parent> .  # INJECTED VIOLATION: @rel:adds:law missing (min1 required)

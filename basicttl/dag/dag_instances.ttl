@@ -1,0 +1,445 @@
+@prefix silm:  <urn:silmaril:entity#> .
+@prefix cco:   <https://www.commoncoreontologies.org/> .
+@prefix cceo:  <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# The concrete end-to-end v1 rebuild DAG as instances of dag_ontology.ttl.
+# Base units S0, G, W1-W5, X; their phases; the doctrines, rulings, goals, and
+# governing superpowers skills each binds to; and the dependsOn edges the
+# schedule query reads. Every individual is typed against a domain class
+# (never a bare owl:NamedIndividual) per the depth gate.
+# =============================================================================
+
+### ---- Doctrines -------------------------------------------------------------
+silm:doctrine_praeriehund a owl:NamedIndividual, silm:Doctrine ;
+    rdfs:label "Praeriehund doctrine" ;
+    rdfs:comment "docs/praeriehund-demokratie-der-kategorien.md: name the unknown provisionally; declare partial functors partial; never force-fit, fabricate, or delete-rename-erase a coordinate without a byte-complete inverse. Inspectable, revisable, federated." .
+silm:doctrine_unary_byte_frame_law a owl:NamedIndividual, silm:Doctrine ;
+    rdfs:label "Unary Byte-Frame Law" ;
+    rdfs:comment "docs/unary-byte-frame-law.md (+ enforcement-proof, receipts): F(x) -> Frame(output, error|effect); S/O/P as nth-dim URN towers; full lexical identity; physical byte descent; ContractGate external admission; Continue/Complete scheduler." .
+
+### ---- Rulings ---------------------------------------------------------------
+silm:ruling_file_axis_taxonomy a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "File axis = virtual taxonomy + full projection packet" .
+silm:ruling_ndim_crs a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "N-dimensional CRS law realized as S/O/P towers" .
+silm:ruling_fable_dissolve a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "Fable dissolve-and-absorb" .
+silm:ruling_depth_gate a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "Aggressive depth gate with absolute remediation" .
+
+# ---- W2 brainstorming rulings (design_constraints.md Directives 1-13, 2026-08-07) ----
+silm:ruling_corpus_agnostic_iteration a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "W2 = corpus-agnostic ontology shape + basicttl depth remediation; no new-corpus binding (that is the re-runnable W5); this iteration is a v1 to be fundamentally challenged and relaunched" .
+silm:ruling_dual_grounding_floor a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "Subatomic dual-grounding: every primitive is BOTH its formal type-tower (real/natural/imaginary ...) AND its physical bit/byte reality through the ISA/UEFI lens ('what is a number'); the base unit remains bit- and byte-vectors" .
+silm:ruling_colimit_taiji_monadic a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "The AOB primitive is literally a colimit taiji of twin ologs (formal <-> physical) whose realization functor is monadic (Kleisli) and IS the unary law's Frame(output, effect)" .
+silm:ruling_aob_sauce_glossary_polysemy a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "Ground the AOB in the real base_agents WIP AOB; hold structured AND unstructured types as synonyms AND antonyms through the mole of glossaries, each encapsulating a distinct epistemology (OSSIE mime the arbiter)" .
+silm:ruling_unary_grammar_jepa_twin a owl:NamedIndividual, silm:Ruling ;
+    rdfs:label "Leave first-class room for the unary grammar + bit/byte/colour vectors (the JEPA data-engineering substrate) and realize the agents/telephone twin as a tighter Yoneda realization of ologs-of-ologs" .
+
+### ---- Goals -----------------------------------------------------------------
+silm:goal_corpus_bound_morph a owl:NamedIndividual, silm:Goal ;
+    rdfs:label "Corpus bound/morph into definitive v1 AOB buildout" .
+silm:goal_render_everything a owl:NamedIndividual, silm:Goal ;
+    rdfs:label "Render everything, subatomic per format, via sparky substrate" .
+silm:goal_unary_planning a owl:NamedIndividual, silm:Goal ;
+    rdfs:label "Superpowers planning + strict unary refactor of all violators" .
+silm:goal_cicd_engine a owl:NamedIndividual, silm:Goal ;
+    rdfs:label "Engine-agnostic CI/CD architecture as its own goal" .
+
+### ---- Governing superpowers skills -----------------------------------------
+silm:skill_using_superpowers a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "using-superpowers" .
+silm:skill_brainstorming a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "brainstorming" .
+silm:skill_writing_plans a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "writing-plans" .
+silm:skill_executing_plans a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "executing-plans" .
+silm:skill_dispatching_parallel_agents a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "dispatching-parallel-agents" .
+silm:skill_using_git_worktrees a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "using-git-worktrees" .
+silm:skill_subagent_driven_development a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "subagent-driven-development" .
+silm:skill_test_driven_development a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "test-driven-development" .
+silm:skill_systematic_debugging a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "systematic-debugging" .
+silm:skill_verification_before_completion a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "verification-before-completion" .
+silm:skill_requesting_code_review a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "requesting-code-review" .
+silm:skill_receiving_code_review a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "receiving-code-review" .
+silm:skill_finishing_a_development_branch a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "finishing-a-development-branch" .
+silm:skill_writing_skills a owl:NamedIndividual, silm:GoverningSkill ; rdfs:label "writing-skills" .
+
+### ---- Key artifacts (the Interfaces payload; edges induced by these) --------
+silm:artifact_superpowers_os a owl:NamedIndividual, silm:Artifact ; rdfs:label "external/skills/superpowers submodule" .
+silm:artifact_dag_ontology a owl:NamedIndividual, silm:Artifact ; rdfs:label "basicttl/dag/* (this DAG authored as ontology)" .
+silm:artifact_taxonomy_census a owl:NamedIndividual, silm:Artifact ; rdfs:label "Full-capture taxonomy census + Complete Component Account seed" .
+silm:artifact_primitive_floor a owl:NamedIndividual, silm:Artifact ; rdfs:label "basicttl/primitives/* — the twin-olog colimit-taiji Primitive Floor (formal type-towers <-> physical bit/byte/ISA-UEFI carriers + Frame-monad realization); W2 sub-project 1" .
+silm:artifact_aob_meta_ontology a owl:NamedIndividual, silm:Artifact ; rdfs:label "AOB meta-ontology + projection packet + CRS/S-O-P-tower law + format taxonomy + glossary polysemy" .
+silm:artifact_render_pipelines a owl:NamedIndividual, silm:Artifact ; rdfs:label "GeoSPARQL render pipelines + Split/Consolidated seal (artifact-free branch)" .
+silm:artifact_cicd_engine a owl:NamedIndividual, silm:Artifact ; rdfs:label "Multi-engine gated CI/CD (rdflib/Jena/SIS/Sedona), blocking gates" .
+silm:artifact_v1_buildout a owl:NamedIndividual, silm:Artifact ; rdfs:label "Definitive v1 AOB buildout (all 11 projections, reversible)" .
+silm:artifact_unary_green a owl:NamedIndividual, silm:Artifact ; rdfs:label "All callables satisfy the 10-point Source Discipline (RED->GREEN)" .
+
+### ---- The graph ------------------------------------------------------------
+silm:dag_v1 a owl:NamedIndividual, silm:DirectedAcyclicGraph ;
+    rdfs:label "Silmaril v1 rebuild DAG" ;
+    rdfs:comment "The extinction-event rebuild: the RED enforcement is wiped and the GREEN v1 emerges as the ontology satisfies its own law." ;
+    silm:hasWorkflow silm:wf_s0, silm:wf_g, silm:wf_w1, silm:wf_w2, silm:wf_w3, silm:wf_w4, silm:wf_w5, silm:wf_x .
+
+### ---- Workflows ------------------------------------------------------------
+
+silm:wf_s0 a owl:NamedIndividual, silm:Workflow ;
+    rdfs:label "S0 — Install superpowers as the external skills OS" ;
+    silm:hasStatus "completed" ;
+    silm:hasOrdinal 0 ;
+    silm:governedBySkill silm:skill_using_superpowers, silm:skill_writing_skills ;
+    silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
+    silm:realizesGoal silm:goal_unary_planning ;
+    silm:producesArtifact silm:artifact_superpowers_os ;
+    silm:hasPhase silm:phase_s0_1, silm:phase_s0_2, silm:phase_s0_3 .
+
+silm:wf_g a owl:NamedIndividual, silm:Workflow ;
+    rdfs:label "G — Genesis: the DAG is ontology" ;
+    silm:hasStatus "completed" ;
+    silm:hasOrdinal 1 ;
+    silm:dependsOn silm:wf_s0 ;
+    silm:governedBySkill silm:skill_brainstorming, silm:skill_writing_plans, silm:skill_verification_before_completion ;
+    silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
+    silm:honorsRuling silm:ruling_ndim_crs ;
+    silm:realizesGoal silm:goal_unary_planning ;
+    silm:consumesArtifact silm:artifact_superpowers_os ;
+    silm:producesArtifact silm:artifact_dag_ontology ;
+    silm:hasPhase silm:phase_g_1, silm:phase_g_2, silm:phase_g_3, silm:phase_g_4 .
+
+silm:wf_w1 a owl:NamedIndividual, silm:Workflow ;
+    rdfs:label "W1 — Discovery & full-capture taxonomy mapping" ;
+    silm:hasStatus "completed" ;
+    silm:hasOrdinal 2 ;
+    silm:hasAgentBudget 1000 ;
+    silm:dependsOn silm:wf_g ;
+    silm:governedBySkill silm:skill_dispatching_parallel_agents, silm:skill_using_git_worktrees, silm:skill_subagent_driven_development ;
+    silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
+    silm:honorsRuling silm:ruling_file_axis_taxonomy ;
+    silm:realizesGoal silm:goal_corpus_bound_morph ;
+    silm:consumesArtifact silm:artifact_dag_ontology ;
+    silm:producesArtifact silm:artifact_taxonomy_census ;
+    silm:hasPhase silm:phase_w1_1, silm:phase_w1_2, silm:phase_w1_3, silm:phase_w1_4, silm:phase_w1_5, silm:phase_w1_6, silm:phase_w1_7, silm:phase_w1_8, silm:phase_w1_9, silm:phase_w1_10 .
+
+silm:wf_w2 a owl:NamedIndividual, silm:Workflow ;
+    rdfs:label "W2 — Ontology design (taxonomy x AOB x projection-packet x S/O/P-tower CRS)" ;
+    silm:hasOrdinal 3 ;
+    silm:hasStatus "in-progress" ;
+    silm:hasAgentBudget 1000 ;
+    silm:dependsOn silm:wf_w1 ;
+    silm:governedBySkill silm:skill_brainstorming, silm:skill_writing_plans, silm:skill_test_driven_development, silm:skill_subagent_driven_development ;
+    silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
+    silm:honorsRuling silm:ruling_file_axis_taxonomy, silm:ruling_ndim_crs, silm:ruling_fable_dissolve, silm:ruling_depth_gate, silm:ruling_corpus_agnostic_iteration, silm:ruling_dual_grounding_floor, silm:ruling_colimit_taiji_monadic, silm:ruling_aob_sauce_glossary_polysemy, silm:ruling_unary_grammar_jepa_twin ;
+    silm:realizesGoal silm:goal_render_everything ;
+    silm:consumesArtifact silm:artifact_taxonomy_census ;
+    silm:producesArtifact silm:artifact_primitive_floor, silm:artifact_aob_meta_ontology ;
+    silm:hasPhase silm:phase_w2_sp1, silm:phase_w2_sp2, silm:phase_w2_sp3, silm:phase_w2_sp4, silm:phase_w2_sp5, silm:phase_w2_sp6, silm:phase_w2_sp7, silm:phase_w2_sp8, silm:phase_w2_sp9 .
+
+silm:wf_w3 a owl:NamedIndividual, silm:Workflow ;
+    rdfs:label "W3 — Render pipeline(s): GeoSPARQL codegen + render seal" ;
+    silm:hasStatus "pending" ;
+    silm:hasOrdinal 4 ;
+    silm:hasAgentBudget 1000 ;
+    silm:dependsOn silm:wf_w2 ;
+    silm:governedBySkill silm:skill_writing_plans, silm:skill_test_driven_development, silm:skill_verification_before_completion ;
+    silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
+    silm:honorsRuling silm:ruling_fable_dissolve ;
+    silm:realizesGoal silm:goal_render_everything ;
+    silm:consumesArtifact silm:artifact_aob_meta_ontology ;
+    silm:producesArtifact silm:artifact_render_pipelines ;
+    silm:hasPhase silm:phase_w3_1, silm:phase_w3_2, silm:phase_w3_3, silm:phase_w3_4, silm:phase_w3_5, silm:phase_w3_6, silm:phase_w3_7, silm:phase_w3_8, silm:phase_w3_9 .
+
+silm:wf_w4 a owl:NamedIndividual, silm:Workflow ;
+    rdfs:label "W4 — CI/CD engine architecture (its own goal)" ;
+    silm:hasStatus "pending" ;
+    silm:hasOrdinal 5 ;
+    silm:hasAgentBudget 1000 ;
+    silm:dependsOn silm:wf_w3 ;
+    silm:governedBySkill silm:skill_systematic_debugging, silm:skill_verification_before_completion, silm:skill_test_driven_development ;
+    silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
+    silm:realizesGoal silm:goal_cicd_engine ;
+    silm:consumesArtifact silm:artifact_render_pipelines ;
+    silm:producesArtifact silm:artifact_cicd_engine ;
+    silm:hasPhase silm:phase_w4_1, silm:phase_w4_2, silm:phase_w4_3, silm:phase_w4_4, silm:phase_w4_5, silm:phase_w4_6, silm:phase_w4_7, silm:phase_w4_8 .
+
+silm:wf_w5 a owl:NamedIndividual, silm:Workflow ;
+    rdfs:label "W5 — Corpus consolidation -> definitive v1 AOB buildout" ;
+    silm:hasStatus "pending" ;
+    silm:hasOrdinal 6 ;
+    silm:hasAgentBudget 1000 ;
+    silm:dependsOn silm:wf_w1, silm:wf_w2 ;
+    silm:governedBySkill silm:skill_subagent_driven_development, silm:skill_verification_before_completion ;
+    silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
+    silm:honorsRuling silm:ruling_file_axis_taxonomy ;
+    silm:realizesGoal silm:goal_corpus_bound_morph ;
+    silm:consumesArtifact silm:artifact_taxonomy_census, silm:artifact_aob_meta_ontology ;
+    silm:producesArtifact silm:artifact_v1_buildout ;
+    silm:hasPhase silm:phase_w5_1, silm:phase_w5_2, silm:phase_w5_3, silm:phase_w5_4, silm:phase_w5_5, silm:phase_w5_6, silm:phase_w5_7 .
+
+silm:wf_x a owl:NamedIndividual, silm:Workflow ;
+    rdfs:label "X — Unary-law refactor (threads W2-W5)" ;
+    silm:hasStatus "pending" ;
+    silm:hasOrdinal 7 ;
+    silm:hasAgentBudget 1000 ;
+    silm:dependsOn silm:wf_w2 ;
+    silm:governedBySkill silm:skill_test_driven_development, silm:skill_requesting_code_review, silm:skill_receiving_code_review ;
+    silm:honorsDoctrine silm:doctrine_praeriehund, silm:doctrine_unary_byte_frame_law ;
+    silm:realizesGoal silm:goal_unary_planning ;
+    silm:consumesArtifact silm:artifact_aob_meta_ontology ;
+    silm:producesArtifact silm:artifact_unary_green ;
+    silm:hasPhase silm:phase_x_1, silm:phase_x_2, silm:phase_x_3 .
+
+### ---- Phases (the depth made explicit; ordinal-ordered within each workflow)
+
+silm:phase_s0_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Create external/skills/superpowers submodule" ; silm:hasOrdinal 1 .
+silm:phase_s0_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "Full-read all 14 skills (no truncation)" ; silm:hasOrdinal 2 .
+silm:phase_s0_3 a owl:NamedIndividual, silm:Phase ; rdfs:label "Adopt skills as the governing discipline" ; silm:hasOrdinal 3 .
+
+silm:phase_g_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Author DAG TBox (Workflow/Phase/Task/Gate)" ; silm:hasOrdinal 1 .
+silm:phase_g_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "Author DAG ABox (S0,G,W1-W5,X + phases + edges)" ; silm:hasOrdinal 2 .
+silm:phase_g_3 a owl:NamedIndividual, silm:Phase ; rdfs:label "Author DAG SHACL shapes (acyclicity, consumes/produces, provenBy)" ; silm:hasOrdinal 3 .
+silm:phase_g_4 a owl:NamedIndividual, silm:Phase ; rdfs:label "Author DAG SPARQL/GeoSPARQL (topo-order over S/O/P towers)" ; silm:hasOrdinal 4 .
+
+silm:phase_w1_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Seed agent protocol (Praeriehund+unary) into every brief" ; silm:hasOrdinal 1 .
+silm:phase_w1_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "Full-clone forge/{base_agents,base_templates,base,example_gippidy_01}" ; silm:hasOrdinal 2 .
+silm:phase_w1_3 a owl:NamedIndividual, silm:Phase ; rdfs:label "Map base_agents golden + r1_staging/*/** generics" ; silm:hasOrdinal 3 .
+silm:phase_w1_4 a owl:NamedIndividual, silm:Phase ; rdfs:label "Map base_templates AOB atom-yml macro grammar" ; silm:hasOrdinal 4 .
+silm:phase_w1_5 a owl:NamedIndividual, silm:Phase ; rdfs:label "Map base category theory (sheaf/semiring/lens; turtles/polysemy)" ; silm:hasOrdinal 5 .
+silm:phase_w1_6 a owl:NamedIndividual, silm:Phase ; rdfs:label "Map example_gippidy_01 v17 (projections + Jena 6.2.0 native runners)" ; silm:hasOrdinal 6 .
+silm:phase_w1_7 a owl:NamedIndividual, silm:Phase ; rdfs:label "Map sparky/lambda-blotto + reference/pylib red receipts" ; silm:hasOrdinal 7 .
+silm:phase_w1_8 a owl:NamedIndividual, silm:Phase ; rdfs:label "Taxonomy census (every taxonomy: root/axes/projections/provisional gaps)" ; silm:hasOrdinal 8 .
+silm:phase_w1_9 a owl:NamedIndividual, silm:Phase ; rdfs:label "Complete Component Account seed (per-entry disposition + inverse)" ; silm:hasOrdinal 9 .
+silm:phase_w1_10 a owl:NamedIndividual, silm:Phase ; rdfs:label "Write findings to distinct ledger files" ; silm:hasOrdinal 10 .
+
+# W2 decomposed into 9 sub-projects (brainstorming, 2026-08-07); every original W2
+# concern preserved and regrouped. Each sub-project runs its own spec->plan->build cycle.
+# SP1 subsumes the old full-lexical-identity scheme (via its Identifier URN tower).
+#
+# SP1 COMPLETED 2026-08-08 (remediation wf, panel NO-GO -> GREEN; then categorical enrichment
+# STEPS A-D: rho made a genuine FUNCTOR ON ARROWS, closed as LITERAL YONEDA; then STEP E gave the two
+# decorative residuals real teeth — Frame=Yoneda-point + Yoneda-evaluation soundness, and composite-
+# transport existence/coverage — ENRICH, never strip).
+# Green evidence, captured verbatim from a fresh run of
+# basicttl/primitives/checks/run-floor-checks.sh + the STEP-D/E probe battery:
+#   parse OK: 4 data ttl, 8346 triples (was 3123 pre-enrichment; STEP E added ASKs+shapes, NOT data
+#     triples, so the data graph stays 8346); pyshacl conforms=True (0 results) over 13 sh:NodeShapes.
+#   21/21 EXPECT-TRUE ASKs PASS (0 failed): the original 12 — q_number_tower, q_number_realized,
+#     q_universality, q_colimit_roundtrip, q_colimit_reflexive, q_frame_effect, q_bytevector_cap,
+#     q_kleisli_welltyped, q_monad_unit, q_monad_assoc, q_byte_descent, q_rgb — PLUS the 6 STEP-D
+#     functor/Yoneda probes: q_functor_identity, q_functor_composition,
+#     q_ancestral_transport_resolves, q_yoneda_faithful, q_yoneda_full, q_naturality_commutes — PLUS
+#     the 3 STEP-E residual-teeth ASKs: q_yoneda_point, q_yoneda_evaluation_sound,
+#     q_functor_composition_total. Depth gate PASSED (5 files, every owl:Class >=200-char).
+#   Universal dual-grounding: 59 tower classes, UNGROUNDED count = 0 (spec §9a); 59/59 direct
+#     (realizesFrom + own reflexive carrier + own Primitive) — PRESERVED across the enrichment.
+#   Categorical enrichment materialised (spec §9h): 59 prim:SubtypeArrow + 60 prim:IdentityArrow +
+#     45 prim:CompositeArrow (thin category, formal.ttl); 164 prim:RealizationTransport (60 id + 59
+#     subtype + 45 composite) with matching transportDom/Cod = rho(dom)/rho(cod), every SubtypeArrow
+#     well-typed-transported (0 missing); 45 prim:AncestralGroundingPath over 45 realized-proper-
+#     ancestor pairs (0 uncovered) = "dual-grounded two ways" (realization.ttl); 60
+#     prim:RepresentablePresheaf (injective yonedaObject: 60 objs -> 60 distinct reprs = faithful),
+#     59 prim:YonedaArrow (bijection with 59 SubtypeArrows = full), 60 prim:RhoComponent, 59
+#     prim:NaturalitySquare (all natCommutes true), 60 prim:YonedaEvaluation (evalYields = rho(A), now
+#     ENFORCED by q_yoneda_evaluation_sound + prim:YonedaEvaluationShape); Frame = Yoneda point
+#     (prim:Frame prim:isYonedaPoint true, now ENFORCED by q_yoneda_point + prim:FrameYonedaPointShape);
+#     every prim:CompositeArrow transported + every composable subtype pair covered (ENFORCED by
+#     q_functor_composition_total + prim:CompositeTransportCoverageShape) (taiji.ttl).
+#   Teeth proven by probe injection (each CAUGHT, SHACL conforms or ASK flips True->False):
+#     (1) class-form orphan `ex:OrphanB a owl:Class ; rdfs:subClassOf prim:FormalType`
+#         -> prim:DualGroundingShape fires; q_universality True->False.
+#     (2) over-wide ByteVector `prim:byteCount 129` -> prim:ByteVectorEncodingShape fires;
+#         q_bytevector_cap True->False.
+#     (3) wrong-type interpretAs (escapes FormalType tower) -> EncodingShape sh:sparql fires;
+#         q_colimit_roundtrip True->False. (Also: wrong-facet Primitive -> ColimitReflexivityShape
+#         fires; q_colimit_reflexive True->False.)
+#     (4) ill-typed Kleisli composition (composeFirst=k_Real_Float64 kCod=Float64,
+#         composeSecond=k_id_Real kDom=Real) -> prim:KleisliCompositionShape fires;
+#         q_kleisli_welltyped True->False.
+#     (5) broken subtype transportCod (rt_sub_Bignum_Integer transportCod->Bit) ->
+#         prim:FunctorTransportShape fires; q_functor_composition True->False (broken leg).
+#     (6) removed ancestral path (agp_Bignum_Integer) -> q_ancestral_transport_resolves True->False.
+#     (7) collided representables (Bool yonedaObject->repr_Bag) -> q_yoneda_faithful True->False;
+#         removed yonedaObject -> prim:YonedaShape fires.
+#     (8) broken naturality corner (natComponentCod->wrong/dangling) -> q_naturality_commutes
+#         True->False (both wrong-but-valid and dangling-malformed cases caught).
+#     (9) violated functor identity (rt_id_Bignum transportCod->Bit) -> q_functor_identity
+#         True->False; broken composite reify -> q_functor_composition True->False; removed
+#         SubtypeArrow YonedaArrow -> q_yoneda_full True->False.
+#     (10) STEP-E residual teeth: prim:Frame isYonedaPoint false -> prim:FrameYonedaPointShape fires;
+#         q_yoneda_point True->False. Wrong evalYields (yeval_Bag evalYields Boolean) ->
+#         prim:YonedaEvaluationShape fires; q_yoneda_evaluation_sound True->False. Deleted composite
+#         transport (rt_comp_Bignum_Rational) -> prim:CompositeTransportCoverageShape fires;
+#         q_functor_composition_total True->False. Deleted composite arrow for a still-composable pair
+#         -> q_functor_composition_total True->False (coverage, ASK-enforced). Battery: 20/20 CAUGHT
+#         (16 prior + 4 STEP-E residual-teeth injections).
+#   No ASK is vacuous (positive ASKs FAIL on empty graph; NOT-EXISTS ASKs FAIL under injection).
+#   0 actual silm:isProvisional triples in the floor (the string appears only in comment prose).
+# SP0 COMPLETED 2026-08-31 (the Foundation floor, W2 · SP0 — the BEDROCK, Directive 18 + 19 + 20). The
+# deepest floor: a taiji of four co-equal pillars (set theory / algebra tower / space constructs /
+# functionality-typing) + a logic sub-floor, minted through the LIFTED free-|forgetful engine, onto which
+# SP1/SP2/SP3 re-anchor ADDITIVELY (design s7). Authored ONLY under basicttl/foundation/ (this phase node
+# is the sole edit outside it). BEDROCK->SURFACE ordering (Directive 18) is carried by hasOrdinal 0 (< the
+# SP1..SP9 ordinals 1..9), the SAME MD1 convention SP1/SP2/SP3 follow: no phase-level silm:dependsOn edge is
+# minted, because silm:dependsOn is Workflow-typed (rdfs:domain AND rdfs:range = silm:Workflow, dag_ontology
+# :74-78) -- minting it between Phases would, under inference="rdfs", RETYPE the phase nodes as silm:Workflow
+# and trip silm:WorkflowShape (governedBySkill/producesArtifact/honorsDoctrine/hasPhase minCounts), breaking
+# DAG conformance. So the bedrock->surface prerequisite (SP0's runner RE-VALIDATES SP1+SP2+SP3 every run;
+# SP0 landed AFTER the three committed floors) is recorded in this prose, and the ONTOLOGICAL grounding
+# (SP1/SP2/SP3 carriers ARE Sets/Monoids/etc. under SP0) is ADDITIVE, carried by fnd:groundsIn* edges inside
+# reanchor.ttl, never by rewriting a prior triple (q_reanchor_additive proves the SP1/SP2/SP3 diff is empty). Green evidence, reproducible on disk via
+# `bash basicttl/foundation/checks/run-foundation-checks.sh` (exit 0, GREEN), recounted with rdflib:
+#   parse OK: SP0 = 9 data ttl (engine / set_theory / algebra_spine / algebra_rings / spaces /
+#     functionality / combinators / logic / reanchor; 3778 SP0-only triples) merged with SP1=4 + SP2=7 +
+#     SP3=5 -> 15410 triples in ONE graph.
+#   pyshacl SHACL conforms=True (inference="rdfs") for foundation.shapes.ttl (44 sh:NodeShape teeth) over
+#     the merge, AND for the prior-floor laws re-run over the SP0-augmented merge: primitives.shapes.ttl
+#     (the dual-grounding tooth), crs.shapes.ttl, and aob.shapes.ttl (full re-validation -- the T10
+#     re-anchor edges touch aob focus nodes). SP1/SP2/SP3 stay untouched + green (run-crs-checks.sh
+#     re-runs SP1 standalone 21 ASKs + SP2 standalone 13 ASKs + the merged SP1+SP2+SP3 graph).
+#   41/41 foundation EXPECT-TRUE ASKs PASS + SP1 21 + SP2 13 + SP3 10 = 85 ASKs, 0 failed, over the merge.
+#   Depth gate PASSED (10 files; every owl:Class >=200-char rdfs:comment of real content).
+#   Real counts: 80 fnd owl:Class + 128 fnd owl:ObjectProperty + 23 fnd owl:DatatypeProperty; distinct
+#     fnd subjects, EVERY one honesty-tagged; 44 SHACL sh:NodeShape teeth; 41 EXPECT-TRUE ASKs; 18 named
+#     fnd:probe* injection identifiers on disk (the rest are in-place perturbation probes, one per tooth,
+#     documented in the basicttl/foundation/README.md probe register).
+#   HONESTY LEDGER (Praeriehund, design s0, LOAD-BEARING) -- DS/PD/SYN breakdown across the 596 fnd
+#     subjects: 52 DS + 11 PD + 533 SYN (class-level: 17 DS + 1 PD + 62 SYN over the 80 owl:Class); plus
+#     ONE non-fnd atom tagged, aob:witnessGroup = SYN (the SP2 sealed-group witness the T10 re-anchor
+#     models foundation-side). Only Monoid, the minting engine F_E(X)=T_Sigma(X)/=_E + free-|forgetful
+#     adjunction, the agnostic-progenitor pattern, Site/sheaf + 𝔗_f, and structural Set are LIFTED from
+#     Helios (the DS/PD cluster); every rung above Monoid, the two-operation line, quasigroup/loop,
+#     module/vector, ALL point-set spaces, the combinators/F_n/Gamma, the group INVERSE law (the one axiom
+#     with zero Helios basis), and the entire logic sub-floor are SYN, cited standard-math fact (the
+#     Directive-19 Curry precedent) -- many honest-red where no v1 consumer exists, still teeth-proved per
+#     the MAXIMAL choice (Directive 20). Curry 1936 (First Properties of Functionality in Combinatory
+#     Logic, Tohoku Math. J. 41, 371-401) is CITED, never committed. The ledger is a MACHINE-CHECKED graph
+#     fact: fnd:AuthorityTagShape + q_honesty_ledger (T11) prove every fnd class-like/property atom carries
+#     EXACTLY ONE {fnd:DS,fnd:PD,fnd:SYN} tag, so no SYN atom masquerades as a Helios lift.
+#   Teeth proven by PROBE INJECTION, never by absence: each of the 44 shapes flips pyshacl conforms
+#     True->False under its probe of record (README probe register, T1-T11). T11's own tooth
+#     (fnd:AuthorityTagShape / q_honesty_ledger) CAUGHT both probes: (a) fnd:probeUntaggedClass a owl:Class
+#     with no fnd:authority (silent-unclassified) and (b) fnd:probeDoubleTag fnd:authority fnd:SYN, fnd:DS
+#     (masquerade-by-double-tag) each flip conforms=True->False AND q_honesty_ledger True->False; the ASK is
+#     non-vacuous (FALSE on the empty graph). The T1 probe of record (break the SP3 load path -> the runner
+#     re-validates every floor beneath it and exits non-zero) still holds.
+#   The ONE real build of the re-anchor: aob:SealedGroup rdfs:subClassOf fnd:Group (SP2's sealed group is a
+#     CHILD of the fresh agnostic fnd:Group), teeth-proved binary-op/closure/two-sided-inverse-universal/
+#     abelian-flag by fnd:SealedGroupIsGroupShape + q_sealedgroup_is_group over a closed abelian Z/4 model.
+#   Corpus-agnostic v1 (Directive 13): zero corpus instances, built to be relaunched.
+silm:phase_w2_sp0 a owl:NamedIndividual, silm:Phase ;
+    rdfs:label "SP0 Foundation floor — the BEDROCK four-pillar taiji (structural Set theory / the full magma->abelian-group algebra tower + two-operation line + quasigroup/loop + module/vector, every rung a (Sigma,E) presented algebra minted through the LIFTED free-|forgetful engine / Site-sheaf-𝔗_f + SYN point-set spaces / functionality-typing = Curry's F = the Frame arrow, B/C/W/K/I + F_n + Gamma + variance bifunctor + the implication taiji) plus a logic sub-floor (P/N/⊃ + proof terms); SP1/SP2/SP3 re-anchor ADDITIVELY onto it (Directive 18/19/20)" ;
+    silm:hasStatus "completed" ;
+    silm:hasOrdinal 0 ;
+    rdfs:comment "COMPLETED (W2 SP0, plan T1-T11) — the deepest floor basicttl/foundation/, the four-pillar bedrock the whole ontology stands on (Directive 18 algebra<-set-theory + space constructs; Directive 19 the functionality/Curry-F fourth pillar; Directive 20 MAXIMAL depth, all teeth-proved). Reproducible on disk via `bash basicttl/foundation/checks/run-foundation-checks.sh` (exit 0, GREEN): the merged SP0+SP1+SP2+SP3 graph conforms to foundation.shapes.ttl (45 sh:NodeShape teeth) AND to the prior-floor laws re-run over the SP0-augmented merge (primitives.shapes.ttl dual-grounding tooth, crs.shapes.ttl, aob.shapes.ttl full re-validation), with 42 foundation + 21 SP1 + 13 SP2 + 10 SP3 EXPECT-TRUE ASKs all true and the depth gate green (every owl:Class >=200-char rdfs:comment, 10 files); SP1/SP2/SP3 stay untouched and green standalone and over the merge. Real counts, freshly recounted on disk (rdflib/grep, Fix-B; each asserted EQUAL to its recomputed disk value against BOTH this DAG node and basicttl/foundation/README.md by the runner count self-check, step 5d -- any drift in either surface goes RED): 80 fnd owl:Class, 129 fnd owl:ObjectProperty, 23 fnd owl:DatatypeProperty, 608 distinct fnd subjects each honesty-tagged, merged SP0+SP1+SP2+SP3 = 15541 triples (SP0-only = 3909 triples), 45 SHACL teeth, 42 ASKs, 19 named fnd:probe* identifiers. Fix-A completeness hardening (A1 two-operation-line associativity/commutativity + A2 quasigroup totality): the Semiring->Ring->Field line reifies its two operations via fnd:ringStructure (DISTINCT from the spine fnd:opStructure the T4 assoc/comm teeth walk), so additive associativity, additive commutativity and multiplicative associativity were NEVER teeth-checked over the ring operations - fnd:RingAddAssocShape/fnd:RingAddCommShape/fnd:RingMultAssocShape + their ASK twins q_ring_add_assoc/q_ring_add_comm/q_ring_mult_assoc now enforce them CLASS-GENERAL over every fnd:Semiring instance (reaching fnd:ringModel and fnd:fieldModel by rdfs:subClassOf), so a fnd:Ring with non-associative addition/multiplication or a fnd:Semiring with non-commutative addition goes RED; and fnd:QuasigroupDivisionShape checked only the UNIQUENESS half of Latin-square division, so fnd:QuasigroupTotalityShape + q_quasigroup_total add the EXISTENCE/TOTALITY half (every (a,b) has a left AND right division solution over the enumerated carrier), so a partial quasigroup table with a missing solution goes RED while the full-Latin-square fnd:quasigroupModel/fnd:loopModel stay GREEN. R7 ring-family axiom-completion (finding-1 HIGH + finding-2): the two-operation line reifies its two operations over fnd:hasZeroElement / fnd:hasOneElement via fnd:ringStructure (DISTINCT from the spine fnd:hasIdentityElement / fnd:opStructure the T4 fnd:MonoidIdentityShape walks), so the ADDITIVE IDENTITY (0+x=x=x+0), the MULTIPLICATIVE IDENTITY (1*x=x=x*1) and the FIELD MULTIPLICATIVE COMMUTATIVITY (a*b=b*a, the Field rung's defining upgrade, mirroring the already-present fnd:RingAddCommShape on the multiplicative op scoped to fnd:Field) were NEVER teeth-checked over the ring operations - a Semiring/Ring/Field whose declared zero fails 0+a=a, a Ring whose declared one fails 1*a=a, or a Field with a*b!=b*a passed GREEN - closed by fnd:RingAddIdentityShape (+ EXISTENCE: a fnd:Semiring with no zero -> RED), fnd:RingMultIdentityShape (+ EXISTENCE: a fnd:Ring with no one -> RED) and fnd:FieldMultCommShape + their ASK twins q_ring_add_identity / q_ring_mult_identity / q_field_mult_comm, each CLASS-GENERAL and probe-injected (real fnd:ringModel/fnd:fieldModel GREEN, each ASK FALSE on the empty graph). Additive/multiplicative CLOSURE (fnd:lawTwoOpClosure) is definitional in the reified total finite Cayley-table ring model, which does not enumerate a fnd:hasElement carrier, so additive/multiplicative closure is not a separately-bitable axiom there; the annihilator 0*x=0 is derivable (not an axiom) and is correctly NOT toothed. M1 (Magma rung parity, LOW): the base one-operation rung fnd:Magma is a CONCRETE law-bearing rung (fnd:addsLaw fnd:lawClosure) but its closure/totality law previously had NO biting tooth and NO witness model, while every sibling rung (Semigroup..AbelianGroup, Quasigroup/Loop) carried both - closed at parity by fnd:MagmaClosureShape + q_magma_closure (EXPECT-TRUE), CLASS-GENERAL over fnd:Magma, REUSING the SealedGroup closure idiom (a reified product over the op whose fnd:opResult is NOT a fnd:hasElement of the structure -> violation): for a fnd:Magma that ENUMERATES its carrier (fnd:hasElement) every reified fnd:opResult MUST be a carrier element, so a fnd:Magma with an op-result outside its enumerated carrier goes RED (probe fnd:probeMagmaOpenResult, an enumerated {A,B}-carrier magma with a fnd:opResult of fnd:elemC outside it) while the SYN worked-example witness fnd:magmaModel (a closed order-2 NON-associative magma - a bare magma, not accidentally a semigroup) and the closed Z/4 aob:witnessGroup stay GREEN; q_magma_closure is FALSE on the empty graph. W-SP0 CLASS-A/B hardening: the four witness-pinned law-teeth (fnd:SemigroupAssocShape / fnd:CommMonoidCommShape / fnd:AbelianCommShape / fnd:RingDistribShape + their ASK twins) were rewritten CLASS-GENERAL (quantifying over every rung instance by rdf:type, no hardcoded witness IRI), fnd:RingDistribShape completed to TWO-SIDED distributivity, and a new fnd:ModuleScalarLawShape + q_module_scalar_law added enforcing the FULL module scalar-action law (unitality + scalar-associativity + bi-distributivity), so a fresh violating rung instance (non-associative Semigroup, non-commutative CommutativeMonoid/AbelianGroup, non-distributive Ring, non-unital/non-distributive Module) goes RED. HONESTY LEDGER (design s0, Praeriehund, LOAD-BEARING): DS/PD/SYN over the 608 distinct fnd subjects = 52 DS + 11 PD + 545 SYN (class-level 17/1/62 of 80) + one non-fnd atom aob:witnessGroup = SYN (the sole tagged non-fnd atom, the T10 re-anchor witness). Only Monoid, the minting engine, the agnostic-progenitor pattern, Site/sheaf + 𝔗_f, and structural Set are LIFTED from Helios; every rung above Monoid, the two-operation line, quasigroup/loop, module/vector, ALL point-set spaces, the combinators/F_n/Gamma, the group inverse law, and the logic sub-floor are SYN cited standard-math fact (the Directive-19 Curry precedent) -- teeth-proved per the maximal choice, honest-red where no v1 consumer exists; the corpus's refusal of point-set topology (19/05/03) is the recorded reason those atoms are SYN not LIFTED; Curry 1936 (Tohoku Math. J. 41, 371-401) is cited, never committed. fnd:AuthorityTagShape + q_honesty_ledger make the ledger a machine-checked graph fact -- every fnd class-like/property atom carries exactly one DS/PD/SYN tag, so no SYN atom masquerades as a Helios lift. Teeth proven by PROBE INJECTION (README probe register, T1-T11 + Fix-A): each of the 45 shapes flips pyshacl conforms True->False under its probe of record; the T11 tooth caught fnd:probeUntaggedClass (no tag) and fnd:probeDoubleTag (SYN+DS masquerade), each flipping conforms and q_honesty_ledger True->False, non-vacuous on the empty graph. The ONE real re-anchor build is aob:SealedGroup rdfs:subClassOf fnd:Group (SP2's sealed group a child of the fresh agnostic fnd:Group), teeth-proved over a closed abelian Z/4 model; all other re-anchors are additive fnd:groundsIn* edges (q_reanchor_additive: no prior triple removed). Directive-18 bedrock->surface ordering is carried by hasOrdinal 0 (SP0 precedes SP1..SP9, ordinals 1..9): SP0's build/verification depends on the three committed floors staying green (its runner re-validates SP1+SP2+SP3 every run) and SP0 landed AFTER them, the build-prerequisite direction; the ONTOLOGICAL grounding (SP1/SP2/SP3 ground IN SP0) is the reverse and is carried additively by the reanchor.ttl fnd:groundsIn* edges, not by any rewrite. No phase-level silm:dependsOn edge is minted -- the SAME MD1 convention SP1/SP2/SP3 follow -- because silm:dependsOn is Workflow-typed (rdfs:domain AND rdfs:range = silm:Workflow): minting it between Phases would, under inference=rdfs, retype the phases as silm:Workflow and trip silm:WorkflowShape, breaking DAG conformance; the bedrock->surface prerequisite is therefore recorded in this prose, with the ordinal carrying the schedule. Fix-B/C/D hardening: (B, MED) the multiplicative-identity EXISTENCE clause of fnd:RingMultIdentityShape (+ q_ring_mult_identity) was scoped only to fnd:Ring, so a unit-less fnd:Semiring - itself a monoid under multiplication - passed GREEN; its EXISTENCE scope is broadened to fnd:Semiring (and thus Ring/Field), mirroring the additive fnd:RingAddIdentityShape, so a fresh unit-less fnd:Semiring goes RED while the real fnd:ringModel/fnd:fieldModel stay GREEN. (C, MED) fnd:SelfApplicationGuardShape (+ q_no_untyped_self_apply) exempted a self-application on the mere EXISTENCE of an fnd:passedGuard edge to an UNCONSTRAINED node (fnd:passedGuard fnd:propA admitted the Russell witness); the exemption now requires a GENUINE resolution - the fnd:passedGuard target must be a fnd:ContractGate/fnd:QuarantineResolution that fnd:marksProvisional the self-application while it carries silm:isProvisional true - so an ungated chi-chi behind an arbitrary passedGuard, admitted as a proposition, goes RED, and fnd:gatedSelfApplication (genuinely resolved through fnd:typedSelfAppGate, a fnd:ContractGate that marks it provisional) stays GREEN. (D, LOW) d1: the fnd:Compositor rdfs:comment cited a dangling fnd:F1 IRI, repointed to the real fnd:fnRung1 (the F_1 rung, fnd:fnDefinedAs fnd:curryFunctionality); d2: four probe-of-record identifiers named off-pattern (varStepProbe/lawKProbe/chProbe/proofProbe, a *Probe suffix the anti-drift 5c/5d self-check never greps) were renamed to the fnd:probe* prefix (fnd:probeVarStep/probeLawK/probeCh/probeProof), so the on-disk fnd:probe* union is now the true count stated here and in README (the remaining teeth use in-place perturbation). Corpus-agnostic v1 (Directive 13): zero corpus instances, built to be relaunched." .
+silm:phase_w2_sp0_fold a owl:NamedIndividual, silm:Phase ;
+    rdfs:label "SP0 primordial spine-fold — the algebra tower folded into basicttl/primordial/type/algebra/** (D25 placement) minting the full runtime Linnaean-ladder IRIs (D26) in the D24 Seed-Carrier stratified idiom (theory / model / denotatum / declaration / signature / operation / axiom / equation / reduct records + proof-status + validation-mode + provenance + fixtures), the additive Stage-2a sub-phase of SP0" ;
+    silm:hasStatus "completed" ;
+    silm:hasOrdinal 0 ;
+    rdfs:comment "COMPLETED (W2 SP0 spine-fold, plan T-INFRA..T-MANIFEST) — the algebra floor reshaped under the D24 Seed-Carrier stratification and folded into basicttl/primordial/type/algebra/** (D25), with every typed IRI minting the full 12-marker verified-runtime Linnaean ladder (D26, adjective-first compounds abelian:group / commutative:monoid). Reproducible on disk via `bash basicttl/primordial/type/algebra/checks/run-algebra-checks.sh` (exit 0, GREEN): the merged folded-algebra data graph conforms to shapes/algebra.shapes.ttl (inference=rdfs), every declared NodeShape carries >=1 focus node (0-focus REJECT), every negative fixture flips conforms True->False under its single injected violation, the empty.ttl control is an admission REJECT, and the depth gate is green (every folded owl:Class >=200-char rdfs:comment). This node is the narrative surface the runner V6 count self-check (block (d) / gate V6) gates against a fresh disk recount AND the manifests/spine.yaml figures: disk == manifests/spine.yaml == this DAG node, or the runner goes RED. Real counts, freshly recomputed on disk by the runner (rdflib over the merged algebra graph; never hard-coded) and asserted equal here: the one-operation tower has 8 rungs (magma -> semigroup -> monoid -> commutative:monoid -> group -> abelian:group, plus the division sub-family quasigroup -> loop) descending from the agnostic progenitor theory-root; the SHACL tooth set is 23 shapes (all sh:targetClass, 0 sh:targetNode, carrying 20 sh:SPARQLConstraint clauses); the SPARQL probe battery is 17 probes (probes/*.rq — the per-rung law probes + the records-disjoint / aliases-resolve / signature-names / progenitor-grounds-nothing / obligation-count / one-law-per-rung / gate-identity / clause-identity consolidation probes + the provenance-closure probe); the non-vacuity witness corpus is 46 fixtures (fixtures/**/*.ttl — one positive + one single-violation-injected failing negative per shape, the Z/2 and Z/3 finite:checked Cayley-table certificates + their non-total/assoc-violating negatives, and the empty.ttl admission control). The stratified record surface, also recomputed and gated by the manifest: 8 theory records + 8 model-record classes + 8 denotatum records (B4 two-plane, kingdom:type…component:type, no provenance) + 8 declaration records (Plane-1, owl:Restriction bundle + provenance) + 5 signature records + 5 operation-symbol atoms + 24 axiom records + 6 theorem records with 6 certificates + 21 equation records (two-sided laws split into two, closure.ttl:185-192 precedent) + 7 forgetful reduct theory-morphisms; the gate ladder mints 9 gate specs + 9 clause specs on the reference core:entity ladder (consolidated.shacl.ttl:1324) with unique gate/clause identifiers. Gates V0-V8 are asserted EXPLICITLY by the runner (Praeriehund: never claim a gate that did not run): V0 syntax / V1 hygiene (REFINED design §4/§7.5: denotatum-pun + provenance-on-denotatum forbidden, declaration-record owl:Class-with-provenance EXEMPT) / V2 non-vacuous / V3 categorical probes / V5 algebraic-law / V6 manifest coverage (this node's disk==manifest==DAG self-check) / V8 SHACL-2017 all GREEN; V4 Yoneda-density is the Pass-2 fan-out deferral (design §6); V7 dual executor/shadow provenance closure is now BUILT (Stage-2b-i T-PROV) — the executor + tandem-shadow review lane under reviews/{executor,shadow,resolved}/ + receipts/ attributes all 29 reshaped records (rel:authority-bearing) to >=1 executor AND >=1 shadow via prov:wasAttributedTo + prov:wasGeneratedBy, gated GREEN by the runner block (f) V7 dual-count, the ProvenanceClosureShape and probes/provenance_closure.rq. Additive Stage-2a: basicttl/foundation/algebra_spine.ttl and the fnd:* tower stay byte-untouched (skos:closeMatch / skos:exactMatch bridges only, bridges.ttl); the B3(a) true-full-retire (fnd: rungs -> stubs + inbound-edge redirect) is the explicit Stage-2b T-RETIRE deliverable. Ordering carried by hasOrdinal 0 (this is a sub-phase of SP0, the same bedrock stratum); no phase-level silm:dependsOn edge is minted (the MD1 convention SP0..SP9 follow, because silm:dependsOn is Workflow-typed and would retype the phase under inference=rdfs). Corpus-agnostic v1 (Directive 13): zero corpus instances." .
+silm:phase_w2_sp1 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP1 Primitive Floor — twin-olog colimit taiji (formal type-towers <-> physical bit/byte/ISA-UEFI carriers) + monadic realization = Frame, rho closed as a genuine functor on arrows and literal Yoneda (representables + rho-as-natural-transformation, Frame = Yoneda point); grounds full-lexical-identity via the Identifier URN tower" ; silm:hasStatus "completed" ; silm:hasOrdinal 1 .
+# SP2 COMPLETED 2026-08-08 (AOB meta-ontology, W2 · SP2). LIFTED the real WIP AOB from the Helios
+# source-of-truth (Directive 1; git-ignored /helios/, mapped in ledger/W2/helios/*.md), grounded onto the
+# committed green SP1 primitive floor. Authored ONLY under basicttl/aob/ (this completion flip is the sole
+# edit outside it; MD1 = NO phase-level silm:dependsOn edge minted — SP2<=SP1 stays carried by hasOrdinal +
+# the SP1 README consumer list). Six MAINTAINER DECISIONS taken at their recommended defaults: MD1 keep the
+# ordinal DAG; MD2 MergedAllCoreOntology.ttl via SIL_CCO_TTL_FILE (cco-merged/cco.ttl recorded as the honest
+# divergence on the anchor node + README); MD3 open-enum aob:typeNode (22/25 families are instances, not
+# hardwired classes); MD4 compressed avd_tree aob:ObservationContract; MD5 provisional telephone seam
+# declared; MD6 card-1..1 + pattern-by-anchor CCO tooth, live external TTL resolution deferred to W5.
+# Green evidence, REFRESHED after the Defect-1..4 + R1/R3 hardening pass (counts reproduce on disk),
+# captured verbatim from a fresh run of basicttl/aob/checks/run-aob-checks.sh:
+#   parse OK: 7 data ttl (meta/upper_anchor/octet_descent/tensor_block/value_colimit/group_law/
+#     evidence_glossary), 1079 triples; pyshacl SHACL conforms=True (0 results) over the 13 sh:NodeShapes in
+#     aob.shapes.ttl (loaded ONLY as the shapes graph, never mixed into the data), inference="rdfs".
+#   13/13 EXPECT-TRUE ASKs PASS (0 failed): q_progenitor_split, q_sop_carrier, q_cco_bfo_anchor,
+#     q_octet_descent, q_tensor_byte_order, q_interpret_as_bridge, q_aob_value_is_taiji, q_group_law,
+#     q_group_associativity, q_colimit_universal, q_seal_honesty, q_synonym_antonym_dual, q_telephone_seam.
+#     Depth gate PASSED (8 files, every owl:Class >=200-char rdfs:comment of real content; every
+#     hardening-minted individual also carries a >=200-char rdfs:comment).
+#   Teeth proven by PROBE INJECTION, not by absence of violations: the full probe-of-record battery
+#     (Tasks 1-11 + the Defect-1..4 + R1 + C1 hardening) = 31/31 CAUGHT, each flipping the SHACL mirror
+#     (conforms True->False): T1 crammed-both + T1 neither-family (ProgenitorSplitShape); T2 arrow-missing-O
+#     (SopCarrierShape); T3 two-CCO-IRIs + T3 cco:BOGUS-fails-pattern (UpperAnchorShape); T4 33rd-octet +
+#     T4 octet-ordinalMax-256 (OctetDescentShape); T5 byte_order-not-from-progenitor + T5 bit_width-7 +
+#     T5 second-rogue-byte-order (TensorByteOrderShape); T6 interpretBridge->Int32!=String
+#     (InterpretAsBridgeShape); T7 aobValue-lacks-physicalFacet + T7 second-malformed-value (AtomValueShape);
+#     T8 companion-composes-onto-non-identity + T8 self-retract (GroupLawShape); assoc perturbed-compResult
+#     (GroupAssociativityShape); colimit two-apexes + bare-no-glossary-scope + no-mediating-morphism +
+#     second-mediating-morphism + non-factoring-target + R1 bare-group-no-test-cocone + R1 legless-test-cocone
+#     + C1 companion-less-empty-diagram (cl.10+11) + C1 spurious-non-companion-leg (cl.11) + C1c
+#     covered-leg-no-legTarget (delete only aob:witnessLegEx aob:legTarget -> cl.13)
+#     (ColimitUniversalShape cl.1-13); T9 staged-atom-no-provisional + gated-atom-no-evidence (SealHonestyShape);
+#     T10 syn+ant-collapsed-one-scope (GlossarySeamShape); T11 seam-not-provisional + T11
+#     seam-missing-tensorSpaceUrn (TelephoneSeamShape). Review probe T3c: inline sh:pattern cco/cceo
+#     constraint literals in aob.shapes.ttl = 0 (pattern lives only on the lifted anchor node, read via SPARQL
+#     REGEX). R1 (Directive 16): the colimit universal property is now UNCONDITIONALLY earned — a colimit
+#     -claiming SealedGroup with NO aob:TestCocone (cl.7), a legless aob:TestCocone (cl.8), and a companion
+#     with no compatible leg (cl.9) each go RED, so the word colimit is no longer earned vacuously. C1
+#     (Directive 16 crux): the WHOLE degenerate/empty-diagram class is closed — a colimit-claiming group with
+#     ZERO aob:companionAtom (cl.10, an empty-diagram colimit is forbidden), a test-cocone leg whose
+#     aob:legFrom is a non-companion (cl.11, no spurious leg), and two legs sharing one companion (cl.12) each
+#     go RED, so companion<->leg coverage is a genuine BIJECTION and "colimit" cannot be earned by a
+#     degenerate/empty diagram. C1c FACTORING CLOSURE (cl.13): clause (6) reads "?leg aob:legTarget ?lt .
+#     FILTER(?lt != ?mt)", so a covered leg (aob:legFrom a genuine companion) with NO aob:legTarget never
+#     binds ?lt and was silently skipped by factoring while coverage (cl.9/11/12, which read only aob:legFrom)
+#     still counted it — deleting only aob:witnessLegEx aob:legTarget used to leave SHACL conforms=True AND
+#     q_colimit_universal=True; cl.13 (COVERED LEG MUST FACTOR) flags any aob:coconeLeg of a testing cocone
+#     lacking aob:legTarget, so FACTORING ranges over EXACTLY the covered legs and no covered leg escapes it.
+#   No ASK is vacuous: every positive EXPECT-TRUE ASK returns FALSE on an empty graph (13/13 confirmed).
+#   silm:isProvisional true is carried by exactly FOUR nodes in the AOB graph (verified on disk), each an
+#     honest Praeriehund declaration, never a dodge: the THREE genuinely-undecidable gaps — aob:byteOrderHost
+#     (host-endianness is runtime-resolved, no SP1 sibling), aob:witnessTelephone (the telephone twin's render
+#     mechanism is a later sub-project, MD5), aob:contentShaAtGraduation (content_sha256-at-graduation declared
+#     not computed, design s6 non-goal) — PLUS the staged-atom honesty witness aob:witnessStaged, which
+#     aob:SealHonestyShape's staged branch MANDATES carry the flag (an ungraduated aob:sealState aob:staged
+#     atom is not conformant-green and MUST be silm:isProvisional true; the witness inhabits that law
+#     non-vacuously, so its flag is required evidence, not a dodge). SPARQL count of ?s silm:isProvisional
+#     true over the 7 merged AOB data TTLs = 4 (aob:byteOrderHost, aob:contentShaAtGraduation,
+#     aob:witnessStaged, aob:witnessTelephone).
+#   SP2 authored NO new prim:Realization / prim:Effect (SP1's RealizationShape sh:in kept intact) and NO
+#     inline anchor regex; the SP1 floor stays untouched + green (21/21 ASKs, run-floor-checks.sh).
+silm:phase_w2_sp2 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP2 AOB meta-ontology — colimit-taiji atom (byte descent + URN + S/O/P towers), lifted from the real base_agents WIP AOB" ; silm:hasStatus "completed" ; silm:hasOrdinal 2 .
+silm:phase_w2_sp3 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP3 N-dim CRS law = S/O/P towers (co-existing CRSs; coordinates derived; z grounded in the byte descent)" ; silm:hasStatus "completed" ; silm:hasOrdinal 3 ;
+    rdfs:comment "COMPLETED (W2 SP3, plan T1-T13; hardened for the D1-D4 dimension-law residuals and the E1-E2 progenitor-exemption / honest-count residuals). The corpus-agnostic S/O/P-tower CRS law floor lives under basicttl/crs/ -- 5 data TTLs (carriers/towers/geometers/derivation/dual_grounding, 2233 triples), the SHACL law crs.shapes.ttl, and the ASK suite crs.queries.sparql -- and is reproducible on disk via `bash basicttl/crs/checks/run-crs-checks.sh` (exit 0, GREEN in ~24s wall). That runner proves: SP1 primitive floor green standalone (21 EXPECT-TRUE ASKs) + SP2 AOB floor green standalone (13 EXPECT-TRUE ASKs) + the single merged SP1+SP2+SP3 graph (11632 triples) conforms to crs.shapes.ttl AND to SP1 primitives.shapes.ttl re-run over the merge (prim:DualGroundingShape -- the T11 dual-grounding tooth) AND to SP2 aob.shapes.ttl, with all 10 crs + 21 SP1 + 13 SP2 EXPECT-TRUE ASKs true over the merge and the depth gate green (every crs owl:Class >=200-char rdfs:comment, 6 files). Real counts that reproduce on disk (rdflib-recounted, D4): 43 crs owl:Class, 52 crs properties (41 owl:ObjectProperty + 11 owl:DatatypeProperty), 265 minted crs individuals (each carrying a real rdfs:comment), 360 crs subjects total; 11 biting SHACL sh:NodeShape carrying 17 sh:SPARQLConstraint + 10 sh:property (sh:minCount) constraints (E1 rewrote crs:DimensionCountShape's one sh:property sh:minCount arm into two concreteness-scoped sh:sparql arms: -1 sh:property, +1 sh:SPARQLConstraint; G1 then added a third crs:DimensionCountShape sh:sparql arm -- the top-progenitor grounds-nothing DIMENSION clause -- taking the 16 to 17, and generalised crs:PlaneProgenitorShape constraint A in place from a crs:PlaneGeometer-only guard to a crs:Geometer guard with the seven-concrete-leaf enumeration, adding crs:Geometer to that shape's sh:targetClass); 10 EXPECT-TRUE ASKs; and a probe battery of 14 named crs:probe* injections on disk (the true `grep -rhoE 'crs:probe[A-Za-z0-9]+' basicttl/crs/` union -- E2 corrected the figure from 12 to 13 by adding crs:probeColourProj authored in the README probe register, and the E1 progenitor-exemption fix itself then authored the 14th identifier, crs:probeBareProg, on disk in crs.shapes.ttl + crs.queries.sparql as its bare-progenitor regression control; plus the crs:isoA/crs:isoB zero-config dimension probes of D1/D2, the crs:pA/crs:probeBareProg progenitor-exemption regression controls of E1, and the T2/T4/T12 in-place probes onto existing witnesses). Teeth are proven by PROBE INJECTION, never by absence: each of the 11 crs shapes flips pyshacl conforms True->False under its probe of record (T2 CarrierDisjointness both-carriers, T3 AxisUrnTower scalar axis, T4 NoPositionalMap S=R/O=G/P=B, T5 DimensionCount count==dim -- CONCRETENESS-SCOPED (E1) to the seven concrete geometer leaves via the exact concrete-leaf enumeration crs:PlaneProgenitorShape constraint B uses, so the zero-axis declared-dimension-5 crs:isoA mismatch (D1, OPTIONAL count -> 0 != 5) and the no-dimension crs:isoB (D2, now a concreteness-scoped dimension-present sh:sparql clause replacing the unscoped sh:property sh:minCount) stay RED as CONCRETE degeneracies, while the agnostic progenitors crs:PlaneGeometer / crs:RolePairProjectionPlane stay GREEN when instantiated at zero axes (the crs:pA / crs:probeBareProg regression controls) -- closing the round-1 regression where the unscoped law falsely rejected a bare progenitor, T6 PlaneProgenitor symmetric family -- now including the zero-axis concrete-leaf ghost crs:probeGhostPlane closed by the same OPTIONAL count on constraint B, concreteness-scoped so the agnostic progenitors crs:PlaneGeometer / crs:RolePairProjectionPlane stay GREEN at zero axes (D3), T7 FiveProjection joint-faithfulness, T8 FrameDerivation + DerivedNotStored, T9 ZGrounding agnostic byte-order, T10 OrderProjection S:P:O<->S:O:P, T12 NoCrossTagTransition), and T11 reuses SP1 prim:DualGroundingShape so the crs:probeOrphanChart probe flips both q_chart_dual_grounded and SP1 q_universality True->False over the merge. The two COUNT aggregates (crs:DimensionCountShape, crs:PlaneProgenitorShape constraint B) were audited (D-SWEEP) and rewritten so a degenerate ZERO-axis configuration yields count 0 (!= declared dimension / != 2) and goes RED rather than escaping an empty GROUP-BY; the ASK litmus q_dimension_equals_count / q_plane_progenitor_symmetric mirror the strengthened teeth (E1 additionally concreteness-scoped q_dimension_equals_count's two clauses via the same concrete-leaf VALUES enumeration, so a bare progenitor instance at zero axes keeps the ASK GREEN in lock-step with the shape). The E1-E2 residuals closed: crs:DimensionCountShape + q_dimension_equals_count concreteness-scoped so the agnostic progenitors crs:PlaneGeometer / crs:RolePairProjectionPlane (which GROUND NOTHING per Q3 -- no crs:hasAxis and no crs:hasDimension triple; their rank-2 is a DECLARED FAMILY ARITY of the concrete children, not a self-grounding claim) stay GREEN at zero axes while every CONCRETE degeneracy (zero-axis, no-dimension, wrong-count) stays RED, and the geometers.ttl crs:PlaneGeometer / crs:RolePairProjectionPlane doctrine prose made coherent with the shape; the probe figure refreshed to the true 14-identifier on-disk union (12 -> 13 by crs:probeColourProj -> 14 by crs:probeBareProg, the E1-authored bare-progenitor regression control). The G1 residual closed (the crux the E1 concreteness-scoping opened): scoping crs:DimensionCountShape's count/dimension-present arms to the seven concrete leaves EXEMPTED the TOP progenitor crs:Geometer, but crs:Geometer then had NO compensating grounds-nothing tooth (crs:PlaneProgenitorShape constraint A guarded only the crs:PlaneGeometer branch), so a node typed BARE crs:Geometer carrying a concrete crs:hasAxis / crs:hasDimension was falsely GREEN (crs:evilGeo a crs:Geometer ; crs:hasAxis crs:a,crs:b,crs:c ; crs:hasDimension 2 conformed=True; crs:evilGeo3 with one axis and crs:evilGeo4 with crs:hasDimension 7 likewise) -- contradicting crs:Geometer's own doctrine (geometers.ttl:76) and Directive 17's no-privilege symmetric coverage. G1a GENERALISED crs:PlaneProgenitorShape constraint A from a crs:PlaneGeometer-only guard to a crs:Geometer guard reusing the SAME seven-concrete-leaf enumeration (adding crs:Geometer to sh:targetClass), so a bare crs:Geometer / crs:PlaneGeometer / crs:RolePairProjectionPlane carrying a concrete crs:hasAxis is RED symmetrically at every level. G1b ADDED crs:DimensionCountShape's third sh:sparql arm (the top-progenitor grounds-nothing DIMENSION clause): the top crs:Geometer 'declares NO concrete dimension' (geometers.ttl:76) so a bare crs:Geometer carrying crs:hasDimension is RED, while the two plane progenitors crs:PlaneGeometer / crs:RolePairProjectionPlane stay exempt because they MAY declare their rank-2 FAMILY ARITY crs:hasDimension 2 (round-2 doctrine) -- a bare crs:PlaneGeometer / crs:RolePairProjectionPlane at 0 axes with crs:hasDimension 2 stays GREEN. PROVEN by probe injection: crs:evilGeo (arms A+iii), crs:evilGeo3 (arm A), crs:evilGeo4 (arm iii), and a bare crs:PlaneGeometer carrying a concrete axis (arm A) each flip pyshacl conforms True->False; the GREEN regression controls (bare crs:Geometer at 0 axes + 0 dimension; bare crs:PlaneGeometer / crs:RolePairProjectionPlane at 0 axes with crs:hasDimension 2; every concrete leaf with dim==axis-count) stay GREEN, and the round-1/2 concrete teeth (zero-axis / no-dimension concrete geometer, zero-axis concrete plane) still bite. The geometers.ttl crs:Geometer / crs:PlaneGeometer / crs:RolePairProjectionPlane prose was made coherent with the generalised teeth (top declares no dimension and is RED if it carries one; the two plane progenitors may declare family arity 2). This makes grounds-nothing enforcement SYMMETRIC across ALL progenitor levels -- no progenitor is exempted with no compensating tooth (Directive 17 no-privilege). Deps satisfied: phase_w2_sp1 and phase_w2_sp2 are completed and precede by hasOrdinal (1,2 < 3; MD1 -- no phase-level dependsOn edge, ordering carried by ordinal). The Q0-Q4 pinned rulings (Directive 17) are honoured -- agnostic progenitors throughout; z byte-order = agnostic aob:ByteOrderProgenitor with no v1 leaf (Q1); hasDimension counts tower-axes AND is per-geometer mandatory (Q2); the symmetric crs:PlaneGeometer role-pair family (Q3); chi carried only as the honest-red deferral marker crs:chiComparisonObligation, no forced Atlas<->Graph transition (Q4). Corpus-agnostic v1 (Directive 13): zero corpus instances, built to be relaunched." .
+silm:phase_w2_sp4 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP4 FULL projection packet + algebra (11+ projections; pi_L cata / retraction; 5 loss classes; every owl:Class -> base_templates macro)" ; silm:hasOrdinal 4 .
+silm:phase_w2_sp5 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP5 File + format taxonomy (repo/tree/dir/module/file + fd/inode; subatomic owl:Class per format + components)" ; silm:hasOrdinal 5 .
+silm:phase_w2_sp6 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP6 Glossary polysemy layer (mole of glossaries; >=4 distinct epistemologies; 21-col Atlas ring; paired synonym/antonym; OSSIE YIN/YANG taiji)" ; silm:hasOrdinal 6 .
+silm:phase_w2_sp7 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP7 SHACL executable law (coord-count==dimension; AOB composition; semantic ancestry; depth gate)" ; silm:hasOrdinal 7 .
+silm:phase_w2_sp8 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP8 basicttl depth remediation — dual-grounded (156 stubs, ~59777 individuals, 6 predicates; fable dissolve-and-absorb) grounded into the Primitive Floor" ; silm:hasOrdinal 8 .
+silm:phase_w2_sp9 a owl:NamedIndividual, silm:Phase ; rdfs:label "SP9 Split<->Consolidated render-seal ontology (colimit; inverse pair, digest equality)" ; silm:hasOrdinal 9 .
+
+silm:phase_w3_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Remove committed generated artifacts (with inverse evidence)" ; silm:hasOrdinal 1 .
+silm:phase_w3_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "Move visual values into ontology; retire ui-constructor.py" ; silm:hasOrdinal 2 .
+silm:phase_w3_3 a owl:NamedIndividual, silm:Phase ; rdfs:label "GeoSPARQL/SPARQL query library (per projection, per CRS)" ; silm:hasOrdinal 3 .
+silm:phase_w3_4 a owl:NamedIndividual, silm:Phase ; rdfs:label "pylib morphism/render/* unary family -> base_templates macros" ; silm:hasOrdinal 4 .
+silm:phase_w3_5 a owl:NamedIndividual, silm:Phase ; rdfs:label "Per-projection reversible render pipelinez (11 projections)" ; silm:hasOrdinal 5 .
+silm:phase_w3_6 a owl:NamedIndividual, silm:Phase ; rdfs:label "Subatomic per-format renderers" ; silm:hasOrdinal 6 .
+silm:phase_w3_7 a owl:NamedIndividual, silm:Phase ; rdfs:label "Split<->Consolidated reversible render with digest certificates" ; silm:hasOrdinal 7 .
+silm:phase_w3_8 a owl:NamedIndividual, silm:Phase ; rdfs:label "Regenerate docs/ entirely from ontology (zero hand-authored HTML)" ; silm:hasOrdinal 8 .
+silm:phase_w3_9 a owl:NamedIndividual, silm:Phase ; rdfs:label "Provenance-row stamping on every artifact" ; silm:hasOrdinal 9 .
+
+silm:phase_w4_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Multi-engine ContractGate deps (rdflib/Jena/SIS/Sedona)" ; silm:hasOrdinal 1 .
+silm:phase_w4_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "Consolidation-check actually validates (parse+shapes+queries)" ; silm:hasOrdinal 2 .
+silm:phase_w4_3 a owl:NamedIndividual, silm:Phase ; rdfs:label "Blocking gates: depth, query-law, chart coord-count==dimension" ; silm:hasOrdinal 3 .
+silm:phase_w4_4 a owl:NamedIndividual, silm:Phase ; rdfs:label "Render pipeline runs in CI (artifacts CI-only)" ; silm:hasOrdinal 4 .
+silm:phase_w4_5 a owl:NamedIndividual, silm:Phase ; rdfs:label "Trust/provenance gates; trust-manifest generated-not-committed" ; silm:hasOrdinal 5 .
+silm:phase_w4_6 a owl:NamedIndividual, silm:Phase ; rdfs:label "Sealed self-hosting closure gate (split/consolidate inverse digests)" ; silm:hasOrdinal 6 .
+silm:phase_w4_7 a owl:NamedIndividual, silm:Phase ; rdfs:label "Build-bootstrap RED->GREEN (Scala/Java/Python/Bash 10-point discipline)" ; silm:hasOrdinal 7 .
+silm:phase_w4_8 a owl:NamedIndividual, silm:Phase ; rdfs:label "CI-red fix (isolated): ui_constructor.ttl 5 SVG classes; semantics green" ; silm:hasOrdinal 8 .
+
+silm:phase_w5_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Universal base + generics (golden/r1_staging)" ; silm:hasOrdinal 1 .
+silm:phase_w5_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "Import example_gippidy_01 v17 algebra/projections/Jena runners" ; silm:hasOrdinal 2 .
+silm:phase_w5_3 a owl:NamedIndividual, silm:Phase ; rdfs:label "Bind/morph corpuses; AOB atom-yml v1" ; silm:hasOrdinal 3 .
+silm:phase_w5_4 a owl:NamedIndividual, silm:Phase ; rdfs:label "Federated taxonomy consolidation (partial functors declared partial)" ; silm:hasOrdinal 4 .
+silm:phase_w5_5 a owl:NamedIndividual, silm:Phase ; rdfs:label "Collision resolution (OSSIE mime = polysemy arbiter)" ; silm:hasOrdinal 5 .
+silm:phase_w5_6 a owl:NamedIndividual, silm:Phase ; rdfs:label "Complete Component Account reconciliation + inverse evidence" ; silm:hasOrdinal 6 .
+silm:phase_w5_7 a owl:NamedIndividual, silm:Phase ; rdfs:label "Materialize all 11 projections without loss; certify reversibility" ; silm:hasOrdinal 7 .
+
+silm:phase_x_1 a owl:NamedIndividual, silm:Phase ; rdfs:label "Decompose/retire reference/pylib legacy into unary morphisms or retire-with-inverse" ; silm:hasOrdinal 1 .
+silm:phase_x_2 a owl:NamedIndividual, silm:Phase ; rdfs:label "Refactor scripts/*.py + *.sh + Scala shells to 10-point Source Discipline" ; silm:hasOrdinal 2 .
+silm:phase_x_3 a owl:NamedIndividual, silm:Phase ; rdfs:label "ContractGate all external deps; no wildcard imports; Continue/Complete scheduler" ; silm:hasOrdinal 3 .

@@ -10,3 +10,6 @@
 [submodule "forge/example_gippidy_01"]
 	path = forge/example_gippidy_01
 	url = https://github.com/groenewt/example_gippidy_01
+[submodule "external/skills/superpowers"]
+	path = external/skills/superpowers
+	url = https://github.com/groenewt/superpowers_temp

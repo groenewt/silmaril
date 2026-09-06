@@ -1,0 +1,8 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+family:ByteWidth a ontology:Class, model:ClassDeclaration ; schema:subClassOf primitive:NaturalWithoutZero ;
+    model:minimum 1 ; model:maximum 128 ; model:admissionState model:Pending ;
+    schema:comment "ByteWidth is the positive 1..128 refinement counting bits in one byte occurrence. It is a nominal class distinct from a stream length, a value ordinal and the cardinality of an eight-bit code space. Numeric bounds describe the type contract; raw host integers still require typed admission and inverse evidence." .

@@ -1,0 +1,24 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:silmaril:primordial:type:class:primitive:PhysicalEncoding> model:field <urn:silmaril:primordial:type:property:primitive:ByteOrder> .
+
+<urn:silmaril:primordial:type:class:property:primitive:ByteOrderValue> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "The independently named value type of urn:silmaril:prim:#byteOrder. Its semantic parent is urn:silmaril:prim:#ByteOrder; the role remains distinct from other fields sharing that parent. The source range is retained separately for an explicit conversion gate. This nominal declaration does not admit a host literal or provide conversion or physical byte-closure evidence." ;
+    schema1:subClassOf primitive:ByteOrder ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/properties/primitive/byte/order/value.ttl" ;
+    model:propertyRole <urn:silmaril:primordial:type:property:primitive:ByteOrder> .
+
+<urn:silmaril:primordial:type:property:primitive:ByteOrder> a model:Field ;
+    model:cardinalityAuthority model:ProposedClassContract ;
+    model:multiplicity model:ExactlyOne ;
+    model:mutability model:Immutable ;
+    model:owner <urn:silmaril:primordial:type:class:primitive:PhysicalEncoding> ;
+    model:range <urn:silmaril:primordial:type:class:property:primitive:ByteOrderValue> ;
+    model:referenceKind model:ValueReference ;
+    model:sourcePredicate primitive:byteOrder ;
+    model:sourceRange primitive:ByteOrder .

@@ -1,0 +1,9 @@
+# =====================================================================================
+# empty.ttl — the empty-submission admission control (W2 · SP0, design §4: empty => REJECT).
+# =====================================================================================
+# A vacuous submission: it declares ZERO focus nodes for any algebra NodeShape (no
+# rec:progenitor:record instance, no rung), so run-algebra-checks.sh step (b) treats it as an
+# admission REJECT rather than a silent conforms=true pass (validation.log:34 idiom). This is the
+# minimal control the runner requires (emp >= 1) so the T-PROG slice can run GREEN; T-FIX (Stage 2)
+# owns the full fixtures/ tree. Deliberately triple-free (comments only) — an empty graph has no
+# focus, which is exactly the vacuity the control asserts must NOT pass.

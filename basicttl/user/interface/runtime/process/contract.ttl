@@ -1,0 +1,43 @@
+@prefix process: <urn:silmaril:user:interface:runtime:process:> .
+@prefix parameter: <urn:silmaril:user:interface:runtime:process:parameter:> .
+@prefix result: <urn:silmaril:user:interface:runtime:process:result:> .
+@prefix module: <urn:silmaril:user:interface:runtime:process:module:> .
+@prefix boundary: <urn:silmaril:user:interface:runtime:process:boundary:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+process:Observation a ontology:Class ;
+    schema:comment "An observation of one Python process source at an exact revision. The parameter, result, module and host-boundary observations are independently addressable. Conformance checks syntax and declared bindings only; it cannot prove byte descent, admit a host dependency or authorize execution of the observed source." .
+parameter:Observation a ontology:Class ;
+    schema:comment "One explicitly declared Python parameter, with its annotation, parameter kind and default-presence observation. Parameter kind is retained so a variadic or implicit receiver cannot silently substitute for the process's single explicit input. An annotation records source evidence rather than manufacturing a physical carrier." .
+result:Observation a ontology:Class ;
+    schema:comment "The declared result coordinate observed from one process source. A named physical Frame must resolve through the separately validated class and binding model. A literal integer annotation, omitted annotation or success/error union is never a replacement for the product, even if the source has only one input." .
+module:Observation a ontology:Class ;
+    schema:comment "Import-time behavior observed in the process module, separate from the callable body. A process must be importable without invoking MAIN, reading host input or terminating the interpreter. A conventional main guard does not make a process-owned termination trailer into the separately registered host boundary." .
+boundary:Observation a ontology:Class ;
+    schema:comment "An explicitly declared external termination boundary, separate from a process module and its MAIN callable. It consumes an admitted completion instruction only after output and effect evidence have been observed independently. The boundary remains pending until its own registered gate, physical carriers and typed readback are proved." .
+
+process:source a ontology:DatatypeProperty .
+process:revision a ontology:DatatypeProperty .
+process:export a ontology:DatatypeProperty .
+process:parameter a ontology:ObjectProperty .
+process:result a ontology:ObjectProperty .
+process:module a ontology:ObjectProperty .
+process:boundary a ontology:ObjectProperty .
+process:termination a ontology:DatatypeProperty .
+process:implicit a ontology:DatatypeProperty .
+parameter:annotation a ontology:ObjectProperty .
+parameter:kind a ontology:ObjectProperty .
+parameter:default a ontology:DatatypeProperty .
+result:annotation a ontology:ObjectProperty .
+result:product a ontology:DatatypeProperty .
+module:invocation a ontology:DatatypeProperty .
+module:termination a ontology:DatatypeProperty .
+boundary:source a ontology:DatatypeProperty .
+boundary:gate a ontology:ObjectProperty .
+boundary:output a ontology:DatatypeProperty .
+boundary:effect a ontology:DatatypeProperty .
+
+parameter:Positional schema:label "One ordinary explicit parameter" .
+parameter:Exclusive schema:label "One explicit positional-only parameter" .
+parameter:Keyword schema:label "One explicit keyword-only parameter" .

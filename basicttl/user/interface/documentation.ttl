@@ -1,0 +1,186 @@
+@prefix document: <urn:silmaril:user:interface:documentation:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+document:Content document:query """PREFIX document: <urn:silmaril:user:interface:documentation:>
+SELECT ?identity ?path ?title ?content ?digest WHERE { ?subject a document:Source ; document:identity ?identity ; document:path ?path ; document:title ?title ; document:content ?content ; document:digest ?digest } ORDER BY ?path""" .
+
+document:Include a document:Template ;
+    document:content """<div class="document-shelf">
+{% for document in site.data.documentation %}{% if include.source == nil or include.source == document.source %}
+<details class="embedded-document" id="document-{{ document.identity }}" data-document-title="{{ document.title | escape }}">
+<summary><span>{{ document.title | escape }}</span><small id="source-{{ document.identity }}">{{ document.source | escape }}</small></summary>
+<iframe class="document-panel" aria-describedby="source-{{ document.identity }}" title="{{ document.title | escape }}" data-document-source="{{ document.source | escape }}" data-document-digest="{{ document.digest }}" data-src="{{ '/documents/' | append: document.identity | append: '/' | relative_url }}" loading="lazy"></iframe>
+<noscript><a href="{{ '/documents/' | append: document.identity | append: '/' | relative_url }}">Read {{ document.title | escape }}</a></noscript>
+</details>{% endif %}{% endfor %}</div>""" ;
+    document:path "docs/_includes/documentation.html" .
+
+document:Navigation a document:Template ;
+    document:content "<a href=\"{{ \"/reading/\" | relative_url }}\">Reading room</a>" ;
+    document:path "docs/_includes/reading-navigation.html" .
+
+document:Profile a document:Template ;
+    document:content """<section class="section page-section"><div class="section-container">
+<h2>Aster — review and implementation identity</h2>
+<p>A distinct session signing identity for the user-interface, ontology and documentation work. Its public key is proposed for the agent trust class; maintainer endorsement establishes trust.</p>
+<dl><dt>Signing address</dt><dd>aster@silmaril.internal</dd><dt>Public fingerprint</dt><dd><code>1649618A5612CC75132F9336F52E907F309C73B3</code></dd><dt>Algorithm</dt><dd>Ed25519 / OpenPGP</dd><dt>Custody</dt><dd>The private key remains in the session keyring. Only the public key is published.</dd></dl>
+</div></section>""" ;
+    document:path "docs/_includes/aster-profile.html" .
+
+document:Reading a document:Template ;
+    document:content """---
+layout: default
+title: "Reading room | Silmaril"
+permalink: /reading/
+---
+<section class="living-portal reading-room"><p class="section-eyebrow">The reading room · open one cupboard at a time</p><h1>Every document has a place.</h1><p>Notes from the workshop, plans for the next floor, and the laws the machinery still owes. Choose a title to read it here. Each document has its own contents, top-level section folds, and full-page view. Start with the <a href="#document-docs-superpowers-specs-2026-09-06-w2-sp0-primordial-fold-design">eight-rung algebra design</a>, the <a href="#document-ledger-W2-sp0-reshape-stage1-REALIZED-MONOID">worked monoid</a>, or the <a href="#document-ledger-W2-sp0-reshape-stage2-GATES-REALIZED">gate record</a>. These open the full documents below.</p><div class="reading-controls"><label for="document-search">Find a document</label><input id="document-search" type="search" placeholder="Search titles or paths…"><button type="button" data-shelf="close">Collapse all documents</button><button type="button" data-shelf="open">Expand visible documents</button><p id="document-count" role="status" aria-live="polite"></p></div><details class="reading-contents"><summary>Document contents</summary><nav aria-label="Reading room contents"><ul>{% for document in site.data.documentation %}<li><a href="#document-{{ document.identity }}">{{ document.title | escape }}</a></li>{% endfor %}</ul></nav></details>{% include documentation.html %}</section>""" ;
+    document:path "docs/reading.html" .
+
+document:Registry document:query """PREFIX document: <urn:silmaril:user:interface:documentation:>
+SELECT ?subject ?path WHERE { ?subject a document:Source ; document:path ?path } ORDER BY ?path""" .
+
+document:RepositoryCatalog a document:Catalog ;
+    document:extension ".md" .
+
+document:Templates document:query """PREFIX document: <urn:silmaril:user:interface:documentation:>
+SELECT ?path ?content WHERE { ?subject a document:Template ; document:path ?path ; document:content ?content } ORDER BY ?path""" .
+
+document:content a owl:DatatypeProperty .
+
+document:digest a owl:DatatypeProperty .
+
+document:identity a owl:DatatypeProperty .
+
+document:path a owl:DatatypeProperty .
+
+document:query a owl:DatatypeProperty .
+
+<urn:silmaril:user:interface:documentation:source:0> a document:Source ;
+    document:identity "README" ;
+    document:path "README.md" ;
+    document:title "Silmaril" .
+
+<urn:silmaril:user:interface:documentation:source:1> a document:Source ;
+    document:identity "docs-README" ;
+    document:path "docs/README.md" ;
+    document:title "Silmaril GitHub Pages" .
+
+<urn:silmaril:user:interface:documentation:source:10> a document:Source ;
+    document:identity "docs-superpowers-plans-2026-08-31-w2-sp0-foundation-plan" ;
+    document:path "docs/superpowers/plans/2026-08-31-w2-sp0-foundation-plan.md" ;
+    document:title "W2 · SP0 — the Foundation floor (plan)" .
+
+<urn:silmaril:user:interface:documentation:source:11> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-07-w2-primitive-floor-design" ;
+    document:path "docs/superpowers/specs/2026-08-07-w2-primitive-floor-design.md" ;
+    document:title "W2 · Sub-project 1 — the Primitive Floor (design)" .
+
+<urn:silmaril:user:interface:documentation:source:12> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp1-helios-reconciliation" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp1-helios-reconciliation.md" ;
+    document:title "W2 · SP1 ↔ Helios reconciliation note (design-only)" .
+
+<urn:silmaril:user:interface:documentation:source:13> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp2-aob-meta-ontology-design" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp2-aob-meta-ontology-design.md" ;
+    document:title "W2 · Sub-project 2 — the AOB meta-ontology (design)" .
+
+<urn:silmaril:user:interface:documentation:source:14> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp3-sop-tower-crs-law-design" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp3-sop-tower-crs-law-design.md" ;
+    document:title "W2 · Sub-project 3 — the S/O/P-tower CRS law (design)" .
+
+<urn:silmaril:user:interface:documentation:source:15> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp4-projection-packet-design" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp4-projection-packet-design.md" ;
+    document:title "W2 · Sub-project 4 — the projection packet (the render fibration + nth-dim loss) — design" .
+
+<urn:silmaril:user:interface:documentation:source:16> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp5-file-and-format-taxonomy-design" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp5-file-and-format-taxonomy-design.md" ;
+    document:title "W2 · Sub-project 5 — File + subatomic file-format taxonomy (design)" .
+
+<urn:silmaril:user:interface:documentation:source:17> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp6-glossary-polysemy-design" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp6-glossary-polysemy-design.md" ;
+    document:title "W2 · SP6 — Glossary polysemy: the mole of glossaries (design)" .
+
+<urn:silmaril:user:interface:documentation:source:18> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp7-w2-shacl-law-design" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp7-w2-shacl-law-design.md" ;
+    document:title "W2 · Sub-project 7 — the W2 SHACL coverage law (math fibre + federation gluing) — design" .
+
+<urn:silmaril:user:interface:documentation:source:19> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp8-basicttl-depth-remediation-design" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp8-basicttl-depth-remediation-design.md" ;
+    document:title "W2 · Sub-project 8 — basicttl depth remediation (design)" .
+
+<urn:silmaril:user:interface:documentation:source:2> a document:Source ;
+    document:identity "docs-pr2-review-addendum" ;
+    document:path "docs/pr2-review-addendum.md" ;
+    document:title "PR #2 Review Addendum: On the Ontology of Agent Identity" .
+
+<urn:silmaril:user:interface:documentation:source:20> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-08-w2-sp9-render-seal-design" ;
+    document:path "docs/superpowers/specs/2026-08-08-w2-sp9-render-seal-design.md" ;
+    document:title "W2 · Sub-project 9 — the Split↔Consolidated render seal (design)" .
+
+<urn:silmaril:user:interface:documentation:source:21> a document:Source ;
+    document:identity "docs-superpowers-specs-2026-08-31-w2-sp0-foundation-design" ;
+    document:path "docs/superpowers/specs/2026-08-31-w2-sp0-foundation-design.md" ;
+    document:title "W2 · SP0 — the Foundation floor (algebra ⟵ set-theory · spaces · functionality/typing) — design" .
+
+<urn:silmaril:user:interface:documentation:source:22> a document:Source ;
+    document:identity "docs-unary-byte-frame-law" ;
+    document:path "docs/unary-byte-frame-law.md" ;
+    document:title "Universal Unary Byte-Frame Law" .
+
+<urn:silmaril:user:interface:documentation:source:23> a document:Source ;
+    document:identity "keys-README" ;
+    document:path "keys/README.md" ;
+    document:title "Signing Keys & Trust Manifest" .
+
+<urn:silmaril:user:interface:documentation:source:24> a document:Source ;
+    document:identity "ontology-README" ;
+    document:path "ontology/README.md" ;
+    document:title "Silmaril Ontology" .
+
+<urn:silmaril:user:interface:documentation:source:3> a document:Source ;
+    document:identity "docs-pr2-socratic-followup" ;
+    document:path "docs/pr2-socratic-followup.md" ;
+    document:title "PR #2 Socratic Follow-Up: \"Hey Fable, You Fuck Nut\"" .
+
+<urn:silmaril:user:interface:documentation:source:4> a document:Source ;
+    document:identity "docs-praeriehund-demokratie-der-kategorien" ;
+    document:path "docs/praeriehund-demokratie-der-kategorien.md" ;
+    document:title "Der Präriehund und die Demokratie der Kategorien" .
+
+<urn:silmaril:user:interface:documentation:source:5> a document:Source ;
+    document:identity "docs-superpowers-plans-2026-08-07-w1-completion" ;
+    document:path "docs/superpowers/plans/2026-08-07-w1-completion.md" ;
+    document:title "W1 Completion Implementation Plan" .
+
+<urn:silmaril:user:interface:documentation:source:6> a document:Source ;
+    document:identity "docs-superpowers-plans-2026-08-07-w2-sp1-primitive-floor" ;
+    document:path "docs/superpowers/plans/2026-08-07-w2-sp1-primitive-floor.md" ;
+    document:title "W2 · SP1 — Primitive Floor Implementation Plan" .
+
+<urn:silmaril:user:interface:documentation:source:7> a document:Source ;
+    document:identity "docs-superpowers-plans-2026-08-08-w2-sp1-floor-remediation" ;
+    document:path "docs/superpowers/plans/2026-08-08-w2-sp1-floor-remediation.md" ;
+    document:title "W2 · SP1 Primitive Floor — remediation plan (panel NO-GO → GREEN)" .
+
+<urn:silmaril:user:interface:documentation:source:8> a document:Source ;
+    document:identity "docs-superpowers-plans-2026-08-08-w2-sp2-aob-meta-ontology-plan" ;
+    document:path "docs/superpowers/plans/2026-08-08-w2-sp2-aob-meta-ontology-plan.md" ;
+    document:title "W2 · SP2 AOB meta-ontology — implementation plan (design → buildable, test-first)" .
+
+<urn:silmaril:user:interface:documentation:source:9> a document:Source ;
+    document:identity "docs-superpowers-plans-2026-08-09-w2-sp3-sop-tower-crs-law-plan" ;
+    document:path "docs/superpowers/plans/2026-08-09-w2-sp3-sop-tower-crs-law-plan.md" ;
+    document:title "W2 · SP3 — the S/O/P-tower CRS law (plan)" .
+
+document:title a owl:DatatypeProperty .
+
+document:Template a owl:Class .
+
+document:Source a owl:Class .

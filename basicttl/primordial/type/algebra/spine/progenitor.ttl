@@ -1,0 +1,88 @@
+# =====================================================================================
+# progenitor.ttl — the agnostic algebra progenitor theory-root (W2 · SP0, T-PROG). GROUNDS NOTHING.
+# =====================================================================================
+# The agnostic progenitor of the one-operation algebra tower — the frame-neutral join every rung
+# descends from, which carries NO binary operation, NO signature, NO carrier and NO added law, and is
+# deliberately NOT a model / PresentedAlgebra. It re-homes fnd:AlgebraicStructure (algebra_spine.ttl:408,
+# "grounds nothing") into the folded stratified idiom (D24 A0 Theory plane / A6: the tower is theories +
+# model-classes + reducts, NOT a subclass ladder of witness-defined classes). It is the theory-ROOT the
+# tower descends from: the concrete rungs (T-MAGMA … T-LOOP, Stage 2) reach it — magma by rdfs:subClassOf,
+# every other rung transitively via the reduct edges of T-REDUCT.
+#
+# NAMING (D26 LOCKED). The progenitor mints the FULL runtime Linnaean ladder VERBATIM [V] — byte-identical
+# to the engine TYPE/ALGEBRA root (config/algebra/primordials.yaml ALGEBRA/SPECIMEN/IDENTITY, ABSTRACT
+# true) AND to the aob directory path .../subdomain/primordial/... :
+#   urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:
+#     primordial:kingdom:type:phylum:algebra:class:structure:order:axiomatic:family:primordial:genus:algebra:
+#     species:root:component:type:instance:canonical
+# This is the B4 Plane-2 DENOTATUM atom (kingdom:type…component:type — the mathematical object; identifier /
+# notation / abstract flag only, NO provenance: "AlgebraicStructure was not authored by an executor",
+# D24). Being ABSTRACT and grounding nothing, the progenitor has NO Plane-1 declaration-record / model-class
+# atom (that plane exists only for the concrete rungs that ARE models, design §2b / B4); it is the sole
+# rung that is a pure theory-root denotatum.
+#
+# ENGINE BRIDGE (honesty, design §5.1 / task T-PROG). Because the minted IRI is byte-IDENTICAL to the
+# engine TYPE/ALGEBRA root, a seed:conservativeBridge from the progenitor to that root would be a vacuous
+# SELF-LOOP; it is therefore NOT minted here. The fnd:AlgebraicStructure -> engine-root seed:conservativeBridge
+# (and skos:exactMatch) already lives in bridges.ttl:84-87, so the merged graph carries the fnd<->engine
+# conservative anchor. What this file adds without a self-loop: (i) skos:exactMatch fnd:AlgebraicStructure
+# (task directive; symmetric with bridges.ttl:85); (ii) a seed:conservativeBridge to the engine's own
+# declared PARENT, the TYPE/PRIMORDIAL universal semantic root (primordials.yaml PRIMORDIAL/SPECIMEN/IDENTITY,
+# ABSTRACT true; the ALGEBRA root's PARENT is TYPE/PRIMORDIAL) — the genuine, non-self-loop engine anchor the
+# algebra progenitor descends from. This documented substitution is flagged in the [S] SIGN-OFF PACKET below.
+#
+# GROUNDS-NOTHING TOOTH (design §3, re-homing algebra_spine.ttl:411 constraint A). Made a graph fact BOTH
+# intensionally (the rec:progenitor:record owl:maxCardinality-0 restrictions below) AND as a biting SHACL
+# tooth (shapes/algebra.shapes.ttl AlgebraProgenitorShape, sh:targetClass — NEVER sh:targetNode) proven by
+# injection: probes/progenitor_grounds_nothing.rq + fixtures/progenitor_neg.ttl give a progenitor a
+# @rel:signature and the shape bites (conforms True->False); fixtures/progenitor_pos.ttl (grounds nothing)
+# stays GREEN.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.3, §3).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-PROG).
+# Consumes (do not rewrite): records.ttl (rec:specimen:record parent, rel:* relation namespace),
+# bridges.ttl (fnd:AlgebraicStructure alias/engine edges), the [V] progenitor anchor.
+# RED->GREEN probe: probes/progenitor_grounds_nothing.rq (0 rows GREEN / >=1 row RED under injection).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix seed: <urn:silmaril:seed:> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain: (records.ttl / signatures.ttl idiom):
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39, closure.ttl:1-3) — rec:specimen:record REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# -------------------------------------------------------------------------------------
+# rec:progenitor:record — the intensional marker class for the agnostic theory-root. [S]
+# The dedicated rdf:type the AlgebraProgenitorShape targets (sh:targetClass) so the grounds-nothing tooth
+# focuses ONLY on progenitors and never on the concrete rungs (which DO carry signature/law/carrier). Its
+# owl:maxCardinality-0 restrictions are the INTENSIONAL twin of the SHACL tooth (design §3: "re-homed BOTH
+# as intensional records AND probes+fixtures").
+# -------------------------------------------------------------------------------------
+rec:progenitor:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:maxCardinality "0"^^xsd:nonNegativeInteger ; owl:onProperty rel:signature ] ,
+        [ a owl:Restriction ; owl:maxCardinality "0"^^xsd:nonNegativeInteger ; owl:onProperty rel:adds:law ] ,
+        [ a owl:Restriction ; owl:maxCardinality "0"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ;
+    rdfs:comment "The intensional class of agnostic algebra-progenitor theory-roots (D24 A0 Theory plane): a frame-neutral join that GROUNDS NOTHING. Its owl:Restriction teeth make 'grounds nothing' a graph fact intensionally — owl:maxCardinality 0 on @rel:signature, on @rel:adds:law and on @rel:carrier: a progenitor may carry NO signature, NO added law and NO carrier (the exact re-homing of algebra_spine.ttl:411 constraint A into the folded idiom). This is the DEDICATED sh:targetClass of the AlgebraProgenitorShape (shapes/algebra.shapes.ttl) so the SHACL grounds-nothing tooth focuses on progenitors alone and never on the concrete rungs, which are models that DO carry a signature/law/carrier. Parent rec:specimen:record is REUSED by IRI (closure.ttl:411, bridge-never-duplicate), NOT re-declared. [S]: the seed-carrier ladder has no progenitor:record precedent (closure.ttl carries {specimen,construction,datatype,axiom,theorem,application,variable}:record only); minted parallel under the §7.2 #1 mint-more-than-runtime ruling and flagged for the maintainer sign-off packet (T-PANEL)." .
+
+# -------------------------------------------------------------------------------------
+# The agnostic progenitor [V] — the theory-root denotatum. ABSTRACT, grounds nothing.
+# -------------------------------------------------------------------------------------
+alg:primordial:kingdom:type:phylum:algebra:class:structure:order:axiomatic:family:primordial:genus:algebra:species:root:component:type:instance:canonical
+    a owl:Class , rec:progenitor:record ;
+    rdfs:label "AlgebraicStructure" ;
+    rel:abstract    "true"^^xsd:boolean ;
+    rel:notation    "AlgebraicStructure" ;
+    rel:identifier  "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:primordial:kingdom:type:phylum:algebra:class:structure:order:axiomatic:family:primordial:genus:algebra:species:root:component:type:instance:canonical" ;
+    skos:exactMatch fnd:AlgebraicStructure ;
+    seed:conservativeBridge
+        <urn:silmaril:type:graph:instance:instruction:code:property:domain:knowledge:realm:representation:subdomain:formal:system:kingdom:type:phylum:primordial:class:universal:order:semantic:family:root:genus:specimen:species:property:component:type:instance:canonical> ;
+    rdfs:comment "[V] The agnostic algebra progenitor — the theory-ROOT of the one-operation tower that GROUNDS NOTHING: no binary operation, no @rel:signature, no @rel:carrier, no @rel:adds:law, and deliberately NOT a model / PresentedAlgebra. Byte-identical to the engine TYPE/ALGEBRA root (config/algebra/primordials.yaml ALGEBRA/SPECIMEN/IDENTITY, ABSTRACT true) and to the aob directory path .../subdomain/primordial/kingdom/type/.../species/root/component/type/instance/canonical, so it is a [V] verbatim anchor, NOT a derived atom. It re-homes fnd:AlgebraicStructure (algebra_spine.ttl:408, the SYN agnostic-progenitor 'grounds nothing' pattern of Directive 17) into the folded stratified idiom: this is the B4 Plane-2 DENOTATUM (kingdom:type…component:type) — the mathematical object carrying identifier / notation / rel:abstract only, with NO provenance (D24: provenance lives on records, never on a denotatum). Being abstract it has NO Plane-1 declaration/model-class atom; the concrete rungs descend from it (magma by rdfs:subClassOf, the rest transitively via reducts, T-REDUCT, Stage 2). BRIDGES: skos:exactMatch fnd:AlgebraicStructure (task directive; symmetric with bridges.ttl:85). The seed:conservativeBridge points at the engine's declared PARENT, the TYPE/PRIMORDIAL universal semantic root (primordials.yaml PRIMORDIAL/SPECIMEN/IDENTITY, ABSTRACT true — the ALGEBRA root's PARENT: TYPE/PRIMORDIAL), NOT at the TYPE/ALGEBRA root itself: since the minted IRI IS the TYPE/ALGEBRA root, that edge would be a vacuous self-loop, so the honest non-self-loop engine anchor is the parent it descends from (the fnd:AlgebraicStructure->engine-root conservative anchor already lives in bridges.ttl:86). GROUNDS-NOTHING tooth: intensional (rec:progenitor:record owl:maxCardinality-0 restrictions) AND SHACL (AlgebraProgenitorShape) proven by injection (probes/progenitor_grounds_nothing.rq + fixtures/progenitor_neg.ttl). It is typed a owl:Class (so a concrete rung can rdfs:subClassOf it, Stage 2) AND a rec:progenitor:record (so the sh:targetClass tooth finds it) — OWL2 metaclass punning, distinct from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids." .

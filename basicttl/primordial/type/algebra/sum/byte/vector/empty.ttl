@@ -1,0 +1,12 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+family:EmptyByteVector a ontology:Class, model:ClassDeclaration, model:Alternative ;
+    schema:subClassOf family:ByteVector ; model:progenitor family:ByteVector ; model:discriminant family:EmptyByteVectorTag ;
+    model:declarationPath "basicttl/primordial/type/algebra/sum/byte/vector/empty.ttl" ;
+    model:field family:EmptySchemaField, family:EmptyRevisionField ; model:admissionState model:Pending ;
+    schema:comment "The Empty constructor class of ByteVector[Schema] retains its schema index and independently identified stream revision. An absent payload does not infer the schema. This constructor Type identity is distinct from an empty occurrence identity, and the first occurrence still requires the byte-closure certificate and admission gate." .
+family:EmptySchemaField a model:Field ; model:owner family:EmptyByteVector ; model:range family:VectorSchemaParameter ; model:referenceKind model:ClassReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:EmptyRevisionField a model:Field ; model:owner family:EmptyByteVector ; model:range family:StreamRevisionIdentity ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .

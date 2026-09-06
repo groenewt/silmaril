@@ -1,0 +1,158 @@
+@prefix silm:  <urn:silmaril:entity#> .
+@prefix cco:   <https://www.commoncoreontologies.org/> .
+@prefix cceo:  <https://www.commoncoreontologies.org/cpo#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# The rebuild plan authored AS ontology (Q2: "author the DAG as ontology first";
+# Message 12: "this plan will be understood in shacl and geosparql to ensure we
+# understand these are OUR FRIENDS"). This file is the TBox: the class and
+# property vocabulary by which the end-to-end v1 rebuild expresses itself as a
+# typed, inspectable, revisable, federated directed acyclic graph. The instance
+# graph (dag_instances.ttl) declares the concrete workflows, phases, doctrines,
+# rulings, and goals; the shapes (dag_shapes.ttl) make the DAG's structural law
+# executable; the queries (dag_queries.sparql) derive schedule order. Nothing
+# here is hand-orchestrated: a unary morphism family reads this ontology to
+# schedule execution, so the plan is not a document ABOUT the work — it IS the work.
+# =============================================================================
+
+### ---- Core graph classes ---------------------------------------------------
+
+silm:DirectedAcyclicGraph a owl:Class ;
+    rdfs:label "DirectedAcyclicGraph" ;
+    rdfs:comment "The whole end-to-end rebuild expressed as one typed directed acyclic graph whose base units are Workflows and whose edges are dependsOn relations. Acyclicity is not decoration: it is the guarantee that a topological schedule exists, that no workflow can be its own prerequisite, and that the ready-set query (dag_queries.sparql) always terminates. The graph is the taiji of the project — ontology (this authored structure) and epistemology (the artifacts its execution produces under CI/CD) held as one object." .
+
+silm:Workflow a owl:Class ;
+    rdfs:label "Workflow" ;
+    rdfs:comment "A base unit of the rebuild DAG: a self-contained concern that runs the full superpowers project cycle (brainstorming design-gate, writing-plans, worktree-isolated subagent-driven fan-out, test-driven development, verification-before-completion) at the wide-and-deep 1000-agent mandate. A Workflow owns an ordered set of Phases, declares its dependsOn prerequisites, consumes and produces named Artifacts, honors Doctrines and Rulings, realizes Goals, and is gated by a between-workflow adversarial panel plus maintainer go/no-go. No Workflow is a 'one hammer' pass; each is its own decomposed concern per STRICTNESS rule 7." .
+
+silm:Phase a owl:Class ;
+    rdfs:label "Phase" ;
+    rdfs:comment "An ordered child of a Workflow — one coherent sequence of work within the workflow's concern. Because the 1000-agent-per-workflow mandate entails a great many phases, the Phase class exists so that the plan can express that depth explicitly and be prevented from shortcutting: every Phase carries an ordinal, is proven by a Gate, and expands into bite-sized Tasks. A Phase is the granularity at which the design-first brainstorming gate and the ledger operate." .
+
+silm:Task a owl:Class ;
+    rdfs:label "Task" ;
+    rdfs:comment "The smallest independently testable unit within a Phase, in the superpowers writing-plans sense: it declares an Interfaces contract (the Artifacts it consumes and produces) and is executed under the red-green-refactor test-driven cycle by a fresh, context-isolated subagent. A Task admits no placeholders — no 'TBD', no abstract guidance — and is complete only under verification-before-completion, where a gate command is run and its output read before any success is claimed." .
+
+silm:Gate a owl:Class ;
+    rdfs:label "Gate" ;
+    rdfs:comment "A verification checkpoint that proves a Phase or Workflow satisfied its law before the graph advances. A Gate is the executable form of epistemology in this project: knowledge is admitted only as evidence produced by running a command (a SHACL conformance check, a parse, a query execution, a digest equality, a signature verdict), never as an assertion that something 'should work'. Gates include the between-workflow adversarial triple panel whose adversaries each spawn agreeable or literally-ontology sub-subagents, with the ontology as final arbiter." .
+
+silm:Artifact a owl:Class ;
+    rdfs:label "Artifact" ;
+    rdfs:comment "A named thing a Task or Workflow consumes or produces — a source file, a generated projection, a query result, a proof digest, a ledger entry. Artifacts are the edges' payload: the dependsOn structure exists because one workflow's produced Artifacts are another's consumed Artifacts. Generated Artifacts are never committed to the branch (STRICTNESS rule 10); they exist only as the epistemic output of the CI/CD render, which is why the graph distinguishes authored Artifacts from generated ones by their producing Gate." .
+
+### ---- Binding-input classes (the gospel, as first-class individuals) --------
+
+silm:Doctrine a owl:Class ;
+    rdfs:label "Doctrine" ;
+    rdfs:comment "A non-negotiable law every agent and subagent obeys before any analysis: the Praeriehund doctrine (name the unknown provisionally, declare partial functors partial, never force-fit or delete-without-inverse) and the Unary Byte-Frame Law (one input, one framed output-and-effect; S/O/P as nth-dimensional URN towers; full lexical identity; physical byte descent; ContractGate external admission). A Doctrine is modelled as an individual so that every Workflow can bind to it by honorsDoctrine and so the DAG itself records that the doctrines were read as required reading, not paraphrased." .
+
+silm:Ruling a owl:Class ;
+    rdfs:label "Ruling" ;
+    rdfs:comment "A binding maintainer ruling captured verbatim in the transcript ledger: the file-axis virtual taxonomy plus full projection packet; the N-dimensional coordinate-reference-system law realized as the S/O/P towers; fable dissolve-and-absorb; and the aggressive depth gate with absolute remediation. Rulings are individuals so a Workflow declares by honorsRuling exactly which maintainer decisions it discharges, making it auditable that no documented answer was treated as a slight or dropped." .
+
+silm:Goal a owl:Class ;
+    rdfs:label "Goal" ;
+    rdfs:comment "One of the maintainer's stated goals ('five is just a metaphor for a shit ton'): corpus bound-and-morph into the definitive v1 atom-of-being buildout; render everything including docs with subatomic per-format decomposition; superpowers-driven planning with strict unary refactor of all violating scripts; and the engine-agnostic CI/CD architecture as its own distinct goal. A Workflow declares realizesGoal to bind its concrete phases to the goal it advances." .
+
+silm:GoverningSkill a owl:Class ;
+    rdfs:label "GoverningSkill" ;
+    rdfs:comment "A superpowers skill (installed at external/skills/superpowers) that governs how a Workflow is run: using-superpowers, brainstorming, writing-plans, executing-plans, dispatching-parallel-agents, using-git-worktrees, subagent-driven-development, test-driven-development, systematic-debugging, verification-before-completion, requesting-code-review, receiving-code-review, finishing-a-development-branch, writing-skills. Modelled as individuals so governedBySkill records the operating system by which each workflow avoids shortcuts." .
+
+### ---- Object properties (the edges and bindings) ---------------------------
+
+silm:hasWorkflow a owl:ObjectProperty ;
+    rdfs:label "hasWorkflow" ;
+    rdfs:domain silm:DirectedAcyclicGraph ;
+    rdfs:range silm:Workflow ;
+    rdfs:comment "Relates the whole rebuild graph to a base-unit Workflow it contains. The complete membership under this property, together with dependsOn, is exactly the vertex-and-edge set the topological-order query consumes to compute the schedule; a Workflow outside this membership is not part of the plan and therefore, under 'if it is not in the ontology it does not exist', is not executed." .
+
+silm:dependsOn a owl:ObjectProperty ;
+    rdfs:label "dependsOn" ;
+    rdfs:domain silm:Workflow ;
+    rdfs:range silm:Workflow ;
+    rdfs:comment "The directed prerequisite edge: the subject Workflow may not begin until the object Workflow has completed and passed its Gate. This relation must remain acyclic — the SHACL shape and the schedule query both depend on it — and it is the sole authority for ordering; ordinals are convenience, but dependsOn is the law. It is the subject-object-predicate tower of the plan: subject workflow, object prerequisite, predicate dependsOn." .
+
+silm:hasPhase a owl:ObjectProperty ;
+    rdfs:label "hasPhase" ;
+    rdfs:domain silm:Workflow ;
+    rdfs:range silm:Phase ;
+    rdfs:comment "Relates a Workflow to one of its ordered Phases. The multiplicity of this relation is where the plan proves it is not shortcutting: a workflow granted the 1000-agent mandate is expected to carry many phases, each an explicit, gated, testable sequence rather than a single monolithic pass, and this property is what makes that depth inspectable in the ontology." .
+
+silm:hasTask a owl:ObjectProperty ;
+    rdfs:label "hasTask" ;
+    rdfs:domain silm:Phase ;
+    rdfs:range silm:Task ;
+    rdfs:comment "Relates a Phase to a bite-sized independently testable Task. Tasks are populated during each workflow's writing-plans step and dispatched to fresh worktree-isolated subagents; this property therefore grows during execution as the design is decomposed, and the ledger records each Task's completion so context compaction never loses the recovery map." .
+
+silm:consumesArtifact a owl:ObjectProperty ;
+    rdfs:label "consumesArtifact" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range silm:Artifact ;
+    rdfs:comment "Declares that a Task or Workflow requires a named Artifact as input — its half of the Interfaces contract. Because a produced Artifact of one workflow is a consumed Artifact of another, this property together with producesArtifact induces the dependsOn edges at the artifact granularity and lets a reviewer verify that no task consumes something no prior task produces." .
+
+silm:producesArtifact a owl:ObjectProperty ;
+    rdfs:label "producesArtifact" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range silm:Artifact ;
+    rdfs:comment "Declares that a Task or Workflow yields a named Artifact as output — the other half of the Interfaces contract. Every Task must produce at least one Artifact, otherwise it did no observable work; the verification Gate reads exactly these produced Artifacts (or the command output that yields them) as the evidence that admits the claim of completion." .
+
+silm:provenByGate a owl:ObjectProperty ;
+    rdfs:label "provenByGate" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range silm:Gate ;
+    rdfs:comment "Binds a Phase or Workflow to the Gate that proves it. A Phase or Workflow with no proving Gate cannot advance the graph, because there would be no evidence — only assertion — that its law was satisfied; this property is the structural encoding of verification-before-completion and of the between-workflow adversarial-plus-maintainer checkpoint." .
+
+silm:governedBySkill a owl:ObjectProperty ;
+    rdfs:label "governedBySkill" ;
+    rdfs:domain silm:Workflow ;
+    rdfs:range silm:GoverningSkill ;
+    rdfs:comment "Binds a Workflow to the superpowers skills that govern how it is run. This makes the operating system of each workflow explicit and auditable: a workflow that is not governed by brainstorming and writing-plans has skipped its design and planning gates, which the shape layer can flag, keeping the superpowers discipline from being silently bypassed." .
+
+silm:honorsDoctrine a owl:ObjectProperty ;
+    rdfs:label "honorsDoctrine" ;
+    rdfs:domain silm:Workflow ;
+    rdfs:range silm:Doctrine ;
+    rdfs:comment "Records that a Workflow — and thereby every agent it dispatches — is bound to the named Doctrine. Because the two doctrines are required reading before any analysis, this property is the ontology's proof-of-obligation: it does not merely mention the Praeriehund and Unary laws, it types each workflow as answerable to them." .
+
+silm:realizesGoal a owl:ObjectProperty ;
+    rdfs:label "realizesGoal" ;
+    rdfs:domain silm:Workflow ;
+    rdfs:range silm:Goal ;
+    rdfs:comment "Binds a Workflow to the maintainer Goal it advances, so that goal coverage is checkable: every documented Goal must be realized by at least one Workflow, or the plan has dropped a requirement. This is the ontology-level defense against the failure mode the transcript rails against — half the asks being silently lost." .
+
+silm:honorsRuling a owl:ObjectProperty ;
+    rdfs:label "honorsRuling" ;
+    rdfs:domain silm:Workflow ;
+    rdfs:range silm:Ruling ;
+    rdfs:comment "Binds a Workflow to the maintainer Ruling it discharges. Together with realizesGoal and honorsDoctrine, this property lets a single SPARQL query confirm that every ruling, goal, and doctrine in the ledger is bound to concrete executable work, making the gospel auditable rather than aspirational." .
+
+### ---- Datatype properties ---------------------------------------------------
+
+silm:hasOrdinal a owl:DatatypeProperty ;
+    rdfs:label "hasOrdinal" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The presentation ordinal of a Workflow or Phase — a convenience for humans reading the plan in sequence. It is explicitly subordinate to dependsOn: where the ordinal and the dependency edges disagree, the dependency edges win, because the ordinal is a projection of the schedule and dependsOn is its cause." .
+
+silm:hasAgentBudget a owl:DatatypeProperty ;
+    rdfs:label "hasAgentBudget" ;
+    rdfs:domain silm:Workflow ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The wide-and-deep agent budget granted to a Workflow — the maintainer's 'one thousand agents per distinct workflow', a figure that stands for the depth of fan-out and the many validate-critique-revise phases expected, not a literal head count. It records that the workflow is entitled to exhaustive coverage rather than a single pass." .
+
+silm:isProvisional a owl:DatatypeProperty ;
+    rdfs:label "isProvisional" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The Praeriehund flag: true marks a coordinate, mapping, or classification as honestly provisional — named because it must be named, but not yet admitted by an external registry, and not to be force-fit into an existing taxon. A provisional individual is a first-class citizen of the graph, not an error; it is the structural refusal of the sykophantic move of pretending certainty where there is none." .
+
+silm:hasStatus a owl:DatatypeProperty ;
+    rdfs:label "hasStatus" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The live execution state of a Workflow or Phase as the rebuild advances — one of 'completed' (its gate passed and its artifacts committed), 'in-progress' (currently under its superpowers cycle), or 'pending' (prerequisites not yet all met, not started). The domain is owl:Thing, not Workflow, deliberately: under RDFS inference a Workflow-domained property would retype every Phase that carries a status as a Workflow and trip the Workflow shape, so status — like hasOrdinal, consumes/producesArtifact, provenByGate — is a cross-cutting property. This is what keeps the authored DAG from drifting from reality: the graph is not merely a plan of intent but the running record of where the end-to-end build actually stands, so a reader — or the scheduler's ready-set query — sees at a glance which node is live and which prerequisites remain. It is deliberately coarse; the fine-grained recovery map lives in the per-plan superpowers ledger, while this records the workflow-and-phase-granularity taiji of intent-and-actuality." .

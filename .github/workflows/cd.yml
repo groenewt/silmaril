@@ -1,9 +1,10 @@
 name: CD
 
 on:
-  push:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [master, main]
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,9 +18,20 @@ concurrency:
 jobs:
   build:
     name: Build Site
+    # workflow_run fires for failed runs too. Only this repository's successful
+    # push validation may enter the privileged Pages workflow.
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      (github.event.workflow_run.head_branch == 'master' ||
+       github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          submodules: false
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
@@ -29,6 +41,20 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate user interface from specifications
+        run: |
+          pip install -r scripts/python/pylib/requirements-user-interface.txt
+          make -C scripts/python/pylib morphism-user-interface-constructor-install SILMARIL_PYTHON=python3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install mathematical rendering assets
+        run: |
+          npm install --omit=dev --no-save --package-lock=false --prefix scripts/site
+          node scripts/site/vendor.cjs
       - name: Build Jekyll
         working-directory: docs
         run: |

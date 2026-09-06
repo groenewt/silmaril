@@ -1,0 +1,97 @@
+@prefix runtime: <urn:silmaril:user:interface:runtime:> .
+@prefix description: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+
+# These are requirements and observations. They do not define physical carriers,
+# provide admission certificates, or turn a host value into an admitted ADT.
+runtime:Requirement a ontology:Class .
+runtime:MissingEvidence a ontology:Class .
+runtime:ConflictingRequirements a ontology:Class .
+runtime:requiredCoordinate a ontology:DatatypeProperty .
+runtime:requires a ontology:ObjectProperty .
+runtime:observation a ontology:ObjectProperty .
+runtime:source a ontology:DatatypeProperty .
+runtime:authority a ontology:DatatypeProperty .
+
+runtime:ProjectionExecution a runtime:Requirement ;
+    schema:seeAlso <../../../primordial/type/classes.ttl>,
+        <../../../primordial/type/shapes.ttl>,
+        <../../../primordial/type/catalog.sparql>,
+        <../../../validation/request/plan.ttl>,
+        <../../../validation/request/shapes.ttl> ;
+    runtime:requires runtime:InputCarrier, runtime:OutputCarrier,
+        runtime:EffectCarrier, runtime:FrameCarrier, runtime:ClosedAlternatives,
+        runtime:AtomicTransitions, runtime:ExternalAdmission,
+        runtime:PythonPhysicalIntegration, runtime:PythonLauncher,
+        runtime:GeneratedBehaviorAdmission, runtime:Readback ;
+    schema:comment "Formal runtime admission remains unestablished. The site projection and browser checks produce build observations independently; they do not discharge these requirements. The separate runtime-admission target remains unsuccessful and has no admission flag or receipt-file override." .
+
+runtime:InputCarrier a runtime:Requirement ;
+    runtime:requiredCoordinate "input" ;
+    runtime:observation runtime:PhysicalCarrierMissing ;
+    schema:comment "One explicit typed input. Its physical implementation, Type identity, occurrence identity, schema, exact semantic ancestry and byte-closure evidence are separate coordinates. Repository paths, graph objects and mutable dictionaries cannot serve as implicit input carriers." .
+
+runtime:OutputCarrier a runtime:Requirement ;
+    runtime:requiredCoordinate "output" ;
+    runtime:observation runtime:PhysicalCarrierMissing ;
+    schema:comment "A separately implemented output carrier with exact semantic ancestry and byte descent. Raw strings, dictionaries, lists, None and exit codes are not this coordinate." .
+
+runtime:EffectCarrier a runtime:Requirement ;
+    runtime:requiredCoordinate "effect" ;
+    runtime:observation runtime:PhysicalCarrierMissing ;
+    schema:comment "A separately implemented error-or-effect carrier retains boundary evidence, including parse failure and source identity. Exceptions, stderr and a cleared graph cannot replace the coordinate." .
+
+runtime:FrameCarrier a runtime:Requirement ;
+    runtime:requiredCoordinate "frame" ;
+    runtime:observation runtime:PhysicalCarrierMissing ;
+    schema:comment "The declared return type is a physical product with exactly output and exactly one error or effect field. The frame has its own identity, schema and physical byte descent. An Accepted|Rejected sum is allowed inside output, never instead of the frame." .
+
+runtime:ClosedAlternatives a runtime:Requirement ;
+    runtime:observation runtime:PhysicalCarrierMissing ;
+    schema:comment "Every alternative and progenitor occupies its own physical file and URN coordinate. Scheduler Continue and Complete, admission Accepted and Rejected, and source term IRI, blank node and literal need distinct closed algebras. Literal language and datatype and source-scoped blank-node identity survive readback. A union annotation over arbitrary host records does not implement this." .
+
+runtime:AtomicTransitions a runtime:Requirement ;
+    runtime:observation runtime:TransitionImplementationMissing ;
+    schema:comment "One observed transition per unary scheduler invocation. Discovery, reading, parsing, query execution, projection, writing and readback cannot be compressed into one callable or moved into constructor initializers. Each operation requires its own input, output, effect and frame contracts." .
+
+runtime:ExternalAdmission a runtime:Requirement ;
+    runtime:observation runtime:ContractGateEvidenceMissing ;
+    schema:comment "Each filesystem, process, parser, query engine, digest, serializer and browser binding needs a registered typed ContractGate frontier with explicit effects and inverse evidence. An import alias or dependency version is not admission." .
+
+runtime:PythonPhysicalIntegration a runtime:Requirement ;
+    runtime:observation runtime:PhysicalIntegrationMissing ;
+    runtime:authority "docs/unary-byte-frame-law.md: Explicit binding and observation law, rule 14" ;
+    runtime:source "scripts/site/project.py",
+        "scripts/python/pylib/src/silmaril/sparky/morphism/user/interface/constructor/cascading/style/sheet/render/engine.py",
+        "scripts/python/pylib/src/silmaril/sparky/morphism/user/interface/constructor/hypertext/markup/language/render/engine.py",
+        "scripts/python/pylib/src/silmaril/sparky/morphism/user/interface/documentation/render/engine.py" ;
+    schema:comment "Runtime implementations, carriers, configuration, external bindings, invocation and typed readback must be physically integrated under scripts/python/pylib. Only value.py exporting VALUE, library.py exporting DEPENDENCY and process.py exporting MAIN are permitted by STRICTNESS_RULES.md. No loops, comprehensions, hidden dynamic code, exception handlers or print-based protocol." .
+
+runtime:PythonLauncher a runtime:Requirement ;
+    runtime:observation runtime:LauncherImplementationMissing ;
+    runtime:authority "STRICTNESS_RULES.md: rule 2",
+        "docs/unary-byte-frame-law.md: Normative boundary law, rules 1-9" ;
+    schema:seeAlso <process/contract.ttl>, <process/shapes.ttl> ;
+    schema:comment "The approved process form is MAIN(input: Input) -> Frame with exactly one explicit typed non-default input. Importing a process does not invoke it. A separately typed registered host-exit boundary observes output and effect before translating admitted completion to host exit. The nullary terminal trailer is withdrawn by the process-form correction in STRICTNESS_RULES.md rule 2; physical implementation, boundary registration and inverse evidence remain required." .
+
+runtime:GeneratedBehaviorAdmission a runtime:Requirement ;
+    runtime:observation runtime:ContractGateEvidenceMissing ;
+    runtime:source "basicttl/user/interface/portal.ttl#BrowserBehavior",
+        "scripts/site/vendor.cjs", "scripts/site/verify-render.cjs",
+        "scripts/python/pylib/tests/test_user_interface_constructor.py",
+        "scripts/site/test_projection.py" ;
+    schema:comment "Owned generated JavaScript, launchers and verification code remain in scope. A Turtle literal containing an imperative program is not a decomposition or an admission certificate." .
+
+runtime:Readback a runtime:Requirement ;
+    runtime:observation runtime:ContractGateEvidenceMissing ;
+    schema:comment "Verify typed carrier-to-byte and byte-to-carrier inverses, exact source revision, the full dependency closure and one-transition behavior before execution admission. Then separately verify generated site behavior, embedded Markdown, ontology navigation, mathematical rendering, accessibility and both root and project base paths." .
+
+runtime:PhysicalCarrierMissing a runtime:MissingEvidence ;
+    runtime:source "scripts/python/pylib/src/silmaril/sparky/lambda/substrate/byte/vector/value.py",
+        "scripts/python/pylib/src/config/constants/substrate/byte/schema/state/provisional/identity/value.py" ;
+    schema:comment "The inspected byte vector is a host-bytes dataclass marked urn:silmaril:state:lambda:runtime:provisional:v1. The primordial/type model now supplies nominal, polymorphic class and property declarations, including a schema-indexed vector algebra. These declarations do not replace the physical implementation or discharge its admission and readback requirements." .
+runtime:TransitionImplementationMissing a runtime:MissingEvidence .
+runtime:ContractGateEvidenceMissing a runtime:MissingEvidence .
+runtime:PhysicalIntegrationMissing a runtime:MissingEvidence .
+runtime:LauncherImplementationMissing a runtime:MissingEvidence .

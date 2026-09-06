@@ -1,0 +1,27 @@
+# =====================================================================================
+# bridge_neg.ttl — the FAILING NEGATIVE fixture for BridgeShape (W2 · SP0, T-FIX).
+# The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a failing
+# negative per shape).
+# =====================================================================================
+# A rec:denotatum:record minted WITHOUT its fnd: retire bridge — it carries NO skos:exactMatch /
+# skos:closeMatch edge (either direction) to a urn:silmaril:fnd: legacy name (the SINGLE injected
+# violation; the positive twin fixtures/bridge_pos.ttl carries the skos:exactMatch). Merged onto
+# the algebra data graph the graph MUST NOT conform: BridgeShape's sh:sparql FILTER NOT EXISTS
+# (shapes/algebra.shapes.ttl:250) returns this focus, so an inbound SP1/SP2/SP3 fnd:* reference
+# would not resolve through the fold. It carries identifier/notation ONLY (NO provenance) and a
+# single record-ladder type, so V1DenotatumHygieneShape stays satisfied and exactly BridgeShape
+# flips conforms True->False.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:denotatum:record), never an owl:Class.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a denotatum with NO fnd: retire bridge (INVALID: inbound fnd:* would not resolve) ---
+<urn:silmaril:fixture:algebra:bridge:negative>
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rel:notation   "denotatum MISSING its fnd: retire bridge (INJECTED VIOLATION)" ;
+    rel:identifier "urn:silmaril:fixture:algebra:bridge:negative" .
+    # INJECTED VIOLATION: no skos:exactMatch/closeMatch to a urn:silmaril:fnd: name -> BridgeShape RED

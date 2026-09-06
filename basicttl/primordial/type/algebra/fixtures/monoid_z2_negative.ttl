@@ -1,0 +1,67 @@
+# =====================================================================================
+# monoid_z2_negative.ttl — the FAILING NEGATIVE fixture for the monoid identity tooth
+# (W2 · SP0, T-MONOID). The materialized RED (D24: sh:conforms true alone is vacuous — a
+# positive AND a failing negative per shape).
+# =====================================================================================
+# Z/2 under addition {e=0, a=1} with a SINGLE injected violation: the identity row e·a
+# yields e instead of a (LEFT-UNIT law e·x = x broken). Every other cell is correct, so
+# the graph is otherwise a conformant monoid model and the ONE injected error is what
+# bites. Merged onto the algebra data graph the graph MUST NOT conform:
+# MonoidModelIdentityShape (shapes/algebra.shapes.ttl, sh:targetClass rec:model:record)
+# flips conforms True->False and probes/monoid_identity.rq returns >= 1 row.
+#
+# The model witness lives HERE in fixtures/ (D24 four-planes: element / finite-table
+# witnesses are EVIDENCE, outside the ontology data glob and the CI data graph), typed
+# rec:model:record so it is a focus node of the shape (via the shape's sh:targetClass;
+# the reified rows are scoped to it by @rel:structure). It mirrors algebra_spine.ttl
+# fnd:monoidModel + fnd:appMonEA (:631-641) whose probe of record is exactly "change the
+# E·A result from A to E". Companion positive: fixtures/monoid_z2.ttl.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never a bare
+# NamedIndividual and never an owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/2 with declared two-sided identity e (INVALID table) ---
+<urn:silmaril:fixture:algebra:monoid:z2:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/2 under + (BROKEN: e·a yields e, not a)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e> .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:monoid:z2:negative:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+
+# --- the reified Cayley cells (e·e=e, e·a=e[BROKEN], a·e=a, a·a=e) ---
+<urn:silmaril:fixture:algebra:monoid:z2:negative:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e> .
+<urn:silmaril:fixture:algebra:monoid:z2:negative:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e> .  # INJECTED VIOLATION: should be :elem:a
+<urn:silmaril:fixture:algebra:monoid:z2:negative:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:a> .
+<urn:silmaril:fixture:algebra:monoid:z2:negative:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:negative:elem:e> .

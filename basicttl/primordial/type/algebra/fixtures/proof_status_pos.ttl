@@ -1,0 +1,36 @@
+# =====================================================================================
+# proof_status_pos.ttl — the POSITIVE fixture for ProofStatusShape (W2 · SP0, T-FIX).
+# =====================================================================================
+# ProofStatusShape (shapes/algebra.shapes.ttl:189-196) targets rec:theory:record and demands
+# EXACTLY ONE @rel:proof:status drawn from the D24 8-value enum {asserted, finite:checked,
+# literature:backed, mechanically:proved, counterexample:known, open, conditional, rejected}.
+# Because a rec:theory:record is ALSO a focus of TheoryShape (min1/max1 signature + min1
+# equation + identity-collision), ValidationModeShape (the 4-value mode) and ProvenanceShape
+# (quartet + authority), this positive is a COMPLETE conformant theory record — it satisfies all
+# four theory-targeting shapes and declares proof:status "literature:backed" (a valid enum
+# value), so it CONFORMS. Its @rel:identifier is its own IRI (unique — no TheoryShape identity
+# collision). Its single-injected-violation twin is fixtures/proof_status_neg.ttl (an off-enum
+# proof:status), which flips ONLY ProofStatusShape.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:theory:record), never an owl:Class; the signature/equation objects are bare nodes.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a complete theory record with a VALID 8-value proof:status (CONFORMS) ---
+<urn:silmaril:fixture:algebra:proof:status:positive>
+    a owl:NamedIndividual , rec:theory:record ;
+    rel:notation   "theory record with a valid D24 8-value proof:status" ;
+    rel:identifier "urn:silmaril:fixture:algebra:proof:status:positive" ;
+    rel:signature  <urn:silmaril:fixture:algebra:proof:status:positive:sig> ;
+    rel:equation   <urn:silmaril:fixture:algebra:proof:status:positive:eq> ;
+    rel:validation:mode "rewrite" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" .

@@ -1,0 +1,50 @@
+# =====================================================================================
+# loop_law.rq — RED->GREEN probe for T-LOOP (the two-sided IDENTITY tooth, W2 · SP0,
+# Stage 2a). The added-law tooth of the loop rung: the sole law loop adds over quasigroup
+# is a two-sided IDENTITY — there exists e with e·x = x AND x·e = x for all x
+# (algebra_spine.ttl fnd:lawIdentity added by loop; design §1.6, plan T-LOOP). A loop is a
+# QUASIGROUP (Latin square) that additionally HAS a two-sided identity.
+# =====================================================================================
+# The LOOP two-sided identity law as a graph fact over the reified Cayley table. For every
+# model carrying a declared identity element e (@rel:identity:element e), no reified
+# composition row (a Cayley-table cell scoped to the model by @rel:structure) with e as its
+# FIRST operand may yield a result != its SECOND operand (left-unit e·x = x), and no row with
+# e as its SECOND operand may yield a result != its FIRST operand (right-unit x·e = x). This
+# SELECT returns every row that VIOLATES that — the model, the offending cell, the two
+# operands and the wrong result. It is the SAME law monoid adds (probes/monoid_identity.rq),
+# because loop and monoid both add exactly the two-sided identity — loop over a quasigroup,
+# monoid over a semigroup.
+#
+#   GREEN (a genuine loop, e.g. fixtures/loop_pos.ttl — Z/3 under + over {e,a,b}, a Latin
+#         square WITH two-sided identity e): 0 rows — every e-row yields the other operand and
+#         every e-column yields the other operand, so the tooth is satisfied.
+#   RED   (a quasigroup with NO two-sided identity, e.g. fixtures/loop_neg.ttl — a genuine
+#         Latin square over {e,a,b} in which NO element is a two-sided identity, yet the witness
+#         DECLARES e as its @rel:identity:element as every loop must): >= 1 row — the declared e
+#         fails the unit law (e·a != a), so loop's added-law tooth bites. This is the rung's
+#         characteristic-law violation: the table is a perfectly good quasigroup (the Latin-square
+#         / unique-division law holds, so probes/quasigroup_law.rq stays GREEN over it), failing
+#         ONLY loop's added two-sided identity — cleanly isolating the one law loop adds.
+#
+# Run over the fixture under test (optionally merged with the algebra data graph), inference=none.
+# The SAME declared-identity witness that this probe reddens ALSO flips the committed
+# shapes/algebra.shapes.ttl ModelShape True->False: ModelShape's two-sided identity sh:sparql
+# tooth (:105-108, sh:targetClass rec:model:record) fires on exactly the e·a != a cell — so the
+# runner's fixture-polarity gate catches the negative even though a dedicated LoopShape is a
+# Stage-2 T-SHAPES deliverable and shapes/algebra.shapes.ttl is out of this rung's write scope.
+# The added-law axiom is spine/loop.ttl kingdom:axiom:…:class:identity:…:family:loop:genus:neutral:
+# species:member (decomposed into species:member:left / species:member:right equation records).
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?model ?cell ?first ?second ?result WHERE {
+  ?model rel:identity:element ?e .
+  ?cell  rel:structure        ?model ;
+         rel:category:first   ?first ;
+         rel:category:second  ?second ;
+         rel:category:result  ?result .
+  FILTER(
+       ( ?first  = ?e && ?result != ?second )   # left-unit  e·x = x  violated
+    || ( ?second = ?e && ?result != ?first  )   # right-unit x·e = x  violated
+  )
+}

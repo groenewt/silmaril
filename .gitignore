@@ -40,6 +40,7 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+.bundle/
 Gemfile.lock
 
 # Archives (extracted contents committed, not the zips)
@@ -57,3 +58,34 @@ secring*
 *private*.asc
 id_rsa*
 id_ed25519*
+
+# Polysemy Helios Library — reference only, to be resolved into submodules by maintainer (do NOT commit)
+# Root-anchored so it excludes ONLY the top-level extraction, not ledger/W2/helios maps.
+/helios/
+
+# User interface projections are generated from basicttl/user/interface/.
+/docs/assets/css/generated.css
+/docs/_includes/build-status.html
+
+/docs/_data/documentation.json
+/docs/_includes/documentation.html
+/docs/_includes/aster-profile.html
+/docs/reading.html
+
+/docs/_includes/reading-navigation.html
+
+# Ontology-projected reading and exploration surfaces
+/docs/index.html
+/docs/architecture.html
+/docs/provenance.html
+/docs/folklore.html
+/docs/explore.html
+/docs/_layouts/default.html
+/docs/_layouts/document-frame.html
+/docs/_includes/living-home.html
+/docs/_includes/ontology-explorer.html
+/docs/documents/
+/docs/assets/data/
+/docs/assets/vendor/
+/docs/assets/js/portal.js
+/scripts/site/node_modules/

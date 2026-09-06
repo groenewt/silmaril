@@ -1,0 +1,195 @@
+@prefix architecture: <urn:silmaril:user:interface:architecture:> .
+@prefix geometry: <http://www.opengis.net/ont/geosparql#> .
+@prefix interface: <urn:silmaril:user:interface:> .
+@prefix language: <urn:silmaril:user:interface:hypertext:markup:language:> .
+@prefix projection: <urn:silmaril:user:interface:projection:> .
+@prefix status: <urn:silmaril:user:interface:build:status:> .
+
+projection:Architecture a projection:Document ;
+    projection:root architecture:build .
+
+architecture:build a language:Section ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:build:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:build:attribute:aria-label>,
+        <urn:silmaril:user:interface:architecture:build:attribute:class> ;
+    interface:child architecture:checks,
+        architecture:description,
+        architecture:heading,
+        architecture:runs .
+
+<urn:silmaril:user:interface:architecture:build:attribute:aria-label> a interface:Attribute ;
+    interface:name "aria-label" ;
+    interface:value "Build verification" .
+
+<urn:silmaril:user:interface:architecture:build:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-bar" .
+
+<urn:silmaril:user:interface:architecture:build:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+architecture:checks a language:List ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:checks:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:checks:attribute:class> ;
+    interface:child architecture:ontology,
+        architecture:provenance,
+        architecture:scripts .
+
+<urn:silmaril:user:interface:architecture:checks:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-list" .
+
+<urn:silmaril:user:interface:architecture:checks:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+architecture:description a language:Paragraph ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:description:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:description:attribute:class> ;
+    interface:text "This page does not contain live build results. Check the workflow runs for the commit you are evaluating." .
+
+<urn:silmaril:user:interface:architecture:description:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-description" .
+
+<urn:silmaril:user:interface:architecture:description:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+architecture:heading a language:Heading ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:heading:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:heading:attribute:class> ;
+    interface:text "Build verification" .
+
+<urn:silmaril:user:interface:architecture:heading:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-heading" .
+
+<urn:silmaril:user:interface:architecture:heading:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+architecture:ontology a language:Item ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:ontology:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:ontology:attribute:class> ;
+    interface:child <urn:silmaril:user:interface:architecture:ontology:name>,
+        <urn:silmaril:user:interface:architecture:ontology:state> .
+
+<urn:silmaril:user:interface:architecture:ontology:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status unknown" .
+
+<urn:silmaril:user:interface:architecture:ontology:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:architecture:ontology:name> a language:Span ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:ontology:name:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:ontology:name:attribute:class> ;
+    interface:text "Ontology" .
+
+<urn:silmaril:user:interface:architecture:ontology:name:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-name" .
+
+<urn:silmaril:user:interface:architecture:ontology:name:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:architecture:ontology:state> a status:Indicator ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:ontology:state:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:ontology:state:attribute:class> ;
+    status:state status:Unknown .
+
+<urn:silmaril:user:interface:architecture:ontology:state:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-state" .
+
+<urn:silmaril:user:interface:architecture:ontology:state:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+architecture:provenance a language:Item ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:provenance:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:provenance:attribute:class> ;
+    interface:child <urn:silmaril:user:interface:architecture:provenance:name>,
+        <urn:silmaril:user:interface:architecture:provenance:state> .
+
+<urn:silmaril:user:interface:architecture:provenance:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status unknown" .
+
+<urn:silmaril:user:interface:architecture:provenance:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:architecture:provenance:name> a language:Span ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:provenance:name:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:provenance:name:attribute:class> ;
+    interface:text "Provenance" .
+
+<urn:silmaril:user:interface:architecture:provenance:name:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-name" .
+
+<urn:silmaril:user:interface:architecture:provenance:name:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:architecture:provenance:state> a status:Indicator ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:provenance:state:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:provenance:state:attribute:class> ;
+    status:state status:Unknown .
+
+<urn:silmaril:user:interface:architecture:provenance:state:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-state" .
+
+<urn:silmaril:user:interface:architecture:provenance:state:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .
+
+architecture:runs a language:Link ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:runs:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:runs:attribute:class>,
+        <urn:silmaril:user:interface:architecture:runs:attribute:href> ;
+    interface:text "View workflow runs" .
+
+<urn:silmaril:user:interface:architecture:runs:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-link" .
+
+<urn:silmaril:user:interface:architecture:runs:attribute:href> a interface:Attribute ;
+    interface:name "href" ;
+    interface:value "https://github.com/groenewt/silmaril/actions" .
+
+<urn:silmaril:user:interface:architecture:runs:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 3)"^^geometry:wktLiteral .
+
+architecture:scripts a language:Item ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:scripts:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:scripts:attribute:class> ;
+    interface:child <urn:silmaril:user:interface:architecture:scripts:name>,
+        <urn:silmaril:user:interface:architecture:scripts:state> .
+
+<urn:silmaril:user:interface:architecture:scripts:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status unknown" .
+
+<urn:silmaril:user:interface:architecture:scripts:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 2)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:architecture:scripts:name> a language:Span ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:scripts:name:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:scripts:name:attribute:class> ;
+    interface:text "Scripts" .
+
+<urn:silmaril:user:interface:architecture:scripts:name:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-name" .
+
+<urn:silmaril:user:interface:architecture:scripts:name:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 0)"^^geometry:wktLiteral .
+
+<urn:silmaril:user:interface:architecture:scripts:state> a status:Indicator ;
+    geometry:hasGeometry <urn:silmaril:user:interface:architecture:scripts:state:geometry> ;
+    interface:attribute <urn:silmaril:user:interface:architecture:scripts:state:attribute:class> ;
+    status:state status:Unknown .
+
+<urn:silmaril:user:interface:architecture:scripts:state:attribute:class> a interface:Attribute ;
+    interface:name "class" ;
+    interface:value "build-status-state" .
+
+<urn:silmaril:user:interface:architecture:scripts:state:geometry> a geometry:Geometry ;
+    geometry:asWKT "<urn:silmaril:user:interface:projection:Flow> POINT (0 1)"^^geometry:wktLiteral .

@@ -1,0 +1,9 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:OntologyFloors a validation:Check ;
+    schema:comment "Run the complete Foundation command including all four floors, merged constraints, queries, depth and citation checks; a partial graph pass is insufficient." ;
+    validation:declarationPath "basicttl/validation/request/checks/ontology/floors/value.ttl" .

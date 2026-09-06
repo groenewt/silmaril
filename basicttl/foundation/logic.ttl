@@ -1,0 +1,345 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# logic.ttl — Pillar 4: the logic sub-floor (propositions P_r / negation N / implication ⊃ + proof
+# terms) + the K/C/W implication laws + the functionality<->implication Curry-Howard taiji
+# (W2 · SP0, Task T9; design s5; Directive 19; ledger 06b_curry_lift.md s4).
+# =====================================================================================
+# The LOGIC stratum of the arrow pillar - the "what-it-proves" face that glues to the "how-you-compute"
+# arrow face (functionality.ttl, T7) at the Curry-Howard taiji. Set theory (T3) carries the CARRIERS, the
+# algebra tower (T4/T5) the OBJECTS/OPERATIONS, spaces (T6) the topology/geometry, functionality (T7) the
+# typed ARROWS, combinators (T8) the point-free substrate, and THIS file the PROPOSITIONS the arrows
+# double as. Curry supplies the whole stratum: propositions, negation N, implication ⊃, the K/C/W
+# implication laws, and the definability F' ≡ [x,y,z](u)(xu ⊃ y(zu)) with Thm 5.8 (every F-theorem holds
+# for F' given the K/C/W implication laws) - the Curry-Howard ancestor (H. B. Curry, First Properties of
+# Functionality in Combinatory Logic, Tohoku Math. J. 41 (1936) 371-401; jstage handle
+# tmj1911/41/0/41_0_371; CITED, never committed - Directive 19 :265-268, :282-286). Three teeth-proved
+# structures, per the maximal choice (Directive 20):
+#
+#   (1) fnd:Proposition (P_r) with fnd:Implication (⊃) and fnd:Negation (N) as the two proposition-forming
+#       connectives (Curry s5 ⊃, Curry s6 N) + fnd:AtomicProposition leaves. An fnd:Implication reifies a
+#       formula tree via fnd:antecedent / fnd:consequent (both fnd:Proposition, so implications nest); the
+#       K/C/W implication laws (fnd:ImplicationLaw, each carrying fnd:lawCombinator - the T8 combinator
+#       whose implication-face it is: K=weakening, C=exchange, W=contraction - and fnd:lawFormula, the
+#       reified canonical implication). Tooth q_implication_kcw / fnd:ImplicationKCWShape make the three
+#       canonical formulae graph facts (a law whose formula departs from its canonical shape -> RED).
+#   (2) fnd:CurryHowardCorrespondence = the taiji atom: ONE lexeme, two glossary-scoped senses
+#       simultaneously (Directive 16) - the ARROW sense (the exponential B^A = fnd:ArrowType F(A,B) of T7)
+#       and the IMPLICATION sense (A ⊃ B = fnd:Implication) - the SAME object (Curry s5 Thm 5.8). It carries
+#       fnd:arrowSense and fnd:implicationSense; the two coincide iff the arrow type's domain/codomain are
+#       the types the implication's antecedent/consequent denote (the propositions-as-types bridge
+#       fnd:propType). Tooth q_curry_howard / fnd:CurryHowardShape make the coincidence a graph fact
+#       (a correspondence whose two senses diverge -> RED).
+#   (3) fnd:ProofTerm = the terms-as-proofs face: a proof of an implication A ⊃ B is a function of type
+#       F(A,B). It carries fnd:provesImplication (the implication it witnesses) and fnd:proofTermType (its
+#       arrow type); it is well typed iff the arrow type's domain/codomain match the proved implication's
+#       antecedent/consequent (via fnd:propType). Tooth q_proof_term_typed / fnd:ProofTermTypedShape make
+#       'a proof term is typed by the implication it claims' a graph fact (a mistyped proof term -> RED).
+#
+# HONESTY (design s0 ledger, Praeriehund): EVERY atom here is SYN - cited standard mathematics (Curry
+# 1936 s5-s6), the Directive-19 precedent "the mathematics is fact and liftable; cite the source; do NOT
+# pretend it is a Helios lift". The corpus is a named-variable lambda corpus with NO propositional /
+# implicational calculus authored as such (06a_functionality_corpus.md), so this whole logic stratum has
+# NO Helios carrier and is the pillar's cited-from-Curry logic floor - honest-red where no v1 consumer
+# binds it (corpus-agnostic v1, Directive 13: propA/propB/propC and propAnimal/propDog are meaning-free
+# witness propositions carrying the laws and the taiji). It RECOGNIZES the T7 fnd:ArrowType witnesses
+# (fnd:arrowTypeAnimalDog / fnd:arrowTypeDogAnimal, functionality.ttl) and the T8 combinators
+# (fnd:K/fnd:C/fnd:W, combinators.ttl) as the arrow face and the structural-rule seam respectively - it
+# does NOT re-author them - so no T9 atom masquerades as a Helios lift or duplicates a prior atom.
+# Namespace fnd: <urn:silmaril:fnd:#>. Non-goal (design s9): a live proof checker - the teeth check the
+# LAWS (canonical formula shapes, sense coincidence, proof-term typing), not derivations.
+# =====================================================================================
+
+
+# =====================================================================================
+# (1) Propositions P_r + the connectives implication (⊃) and negation (N) (design s5; Curry s5/s6).
+# =====================================================================================
+
+fnd:Proposition a owl:Class ;
+    rdfs:label "Proposition" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A proposition P_r - a truth-bearing formula of the logic sub-floor, the 'what-it-proves' object the arrow pillar's typed arrows double as under Curry-Howard (Curry 1936 s5; the propositions-as-types face of the taiji). SYN: cited standard mathematics (Curry 1936 - the 1936 mathematics is fact and liftable, cite the source, never pretend it is a Helios lift; the corpus has no propositional calculus authored as such, so this is a cited-from-Curry atom with no Helios carrier). It is the shared supertype over which the logic machinery reads: an fnd:Implication (A ⊃ B) and an fnd:Negation (N A) are BOTH fnd:Proposition (they are proposition-forming connectives, so implications and negations nest inside larger formulae), and fnd:AtomicProposition leaves are the base case. An fnd:Implication's fnd:antecedent and fnd:consequent point at fnd:Proposition nodes, so a nested formula like A ⊃ (B ⊃ A) is a fully reified tree of implication nodes over atomic leaves. A proposition may carry the propositions-as-types bridge fnd:propType to the fnd:WitnessType (T7) it denotes, which is how the Curry-Howard teeth check that the arrow sense F(A,B) and the implication sense A ⊃ B coincide. On this corpus-agnostic floor (Directive 13) the atomic propositions are the meaning-free witnesses fnd:propA/propB/propC (carrying the K/C/W laws) and fnd:propAnimal/propDog (carrying the taiji, bridged to the T7 witness types)." .
+
+fnd:AtomicProposition a owl:Class ;
+    rdfs:subClassOf fnd:Proposition ;
+    rdfs:label "AtomicProposition" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "An atomic (propositional-variable) proposition - a leaf of the fnd:Proposition formula grammar carrying no further connective structure, the base case beneath fnd:Implication and fnd:Negation (Curry 1936 s5). SYN: cited standard mathematics (Curry 1936). On this corpus-agnostic v1 floor (Directive 13) the atomic propositions are the meaning-free witness variables fnd:propA, fnd:propB, fnd:propC (over which the K/C/W implication laws are stated - the propositional analogue of the T8 combinators' fnd:argX/argY/argZ) and fnd:propAnimal, fnd:propDog (over which the Curry-Howard taiji and the proof-term typing are stated, bridged by fnd:propType to the T7 witness types fnd:typeAnimal/fnd:typeDog). They have no meaning beyond carrying the laws and the correspondence - they are the non-vacuity substrate that makes q_implication_kcw / q_curry_howard / q_proof_term_typed real structural checks rather than tautologies, and the leaves of the reified fnd:Implication trees the K/C/W law formulae are built from." .
+
+fnd:Implication a owl:Class ;
+    rdfs:subClassOf fnd:Proposition ;
+    rdfs:label "Implication" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "An implication A ⊃ B - the reified formula relating an fnd:antecedent proposition A to an fnd:consequent proposition B, itself an fnd:Proposition so implications nest (Curry 1936 s5, the implication connective ⊃ from which F is definable). SYN: cited standard mathematics (Curry 1936 s5). It is the internal-hom / exponential object of the logic face: A ⊃ B is the implication sense of the SAME lexeme whose arrow sense is the exponential B^A = the T7 fnd:ArrowType F(A,B), the two glued at the Curry-Howard taiji (Thm 5.8, fnd:CurryHowardCorrespondence). Reifying the implication as its own node with fnd:antecedent / fnd:consequent edges is what lets the K/C/W law teeth walk a formula tree and check it matches the canonical weakening / contraction / exchange shape by EDGE existence, binding the shared propositions by SPARQL variable identity (e.g. K = A ⊃ (B ⊃ A) requires the inner consequent to be the SAME node as the outer antecedent), never a range-inferred rdf:type - so inference=rdfs cannot forge an antecedent/consequent edge between two proposition nodes and defang the tooth (the SP1 defang discipline). The witness formulae fnd:implK/implW/implC (the K/C/W law bodies), fnd:implAnimalDog (the taiji implication Animal ⊃ Dog) and their sub-formulae are all fnd:Implication nodes." .
+
+fnd:Negation a owl:Class ;
+    rdfs:subClassOf fnd:Proposition ;
+    rdfs:label "Negation" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A negation N P - the reified formula relating a single fnd:negatedProp proposition P to its negation, itself an fnd:Proposition so negations nest and combine with implication (Curry 1936 s6, the negation operator N). SYN: cited standard mathematics (Curry 1936 s6). It is the connective at the heart of the Curry s6 paradox: the Russell witness chi = [f]N(ff) negates a self-application, and the contradiction |- chi-chi = N(chi-chi) turns on a tacit, 'not even plausible' assumption about the FUNCTIONAL CHARACTER of negation - i.e. treating N as applicable outside its proper category (functionality.ttl's fnd:SelfApplicationGuard is the arrow-side quarantine of exactly that move, T7). N is authored here as a first-class connective of the logic sub-floor so the stratum is complete (P_r / N / ⊃ per Directive 20's maximal choice), carrying the witness fnd:negProvA = N(A). It reifies its operand by fnd:negatedProp edge existence, never a range-inferred type (the SP1 defang discipline)." .
+
+fnd:ProofTerm a owl:Class ;
+    rdfs:label "ProofTerm" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A proof term - an inhabitant witnessing an implication, the terms-as-proofs face of Curry-Howard: a proof of an implication A ⊃ B IS a function of type F(A,B) (Curry 1936 s5; the T7 fnd:ArrowType is that function type). SYN: cited standard mathematics (Curry 1936 s5). It carries fnd:provesImplication (the fnd:Implication it is a proof of) and fnd:proofTermType (its T7 fnd:ArrowType). Under the correspondence it is well typed exactly when its arrow type's fnd:hasDomainType is the fnd:WitnessType the proved implication's fnd:antecedent denotes (via the fnd:propType bridge) AND its arrow type's fnd:hasCodomainType is the type the proved implication's fnd:consequent denotes - the INHABITANT-level coincidence complementing the CONSTRUCTOR-level one q_curry_howard checks (fnd:CurryHowardCorrespondence). This makes 'a proof term is typed by the implication it claims' a graph fact: q_proof_term_typed / fnd:ProofTermTypedShape bite (conforms True->False) on a proof term whose fnd:proofTermType's domain/codomain diverge from its proved implication's antecedent/consequent (a proof term whose type isn't the implication it claims). The witness fnd:proofAnimalDog proves Animal ⊃ Dog and is typed F(Animal,Dog); the probe of record fnd:probeProof claims to prove Animal ⊃ Dog but is typed F(Dog,Animal). It is NOT a full proof/derivation object (the teeth check typing, not derivations - design s9 non-goal), it is the typed inhabitant the correspondence relates." .
+
+fnd:ImplicationLaw a owl:Class ;
+    rdfs:label "ImplicationLaw" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "One of Curry s5's K/C/W implication laws, reified - the implication-face of a T8 combinator, carrying fnd:lawCombinator (the T8 fnd:K / fnd:C / fnd:W whose structural rule it is: K=weakening, C=exchange, W=contraction) and fnd:lawFormula (the reified canonical fnd:Implication tree the law asserts) (Curry 1936 s5; Thm 5.8 shows every F-theorem holds for F' given exactly these K/C/W implication laws). SYN: cited standard mathematics (Curry 1936 s5). It makes the combinators.ttl s2 seam ('the K/C/W combinators ARE the structural rules of the implication face') a GRAPH FACT: fnd:lawCombinator links each law to the very T8 combinator individual whose reduction is its computational content, so the arrow-substrate combinator and the logic-face law are one object seen twice. The three canonical formulae are K = A ⊃ (B ⊃ A) (weakening: discard B, the outer antecedent A reappearing as the inner consequent - the implication-face of K x y = x), W = (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B) (contraction: the doubled A contracts - the face of W x y = x y y), and C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)) (exchange: A and B swap - the face of C x y z = x z y). q_implication_kcw / fnd:ImplicationKCWShape walk each law's fnd:lawFormula by fnd:antecedent / fnd:consequent edges and bite (conforms True->False) when a law's formula departs from its combinator's canonical shape; the probe of record injects a K-law whose formula is the bare A ⊃ B (not weakening)." .
+
+fnd:CurryHowardCorrespondence a owl:Class ;
+    rdfs:label "CurryHowardCorrespondence" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The functionality<->implication taiji reified - ONE lexeme with two glossary-scoped senses SIMULTANEOUSLY (Directive 16 polysemy): the ARROW sense (the exponential B^A = the T7 fnd:ArrowType F(A,B), the how-you-compute face) and the IMPLICATION sense (A ⊃ B = an fnd:Implication, the what-it-proves face), the SAME object (Curry 1936 s5: F is DEFINABLE as F' ≡ [x,y,z](u)(xu ⊃ y(zu)); Thm 5.8 proves every F-theorem holds for F' - the Curry-Howard ancestor, and the reflexive-seal shape the committed taiji atoms already use, physicalFacet interpretAs == formalFacet). SYN: cited standard mathematics (Curry 1936 s5). It carries fnd:arrowSense (an fnd:ArrowType, e.g. the committed F(Animal,Dog) fnd:arrowTypeAnimalDog reused from T7, NOT re-authored) and fnd:implicationSense (an fnd:Implication, e.g. Animal ⊃ Dog). The two senses COINCIDE - the taiji closes - iff the arrow type's fnd:hasDomainType is the fnd:WitnessType the implication's fnd:antecedent denotes (via the propositions-as-types bridge fnd:propType) AND the arrow type's fnd:hasCodomainType is the type the implication's fnd:consequent denotes. q_curry_howard / fnd:CurryHowardShape make this coincidence a graph fact, biting (conforms True->False) when the two senses diverge on either coordinate; the probe of record pairs F(Animal,Dog) with the divergent implication Dog ⊃ Animal. This is the arrow-pillar's contribution to the SP6 polysemy seeds: 'functionality' as one lexeme with an arrow-sense and an implication-sense glossary, exactly as 'colimit' and 'coproduct' are held (Directive 16)." .
+
+
+# =====================================================================================
+# (2) The proposition connective + law + correspondence properties (design s5; Curry s5/s6).
+# =====================================================================================
+
+fnd:antecedent a owl:ObjectProperty ;
+    rdfs:domain fnd:Implication ; rdfs:range fnd:Proposition ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "antecedent" ;
+    rdfs:comment "Relates an fnd:Implication A ⊃ B to its ANTECEDENT proposition A - the hypothesis, the type the corresponding function accepts (Curry 1936 s5). SYN. It is the CONTRAVARIANT coordinate of implication under the Curry-Howard taiji, corresponding to the T7 fnd:hasDomainType of the arrow sense F(A,B). The K/C/W law teeth read it (with fnd:consequent) to walk a reified formula tree and check the canonical shape by binding shared propositions via SPARQL variable identity - e.g. K = A ⊃ (B ⊃ A) requires the inner consequent to be the SAME node this antecedent binds; the Curry-Howard and proof-term teeth read it to check the antecedent's fnd:propType-denoted type matches the arrow domain. Read by edge existence over the reified implication, never a range-inferred class (the SP1 defang discipline)." .
+
+fnd:consequent a owl:ObjectProperty ;
+    rdfs:domain fnd:Implication ; rdfs:range fnd:Proposition ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "consequent" ;
+    rdfs:comment "Relates an fnd:Implication A ⊃ B to its CONSEQUENT proposition B - the conclusion, the type the corresponding function returns (Curry 1936 s5). SYN. It is the COVARIANT coordinate of implication under the Curry-Howard taiji, corresponding to the T7 fnd:hasCodomainType of the arrow sense F(A,B). The consequent is itself an fnd:Proposition, so it may be a nested implication (K's consequent B ⊃ A, W's antecedent's inner A ⊃ B), which is how the law formulae reify multi-level trees. The K/C/W law teeth read it (with fnd:antecedent) to check the canonical weakening/contraction/exchange shapes; the Curry-Howard and proof-term teeth read it to check the consequent's fnd:propType-denoted type matches the arrow codomain. Read by edge existence over the reified implication, never a range-inferred class (the SP1 defang discipline)." .
+
+fnd:negatedProp a owl:ObjectProperty ;
+    rdfs:domain fnd:Negation ; rdfs:range fnd:Proposition ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "negatedProp" ;
+    rdfs:comment "Relates an fnd:Negation N P to the single proposition P it negates (Curry 1936 s6, the negation operator N). SYN. Its operand is any fnd:Proposition, so a negation may negate an atomic proposition (the witness fnd:negProvA = N(A)) or a compound one; the Curry s6 Russell witness chi = [f]N(ff) negates a self-application, and the contradiction turns on the functional character of this N applied outside its category (the arrow-side quarantine fnd:SelfApplicationGuard, functionality.ttl T7). It records negation as a first-class unary connective completing the P_r / N / ⊃ logic stratum (Directive 20 maximal choice). Read by edge existence over the reified negation, never a range-inferred class (the SP1 defang discipline)." .
+
+fnd:propType a owl:ObjectProperty ;
+    rdfs:domain fnd:Proposition ; rdfs:range fnd:WitnessType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "propType" ;
+    rdfs:comment "The propositions-as-types bridge: relates an fnd:Proposition to the T7 fnd:WitnessType it DENOTES under Curry-Howard - the graph edge that makes 'a proposition IS a type' checkable (Curry 1936 s5; the propositions-as-types correspondence). SYN. On this floor fnd:propAnimal fnd:propType fnd:typeAnimal and fnd:propDog fnd:propType fnd:typeDog tie the taiji witness propositions to the committed T7 witness types (functionality.ttl), so the Curry-Howard teeth (q_curry_howard, q_proof_term_typed) can check that the arrow sense's domain/codomain (fnd:WitnessType nodes) COINCIDE with the implication sense's antecedent/consequent (fnd:Proposition nodes) - they read this bridge to cross from the proposition side to the type side. Its rdfs:range is the T7 fnd:WitnessType (the harmless type those nodes already carry, so rdfs range inference stamps nothing new and cannot defang the teeth); the teeth read this edge by existence, never a bare sh:class over the range (the SP1 defang discipline). Only the atomic taiji propositions carry it (the K/C/W law propositions propA/propB/propC do not - they are pure logic witnesses with no type binding)." .
+
+fnd:lawCombinator a owl:ObjectProperty ;
+    rdfs:domain fnd:ImplicationLaw ; rdfs:range fnd:Combinator ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "lawCombinator" ;
+    rdfs:comment "Relates an fnd:ImplicationLaw to the T8 fnd:Combinator whose implication-face / structural rule it is (Curry 1936 s5: the K/C/W implication laws are the logic face of the K/C/W combinators). SYN. fnd:lawK fnd:lawCombinator fnd:K (weakening, the face of K x y = x), fnd:lawW -> fnd:W (contraction, the face of W x y = x y y), fnd:lawC -> fnd:C (exchange, the face of C x y z = x z y). It makes the combinators.ttl s2 seam a GRAPH FACT - the arrow-substrate combinator (T8) and the logic-face law (T9) are ONE object seen twice - and is the discriminator the fnd:ImplicationKCWShape branches self-guard on (each branch matches fnd:lawCombinator on its combinator, then checks the canonical formula for that combinator). Its rdfs:range fnd:Combinator is the type fnd:K/fnd:C/fnd:W already carry, so rdfs range inference stamps nothing new and cannot defang the teeth; the teeth read this edge and the formula tree by existence, never a bare sh:class over the range (the SP1 defang discipline)." .
+
+fnd:lawFormula a owl:ObjectProperty ;
+    rdfs:domain fnd:ImplicationLaw ; rdfs:range fnd:Implication ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "lawFormula" ;
+    rdfs:comment "Relates an fnd:ImplicationLaw to the reified canonical fnd:Implication tree it asserts (Curry 1936 s5). SYN. fnd:lawK fnd:lawFormula fnd:implK (A ⊃ (B ⊃ A)), fnd:lawW -> fnd:implW ((A ⊃ (A ⊃ B)) ⊃ (A ⊃ B)), fnd:lawC -> fnd:implC ((A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C))). q_implication_kcw / fnd:ImplicationKCWShape walk this formula by fnd:antecedent / fnd:consequent and check it matches the combinator's canonical weakening/contraction/exchange shape, binding shared propositions by variable identity; the PROBE OF RECORD repoints a K-law's fnd:lawFormula to the bare fnd:implAB (A ⊃ B, not weakening - its consequent propB is atomic, not an implication whose consequent is the outer antecedent) so the K branch's inner FILTER NOT EXISTS fires and the tooth bites (conforms True->False). Read by edge existence over the reified law, never a range-inferred class (the SP1 defang discipline)." .
+
+fnd:provesImplication a owl:ObjectProperty ;
+    rdfs:domain fnd:ProofTerm ; rdfs:range fnd:Implication ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "provesImplication" ;
+    rdfs:comment "Relates an fnd:ProofTerm to the fnd:Implication A ⊃ B it is a proof OF (Curry 1936 s5, terms-as-proofs: a proof of A ⊃ B is a function of type F(A,B)). SYN. fnd:proofAnimalDog fnd:provesImplication fnd:implAnimalDog (Animal ⊃ Dog). q_proof_term_typed / fnd:ProofTermTypedShape read it (with fnd:proofTermType) to check the proved implication's fnd:antecedent / fnd:consequent are the types the proof term's arrow type accepts/returns (via fnd:propType); a proof term whose proved implication does not match its type is mistyped -> RED. The PROBE OF RECORD fnd:probeProof fnd:provesImplication fnd:implAnimalDog while fnd:proofTermType fnd:arrowTypeDogAnimal (claims to prove Animal ⊃ Dog but is typed F(Dog,Animal)) makes the domain clause fire. Read by edge existence over the reified proof term, never a range-inferred class (the SP1 defang discipline)." .
+
+fnd:proofTermType a owl:ObjectProperty ;
+    rdfs:domain fnd:ProofTerm ; rdfs:range fnd:ArrowType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "proofTermType" ;
+    rdfs:comment "Relates an fnd:ProofTerm to its TYPE - the T7 fnd:ArrowType F(A,B) that types it under Curry-Howard (Curry 1936 s5: a proof of A ⊃ B has type F(A,B)). SYN. fnd:proofAnimalDog fnd:proofTermType fnd:arrowTypeAnimalDog (F(Animal,Dog), reused from functionality.ttl, NOT re-authored). q_proof_term_typed / fnd:ProofTermTypedShape read it (with fnd:provesImplication) to check the arrow type's fnd:hasDomainType / fnd:hasCodomainType are the types the proved implication's antecedent/consequent denote (via fnd:propType); a proof term whose arrow type diverges from its proved implication is mistyped -> RED. Its rdfs:range is the committed T7 fnd:ArrowType (rdfs range inference stamps only the type those nodes already carry, so it cannot defang the teeth). Read by edge existence over the reified proof term, never a bare sh:class over the range (the SP1 defang discipline)." .
+
+fnd:arrowSense a owl:ObjectProperty ;
+    rdfs:domain fnd:CurryHowardCorrespondence ; rdfs:range fnd:ArrowType ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "arrowSense" ;
+    rdfs:comment "Relates an fnd:CurryHowardCorrespondence to its ARROW sense - the T7 fnd:ArrowType F(A,B) = the exponential B^A, the how-you-compute face of the taiji lexeme (Curry 1936 s5). SYN. fnd:chWitness fnd:arrowSense fnd:arrowTypeAnimalDog (F(Animal,Dog), reused from functionality.ttl, NOT re-authored - the pillar RECOGNIZES the committed arrow type as one face of the taiji). q_curry_howard / fnd:CurryHowardShape read it (with fnd:implicationSense) to check the arrow type's fnd:hasDomainType / fnd:hasCodomainType coincide with the implication sense's fnd:antecedent / fnd:consequent (via fnd:propType); a correspondence whose arrow and implication senses diverge -> RED. Its rdfs:range is the committed T7 fnd:ArrowType. Read by edge existence over the reified correspondence, never a bare sh:class over the range (the SP1 defang discipline)." .
+
+fnd:implicationSense a owl:ObjectProperty ;
+    rdfs:domain fnd:CurryHowardCorrespondence ; rdfs:range fnd:Implication ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "implicationSense" ;
+    rdfs:comment "Relates an fnd:CurryHowardCorrespondence to its IMPLICATION sense - the fnd:Implication A ⊃ B, the what-it-proves face of the taiji lexeme (Curry 1936 s5; A ⊃ B is the implication sense of the same lexeme whose arrow sense is the exponential B^A). SYN. fnd:chWitness fnd:implicationSense fnd:implAnimalDog (Animal ⊃ Dog). q_curry_howard / fnd:CurryHowardShape read it (with fnd:arrowSense) to check the implication's fnd:antecedent / fnd:consequent (via fnd:propType) coincide with the arrow type's domain/codomain; the probe of record repoints it to fnd:implDogAnimal (Dog ⊃ Animal) so the two senses diverge and the tooth bites (conforms True->False). Read by edge existence over the reified correspondence, never a range-inferred class (the SP1 defang discipline)." .
+
+
+# =====================================================================================
+# (3) Atomic proposition witnesses (corpus-agnostic v1, Directive 13): the K/C/W law variables
+# propA/propB/propC and the taiji variables propAnimal/propDog (bridged to the T7 witness types).
+# =====================================================================================
+
+fnd:propA a fnd:AtomicProposition ;
+    rdfs:label "propA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The first shared atomic witness proposition A - a meaning-free propositional variable over which the K/C/W implication laws are stated (corpus-agnostic v1, Directive 13). SYN worked example (Curry 1936 s5). It is the weakened/reappearing proposition in K = A ⊃ (B ⊃ A), the contracted (doubled) proposition in W = (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B), and one of the two swapped propositions in C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)). It has no meaning beyond carrying the laws - the propositional analogue of the T8 combinators' fnd:argX and the algebra tower's fnd:elemA." .
+
+fnd:propB a fnd:AtomicProposition ;
+    rdfs:label "propB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The second shared atomic witness proposition B - a meaning-free propositional variable over which the K/C/W implication laws are stated (corpus-agnostic v1, Directive 13). SYN worked example (Curry 1936 s5). It is the discarded proposition in K = A ⊃ (B ⊃ A) (weakening throws B away), the conclusion of the doubled implication in W = (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B), and the other swapped proposition in C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)). It has no meaning beyond carrying the laws - the propositional analogue of the T8 combinators' fnd:argY and the algebra tower's fnd:elemB." .
+
+fnd:propC a fnd:AtomicProposition ;
+    rdfs:label "propC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The third shared atomic witness proposition C - a meaning-free propositional variable over which the C (exchange) implication law is stated (corpus-agnostic v1, Directive 13). SYN worked example (Curry 1936 s5). It is the innermost conclusion of the exchange law C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)), held FIXED while A and B swap around it. It has no meaning beyond carrying the law - the propositional analogue of the T8 combinators' fnd:argZ and the algebra tower's fnd:elemC." .
+
+fnd:propAnimal a fnd:AtomicProposition ;
+    rdfs:label "propAnimal" ;
+    fnd:authority fnd:SYN ;
+    fnd:propType fnd:typeAnimal ;
+    rdfs:comment "The taiji witness proposition Animal - a meaning-free propositional variable bridged to the T7 witness type fnd:typeAnimal via fnd:propType (propositions-as-types) so the Curry-Howard teeth can check the arrow sense and implication sense coincide (corpus-agnostic v1, Directive 13). SYN worked example (Curry 1936 s5). It is the antecedent of the taiji implication fnd:implAnimalDog (Animal ⊃ Dog), and fnd:propType fnd:typeAnimal ties it to the domain of the arrow sense fnd:arrowTypeAnimalDog (F(Animal,Dog)) - the bridge that makes the coincidence (arrow domain = implication antecedent's type) a checkable graph fact. It has no meaning beyond carrying the correspondence." .
+
+fnd:propDog a fnd:AtomicProposition ;
+    rdfs:label "propDog" ;
+    fnd:authority fnd:SYN ;
+    fnd:propType fnd:typeDog ;
+    rdfs:comment "The taiji witness proposition Dog - a meaning-free propositional variable bridged to the T7 witness type fnd:typeDog via fnd:propType (propositions-as-types) so the Curry-Howard teeth can check the arrow sense and implication sense coincide (corpus-agnostic v1, Directive 13). SYN worked example (Curry 1936 s5). It is the consequent of the taiji implication fnd:implAnimalDog (Animal ⊃ Dog), and fnd:propType fnd:typeDog ties it to the codomain of the arrow sense fnd:arrowTypeAnimalDog (F(Animal,Dog)) - the bridge that makes the coincidence (arrow codomain = implication consequent's type) a checkable graph fact. It is also the antecedent of the probe implication fnd:implDogAnimal (Dog ⊃ Animal). It has no meaning beyond carrying the correspondence." .
+
+
+# =====================================================================================
+# (4) The reified implication formulae (design s5; Curry s5 K/C/W laws + the taiji). Left-to-right
+# each fnd:Implication carries fnd:antecedent / fnd:consequent; nested implications reify the trees.
+# =====================================================================================
+
+# --- K = A ⊃ (B ⊃ A) : weakening ---------------------------------------------------------------------
+fnd:implBA a fnd:Implication ;
+    rdfs:label "implBA" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propB ;
+    fnd:consequent fnd:propA ;
+    rdfs:comment "The reified implication B ⊃ A - fnd:antecedent fnd:propB, fnd:consequent fnd:propA (Curry 1936 s5). SYN worked example. It is the INNER consequent of the K (weakening) law formula K = A ⊃ (B ⊃ A): fnd:implK has fnd:propA as its antecedent and this node as its consequent, so the outer antecedent A reappears as THIS node's consequent - the weakening signature the fnd:ImplicationKCWShape K branch checks by binding both to the same SPARQL variable. It exists only as a sub-tree of fnd:implK, the non-vacuity substrate the K branch walks." .
+
+fnd:implK a fnd:Implication ;
+    rdfs:label "implK" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propA ;
+    fnd:consequent fnd:implBA ;
+    rdfs:comment "The reified canonical formula of the K (weakening) implication law: K = A ⊃ (B ⊃ A) - fnd:antecedent fnd:propA, fnd:consequent fnd:implBA (the inner B ⊃ A whose consequent is again A) (Curry 1936 s5, the implication-face of K x y = x: assume A, discard B, conclude A). SYN worked example. It is fnd:lawK's fnd:lawFormula. The fnd:ImplicationKCWShape K branch verifies exactly this structure: fnd:antecedent ?a, fnd:consequent an implication whose fnd:antecedent is some ?b and whose fnd:consequent is the SAME ?a - weakening made a graph fact. Repointing fnd:lawK fnd:lawFormula away from this node (e.g. to the bare fnd:implAB) makes the K branch bite." .
+
+# --- W = (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B) : contraction ------------------------------------------------------
+fnd:implAB a fnd:Implication ;
+    rdfs:label "implAB" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propA ;
+    fnd:consequent fnd:propB ;
+    rdfs:comment "The reified implication A ⊃ B - fnd:antecedent fnd:propA, fnd:consequent fnd:propB (Curry 1936 s5). SYN worked example. It plays two roles: it is the INNER consequent of the W law's antecedent (A ⊃ (A ⊃ B)) AND the CONSEQUENT of the whole W law ((A ⊃ (A ⊃ B)) ⊃ (A ⊃ B)) - the contraction that collapses the doubled A. It is ALSO the PROBE OF RECORD carrier for q_implication_kcw: injecting fnd:probeLawK fnd:lawCombinator fnd:K ; fnd:lawFormula fnd:implAB claims K = A ⊃ B (whose consequent propB is atomic, NOT an implication whose consequent is the outer antecedent), so the K branch's inner FILTER NOT EXISTS fires and the tooth bites (conforms True->False)." .
+
+fnd:implAAB a fnd:Implication ;
+    rdfs:label "implAAB" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propA ;
+    fnd:consequent fnd:implAB ;
+    rdfs:comment "The reified implication A ⊃ (A ⊃ B) - fnd:antecedent fnd:propA, fnd:consequent fnd:implAB (the inner A ⊃ B) (Curry 1936 s5). SYN worked example. It is the ANTECEDENT of the W (contraction) law formula W = (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B): the doubled A (this node's antecedent AND its consequent's antecedent are the SAME A) is what contracts to a single A in the law's consequent fnd:implAB. It exists only as a sub-tree of fnd:implW, the non-vacuity substrate the fnd:ImplicationKCWShape W branch walks." .
+
+fnd:implW a fnd:Implication ;
+    rdfs:label "implW" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:implAAB ;
+    fnd:consequent fnd:implAB ;
+    rdfs:comment "The reified canonical formula of the W (contraction) implication law: W = (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B) - fnd:antecedent fnd:implAAB, fnd:consequent fnd:implAB (Curry 1936 s5, the implication-face of W x y = x y y: a doubled hypothesis A contracts to one). SYN worked example. It is fnd:lawW's fnd:lawFormula. The fnd:ImplicationKCWShape W branch verifies exactly this structure: the antecedent is A ⊃ (A ⊃ B) (the same A twice) and the consequent is A ⊃ B (sharing that A and the B), all bound by SPARQL variable identity - contraction made a graph fact. Repointing fnd:lawW fnd:lawFormula away from this node makes the W branch bite." .
+
+# --- C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)) : exchange ---------------------------------------------------
+fnd:implBC a fnd:Implication ;
+    rdfs:label "implBC" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propB ;
+    fnd:consequent fnd:propC ;
+    rdfs:comment "The reified implication B ⊃ C - fnd:antecedent fnd:propB, fnd:consequent fnd:propC (Curry 1936 s5). SYN worked example. It is the INNER consequent of the C law's antecedent (A ⊃ (B ⊃ C)): fnd:implABC has fnd:propA as its antecedent and this node as its consequent. It exists only as a sub-tree of the C (exchange) law formula fnd:implC, the non-vacuity substrate the fnd:ImplicationKCWShape C branch walks - the source order (A before B) the exchange law swaps." .
+
+fnd:implABC a fnd:Implication ;
+    rdfs:label "implABC" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propA ;
+    fnd:consequent fnd:implBC ;
+    rdfs:comment "The reified implication A ⊃ (B ⊃ C) - fnd:antecedent fnd:propA, fnd:consequent fnd:implBC (the inner B ⊃ C) (Curry 1936 s5). SYN worked example. It is the ANTECEDENT of the C (exchange) law formula C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)): the source nesting A-then-B the exchange law permutes to B-then-A (fnd:implBAC) while holding the innermost C fixed. It exists only as a sub-tree of fnd:implC, the non-vacuity substrate the fnd:ImplicationKCWShape C branch walks." .
+
+fnd:implAC a fnd:Implication ;
+    rdfs:label "implAC" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propA ;
+    fnd:consequent fnd:propC ;
+    rdfs:comment "The reified implication A ⊃ C - fnd:antecedent fnd:propA, fnd:consequent fnd:propC (Curry 1936 s5). SYN worked example. It is the INNER consequent of the C law's consequent (B ⊃ (A ⊃ C)): fnd:implBAC has fnd:propB as its antecedent and this node as its consequent. It exists only as a sub-tree of the C (exchange) law formula fnd:implC, the non-vacuity substrate the fnd:ImplicationKCWShape C branch walks - the target order (A after B) the exchange law produces from the source A ⊃ (B ⊃ C)." .
+
+fnd:implBAC a fnd:Implication ;
+    rdfs:label "implBAC" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propB ;
+    fnd:consequent fnd:implAC ;
+    rdfs:comment "The reified implication B ⊃ (A ⊃ C) - fnd:antecedent fnd:propB, fnd:consequent fnd:implAC (the inner A ⊃ C) (Curry 1936 s5). SYN worked example. It is the CONSEQUENT of the C (exchange) law formula C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)): the target nesting B-then-A the exchange law produces from the source A-then-B (fnd:implABC), the innermost C held fixed. It exists only as a sub-tree of fnd:implC, the non-vacuity substrate the fnd:ImplicationKCWShape C branch walks." .
+
+fnd:implC a fnd:Implication ;
+    rdfs:label "implC" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:implABC ;
+    fnd:consequent fnd:implBAC ;
+    rdfs:comment "The reified canonical formula of the C (exchange) implication law: C = (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)) - fnd:antecedent fnd:implABC (source A-then-B), fnd:consequent fnd:implBAC (target B-then-A) (Curry 1936 s5, the implication-face of C x y z = x z y: the order of two hypotheses is exchanged). SYN worked example. It is fnd:lawC's fnd:lawFormula. The fnd:ImplicationKCWShape C branch verifies exactly this structure: antecedent A ⊃ (B ⊃ C), consequent B ⊃ (A ⊃ C), with A and B swapped and C held fixed - all four leaves bound by SPARQL variable identity so the swap is made a graph fact. Repointing fnd:lawC fnd:lawFormula away from this node makes the C branch bite." .
+
+# --- the taiji + probe implications ------------------------------------------------------------------
+fnd:implAnimalDog a fnd:Implication ;
+    rdfs:label "implAnimalDog" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propAnimal ;
+    fnd:consequent fnd:propDog ;
+    rdfs:comment "The taiji witness implication Animal ⊃ Dog - fnd:antecedent fnd:propAnimal, fnd:consequent fnd:propDog (Curry 1936 s5). SYN worked example. It is the IMPLICATION sense of the Curry-Howard witness fnd:chWitness, whose ARROW sense is the committed T7 fnd:arrowTypeAnimalDog (F(Animal,Dog)): via the fnd:propType bridge (propAnimal denotes typeAnimal, propDog denotes typeDog) the implication's antecedent/consequent coincide with the arrow's domain/codomain, so the taiji closes and q_curry_howard conforms. It is ALSO what the proof-term witness fnd:proofAnimalDog fnd:provesImplication (typed F(Animal,Dog))." .
+
+fnd:implDogAnimal a fnd:Implication ;
+    rdfs:label "implDogAnimal" ;
+    fnd:authority fnd:SYN ;
+    fnd:antecedent fnd:propDog ;
+    fnd:consequent fnd:propAnimal ;
+    rdfs:comment "The divergent probe implication Dog ⊃ Animal - fnd:antecedent fnd:propDog, fnd:consequent fnd:propAnimal (Curry 1936 s5). SYN worked example. It is lawful on its own and is NOT a sense of any conforming correspondence on the happy path; it exists only so the q_curry_howard / fnd:CurryHowardShape probe of record is a single-node injection: pairing fnd:probeCh fnd:arrowSense fnd:arrowTypeAnimalDog (arrow domain typeAnimal) with fnd:implicationSense THIS node (antecedent propDog, which denotes typeDog != typeAnimal) diverges on the domain, so the domain clause fires and the tooth bites (conforms True->False)." .
+
+
+# =====================================================================================
+# (5) The negation witness (Curry s6 - completes the P_r / N / ⊃ stratum, Directive 20 maximal choice).
+# =====================================================================================
+
+fnd:negProvA a fnd:Negation ;
+    rdfs:label "negProvA" ;
+    fnd:authority fnd:SYN ;
+    fnd:negatedProp fnd:propA ;
+    rdfs:comment "The witness negation N(A) - fnd:negatedProp fnd:propA (Curry 1936 s6, the negation operator N). SYN worked example. It exists so fnd:Negation and fnd:negatedProp are non-vacuous, completing the P_r / N / ⊃ logic stratum per the Directive-20 maximal choice. Negation is the connective at the heart of the Curry s6 paradox (chi = [f]N(ff), |- chi-chi = N(chi-chi)); the arrow-side quarantine of that self-application is functionality.ttl's fnd:SelfApplicationGuard (T7), so N here and the guard there enforce one discipline from two sides. It has no meaning beyond witnessing the connective - a meaning-free negation of the atomic witness A (corpus-agnostic v1, Directive 13)." .
+
+
+# =====================================================================================
+# (6) The K/C/W implication-law witnesses + the Curry-Howard correspondence + the proof-term witness.
+# =====================================================================================
+
+fnd:lawK a fnd:ImplicationLaw ;
+    rdfs:label "lawK" ;
+    fnd:authority fnd:SYN ;
+    fnd:lawCombinator fnd:K ;
+    fnd:lawFormula fnd:implK ;
+    rdfs:comment "The K (weakening) implication law: A ⊃ (B ⊃ A) (Curry 1936 s5, the implication-face of the T8 K combinator K x y = x). SYN worked example. fnd:lawCombinator fnd:K (the combinators.ttl seam: this law IS the structural rule of K) ; fnd:lawFormula fnd:implK (the reified A ⊃ (B ⊃ A) tree). It is a non-vacuity anchor for q_implication_kcw (FALSE on the pre-T9 graph). The fnd:ImplicationKCWShape K branch checks fnd:lawFormula is A ⊃ (B ⊃ A) with the inner consequent = the outer antecedent; the PROBE OF RECORD repoints an injected K-law's formula to the bare fnd:implAB (A ⊃ B, not weakening) so the branch bites." .
+
+fnd:lawW a fnd:ImplicationLaw ;
+    rdfs:label "lawW" ;
+    fnd:authority fnd:SYN ;
+    fnd:lawCombinator fnd:W ;
+    fnd:lawFormula fnd:implW ;
+    rdfs:comment "The W (contraction) implication law: (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B) (Curry 1936 s5, the implication-face of the T8 W combinator W x y = x y y). SYN worked example. fnd:lawCombinator fnd:W (the combinators.ttl seam: this law IS the structural rule of W) ; fnd:lawFormula fnd:implW (the reified (A ⊃ (A ⊃ B)) ⊃ (A ⊃ B) tree). It is a non-vacuity anchor for q_implication_kcw. The fnd:ImplicationKCWShape W branch checks fnd:lawFormula is the contraction structure - antecedent A ⊃ (A ⊃ B) (the doubled A), consequent A ⊃ B (sharing that A and B); repointing fnd:lawW fnd:lawFormula makes the W branch bite." .
+
+fnd:lawC a fnd:ImplicationLaw ;
+    rdfs:label "lawC" ;
+    fnd:authority fnd:SYN ;
+    fnd:lawCombinator fnd:C ;
+    fnd:lawFormula fnd:implC ;
+    rdfs:comment "The C (exchange) implication law: (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)) (Curry 1936 s5, the implication-face of the T8 C combinator C x y z = x z y). SYN worked example. fnd:lawCombinator fnd:C (the combinators.ttl seam: this law IS the structural rule of C) ; fnd:lawFormula fnd:implC (the reified (A ⊃ (B ⊃ C)) ⊃ (B ⊃ (A ⊃ C)) tree). It is a non-vacuity anchor for q_implication_kcw. The fnd:ImplicationKCWShape C branch checks fnd:lawFormula is the exchange structure - A and B swapped around the fixed innermost C; repointing fnd:lawC fnd:lawFormula makes the C branch bite." .
+
+fnd:chWitness a fnd:CurryHowardCorrespondence ;
+    rdfs:label "chWitness" ;
+    fnd:authority fnd:SYN ;
+    fnd:arrowSense fnd:arrowTypeAnimalDog ;
+    fnd:implicationSense fnd:implAnimalDog ;
+    rdfs:comment "The witness Curry-Howard correspondence (non-vacuity anchor for q_curry_howard, FALSE on the pre-T9 graph): the taiji lexeme whose ARROW sense is the committed T7 F(Animal,Dog) and whose IMPLICATION sense is Animal ⊃ Dog (Curry 1936 s5, F' ≡ [x,y,z](u)(xu ⊃ y(zu)), Thm 5.8). SYN worked example. fnd:arrowSense fnd:arrowTypeAnimalDog (reused from functionality.ttl, NOT re-authored) ; fnd:implicationSense fnd:implAnimalDog. The two senses COINCIDE: the arrow domain typeAnimal = the type propAnimal (the antecedent) denotes via fnd:propType, and the arrow codomain typeDog = the type propDog (the consequent) denotes - so the taiji closes and fnd:CurryHowardShape conforms. The probe of record fnd:probeCh pairs the same arrow sense with the divergent fnd:implDogAnimal (Dog ⊃ Animal), making the senses diverge." .
+
+fnd:proofAnimalDog a fnd:ProofTerm ;
+    rdfs:label "proofAnimalDog" ;
+    fnd:authority fnd:SYN ;
+    fnd:provesImplication fnd:implAnimalDog ;
+    fnd:proofTermType fnd:arrowTypeAnimalDog ;
+    rdfs:comment "The witness proof term (non-vacuity anchor for q_proof_term_typed, FALSE on the pre-T9 graph): a proof of Animal ⊃ Dog, typed F(Animal,Dog) (Curry 1936 s5, terms-as-proofs - a proof of A ⊃ B is a function of type F(A,B)). SYN worked example. fnd:provesImplication fnd:implAnimalDog (the implication it witnesses) ; fnd:proofTermType fnd:arrowTypeAnimalDog (its T7 arrow type, reused from functionality.ttl). It is WELL TYPED: the arrow domain typeAnimal = the type the proved antecedent propAnimal denotes (fnd:propType), and the arrow codomain typeDog = the type the proved consequent propDog denotes, so fnd:ProofTermTypedShape conforms. The probe of record fnd:probeProof keeps fnd:provesImplication fnd:implAnimalDog but repoints fnd:proofTermType to fnd:arrowTypeDogAnimal (F(Dog,Animal)) - a proof term whose type isn't the implication it claims - and the shape bites." .

@@ -1,0 +1,119 @@
+# =====================================================================================
+# records.ttl — the intensional record-class layer for the folded algebra spine (W2 · SP0, T-CLASSES).
+# =====================================================================================
+# The fold target (basicttl/primordial/type/**) is EXTENSIONAL: classes defined by rdfs:subClassOf +
+# prose + reified witness tables, ZERO owl:Restriction (D23 diagnostic; design §2b). This file mints the
+# INTENSIONAL record CLASSES that stratified doctrine (D24 A0: Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥
+# ProofArtifact) requires, using the closure.ttl seed-carrier owl:Restriction idiom.
+#
+# TWO-LADDER RULING (design §4, §7.2 #8; D26 two/three-ladder). Algebra ATOMS (rungs / axioms /
+# equations / signatures / operations) mint the mathematics 12-marker ladder
+#   urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:…
+# The record CLASSES they are rdf:type'd against live on closure.ttl's seed-carrier ladder
+#   …:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:<leaf>:record
+# and the gate/clause specs live on the consolidated.shacl.ttl core:entity gate ladder. Do NOT cross the
+# ladders. This file authors ONLY the record-class ladder.
+#
+# BRIDGE-NEVER-DUPLICATE (D24 TODO-11). closure.ttl's specimen:record (closure.ttl:411, parent, subClassOf
+# BFO_0000031), axiom:record (:431-433) and theorem:record (:421-425) are REUSED by IRI as rdf:type / parent
+# targets and are NOT re-declared here; they resolve when the seed-carrier floor is merged. The seven algebra
+# record classes below are minted parallel to them in the SAME descent with the SAME owl:Restriction idiom.
+#
+# [S] HONESTY (Praeriehund; §7.2 mint-more-than-runtime, PIVOTAL/pre-locked). closure.ttl's realized record
+# species are {specimen, construction, datatype, axiom, theorem, application, variable, binding:occurrence,
+# primordial:pair}:record — it carries NO theory / model / signature / equation / reduct / denotatum /
+# declaration record class. All seven leaves below are therefore [S] (no runtime precedent on the seed
+# ladder); each is authored by extending the reference record-class idiom and is flagged in its rdfs:comment
+# for the §7.2 maintainer sign-off packet (assembled by T-PANEL).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§2 "Intensional record
+# CLASSES", §2b, §7.2 #7/#10, B4). Plan: docs/superpowers/plans/…-spine-fold-plan.md (T-CLASSES).
+# RED->GREEN probe: probes/records_disjoint.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+# seed-carrier record-class ladder (closure.ttl:1-3, ns3 head + species leaf) — REUSED, never re-minted:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+# consolidated relation namespace (@rel = @P:relation; design §2, shapes/algebra.shapes.ttl):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+
+# -------------------------------------------------------------------------------------
+# theory:record — a presented Lawvere theory T=(S,Ω,E) (D24 A6). [S]
+# -------------------------------------------------------------------------------------
+rec:theory:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:cardinality    "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:signature ] ,
+        [ a owl:Restriction ; owl:minCardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:equation ] ;
+    skos:closeMatch rec:specimen:record ;
+    rdfs:comment "The intensional class of presented-theory records: a Lawvere theory T=(S,Omega,E) named as ONE stratified record (D24 A0 Theory plane, A6 algebraic-theory axiom — every structure is a model of a declared theory, NOT a subclass ladder of witness-defined classes). owl:Restriction teeth: exactly one @rel:signature (the shared Sigma) and at least one @rel:equation (the law set E is never empty). Parent seed-carrier class rec:specimen:record is REUSED by IRI (closure.ttl:411, bridge-never-duplicate), NOT re-declared. [S]: the seed ladder has no theory:record precedent (closure.ttl carries {specimen,construction,datatype,axiom,theorem,application,variable}:record only); minted parallel under the §7.2 #1 mint-more-than-runtime ruling and flagged for maintainer sign-off." .
+
+# -------------------------------------------------------------------------------------
+# model:record — a model (a set with operations) of a declared theory (D24 A6). [S]
+# -------------------------------------------------------------------------------------
+rec:model:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    rdfs:comment "The intensional class of model records: a model of a declared theory:record — a set (the @rel:carrier) equipped with the interpreted operation (the @rel:operation), each constrained cardinality-1 by an owl:Restriction. This is the Model plane of the D24 A0 stratification, kept distinct from the Theory plane (a model interprets a theory; it is not the theory). Per-rung model classes (T-MONOID etc., design §2b, B4 Plane-1 declaration-record) narrow this generic class with their own restrictions (e.g. monoid adds cardinality-1 @rel:identity:element) and their owl:disjointWith teeth. Parent rec:specimen:record REUSED by IRI (bridge-never-duplicate). [S]: no model:record precedent on the seed ladder; minted under §7.2 #1, flagged for sign-off." .
+
+# -------------------------------------------------------------------------------------
+# signature:record — a shared signature Sigma naming its operation symbols. [S]
+# -------------------------------------------------------------------------------------
+rec:signature:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:minCardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    rdfs:comment "The intensional class of signature records: a shared signature Sigma (the S,Omega half of a theory) naming the operation SYMBOLS with their declared arities (design §1.7 — sigOneBinary, sigMonoid, sigGroup, sigQuasigroup, sigLoop). owl:Restriction tooth: at least one @rel:operation (a signature that names no operation symbol is vacuous). The concrete operation-symbol atoms and their @rel:arity / @rel:domain / @rel:codomain are minted by T-SIG-OP (design §1.8); this class fixes only the intensional shape they populate. Parent rec:specimen:record REUSED by IRI. [S]: no signature:record precedent on the seed ladder, and the design's signature genus:algebraic token (§7.2 #6) is likewise unattested — both minted under §7.2 #1 and flagged for sign-off." .
+
+# -------------------------------------------------------------------------------------
+# equation:record — a reified law left=right (two-sided => TWO records). [S]
+# -------------------------------------------------------------------------------------
+rec:equation:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:left ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:right ] ;
+    rdfs:comment "The intensional class of equation records: one law of E reified as an ordered pair, exactly one @rel:left term and exactly one @rel:right term (t_left = t_right). The cardinality-1-on-left-AND-right teeth APPLY THE datatype:record cardinality-restriction idiom (closure.ttl:153-169, where datatype:record carries cardinality-1 on canonical:mapping / lexical:space / lexical:mapping / value:space / facets) — cited as the PATTERN because the reference has NO equation:record owl:Class; in closure.ttl left/right appear only as instance triples on category:identity case:zero/case:one (:182-211). A two-sided law (monoid identity e·x=x AND x·e=x; group inverse) mints TWO equation records, one per side (design §1.6, §3). Parent rec:specimen:record REUSED by IRI. [S] (§7.2 #7): minting a distinct equation:record class is the 'mint separate component:equation records' side of the open equation-identity decision; flagged for sign-off (the alternative is reusing the added-law axiom atom as the equation individual)." .
+
+# -------------------------------------------------------------------------------------
+# reduct:record — a forgetful theory-morphism child -> parent (D24 A6). [S]
+# -------------------------------------------------------------------------------------
+rec:reduct:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:reduct ] ;
+    rdfs:comment "The intensional class of reduct records: a forgetful theory-morphism from a child theory to the parent theory it reduces to (semigroup->magma, monoid->semigroup, group->monoid, …; design §1.9). The tower is theories + model-classes + reducts (D24 A6 — a subclass ladder of witness-defined classes is the forbidden collapse). owl:Restriction tooth: exactly one @rel:reduct (the parent theory the morphism forgets to). The obligation-counting extension morphism for two-sided laws (design §1.6, class:extension genus:obligation species:count:two) and the full reduct edge set are minted by T-REDUCT; this class fixes only the intensional shape. Parent rec:specimen:record REUSED by IRI. [S] (§7.2 #4): reduct:record and the design's order:forgetful / genus:theory reduct tokens are unattested; minted under §7.2 #1 and flagged for sign-off." .
+
+# -------------------------------------------------------------------------------------
+# denotatum:record — B4 Plane-2: the mathematical object, NO provenance. [S]
+# -------------------------------------------------------------------------------------
+rec:denotatum:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:identifier ] ;
+    owl:disjointWith rec:declaration:record ;
+    rdfs:comment "The intensional class of denotatum records (B4 LOCKED — the Plane-2 atom, §7.2 #10): the mathematical object itself, carrying its canonical @rel:identifier (cardinality-1), @rel:notation and source only, and — critically — NO provenance ('Group was not authored by an executor; the GroupTermRecord was', D24). Denotatum atoms mint the mathematics ladder kingdom:type:…:component:type:instance:canonical (design §1.4; group [V], others [D]) and are rdf:type'd against this class. owl:disjointWith rec:declaration:record is the two-planes distinction tooth: one individual can never be both the object and the record that declares it. The no-provenance-on-a-denotatum rule is enforced as a SHACL tooth by T-SHAPES (design §2g, gate V1 'no class as a provenance participant'), not as an OWL restriction here. Parent rec:specimen:record REUSED by IRI. [S]: no denotatum:record precedent on the seed ladder; minted under §7.2 #1/#10 and flagged for sign-off." .
+
+# -------------------------------------------------------------------------------------
+# declaration:record — B4 Plane-1: the record that declares (denotes) a denotatum. [S]
+# -------------------------------------------------------------------------------------
+rec:declaration:record a owl:Class ;
+    rdfs:subClassOf
+        rec:specimen:record ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:denotes ] ;
+    rdfs:comment "The intensional class of declaration records (B4 LOCKED — the Plane-1 atom, §7.2 #10): the model-class declaration record that carries the owl:Restriction bundle, the provenance quartet (created/modified/version/state + @rel:authority) and the owl:disjointWith teeth, and that @rel:denotes (cardinality-1) exactly one Plane-2 denotatum record. Declaration atoms mint the mathematics ladder kingdom:class:…:model:…:component:class:instance:canonical (design §2b) — DISTINCT from the denotatum atom's kingdom:type:…:component:type IRI. This is the plane where provenance lives (D24 Modular Option A+: provenance on every RECORD, never on a mathematical denotatum). owl:disjointWith rec:denotatum:record is asserted from the denotatum side (two-planes distinction tooth). Parent rec:specimen:record REUSED by IRI. [S]: no declaration:record precedent on the seed ladder; minted under §7.2 #1/#10 and flagged for sign-off." .
+
+# -------------------------------------------------------------------------------------
+# Disjointness teeth (design §2 / §2f; closure.ttl:431-433 REUSED verbatim).
+# axiom:record and theorem:record are REUSED closure.ttl IRIs (bridge-never-duplicate); this file
+# asserts ONLY the disjointness triple over them (theorem/axiom collapse = a SHACL violation, T-SHAPES).
+# The Yoneda-style theorem/certificate for a rung is a theorem:record + a certificate individual
+# (@typ:certificate, design §2f), NEVER an axiom:record — this tooth is what forbids the collapse.
+# (denotatum:record owl:disjointWith declaration:record is asserted on rec:denotatum:record above.)
+# -------------------------------------------------------------------------------------
+rec:axiom:record owl:disjointWith rec:theorem:record .

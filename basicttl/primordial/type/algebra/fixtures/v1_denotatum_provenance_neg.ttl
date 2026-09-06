@@ -1,0 +1,33 @@
+# =====================================================================================
+# v1_denotatum_provenance_neg.ttl — the FAILING NEGATIVE fixture for V1DenotatumHygieneShape
+# (W2 · SP0, T-SHAPES; V1 REFINED, design §4/§7.5, maintainer lock). The materialized RED
+# (D24: sh:conforms true alone is vacuous).
+# =====================================================================================
+# A DENOTATUM (rec:denotatum:record, B4 Plane-2 mathematical object) that WRONGLY carries provenance:
+# a @rel:created triple (the SINGLE injected violation). Merged onto the algebra data graph the graph
+# MUST NOT conform: V1DenotatumHygieneShape (sh:targetClass rec:denotatum:record) has maxCount 0 on
+# @rel:created (provenance NEVER on a denotatum — 'Group was not authored by an executor; the
+# GroupTermRecord was', D24; design §4 V1 REFINED / §7.5) and reddens. To ISOLATE the provenance
+# violation, the denotatum carries a valid fnd: alias bridge (skos:exactMatch) so BridgeShape does NOT
+# also fire — the ONLY tooth that bites is the V1 provenance-on-a-denotatum prohibition.
+#
+# This is the complement of the PERMITTED B4 model-record (owl:Class + rec:model:record + provenance,
+# legal OWL2 metaclass punning, EXEMPT): those are rec:declaration:record, disjoint from
+# rec:denotatum:record, so V1DenotatumHygieneShape never targets them.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type (rec:denotatum:record).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a denotatum WRONGLY carrying provenance (INVALID: @rel:created on a Plane-2 mathematical object) ---
+<urn:silmaril:fixture:algebra:v1:denotatum:provenance:negative>
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rel:notation   "denotatum wrongly carrying provenance" ;
+    rel:identifier "urn:silmaril:fixture:algebra:v1:denotatum:provenance:negative" ;
+    skos:exactMatch fnd:V1TestDenotatum ;  # a valid fnd: bridge so BridgeShape does NOT fire; isolates the provenance violation
+    rel:created "2026-09-06T00:00:00Z"^^xsd:dateTime .  # INJECTED VIOLATION: provenance never on a denotatum

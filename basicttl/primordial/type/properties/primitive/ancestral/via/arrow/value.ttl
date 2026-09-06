@@ -1,0 +1,24 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:silmaril:primordial:type:class:primitive:AncestralGroundingPath> model:field <urn:silmaril:primordial:type:property:primitive:AncestralViaArrow> .
+
+<urn:silmaril:primordial:type:class:property:primitive:AncestralViaArrowValue> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "The independently named value type of urn:silmaril:prim:#ancestralViaArrow. Its semantic parent is urn:silmaril:prim:#FormalArrow; the role remains distinct from other fields sharing that parent. The source range is retained separately for an explicit conversion gate. This nominal declaration does not admit a host literal or provide conversion or physical byte-closure evidence." ;
+    schema1:subClassOf primitive:FormalArrow ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/properties/primitive/ancestral/via/arrow/value.ttl" ;
+    model:propertyRole <urn:silmaril:primordial:type:property:primitive:AncestralViaArrow> .
+
+<urn:silmaril:primordial:type:property:primitive:AncestralViaArrow> a model:Field ;
+    model:cardinalityAuthority model:ProposedClassContract ;
+    model:multiplicity model:ExactlyOne ;
+    model:mutability model:Immutable ;
+    model:owner <urn:silmaril:primordial:type:class:primitive:AncestralGroundingPath> ;
+    model:range <urn:silmaril:primordial:type:class:property:primitive:AncestralViaArrowValue> ;
+    model:referenceKind model:ValueReference ;
+    model:sourcePredicate primitive:ancestralViaArrow ;
+    model:sourceRange primitive:FormalArrow .

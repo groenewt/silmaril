@@ -1,0 +1,586 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# spaces.ttl — Pillar 3: space constructs (W2 · SP0, Task T6).
+# =====================================================================================
+# The TOPOLOGY/GEOMETRY pillar (design s4; ledger/W2/algebra_foundation/04_space_constructs.md, read in
+# full). It has TWO honesty strata, tagged on EVERY atom via fnd:authority (design s0 / Directive 20):
+#
+#   LIFTED core (DS/PD) - the corpus's GENUINE, authored notion of space. Helios is "rich in space
+#   constructs used categorically, and deliberately poor in space constructs axiomatized as (X,tau)/(X,d)
+#   sets" (04 s0). Its authored space is the Grothendieck SITE (a category of regions + a coverage) carrying
+#   a presheaf/sheaf, plus the ONE fully-constructed finite space object, the perceptual tessellation
+#   T_f. So fnd:Site / fnd:Sheaf / fnd:Cover / fnd:LocalSection / fnd:MatchingFamily / fnd:sheafCondition /
+#   fnd:descent and fnd:PerceptualTessellation are LIFTED, cited file:line to the authored papers (25/01,
+#   19/05, whitepaper 05_carrier_towers_triad). fnd:Sheaf rdfs:subClassOf the LIFTED fnd:Presheaf
+#   (set_theory.ttl, T3, which explicitly says "T6 grows this class into the Site/Sheaf apparatus").
+#
+#   SYN point-set (cited standard math) - the classical (X,tau)/(X,d) tower the corpus REFUSES on its
+#   objects ("This page makes no claim about a point-set topology on Mittens", 19/05/03_cell_complex_
+#   pasting.tex:11-13,69-74; no inner product / no Riemannian tensor on colour, 08/13:425,443). That
+#   refusal is the RECORDED reason fnd:TopologicalSpace / fnd:MetricSpace / fnd:NormedSpace /
+#   fnd:InnerProductSpace are SYN, cited standard topology/metric geometry/linear algebra, NEVER a Helios
+#   lift (the Directive-19/20 precedent: math is fact and liftable, cite it, do not fake a lift). Per the
+#   maximal choice (Directive 20) they are authored NOW as teeth-proved atoms, ALONGSIDE the LIFTED core.
+#
+# The design's cross-pillar seams (04 D4/D5) are made graph edges: fnd:MetricSpace fnd:enrichedOver a
+# fnd:CommutativeMonoid (the Lawvere-enriched-category reading over ([0,inf],>=,+) ties the space pillar
+# DOWN onto the T4 algebra pillar); fnd:NormedSpace rdfs:subClassOf fnd:VectorSpace and fnd:InnerProductSpace
+# rdfs:subClassOf fnd:NormedSpace (a normed/inner-product space IS a vector space with added structure -
+# the algebra-space seam - so the SHARED q_vectorspace_axioms / fnd:VectorSpaceAxiomsShape tooth, T5,
+# covers their vector-space base and is NOT re-authored here, design s4).
+#
+# TEETH (all probe-injected, conforms/ASK True->False):
+#   q_sheaf_glues     / fnd:SheafGluesShape     - agreeing local sections glue to a UNIQUE global section.
+#   q_topology_axioms / fnd:TopologyAxiomsShape - tau contains empty/X, closed under finite intersection + union.
+#   q_metric_triangle / fnd:MetricTriangleShape - d satisfies identity / symmetry / triangle inequality.
+#   q_vectorspace_axioms (T5, SHARED) - the distinguishing vector-space axioms over a fnd:Field.
+#
+# Namespace fnd: <urn:silmaril:fnd:#>. Corpus-agnostic v1 (Directive 13): zero corpus instances - every
+# individual is a foundation-internal worked model (a two-open cover with an agreeing matching family and
+# its unique gluing; the discrete topology on {a,b}; the 3-point metric space {A,B,C} with d(A,B)=d(B,C)=1,
+# d(A,C)=2) that keeps the T6 teeth non-vacuous and provably biting under probe injection. The SP3
+# perceptual tessellation T_f (basicttl/crs/geometers.ttl) is RECOGNIZED, not rebuilt; T10 re-anchors the
+# geometers' coordinate planes onto fnd:VectorSpace and the metric/topology onto this pillar. Non-goals
+# (design s9, honest-red): general simplicial-sets-on-Delta, manifolds, fiber bundles, the sheaf Laplacian,
+# persistent homology (present ONLY in the mirrored external appendix-39 compass_artifact, never authored,
+# reference-only); the classical Boolean 2^X power set (the sieve-valued Omega is the authored object).
+# =====================================================================================
+
+
+# =====================================================================================
+# The LIFTED site/sheaf object properties (DS) — the reified equalizer-form sheaf-gluing apparatus.
+# rdfs:range/rdfs:domain are set precisely so inference=rdfs materialises only the intended types
+# (never cross-typing an OpenUnion row as an OpenIntersection, etc. — each reified row has its own
+# scoped predicate).
+# =====================================================================================
+
+fnd:sheafOnSite a owl:ObjectProperty ;
+    rdfs:domain fnd:Sheaf ; rdfs:range fnd:Site ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "Relates a fnd:Sheaf to the fnd:Site (category of regions + Grothendieck topology) it lives on - a sheaf is a presheaf F:C^op->V on a site C satisfying the gluing condition (helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/00_hyper00_typed_substrate_site_sheaf.tex:30-60). LIFTED (DS). Domain fnd:Sheaf, range fnd:Site." .
+
+fnd:sheafCondition a owl:ObjectProperty ;
+    rdfs:domain fnd:Sheaf ; rdfs:range fnd:Cover ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "Relates a fnd:Sheaf to a fnd:Cover on which it satisfies the EQUALIZER-FORM sheaf condition: F(U) is the equalizer of prod_i F(U_i) => prod_ij F(U_i cap U_j), i.e. local sections on the covering family glue to a unique global section iff they agree on the overlaps (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:30-52). LIFTED (DS). The reified equalizer datum is a fnd:MatchingFamily; q_sheaf_glues / fnd:SheafGluesShape make the agreement->unique-glue law a graph fact. Domain fnd:Sheaf, range fnd:Cover." .
+
+fnd:descent a owl:ObjectProperty ;
+    rdfs:domain fnd:Sheaf ; rdfs:range fnd:Site ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "Relates a fnd:Sheaf to the fnd:Site over which its DESCENT holds - the site-level extension of the equalizer sheaf condition, where the covering structure is explicit and the equalizer extends to a full descent condition (the 'sheaf -> descent' strengthening step, helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:92-110 the strengthening tower; developed in Volume 25). LIFTED (DS). Domain fnd:Sheaf, range fnd:Site." .
+
+fnd:coversRegion a owl:ObjectProperty ;
+    rdfs:domain fnd:Cover ; rdfs:range fnd:Set ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "Relates a fnd:Cover to the region U (a fnd:Set / site object) it covers - the target of the jointly covering family {U_i -> U} (helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/00_hyper00_typed_substrate_site_sheaf.tex:30-42, coverage admitting jointly covering families). LIFTED (DS). Domain fnd:Cover, range fnd:Set." .
+
+fnd:hasCoveringLeg a owl:ObjectProperty ;
+    rdfs:domain fnd:Cover ; rdfs:range fnd:Set ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "Relates a fnd:Cover to one covering open U_i (a fnd:Set / site object) of its jointly covering family {U_i -> U} - the inclusions U_i -> U whose sections are glued by the sheaf condition (helios/srcy/papers/06_topology_jepa/chapters/01_patch_cover_cocone/sections/01_cover_definition.tex:5-16, the jointly-surjective family). LIFTED (DS). Domain fnd:Cover, range fnd:Set." .
+
+fnd:overCover a owl:ObjectProperty ;
+    rdfs:domain fnd:MatchingFamily ; rdfs:range fnd:Cover ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "Relates a fnd:MatchingFamily (an agreeing family of local sections) to the fnd:Cover it is indexed by - the covering family whose parallel pair of restrictions the family equalizes. PD: derived from the LIFTED equalizer form (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:30-52). Domain fnd:MatchingFamily, range fnd:Cover." .
+
+fnd:familyOverA a owl:ObjectProperty ;
+    rdfs:domain fnd:MatchingFamily ; rdfs:range fnd:LocalSection ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "Relates a fnd:MatchingFamily to its FIRST local section s_1 (a fnd:LocalSection over the first covering open U_1) - one leg of the family prod_i F(U_i) whose overlap restriction must agree with the other leg's (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:30-52). PD. The unique gluing must restrict back to exactly this section (fnd:glueRestrictsToA). Domain fnd:MatchingFamily, range fnd:LocalSection." .
+
+fnd:familyOverB a owl:ObjectProperty ;
+    rdfs:domain fnd:MatchingFamily ; rdfs:range fnd:LocalSection ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "Relates a fnd:MatchingFamily to its SECOND local section s_2 (a fnd:LocalSection over the second covering open U_2) - the other leg of prod_i F(U_i). PD (derived from the LIFTED equalizer form, helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:30-52). The unique gluing must restrict back to exactly this section (fnd:glueRestrictsToB). Domain fnd:MatchingFamily, range fnd:LocalSection." .
+
+fnd:restrictionToOverlapA a owl:ObjectProperty ;
+    rdfs:domain fnd:MatchingFamily ; rdfs:range fnd:LocalSection ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "Relates a fnd:MatchingFamily to the restriction of its first section s_1 to the overlap U_1 cap U_2 - the image of s_1 under the restriction map r^F induced by the projection of the overlap (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:36-41). PD. The family AGREES on the overlap exactly when fnd:restrictionToOverlapA = fnd:restrictionToOverlapB (equality of the two parallel-pair reads); q_sheaf_glues reads this equality as the antecedent of the gluing law. Domain fnd:MatchingFamily, range fnd:LocalSection." .
+
+fnd:restrictionToOverlapB a owl:ObjectProperty ;
+    rdfs:domain fnd:MatchingFamily ; rdfs:range fnd:LocalSection ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "Relates a fnd:MatchingFamily to the restriction of its second section s_2 to the overlap U_1 cap U_2 - the second of the two parallel-pair restriction reads (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:36-41). PD. Agreement on the overlap is the equality fnd:restrictionToOverlapA = fnd:restrictionToOverlapB; a family whose two overlap reads DISAGREE has no apex (the categorical content of a failed gluing, helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:62-90) and is outside the gluing obligation. Domain fnd:MatchingFamily, range fnd:LocalSection." .
+
+fnd:hasGluing a owl:ObjectProperty ;
+    rdfs:domain fnd:MatchingFamily ; rdfs:range fnd:LocalSection ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "Relates a fnd:MatchingFamily to its GLUING - the unique global fnd:LocalSection over U that the equalizer produces from an agreeing family (the apex Mittens of the equalizer diagram, helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:40-52). PD. The sheaf condition requires this gluing to (a) EXIST for every agreeing family and (b) be UNIQUE (no two distinct gluings). q_sheaf_glues / fnd:SheafGluesShape enforce both: an agreeing family with no valid gluing, or a family with two distinct fnd:hasGluing values, is RED. Domain fnd:MatchingFamily, range fnd:LocalSection." .
+
+fnd:glueRestrictsToA a owl:ObjectProperty ;
+    rdfs:domain fnd:LocalSection ; rdfs:range fnd:LocalSection ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "Relates a gluing (a global fnd:LocalSection) to the restriction it produces on the first covering open U_1 - which, by the sheaf condition, must EQUAL the family's first section (fnd:familyOverA). PD: derived from the LIFTED equalizer form of the sheaf condition (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:40-52). q_sheaf_glues checks that the gluing restricts back to exactly the two legs it was glued from; the probe of record repoints this edge away from s_1 so the gluing no longer restricts correctly and the tooth bites. Domain fnd:LocalSection, range fnd:LocalSection." .
+
+fnd:glueRestrictsToB a owl:ObjectProperty ;
+    rdfs:domain fnd:LocalSection ; rdfs:range fnd:LocalSection ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "Relates a gluing (a global fnd:LocalSection) to the restriction it produces on the second covering open U_2 - which must EQUAL the family's second section (fnd:familyOverB) by the sheaf condition. PD. Together with fnd:glueRestrictsToA it witnesses that the unique global section restricts to the agreeing family it was amalgamated from (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:40-52). Domain fnd:LocalSection, range fnd:LocalSection." .
+
+
+# =====================================================================================
+# The LIFTED site/sheaf classes (DS/PD) — the corpus's GENUINE point-free notion of space.
+# =====================================================================================
+
+fnd:Site a owl:Class ;
+    rdfs:label "Site" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "A Grothendieck SITE - a category C of regions/opens whose arrows are inclusions U -> W (iff U subset-of W) together with a coverage admitting jointly covering families {U_i -> U}. It IS a generalized, POINT-FREE topology: 'the site is the base on which local semantic data can vary' (helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/00_hyper00_typed_substrate_site_sheaf.tex:30-48; the pretopology GENERATES a Grothendieck topology - 'membership, not pairwise naming alone, is the exact cover-admission predicate' (helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/01_site_of_mittens_history.tex:110-135), and 'Grothendieck topology != arbitrary surjection' (helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/01_site_of_mittens_history.tex:199)). LIFTED (DS): this is the strongest, most axiomatic space construct in the AUTHORED corpus, and the design's PROGENITOR 'space' (04 D2) - a space as a category with a gluing law, NOT a point-set (X,tau). The running example is (Op(X_Mittens), J_cov). A fnd:Sheaf lives on a fnd:Site (fnd:sheafOnSite); descent (fnd:descent) is the site-level extension of the equalizer sheaf condition. The classical point-set fnd:TopologicalSpace is a SYN specialization leaf (a site on a poset of opens with the discrete topology, 06/01/01_cover_definition.tex:15-16), never the progenitor." .
+
+fnd:Cover a owl:Class ;
+    rdfs:label "Cover" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "A COVERING FAMILY {U_i -> U}_{i in I} of a region U in a fnd:Site - a jointly covering / jointly-surjective family of inclusions, the datum a Grothendieck coverage admits (helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/00_hyper00_typed_substrate_site_sheaf.tex:35-42; the visual patch cover = jointly-surjective family union U_i = |I|, 'literally an open cover after giving the finite support the discrete topology', helios/srcy/papers/06_topology_jepa/chapters/01_patch_cover_cocone/sections/01_cover_definition.tex:5-16). LIFTED (DS). It carries fnd:coversRegion (the covered region U) and fnd:hasCoveringLeg (each covering open U_i). A cover produces the parallel pair of restrictions prod_i F(U_i) => prod_ij F(U_i cap U_j) whose equalizer is the sheaf condition (fnd:sheafCondition); a fnd:MatchingFamily is an agreeing family of sections indexed by a cover." .
+
+fnd:LocalSection a owl:Class ;
+    rdfs:label "LocalSection" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "A SECTION of a fnd:Sheaf over a region - an element of F(U) for some open U, i.e. a local assignment of semantic data to a region (a 'typed section' in the corpus's presheaf-of-typed-sections, helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/02_presheaf_of_typed_sections.tex:1-9; each leg of the Mittens diagram 'is itself read as a section of F over U_ell', helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:37-38). LIFTED (DS). Local sections restrict along inclusions (r^F_{W,U}: F(W)->F(U), contravariant); a fnd:MatchingFamily is a family of local sections (fnd:familyOverA / fnd:familyOverB) whose overlap restrictions (fnd:restrictionToOverlapA / fnd:restrictionToOverlapB) agree, and whose gluing (fnd:hasGluing) is a global local section over U that restricts back to each leg (fnd:glueRestrictsToA / fnd:glueRestrictsToB)." .
+
+fnd:MatchingFamily a owl:Class ;
+    rdfs:label "MatchingFamily" ;
+    fnd:authority fnd:PD ;
+    rdfs:comment "The reified EQUALIZER DATUM of the sheaf condition - a compatible (matching) family of local sections on a fnd:Cover: two local sections (fnd:familyOverA s_1, fnd:familyOverB s_2) together with their restrictions to the overlap (fnd:restrictionToOverlapA, fnd:restrictionToOverlapB), which AGREE exactly when those two restrictions are equal, plus the unique gluing (fnd:hasGluing) the equalizer produces. PD: proof-derived from the LIFTED equalizer form of the sheaf condition, F(U) = eq( prod_i F(U_i) => prod_ij F(U_i cap U_j) ) (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:30-52, the parallel-pair-of-restrictions diagram; the 'matching family' terminology and full site case are named at helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/04_matching_family_definition.tex:1-5). It reifies the corpus's own honesty caveat: absent the equalizer 'the apex is conjectured, not constructed' (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:151-157, the presheaf-as-function collapse). q_sheaf_glues / fnd:SheafGluesShape make the law a graph fact: every AGREEING matching family (restrictions equal) HAS a unique gluing that restricts back to its two legs; a failed gluing (two disagreeing overlap reads) has no apex and is outside the obligation, and a family with two distinct gluings violates uniqueness." .
+
+fnd:Sheaf a owl:Class ;
+    rdfs:label "Sheaf" ;
+    rdfs:subClassOf fnd:Presheaf ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "A SHEAF - a fnd:Presheaf F:C^op->V (or ->Set) on a fnd:Site that satisfies the sheaf-gluing condition: for every fnd:Cover {U_i -> U}, F(U) is the equalizer of the parallel pair prod_i F(U_i) => prod_ij F(U_i cap U_j), so local sections agreeing on overlaps glue to a UNIQUE global section (helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/00_hyper00_typed_substrate_site_sheaf.tex:44-60 'a latent sheaf as a functor F:C_H^op->V satisfying the chosen sheaf-gluing condition'; the equalizer form helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:30-52). LIFTED (DS); rdfs:subClassOf the LIFTED fnd:Presheaf (set_theory.ttl, T3, whose comment says 'T6 grows this class into the Site/Sheaf apparatus'). A sheaf STRENGTHENS a presheaf: a presheaf that merely assigns sets is NOT yet a sheaf ('does not infer that a presheaf is already a sheaf', helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/00_hyper00_typed_substrate_site_sheaf.tex:86); the strengthening is the equalizer requirement, and the further strengthening to a full site descent is fnd:descent (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:92-110). It carries fnd:sheafOnSite (the site), fnd:sheafCondition (the cover on which the equalizer holds) and fnd:descent (the site-level extension). q_sheaf_glues teeth-proves the gluing law over the reified fnd:MatchingFamily." .
+
+fnd:PerceptualTessellation a owl:Class ;
+    rdfs:label "PerceptualTessellation" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The native-Frame perceptual tessellation T_f = (V_f, E_f, F_f, w_f, l_f, e_f) - a finite triangular (simplicial) 2-complex: sampled colour vertices V_f (fnd:hasTessellationVertices), edges E_f, triangular faces F_f (2-simplices, fnd:hasTessellationFaces), a perceptual edge-weight map w_f: E_f -> R>=0 (fnd:hasEdgeWeightMap), a lightness-fibre declaration l_f, and an approximation-error receipt e_f, carrying the shortest-path graph metric d_f^T(u,v) = min over paths of sum w_f(v_i, v_{i+1}) (helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex:184-214, def:whitepaper-frame-perceptual-tessellation; already load-bearing in basicttl/crs/geometers.ttl as 'the archetype that DIMENSION IS PER-Frame/per-geometer'). LIFTED (DS): this is the corpus's ONE fully-constructed finite space object - a metric + simplicial complex in one. It RECOGNIZES the SP3 T_f (not rebuilt). Its AUTHORED HONESTY TEETH are part of the lift and are recorded here as active caveats (design 04 D3): it does NOT identify the mesh with colour space itself; without (w_f, l_f, e_f) 'the triangles are a presentation mesh and no perceptual claim is admitted' (05_carrier_towers_triad.tex:208-209); it 'does not assert that perceptual colour space is globally triangular, flat, Euclidean, or Riemannian' (:217-219); the observed strict inequality d(A,C) < d(A,B)+d(B,C) makes the metric NON-Riemannian (41/05, thm:41-colour-nonriemannian-obstruction) and colour speed carries 'no inner product, and hence no Riemannian tensor' (08/13:425,443). Identifying the tessellation WITH the space is the cheese-master 'analogy-as-identity collapse' the corpus refuses (19/05/03:11-13,69-74)." .
+
+
+# =====================================================================================
+# The SYN point-set space object properties — cited standard topology / metric geometry.
+# =====================================================================================
+
+fnd:hasCarrierSet a owl:ObjectProperty ;
+    rdfs:domain fnd:TopologicalSpace ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a fnd:TopologicalSpace (X,tau) to its underlying carrier set X (a fnd:Set) - the total space, which must itself be one of the opens (fnd:hasTotalOpen = X in tau). SYN, cited standard point-set topology. Domain fnd:TopologicalSpace, range fnd:Set." .
+
+fnd:hasOpenSet a owl:ObjectProperty ;
+    rdfs:domain fnd:TopologicalSpace ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a fnd:TopologicalSpace (X,tau) to a member of its topology tau (an OPEN set, a fnd:Set) - one of the distinguished subsets closed under finite intersection and arbitrary union. SYN, cited standard point-set topology. q_topology_axioms / fnd:TopologyAxiomsShape read fnd:hasOpenSet membership: the empty open and the total open must be members, and every reified intersection/union RESULT of two opens must also be a member (closure). Domain fnd:TopologicalSpace, range fnd:Set." .
+
+fnd:hasEmptyOpen a owl:ObjectProperty ;
+    rdfs:domain fnd:TopologicalSpace ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a fnd:TopologicalSpace to its EMPTY open set (the empty subset, always a member of tau by the topology axioms). SYN, cited standard point-set topology. q_topology_axioms requires the empty open to also be a fnd:hasOpenSet member. Domain fnd:TopologicalSpace, range fnd:Set." .
+
+fnd:hasTotalOpen a owl:ObjectProperty ;
+    rdfs:domain fnd:TopologicalSpace ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a fnd:TopologicalSpace (X,tau) to its TOTAL open set X (the whole carrier, always a member of tau by the topology axioms). SYN, cited standard point-set topology. q_topology_axioms requires the total open to also be a fnd:hasOpenSet member. Domain fnd:TopologicalSpace, range fnd:Set." .
+
+fnd:intersectionIn a owl:ObjectProperty ;
+    rdfs:domain fnd:OpenIntersection ; rdfs:range fnd:TopologicalSpace ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Scopes a reified fnd:OpenIntersection row to the fnd:TopologicalSpace whose finite-intersection-closure axiom it witnesses. SYN. Kept DISTINCT from fnd:unionIn so inference=rdfs never cross-types a union row as an intersection row (each reified closure witness has its own scoped predicate). Domain fnd:OpenIntersection, range fnd:TopologicalSpace." .
+
+fnd:intersectLeft a owl:ObjectProperty ;
+    rdfs:domain fnd:OpenIntersection ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:OpenIntersection to its LEFT operand open set (a fnd:Set). SYN. q_topology_axioms fires the intersection-closure clause only when BOTH fnd:intersectLeft and fnd:intersectRight are opens of the space, then checks the fnd:intersectResult is also an open. Domain fnd:OpenIntersection, range fnd:Set." .
+
+fnd:intersectRight a owl:ObjectProperty ;
+    rdfs:domain fnd:OpenIntersection ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:OpenIntersection to its RIGHT operand open set (a fnd:Set). SYN. See fnd:intersectLeft: both operands being opens is the antecedent of the finite-intersection-closure check. Domain fnd:OpenIntersection, range fnd:Set." .
+
+fnd:intersectResult a owl:ObjectProperty ;
+    rdfs:domain fnd:OpenIntersection ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:OpenIntersection to its RESULT set L cap R (a fnd:Set) - which, for tau to be closed under finite intersection, must itself be an open (a fnd:hasOpenSet of the space). SYN. The probe of record repoints an fnd:intersectResult from an open to fnd:setNonOpen (a set not in tau), making tau not closed under finite intersection so q_topology_axioms / fnd:TopologyAxiomsShape bite. Domain fnd:OpenIntersection, range fnd:Set." .
+
+fnd:unionIn a owl:ObjectProperty ;
+    rdfs:domain fnd:OpenUnion ; rdfs:range fnd:TopologicalSpace ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Scopes a reified fnd:OpenUnion row to the fnd:TopologicalSpace whose union-closure axiom it witnesses. SYN. Kept DISTINCT from fnd:intersectionIn so inference=rdfs never cross-types the two reified closure witnesses. Domain fnd:OpenUnion, range fnd:TopologicalSpace." .
+
+fnd:unionLeft a owl:ObjectProperty ;
+    rdfs:domain fnd:OpenUnion ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:OpenUnion to its LEFT operand open set (a fnd:Set). SYN. q_topology_axioms fires the union-closure clause only when both operands are opens of the space, then checks fnd:unionResult is also an open. Domain fnd:OpenUnion, range fnd:Set." .
+
+fnd:unionRight a owl:ObjectProperty ;
+    rdfs:domain fnd:OpenUnion ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:OpenUnion to its RIGHT operand open set (a fnd:Set). SYN. See fnd:unionLeft. Domain fnd:OpenUnion, range fnd:Set." .
+
+fnd:unionResult a owl:ObjectProperty ;
+    rdfs:domain fnd:OpenUnion ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:OpenUnion to its RESULT set L cup R (a fnd:Set) - which, for tau to be closed under (finite, and here representatively arbitrary) union, must itself be an open of the space. SYN. Domain fnd:OpenUnion, range fnd:Set." .
+
+fnd:hasPoint a owl:ObjectProperty ;
+    rdfs:domain fnd:MetricSpace ; rdfs:range fnd:SpacePoint ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a fnd:MetricSpace (X,d) to a POINT of its carrier X (a fnd:SpacePoint). SYN, cited standard metric geometry. The distances between points are reified as fnd:DistanceAssertion rows. Domain fnd:MetricSpace, range fnd:SpacePoint." .
+
+fnd:hasDistanceAssertion a owl:ObjectProperty ;
+    rdfs:domain fnd:MetricSpace ; rdfs:range fnd:DistanceAssertion ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a fnd:MetricSpace to a reified fnd:DistanceAssertion row d(x,y)=v (fnd:distFrom, fnd:distTo, fnd:distValue) - the graph-fact encoding of the metric function d: X x X -> [0,inf). SYN, cited standard metric geometry. q_metric_triangle / fnd:MetricTriangleShape walk these rows for the three axioms (identity d(x,x)=0, symmetry, triangle inequality). Domain fnd:MetricSpace, range fnd:DistanceAssertion." .
+
+fnd:enrichedOver a owl:ObjectProperty ;
+    rdfs:domain fnd:MetricSpace ; rdfs:range fnd:CommutativeMonoid ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a fnd:MetricSpace to the fnd:CommutativeMonoid it is ENRICHED OVER - the Lawvere reading of a metric space as a category enriched over the commutative monoid ([0,inf], >=, +), with the triangle inequality as arrow composition and d(x,x)=0 as the identity arrow (design 04 D4). SYN, cited standard enriched category theory (the enriched-category definition appears in Helios only in the mirrored external appendix-39 compass_artifact, never authored). This edge is the algebra-space SEAM: it grounds the space pillar DOWN onto the T4 fnd:CommutativeMonoid rung, making 'spaces are built from the algebra tower' (Directive 18: algebra <- set theory; spaces from both) a graph fact rather than a slogan. The enrichment base is fnd:nonnegRealsMonoid. Domain fnd:MetricSpace, range fnd:CommutativeMonoid." .
+
+fnd:distFrom a owl:ObjectProperty ;
+    rdfs:domain fnd:DistanceAssertion ; rdfs:range fnd:SpacePoint ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:DistanceAssertion to the SOURCE point x of the distance d(x,y) (a fnd:SpacePoint). SYN. Domain fnd:DistanceAssertion, range fnd:SpacePoint." .
+
+fnd:distTo a owl:ObjectProperty ;
+    rdfs:domain fnd:DistanceAssertion ; rdfs:range fnd:SpacePoint ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:DistanceAssertion to the TARGET point y of the distance d(x,y) (a fnd:SpacePoint). SYN. q_metric_triangle reads (distFrom, distTo, distValue) triples: the identity clause matches distFrom = distTo with a nonzero value; the symmetry clause pairs (x,y) with (y,x); the triangle clause joins (x,z),(x,y),(y,z). Domain fnd:DistanceAssertion, range fnd:SpacePoint." .
+
+fnd:hasTessellationVertices a owl:ObjectProperty ;
+    rdfs:domain fnd:PerceptualTessellation ; rdfs:range fnd:Set ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "Relates a fnd:PerceptualTessellation T_f to its finite set of sampled colour VERTICES V_f (a fnd:Set) - the vertex carrier of the finite perceptual approximation (helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex:185-201). LIFTED (DS). Domain fnd:PerceptualTessellation, range fnd:Set." .
+
+fnd:hasTessellationFaces a owl:ObjectProperty ;
+    rdfs:domain fnd:PerceptualTessellation ; rdfs:range fnd:Set ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "Relates a fnd:PerceptualTessellation T_f to its set of triangular FACES F_f (a fnd:Set) - the 2-simplices of the finite triangular complex (helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex:185-201). LIFTED (DS). Domain fnd:PerceptualTessellation, range fnd:Set." .
+
+fnd:hasEdgeWeightMap a owl:ObjectProperty ;
+    rdfs:domain fnd:PerceptualTessellation ; rdfs:range fnd:Function ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "Relates a fnd:PerceptualTessellation T_f to its perceptual EDGE-WEIGHT MAP w_f: E_f -> R>=0 (a fnd:Function) - the nonnegative weights whose shortest-path sums define the tessellation graph metric d_f^T (helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex:196-201). LIFTED (DS). Without (w_f, l_f, e_f) 'the triangles are a presentation mesh and no perceptual claim is admitted' (:208-209). Domain fnd:PerceptualTessellation, range fnd:Function." .
+
+
+# =====================================================================================
+# fnd:distValue — the datatype property carrying the numeric distance (SYN).
+# =====================================================================================
+
+fnd:distValue a owl:DatatypeProperty ;
+    rdfs:domain fnd:DistanceAssertion ; rdfs:range xsd:decimal ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Relates a reified fnd:DistanceAssertion to its numeric VALUE d(x,y) as an xsd:decimal in [0,inf) - the actual distance. SYN, cited standard metric geometry. q_metric_triangle / fnd:MetricTriangleShape do the numeric work over these values: FILTER(?v != 0) for the identity axiom on self-distances, FILTER(?v1 != ?v2) for symmetry across (x,y)/(y,x), and FILTER(?vxz > ?vxy + ?vyz) for the triangle inequality across a triple. The probe of record raises the d(A,C) value from 2 to 5 (> 1+1) so the triangle clause bites." .
+
+
+# =====================================================================================
+# The SYN point-set space classes — cited standard topology / metric geometry / linear algebra.
+# =====================================================================================
+
+fnd:TopologicalSpace a owl:Class ;
+    rdfs:label "TopologicalSpace" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A TOPOLOGICAL SPACE (X, tau) - a carrier set X (fnd:hasCarrierSet) with a topology tau (a family of OPEN subsets, fnd:hasOpenSet) satisfying the open-set axioms: (1) the empty set and X are open (fnd:hasEmptyOpen, fnd:hasTotalOpen); (2) tau is closed under ARBITRARY union; (3) tau is closed under FINITE intersection. SYN, cited standard point-set topology. This atom is SYN and NOT a Helios lift for a RECORDED reason (design s0, 04 D2): the corpus DELIBERATELY REFUSES point-set topology on its objects - 'This page makes no claim about a point-set topology on Mittens' and the cell-complex picture is 'an analogy, not an identity' (helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/03_cell_complex_pasting.tex:9-13,69-74); the GENUINE authored space is the point-free fnd:Site. Per the maximal choice (Directive 20) it is authored NOW as a teeth-proved atom: fnd:TopologyAxiomsShape / q_topology_axioms make the open-set axioms checkable graph facts over reified fnd:OpenIntersection / fnd:OpenUnion closure rows. It is a SPECIALIZATION LEAF of the fnd:Site progenitor (a site on a poset of opens with the discrete topology, 06/01/01_cover_definition.tex:15-16), never the progenitor itself. The witness fnd:topSpaceWitness is the discrete topology on X={a,b}." .
+
+fnd:OpenIntersection a owl:Class ;
+    rdfs:label "OpenIntersection" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A reified FINITE INTERSECTION row L cap R = result over a fnd:TopologicalSpace (fnd:intersectionIn) - the graph-fact encoding of one instance of the finite-intersection-closure axiom, with left operand (fnd:intersectLeft), right operand (fnd:intersectRight) and result (fnd:intersectResult). SYN, cited standard point-set topology. It exists so the closure axiom 'tau is closed under finite intersection' is a CHECKABLE graph fact rather than an unverifiable assertion: q_topology_axioms / fnd:TopologyAxiomsShape fire when the two operands are opens of the space but the result is NOT a fnd:hasOpenSet - the SP1 defang discipline (edge existence + membership, never a range-inference-vacuous sh:class). Kept distinct from fnd:OpenUnion (its own scoped predicates fnd:intersectionIn / fnd:intersectResult) so inference=rdfs cannot cross-type a union row as an intersection row." .
+
+fnd:OpenUnion a owl:Class ;
+    rdfs:label "OpenUnion" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A reified UNION row L cup R = result over a fnd:TopologicalSpace (fnd:unionIn) - the graph-fact encoding of one instance of the union-closure axiom, with left operand (fnd:unionLeft), right operand (fnd:unionRight) and result (fnd:unionResult). SYN, cited standard point-set topology. A topology is closed under ARBITRARY union; on a FINITE topology (the corpus-agnostic witness) arbitrary union reduces to finite union, so a reified pairwise-union row is a faithful representative check. q_topology_axioms / fnd:TopologyAxiomsShape fire when both operands are opens but the result is NOT a fnd:hasOpenSet. Kept distinct from fnd:OpenIntersection (its own scoped predicates) so inference=rdfs cannot cross-type the two reified closure witnesses." .
+
+fnd:MetricSpace a owl:Class ;
+    rdfs:label "MetricSpace" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A METRIC SPACE (X, d) - a carrier of points (fnd:hasPoint, fnd:SpacePoint) with a distance function d: X x X -> [0,inf) (reified as fnd:DistanceAssertion rows) satisfying the three metric axioms: (1) IDENTITY d(x,x)=0; (2) SYMMETRY d(x,y)=d(y,x); (3) the TRIANGLE INEQUALITY d(x,z) <= d(x,y)+d(y,z). SYN, cited standard metric geometry: in Helios metric spaces are USAGE only - metric feature codomains (A_k, delta_k) (06/03/03_metric_structure.tex:53-69), the perceptual tessellation graph metric d_f^T (helios/srcy/base/00_whitepaper/sections/00_helios_foundation/05_carrier_towers_triad.tex:196-201) - never an axiomatized (X,d) ATOM, so this is synthesized not lifted (04 s1.4). Per the maximal choice (Directive 20) it is teeth-proved NOW: fnd:MetricTriangleShape / q_metric_triangle make the three axioms checkable graph facts. It is ENRICHED OVER the commutative monoid ([0,inf],>=,+) (fnd:enrichedOver a fnd:CommutativeMonoid, design 04 D4) - the Lawvere reading that grounds the space pillar onto the T4 algebra tower (the triangle inequality IS arrow composition, d(x,x)=0 IS the identity arrow). The witness fnd:metricSpaceWitness is the 3-point space {A,B,C} with d(A,B)=d(B,C)=1, d(A,C)=2 (anchored on the tessellation's shortest-path metric shape, 04 D3)." .
+
+fnd:SpacePoint a owl:Class ;
+    rdfs:label "SpacePoint" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A POINT of a fnd:MetricSpace carrier X - the argument type of the distance function d: X x X -> [0,inf). SYN, cited standard metric geometry. It is a lightweight carrier element (distinct from the algebra-tower fnd:AlgebraElement and from the set-floor global element fnd:GlobalElement) whose only structure is participation in reified fnd:DistanceAssertion rows via fnd:distFrom / fnd:distTo. The witnesses fnd:mpA / fnd:mpB / fnd:mpC are the three points of the corpus-agnostic metric witness. Transfinite / continuum point sets are an honest-red deferral (design s9); v1 carries only finite worked point sets that keep q_metric_triangle non-vacuous and biting." .
+
+fnd:DistanceAssertion a owl:Class ;
+    rdfs:label "DistanceAssertion" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A reified DISTANCE ROW d(x,y) = v of a fnd:MetricSpace - the graph-fact encoding of one value of the metric function, with source point (fnd:distFrom), target point (fnd:distTo) and numeric value (fnd:distValue, an xsd:decimal in [0,inf)). SYN, cited standard metric geometry. It exists so the three metric axioms are CHECKABLE graph facts rather than assertions: q_metric_triangle / fnd:MetricTriangleShape walk these rows with numeric FILTERs (identity: distFrom = distTo with value != 0 -> RED; symmetry: (x,y,v1) and (y,x,v2) with v1 != v2 -> RED; triangle: (x,z),(x,y),(y,z) with d(x,z) > d(x,y)+d(y,z) -> RED). This is the SP1 defang discipline: edge existence over the reified rows plus a numeric FILTER, never a range-inference-vacuous sh:class." .
+
+fnd:NormedSpace a owl:Class ;
+    rdfs:label "NormedSpace" ;
+    rdfs:subClassOf fnd:VectorSpace ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A NORMED SPACE (V, ||.||) - a fnd:VectorSpace over a field (here R or C) equipped with a norm ||.||: V -> [0,inf) satisfying positive-definiteness (||v||=0 iff v=0), absolute homogeneity (||a.v|| = |a|.||v||) and the triangle inequality (||u+v|| <= ||u||+||v||). SYN, cited standard functional analysis: in Helios normed spaces are USAGE only ('normed observation space', 22/04/03_wave_observation_certificate.tex:10,20; 'normed signal space Y_ell', 07_science_wave_bfo_safety.tex:49-50), never an axiomatized atom (04 s1.7). rdfs:subClassOf fnd:VectorSpace makes explicit that a normed space IS a vector space with added metric structure - the algebra-space seam (design s4) - so the SHARED q_vectorspace_axioms / fnd:VectorSpaceAxiomsShape tooth (T5) covers its vector-space base and is not re-authored here. Every norm INDUCES a metric d(u,v) = ||u-v||, so a fnd:NormedSpace is also a fnd:MetricSpace by construction (noted, not asserted as a second subclass edge to avoid the diamond). v1 carries NO normed witness (the full norm axioms are an honest-red deferral per design s9, the teeth check the vector-space base + the metric/topology laws on their own witnesses); the class is authored for completeness of the maximal-depth floor and for later floors to specialize." .
+
+fnd:InnerProductSpace a owl:Class ;
+    rdfs:label "InnerProductSpace" ;
+    rdfs:subClassOf fnd:NormedSpace ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "An INNER PRODUCT SPACE (V, <.,.>) - a fnd:NormedSpace whose norm arises from an inner product <.,.>: V x V -> F that is conjugate-symmetric, linear in one argument and positive-definite (<v,v> >= 0, = 0 iff v=0), with the induced norm ||v|| = sqrt(<v,v>). SYN, cited standard functional analysis / linear algebra: in Helios the inner product appears only as a Gram matrix of graph eigenmodes (00a/08_lambda_blotto_node_arrow_engine/chapter.tex:452-456), and colour speed is authored to have 'no inner product, and hence no Riemannian tensor' (08/13:425,443) - an explicit REFUSAL of inner-product structure that is the recorded reason this atom is SYN, not lifted (04 s1.7, D3). rdfs:subClassOf fnd:NormedSpace (an inner-product space is a normed space whose norm is inner-product-induced), hence transitively a fnd:VectorSpace covered by the shared q_vectorspace_axioms tooth. v1 carries NO inner-product witness (an honest-red deferral per design s9); the class completes the maximal-depth space tower (VectorSpace -> NormedSpace -> InnerProductSpace) alongside the LIFTED Site/sheaf core." .
+
+
+# =====================================================================================
+# WITNESS 1 — the sheaf-gluing witness (LIFTED core): a two-open cover with an AGREEING matching
+# family s_1|overlap = s_2|overlap and its UNIQUE gluing (q_sheaf_glues / fnd:SheafGluesShape).
+# =====================================================================================
+
+fnd:regionU a fnd:Set ;
+    rdfs:label "regionU" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The region U (a site object / open) covered by fnd:coverWitness in the sheaf-gluing witness. SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness) (the covered whole of the equalizer diagram, helios/srcy/papers/19_mereology_as_colimit/chapters/05_atomic_colimit_constructions/sections/02_sheaf_condition_for_part_of.tex:30-52)." .
+
+fnd:regionU1 a fnd:Set ;
+    rdfs:label "regionU1" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The first covering open U_1 of fnd:coverWitness (a fnd:hasCoveringLeg). SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness); fnd:secA is the local section over it." .
+
+fnd:regionU2 a fnd:Set ;
+    rdfs:label "regionU2" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The second covering open U_2 of fnd:coverWitness (a fnd:hasCoveringLeg). SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness); fnd:secB is the local section over it." .
+
+fnd:coverWitness a fnd:Cover ;
+    rdfs:label "coverWitness" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The covering family {U_1, U_2 -> U} of the sheaf-gluing witness - fnd:coversRegion fnd:regionU with fnd:hasCoveringLeg fnd:regionU1 and fnd:regionU2. SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness) (a jointly covering family, helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/00_hyper00_typed_substrate_site_sheaf.tex:35-42). It indexes the matching family fnd:matchingFamilyWitness whose parallel-pair restrictions are equalized by the gluing." ;
+    fnd:coversRegion fnd:regionU ;
+    fnd:hasCoveringLeg fnd:regionU1 ;
+    fnd:hasCoveringLeg fnd:regionU2 .
+
+fnd:secA a fnd:LocalSection ;
+    rdfs:label "secA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The first local section s_1 in F(U_1) of the matching family. SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness). Its restriction to the overlap is fnd:secOverlap; the unique gluing fnd:secGlobal restricts back to it (fnd:glueRestrictsToA)." .
+
+fnd:secB a fnd:LocalSection ;
+    rdfs:label "secB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The second local section s_2 in F(U_2) of the matching family. SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness). Its restriction to the overlap is fnd:secOverlap (AGREES with s_1's, both equal fnd:secOverlap); the unique gluing fnd:secGlobal restricts back to it (fnd:glueRestrictsToB)." .
+
+fnd:secOverlap a fnd:LocalSection ;
+    rdfs:label "secOverlap" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The section in F(U_1 cap U_2) that BOTH s_1 and s_2 restrict to - the single agreed value on the overlap (fnd:restrictionToOverlapA = fnd:restrictionToOverlapB = fnd:secOverlap). SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness). The equality of the two overlap restrictions is what makes the family AGREEING (the antecedent of the sheaf gluing law)." .
+
+fnd:secGlobal a fnd:LocalSection ;
+    rdfs:label "secGlobal" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The UNIQUE global section in F(U) that the equalizer produces from the agreeing family - the apex of the sheaf condition. SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness). It restricts to s_1 on U_1 (fnd:glueRestrictsToA fnd:secA) and to s_2 on U_2 (fnd:glueRestrictsToB fnd:secB). The probe of record for q_sheaf_glues repoints fnd:glueRestrictsToA from fnd:secA to fnd:secB, so the gluing no longer restricts to the first leg and the tooth bites (conforms/ASK True->False)." ;
+    fnd:glueRestrictsToA fnd:secA ;
+    fnd:glueRestrictsToB fnd:secB .
+
+fnd:siteWitness a fnd:Site ;
+    rdfs:label "siteWitness" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The site (category of regions + coverage) of the sheaf-gluing witness - the base on which fnd:sheafWitness varies. SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness) (a point-free space, helios/srcy/papers/25_sheaf_gluing/chapters/01_sheaf_basics_local_sections/sections/00_hyper00_typed_substrate_site_sheaf.tex:30-48)." .
+
+fnd:sheafWitness a fnd:Sheaf ;
+    rdfs:label "sheafWitness" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The sheaf F of the gluing witness - fnd:sheafOnSite fnd:siteWitness, fnd:sheafCondition fnd:coverWitness (the equalizer holds on the cover), fnd:descent fnd:siteWitness (the site-level extension). SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness). As a fnd:Sheaf it is (via rdfs:subClassOf) a fnd:Presheaf, and is deliberately NOT owl:sameAs any element-set, so it also satisfies the T3 PIN guard fnd:PresheafNotSetShape." ;
+    fnd:sheafOnSite fnd:siteWitness ;
+    fnd:sheafCondition fnd:coverWitness ;
+    fnd:descent fnd:siteWitness .
+
+fnd:matchingFamilyWitness a fnd:MatchingFamily ;
+    rdfs:label "matchingFamilyWitness" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The AGREEING matching family of the sheaf-gluing witness - fnd:overCover fnd:coverWitness; fnd:familyOverA fnd:secA and fnd:familyOverB fnd:secB (the two local sections); fnd:restrictionToOverlapA fnd:secOverlap and fnd:restrictionToOverlapB fnd:secOverlap (the two overlap reads AGREE, both = fnd:secOverlap); fnd:hasGluing fnd:secGlobal (the unique amalgamation). SYN worked example (a corpus-agnostic instance of the lifted Site/Sheaf machinery, tagged SYN like every other model witness on the floor - fnd:metricSpaceWitness, fnd:topSpaceWitness). It conforms to q_sheaf_glues / fnd:SheafGluesShape (an agreeing family with a valid, unique gluing); the probe of record breaks fnd:secGlobal's fnd:glueRestrictsToA so this agreeing family loses its valid gluing and the tooth bites." ;
+    fnd:overCover fnd:coverWitness ;
+    fnd:familyOverA fnd:secA ;
+    fnd:familyOverB fnd:secB ;
+    fnd:restrictionToOverlapA fnd:secOverlap ;
+    fnd:restrictionToOverlapB fnd:secOverlap ;
+    fnd:hasGluing fnd:secGlobal .
+
+
+# =====================================================================================
+# WITNESS 2 — the topology witness (SYN): the DISCRETE topology on X={a,b},
+# tau = { empty, {a}, {b}, {a,b} } (q_topology_axioms / fnd:TopologyAxiomsShape).
+# =====================================================================================
+
+fnd:openEmpty a fnd:Set ;
+    rdfs:label "openEmpty" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The empty open set (the empty subset of X) of the discrete-topology witness fnd:topSpaceWitness. SYN worked example; the fnd:hasEmptyOpen of the space and a fnd:hasOpenSet member." .
+
+fnd:openA a fnd:Set ;
+    rdfs:label "openA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The singleton open {a} of the discrete-topology witness. SYN worked example; a fnd:hasOpenSet member. In the reified closure rows: {a} cap {b} = empty, {a} cap X = {a}, {a} cup {b} = X." .
+
+fnd:openB a fnd:Set ;
+    rdfs:label "openB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The singleton open {b} of the discrete-topology witness. SYN worked example; a fnd:hasOpenSet member." .
+
+fnd:openX a fnd:Set ;
+    rdfs:label "openX" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The total open X = {a,b} of the discrete-topology witness - both the fnd:hasCarrierSet and the fnd:hasTotalOpen of the space, and a fnd:hasOpenSet member. SYN worked example." .
+
+fnd:setNonOpen a fnd:Set ;
+    rdfs:label "setNonOpen" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A fnd:Set that is deliberately NOT a member of the discrete topology tau (NOT a fnd:hasOpenSet of fnd:topSpaceWitness) - the documented PROBE TARGET for q_topology_axioms / fnd:TopologyAxiomsShape: the probe of record repoints a reified fnd:OpenIntersection fnd:intersectResult from an open to this non-open set, so tau is no longer closed under finite intersection and the tooth bites (conforms/ASK True->False). In the committed GREEN witness nothing points to it, so it does not perturb any tooth. SYN." .
+
+fnd:topSpaceWitness a fnd:TopologicalSpace ;
+    rdfs:label "topSpaceWitness" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The discrete topology on X={a,b}: tau = { empty, {a}, {b}, {a,b} }. SYN worked example. fnd:hasCarrierSet fnd:openX; fnd:hasEmptyOpen fnd:openEmpty; fnd:hasTotalOpen fnd:openX; fnd:hasOpenSet openEmpty/openA/openB/openX. Every pairwise intersection and union of opens lands back in tau (reified below), and tau contains empty and X, so q_topology_axioms / fnd:TopologyAxiomsShape hold non-vacuously; the probe of record (an intersection result repointed to fnd:setNonOpen) makes the tooth bite." ;
+    fnd:hasCarrierSet fnd:openX ;
+    fnd:hasEmptyOpen fnd:openEmpty ;
+    fnd:hasTotalOpen fnd:openX ;
+    fnd:hasOpenSet fnd:openEmpty ;
+    fnd:hasOpenSet fnd:openA ;
+    fnd:hasOpenSet fnd:openB ;
+    fnd:hasOpenSet fnd:openX .
+
+fnd:ixAB a fnd:OpenIntersection ;
+    rdfs:label "ixAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified finite-intersection row {a} cap {b} = empty over fnd:topSpaceWitness. SYN worked example; the result fnd:openEmpty is an open, so closure holds. This is the PROBE-OF-RECORD row for q_topology_axioms: repointing its fnd:intersectResult from fnd:openEmpty to fnd:setNonOpen makes tau not closed under finite intersection." ;
+    fnd:intersectionIn fnd:topSpaceWitness ;
+    fnd:intersectLeft fnd:openA ;
+    fnd:intersectRight fnd:openB ;
+    fnd:intersectResult fnd:openEmpty .
+
+fnd:ixAX a fnd:OpenIntersection ;
+    rdfs:label "ixAX" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified finite-intersection row {a} cap X = {a} over fnd:topSpaceWitness. SYN worked example; the result fnd:openA is an open, so closure holds." ;
+    fnd:intersectionIn fnd:topSpaceWitness ;
+    fnd:intersectLeft fnd:openA ;
+    fnd:intersectRight fnd:openX ;
+    fnd:intersectResult fnd:openA .
+
+fnd:ixBX a fnd:OpenIntersection ;
+    rdfs:label "ixBX" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified finite-intersection row {b} cap X = {b} over fnd:topSpaceWitness. SYN worked example; the result fnd:openB is an open, so closure holds." ;
+    fnd:intersectionIn fnd:topSpaceWitness ;
+    fnd:intersectLeft fnd:openB ;
+    fnd:intersectRight fnd:openX ;
+    fnd:intersectResult fnd:openB .
+
+fnd:unAB a fnd:OpenUnion ;
+    rdfs:label "unAB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified union row {a} cup {b} = X over fnd:topSpaceWitness. SYN worked example; the result fnd:openX is an open, so union-closure holds." ;
+    fnd:unionIn fnd:topSpaceWitness ;
+    fnd:unionLeft fnd:openA ;
+    fnd:unionRight fnd:openB ;
+    fnd:unionResult fnd:openX .
+
+fnd:unAX a fnd:OpenUnion ;
+    rdfs:label "unAX" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The reified union row {a} cup X = X over fnd:topSpaceWitness. SYN worked example; the result fnd:openX is an open, so union-closure holds." ;
+    fnd:unionIn fnd:topSpaceWitness ;
+    fnd:unionLeft fnd:openA ;
+    fnd:unionRight fnd:openX ;
+    fnd:unionResult fnd:openX .
+
+
+# =====================================================================================
+# WITNESS 3 — the metric witness (SYN): the 3-point space {A,B,C} with d(A,B)=d(B,C)=1,
+# d(A,C)=2, self-distances 0 (q_metric_triangle / fnd:MetricTriangleShape), enriched over
+# the commutative monoid ([0,inf],>=,+) = fnd:nonnegRealsMonoid.
+# =====================================================================================
+
+fnd:realZero a fnd:AlgebraElement ;
+    rdfs:label "realZero" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The additive identity 0 of the commutative monoid ([0,inf], +, 0) fnd:nonnegRealsMonoid - the neutral of nonnegative-real addition (the metric enrichment base's unit). SYN worked example; the fnd:hasIdentityElement of fnd:nonnegRealsMonoid, so the Monoid-identity-EXISTENCE tooth (fnd:MonoidIdentityShape) is satisfied for this fnd:CommutativeMonoid (a fnd:Monoid) without reifying the (uncountable) additive Cayley table - the enrichment base has no fnd:BinaryOperationApplication rows, so the identity-GENUINENESS clause is vacuously satisfied while the EXISTENCE clause is met honestly (0 IS the identity of ([0,inf],+))." .
+
+fnd:nonnegRealsMonoid a fnd:CommutativeMonoid ;
+    rdfs:label "nonnegRealsMonoid" ;
+    fnd:authority fnd:SYN ;
+    fnd:hasIdentityElement fnd:realZero ;
+    rdfs:comment "The commutative monoid ([0,inf], +, 0) of nonnegative reals under addition - the Lawvere-enrichment BASE of a fnd:MetricSpace (design 04 D4): a metric space is a category enriched over ([0,inf],>=,+), with the triangle inequality as arrow composition and 0 as the identity. SYN, cited standard enriched category theory. It is an INSTANCE of the T4 fnd:CommutativeMonoid rung; its identity is the first-class element fnd:realZero (fnd:hasIdentityElement, so the Monoid-identity-EXISTENCE tooth is satisfied - a fnd:CommutativeMonoid that OMITTED its identity would go RED), while its (uncountable) additive Cayley table is NOT reified as T4 fnd:BinaryOperationApplication rows, so no operation-table tooth is scoped to it and the identity-genuineness clause is vacuous - it is a documented enrichment base, not a re-minted rung. fnd:metricSpaceWitness fnd:enrichedOver this monoid, making the algebra-space seam a graph edge." .
+
+fnd:mpA a fnd:SpacePoint ;
+    rdfs:label "mpA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Point A of the 3-point metric witness fnd:metricSpaceWitness. SYN worked example." .
+
+fnd:mpB a fnd:SpacePoint ;
+    rdfs:label "mpB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Point B of the 3-point metric witness. SYN worked example. B is the 'midpoint' through which the triangle A-B-C is checked: d(A,C)=2 = d(A,B)+d(B,C)=1+1 (the triangle inequality holds with equality)." .
+
+fnd:mpC a fnd:SpacePoint ;
+    rdfs:label "mpC" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "Point C of the 3-point metric witness. SYN worked example." .
+
+fnd:metricSpaceWitness a fnd:MetricSpace ;
+    rdfs:label "metricSpaceWitness" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The 3-point metric space {A,B,C} with d(A,B)=d(B,C)=1, d(A,C)=2 and self-distances 0 - a genuine metric (identity, symmetry, triangle all hold; the triangle A-B-C holds with equality). SYN worked example, anchored on the tessellation shortest-path metric shape (04 D3). fnd:hasPoint mpA/mpB/mpC; fnd:enrichedOver fnd:nonnegRealsMonoid (the algebra-space seam, D4); fnd:hasDistanceAssertion the nine reified rows below. It conforms to q_metric_triangle / fnd:MetricTriangleShape; the probe of record raises fnd:distAC fnd:distValue from 2 to 5 (5 > 1+1) so the triangle clause bites (conforms/ASK True->False)." ;
+    fnd:enrichedOver fnd:nonnegRealsMonoid ;
+    fnd:hasPoint fnd:mpA ;
+    fnd:hasPoint fnd:mpB ;
+    fnd:hasPoint fnd:mpC ;
+    fnd:hasDistanceAssertion fnd:distAA ;
+    fnd:hasDistanceAssertion fnd:distBB ;
+    fnd:hasDistanceAssertion fnd:distCC ;
+    fnd:hasDistanceAssertion fnd:distAB ;
+    fnd:hasDistanceAssertion fnd:distBA ;
+    fnd:hasDistanceAssertion fnd:distBC ;
+    fnd:hasDistanceAssertion fnd:distCB ;
+    fnd:hasDistanceAssertion fnd:distAC ;
+    fnd:hasDistanceAssertion fnd:distCA .
+
+fnd:distAA a fnd:DistanceAssertion ;
+    rdfs:label "distAA" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(A,A)=0 (identity axiom) over fnd:metricSpaceWitness. SYN worked example." ;
+    fnd:distFrom fnd:mpA ; fnd:distTo fnd:mpA ; fnd:distValue "0"^^xsd:decimal .
+
+fnd:distBB a fnd:DistanceAssertion ;
+    rdfs:label "distBB" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(B,B)=0 (identity axiom) over fnd:metricSpaceWitness. SYN worked example." ;
+    fnd:distFrom fnd:mpB ; fnd:distTo fnd:mpB ; fnd:distValue "0"^^xsd:decimal .
+
+fnd:distCC a fnd:DistanceAssertion ;
+    rdfs:label "distCC" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(C,C)=0 (identity axiom) over fnd:metricSpaceWitness. SYN worked example. The identity clause of q_metric_triangle fires if any self-distance is nonzero; the probe could target any self row, but the metric probe of record uses the triangle instead." ;
+    fnd:distFrom fnd:mpC ; fnd:distTo fnd:mpC ; fnd:distValue "0"^^xsd:decimal .
+
+fnd:distAB a fnd:DistanceAssertion ;
+    rdfs:label "distAB" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(A,B)=1 over fnd:metricSpaceWitness. SYN worked example. Paired with fnd:distBA (d(B,A)=1) for the symmetry axiom." ;
+    fnd:distFrom fnd:mpA ; fnd:distTo fnd:mpB ; fnd:distValue "1"^^xsd:decimal .
+
+fnd:distBA a fnd:DistanceAssertion ;
+    rdfs:label "distBA" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(B,A)=1 over fnd:metricSpaceWitness (symmetric to fnd:distAB). SYN worked example." ;
+    fnd:distFrom fnd:mpB ; fnd:distTo fnd:mpA ; fnd:distValue "1"^^xsd:decimal .
+
+fnd:distBC a fnd:DistanceAssertion ;
+    rdfs:label "distBC" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(B,C)=1 over fnd:metricSpaceWitness. SYN worked example. Paired with fnd:distCB for symmetry; a leg of the triangle A-B-C." ;
+    fnd:distFrom fnd:mpB ; fnd:distTo fnd:mpC ; fnd:distValue "1"^^xsd:decimal .
+
+fnd:distCB a fnd:DistanceAssertion ;
+    rdfs:label "distCB" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(C,B)=1 over fnd:metricSpaceWitness (symmetric to fnd:distBC). SYN worked example." ;
+    fnd:distFrom fnd:mpC ; fnd:distTo fnd:mpB ; fnd:distValue "1"^^xsd:decimal .
+
+fnd:distAC a fnd:DistanceAssertion ;
+    rdfs:label "distAC" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(A,C)=2 over fnd:metricSpaceWitness - the long side of the triangle A-B-C: 2 <= d(A,B)+d(B,C) = 1+1 (holds with equality). SYN worked example. This is the PROBE-OF-RECORD row for q_metric_triangle / fnd:MetricTriangleShape: raising its fnd:distValue from 2 to 5 makes d(A,C)=5 > 1+1, violating the triangle inequality so the tooth bites (conforms/ASK True->False)." ;
+    fnd:distFrom fnd:mpA ; fnd:distTo fnd:mpC ; fnd:distValue "2"^^xsd:decimal .
+
+fnd:distCA a fnd:DistanceAssertion ;
+    rdfs:label "distCA" ; fnd:authority fnd:SYN ;
+    rdfs:comment "d(C,A)=2 over fnd:metricSpaceWitness (symmetric to fnd:distAC). SYN worked example." ;
+    fnd:distFrom fnd:mpC ; fnd:distTo fnd:mpA ; fnd:distValue "2"^^xsd:decimal .

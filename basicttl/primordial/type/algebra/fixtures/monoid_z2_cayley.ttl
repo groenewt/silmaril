@@ -1,0 +1,69 @@
+# =====================================================================================
+# monoid_z2_cayley.ttl — the finite-table CERTIFICATE fixture (POSITIVE) for the monoid rung
+# (W2 · SP0, T-FIX; design §4 "the reified engine Cayley tables become finite:checked certificate
+# fixtures").
+# =====================================================================================
+# Z/2 under addition {e=0, a=1}, the complete reified Cayley table:
+#   e·e=e  e·a=a  a·e=a  a·a=e   (addition mod 2).
+# A genuine monoid (in fact an abelian group: each element is its own inverse), declared with a
+# two-sided identity e, and stamped with the D24 finite-table CERTIFICATE metadata @rel:proof:status
+# "finite:checked" (the table was exhaustively checked, not merely asserted) + @rel:validation:mode
+# "finite:table" (the law-witness mode is finite Cayley-table matching, mirroring the engine
+# group::validate). Typed rec:model:record so it is a ModelShape focus. Merged onto the algebra data
+# graph it MUST still conform (run-algebra-checks.sh step (b) positive polarity): the ModelShape
+# two-sided identity tooth, the SemigroupAssociativityShape, GroupInverseShape, the commutativity
+# shapes and LoopIdentityShape all pass over this correct, total, associative, commutative table;
+# MagmaClosureShape / CarrierGroundingShape are vacuous (no @rel:carrier:member / @rel:carrier
+# asserted). Its matching NON-TOTAL negative is fixtures/monoid_z2_cayley_negative.ttl (a product
+# escaping the declared carrier). D24 four-planes: this finite-table evidence lives UNDER fixtures/,
+# outside the ontology data glob and the CI data graph.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare, never an owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the finite:checked / finite:table certificate model: Z/2 with two-sided identity e ---
+<urn:silmaril:fixture:algebra:monoid:z2:cayley>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/2 under + — finite Cayley-table certificate (genuine monoid, identity e)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:e> ;
+    rel:validation:mode  "finite:table" ;
+    rel:proof:status     "finite:checked" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+
+# --- the reified Cayley cells (e·e=e, e·a=a, a·e=a, a·a=e) — a total, correct table ---
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:e> .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:a> .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:a> .
+<urn:silmaril:fixture:algebra:monoid:z2:cayley:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:cayley:elem:e> .

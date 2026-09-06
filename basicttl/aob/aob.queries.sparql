@@ -1,0 +1,612 @@
+# =====================================================================================
+# aob.queries.sparql — the executable acceptance suite for the AOB meta-ontology (W2 · SP2).
+# =====================================================================================
+# Each query is a named EXPECT-TRUE ASK. The runner (checks/run-aob-checks.sh) splits this file
+# on every "# EXPECT-TRUE <name>" marker, strips comment lines, evaluates the remaining SPARQL
+# against the merged DATA graph (meta + upper_anchor + octet_descent + tensor_block + value_colimit
+# + group_law + evidence_glossary — NOT the shapes graph), and requires every ASK to return true.
+# Each ASK is NON-VACUOUS: it carries a positive existence anchor so it returns FALSE on an empty
+# graph, and it is proven to flip True->False under the task's probe-of-record injection (the SHACL
+# mirror in aob.shapes.ttl catches the same probe, conforms=True->False). Later tasks APPEND their
+# EXPECT-TRUE blocks here (the runner auto-discovers them); the runner stays green after each task.
+# Namespace: aob: <urn:silmaril:aob:#>, grounding onto prim: <urn:silmaril:prim:#> (the SP1 floor).
+# =====================================================================================
+
+
+# EXPECT-TRUE q_progenitor_split : the two-family top_kind bifurcation is total, disjoint, addressable.
+#   Lifted from the Helios seed schema (concrete_anchor.spec.yaml top_kind: node /
+#   yoneda_hom_leg.spec.yaml top_kind: arrow): every AOB atom is EXACTLY ONE of the two progenitor
+#   families and carries its own aob:atomFamilyUrn (nothing crammed into a single node).
+#   DATA CONTRACT (meta.ttl): at least one ?wit a aob:AOBAtom exists (non-vacuity anchor); every
+#     ?a a aob:AOBAtom is exactly one of aob:ConcreteAnchor / aob:YonedaHomLeg (never both, never
+#     neither) and carries an aob:atomFamilyUrn. The witness pair aob:witnessAnchor (node,
+#     urn:silmaril:atom-family:node:concrete_anchor) and aob:witnessLeg (arrow,
+#     urn:silmaril:atom-family:arrow:yoneda_hom_leg) satisfy it.
+#   PROBE OF RECORD (must flip True->False): inject aob:bad a aob:AOBAtom, aob:ConcreteAnchor,
+#     aob:YonedaHomLeg (crammed both), or aob:bad2 a aob:AOBAtom with no family class.
+PREFIX aob: <urn:silmaril:aob:#>
+ASK {
+  ?wit a aob:AOBAtom .
+  FILTER NOT EXISTS {
+    ?a a aob:AOBAtom .
+    FILTER NOT EXISTS { { ?a a aob:ConcreteAnchor } UNION { ?a a aob:YonedaHomLeg } }
+  }
+  FILTER NOT EXISTS { ?a a aob:ConcreteAnchor, aob:YonedaHomLeg }
+  FILTER NOT EXISTS {
+    ?a a aob:AOBAtom .
+    FILTER NOT EXISTS { ?a aob:atomFamilyUrn ?f }
+  }
+}
+
+
+# EXPECT-TRUE q_sop_carrier : every arrow (aob:YonedaHomLeg) carries the full S/O/P carrier.
+#   Lifted verbatim from the yoneda_hom_leg seed (helios/01_data_src_specs/products/users/atoms.spec.yaml:
+#   source_node_urn / target_node_urn / cpo_process_iri): an arrow atom is one typed leg of a Yoneda
+#   hom-profile whose S=source_node_urn (aob:sourceNodeUrn), O=target_node_urn (aob:targetNodeUrn),
+#   P=cpo_process_iri (aob:cpoProcessIri) is the exact S/O/P triple SP3 lifts into the CRS. Each value
+#   is a URN-tower term (S/O ground into prim:URN, P into prim:QName; the arrow triple is a prim:Triple).
+#   DATA CONTRACT (meta.ttl): at least one ?wit a aob:YonedaHomLeg exists (non-vacuity anchor); every
+#     ?l a aob:YonedaHomLeg carries aob:sourceNodeUrn, aob:targetNodeUrn AND aob:cpoProcessIri. The
+#     witness aob:witnessLeg (S=urn:silmaril:atom:users:concrete_anchor:admin_create_parse,
+#     O=urn:silmaril:atom:users:concrete_anchor:actor, P=cceo:ModelingProcess) satisfies it.
+#   PROBE OF RECORD (must flip True->False): delete aob:witnessLeg aob:targetNodeUrn (an arrow missing O)
+#     -> aob:SopCarrierShape conforms=True->False, q_sop_carrier True->False.
+PREFIX aob: <urn:silmaril:aob:#>
+ASK {
+  ?wit a aob:YonedaHomLeg .
+  FILTER NOT EXISTS {
+    ?l a aob:YonedaHomLeg .
+    FILTER NOT EXISTS { ?l aob:sourceNodeUrn ?s ; aob:targetNodeUrn ?o ; aob:cpoProcessIri ?p }
+  }
+}
+
+
+# EXPECT-TRUE q_cco_bfo_anchor : the load-bearing CCO/BFO upper anchor (pattern-by-anchor, never inline).
+#   Lifted verbatim from the Layer-0 upper-anchor law (helios/01_data_src_specs/universal_anchors.spec.yaml,
+#   algebra_role: pure_seed, layer: 0): a node atom grounds via EXACTLY ONE cco:ont######## IRI matching
+#   the anchor pattern ^cco:ont[0-9]{8}$ (SIL_CCO_TTL_FILE, MergedAllCoreOntology.ttl per MD2); an arrow
+#   atom grounds via EXACTLY ONE cceo: process IRI matching ^cceo:[A-Za-z0-9_]+$ (SIL_CPO_TTL_FILE). The
+#   regex is NEVER inlined into the query: it is read from the referenced anchor node's aob:anchorPattern
+#   (a aob:patternAnchorUrn reference into the lifted universal_anchors), so the pattern lives in ONE place.
+#   Live external TTL resolution (does cco:ont00000958 actually resolve?) is a deferred W5 gate (MD6); the
+#   v1 tooth is cardinality-1..1 + pattern-via-anchor only.
+#   DATA CONTRACT (upper_anchor.ttl): at least one ?wn a aob:ConcreteAnchor carrying aob:ccoGroundingIri +
+#     aob:patternAnchorUrn exists (non-vacuity anchor, false on an empty graph); every ?n a
+#     aob:ConcreteAnchor carries EXACTLY ONE aob:ccoGroundingIri whose value REGEX-matches its referenced
+#     aob:patternAnchorUrn -> aob:anchorPattern (no two distinct CCO IRIs); every ?l a aob:YonedaHomLeg
+#     carries EXACTLY ONE aob:cpoProcessIri REGEX-matching its referenced aob:anchorPattern. The witness
+#     aob:witnessAnchor (aob:ccoGroundingIri "cco:ont00000958", patternAnchorUrn aob:anchor_cco_grounding_iri)
+#     and aob:witnessLeg (aob:cpoProcessIri "cceo:ModelingProcess", patternAnchorUrn aob:anchor_cpo_process_iri)
+#     satisfy it.
+#   PROBE OF RECORD (must flip True->False): (a) add a second aob:witnessAnchor aob:ccoGroundingIri
+#     "cco:ont00000001" (card-1..1 clause flips); (b) set the value to "cco:BOGUS" (fails the referenced
+#     pattern -> flips); (c) review probe: grep aob.shapes.ttl for any sh:pattern "...cco..."/"...cceo..."
+#     literal -> MUST be zero (the pattern lives only on the anchor node, never inline in the shape).
+PREFIX aob: <urn:silmaril:aob:#>
+ASK {
+  ?wn a aob:ConcreteAnchor ; aob:ccoGroundingIri ?wi ; aob:patternAnchorUrn ?wa .
+  FILTER NOT EXISTS {
+    ?n a aob:ConcreteAnchor .
+    FILTER NOT EXISTS {
+      ?n aob:ccoGroundingIri ?i ; aob:patternAnchorUrn ?anc .
+      ?anc aob:anchorPattern ?pat .
+      FILTER(REGEX(?i, ?pat))
+    }
+  }
+  FILTER NOT EXISTS {
+    ?n2 a aob:ConcreteAnchor ; aob:ccoGroundingIri ?i1, ?i2 .
+    FILTER(?i1 != ?i2)
+  }
+  FILTER NOT EXISTS {
+    ?l a aob:YonedaHomLeg .
+    FILTER NOT EXISTS {
+      ?l aob:cpoProcessIri ?p ; aob:patternAnchorUrn ?anc2 .
+      ?anc2 aob:anchorPattern ?pat2 .
+      FILTER(REGEX(?p, ?pat2))
+    }
+  }
+}
+
+
+# EXPECT-TRUE q_octet_descent : the source_sha256 atom identity is subatomic to the octet + the z-seed.
+#   Lifted from the AtomCommon Avro identity Helios names (source_sha256) but the papers facet lacks —
+#   the delta SP2 ADDS on lift (octet_descent.ttl). The digest is a prim:ByteVector of EXACTLY 32
+#   prim:Octets (each ordinal 0..255), byte-descending via SP1's prim:byteDescendsTo+ to the width-1
+#   prim:Bit floor, so the hash is NOT an opaque literal but a navigable carrier grounded in the SP1
+#   physical ladder. The z-coordinate seed (aob:zSeed) is a prim:Uint16 (the SP1 encoding, OWL-punned
+#   as a type) of the first two octets (octetPosition 0,1) — the exact seed SP1's README names for SP3.
+#   The runner loads only the 7 aob DATA TTLs (not the SP1 floor), so octet_descent.ttl echoes SP1's
+#   exact ByteVector->Octet->Nibble->Bit ladder edges as a grounding bridge (SP1's vocabulary, not
+#   invented) so prim:ByteVector prim:byteDescendsTo+ prim:Bit is verifiable in the aob graph.
+#   DATA CONTRACT (octet_descent.ttl): at least one ?d a aob:HashDigest exists (non-vacuity anchor,
+#     false on an empty graph); it carries EXACTLY 32 aob:digestOctet, each a prim:Octet with
+#     prim:ordinalMin 0 and prim:ordinalMax 255; it carries aob:zSeed ?z with ?z a prim:Uint16; and
+#     the ByteVector carrier byte-descends to prim:Bit. The witness aob:witnessDigest (bound to
+#     aob:witnessAnchor via aob:hasHashDigest) satisfies it.
+#   PROBE OF RECORD (must flip True->False): add a 33rd aob:digestOctet (count 32->33), OR set one
+#     octet's prim:ordinalMax to 256 (out of the 0..255 range) -> aob:OctetDescentShape
+#     conforms=True->False, q_octet_descent True->False.
+PREFIX aob:  <urn:silmaril:aob:#>
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  ?d a aob:HashDigest .
+  { SELECT ?d (COUNT(?o) AS ?n) WHERE { ?d aob:digestOctet ?o } GROUP BY ?d }
+  FILTER(?n = 32)
+  FILTER NOT EXISTS {
+    ?d aob:digestOctet ?ox .
+    FILTER NOT EXISTS { ?ox a prim:Octet ; prim:ordinalMin 0 ; prim:ordinalMax 255 }
+  }
+  ?d aob:zSeed ?z .
+  ?z a prim:Uint16 .
+  prim:ByteVector prim:byteDescendsTo+ prim:Bit .
+}
+
+
+# EXPECT-TRUE q_tensor_byte_order : the three-axis tensor block grounds into SP1 physical carriers + the byte_order progenitor.
+#   Lifted verbatim from the wave8 tensor: block (helios/00_src_specs/types/silmaril_wave8/yoneda_hom_leg.spec.yaml:
+#   space{cardinality,dimensions,bounded,max_size,bit_width,byte_width,alignment} / time{dynamics,ordering,
+#   monotonic,lifetime,byte_order,arithmetic} / value{interpret_as,domain.kind}). Every atom's tensor block
+#   grounds its time.byte_order into the byte_order AGNOSTIC PROGENITOR (aob:ByteOrderProgenitor, lifted from
+#   types.prelude.byte_order_{little,big,host,none}) - a child that in turn aob:groundsInByteOrder a SP1
+#   prim:ByteOrder individual (little->prim:LE, big->prim:BE, none->prim:EndianNeutral; host is provisional,
+#   runtime-resolved, with no SP1 sibling). Every block's space.bit_width aob:groundsInEncoding a SP1
+#   prim:PhysicalEncoding carrying that exact prim:bitWidth, so the tensor's byte field is not a free integer
+#   but a coordinate pinned to the floor's physical ladder. The runner loads only the 7 aob DATA TTLs, so
+#   tensor_block.ttl echoes the SP1 grounding facts it needs (prim:ByteOrder individuals; prim:StringUtf8 the
+#   octet-granular UTF-8 prose carrier, prim:bitWidth 8) using SP1's exact vocabulary, not invented shape.
+#   DATA CONTRACT (tensor_block.ttl): at least one ?wt a aob:TensorBlock with aob:ttByteOrder + aob:tsBitWidth
+#     + aob:groundsInEncoding exists (non-vacuity anchor, false on an empty graph); every ?t a aob:TensorBlock
+#     has aob:ttByteOrder ?bo where ?bo rdfs:subClassOf* aob:ByteOrderProgenitor and ?bo aob:groundsInByteOrder
+#     ?pbo with ?pbo a prim:ByteOrder; and every ?t aob:tsBitWidth ?bw ; aob:groundsInEncoding ?e where ?e a
+#     prim:PhysicalEncoding with prim:bitWidth ?bw. The witness aob:witnessTensorBlock (ttByteOrder
+#     aob:byteOrderNone -> prim:EndianNeutral; tsBitWidth 8 -> prim:StringUtf8) satisfies it.
+#   DEFECT-4: aob:ttByteOrder is now guarded by EXISTENCE + CARDINALITY (single-valued, maxCount 1) +
+#     UNIVERSAL well-formedness, so a rogue byte order cannot be masked by a conforming sibling.
+#   PROBE OF RECORD (must flip True->False): (a) point the witness block's aob:ttByteOrder at a fresh node NOT
+#     descended from aob:ByteOrderProgenitor -> aob:TensorByteOrderShape conforms=True->False, q True->False;
+#     (b) set the witness block aob:tsBitWidth 7 with aob:groundsInEncoding prim:StringUtf8 (no 7-bit encoding
+#     in the graph) -> aob:TensorByteOrderShape conforms=True->False, q_tensor_byte_order True->False;
+#     (c) add a SECOND rogue aob:ttByteOrder (a node not descended from the progenitor) alongside
+#     aob:byteOrderNone -> cardinality AND well-formedness clauses fire, q_tensor_byte_order True->False.
+PREFIX aob:  <urn:silmaril:aob:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  ?wt a aob:TensorBlock ;
+      aob:ttByteOrder ?wbo ;
+      aob:tsBitWidth ?wbw ;
+      aob:groundsInEncoding ?we .
+  # EXISTENCE: every block carries an aob:ttByteOrder.
+  FILTER NOT EXISTS { ?te a aob:TensorBlock . FILTER NOT EXISTS { ?te aob:ttByteOrder ?boe } }
+  # DEFECT-4 CARDINALITY: aob:ttByteOrder is design-single-valued (maxCount 1) - no block carries two
+  # distinct byte orders, so a rogue byte order cannot hide behind a conforming one.
+  FILTER NOT EXISTS { ?tc a aob:TensorBlock ; aob:ttByteOrder ?bo1 , ?bo2 . FILTER(?bo1 != ?bo2) }
+  # DEFECT-4 WELL-FORMEDNESS (universal): EVERY byte order is a progenitor child grounding a prim:ByteOrder.
+  FILTER NOT EXISTS {
+    ?tu a aob:TensorBlock ; aob:ttByteOrder ?bo .
+    FILTER NOT EXISTS {
+      ?bo rdfs:subClassOf* aob:ByteOrderProgenitor .
+      ?bo aob:groundsInByteOrder ?pbo .
+      ?pbo a prim:ByteOrder
+    }
+  }
+  FILTER NOT EXISTS {
+    ?t2 a aob:TensorBlock ;
+        aob:tsBitWidth ?bw ;
+        aob:groundsInEncoding ?e .
+    FILTER NOT EXISTS { ?e a prim:PhysicalEncoding ; prim:bitWidth ?bw }
+  }
+}
+
+
+# EXPECT-TRUE q_interpret_as_bridge : the tensor block's value.interpret_as bridges to the atom's formal facet (yang<->yin).
+#   Lifted from the wave8 tensor block's value.interpret_as coordinate (helios/00_src_specs/types/
+#   silmaril_wave8/yoneda_hom_leg.spec.yaml, value.interpret_as, e.g. types.prelude.interpret_as_utf8).
+#   The VALUE axis of the tensor block does not float free: aob:tvInterpretAs names the interpret_as
+#   type_urn coordinate, and aob:interpretBridge pins it to a SP1 prim:PhysicalEncoding whose
+#   prim:interpretAs is (a superclass-or-equal of) the atom's formal facet - the tensor's physical yang
+#   held by the atom's formal yin. For the endian-neutral UTF-8 prose witness the bridge is prim:StringUtf8
+#   (prim:interpretAs prim:String, the octet-granular prose carrier Task 5 already grounded tsBitWidth 8
+#   into) - NOT prim:Utf8/prim:Codepoint, because a String is a sequence OF codepoints (String is not a
+#   subclass of Codepoint), so only prim:StringUtf8 lets the atom's text/String formalFacet (supplied by
+#   Task 7) close the bridge via prim:formalFacet rdfs:subClassOf* prim:interpretAs. This is the joint
+#   Task6<->Task7 tooth (design note; plan Task 6 GREEN): Task 6 authors the bridge (aob:tvInterpretAs /
+#   aob:interpretBridge) and its non-vacuity anchor (a aob:TensorBlock carrying aob:interpretBridge exists),
+#   Task 7 supplies aob:aobValue with prim:formalFacet so the coverage clause activates fully. The coverage
+#   clause has teeth at BOTH stages: an interpretBridge whose interpretAs fails to cover the atom's
+#   formalFacet flips this ASK false the moment an aobValue is present.
+#   DATA CONTRACT (tensor_block.ttl): at least one ?wt a aob:TensorBlock ; aob:interpretBridge ?wbe exists
+#     (non-vacuity anchor, false on an empty graph); for EVERY atom ?a with aob:hasTensorBlock ?t and
+#     aob:aobValue ?v with prim:formalFacet ?f, EVERY aob:interpretBridge ?e of ?t has prim:interpretAs ?g
+#     with ?f rdfs:subClassOf* ?g. The witness aob:witnessTensorBlock (aob:interpretBridge prim:StringUtf8,
+#     prim:interpretAs prim:String) satisfies it; when Task 7 sets aob:witnessAnchor aob:aobValue with
+#     prim:formalFacet prim:String the coverage closes reflexively (String subClassOf* String).
+#   PROBE OF RECORD (must flip True->False): with an atom carrying an aob:aobValue whose prim:formalFacet is
+#     prim:String (the Task-7 witness / probe context), add aob:witnessTensorBlock aob:interpretBridge
+#     prim:Int32 (prim:interpretAs prim:Integer, NOT the text facet) -> aob:InterpretAsBridgeShape
+#     conforms=True->False, q_interpret_as_bridge True->False.
+PREFIX aob:  <urn:silmaril:aob:#>
+PREFIX prim: <urn:silmaril:prim:#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ASK {
+  ?wt a aob:TensorBlock ; aob:interpretBridge ?wbe .
+  FILTER NOT EXISTS {
+    ?a aob:hasTensorBlock ?t ; aob:aobValue ?v .
+    ?v prim:formalFacet ?f .
+    ?t aob:interpretBridge ?e .
+    FILTER NOT EXISTS { ?e prim:interpretAs ?g . ?f rdfs:subClassOf* ?g }
+  }
+}
+
+
+# EXPECT-TRUE q_aob_value_is_taiji : every atom's VALUE is an SP1 colimit-taiji prim:Primitive.
+#   The meta-functor into the floor (value_colimit.ttl): aob:aobValue : AOBAtom -> prim:Primitive maps
+#   every AOB atom onto an EXISTING SP1 colimit-taiji prim:Primitive (grep taiji.ttl -> prim:prim_String,
+#   the Text-tower atom whose prim:formalFacet is prim:String, since AOB prose atoms are UTF-8). SP2
+#   authors NO new prim:Realization / prim:Effect (keeps SP1's RealizationShape sh:in intact); it SELECTS
+#   an existing one. The atom's value IS an SP1 taiji atom (ologs-of-ologs, turtles all the way): the AOB
+#   olog object is itself a glued prim:Primitive whose formal yin is bound to its physical yang by SP1's
+#   realization rho - so aob:aobValue realizes the meta-layer edge into SP1's already-Yoneda-closed floor,
+#   not a re-materialised second presheaf category (YAGNI, design s6). The runner loads only the 7 aob DATA
+#   TTLs (not the SP1 floor), so value_colimit.ttl echoes the exact SP1 facts the tooth resolves against
+#   (prim:prim_String + prim:String + prim:StringUtf8ByteVector + prim:realize_String_Utf8ByteVector),
+#   transcribed VERBATIM from taiji.ttl / formal.ttl / realization.ttl (SP1's vocabulary + values, not
+#   invented shape) so the structural signature is verifiable in the aob graph the runner actually loads.
+#   DATA CONTRACT (value_colimit.ttl): at least one ?wa a aob:AOBAtom with aob:aobValue ?wv carrying
+#     prim:formalFacet / prim:physicalFacet / prim:gluedBy exists (non-vacuity anchor, false on an empty
+#     graph); every ?a a aob:AOBAtom has aob:aobValue ?v with prim:formalFacet ?f, prim:physicalFacet ?pe
+#     AND prim:gluedBy ?g - the defang-proof structural signature of a colimit-taiji prim:Primitive (never
+#     a bare sh:class prim:Primitive). Both witnesses (aob:witnessAnchor, aob:witnessLeg) carry
+#     aob:aobValue prim:prim_String, satisfying it.
+#   DEFECT-4: the check is now EXISTENCE + CARDINALITY (single-valued, maxCount 1) + UNIVERSAL
+#     well-formedness, so a malformed value cannot be masked by a conforming sibling.
+#   PROBE OF RECORD (must flip True->False): (a) point aob:witnessAnchor aob:aobValue at a node lacking
+#     prim:physicalFacet -> well-formedness clause; (b) add a SECOND malformed aob:witnessAnchor
+#     aob:aobValue (a bare node with no facets) alongside the good prim:prim_String -> cardinality AND
+#     well-formedness clauses; each -> aob:AtomValueShape conforms=True->False, q_aob_value_is_taiji
+#     True->False.
+PREFIX aob:  <urn:silmaril:aob:#>
+PREFIX prim: <urn:silmaril:prim:#>
+ASK {
+  ?wa a aob:AOBAtom ; aob:aobValue ?wv .
+  ?wv prim:formalFacet ?wf ; prim:physicalFacet ?wpe ; prim:gluedBy ?wg .
+  # EXISTENCE: every atom carries an aobValue.
+  FILTER NOT EXISTS { ?a a aob:AOBAtom . FILTER NOT EXISTS { ?a aob:aobValue ?v } }
+  # DEFECT-4 CARDINALITY: aob:aobValue is design-single-valued (maxCount 1) - no atom carries two distinct
+  # values, so a malformed value cannot hide behind a conforming one.
+  FILTER NOT EXISTS { ?a2 a aob:AOBAtom ; aob:aobValue ?v1 , ?v2 . FILTER(?v1 != ?v2) }
+  # DEFECT-4 WELL-FORMEDNESS (universal): EVERY aobValue carries the full colimit-taiji signature.
+  FILTER NOT EXISTS {
+    ?a3 a aob:AOBAtom ; aob:aobValue ?v3 .
+    FILTER NOT EXISTS { ?v3 prim:formalFacet ?f ; prim:physicalFacet ?pe ; prim:gluedBy ?g }
+  }
+}
+
+
+# EXPECT-TRUE q_group_law : the sealed group of an atom + its companions is a group (identity/compose/inverse).
+#   Lifted from the PaperSection apex carrying companion_atoms[] (helios/papers_00_data_src_specs/.../
+#   07_index_category_anatomy/sections/02_cocone_compatibility_inventory.spec.yaml: type_node PaperSection,
+#   fields.companion_atoms = [olog_box, decomposition_step, concrete_anchor, yoneda_hom_leg,
+#   cheese_trap_immunity, circuit_imprint_tensor]) and the Replacement arrow (helios/00_src_specs/types/
+#   papers/relational/replacement.spec.yaml: an arrow from a deprecated term to its canonical replacement,
+#   grounded cceo:Classification). The sealed group is a monoid/group object: the BASE atom IS the group
+#   identity (aob:groupIdentity); every companion COMPOSES ONTO it (aob:composesOnto, associative — the
+#   cocone legs of the PaperSection); RETRACT is the inverse (aob:retracts, the Replacement/superseded
+#   witness). The colimit apex is ONE atom (= the identity). This is the LOCAL / per-primitive glossary
+#   sense of the polysemous "colimit" (Directive 16), whose universal property is the separate earned tooth
+#   q_colimit_universal, referenced through SP6 (never bare).
+#   DATA CONTRACT (group_law.ttl): at least one ?wg a aob:SealedGroup exists (non-vacuity anchor, false on
+#     an empty graph); for EVERY ?g a aob:SealedGroup with aob:groupIdentity ?b, EVERY aob:companionAtom ?c
+#     of ?g aob:composesOnto ?b (a companion composes onto the identity, never onto another companion); and
+#     EVERY aob:retracts arrow in the graph has a target ?x a aob:AOBAtom (the inverse points at a real atom).
+#     The witness aob:witnessGroup (groupIdentity aob:witnessAnchor; companions aob:witnessDescription +
+#     aob:witnessExample, each composesOnto aob:witnessAnchor; aob:witnessReplacement retracts
+#     aob:witnessDescription) satisfies it.
+#   DEFECT-2: the retract INVERSE is now genuine — a self-retract (?r aob:retracts ?r) or a retract whose
+#     target composesOnto no base (inverts no real composition) is caught. ASSOCIATIVITY is a separate
+#     tooth (q_group_associativity).
+#   PROBE OF RECORD (must flip True->False): (a) rewire aob:witnessExample aob:composesOnto
+#     aob:witnessDescription (composing onto a NON-identity companion) -> aob:GroupLawShape
+#     conforms=True->False, q_group_law True->False; (b) add aob:witnessReplacement aob:retracts
+#     aob:witnessReplacement (a self-retract) -> aob:GroupLawShape conforms=True->False, q_group_law
+#     True->False.
+PREFIX aob: <urn:silmaril:aob:#>
+ASK {
+  ?wg a aob:SealedGroup .
+  FILTER NOT EXISTS {
+    ?g a aob:SealedGroup ; aob:companionAtom ?c ; aob:groupIdentity ?b .
+    FILTER NOT EXISTS { ?c aob:composesOnto ?b }
+  }
+  FILTER NOT EXISTS {
+    ?r aob:retracts ?x .
+    FILTER NOT EXISTS { ?x a aob:AOBAtom }
+  }
+  # DEFECT-2 genuine INVERSE: no self-retract (an atom cannot be its own inverse).
+  FILTER NOT EXISTS { ?rs aob:retracts ?xs . FILTER(?rs = ?xs) }
+  # DEFECT-2 genuine INVERSE: a retract must UNDO a real composition (its target composesOnto some base).
+  FILTER NOT EXISTS { ?ri aob:retracts ?xi . FILTER NOT EXISTS { ?xi aob:composesOnto ?bb } }
+}
+
+
+# EXPECT-TRUE q_group_associativity : the sealed-group composition is ASSOCIATIVE ((a.b).c == a.(b.c)).
+#   DEFECT-2 hardening (group_law.ttl): the group operation is reified as aob:Composition (aob:compLeft
+#   composed with aob:compRight -> aob:compResult), so associativity — asserted for aob:composesOnto but
+#   never tested — becomes a checkable graph fact. For a triple (a,b,c) the two bracketings (a.b).c and
+#   a.(b.c) must evaluate to the same result. The witness table (a.b=e, e.c=e, b.c=e, a.e=e over identity
+#   e=aob:witnessAnchor, a=aob:witnessDescription, b=aob:witnessExample, c=aob:witnessReplacement) makes
+#   both bracketings of (a,b,c) evaluate to e.
+#   DATA CONTRACT (group_law.ttl): the four composition rows exist (non-vacuity anchor, false on an empty
+#     graph and before the table is authored); NO triple (a,b,c) has (a.b).c != a.(b.c).
+#   PROBE OF RECORD (must flip True->False): change aob:comp_a_bc aob:compResult from aob:witnessAnchor to
+#     aob:witnessDescription (so a.(b.c)=witnessDescription while (a.b).c=witnessAnchor) ->
+#     aob:GroupAssociativityShape conforms=True->False, q_group_associativity True->False.
+PREFIX aob: <urn:silmaril:aob:#>
+ASK {
+  # non-vacuity anchor: the associativity witness triple (both bracketings present) exists.
+  ?wab  aob:compLeft ?wa ; aob:compRight ?wb ; aob:compResult ?wabr .
+  ?wlhs aob:compLeft ?wabr ; aob:compRight ?wc ; aob:compResult ?wlhsr .
+  ?wbc  aob:compLeft ?wb ; aob:compRight ?wc ; aob:compResult ?wbcr .
+  ?wrhs aob:compLeft ?wa ; aob:compRight ?wbcr ; aob:compResult ?wrhsr .
+  # ASSOCIATIVITY: no triple whose two bracketings disagree.
+  FILTER NOT EXISTS {
+    ?ab  aob:compLeft ?a ; aob:compRight ?b ; aob:compResult ?abr .
+    ?lhs aob:compLeft ?abr ; aob:compRight ?c ; aob:compResult ?lhsr .
+    ?bc  aob:compLeft ?b ; aob:compRight ?c ; aob:compResult ?bcr .
+    ?rhs aob:compLeft ?a ; aob:compRight ?bcr ; aob:compResult ?rhsr .
+    FILTER(?lhsr != ?rhsr)
+  }
+}
+
+
+# EXPECT-TRUE q_colimit_universal : the sealed-group apex satisfies the LOCAL-sense colimit universal property.
+#   The word "colimit" here is the LOCAL / per-primitive glossary sense of the polysemous lexeme (Directive
+#   16, plan MD / design s2): the finite companion-cocone whose UNIVERSAL PROPERTY IS PROVABLE, so the word
+#   is EARNED BY THIS TOOTH (mirroring SP1's per-primitive taiji universality ASK), never a bare assertion.
+#   Every companion cocone leg factors through the apex via a UNIQUE mediating morphism (aob:universalFactor);
+#   the apex is EXACTLY ONE atom (aob:colimitApex, = the group identity); and the group carries an
+#   aob:colimitGlossaryScope pinning the LOCAL glossary sense (the seam SP6 consumes, so "colimit" is
+#   referenced THROUGH the glossary layer, never bare). The CORPUS/artifact sense of the same lexeme
+#   (ObservedProjection(ColimCandidate(D))) is SP9's; SP6 holds both glossary-scoped senses simultaneously.
+#   DATA CONTRACT (group_law.ttl): at least one ?wg a aob:SealedGroup with aob:colimitApex + an
+#     aob:colimitGlossaryScope exists (non-vacuity anchor, false on an empty graph); EVERY ?g a
+#     aob:SealedGroup carries an aob:colimitApex AND an aob:colimitGlossaryScope; no ?g carries TWO distinct
+#     aob:colimitApex values (the apex is unique); and EVERY aob:companionAtom ?c of a group carries an
+#     aob:universalFactor onto that group's aob:colimitApex. The witness aob:witnessGroup (single apex
+#     aob:witnessAnchor; colimitGlossaryScope <urn:silmaril:glossary:local:colimit>; companions
+#     aob:witnessDescription + aob:witnessExample each universalFactor aob:witnessAnchor) satisfies it.
+#   DEFECT-1: the universal property is now GENUINE, quantified over a competing TEST COCONE
+#     (aob:TestCocone with a compatible leg from each companion): there must EXIST a UNIQUE mediating
+#     morphism u : apex -> vertex (aob:mediatedBy / aob:medFrom apex / aob:medTarget vertex) that FACTORS
+#     every leg (aob:medTarget = each aob:legTarget, so the triangle commutes). The bare aob:universalFactor
+#     edge alone was decorative (identical to aob:composesOnto); the mediating-morphism teeth earn the word.
+#   R1 (unconditional earning, Directive 16): DEFECT-1's clauses (4)-(6) engaged only WHEN a test cocone
+#     happened to exist and carry legs, so a bare SealedGroup (colimitApex + colimitGlossaryScope, no
+#     TestCocone) and a legless TestCocone earned "colimit" VACUOUSLY. Three requiring clauses close it:
+#     (7) a colimit-claiming group with NO aob:TestCocone testing it fires (non-vacuity); (8) a aob:TestCocone
+#     with NO aob:coconeLeg fires (a legless competitor factors vacuously); (9) a companion of the group with
+#     no compatible leg (aob:legFrom that companion) in a test cocone testing it fires (non-degeneracy), so
+#     FACTORING quantifies over EVERY companion. The word colimit is now UNCONDITIONALLY earned.
+#   C1 (Directive 16 crux — the WHOLE degenerate/empty-diagram class, closed in one pass): R1's clauses (3)
+#     and (9) both quantify over aob:companionAtom, so a colimit-claiming group with ZERO companions
+#     satisfied them VACUOUSLY, and clause (8) accepted ANY leg regardless of aob:legFrom — a bare-apex
+#     companion-less group plus a TestCocone whose leg came from a NON-companion still earned "colimit".
+#     Three more clauses close it: (10) a colimit-claiming group (carrying aob:colimitApex) with NO
+#     aob:companionAtom fires (an empty-diagram colimit is forbidden); (11) a test-cocone leg whose
+#     aob:legFrom is not a companion of the tested group fires (no spurious/non-companion leg); (12) two
+#     distinct legs from the same companion fire (at most one leg per companion). With (9)+(11)+(12) the
+#     companion<->leg coverage is a genuine BIJECTION. C1c FACTORING CLOSURE: clause (6) reads "?leg
+#     aob:legTarget ?lt . FILTER(?lt != ?mt)", so a covered leg (aob:legFrom a genuine companion) with NO
+#     aob:legTarget never binds ?lt and is silently skipped by factoring while coverage (9/11/12) still
+#     counts it; clause (13) COVERED LEG MUST FACTOR flags any leg of a testing cocone lacking aob:legTarget,
+#     so FACTORING (clause 6) ranges over EXACTLY the covered legs and no covered leg escapes it.
+#   PROBE OF RECORD (must flip True->False): (b) add a second aob:witnessGroup aob:colimitApex
+#     aob:witnessExample (two distinct apexes) -> clause (2); (c) delete aob:witnessGroup
+#     aob:colimitGlossaryScope (a bare "colimit") -> clause (1); (d) delete aob:witnessTestCocone
+#     aob:mediatedBy aob:witnessMediating (no mediating morphism) -> clause (4) EXISTENCE; (e) add a second
+#     aob:witnessTestCocone aob:mediatedBy <other> (contradictory mediating map) -> clause (5) UNIQUENESS;
+#     (f) set aob:witnessMediating aob:medTarget to a node other than aob:witnessTestCocone (non-factoring)
+#     -> clause (6) FACTORING; (g) a bare aob:SealedGroup (colimitApex + colimitGlossaryScope, no
+#     aob:TestCocone) -> clause (7) NON-VACUITY; (h) a legless aob:TestCocone testing the group -> clauses
+#     (8) LEG EXISTENCE + (9) NON-DEGENERACY; (C1-i) a companion-LESS colimit-claiming group (zero
+#     aob:companionAtom + a TestCocone whose leg is from a non-companion) -> clauses (10)+(11); (C1-ii) add
+#     a spurious aob:coconeLeg from a non-companion to aob:witnessTestCocone -> clause (11); (C1-iii) delete
+#     only aob:witnessLegEx aob:legTarget (a covered leg — legFrom the genuine companion aob:witnessExample —
+#     with no target, which clause 6 silently skipped so it escaped factoring) -> clause (13); each ->
+#     aob:ColimitUniversalShape conforms=True->False, q_colimit_universal True->False.
+PREFIX aob: <urn:silmaril:aob:#>
+ASK {
+  ?wg a aob:SealedGroup ; aob:colimitApex ?wapex ; aob:colimitGlossaryScope ?wscope .
+  # DEFECT-1 non-vacuity anchor: a GENUINELY mediated test cocone exists (a competing cocone with a
+  # unique mediating morphism apex->vertex), so the ASK is false on an empty graph and before the
+  # test-cocone witness is authored.
+  ?wtc a aob:TestCocone ; aob:testsGroup ?wg ; aob:mediatedBy ?wm .
+  ?wm aob:medFrom ?wapex ; aob:medTarget ?wtc .
+  ?wtc aob:coconeLeg ?wleg . ?wleg aob:legTarget ?wtc .
+  FILTER NOT EXISTS {
+    ?g a aob:SealedGroup .
+    FILTER NOT EXISTS { ?g aob:colimitApex ?apex ; aob:colimitGlossaryScope ?scope }
+  }
+  FILTER NOT EXISTS {
+    ?g2 a aob:SealedGroup ; aob:colimitApex ?a1 , ?a2 .
+    FILTER(?a1 != ?a2)
+  }
+  FILTER NOT EXISTS {
+    ?g3 aob:companionAtom ?c ; aob:colimitApex ?apex3 .
+    FILTER NOT EXISTS { ?c aob:universalFactor ?apex3 }
+  }
+  # (4) EXISTENCE: every competing test cocone has a mediating morphism apex -> vertex.
+  FILTER NOT EXISTS {
+    ?tc aob:testsGroup ?gg . ?gg aob:colimitApex ?apx .
+    FILTER NOT EXISTS { ?tc aob:mediatedBy ?m . ?m aob:medFrom ?apx ; aob:medTarget ?tc }
+  }
+  # (5) UNIQUENESS: no test cocone has two distinct mediating morphisms (maxCount 1).
+  FILTER NOT EXISTS {
+    ?tc2 aob:mediatedBy ?m1 , ?m2 . FILTER(?m1 != ?m2)
+  }
+  # (6) FACTORING: the mediating morphism's target matches every cocone leg's target (triangle commutes).
+  FILTER NOT EXISTS {
+    ?tc3 aob:mediatedBy ?m3 ; aob:coconeLeg ?leg .
+    ?m3 aob:medTarget ?mt . ?leg aob:legTarget ?lt .
+    FILTER(?lt != ?mt)
+  }
+  # (7) NON-VACUITY (R1a): every colimit-claiming group (one carrying an aob:colimitApex) MUST carry at
+  # least one competing test cocone. A bare SealedGroup with no aob:TestCocone earns "colimit" vacuously.
+  FILTER NOT EXISTS {
+    ?g7 a aob:SealedGroup ; aob:colimitApex ?apex7 .
+    FILTER NOT EXISTS { ?tc7 aob:testsGroup ?g7 }
+  }
+  # (8) LEG EXISTENCE (R1b): every test cocone MUST carry >=1 leg; a legless test cocone factors vacuously.
+  FILTER NOT EXISTS {
+    ?tc8 aob:testsGroup ?g8 . ?g8 a aob:SealedGroup .
+    FILTER NOT EXISTS { ?tc8 aob:coconeLeg ?leg8 }
+  }
+  # (9) NON-DEGENERACY (R1b): each companion of the group has a compatible leg (aob:legFrom that companion)
+  # in every test cocone testing it, so FACTORING quantifies over EVERY companion.
+  FILTER NOT EXISTS {
+    ?g9 a aob:SealedGroup ; aob:companionAtom ?c9 .
+    ?tc9 aob:testsGroup ?g9 .
+    FILTER NOT EXISTS { ?tc9 aob:coconeLeg ?leg9 . ?leg9 aob:legFrom ?c9 }
+  }
+  # (10) NON-EMPTY DIAGRAM (C1a, Directive 16 crux): a colimit-claiming group (one carrying an
+  # aob:colimitApex) MUST have >=1 aob:companionAtom — a colimit over an EMPTY diagram is rejected.
+  # A zero-companion group made clauses (3) and (9) vacuously true, so it earned "colimit" for free.
+  FILTER NOT EXISTS {
+    ?g10 a aob:SealedGroup ; aob:colimitApex ?apex10 .
+    FILTER NOT EXISTS { ?g10 aob:companionAtom ?anyc10 }
+  }
+  # (11) NO SPURIOUS LEG (C1b, bijective coverage): every aob:coconeLeg of a test cocone testing a group
+  # has an aob:legFrom that is an aob:companionAtom of that group — a leg from a NON-companion is spurious.
+  FILTER NOT EXISTS {
+    ?tc11 aob:testsGroup ?g11 . ?g11 a aob:SealedGroup .
+    ?tc11 aob:coconeLeg ?leg11 . ?leg11 aob:legFrom ?from11 .
+    FILTER NOT EXISTS { ?g11 aob:companionAtom ?from11 }
+  }
+  # (12) AT MOST ONE LEG PER COMPANION (C1b): a test cocone carries at most one aob:coconeLeg per
+  # aob:companionAtom, so (with (9) and (11)) the companion<->leg coverage is a genuine bijection.
+  FILTER NOT EXISTS {
+    ?tc12 aob:testsGroup ?g12 . ?g12 a aob:SealedGroup .
+    ?tc12 aob:coconeLeg ?l12a , ?l12b .
+    ?l12a aob:legFrom ?cc12 . ?l12b aob:legFrom ?cc12 .
+    FILTER(?l12a != ?l12b)
+  }
+  # (13) COVERED LEG MUST FACTOR (C1c factoring closure): every aob:coconeLeg of a test cocone testing a
+  # group carries an aob:legTarget, so FACTORING (clause 6) genuinely ranges over it. Clause (6) matches
+  # "?leg aob:legTarget ?lt . FILTER(?lt != ?mt)": a covered leg (aob:legFrom a genuine companion) with no
+  # aob:legTarget never binds ?lt and is silently skipped by (6) while coverage (9)/(11)/(12) still counts
+  # it, so it escapes factoring. This clause flags any leg of a testing cocone lacking aob:legTarget.
+  FILTER NOT EXISTS {
+    ?tc13 aob:testsGroup ?g13 . ?g13 a aob:SealedGroup .
+    ?tc13 aob:coconeLeg ?leg13 .
+    FILTER NOT EXISTS { ?leg13 aob:legTarget ?lt13 }
+  }
+}
+
+
+# EXPECT-TRUE q_seal_honesty : every staged (ungraduated) atom carries silm:isProvisional true.
+#   The Praeriehund honesty spine (group_law.ttl, Task 9), lifted from the _aob_* seal discipline
+#   swe_as_dag_accounting.graduation_target (helios/srcy/appendices/39_appendix_e_research_source_mirror/
+#   .../specs/glue/fa-to-u.linkml.yaml: graduation_target -> $ENV_DIR_SIL_BA_WIP/...) and the staged /
+#   gated lanes visible across the srcy appendices (staged lanes do not instantiate; gated promotion
+#   preserves invariants). An atom's aob:sealState is one of aob:staged (ungraduated, not yet promoted
+#   through its aob:graduationTarget) or aob:gated (graduated, invariant-preserving). The honesty law:
+#   a STAGED atom is NOT yet conformant-green and therefore MUST carry silm:isProvisional true — an
+#   ungraduated atom asserted green with no provisional flag is a dodge the tooth forbids. content_sha256
+#   -at-graduation is itself an honest-gap coordinate (aob:contentShaAtGraduation, silm:isProvisional
+#   true), declared not computed (design s6 non-goal: no sealing/graduation runtime this iteration).
+#   DATA CONTRACT (group_law.ttl): at least one ?ws aob:sealState aob:staged exists (non-vacuity anchor,
+#     false on an empty graph AND false before Task 9 authors any seal state); EVERY ?a aob:sealState
+#     aob:staged carries silm:isProvisional true. The staged witness aob:witnessStaged (a aob:ConcreteAnchor
+#     with aob:sealState aob:staged ; silm:isProvisional true) satisfies it; the graduated witness
+#     aob:witnessAnchor (aob:sealState aob:gated) is exempt (it is not staged).
+#   DEFECT-3: the gated lane is now guarded too — a GATED (graduated) atom must carry graduation EVIDENCE
+#     (aob:graduationTarget + aob:contentShaAtGraduation); the gated witness aob:witnessAnchor carries both
+#     (the content-sha coordinate being an honest deferral sentinel, the real hash a deferred W5 gate).
+#   PROBE OF RECORD (must flip True->False): (a) remove aob:witnessStaged silm:isProvisional true (a staged
+#     atom asserted green) -> staged branch; (b) remove aob:witnessAnchor aob:graduationTarget +
+#     aob:contentShaAtGraduation (a full-envelope gated atom with no graduation evidence) -> gated branch;
+#     each -> aob:SealHonestyShape conforms=True->False, q_seal_honesty True->False.
+PREFIX aob:  <urn:silmaril:aob:#>
+PREFIX silm: <urn:silmaril:entity#>
+ASK {
+  ?ws aob:sealState aob:staged .
+  ?wgd aob:sealState aob:gated .
+  FILTER NOT EXISTS {
+    ?a aob:sealState aob:staged .
+    FILTER NOT EXISTS { ?a silm:isProvisional true }
+  }
+  # DEFECT-3: a GATED (graduated) atom must carry graduation EVIDENCE (aob:graduationTarget +
+  # aob:contentShaAtGraduation); a self-declared gated atom with no evidence is not conformant-green.
+  FILTER NOT EXISTS {
+    ?ga aob:sealState aob:gated .
+    FILTER( NOT EXISTS { ?ga aob:graduationTarget ?gt } || NOT EXISTS { ?ga aob:contentShaAtGraduation ?cs } )
+  }
+}
+
+
+# EXPECT-TRUE q_synonym_antonym_dual : one term held as synonym under glossary A AND antonym under glossary B, simultaneously.
+#   Lifted from the Helios Synonym/Antonym polysemy (helios/00_src_specs/types/papers/relational/
+#   synonym.spec.yaml + antonym.spec.yaml; papers_atoms_map.md s4): the SAME term is carried as a Synonym
+#   (Atlas col 10, cpo_process_iri cceo:SemanticComparing) AND as an Antonym (Atlas col 17, cpo_process_iri
+#   cceo:IsomorphicComparing) — the "structured AND unstructured types held as synonyms AND antonyms
+#   simultaneously" of Directive 1/3, reconciled only through the MOLE OF GLOSSARIES: each glossary
+#   encapsulates a DISTINCT epistemology, so a synonym-hold under glossary A and an antonym-hold under a
+#   DISTINCT glossary B is NOT a contradiction (polysemy is literal; OSSIE mime is the anchor). SP2 declares
+#   the SEAM only (aob:heldAsSynonym / aob:heldAsAntonym / aob:glossaryScope / aob:ossieMimeAnchor); the
+#   mole-of-glossaries MECHANISM (collision resolution, epistemology encapsulation) is SP6's to build.
+#   The lawful case REQUIRES two DISTINCT glossary scopes; collapsing both senses under ONE scope forces the
+#   contradiction the aob:GlossarySeamShape catches.
+#   DATA CONTRACT (evidence_glossary.ttl): at least one ?t aob:heldAsSynonym ?sa ; aob:heldAsAntonym ?an
+#     exists with ?sa aob:glossaryScope ?ga, ?an aob:glossaryScope ?gb and ?ga != ?gb (non-vacuity anchor,
+#     false on an empty graph AND false the moment both senses collapse into one glossary scope); and NO
+#     term ?x holds BOTH a synonym-hold and an antonym-hold under the SAME glossary scope ?g. The witness
+#     aob:witnessTerm (heldAsSynonym under aob:glossaryA, heldAsAntonym under aob:glossaryB) satisfies it.
+#   PROBE OF RECORD (must flip True->False): collapse aob:witnessTerm's antonym-hold aob:glossaryScope to
+#     aob:glossaryA (both senses in ONE glossary) -> aob:GlossarySeamShape conforms=True->False,
+#     q_synonym_antonym_dual True->False.
+PREFIX aob: <urn:silmaril:aob:#>
+ASK {
+  ?t aob:heldAsSynonym ?sa ; aob:heldAsAntonym ?an .
+  ?sa aob:glossaryScope ?ga .
+  ?an aob:glossaryScope ?gb .
+  FILTER(?ga != ?gb)
+  FILTER NOT EXISTS {
+    ?x aob:heldAsSynonym ?s1 ; aob:heldAsAntonym ?a1 .
+    ?s1 aob:glossaryScope ?g .
+    ?a1 aob:glossaryScope ?g
+  }
+}
+
+
+# EXPECT-TRUE q_telephone_seam : the byte/substrate <-> telephone twin is declared as a PROVISIONAL, Yoneda-pinned seam.
+#   The MD5 recommended default (design Q5, Directive 6): the telephone twin — telephone_events (the
+#   agent-lifecycle emit ARROWS: agent_start / agent_progress / agent_complete / agent_failure) <->
+#   telephone_supervision_tree (the parent-repo supervision NODES: switchboard, ocf_appender, port,
+#   gossip_propagator, ...) — is lifted from helios/01_data_src_specs/telephone_events.spec.yaml +
+#   telephone_supervision_tree.spec.yaml. Directive 6 asks the byte/substrate <-> telephone "twin mention"
+#   be realized at Yoneda-point TIGHTNESS: in the Helios source EVERY telephone_events field carries a
+#   tensor_space_urn pinning it to a Layer-0 universal_anchors anchor (the literal Yoneda-point tightness).
+#   SP2 DECLARES the seam only: aob:TelephoneSeam carries aob:telephoneTwinUrn (the paired supervision-tree
+#   twin URN) + at least one aob:tensorSpaceUrn field-to-Layer-0-anchor pin, and the whole seam is
+#   silm:isProvisional true — the gossip/supervision RENDER mechanism is a later sub-project (MD5), not
+#   over-built here. This is a genuinely-provisional declaration (Praeriehund honesty), never a dodge.
+#   DATA CONTRACT (evidence_glossary.ttl): at least one ?any a aob:TelephoneSeam exists (non-vacuity anchor,
+#     false on an empty graph AND false before Task 11 authors the seam); EVERY ?s a aob:TelephoneSeam
+#     carries aob:telephoneTwinUrn, at least one aob:tensorSpaceUrn pin, and silm:isProvisional true. The
+#     witness aob:witnessTelephone (twin -> ...supervision_tree, tensorSpaceUrn ->
+#     urn:silmaril:universal-anchor:node:enum:milestone, silm:isProvisional true) satisfies it.
+#   PROBE OF RECORD (must flip True->False): remove aob:witnessTelephone silm:isProvisional true (seam
+#     asserted non-provisional) -> aob:TelephoneSeamShape conforms=True->False, q_telephone_seam
+#     True->False; and independently, remove the aob:tensorSpaceUrn pin (no Yoneda-point tightness) -> flips.
+PREFIX aob:  <urn:silmaril:aob:#>
+PREFIX silm: <urn:silmaril:entity#>
+ASK {
+  ?any a aob:TelephoneSeam .
+  FILTER NOT EXISTS {
+    ?s a aob:TelephoneSeam .
+    FILTER NOT EXISTS {
+      ?s aob:telephoneTwinUrn ?tw ;
+         aob:tensorSpaceUrn ?ts ;
+         silm:isProvisional true
+    }
+  }
+}

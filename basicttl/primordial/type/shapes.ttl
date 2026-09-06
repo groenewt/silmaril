@@ -1,0 +1,302 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix description: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+# Structural model validation only. Runtime admission is a distinct denied gate.
+# Prefixes in queries are explicit; no inference mode may invent a type argument.
+model:ClassDeclarationShape a constraint:NodeShape ;
+    constraint:targetClass model:ClassDeclaration ; constraint:nodeKind constraint:IRI ;
+    constraint:property [ constraint:path description:type ; constraint:hasValue ontology:Class ] ;
+    constraint:property [ constraint:path schema:comment ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:minLength 200 ] ;
+    constraint:property [ constraint:path model:admissionState ; constraint:hasValue model:Pending ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:parameter ; constraint:class model:Parameter ] ;
+    constraint:property [ constraint:path model:field ; constraint:class model:Field ] .
+
+model:ParameterShape a constraint:NodeShape ;
+    constraint:targetClass model:Parameter ; constraint:nodeKind constraint:IRI ;
+    constraint:property [ constraint:path model:owner ; constraint:class model:ClassDeclaration ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:bound ; constraint:nodeKind constraint:IRI ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:variance ; constraint:hasValue model:Invariant ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "A parameter must be explicitly declared on its owner and bounded by a declared class." ; constraint:select """
+      SELECT $this WHERE {
+        $this <urn:silmaril:primordial:type:owner> ?owner ; <urn:silmaril:primordial:type:bound> ?bound .
+        FILTER (NOT EXISTS { ?owner <urn:silmaril:primordial:type:parameter> $this }
+          || NOT EXISTS { ?bound a <http://www.w3.org/2002/07/owl#Class> })
+      }""" ] .
+
+model:BindingShape a constraint:NodeShape ;
+    constraint:targetClass model:Binding ; constraint:nodeKind constraint:IRI ;
+    constraint:property [ constraint:path model:binds ; constraint:class model:Parameter ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:argument ; constraint:nodeKind constraint:IRI ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path [constraint:inversePath model:binding] ; constraint:class model:Application ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+model:ApplicationShape a constraint:NodeShape ;
+    constraint:targetClass model:Application ; constraint:nodeKind constraint:IRI ;
+    constraint:property [ constraint:path model:constructor ; constraint:class model:ClassDeclaration ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:binding ; constraint:class model:Binding ] ;
+    constraint:property [ constraint:path model:scope ; constraint:class model:ClassDeclaration ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "Every parameter requires exactly one binding; extra and duplicate bindings reject." ; constraint:select """
+      SELECT DISTINCT $this WHERE {
+        $this <urn:silmaril:primordial:type:constructor> ?constructor .
+        {
+          ?constructor <http://www.w3.org/2000/01/rdf-schema#subClassOf>*/<urn:silmaril:primordial:type:parameter> ?parameter .
+          FILTER NOT EXISTS { $this <urn:silmaril:primordial:type:binding>/<urn:silmaril:primordial:type:binds> ?parameter }
+        } UNION {
+          $this <urn:silmaril:primordial:type:binding>/<urn:silmaril:primordial:type:binds> ?parameter .
+          FILTER NOT EXISTS { ?constructor <http://www.w3.org/2000/01/rdf-schema#subClassOf>*/<urn:silmaril:primordial:type:parameter> ?parameter }
+        } UNION {
+          $this <urn:silmaril:primordial:type:binding> ?first, ?second .
+          ?first <urn:silmaril:primordial:type:binds> ?parameter .
+          ?second <urn:silmaril:primordial:type:binds> ?parameter . FILTER (?first != ?second)
+        }
+      }""" ] ;
+    constraint:sparql [ constraint:message "A type argument must be a named ground class or a complete class application satisfying its bound." ; constraint:select """
+      SELECT DISTINCT $this WHERE {
+        $this <urn:silmaril:primordial:type:binding> ?binding .
+        ?binding <urn:silmaril:primordial:type:binds>/<urn:silmaril:primordial:type:bound> ?bound ;
+          <urn:silmaril:primordial:type:argument> ?argument .
+        FILTER (NOT EXISTS {
+            ?argument a <http://www.w3.org/2002/07/owl#Class> ; <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?bound .
+            FILTER NOT EXISTS { ?argument <http://www.w3.org/2000/01/rdf-schema#subClassOf>*/<urn:silmaril:primordial:type:parameter> ?unbound }
+          } && NOT EXISTS {
+            ?argument a <urn:silmaril:primordial:type:Application> ;
+              <urn:silmaril:primordial:type:constructor> ?applied .
+            ?applied a <http://www.w3.org/2002/07/owl#Class> ; <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?bound .
+          } && NOT EXISTS {
+            $this <urn:silmaril:primordial:type:scope> ?scope .
+            ?argument a <urn:silmaril:primordial:type:Parameter> ; <urn:silmaril:primordial:type:owner> ?parameterOwner ;
+              <urn:silmaril:primordial:type:bound> ?parameterBound .
+            ?scope <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?parameterOwner .
+            ?parameterBound <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?bound .
+          })
+      }""" ] ;
+    constraint:sparql [ constraint:message "A scoped type expression cannot escape into a closed application or an unrelated scope." ; constraint:select """
+      SELECT DISTINCT $this WHERE {
+        $this <urn:silmaril:primordial:type:binding>/<urn:silmaril:primordial:type:argument> ?argument .
+        ?argument <urn:silmaril:primordial:type:scope> ?argumentScope .
+        FILTER NOT EXISTS { $this <urn:silmaril:primordial:type:scope> ?scope .
+          ?scope <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?argumentScope }
+      }""" ] ;
+    constraint:sparql [ constraint:message "Type applications cannot contain themselves through nested arguments." ; constraint:select """
+      SELECT $this WHERE { $this (<urn:silmaril:primordial:type:binding>/<urn:silmaril:primordial:type:argument>)+ $this }
+      """ ] .
+
+model:RealizationCoherenceShape a constraint:NodeShape ;
+    constraint:targetClass model:Application ;
+    constraint:sparql [ constraint:message "Primordial formal and physical arguments must equal the selected realization's associated arguments." ; constraint:select """
+      SELECT $this WHERE {
+        $this <urn:silmaril:primordial:type:constructor> <urn:silmaril:primordial:type:class:Primordial> .
+        FILTER NOT EXISTS {
+          $this <urn:silmaril:primordial:type:binding> ?formalBinding, ?physicalBinding, ?realizationBinding .
+          ?formalBinding <urn:silmaril:primordial:type:binds> <urn:silmaril:primordial:type:class:FormalParameter> ; <urn:silmaril:primordial:type:argument> ?formal .
+          ?physicalBinding <urn:silmaril:primordial:type:binds> <urn:silmaril:primordial:type:class:PhysicalParameter> ; <urn:silmaril:primordial:type:argument> ?physical .
+          ?realizationBinding <urn:silmaril:primordial:type:binds> <urn:silmaril:primordial:type:class:RealizationParameter> ; <urn:silmaril:primordial:type:argument> ?realization .
+          ?realization <urn:silmaril:primordial:type:constructor> <urn:silmaril:primordial:type:class:Realization> ; <urn:silmaril:primordial:type:binding> ?realizedFormal, ?realizedPhysical .
+          ?realizedFormal <urn:silmaril:primordial:type:binds> <urn:silmaril:primordial:type:class:RealizedFormalParameter> ; <urn:silmaril:primordial:type:argument> ?formal .
+          ?realizedPhysical <urn:silmaril:primordial:type:binds> <urn:silmaril:primordial:type:class:RealizedPhysicalParameter> ; <urn:silmaril:primordial:type:argument> ?physical .
+        }
+      }""" ] .
+
+model:FieldShape a constraint:NodeShape ;
+    constraint:targetClass model:Field ; constraint:nodeKind constraint:IRI ;
+    constraint:property [ constraint:path model:owner ; constraint:class model:ClassDeclaration ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:range ; constraint:nodeKind constraint:IRI ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:referenceKind ; constraint:in (model:ClassReference model:ValueReference) ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:multiplicity ; constraint:in (model:ExactlyOne model:Optional model:OrderedMany model:UnorderedMany) ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:mutability ; constraint:hasValue model:Immutable ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "Field range must be a class or an in-scope parameter, never a raw datatype or foreign parameter." ; constraint:select """
+      SELECT $this WHERE {
+        $this <urn:silmaril:primordial:type:owner> ?owner ; <urn:silmaril:primordial:type:range> ?range .
+        FILTER (NOT EXISTS { ?owner <urn:silmaril:primordial:type:field> $this }
+          || (NOT EXISTS { ?range a <http://www.w3.org/2002/07/owl#Class> }
+            && NOT EXISTS { ?range a <urn:silmaril:primordial:type:Parameter> ; <urn:silmaril:primordial:type:owner> ?scope .
+                 ?owner <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?scope }
+            && NOT EXISTS { ?range a <urn:silmaril:primordial:type:Application> .
+                 FILTER (NOT EXISTS { ?range <urn:silmaril:primordial:type:scope> ?rangeScope }
+                   || EXISTS { ?range <urn:silmaril:primordial:type:scope> ?rangeScope .
+                        ?owner <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?rangeScope }) }))
+      }""" ] .
+
+model:SourceClassShape a constraint:NodeShape ;
+    constraint:targetSubjectsOf model:sourceClass ;
+    constraint:property [ constraint:path model:sourceClass ; constraint:nodeKind constraint:IRI ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "A mirrored type must retain a declared source class and its exact source parents." ; constraint:select """
+      SELECT DISTINCT $this WHERE {
+        $this <urn:silmaril:primordial:type:sourceClass> ?source .
+        FILTER (NOT EXISTS { ?source a <http://www.w3.org/2002/07/owl#Class> }
+          || NOT EXISTS { $this <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?source }
+          || EXISTS { ?source <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?parent .
+               ?parentDeclaration <urn:silmaril:primordial:type:sourceClass> ?parent .
+               FILTER NOT EXISTS { $this <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?parentDeclaration } })
+      }""" ] .
+
+model:SourceFieldShape a constraint:NodeShape ;
+    constraint:targetClass model:Field ;
+    constraint:sparql [ constraint:message "Source fields retain the exact domain, range, and independently declared property-role type." ; constraint:select """
+      SELECT $this WHERE {
+        $this <urn:silmaril:primordial:type:sourcePredicate> ?predicate ;
+          <urn:silmaril:primordial:type:owner> ?owner ; <urn:silmaril:primordial:type:range> ?range .
+        FILTER NOT EXISTS {
+          ?predicate <http://www.w3.org/2000/01/rdf-schema#domain> ?domain ; <http://www.w3.org/2000/01/rdf-schema#range> ?sourceRange .
+          ?owner <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?domain .
+          $this <urn:silmaril:primordial:type:sourceRange> ?sourceRange ;
+            <urn:silmaril:primordial:type:cardinalityAuthority> <urn:silmaril:primordial:type:ProposedClassContract> .
+          ?range <urn:silmaril:primordial:type:propertyRole> $this .
+        }
+      }""" ] ;
+    constraint:sparql [ constraint:message "A source class range cannot be replaced by an unrelated class." ; constraint:select """
+      SELECT $this WHERE {
+        $this <urn:silmaril:primordial:type:sourceRange> ?sourceRange ; <urn:silmaril:primordial:type:range> ?range .
+        ?sourceRange a <http://www.w3.org/2002/07/owl#Class> .
+        FILTER NOT EXISTS { ?range <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?sourceRange }
+      }""" ] ;
+    constraint:sparql [ constraint:message "A foreign datatype requires an explicit pending conversion obligation." ; constraint:select """
+      SELECT $this WHERE {
+        $this <urn:silmaril:primordial:type:sourceRange> ?sourceRange .
+        FILTER (STRSTARTS(STR(?sourceRange), "http://www.w3.org/2001/XMLSchema#"))
+        FILTER NOT EXISTS { $this <urn:silmaril:primordial:type:requiresConversionGate> <urn:silmaril:primordial:type:Pending> }
+      }""" ] .
+
+model:BoundedOrdinalShape a constraint:NodeShape ;
+    constraint:targetSubjectsOf model:minimum ; constraint:targetSubjectsOf model:maximum ;
+    constraint:property [ constraint:path model:minimum ; constraint:datatype datatype:integer ; constraint:minCount 1 ; constraint:maxCount 1 ; constraint:minInclusive 0 ; constraint:lessThanOrEquals model:maximum ] ;
+    constraint:property [ constraint:path model:maximum ; constraint:datatype datatype:integer ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+
+model:ByteWidthShape a constraint:NodeShape ;
+    constraint:targetNode <urn:silmaril:primordial:type:class:property:TensorSpaceBitWidthValue> ;
+    constraint:targetNode family:ByteWidth ;
+    constraint:property [ constraint:path model:minimum ; constraint:hasValue 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:maximum ; constraint:hasValue 128 ; constraint:maxCount 1 ] .
+model:OctetOrdinalShape a constraint:NodeShape ;
+    constraint:targetNode <urn:silmaril:primordial:type:class:property:OctetValueValue> ;
+    constraint:property [ constraint:path model:minimum ; constraint:hasValue 0 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:maximum ; constraint:hasValue 255 ; constraint:maxCount 1 ] .
+
+model:FrameShape a constraint:NodeShape ;
+    schema:comment "Reusable constraint on the nominal Frame constructor. CallableShape reaches this shape through its result application's constructor, so deleting a metaclass tag cannot silence the output/effect obligations. Frame remains a single model:Product declaration; this shape does not assert a second structural kind or grant runtime admission." ;
+    constraint:property [ constraint:path description:type ; constraint:hasValue model:Product ] ;
+    constraint:property [ constraint:path model:field ; constraint:minCount 2 ; constraint:maxCount 2 ] ;
+    constraint:property [ constraint:path model:alternative ; constraint:maxCount 0 ] ;
+    constraint:sparql [ constraint:message "Frame requires distinct, mandatory value fields for output and exactly one effect or error." ; constraint:select """
+      SELECT $this WHERE {
+        FILTER NOT EXISTS {
+          $this <urn:silmaril:primordial:type:field> ?output, ?other .
+          ?output <urn:silmaril:primordial:type:role> <urn:silmaril:primordial:type:Output> ;
+            <urn:silmaril:primordial:type:referenceKind> <urn:silmaril:primordial:type:ValueReference> ;
+            <urn:silmaril:primordial:type:multiplicity> <urn:silmaril:primordial:type:ExactlyOne> .
+          ?other <urn:silmaril:primordial:type:role> ?role ;
+            <urn:silmaril:primordial:type:referenceKind> <urn:silmaril:primordial:type:ValueReference> ;
+            <urn:silmaril:primordial:type:multiplicity> <urn:silmaril:primordial:type:ExactlyOne> .
+          FILTER (?output != ?other && ?role IN (<urn:silmaril:primordial:type:Effect>, <urn:silmaril:primordial:type:Error>))
+        }
+      }""" ] ;
+    constraint:not [ constraint:class model:ClosedSum ] .
+
+model:FieldRoleShape a constraint:NodeShape ;
+    constraint:targetSubjectsOf model:role ;
+    constraint:property [ constraint:path model:role ; constraint:in (model:Output model:Effect model:Error) ; constraint:maxCount 1 ] .
+
+model:FrameEffectTypeShape a constraint:NodeShape ;
+    schema:comment "Reusable effect-range constraint reached from every CallableShape result constructor alongside FrameShape. It validates the declaration's independently bounded error-or-effect field without retyping the declaration into multiple structural kinds. Removing a legacy Frame metaclass tag cannot remove this obligation from a callable result." ;
+    constraint:sparql [ constraint:message "An effect or error slot must retain an Effect-bounded type, independently of output." ; constraint:select """
+      SELECT $this WHERE {
+        $this <urn:silmaril:primordial:type:field> ?field .
+        ?field <urn:silmaril:primordial:type:role> ?role ; <urn:silmaril:primordial:type:range> ?range .
+        FILTER (?role IN (<urn:silmaril:primordial:type:Effect>, <urn:silmaril:primordial:type:Error>))
+        FILTER NOT EXISTS { ?range <urn:silmaril:primordial:type:bound>?/<http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:prim:#Effect> }
+      }""" ] .
+
+model:ClosedSumShape a constraint:NodeShape ;
+    constraint:targetClass model:ClosedSum ;
+    constraint:property [ constraint:path model:alternative ; constraint:class model:Alternative ; constraint:minCount 2 ] ;
+    constraint:sparql [ constraint:message "Closed alternatives need exact progenitor membership, distinct tags and disjoint class identities." ; constraint:select """
+      SELECT DISTINCT $this WHERE {
+        { $this <urn:silmaril:primordial:type:alternative> ?alternative .
+          FILTER NOT EXISTS { ?alternative <urn:silmaril:primordial:type:progenitor> $this ; <http://www.w3.org/2000/01/rdf-schema#subClassOf> $this } }
+        UNION
+        { ?alternative <http://www.w3.org/2000/01/rdf-schema#subClassOf> $this .
+          FILTER NOT EXISTS { $this <urn:silmaril:primordial:type:alternative> ?alternative } }
+        UNION
+        { $this <urn:silmaril:primordial:type:alternative> ?first, ?second . FILTER (?first != ?second)
+          FILTER (EXISTS { ?first <urn:silmaril:primordial:type:discriminant> ?tag . ?second <urn:silmaril:primordial:type:discriminant> ?tag }
+            || NOT EXISTS { ?first (<http://www.w3.org/2002/07/owl#disjointWith>|^<http://www.w3.org/2002/07/owl#disjointWith>) ?second }) }
+      }""" ] .
+
+model:AlternativeShape a constraint:NodeShape ;
+    constraint:targetClass model:Alternative ;
+    constraint:property [ constraint:path model:progenitor ; constraint:class model:ClosedSum ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:discriminant ; constraint:nodeKind constraint:IRI ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:declarationPath ; constraint:datatype datatype:string ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:sparql [ constraint:message "Each alternative requires a separate physical declaration file." ; constraint:select """
+      SELECT $this WHERE { $this <urn:silmaril:primordial:type:declarationPath> ?path .
+        ?other a <urn:silmaril:primordial:type:Alternative> ; <urn:silmaril:primordial:type:declarationPath> ?path . FILTER (?other != $this) }
+      """ ] .
+
+model:CallableShape a constraint:NodeShape ;
+    constraint:targetClass model:Callable ;
+    constraint:property [ constraint:path model:input ; constraint:class model:ClassDeclaration ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:result ; constraint:class model:Application ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path (model:result model:constructor) ;
+        constraint:hasValue family:Frame ; constraint:minCount 1 ; constraint:maxCount 1 ;
+        constraint:node model:FrameShape ; constraint:node model:FrameEffectTypeShape ] .
+
+model:VectorIndexShape a constraint:NodeShape ;
+    constraint:targetNode family:ByteVector ;
+    constraint:sparql [ constraint:message "Vector head and tail must reuse the vector's exact schema parameter." ; constraint:select """
+      SELECT $this WHERE {
+        FILTER NOT EXISTS {
+          <urn:silmaril:primordial:type:class:VectorHeadSchema> <urn:silmaril:primordial:type:argument> <urn:silmaril:primordial:type:class:VectorSchemaParameter> ;
+            <urn:silmaril:primordial:type:binds> <urn:silmaril:primordial:type:class:OccurrenceSchemaParameter> .
+          <urn:silmaril:primordial:type:class:VectorTailSchema> <urn:silmaril:primordial:type:argument> <urn:silmaril:primordial:type:class:VectorSchemaParameter> ;
+            <urn:silmaril:primordial:type:binds> <urn:silmaril:primordial:type:class:VectorSchemaParameter> .
+        }
+      }""" ] .
+
+model:EmptyVectorShape a constraint:NodeShape ;
+    constraint:targetNode family:EmptyByteVector ;
+    constraint:property [ constraint:path model:field ; constraint:hasValue family:EmptySchemaField ; constraint:minCount 2 ; constraint:maxCount 2 ] ;
+    constraint:property [ constraint:path model:field ; constraint:hasValue family:EmptyRevisionField ] .
+model:EmptyVectorSchemaShape a constraint:NodeShape ;
+    constraint:targetNode family:EmptySchemaField ;
+    constraint:property [ constraint:path model:range ; constraint:hasValue family:VectorSchemaParameter ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:referenceKind ; constraint:hasValue model:ClassReference ; constraint:maxCount 1 ] .
+model:LinkedVectorShape a constraint:NodeShape ;
+    constraint:targetNode family:LinkedByteVector ;
+    constraint:property [ constraint:path model:field ; constraint:hasValue family:VectorHeadField ; constraint:minCount 2 ; constraint:maxCount 2 ] ;
+    constraint:property [ constraint:path model:field ; constraint:hasValue family:VectorTailField ] .
+model:LinkedVectorHeadShape a constraint:NodeShape ;
+    constraint:targetNode family:VectorHeadField ;
+    constraint:property [ constraint:path model:range ; constraint:hasValue family:VectorHeadType ; constraint:maxCount 1 ] .
+model:LinkedVectorTailShape a constraint:NodeShape ;
+    constraint:targetNode family:VectorTailField ;
+    constraint:property [ constraint:path model:range ; constraint:hasValue family:VectorTailType ; constraint:maxCount 1 ] .
+
+model:IdentitySeparationShape a constraint:NodeShape ;
+    constraint:targetNode family:TypeIdentity ; constraint:targetNode family:OccurrenceIdentity ; constraint:targetNode family:StreamRevisionIdentity ;
+    constraint:sparql [ constraint:message "Type, occurrence and stream revision identity classes cannot be collapsed." ; constraint:select """
+      SELECT $this WHERE {
+        $this (<http://www.w3.org/2002/07/owl#sameAs>|^<http://www.w3.org/2002/07/owl#sameAs>|<http://www.w3.org/2002/07/owl#equivalentClass>|^<http://www.w3.org/2002/07/owl#equivalentClass>|<http://www.w3.org/2000/01/rdf-schema#subClassOf>+) ?other .
+        FILTER (?other != $this && ?other IN (<urn:silmaril:primordial:type:class:TypeIdentity>, <urn:silmaril:primordial:type:class:OccurrenceIdentity>, <urn:silmaril:primordial:type:class:StreamRevisionIdentity>))
+      }""" ] .
+
+model:ImportGateShape a constraint:NodeShape ;
+    constraint:targetClass model:ImportGate ;
+    constraint:property [ constraint:path model:package ; constraint:datatype datatype:string ; constraint:minLength 1 ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:version ; constraint:datatype datatype:string ; constraint:pattern "^[0-9]+\\.[0-9]+\\.[0-9]+$" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:module ; constraint:datatype datatype:string ; constraint:pattern "^[a-zA-Z_][a-zA-Z0-9_.]*$" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:symbol ; constraint:datatype datatype:string ; constraint:pattern "^[a-zA-Z_][a-zA-Z0-9_]*$" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:publicExport ; constraint:hasValue "DEPENDENCY" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:declarationPath ; constraint:datatype datatype:string ; constraint:pattern "^scripts/python/pylib/src/config/gate/[a-zA-Z_/]+/library\\.py$" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:contract ; constraint:class model:Callable ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:admissionState ; constraint:hasValue model:Pending ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:evidence ; constraint:maxCount 0 ] .
+
+model:ImportBindingShape a constraint:NodeShape ;
+    constraint:targetClass model:ImportBinding ;
+    constraint:property [ constraint:path model:gate ; constraint:class model:ImportGate ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:consumerPath ; constraint:datatype datatype:string ; constraint:pattern "^scripts/python/pylib/src/[a-zA-Z_/]+/(value|library|process)\\.py$" ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
+    constraint:property [ constraint:path model:localBinding ; constraint:datatype datatype:string ; constraint:pattern "^_?[A-Z][A-Z_]*$" ; constraint:minCount 1 ; constraint:maxCount 1 ] .

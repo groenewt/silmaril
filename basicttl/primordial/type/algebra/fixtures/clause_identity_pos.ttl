@@ -1,0 +1,18 @@
+# =====================================================================================
+# clause_identity_pos.ttl — the POSITIVE fixture for ClauseIdentityShape (W2 · SP0, T-GATES).
+# =====================================================================================
+# A fresh gate:clause:specification record with a UNIQUE clause:identifier (no collision with any of
+# the committed V0-V8 clauses). Merged onto the algebra data graph the graph MUST still conform:
+# ClauseIdentityShape's sh:select finds no other gate:clause:specification sharing this identifier,
+# so it returns zero rows and stays GREEN — the positive twin of clause_identity_neg.ttl.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (core:entity:structure:class:gate:clause:specification), never an owl:Class.
+
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix cls:   <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:> .
+@prefix gdata: <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:> .
+
+<urn:silmaril:fixture:algebra:clause:identity:positive>
+    a owl:NamedIndividual , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:fixture:positive:unique" .

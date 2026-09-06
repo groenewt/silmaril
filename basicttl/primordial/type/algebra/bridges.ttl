@@ -1,0 +1,322 @@
+# =====================================================================================
+# bridges.ttl — the ADDITIVE alias/bridge map for the folded algebra spine (W2 · SP0, T-BRIDGE).
+# =====================================================================================
+# Stage 1 is ADDITIVE (design B3(a) / §7.4): this file ONLY ADDS bridge edges — it leaves
+# basicttl/foundation/algebra_spine.ttl and every fnd:* atom INTACT. The fnd: stub-reduction and the
+# inbound-edge REDIRECT (aob:SealedGroup, groundsIn* …) are the Stage-2 TRUE FULL RETIRE (T-RETIRE),
+# done once all 8 rungs exist. Here the retire is prepared by minting, for every fnd: local name of the
+# one-operation algebra tower, a bridge to the NEW full-ladder IRI (design §5.1-5.2, D26 naming lock),
+# so SP1/SP2/SP3 inbound refs (SP2 aob:SealedGroup rdfs:subClassOf fnd:Group, reanchor.ttl:163) stay
+# resolvable THROUGH the map: aob:SealedGroup rdfs:subClassOf fnd:Group, and here
+# <[V] group denotatum> skos:exactMatch fnd:Group.
+#
+# TWO BRIDGE LAYERS.
+#   (A) ALIAS / RETIRE map (design §5.2): every fnd: local name -> its NEW full-ladder folded atom
+#       (skos:exactMatch for a 1:1 atom; skos:closeMatch where a fnd: name decomposes into several
+#       stratified atoms — e.g. a two-sided law -> its left+right equation records).
+#   (B) ENGINE bridge map (design §5.1, TODO-11 bridge-never-duplicate): the folded atoms / fnd: names
+#       to the D26 engine corpus (config/algebra/primordials.yaml aob/urn/** full-ladder atoms) via
+#       seed:conservativeBridge (Group root/axioms), skos:exactMatch (Group type = the [V] atom itself),
+#       seed:implementationBridge (physical carriers). CommutativeMonoid/AbelianGroup/Quasigroup/Loop
+#       have NO engine anchor -> honest-red BUILD (proof-status asserted/literature:backed, NOT
+#       finite:checked-from-engine); no engine edge is minted for them (honesty ledger, design §5.1).
+#
+# NAMING (D26 LOCKED). The mathematics-ladder atoms use the `algebra:` prefix (= HEAD =
+# urn:silmaril:...:domain:mathematics:realm:algebra:subdomain:); the group denotatum + the four group
+# axioms + the progenitor are byte-VERBATIM [V] off config/algebra/primordials.yaml (the ENGINE is the
+# same corpus, so those [V] atoms ARE the engine anchors — the bridge for them is an identity/exactMatch).
+# Compound tokens are adjective-FIRST (B1 LOCKED §7.2 #9): abelian:group / commutative:monoid.
+# [V]=grep-verbatim off primordials.yaml; [D]=derived by extending the group skeleton; [S]=no runtime
+# precedent -> flagged in-line and in the SIGN-OFF PACKET block at the foot (§7.2).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§5, §7.2, B1/B3/B4).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-BRIDGE).
+# RED->GREEN probe: probes/aliases_resolve.rq (RED 0 rows before this file; GREEN >=1 row after).
+
+@prefix fnd:      <urn:silmaril:fnd:#> .
+@prefix prim:     <urn:silmaril:prim:#> .
+@prefix aob:      <urn:silmaril:aob:#> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix seed:     <urn:silmaril:seed:> .
+# HEAD (D26 mathematics 12-marker ladder) — the folded algebra atoms + the [V] engine anchors:
+@prefix algebra:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# the consolidated relation namespace (@rel = @P:relation) — the unified @rel:* predicate re-expression:
+@prefix relation: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# closure.ttl seed-carrier reification predicates (closure.ttl:1-3) — REUSED as ns3:/ns2: targets:
+@prefix cns3:     <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:property:order:declared:family:seed:genus:registry:species:> .
+@prefix cns2:     <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:property:order:declared:family:seed:genus:registry:species:argument:> .
+# the primordial SHORT root (D26: bridged to via rdfs:seeAlso, NEVER minted under as IRI grammar):
+@prefix model:    <urn:silmaril:primordial:type:> .
+
+# =====================================================================================
+# 0. The seed bridge predicates (D24 sameness relations). [S] — no runtime precedent; the seed-carrier
+#    doctrine's conservative/implementation bridges (D24: seed:conservativeBridge / seed:implementationBridge),
+#    minted here so the engine bridges below are typed edges, not bare annotations.
+# =====================================================================================
+seed:conservativeBridge a owl:ObjectProperty ;
+    rdfs:label "conservativeBridge" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range  owl:Thing ;
+    rdfs:comment "[S] The seed-carrier CONSERVATIVE bridge (D24, sameness ladder): relates a folded atom / retired fnd: name to the closest engine anchor that CONSERVATIVELY extends it — used where the engine carries a SPECIALISATION of the folded concept (the engine has only the flat subdomain:group collapse, so magma/semigroup/monoid's characteristic laws are anchored to the GROUP closure/associativity/identity axioms, which conservatively contain them). Weaker than skos:exactMatch (not an interchange claim) and never owl:sameAs (D24: owl:sameAs never for isomorphism). No runtime/engine precedent for the predicate itself -> §7.2 sign-off." .
+
+seed:implementationBridge a owl:ObjectProperty ;
+    rdfs:label "implementationBridge" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range  owl:Thing ;
+    rdfs:comment "[S] The seed-carrier IMPLEMENTATION bridge (D24, sameness ladder): relates a formal carrier to its physical/engine implementation atom (prim:Bit/Octet/ByteVector/Frame -> the config/algebra/primordials.yaml TYPE/CARRIER + FRAME engine atoms). It records that the engine atom REALISES the formal carrier (the byte-stream closure floor, D3/D9), not that the two are interchangeable. No runtime precedent for the predicate itself -> §7.2 sign-off." .
+
+# =====================================================================================
+# 1. RUNG alias bridges (design §5.2): fnd: model class -> NEW full-ladder DENOTATUM atom (§1.4).
+#    (B4: the denotatum atom is Plane-2 — the mathematical object; its Plane-1 declaration-record atom
+#    kingdom:class…:model…component:class is minted by the rung tasks and @rel:denotes this denotatum.)
+# =====================================================================================
+
+# --- Group [V]: the engine exactMatch anchor. The group denotatum atom IS the [V] engine GROUP type
+#     atom (primordials.yaml:460, byte-verbatim) — so this single skos:exactMatch is BOTH the §5.2 alias
+#     AND the §5.1 engine bridge, and is the edge SP2 aob:SealedGroup resolves through. Subject-first per
+#     design §5.1 ("<[V] group denotatum IRI> skos:exactMatch fnd:Group").
+algebra:group:kingdom:type:phylum:algebra:class:group:order:binary:family:operation:genus:axiomatic:species:group:component:type:instance:canonical
+    skos:exactMatch fnd:Group ;
+    rdfs:comment "[V] engine exactMatch (design §5.1, honesty ledger). This IRI is byte-verbatim the ENGINE group type atom (config/algebra/primordials.yaml:460 GROUP/SPECIMEN/IDENTITY) AND the folded group denotatum — so the exactMatch to fnd:Group is simultaneously the alias/retire edge (§5.2) and the TODO-11 engine bridge (§5.1). It is the edge the SP2 sealed group resolves through: aob:SealedGroup rdfs:subClassOf fnd:Group (reanchor.ttl:163), fnd:Group skos:exactMatch this denotatum. Stage 1 additive: fnd:Group stays intact; T-RETIRE (Stage 2) stubs it." .
+
+# --- AlgebraicStructure [V]: the progenitor denotatum IS the [V] engine ALGEBRA root
+#     (primordials.yaml:397, ABSTRACT true, grounds nothing). exactMatch = alias; the conservativeBridge
+#     below records the engine-root relation explicitly (design §5.1 "AlgebraicStructure->progenitor").
+fnd:AlgebraicStructure
+    skos:exactMatch algebra:primordial:kingdom:type:phylum:algebra:class:structure:order:axiomatic:family:primordial:genus:algebra:species:root:component:type:instance:canonical ;
+    seed:conservativeBridge algebra:primordial:kingdom:type:phylum:algebra:class:structure:order:axiomatic:family:primordial:genus:algebra:species:root:component:type:instance:canonical ;
+    rdfs:comment "[V] fnd:AlgebraicStructure (the agnostic progenitor that grounds nothing, algebra_spine.ttl:408) retires to the [V] progenitor denotatum atom = the engine TYPE/ALGEBRA root (primordials.yaml:397, ABSTRACT true). One IRI, so the skos:exactMatch alias and the seed:conservativeBridge engine edge point at the same atom." .
+
+# --- Magma [D] alias -> magma denotatum; engine conservativeBridge -> [V] group CLOSURE axiom
+#     (the engine has no magma; magma's characteristic law = closure, whose engine realisation is the
+#     group closure axiom, primordials.yaml:473). design §5.1.
+fnd:Magma
+    skos:exactMatch algebra:magma:kingdom:type:phylum:algebra:class:magma:order:binary:family:operation:genus:axiomatic:species:magma:component:type:instance:canonical ;
+    seed:conservativeBridge algebra:group:kingdom:axiom:phylum:operation:class:closure:order:binary:family:group:genus:product:species:membership:component:statement:instance:canonical ;
+    rdfs:comment "[D] alias to the derived magma denotatum + [V] engine conservativeBridge to the group CLOSURE axiom (primordials.yaml:473, byte-verbatim). The engine carries no magma atom; the closest conservative engine anchor for magma's sole law (closure) is the group closure axiom." .
+
+fnd:Semigroup
+    skos:exactMatch algebra:semigroup:kingdom:type:phylum:algebra:class:semigroup:order:binary:family:operation:genus:axiomatic:species:semigroup:component:type:instance:canonical ;
+    seed:conservativeBridge algebra:group:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:group:genus:composition:species:equality:component:statement:instance:canonical ;
+    rdfs:comment "[D] alias to the derived semigroup denotatum + [V] engine conservativeBridge to the group ASSOCIATIVITY axiom (primordials.yaml:478, byte-verbatim). Semigroup's added law over magma is associativity; its engine realisation is the group associativity axiom." .
+
+fnd:Monoid
+    skos:exactMatch algebra:monoid:kingdom:type:phylum:algebra:class:monoid:order:binary:family:operation:genus:axiomatic:species:monoid:component:type:instance:canonical ;
+    seed:conservativeBridge algebra:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:group:genus:neutral:species:member:component:statement:instance:canonical ;
+    rdfs:comment "[D] alias to the derived monoid denotatum + [V] engine conservativeBridge to the group IDENTITY axiom (primordials.yaml:483, byte-verbatim). Monoid's added law over semigroup is the two-sided identity (-> TWO equation records, §1.6); its engine realisation is the single collapsed group identity axiom. Monoid is the ONE DS-lifted rung (algebra_spine.ttl:444)." .
+
+# --- The 4 rungs with NO engine anchor (honest-red BUILD, design §5.1): alias ONLY, no engine edge.
+fnd:CommutativeMonoid
+    skos:exactMatch algebra:commutative:monoid:kingdom:type:phylum:algebra:class:commutative:monoid:order:binary:family:operation:genus:axiomatic:species:commutative:monoid:component:type:instance:canonical ;
+    rdfs:comment "[D] alias to the derived commutative:monoid denotatum (compound token adjective-FIRST, B1 LOCKED §7.2 #9). HONEST-RED BUILD: NO engine anchor exists (the engine has only the flat subdomain:group collapse); proof-status is literature:backed, NOT finite:checked-from-engine, so no seed:conservativeBridge is minted (honesty ledger, design §5.1)." .
+
+fnd:AbelianGroup
+    skos:exactMatch algebra:abelian:group:kingdom:type:phylum:algebra:class:abelian:group:order:binary:family:operation:genus:axiomatic:species:abelian:group:component:type:instance:canonical ;
+    rdfs:comment "[D] alias to the derived abelian:group denotatum (adjective-FIRST, B1 LOCKED). HONEST-RED BUILD: NO engine anchor; literature:backed, not finite:checked-from-engine; no engine edge minted." .
+
+fnd:Quasigroup
+    skos:exactMatch algebra:quasigroup:kingdom:type:phylum:algebra:class:quasigroup:order:binary:family:operation:genus:axiomatic:species:quasigroup:component:type:instance:canonical ;
+    rdfs:comment "[D] alias to the derived quasigroup denotatum. HONEST-RED BUILD: NO engine anchor; literature:backed; no engine edge minted." .
+
+fnd:Loop
+    skos:exactMatch algebra:loop:kingdom:type:phylum:algebra:class:loop:order:binary:family:operation:genus:axiomatic:species:loop:component:type:instance:canonical ;
+    rdfs:comment "[D] alias to the derived loop denotatum. HONEST-RED BUILD: NO engine anchor; literature:backed; no engine edge minted." .
+
+# =====================================================================================
+# 2. SIGNATURE aliases (design §1.7): fnd:sig* -> NEW signature atom. [S] (genus:algebraic + order:<profile>
+#    unattested — §7.2 #6).
+# =====================================================================================
+fnd:sigOneBinary  skos:exactMatch algebra:magma:kingdom:definition:phylum:specification:class:signature:order:one:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the one-binary signature atom (Σ={·}, shared by magma+semigroup). genus:algebraic and the order:one:binary profile token are unattested -> §7.2 #6 sign-off." .
+fnd:sigMonoid     skos:exactMatch algebra:monoid:kingdom:definition:phylum:specification:class:signature:order:monoid:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the monoid signature atom (Σ={·,e}). genus:algebraic / order:monoid unattested -> §7.2 #6." .
+fnd:sigGroup      skos:exactMatch algebra:group:kingdom:definition:phylum:specification:class:signature:order:group:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the group signature atom (Σ={·,e,inv}). genus:algebraic / order:group unattested -> §7.2 #6." .
+fnd:sigQuasigroup skos:exactMatch algebra:quasigroup:kingdom:definition:phylum:specification:class:signature:order:quasigroup:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the quasigroup signature atom (Σ={·,\\,/}). genus:algebraic / order:quasigroup unattested -> §7.2 #6." .
+fnd:sigLoop       skos:exactMatch algebra:loop:kingdom:definition:phylum:specification:class:signature:order:loop:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the loop signature atom (Σ={·,\\,/,e}). genus:algebraic / order:loop unattested -> §7.2 #6." .
+
+# =====================================================================================
+# 3. EQUATION-SET aliases (design §1.9): fnd:eqs* -> NEW equation-set atom. [D] (kingdom:construction +
+#    component:definition attested; genus:presentation is the derived rank).
+# =====================================================================================
+fnd:eqsMagma     skos:exactMatch algebra:magma:kingdom:construction:phylum:algebra:class:equation:set:order:declarative:family:operation:genus:presentation:species:magma:equations:component:definition:instance:canonical ;
+    rdfs:comment "[D] alias to the magma equation-set atom E={closure}." .
+fnd:eqsSemigroup skos:exactMatch algebra:semigroup:kingdom:construction:phylum:algebra:class:equation:set:order:declarative:family:operation:genus:presentation:species:semigroup:equations:component:definition:instance:canonical ;
+    rdfs:comment "[D] alias to the semigroup equation-set atom E={closure,associativity}." .
+fnd:eqsMonoid    skos:exactMatch algebra:monoid:kingdom:construction:phylum:algebra:class:equation:set:order:declarative:family:operation:genus:presentation:species:monoid:equations:component:definition:instance:canonical ;
+    rdfs:comment "[D] alias to the monoid equation-set atom E={closure,associativity,identity}." .
+fnd:eqsCommMonoid skos:exactMatch algebra:commutative:monoid:kingdom:construction:phylum:algebra:class:equation:set:order:declarative:family:operation:genus:presentation:species:commutative:monoid:equations:component:definition:instance:canonical ;
+    rdfs:comment "[D] alias to the commutative:monoid equation-set atom (adjective-FIRST B1). +commutativity." .
+fnd:eqsGroup     skos:exactMatch algebra:group:kingdom:construction:phylum:algebra:class:equation:set:order:declarative:family:operation:genus:presentation:species:group:equations:component:definition:instance:canonical ;
+    rdfs:comment "[D] alias to the group equation-set atom E={closure,associativity,identity,inverse}." .
+fnd:eqsAbelian   skos:exactMatch algebra:abelian:group:kingdom:construction:phylum:algebra:class:equation:set:order:declarative:family:operation:genus:presentation:species:abelian:group:equations:component:definition:instance:canonical ;
+    rdfs:comment "[D] alias to the abelian:group equation-set atom (adjective-FIRST B1). +commutativity." .
+fnd:eqsQuasigroup skos:exactMatch algebra:quasigroup:kingdom:construction:phylum:algebra:class:equation:set:order:declarative:family:operation:genus:presentation:species:quasigroup:equations:component:definition:instance:canonical ;
+    rdfs:comment "[D] alias to the quasigroup equation-set atom E={closure,latin-division}." .
+fnd:eqsLoop      skos:exactMatch algebra:loop:kingdom:construction:phylum:algebra:class:equation:set:order:declarative:family:operation:genus:presentation:species:loop:equations:component:definition:instance:canonical ;
+    rdfs:comment "[D] alias to the loop equation-set atom E={closure,latin-division,identity}." .
+
+# =====================================================================================
+# 4. LAW aliases (design §1.5-1.6): fnd:law* -> NEW axiom/equation atom(s). A two-sided law and a law
+#    added at two spine points decompose into SEVERAL stratified atoms, so those use skos:closeMatch
+#    (not exactMatch — the sides/points are DISTINCT atoms and must not be transitively equated).
+# =====================================================================================
+# single-atom laws: exactMatch
+fnd:lawClosure       skos:exactMatch algebra:magma:kingdom:axiom:phylum:operation:class:closure:order:binary:family:magma:genus:product:species:membership:component:statement:instance:canonical ;
+    rdfs:comment "[D] alias to the magma closure axiom (family:magma off the [V] group closure rank values genus:product:species:membership, primordials.yaml:473)." .
+fnd:lawAssociativity skos:exactMatch algebra:semigroup:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:semigroup:genus:composition:species:equality:component:statement:instance:canonical ;
+    rdfs:comment "[D] alias to the semigroup associativity axiom (family:semigroup off the [V] group associativity rank values, primordials.yaml:478). PD in fnd:." .
+fnd:lawLatinDivision skos:exactMatch algebra:quasigroup:kingdom:axiom:phylum:operation:class:division:order:binary:family:quasigroup:genus:latin:species:unique:component:statement:instance:canonical ;
+    rdfs:comment "[S] alias to the quasigroup latin-division axiom. genus:latin + species:unique are unattested -> §7.2 #5 sign-off." .
+
+# two-atom law (added at two spine points, each its OWN atom — no-cram, design §1.5): closeMatch to both
+fnd:lawCommutativity
+    skos:closeMatch algebra:commutative:monoid:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:commutative:monoid:genus:composition:species:equality:component:statement:instance:canonical ,
+                    algebra:abelian:group:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:abelian:group:genus:composition:species:equality:component:statement:instance:canonical ;
+    rdfs:comment "[D] the ONE fnd:lawCommutativity Equation decomposes into TWO distinct stratified atoms (Directive-17 no-cram, design §1.5): the commutative:monoid commutativity axiom (added over monoid) AND the abelian:group commutativity axiom (added over group). closeMatch (not exactMatch) — the two atoms are DISTINCT (different family/subdomain) and must not be transitively equated. Both adjective-FIRST (B1)." .
+
+# two-sided laws -> TWO equation records each (left + right), per rung that adds them (design §1.6): closeMatch
+fnd:lawIdentity
+    skos:closeMatch algebra:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                    algebra:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:right:component:statement:instance:canonical ,
+                    algebra:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                    algebra:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] the ONE fnd:lawIdentity (two-sided e·x=x AND x·e=x, added by BOTH monoid and loop) decomposes into FOUR stratified atoms: monoid identity-LEFT + identity-RIGHT (the two-sided split, design §1.6, closure.ttl:185-192 case:zero/case:one precedent) and loop identity-LEFT + identity-RIGHT (loop's OWN atom off the division sub-family). The species:member:left / species:member:right SIDE SEGMENT is unattested -> §7.2 #2 sign-off. closeMatch (the four atoms are distinct)." .
+
+fnd:lawInverse
+    skos:closeMatch algebra:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:left:component:statement:instance:canonical ,
+                    algebra:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] the ONE fnd:lawInverse (two-sided x·inv(x)=e AND inv(x)·x=e, group's added law) decomposes into TWO stratified atoms: inverse-LEFT + inverse-RIGHT (design §1.6). The species:inverse:left / species:inverse:right SIDE SEGMENT is unattested -> §7.2 #2 sign-off. closeMatch (the two atoms are distinct)." .
+
+# =====================================================================================
+# 5. CARRIER aliases (design §5.2): fnd:carrier* -> NEW free-algebra carrier atom [S], AND the PHYSICAL
+#    carriers (prim:Bit/Octet/ByteVector/Frame) -> engine carriers via seed:implementationBridge.
+# =====================================================================================
+fnd:carrierMagma      skos:exactMatch algebra:magma:kingdom:construction:phylum:algebra:class:carrier:order:free:family:operation:genus:free:algebra:species:magma:carrier:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the free-magma carrier atom F_E(X). class:carrier:order:free:genus:free:algebra is unattested -> §7.2 sign-off. Its set-theory grounding (fnd:groundsInSet fnd:setMagma) folds in the set fan-out." .
+fnd:carrierSemigroup  skos:exactMatch algebra:semigroup:kingdom:construction:phylum:algebra:class:carrier:order:free:family:operation:genus:free:algebra:species:semigroup:carrier:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the free-semigroup carrier atom." .
+fnd:carrierMonoid     skos:exactMatch algebra:monoid:kingdom:construction:phylum:algebra:class:carrier:order:free:family:operation:genus:free:algebra:species:monoid:carrier:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the free-monoid carrier atom." .
+fnd:carrierCommMonoid skos:exactMatch algebra:commutative:monoid:kingdom:construction:phylum:algebra:class:carrier:order:free:family:operation:genus:free:algebra:species:commutative:monoid:carrier:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the free-commutative:monoid carrier atom (adjective-FIRST B1)." .
+fnd:carrierGroup      skos:exactMatch algebra:group:kingdom:construction:phylum:algebra:class:carrier:order:free:family:operation:genus:free:algebra:species:group:carrier:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the free-group carrier atom." .
+fnd:carrierAbelian    skos:exactMatch algebra:abelian:group:kingdom:construction:phylum:algebra:class:carrier:order:free:family:operation:genus:free:algebra:species:abelian:group:carrier:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the free-abelian:group carrier atom (adjective-FIRST B1)." .
+fnd:carrierQuasigroup skos:exactMatch algebra:quasigroup:kingdom:construction:phylum:algebra:class:carrier:order:free:family:operation:genus:free:algebra:species:quasigroup:carrier:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the free-quasigroup carrier atom." .
+fnd:carrierLoop       skos:exactMatch algebra:loop:kingdom:construction:phylum:algebra:class:carrier:order:free:family:operation:genus:free:algebra:species:loop:carrier:component:definition:instance:canonical ;
+    rdfs:comment "[S] alias to the free-loop carrier atom." .
+
+# --- physical carriers -> engine carrier atoms (design §5.1, seed:implementationBridge). Engine IRIs
+#     byte-verbatim [V] off config/algebra/primordials.yaml (computation domain, full IRIs).
+prim:Bit seed:implementationBridge
+    <urn:silmaril:type:graph:instance:instruction:code:property:domain:computation:realm:representation:subdomain:physical:carrier:kingdom:type:phylum:carrier:class:bit:order:binary:family:physical:genus:carrier:species:bit:component:type:instance:canonical> ;
+    rdfs:comment "[V] implementationBridge prim:Bit -> the engine BIT carrier atom (primordials.yaml:174)." .
+prim:Octet seed:implementationBridge
+    <urn:silmaril:type:graph:instance:instruction:code:property:domain:computation:realm:representation:subdomain:physical:carrier:kingdom:type:phylum:carrier:class:octet:order:eight:bit:family:byte:genus:projection:species:octet:component:type:instance:canonical> ;
+    rdfs:comment "[V] implementationBridge prim:Octet -> the engine OCTET carrier atom (primordials.yaml:331, order:eight:bit)." .
+prim:ByteVector seed:implementationBridge
+    <urn:silmaril:type:graph:instance:instruction:code:property:domain:computation:realm:representation:subdomain:physical:carrier:kingdom:type:phylum:carrier:class:byte:order:ordered:family:vector:genus:finite:species:byte:component:type:instance:canonical> ;
+    rdfs:comment "[V] implementationBridge prim:ByteVector -> the engine BYTE/VECTOR carrier atom (primordials.yaml:301)." .
+prim:Frame seed:implementationBridge
+    <urn:silmaril:type:graph:instance:instruction:code:property:domain:computation:realm:operation:subdomain:callable:contract:kingdom:type:phylum:product:class:frame:order:unary:family:result:genus:typed:species:frame:component:type:instance:canonical> ;
+    rdfs:comment "[V] implementationBridge prim:Frame -> the engine FRAME product atom (primordials.yaml:577). The Frame is Curry's functionality F and the realization monad (D19/D11)." .
+
+# =====================================================================================
+# 6. Byte != Octet owl:differentFrom witness (design §5.1; engine OCTET WIDTH AXIOM primordials.yaml:341-346
+#    "an octet has exactly the registered eight bit width while Byte remains width independent").
+#    A forbidding tooth (DifferentFromWitnessShape) is authored in T-SHAPES; its FAILING negative fixture
+#    (a graph that owl:sameAs-collapses Byte and Octet) lands in T-FIX. Here: the witness triple + the axiom ref.
+# =====================================================================================
+<urn:silmaril:type:graph:instance:instruction:code:property:domain:computation:realm:representation:subdomain:physical:carrier:kingdom:type:phylum:carrier:class:byte:order:registered:family:width:genus:general:species:byte:component:type:instance:canonical>
+    owl:differentFrom
+    <urn:silmaril:type:graph:instance:instruction:code:property:domain:computation:realm:representation:subdomain:physical:carrier:kingdom:type:phylum:carrier:class:octet:order:eight:bit:family:byte:genus:projection:species:octet:component:type:instance:canonical> ;
+    rdfs:seeAlso <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:quantity:subdomain:bit:width:kingdom:axiom:phylum:carrier:class:octet:order:eight:family:width:genus:equality:species:axiom:component:statement:instance:canonical> ;
+    rdfs:comment "[V] Byte != Octet forbidding witness: the engine BYTE type atom (primordials.yaml:187, order:registered, width-independent) is owl:differentFrom the engine OCTET type atom (primordials.yaml:331, order:eight:bit). rdfs:seeAlso the engine OCTET WIDTH AXIOM (primordials.yaml:344) 'an octet has exactly the registered eight bit width while Byte remains width independent'. TOOTH STUB: the DifferentFromWitnessShape forbidding tooth is authored in T-SHAPES (a graph asserting Byte owl:sameAs Octet, or collapsing their widths, -> RED); its FAILING negative fixture (the sameAs-collapse graph) lands in T-FIX. prim:Byte != prim:Octet is likewise recorded at the SP1 physical-carrier floor (physical.ttl:158,162)." .
+prim:Byte owl:differentFrom prim:Octet ;
+    rdfs:comment "[V] the SP1-carrier-level Byte != Octet distinction (physical.ttl:158/162: 'Byte != Octet, per the unary law'), mirrored here so the forbidding tooth bites over BOTH the engine atoms and the prim: carriers in the merged graph." .
+
+# =====================================================================================
+# 7. PREDICATE-UNIFICATION (design §7.2 obligation 2): re-express the fnd: reified-table / rung-machinery
+#    predicates as unified @rel:* (relation:*) predicates, and bridge those to the closure.ttl ns3:/ns2:
+#    reification predicates — so the merged graph does NOT silently FORK the operation-application vocab.
+#    fnd:*  --owl:equivalentProperty/rdfs:subPropertyOf-->  relation:*  --owl:equivalentProperty-->  cns3:/cns2:*
+# =====================================================================================
+# --- the @rel:* -> closure.ttl ns3:/ns2:* bridges (the seed reification vocab, closure.ttl:182-303) ---
+relation:operand:one  owl:equivalentProperty cns2:one ;
+    rdfs:comment "@rel operand:one = closure.ttl ns2:one (the first operand of a reified application record, closure.ttl:216)." .
+relation:operand:zero owl:equivalentProperty cns2:zero ;
+    rdfs:comment "@rel operand:zero = closure.ttl ns2:zero (the second/base operand of a reified application record, closure.ttl:217)." .
+relation:constructor  owl:equivalentProperty cns3:constructor ;
+    rdfs:comment "@rel constructor = closure.ttl ns3:constructor (the operation symbol of a reified application record, closure.ttl:218)." .
+relation:left         owl:equivalentProperty cns3:left ;
+    rdfs:comment "@rel left = closure.ttl ns3:left (the left term of a reified equation, closure.ttl:182)." .
+relation:right        owl:equivalentProperty cns3:right ;
+    rdfs:comment "@rel right = closure.ttl ns3:right (the right term of a reified equation, closure.ttl:183)." .
+relation:member       owl:equivalentProperty cns3:member ;
+    rdfs:comment "@rel member = closure.ttl ns3:member (the case members of a reified equation, closure.ttl:180/185)." .
+relation:equation     owl:equivalentProperty cns3:equation ;
+    rdfs:comment "@rel equation = closure.ttl ns3:equation (the equation of an axiom record, closure.ttl:15). This is the @rel:equation the records.ttl theory:record / equation restrictions read." .
+
+# --- the fnd: reified-table predicates -> @rel:* (owl:equivalentProperty where the roles coincide;
+#     rdfs:subPropertyOf where the fnd: predicate is a scoped specialisation). [S] on the new @rel: names.
+fnd:opLeft   owl:equivalentProperty relation:operand:one ;
+    rdfs:comment "predicate-unification: fnd:opLeft (algebra_spine.ttl:75) = @rel:operand:one = closure ns2:one. The left operand of a reified binary-operation application." .
+fnd:opRight  owl:equivalentProperty relation:operand:zero ;
+    rdfs:comment "predicate-unification: fnd:opRight (algebra_spine.ttl:81) = @rel:operand:zero = closure ns2:zero. The right/base operand." .
+fnd:opResult rdfs:subPropertyOf relation:result ;
+    rdfs:comment "[S] predicate-unification: fnd:opResult (algebra_spine.ttl:87) -> @rel:result. closure.ttl reifies the application record AS the result term (no separate result predicate), so @rel:result has NO closure ns3: counterpart — flagged for §7.2 sign-off; rdfs:subPropertyOf keeps it a specialisation, not a false equivalence." .
+fnd:opStructure rdfs:subPropertyOf relation:structure ;
+    rdfs:comment "[S] predicate-unification: fnd:opStructure (algebra_spine.ttl:69, the per-model scoping edge) -> @rel:structure. No closure counterpart (closure scopes by graph, not a structure edge) -> §7.2 sign-off." .
+fnd:addsLaw  rdfs:subPropertyOf relation:adds:law ;
+    rdfs:comment "[S] predicate-unification: fnd:addsLaw (algebra_spine.ttl:99) -> @rel:adds:law (a rung's single added law, a member of its equation set)." .
+fnd:hasSignature owl:equivalentProperty relation:signature ;
+    rdfs:comment "predicate-unification: fnd:hasSignature (algebra_spine.ttl) = @rel:signature — the SAME relation the records.ttl theory:record cardinality-1 restriction reads (records.ttl:49)." .
+fnd:hasEquationSet rdfs:subPropertyOf relation:equation:set ;
+    rdfs:comment "[S] predicate-unification: fnd:hasEquationSet -> @rel:equation:set (a theory's equation set E)." .
+fnd:hasCarrier owl:equivalentProperty relation:carrier ;
+    rdfs:comment "predicate-unification: fnd:hasCarrier = @rel:carrier — the SAME relation the records.ttl model:record cardinality-1 restriction reads (records.ttl:60)." .
+fnd:satisfiesLaw rdfs:subPropertyOf relation:satisfies:law ;
+    rdfs:comment "[S] predicate-unification: fnd:satisfiesLaw -> @rel:satisfies:law (a model's cumulative law membership)." .
+fnd:hasIdentityElement owl:equivalentProperty relation:identity:element ;
+    rdfs:comment "predicate-unification: fnd:hasIdentityElement = @rel:identity:element — the SAME relation the monoid model:record identity restriction reads (design §2b)." .
+fnd:pairingModel   rdfs:subPropertyOf relation:pairing:model ;
+    rdfs:comment "[S] predicate-unification: fnd:pairingModel (the inverse-pairing scope, algebra_spine.ttl:116) -> @rel:pairing:model." .
+fnd:pairingElement rdfs:subPropertyOf relation:pairing:element ;
+    rdfs:comment "[S] predicate-unification: fnd:pairingElement -> @rel:pairing:element (the element whose inverse is claimed)." .
+fnd:pairingInverse rdfs:subPropertyOf relation:pairing:inverse ;
+    rdfs:comment "[S] predicate-unification: fnd:pairingInverse -> @rel:pairing:inverse (the claimed two-sided inverse)." .
+
+# =====================================================================================
+# 8. Primordial SHORT root bridge (D26: bridged to via rdfs:seeAlso, NEVER adopted as the IRI grammar —
+#    placement != IRI root). Documentary rdfs:seeAlso edges to the primordial short-root counterparts.
+# =====================================================================================
+algebra:primordial:kingdom:type:phylum:algebra:class:structure:order:axiomatic:family:primordial:genus:algebra:species:root:component:type:instance:canonical
+    rdfs:seeAlso model: ;
+    rdfs:comment "D26 bridge-to-never-adopt: the folded algebra atoms LIVE (placement) under basicttl/primordial/type/algebra/** but mint the FULL runtime Linnaean ladder (algebra: HEAD), NOT the short primordial root urn:silmaril:primordial:type: (model:). This rdfs:seeAlso records the placement<->grammar relation; the short root is bridged to, never minted under (design §5.2 / D26)." .
+algebra:group:kingdom:type:phylum:algebra:class:group:order:binary:family:operation:genus:axiomatic:species:group:component:type:instance:canonical
+    rdfs:seeAlso <urn:silmaril:primordial:type:class:atomic:object:SealedGroup> ;
+    rdfs:comment "D26 documentary seeAlso: the primordial short-root's own group-shaped declaration (basicttl/primordial/type/declarations/atomic/object/sealed/group/value.ttl:7) is bridged to from the [V] group denotatum — placement-tree neighbour, never the IRI grammar." .
+
+# =====================================================================================
+# [S] SIGN-OFF PACKET (design §7.2 — the executor surfaces every [S] use for T-PANEL to assemble).
+# T-BRIDGE's [S] tokens, each carried at the design default and flagged above in-line:
+#   #2 side-segment placement : species:member:left/right (monoid+loop identity), species:inverse:left/right
+#                               (group inverse) — 6 atoms bridged by fnd:lawIdentity/fnd:lawInverse.
+#   #5 quasigroup latin-div   : genus:latin + species:unique — fnd:lawLatinDivision alias.
+#   #6 signature genus:algebraic + order:<profile> (one:binary/monoid/group/quasigroup/loop) — 5 sig aliases.
+#   (own [S]) free-algebra carrier atoms : class:carrier:order:free:genus:free:algebra — 8 carrier aliases.
+#   (own [S]) @rel: predicates with NO closure counterpart : relation:result / relation:structure /
+#             relation:adds:law / relation:equation:set / relation:satisfies:law / relation:pairing:* .
+#   (own [S]) seed:conservativeBridge / seed:implementationBridge predicate declarations (D24 doctrine).
+# LOCKED (no sign-off needed): B1 adjective-first abelian:group / commutative:monoid (§7.2 #9);
+#   B3(a) additive-Stage-1 (fnd: intact, T-RETIRE Stage 2); B4 two-planes (denotatum here, declaration
+#   record minted by the rung tasks). The [V] group type + 4 group axioms + progenitor are byte-verbatim.
+# =====================================================================================

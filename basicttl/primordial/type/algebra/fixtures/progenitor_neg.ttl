@@ -1,0 +1,23 @@
+# =====================================================================================
+# progenitor_neg.ttl — FAILING NEGATIVE fixture for the AlgebraProgenitorShape (W2 · SP0, T-PROG).
+# =====================================================================================
+# The materialized RED: an OVER-SPECIFIED progenitor. Typed rec:progenitor:record (so it is a
+# focus node of the AlgebraProgenitorShape) it carries a @rel:signature — the single injected
+# violation of the grounds-nothing tooth. Merged onto the algebra data graph the graph MUST NOT
+# conform: relation:signature maxCount 0 bites (conforms True->False), and
+# progenitor_grounds_nothing.rq returns >= 1 row. This is the injection that proves the tooth is
+# genuine (D24: sh:conforms true alone is vacuous; a positive AND a failing negative per shape).
+#
+# The @rel:signature value is the sigOneBinary atom (signatures.ttl) — any signature grounds the
+# progenitor and trips the tooth; the point is that the progenitor carries a signature at all.
+# Companion positive: fixtures/progenitor_pos.ttl (grounds nothing -> GREEN).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix alg: <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+<urn:silmaril:fixture:algebra:progenitor:negative>
+    a owl:NamedIndividual , rec:progenitor:record ;
+    rel:notation "over-specified progenitor (INVALID: carries a signature)" ;
+    rel:signature alg:magma:kingdom:definition:phylum:specification:class:signature:order:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical .

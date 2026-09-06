@@ -1,0 +1,36 @@
+# =====================================================================================
+# validation_mode_neg.ttl — the FAILING NEGATIVE fixture for ValidationModeShape (W2 · SP0,
+# T-FIX). The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a failing
+# negative per shape).
+# =====================================================================================
+# A COMPLETE, otherwise-conformant theory record whose ONLY defect is an @rel:validation:mode
+# OUTSIDE the D24 4-value enum ("bogus:mode" — the SINGLE injected violation; the positive twin
+# fixtures/validation_mode_pos.ttl declares "finite:table"). It still names exactly one
+# @rel:signature + one @rel:equation (TheoryShape), a valid @rel:proof:status "literature:backed"
+# (ProofStatusShape), the full provenance quartet + authority (ProvenanceShape) and a unique
+# @rel:identifier — so the other three theory-targeting shapes stay satisfied and exactly
+# ValidationModeShape's constraint:in (shapes/algebra.shapes.ttl:211) reddens. Merged onto the
+# algebra data graph the graph MUST NOT conform.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:theory:record), never an owl:Class.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a theory record with an OFF-ENUM validation:mode (INVALID: value outside the D24 4 values) ---
+<urn:silmaril:fixture:algebra:validation:mode:negative>
+    a owl:NamedIndividual , rec:theory:record ;
+    rel:notation   "theory record with an OFF-ENUM validation:mode (INJECTED VIOLATION)" ;
+    rel:identifier "urn:silmaril:fixture:algebra:validation:mode:negative" ;
+    rel:signature  <urn:silmaril:fixture:algebra:validation:mode:negative:sig> ;
+    rel:equation   <urn:silmaril:fixture:algebra:validation:mode:negative:eq> ;
+    rel:validation:mode "bogus:mode" ;  # INJECTED VIOLATION: not in the D24 4-value enum -> ValidationModeShape RED
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" .

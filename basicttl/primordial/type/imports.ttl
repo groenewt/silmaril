@@ -1,0 +1,45 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix gate: <urn:silmaril:primordial:type:import:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+
+family:ImportRequest a ontology:Class, model:ClassDeclaration, model:Product ;
+    model:field family:RequestedTypeField, family:RequestedSymbolField ;
+    model:admissionState model:Pending ;
+    schema:comment "The nominal input contract for admitting one foreign class binding. Requested type identity and exact symbol identity are independently typed immutable coordinates. A class object observed in the host language cannot serve as a value of the requested semantic type without the gate's separate realization and inverse evidence." .
+family:RequestedTypeField a model:Field ; model:owner family:ImportRequest ; model:range family:TypeIdentity ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:RequestedSymbolField a model:Field ; model:owner family:ImportRequest ; model:range family:QualifiedSymbol ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+
+family:QualifiedSymbol a ontology:Class, model:ClassDeclaration ; schema:subClassOf primitive:QName ; model:admissionState model:Pending ;
+    schema:comment "An exact qualified foreign symbol requested at a typed import boundary. This refinement records the package, module and symbol as one addressed external coordinate while keeping the requested semantic Type identity separate. It neither denotes an entire module nor licenses wildcard or implicit transitive imports." .
+
+family:ClassReference a ontology:Class, model:ClassDeclaration, model:Product ;
+    schema:subClassOf primitive:FormalType ;
+    model:parameter family:ReferencedClassParameter ;
+    model:field family:ReferencedClassField, family:ReferencedIdentityField ;
+    model:admissionState model:Pending ;
+    schema:comment "ClassReference[Target] is a typed reference to a nominal semantic class. Its class-reference coordinate is distinct from both an occurrence of Target and a host class object. The reference retains the type identity independently; an import gate must prove the binding and its realization before returning an admitted reference." .
+family:ReferencedClassParameter a model:Parameter ; model:owner family:ClassReference ; model:bound primitive:FormalType ; model:variance model:Invariant .
+family:ReferencedClassField a model:Field ; model:owner family:ClassReference ; model:range family:ReferencedClassParameter ; model:referenceKind model:ClassReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+family:ReferencedIdentityField a model:Field ; model:owner family:ClassReference ; model:range family:TypeIdentity ; model:referenceKind model:ValueReference ; model:multiplicity model:ExactlyOne ; model:mutability model:Immutable .
+
+gate:GraphReference a model:Application ; model:constructor family:ClassReference ; model:binding gate:GraphReferenceArgument .
+gate:GraphReferenceArgument a model:Binding ; model:binds family:ReferencedClassParameter ; model:argument primitive:RDFGraph .
+gate:GraphAdmission a model:Application ; model:constructor family:Admission ; model:binding gate:GraphAdmissionValue, gate:GraphRejection .
+gate:GraphAdmissionValue a model:Binding ; model:binds family:AdmissionValueParameter ; model:argument gate:GraphReference .
+gate:GraphRejection a model:Binding ; model:binds family:AdmissionRejectionParameter ; model:argument primitive:Effect .
+gate:GraphFrame a model:Application ; model:constructor family:Frame ; model:binding gate:GraphOutput, gate:GraphEffect .
+gate:GraphOutput a model:Binding ; model:binds family:OutputParameter ; model:argument gate:GraphAdmission .
+gate:GraphEffect a model:Binding ; model:binds family:EffectParameter ; model:argument primitive:Effect .
+gate:GraphContract a model:Callable ; model:input family:ImportRequest ; model:result gate:GraphFrame .
+gate:Graph a model:ImportGate ;
+    model:package "rdflib" ; model:version "7.6.0" ; model:module "rdflib" ; model:symbol "Graph" ;
+    model:publicExport "DEPENDENCY" ;
+    model:declarationPath "scripts/python/pylib/src/config/gate/external/python/resource_description_framework_library/graph/library.py" ;
+    model:contract gate:GraphContract ; model:admissionState model:Pending ;
+    schema:comment "This is the required admission contract for the graph symbol binding. The Python binding now names Graph directly and exports only DEPENDENCY. This narrows the declared binding surface; it does not supply the typed admission Frame or prove the imported package's transitive effects. Execution stays denied until that contract and its closure are implemented." .
+gate:GraphConsumer a model:ImportBinding ; model:gate gate:Graph ;
+    model:consumerPath "scripts/python/pylib/src/silmaril/sparky/morphism/ontology/document/parse/process.py" ;
+    model:localBinding "_GRAPH" .

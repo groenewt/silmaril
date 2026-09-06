@@ -1,0 +1,612 @@
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+
+# =====================================================================================
+# primitives.shapes.ttl — the SHACL LAW of the Primitive Floor (W2 · SP1, plan Task 6).
+# =====================================================================================
+# The enforceable epistemology of the twin-olog colimit taiji: thirteen sh:NodeShapes give
+# the design spec §6/§9 verification list teeth (DualGrounding, Encoding, ByteVectorEncoding,
+# Realization, Primitive, ColimitReflexivity, ByteOctetDistinction, KleisliComposition) PLUS the
+# STEP D functor + literal-Yoneda enrichment teeth (FunctorTransport, Yoneda) PLUS the STEP E
+# residual teeth (FrameYonedaPoint, YonedaEvaluation, CompositeTransportCoverage). Where formal.ttl /
+# physical.ttl / realization.ttl / taiji.ttl DECLARE the floor, this file REJECTS any floor that
+# breaks its own dual-grounding, byte-descent, monadic-realization, Kleisli-well-typedness,
+# functor-on-arrows, literal-Yoneda, and colimit-closure laws.
+# It is run by checks/run-floor-checks.sh via pyshacl with inference="rdfs" over the
+# merged floor graph; the runner requires conforms=True. The RED→GREEN teeth proof
+# (spec §9a probe of record) injects `ex:OrphanB a owl:Class ; rdfs:subClassOf prim:FormalType`
+# — the CLASS form every real tower uses — and confirms prim:DualGroundingShape flags it
+# (conforms=False), then removes it (conforms=True).
+#
+# WHY THE LAW BITES ON THE CLASS FORM (spec §9a, panel finding #2): the formal olog is a
+# tower of owl:Class nodes joined by rdfs:subClassOf+ prim:FormalType — the number tower,
+# the text/temporal/identifier/RDF/aggregate/algebraic/quantity/geospatial/enum/binary
+# towers, 59 classes in all. The earlier sh:targetClass prim:FormalType targeted only the
+# OWL-2 punned INDIVIDUALS (`a prim:FormalType`), i.e. the handful of nodes that also happen
+# to be rdf:type FormalType, and so scoped the teeth away from the very tower CLASSES that
+# must be grounded — a decoy. prim:DualGroundingShape below fixes that at the source: it is
+# a sh:sparql constraint targeting owl:Class that walks rdfs:subClassOf* and flags ANY tower
+# class (a subclass of prim:FormalType, or FormalType itself) that has no prim:Realization on
+# itself, on a realized ancestor, or on a realized descendant. The shape LOGIC lawfully accepts
+# grounding at any of those three positions (spec §9a's direct-or-transitive frame), and that
+# self/ancestor/descendant acceptance is deliberately NOT weakened. On THIS floor, however, the
+# per-type build made grounding FULLY DIRECT: all 59 tower classes carry their OWN prim:Realization
+# (verified by SPARQL — ?r prim:realizesFrom <class> holds for every one of the 59, and each also
+# has its own reflexive interpretAs carrier and its own prim:Primitive), so the SELF arm of the
+# walk is what every real class satisfies; the ancestor/descendant arms remain available but are
+# never load-bearing here. Under inference="rdfs" subClassOf is materialised transitively and
+# reflexively, and the SPARQL property path `*` makes the walk robust either way. Every one of
+# the 59 tower classes is DIRECTLY grounded after remediation, so the floor conforms; the injected
+# class-form orphan is not, so the teeth are proven on the case that would bite.
+#
+# Property-name contract (binding across the floor, matching primitives.queries.sparql):
+#   realizesAs    : FormalType   -> Realization        (dual-grounding forward edge)
+#   encoding      : Realization  -> PhysicalEncoding    (Kleisli target)
+#   interpretAs   : Encoding     -> FormalType          (mutual-colimit back-pointer)
+#   frameOutput   : Realization  -> PhysicalEncoding    (Frame output coordinate X)
+#   frameEffect   : Realization  -> Effect              (Frame error|effect coordinate Y)
+#   formalFacet   : Primitive    -> FormalType          (taiji yin)
+#   physicalFacet : Primitive    -> PhysicalEncoding    (taiji yang)
+#   gluedBy       : Primitive    -> Realization          (taiji gluing morphism)
+# Namespace: prim: <urn:silmaril:prim:#>
+#
+# Design spec: docs/superpowers/specs/2026-08-07-w2-primitive-floor-design.md (§6)
+# Plan:        docs/superpowers/plans/2026-08-07-w2-sp1-primitive-floor.md (Task 6)
+# Consumes:    formal.ttl + physical.ttl + realization.ttl + taiji.ttl (all four ologs)
+# Acceptance:  pyshacl conforms=True on the floor AND conforms=False on an injected orphan.
+# =====================================================================================
+
+
+# =====================================================================================
+# DualGroundingShape — the UNIVERSAL DUAL-GROUNDING law over the tower CLASSES (spec §9a).
+# A sh:sparql constraint targeting owl:Class: for each class that is rdfs:subClassOf*
+# prim:FormalType (every one of the 59 tower classes, and prim:FormalType itself), there
+# MUST exist a class ?g on its subClassOf* line — itself, an ancestor, or a descendant —
+# that is grounded by a prim:Realization (?g prim:realizesAs ?r, or ?r prim:realizesFrom
+# ?g). The shape lawfully accepts grounding at self, an ancestor, OR a descendant; on THIS
+# floor every one of the 59 tower classes — concrete leaves, abstract supertypes, AND the
+# named sub-objects (NaturalWithZero, URI/IRI/QName, Latitude/Longitude, Ordinal/Categorical)
+# alike — is grounded DIRECTLY: each carries its OWN prim:Realization (?r prim:realizesFrom
+# that class), its own reflexive interpretAs carrier, and its own prim:Primitive, so the SELF
+# arm of the walk is what every real class satisfies (the ancestor/descendant arms stay
+# available but are never load-bearing here). A tower class with no grounding on its
+# whole subClassOf* line is a bare xsd: leaf re-spelled as a class, and is REJECTED. This
+# is the teeth the panel's class-form orphan probe (spec §9a) proves: injecting
+# `ex:OrphanB a owl:Class ; rdfs:subClassOf prim:FormalType` makes pyshacl conforms=False.
+# Full IRIs are used in the SPARQL so no sh:prefixes declaration is required.
+# =====================================================================================
+
+prim:DualGroundingShape a sh:NodeShape ;
+    rdfs:label "DualGroundingShape" ;
+    rdfs:comment "The universal dual-grounding law (spec §9a) with teeth on the CLASS form. A sh:sparql node shape targeting owl:Class: it flags any class on the rdfs:subClassOf* line to prim:FormalType (every tower class, and FormalType itself) that has no prim:Realization anywhere on its own subClassOf* line — i.e. grounding present at NONE of the three positions self, a realized ancestor, or a realized descendant. That self/ancestor/descendant acceptance is the correct, deliberately-unweakened shape logic. On THIS floor, though, the check is satisfied by the SELF arm for every class: all 59 tower classes are DIRECTLY grounded (each has its own prim:Realization — verified ?r prim:realizesFrom that class — plus its own reflexive interpretAs carrier and its own prim:Primitive), so no real class relies on an ancestor or descendant to pass; the ancestor/descendant arms remain lawfully available but are never load-bearing here. This replaces the decoy sh:targetClass prim:FormalType shape, which matched only the OWL-2 punned individuals and scoped the teeth away from the 59 tower classes. Grounding is read both as ?g prim:realizesAs ?r and as ?r prim:realizesFrom ?g so either edge direction counts. The class-form orphan probe (ex:OrphanB a owl:Class ; rdfs:subClassOf prim:FormalType) is caught (conforms=False), proving the teeth on the case that bites." ;
+    sh:targetClass owl:Class ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "dual-grounding law (spec §9a): this tower class (rdfs:subClassOf* prim:FormalType) has no prim:Realization on itself, a realized ancestor, or a realized descendant — an ungrounded tower class is a bare leaf and is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:prim:#FormalType> .
+              FILTER NOT EXISTS {
+                { $this <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?g }
+                UNION
+                { ?g <http://www.w3.org/2000/01/rdf-schema#subClassOf>* $this }
+                { ?g <urn:silmaril:prim:#realizesAs> ?r }
+                UNION
+                { ?r <urn:silmaril:prim:#realizesFrom> ?g }
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# EncodingShape — the BYTE-CARRIER + MUTUAL-COLIMIT-CLOSURE law (spec §4, §6, Global
+# Constraint 2). Every prim:PhysicalEncoding MUST declare:
+#   * exactly-one prim:bitWidth, an xsd:integer in 0..128 (spec §6's per-encoding cap;
+#     0 is the zero-width terminal prim:UnitEncoding, the empty product; 128 is the widest
+#     scalar Float128/Int128/Uint128, the unary-law single-occurrence ceiling), and
+#   * a prim:byteOrder drawn from the ByteOrder facet family (prim:LE / prim:BE /
+#     prim:EndianNeutral), and
+#   * a prim:interpretAs back-pointer whose value is a prim:FormalType — the mutual-colimit
+#     closure physical -> interpretAs -> formal that makes yang hold yin (q_colimit_roundtrip).
+# An encoding missing bitWidth, byteOrder, or interpretAs is a dangling carrier the law
+# rejects; an interpretAs that does not land on a FormalType breaks the round-trip seal.
+# =====================================================================================
+
+prim:EncodingShape a sh:NodeShape ;
+    rdfs:label "EncodingShape" ;
+    rdfs:comment "Enforces the byte-carrier facets and mutual-colimit closure on every prim:PhysicalEncoding: a bitWidth (xsd:integer, 0..128 per spec §6, 0 = the zero-width terminal UnitEncoding), a byteOrder that is one of the three ByteOrder individuals, and an interpretAs back-pointer landing on a genuine tower class. The value-type checks are DEFANG-PROOF: because prim:byteOrder rdfs:range prim:ByteOrder and prim:interpretAs rdfs:range prim:FormalType, running pyshacl with inference=rdfs would materialise `?v a prim:ByteOrder` / `?v a prim:FormalType` on WHATEVER those properties point at, making a plain `sh:class prim:ByteOrder` / `sh:class prim:FormalType` vacuously true (the panel-flagged defang). This shape therefore checks byteOrder with sh:in over the enumerated individuals (range-inference cannot forge list membership) and checks interpretAs with a sh:sparql that requires the target to be rdfs:subClassOf* prim:FormalType (range-inference adds rdf:type, never a subClassOf edge, so the walk still fails for a non-tower node). A dangling encoding lacking bitWidth/byteOrder/interpretAs, or whose interpretAs escapes the FormalType tower, breaks the round-trip seal and is rejected." ;
+    sh:targetClass prim:PhysicalEncoding ;
+    sh:property [
+        sh:path prim:bitWidth ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 128 ;
+        sh:severity sh:Violation ;
+        sh:message "every PhysicalEncoding needs exactly one prim:bitWidth, an xsd:integer in 0..128 (spec §6 per-encoding cap; 0 is the zero-width terminal UnitEncoding, 128 the widest scalar machine type)." ;
+    ] ;
+    sh:property [
+        sh:path prim:byteOrder ;
+        sh:minCount 1 ;
+        sh:in ( prim:LE prim:BE prim:EndianNeutral ) ;
+        sh:severity sh:Violation ;
+        sh:message "every PhysicalEncoding needs a prim:byteOrder that is exactly one of the ByteOrder individuals prim:LE / prim:BE / prim:EndianNeutral (checked by sh:in, not sh:class, so rdfs range-inference cannot defang it)." ;
+    ] ;
+    sh:property [
+        sh:path prim:interpretAs ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "mutual-colimit closure: every PhysicalEncoding must carry a prim:interpretAs back-pointer (the physical -> interpretAs -> formal edge that closes q_colimit_roundtrip)." ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "mutual-colimit closure (defang-proof): a prim:interpretAs target must be a genuine tower class rdfs:subClassOf* prim:FormalType. Checked structurally so rdfs range-inference — which would type ANY interpretAs object as prim:FormalType — cannot make the value-type check vacuous; range-inference adds rdf:type, never a subClassOf edge." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <urn:silmaril:prim:#interpretAs> ?f .
+              FILTER NOT EXISTS { ?f <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:prim:#FormalType> }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# ByteVectorEncodingShape — the SECOND width cap of the two-cap model (spec §9c).
+# EncodingShape above caps fixed-width SCALAR encodings at prim:bitWidth ≤ 128. A
+# ByteVector-family encoding is octet-granular (prim:bitWidth 8 records the per-occurrence
+# granule) and instead declares prim:byteCount — the number of byte OCCURRENCES the ordered
+# vector may span. This shape caps that second coordinate at prim:byteCount ≤ 128 (= up to
+# 1024 bits): a Bignum, Blob, or Hash realizes into such a vector, and the 129th byte
+# occurrence is the enforced overflow. byteCount is optional (only ByteVector-family
+# encodings carry it), so this is a maxInclusive with no minCount — it bites only when a
+# byteCount is present and exceeds 128. Teeth proof (spec §9c): injecting
+# `prim:SneakyVec a prim:PhysicalEncoding ; prim:byteCount 129` makes pyshacl conforms=False.
+# =====================================================================================
+
+prim:ByteVectorEncodingShape a sh:NodeShape ;
+    rdfs:label "ByteVectorEncodingShape" ;
+    rdfs:comment "The second width cap of the two-cap model (spec §9c), with teeth. A prim:PhysicalEncoding of the ByteVector family is octet-granular and declares prim:byteCount (its byte-occurrence count) rather than a wide scalar prim:bitWidth; this shape caps prim:byteCount at 128 (≤ 1024 bits), the unary-law ByteVector ceiling. It is orthogonal to EncodingShape's scalar bitWidth ≤ 128 cap: a scalar overflows on bitWidth, a vector overflows on byteCount. byteCount is optional (only vector-family encodings carry one) so the constraint is a datatype+maxInclusive with no minCount, firing exactly when an over-wide byteCount is declared. The injected prim:SneakyVec with prim:byteCount 129 is caught (conforms=False), proving the cap is enforced and not merely documented." ;
+    sh:targetClass prim:PhysicalEncoding ;
+    sh:property [
+        sh:path prim:byteCount ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 128 ;
+        sh:severity sh:Violation ;
+        sh:message "ByteVector width cap (spec §9c): a prim:byteCount must be an xsd:integer in 0..128 byte occurrences (≤ 1024 bits); a 129-byte vector is the enforced overflow the floor rejects." ;
+    ] .
+
+
+# =====================================================================================
+# RealizationShape — the MONADIC-REALIZATION = FRAME law (spec §5, §6, Global Constraint 4).
+# Every prim:Realization IS a Frame — the unary law's Yoneda point T -> Frame(output: X,
+# error|effect: Y) — so it MUST carry exactly one prim:frameOutput (X, a prim:PhysicalEncoding
+# that descends to the byte floor) AND exactly one prim:frameEffect (Y, a typed prim:Effect
+# individual). A bare mapping with no typed effect is not a Kleisli arrow of the Frame monad
+# and is rejected: the effect is what makes realization monadic rather than a total function.
+# =====================================================================================
+
+prim:RealizationShape a sh:NodeShape ;
+    rdfs:label "RealizationShape" ;
+    rdfs:comment "Enforces that every prim:Realization is a Frame: exactly one prim:frameOutput (a byte-descending prim:PhysicalEncoding, the Frame output X) and at least one prim:frameEffect (a typed prim:Effect, the Frame error|effect Y). Both value-type checks are DEFANG-PROOF against inference=rdfs: prim:frameOutput rdfs:range prim:PhysicalEncoding and prim:frameEffect rdfs:range prim:Effect would otherwise let range-inference forge the type on any target and make a plain sh:class vacuous (panel finding). frameEffect is therefore checked with sh:in over the closed Effect family (list membership survives inference); frameOutput is checked with a sh:sparql requiring the target to actually carry a prim:bitWidth — the structural signature of a real PhysicalEncoding that range-inference does not synthesize. A mapping missing either coordinate, or whose frameOutput is a non-byte-carrying node, is not a Kleisli arrow of the Frame monad (unary law T -> Frame(output, effect)) and is rejected." ;
+    sh:targetClass prim:Realization ;
+    sh:property [
+        sh:path prim:frameOutput ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "monadic-realization = Frame law: every Realization needs exactly one prim:frameOutput (the Frame output coordinate X)." ;
+    ] ;
+    sh:property [
+        sh:path prim:frameEffect ;
+        sh:minCount 1 ;
+        sh:in ( prim:RoundingIEEE754 prim:NarrowingLoss prim:OverflowDomain prim:EncodingLoss prim:MayOverflow prim:Base10Precision prim:NoEffect prim:OrderingCanonicalization prim:Uninhabited prim:EpochPrecision ) ;
+        sh:severity sh:Violation ;
+        sh:message "monadic-realization = Frame law: every Realization needs at least one prim:frameEffect drawn from the closed typed prim:Effect family (checked by sh:in, not sh:class, so rdfs range-inference cannot defang it); a bare mapping without an effect is not a Kleisli arrow. Y may be a composite of typed effects — a narrowing realization carries both prim:RoundingIEEE754 and prim:NarrowingLoss — so this coordinate is not maxCount-capped." ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "monadic-realization = Frame law (defang-proof): the prim:frameOutput must be a real byte-carrying prim:PhysicalEncoding — verified structurally by requiring prim:bitWidth on the target, so rdfs range-inference (which would type any frameOutput object as prim:PhysicalEncoding) cannot make the value-type check vacuous." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <urn:silmaril:prim:#frameOutput> ?o .
+              FILTER NOT EXISTS { ?o <urn:silmaril:prim:#bitWidth> ?bw }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# PrimitiveShape — the COLIMIT-TAIJI law (spec §1, §6, Global Constraint 2). Every
+# prim:Primitive is the colimit object gluing a formal facet to a physical facet, so it
+# MUST carry all three coordinates: a prim:formalFacet (yin, a prim:FormalType), a
+# prim:physicalFacet (yang, a prim:PhysicalEncoding), and a prim:gluedBy (the prim:Realization
+# ρ arrow that carries yin into yang). A Primitive missing any of the three is not a glued
+# colimit atom but a loose fragment, and is rejected — the taiji must hold both facets.
+# =====================================================================================
+
+prim:PrimitiveShape a sh:NodeShape ;
+    rdfs:label "PrimitiveShape" ;
+    rdfs:comment "Enforces that every prim:Primitive is a fully glued colimit-taiji atom: a prim:formalFacet (yin, a tower class), a prim:physicalFacet (yang, a real PhysicalEncoding), and a prim:gluedBy (the prim:Realization ρ arrow gluing them). All three carry rdfs:range declarations (FormalType / PhysicalEncoding / Realization), so under inference=rdfs a plain sh:class would be defanged (panel finding); the value-type checks are therefore DEFANG-PROOF sh:sparql: formalFacet must be rdfs:subClassOf* prim:FormalType (a subClassOf edge range-inference never adds), physicalFacet must carry prim:bitWidth (the encoding signature), and gluedBy must carry prim:frameOutput (the realization signature). A Primitive missing any coordinate, or one whose facet is a mistyped node, is a loose fragment rather than a colimit object and is rejected — the taiji must simultaneously hold both facets and name their gluing morphism." ;
+    sh:targetClass prim:Primitive ;
+    sh:property [
+        sh:path prim:formalFacet ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "colimit-taiji law: every Primitive needs exactly one prim:formalFacet (the yin coordinate the atom IS)." ;
+    ] ;
+    sh:property [
+        sh:path prim:physicalFacet ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "colimit-taiji law: every Primitive needs exactly one prim:physicalFacet (the yang coordinate the atom IS)." ;
+    ] ;
+    sh:property [
+        sh:path prim:gluedBy ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "colimit-taiji law: every Primitive needs exactly one prim:gluedBy, the prim:Realization ρ arrow gluing its formal facet into its physical facet." ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "colimit-taiji law (defang-proof): a Primitive's prim:formalFacet must be a genuine tower class rdfs:subClassOf* prim:FormalType (structural, so rdfs range-inference cannot vacuously type it), its prim:physicalFacet must be a real PhysicalEncoding carrying prim:bitWidth, and its prim:gluedBy must be a real Realization carrying prim:frameOutput." ;
+        sh:select """
+            SELECT $this WHERE {
+              { $this <urn:silmaril:prim:#formalFacet> ?f .
+                FILTER NOT EXISTS { ?f <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:prim:#FormalType> } }
+              UNION
+              { $this <urn:silmaril:prim:#physicalFacet> ?pe .
+                FILTER NOT EXISTS { ?pe <urn:silmaril:prim:#bitWidth> ?bw } }
+              UNION
+              { $this <urn:silmaril:prim:#gluedBy> ?g .
+                FILTER NOT EXISTS { ?g <urn:silmaril:prim:#frameOutput> ?fo } }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# ColimitReflexivityShape — the TRUE-IDENTITY round-trip law (spec §9d). q_colimit_roundtrip
+# only proves non-danglingness (every encoding interpretAs SOME FormalType). This shape gives
+# the reflexivity of spec §9d teeth on the CLASS of Primitives: for EVERY prim:Primitive the
+# walk physicalFacet -> interpretAs MUST return the primitive's OWN formalFacet, not a proxy
+# type. This is exactly what the three former non-reflexive proxy atoms violated
+# (Bignum -> Uint128 -> Natural, Instant -> Int64 -> Integer, Decimal -> Ascii -> Codepoint);
+# they were fixed at the source with dedicated reflexive carriers, so identity now holds. The
+# check is sh:sparql (structural, range-inference-proof: it reads the actual interpretAs edge,
+# which range-inference never fabricates). Teeth proof (spec §9d): injecting a Primitive whose
+# physicalFacet interpretAs a DIFFERENT type than its formalFacet makes pyshacl conforms=False.
+# =====================================================================================
+
+prim:ColimitReflexivityShape a sh:NodeShape ;
+    rdfs:label "ColimitReflexivityShape" ;
+    rdfs:comment "The true-identity colimit round-trip law with teeth (spec §9d). For every prim:Primitive, the mutual-colimit walk prim:physicalFacet -> prim:interpretAs must land back on the primitive's own prim:formalFacet — a reflexive identity, not mere non-danglingness. This is the SHACL counterpart of q_colimit_reflexive and the source-level fix the panel demanded of the three proxy atoms that landed on a different formal type. It is a sh:sparql constraint (not sh:class) so it reads the genuine interpretAs edge and cannot be defanged by rdfs range-inference; a Primitive whose physicalFacet interprets to any type other than its formalFacet is flagged (conforms=False)." ;
+    sh:targetClass prim:Primitive ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "colimit reflexivity (spec §9d): this Primitive's physicalFacet -> interpretAs does not return its own formalFacet — the round-trip is a proxy landing, not the required true identity, and is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <urn:silmaril:prim:#formalFacet> ?f .
+              $this <urn:silmaril:prim:#physicalFacet> ?pe .
+              FILTER NOT EXISTS { ?pe <urn:silmaril:prim:#interpretAs> ?f }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# ByteOctetDistinctionShape — the Byte != Octet guard (unary law byte-stream carrier
+# closure; spec §9c "Byte != Octet gets an explicit guard"). The unary law is explicit that
+# a Byte is the addressable-unit carrier and an Octet is the exactly-8-bit carrier, and that
+# the two "must not be collapsed" and "may not inherit from one another". This shape targets
+# prim:Byte and fails if Byte and Octet are ever conflated by an rdfs:subClassOf edge (either
+# direction), an owl:sameAs, or an owl:equivalentClass — the definitional collapse the law
+# forbids. It currently conforms (Byte and Octet are sibling subclasses of PhysicalCarrier,
+# joined only by typed byteDescendsTo edges, with no subClassOf/sameAs between them). Teeth
+# proof: injecting `prim:Byte rdfs:subClassOf prim:Octet` makes pyshacl conforms=False.
+# =====================================================================================
+
+prim:ByteOctetDistinctionShape a sh:NodeShape ;
+    rdfs:label "ByteOctetDistinctionShape" ;
+    rdfs:comment "The Byte != Octet guard (unary law; spec §9c). The byte-stream carrier closure insists that prim:Byte (the addressable-unit carrier, not hardwired to eight bits) and prim:Octet (the exactly-8-bit / 256-cardinality carrier) are distinct carriers that must never be collapsed and may not inherit from one another; a Byte is a composite of Bits, not a kind of Octet, and their eight-bit identification is a typed relation, not a subtyping or identity edge. This shape targets prim:Byte and is violated if Byte and Octet are ever joined by rdfs:subClassOf (either direction), owl:sameAs, or owl:equivalentClass. It conforms on the real floor (the two are sibling subclasses of prim:PhysicalCarrier linked only by typed prim:byteDescendsTo edges) and bites the moment a collapse is asserted." ;
+    sh:targetNode prim:Byte ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "Byte != Octet guard (unary law): prim:Byte and prim:Octet must not be collapsed — no rdfs:subClassOf (either direction), owl:sameAs, or owl:equivalentClass may join them; a Byte is a composite of Bits, not a kind of Octet." ;
+        sh:select """
+            SELECT $this WHERE {
+              { <urn:silmaril:prim:#Byte> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <urn:silmaril:prim:#Octet> }
+              UNION
+              { <urn:silmaril:prim:#Octet> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <urn:silmaril:prim:#Byte> }
+              UNION
+              { <urn:silmaril:prim:#Byte> <http://www.w3.org/2002/07/owl#sameAs> <urn:silmaril:prim:#Octet> }
+              UNION
+              { <urn:silmaril:prim:#Octet> <http://www.w3.org/2002/07/owl#sameAs> <urn:silmaril:prim:#Byte> }
+              UNION
+              { <urn:silmaril:prim:#Byte> <http://www.w3.org/2002/07/owl#equivalentClass> <urn:silmaril:prim:#Octet> }
+              UNION
+              { <urn:silmaril:prim:#Octet> <http://www.w3.org/2002/07/owl#equivalentClass> <urn:silmaril:prim:#Byte> }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# KleisliCompositionShape — the WELL-TYPEDNESS law of Kleisli composition (spec §9e).
+# A prim:Composition reifies one application of >=> as (composeFirst f, composeSecond g,
+# composeInto h). For the composite f >=> g to be a genuine Kleisli arrow the three arrows
+# MUST agree on their objects: f.kCod = g.kDom (the two operands meet at one object), and the
+# result h has h.kDom = f.kDom and h.kCod = g.kCod (the composite spans f's source to g's
+# target). This shape is a sh:sparql constraint targeting prim:Composition that FAILS
+# (conforms=False) the moment any of those three equalities is violated — i.e. an ill-typed
+# composition like the previously shipped right-unit witness whose composeSecond (η at the
+# DOMAIN Real) did not meet composeFirst's codomain Float64. It reads the actual kDom/kCod
+# edges, so rdfs range-inference (kDom/kCod range rdfs:Resource) cannot defang it. Teeth
+# proof (spec §9e): injecting a Composition whose composeSecond.kDom != composeFirst.kCod
+# makes pyshacl report conforms=False; q_kleisli_welltyped is its EXPECT-TRUE mirror.
+# =====================================================================================
+
+prim:KleisliCompositionShape a sh:NodeShape ;
+    rdfs:label "KleisliCompositionShape" ;
+    rdfs:comment "The well-typedness law of Kleisli composition with teeth (spec §9e). A prim:Composition names composeFirst f, composeSecond g, and composeInto h; the composite f >=> g is a genuine Kleisli arrow only when the operands meet (f.kCod = g.kDom) and the result spans them (h.kDom = f.kDom and h.kCod = g.kCod). This sh:sparql node shape targets prim:Composition and flags any composition violating any of those three object equalities — the exact defect the earlier decorative right-unit witness carried, where composeSecond was the identity η at the DOMAIN Real (k_id_Real) rather than η at the CODOMAIN Float64 (k_id_Float64), so f.kCod = Float64 did not equal g.kDom = Real. It reads the genuine prim:kDom/prim:kCod edges (whose rdfs:range is rdfs:Resource, so range-inference adds no type that could make the check vacuous), and it is the SHACL counterpart of the q_kleisli_welltyped EXPECT-TRUE ASK. Injecting an ill-typed composition (composeSecond.kDom != composeFirst.kCod, or a mismatched composeInto endpoint) makes pyshacl report conforms=False, proving the teeth on the case that bites." ;
+    sh:targetClass prim:Composition ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "Kleisli well-typedness (spec §9e): this Composition is ill-typed — composeFirst.kCod must equal composeSecond.kDom (the operands must meet), and composeInto must span them (composeInto.kDom = composeFirst.kDom and composeInto.kCod = composeSecond.kCod). One of these object equalities is violated, so f >=> g is not a genuine Kleisli arrow." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <urn:silmaril:prim:#composeFirst>  ?f .
+              $this <urn:silmaril:prim:#composeSecond> ?g .
+              $this <urn:silmaril:prim:#composeInto>   ?h .
+              ?f <urn:silmaril:prim:#kCod> ?fcod .
+              ?f <urn:silmaril:prim:#kDom> ?fdom .
+              ?g <urn:silmaril:prim:#kDom> ?gdom .
+              ?g <urn:silmaril:prim:#kCod> ?gcod .
+              ?h <urn:silmaril:prim:#kDom> ?hdom .
+              ?h <urn:silmaril:prim:#kCod> ?hcod .
+              FILTER ( ?fcod != ?gdom || ?hdom != ?fdom || ?hcod != ?gcod )
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# FunctorTransportShape — the FUNCTOR-ON-ARROWS law (STEP B/D). rho is now a genuine functor
+# on morphisms, not a bare object map: for EVERY prim:SubtypeArrow f: A -> B of the thin formal
+# category (the generators, formal.ttl) there MUST exist a prim:RealizationTransport that is
+# prim:transportOf f and whose prim:transportDom / prim:transportCod are exactly rho(A) / rho(B)
+# = prim:rhoObject of the arrow's prim:arrowDom / prim:arrowCod. That is the statement that the
+# realization square over f commutes: the transported carrier morphism relates A's canonical
+# carrier to B's canonical carrier edge-for-edge with the subtyping arrow. A SubtypeArrow whose
+# rho-image transport is missing, or whose transport endpoints drift off rho(A)/rho(B), breaks the
+# functor and is REJECTED. It targets prim:SubtypeArrow (the generators carry the whole order;
+# composites are their rho-composites, checked by q_functor_composition) and is a sh:sparql
+# constraint reading the genuine transportOf/transportDom/transportCod edges — range-inference
+# (transport*'s ranges are prim:FormalArrow / prim:PhysicalObject) adds rdf:type, never the
+# specific endpoint identity a matching transport needs, so the check cannot be defanged.
+# Teeth proof (STEP D): breaking a subtype transport's prim:transportCod makes pyshacl
+# conforms=False here AND flips q_functor_composition to false (the broken transport is a leg of a
+# composite). Full IRIs in the SPARQL so no sh:prefixes declaration is required.
+# =====================================================================================
+
+prim:FunctorTransportShape a sh:NodeShape ;
+    rdfs:label "FunctorTransportShape" ;
+    rdfs:comment "The functor-on-arrows law with teeth (STEP B/D): every prim:SubtypeArrow f: A -> B of the thin formal category must have its rho-image materialised as a prim:RealizationTransport that is prim:transportOf f and whose prim:transportDom / prim:transportCod equal rho(A) / rho(B) = prim:rhoObject applied to the arrow's prim:arrowDom / prim:arrowCod. This is what promotes the realization functor rho from a bare object map (type -> carrier) to a genuine functor on morphisms: the transported carrier morphism relates the domain type's canonical carrier to the codomain type's canonical carrier edge-for-edge with the subtyping arrow, so the realization square over f commutes on the nose. A generator arrow whose transport is absent or whose endpoints do not land on rho(arrowDom)/rho(arrowCod) breaks functoriality and is rejected. It is a sh:sparql constraint targeting prim:SubtypeArrow that reads the genuine transportOf/transportDom/transportCod edges, so rdfs range-inference (which adds rdf:type but never a specific endpoint identity) cannot make the check vacuous; it is the SHACL counterpart of the EXPECT-TRUE q_functor_composition, and breaking a subtype transport's prim:transportCod makes pyshacl report conforms=False here while also flipping q_functor_composition (that transport is a leg of a composite)." ;
+    sh:targetClass prim:SubtypeArrow ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "functor-on-arrows law (STEP B/D): this prim:SubtypeArrow has no prim:RealizationTransport that is transportOf it with transportDom = rho(arrowDom) and transportCod = rho(arrowCod) — rho is not a functor on this morphism, so the arrow is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <urn:silmaril:prim:#arrowDom> ?a .
+              $this <urn:silmaril:prim:#arrowCod> ?b .
+              ?a <urn:silmaril:prim:#rhoObject> ?ra .
+              ?b <urn:silmaril:prim:#rhoObject> ?rb .
+              FILTER NOT EXISTS {
+                ?t <urn:silmaril:prim:#transportOf> $this ;
+                   <urn:silmaril:prim:#transportDom> ?ra ;
+                   <urn:silmaril:prim:#transportCod> ?rb .
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# YonedaShape — the LITERAL-YONEDA law (STEP C/D). The Yoneda embedding yo: FormalOlog ->
+# PSh(FormalOlog), A |-> Hom(-, A), must be TOTAL over the objects and rho must be a NATURAL
+# transformation over it. Two sh:sparql constraints target the tower CLASSES (owl:Class walked
+# by rdfs:subClassOf* to prim:FormalType, including the FormalType apex — 60 objects):
+#   * REPRESENTABLE PRESENT: every tower class A has a prim:yonedaObject edge to a representable
+#     presheaf yo(A) = prim:repr_<A> carrying its Yoneda point (prim:yonedaPoint prim:id_<A>) —
+#     checked structurally by requiring the target to have a yonedaPoint, a signature rdfs
+#     range-inference (yonedaObject rdfs:range prim:RepresentablePresheaf) does NOT synthesise, so
+#     the value-type check is defang-proof.
+#   * NATURALITY PRESENT: every tower class A has a prim:RhoComponent prim:rhoComponentAt it (the
+#     component rho_A: yo(A) -> rho(A) of the natural transformation rho: yo => R) — so the
+#     transformation is defined at every object, a prerequisite for the naturality squares.
+# A tower class missing its representable-with-Yoneda-point or its rho component is not fully in
+# the literal Yoneda image and is REJECTED. Same owl:Class + rdfs:subClassOf* targeting idiom as
+# prim:DualGroundingShape (the arrow/presheaf classes are NOT subClassOf* prim:FormalType, so they
+# are never targeted). Teeth proof (STEP D): removing a class's prim:yonedaObject edge, or
+# colliding two classes onto one representable (which q_yoneda_faithful also catches), or dropping a
+# rho component makes pyshacl conforms=False. Full IRIs so no sh:prefixes is required.
+# =====================================================================================
+
+prim:YonedaShape a sh:NodeShape ;
+    rdfs:label "YonedaShape" ;
+    rdfs:comment "The literal-Yoneda law with teeth (STEP C/D): the Yoneda embedding yo: FormalOlog -> PSh(FormalOlog) must be total over the tower objects and the realization rho must be a natural transformation over it. Two sh:sparql constraints target owl:Class restricted (like prim:DualGroundingShape) to the tower classes rdfs:subClassOf* prim:FormalType — every one of the 60 objects (59 tower classes plus the FormalType apex): the first flags a class with no prim:yonedaObject to a representable presheaf carrying its Yoneda point (checked structurally via prim:yonedaPoint, a signature rdfs range-inference does not synthesise, so it is defang-proof against yonedaObject's rdfs:range); the second flags a class with no prim:RhoComponent prim:rhoComponentAt it (the component rho_A of the natural transformation rho: yo => R, whose presence at every object is the prerequisite for the naturality squares q_naturality_commutes checks). A tower class missing its representable-with-Yoneda-point or its rho component is not fully in the literal Yoneda image and is rejected. The arrow and presheaf classes (prim:SubtypeArrow, prim:YonedaArrow, prim:RepresentablePresheaf, ...) are deliberately NOT rdfs:subClassOf* prim:FormalType, so they are never targeted; removing a class's yonedaObject edge or its rho component makes pyshacl report conforms=False, proving the teeth." ;
+    sh:targetClass owl:Class ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "literal-Yoneda law (STEP C/D): this tower class (rdfs:subClassOf* prim:FormalType) has no prim:yonedaObject to a representable presheaf carrying its Yoneda point (prim:yonedaPoint) — it is not in the object image of the Yoneda embedding and is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:prim:#FormalType> .
+              FILTER NOT EXISTS {
+                $this <urn:silmaril:prim:#yonedaObject> ?r .
+                ?r <urn:silmaril:prim:#yonedaPoint> ?pt .
+              }
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "literal-Yoneda naturality law (STEP C/D): this tower class (rdfs:subClassOf* prim:FormalType) has no prim:RhoComponent prim:rhoComponentAt it — the natural transformation rho: yo => R is undefined at this object, so naturality cannot hold and the class is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:prim:#FormalType> .
+              FILTER NOT EXISTS {
+                ?c a <urn:silmaril:prim:#RhoComponent> ;
+                   <urn:silmaril:prim:#rhoComponentAt> $this .
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# STEP E — RESIDUAL teeth: two decorative residuals given real SHACL teeth (enrich, never strip).
+# =====================================================================================
+# RESIDUAL 1 — Frame = Yoneda-point / Yoneda-evaluation soundness was materialised but UNENFORCED:
+# prim:Frame prim:isYonedaPoint and the 60 prim:YonedaEvaluation edges were read by no shape, so
+# injecting isYonedaPoint=false or a wrong evalYields conformed. prim:FrameYonedaPointShape and
+# prim:YonedaEvaluationShape close that (mirroring q_yoneda_point / q_yoneda_evaluation_sound).
+# RESIDUAL 2 — composite-transport EXISTENCE/COVERAGE was UNENFORCED: prim:FunctorTransportShape
+# catches a MIS-WIRED composite transport but NOT a MISSING one. prim:CompositeTransportCoverageShape
+# closes the existence gap (mirroring q_functor_composition_total part (a)). Each was proven to bite
+# by injection (conforms=True -> False), documented in the README STEP E verification block.
+# =====================================================================================
+
+
+# =====================================================================================
+# FrameYonedaPointShape — the FRAME = YONEDA-POINT law (RESIDUAL 1a). The unary byte-frame law
+# states "The Frame remains the physical Yoneda point for one such input stream"; taiji.ttl records
+# that identification as prim:Frame prim:isYonedaPoint true. This shape targets the single node
+# prim:Frame and requires it to carry prim:isYonedaPoint with the value true (sh:hasValue true,
+# sh:minCount 1). Before this shape the flag was materialised but read by no shape and no ASK, so
+# injecting isYonedaPoint=false conformed; now the value-negation is REJECTED. Teeth proof (STEP E):
+# replacing prim:Frame prim:isYonedaPoint true with ...false makes pyshacl conforms=False here and
+# flips q_yoneda_point to false. sh:hasValue survives inference=rdfs (it checks a literal value, not
+# a class range), so it cannot be defanged.
+# =====================================================================================
+
+prim:FrameYonedaPointShape a sh:NodeShape ;
+    rdfs:label "FrameYonedaPointShape" ;
+    rdfs:comment "The Frame = Yoneda-point law with teeth (RESIDUAL 1a). The unary byte-frame law names the Frame the physical Yoneda point ('The Frame remains the physical Yoneda point for one such input stream') — the typed product Frame(output, effect) around a byte stream is the point at which a callable's one input maps to its output and effect — and taiji.ttl records that identification as prim:Frame prim:isYonedaPoint true, tying the categorical Yoneda point (the identity element at which representables are evaluated to yield realization carriers) to the physical Frame the whole floor's realization monad is the Kleisli category of. This shape targets the single node prim:Frame and requires it to carry prim:isYonedaPoint with value true (sh:hasValue true, sh:minCount 1). Before this shape the flag was materialised but read by no shape and no ASK, so injecting isYonedaPoint=false conformed and left the floor green; now negating the flag is rejected. It is the SHACL counterpart of the EXPECT-TRUE q_yoneda_point; replacing prim:Frame prim:isYonedaPoint true with ...false makes pyshacl report conforms=False here (and flips q_yoneda_point false), proving the teeth. sh:hasValue reads a literal value, not a class range, so rdfs range-inference cannot defang it." ;
+    sh:targetNode prim:Frame ;
+    sh:property [
+        sh:path prim:isYonedaPoint ;
+        sh:minCount 1 ;
+        sh:hasValue true ;
+        sh:severity sh:Violation ;
+        sh:message "Frame = Yoneda-point law (RESIDUAL 1a): prim:Frame must carry prim:isYonedaPoint true (the Frame IS the physical Yoneda point of the unary law); a Frame missing the flag or carrying isYonedaPoint false is rejected." ;
+    ] .
+
+
+# =====================================================================================
+# YonedaEvaluationShape — the YONEDA-EVALUATION SOUNDNESS law (RESIDUAL 1b). "Realization =
+# Yoneda evaluation at the representable": evaluating yo(A) = prim:repr_<A> at its Yoneda point
+# yields R(A) = rho(A), the canonical realization carrier of A. This shape targets every
+# prim:YonedaEvaluation and requires (i) all FOUR eval* coordinates present — prim:evalPresheaf,
+# prim:evalAtPoint, prim:evalYields, prim:evalComponent (each sh:minCount 1) — AND (ii) that
+# prim:evalYields EQUALS rho of the evaluated type: the prim:rhoObject of the FormalType whose
+# prim:yonedaObject is the evaluation's prim:evalPresheaf. The equality is a sh:sparql constraint
+# reading the genuine yonedaObject / rhoObject / evalYields edges (defang-proof: range-inference adds
+# rdf:type, never a specific carrier identity). Before this shape the eval* edges were read by no
+# shape, so a wrong evalYields conformed. Teeth proof (STEP E): a wrong evalYields on any one
+# evaluation makes pyshacl conforms=False here and flips q_yoneda_evaluation_sound to false.
+# =====================================================================================
+
+prim:YonedaEvaluationShape a sh:NodeShape ;
+    rdfs:label "YonedaEvaluationShape" ;
+    rdfs:comment "The Yoneda-evaluation soundness law with teeth (RESIDUAL 1b). By the Yoneda lemma Nat(Hom(-, A), R) is naturally isomorphic to R(A), the isomorphism being evaluation of the representable yo(A) = prim:repr_<A> at its Yoneda point (the identity element of Hom(A, A)); here R is the physical realization functor, so that evaluation yields R(A) = rho(A) = the canonical byte-carrier of A. This is the literal content of 'realization = Yoneda evaluation at the representable'. This shape targets every prim:YonedaEvaluation and enforces two things: first, that all FOUR eval* coordinates are present (prim:evalPresheaf the representable, prim:evalAtPoint the Yoneda point prim:id_<A>, prim:evalYields the carrier rho(A), prim:evalComponent the realizing RhoComponent), each sh:minCount 1; second, via a sh:sparql constraint, that prim:evalYields EQUALS rho of the evaluated type — the prim:rhoObject of the FormalType whose prim:yonedaObject is the evaluation's prim:evalPresheaf — so the evaluation genuinely yields the realization of its own type and not some other carrier. The equality check reads the genuine yonedaObject/rhoObject/evalYields edges and so is defang-proof against inference=rdfs (which adds rdf:type but never a specific carrier identity). Before this shape the eval* edges were read by no shape and no ASK, so a wrong evalYields conformed and left the floor green; it is the SHACL counterpart of the EXPECT-TRUE q_yoneda_evaluation_sound, and a wrong evalYields on any one evaluation makes pyshacl report conforms=False here while flipping q_yoneda_evaluation_sound false, proving the teeth." ;
+    sh:targetClass prim:YonedaEvaluation ;
+    sh:property [
+        sh:path prim:evalPresheaf ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Yoneda-evaluation soundness (RESIDUAL 1b): every prim:YonedaEvaluation needs a prim:evalPresheaf (the representable presheaf yo(A) = prim:repr_<A> it evaluates)." ;
+    ] ;
+    sh:property [
+        sh:path prim:evalAtPoint ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Yoneda-evaluation soundness (RESIDUAL 1b): every prim:YonedaEvaluation needs a prim:evalAtPoint (the Yoneda point prim:id_<A>, the universal element of Hom(A, A) it evaluates at)." ;
+    ] ;
+    sh:property [
+        sh:path prim:evalYields ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Yoneda-evaluation soundness (RESIDUAL 1b): every prim:YonedaEvaluation needs a prim:evalYields (the carrier rho(A) = R(A) the evaluation produces)." ;
+    ] ;
+    sh:property [
+        sh:path prim:evalComponent ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Yoneda-evaluation soundness (RESIDUAL 1b): every prim:YonedaEvaluation needs a prim:evalComponent (the prim:RhoComponent rho_A whose application IS the evaluation)." ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "Yoneda-evaluation soundness (RESIDUAL 1b): this prim:YonedaEvaluation's prim:evalYields does not equal rho of its own type — rho(A) = prim:rhoObject of the FormalType whose prim:yonedaObject is this evaluation's prim:evalPresheaf. Realization = Yoneda evaluation at the representable, so evalYields MUST be that carrier; a differing carrier is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <urn:silmaril:prim:#evalPresheaf> ?r .
+              $this <urn:silmaril:prim:#evalYields> ?y .
+              ?t <urn:silmaril:prim:#yonedaObject> ?r .
+              ?t <urn:silmaril:prim:#rhoObject> ?carrier .
+              FILTER ( ?y != ?carrier )
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# CompositeTransportCoverageShape — the COMPOSITE-TRANSPORT EXISTENCE law (RESIDUAL 2).
+# prim:FunctorTransportShape gives the SubtypeArrow generators their rho-image transports (and
+# catches a MIS-WIRED one), but nothing forced every prim:CompositeArrow to actually HAVE a
+# transport — a composite transport could be REMOVED and the floor stayed green. This shape targets
+# every prim:CompositeArrow and requires it to be the target of some prim:RealizationTransport that is
+# prim:transportOf it (the rho-image of the composite subtyping arrow must exist). It is a sh:sparql
+# constraint reading the genuine transportOf edge, so range-inference cannot defang it. Teeth proof
+# (STEP E): removing the prim:RealizationTransport of any composite arrow makes pyshacl conforms=False
+# here and flips q_functor_composition_total to false. It complements q_functor_composition_total's
+# part (b) (composable-pair coverage), which is enforced by that ASK.
+# =====================================================================================
+
+prim:CompositeTransportCoverageShape a sh:NodeShape ;
+    rdfs:label "CompositeTransportCoverageShape" ;
+    rdfs:comment "The composite-transport existence law with teeth (RESIDUAL 2). rho is a functor on morphisms, so it must transport EVERY arrow of the thin formal category — including the 45 prim:CompositeArrow transitive edges, not only the SubtypeArrow generators. prim:FunctorTransportShape covers the generators and catches a mis-wired transport, but it does not force every composite arrow to actually possess its rho-image, so a composite transport could be removed and the floor stayed green. This shape targets every prim:CompositeArrow and, via a sh:sparql constraint, flags any composite arrow that is NOT the target of some prim:RealizationTransport prim:transportOf it — i.e. any composite subtyping arrow whose rho-image transport is missing. It reads the genuine transportOf edge, so rdfs range-inference (which adds rdf:type but never a transportOf edge) cannot make the check vacuous. It is the SHACL counterpart of q_functor_composition_total's existence half: removing the prim:RealizationTransport of any composite arrow makes pyshacl report conforms=False here and flips q_functor_composition_total false, proving the teeth. The coverage half — every composable SubtypeArrow pair having a CompositeArrow — is enforced by q_functor_composition_total part (b)." ;
+    sh:targetClass prim:CompositeArrow ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "composite-transport existence law (RESIDUAL 2): this prim:CompositeArrow has no prim:RealizationTransport that is prim:transportOf it — rho does not transport this composite subtyping arrow, so functor coverage is broken and the arrow is rejected." ;
+        sh:select """
+            SELECT $this WHERE {
+              FILTER NOT EXISTS { ?t <urn:silmaril:prim:#transportOf> $this }
+            }
+        """ ;
+    ] .

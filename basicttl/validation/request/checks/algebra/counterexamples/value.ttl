@@ -1,0 +1,9 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:AlgebraCounterexamples a validation:Check ;
+    schema:comment "Reject incomplete or nonfunctional magma operations and the singleton zero ring as a field with zero equal to one." ;
+    validation:declarationPath "basicttl/validation/request/checks/algebra/counterexamples/value.ttl" .

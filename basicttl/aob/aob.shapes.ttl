@@ -1,0 +1,739 @@
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+
+# =====================================================================================
+# aob.shapes.ttl — the SHACL LAW of the AOB meta-ontology (W2 · SP2).
+# =====================================================================================
+# One sh:NodeShape per invariant, each a sh:sparql / sh:in / sh:hasValue constraint — DEFANG-PROOF
+# (never a bare sh:class an rdfs:range would make vacuous under inference="rdfs", per SP1's lesson).
+# Loaded ONLY as the shapes graph by checks/run-aob-checks.sh (never mixed into the data), validated
+# with inference="rdfs" over the merged AOB data graph; the runner requires conforms=True. Each shape
+# is proven to BITE by a targeted probe-of-record injection (conforms=True->False), never by absence
+# of violations on the happy path. Full IRIs are used inside every sh:select so no sh:prefixes
+# declaration is load-bearing. Later tasks APPEND their shapes here.
+# =====================================================================================
+
+
+# =====================================================================================
+# ProgenitorSplitShape (Task 1) — the two-family top_kind bifurcation is total, disjoint, addressable.
+# Targets aob:AOBAtom (under inference=rdfs, every aob:ConcreteAnchor / aob:YonedaHomLeg instance is
+# materialised a aob:AOBAtom, so every atom is in scope). Flags any atom that is NOT exactly one of the
+# two seed families (neither, or both crammed), or that carries no aob:atomFamilyUrn. The check is a
+# sh:sparql over rdf:type membership + property existence: range-inference can add an rdf:type but
+# cannot forge a second family membership nor an atomFamilyUrn, so the teeth cannot be defanged.
+# PROBE OF RECORD: aob:bad a aob:AOBAtom, aob:ConcreteAnchor, aob:YonedaHomLeg (both) and
+# aob:bad2 a aob:AOBAtom (neither/no-family) are each caught (conforms=True->False).
+# =====================================================================================
+
+aob:ProgenitorSplitShape a sh:NodeShape ;
+    rdfs:label "ProgenitorSplitShape" ;
+    rdfs:comment "The progenitor-split law with teeth on the top_kind bifurcation lifted from the Helios seed schema (concrete_anchor.spec.yaml top_kind: node / yoneda_hom_leg.spec.yaml top_kind: arrow). A sh:sparql node shape targeting aob:AOBAtom: it flags any AOB atom that is NOT exactly one of aob:ConcreteAnchor (node) / aob:YonedaHomLeg (arrow) — i.e. it is neither family, or it is BOTH families crammed into one node — or that carries no aob:atomFamilyUrn coordinate. The check reads rdf:type membership and aob:atomFamilyUrn existence directly, never via a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot forge membership in a SECOND disjoint family nor invent an atomFamilyUrn literal, so the walk still fails for a crammed or family-less node. On this floor both witness atoms (aob:witnessAnchor a node, aob:witnessLeg an arrow) satisfy it; the both-crammed probe (aob:bad a aob:ConcreteAnchor, aob:YonedaHomLeg) and the neither/no-family probe (aob:bad2 a aob:AOBAtom) are caught (conforms=True->False), proving the teeth on the cases that bite." ;
+    sh:targetClass aob:AOBAtom ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "progenitor split (top_kind node|arrow): this aob:AOBAtom is not EXACTLY ONE of aob:ConcreteAnchor / aob:YonedaHomLeg (it is neither, or both crammed), or it carries no aob:atomFamilyUrn — the two-family bifurcation must be total, disjoint, and per-atom addressable; nothing crammed." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                FILTER NOT EXISTS { $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#ConcreteAnchor> }
+                FILTER NOT EXISTS { $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#YonedaHomLeg> }
+              } UNION {
+                $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#ConcreteAnchor> , <urn:silmaril:aob:#YonedaHomLeg> .
+              } UNION {
+                FILTER NOT EXISTS { $this <urn:silmaril:aob:#atomFamilyUrn> ?f }
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# SopCarrierShape (Task 2) — every arrow (aob:YonedaHomLeg) carries the full S/O/P carrier.
+# Targets aob:YonedaHomLeg. Flags any arrow atom missing any of the three lifted seed coordinates
+# aob:sourceNodeUrn (S) / aob:targetNodeUrn (O) / aob:cpoProcessIri (P). The check is a sh:sparql over
+# property existence (never a bare sh:class an rdfs:range would defang): range-inference can add an
+# rdf:type edge but cannot forge a missing S/O/P datatype literal, so an incomplete leg still fails.
+# PROBE OF RECORD: delete aob:witnessLeg aob:targetNodeUrn (an arrow missing O) -> conforms=True->False.
+# =====================================================================================
+
+aob:SopCarrierShape a sh:NodeShape ;
+    rdfs:label "SopCarrierShape" ;
+    rdfs:comment "The S/O/P-carrier law with teeth on the arrow family, lifted verbatim from the yoneda_hom_leg seed (helios/01_data_src_specs/products/users/atoms.spec.yaml: source_node_urn / target_node_urn / cpo_process_iri). A sh:sparql node shape targeting aob:YonedaHomLeg: it flags any arrow atom that does not carry ALL THREE of aob:sourceNodeUrn (S, the source object endpoint), aob:targetNodeUrn (O, the target object endpoint) and aob:cpoProcessIri (P, the cceo: process morphism) — the three coordinates that make an arrow a complete typed leg of a Yoneda hom-profile and the exact S/O/P triple SP3 lifts into the CRS. The check reads property existence directly, never via a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot invent a missing S/O/P literal, so an incomplete leg still fails the walk. On this floor aob:witnessLeg (S=urn:silmaril:atom:users:concrete_anchor:admin_create_parse, O=urn:silmaril:atom:users:concrete_anchor:actor, P=cceo:ModelingProcess) satisfies it; the probe of record — deleting aob:witnessLeg aob:targetNodeUrn so the arrow is missing O — is caught (conforms=True->False), proving the teeth bite on the case that matters." ;
+    sh:targetClass aob:YonedaHomLeg ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "S/O/P carrier: this aob:YonedaHomLeg arrow does not carry all three of aob:sourceNodeUrn (S) / aob:targetNodeUrn (O) / aob:cpoProcessIri (P) — a Yoneda hom-leg is an incomplete arrow without its full source/target/process triple (the seed SP3 lifts into the CRS); nothing crammed, nothing dropped." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                FILTER NOT EXISTS { $this <urn:silmaril:aob:#sourceNodeUrn> ?s }
+              } UNION {
+                FILTER NOT EXISTS { $this <urn:silmaril:aob:#targetNodeUrn> ?o }
+              } UNION {
+                FILTER NOT EXISTS { $this <urn:silmaril:aob:#cpoProcessIri> ?p }
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# UpperAnchorShape (Task 3) — the load-bearing CCO/BFO upper anchor, pattern-BY-ANCHOR (never inline).
+# Targets aob:AOBAtom (both families in one shape). For a node atom (aob:ConcreteAnchor) it requires
+# EXACTLY ONE aob:ccoGroundingIri whose value REGEX-matches the pattern READ FROM the referenced anchor
+# node (aob:patternAnchorUrn -> aob:anchorPattern) — never an sh:pattern literal in this shape (MD6:
+# pattern lives once, on the lifted universal_anchor node). For an arrow atom (aob:YonedaHomLeg) it
+# requires EXACTLY ONE aob:cpoProcessIri REGEX-matching its referenced anchor pattern. Card-1..1 both
+# sides; live external TTL resolution deferred to W5 (MD6). The check is a sh:sparql over property
+# existence + a REGEX against the referenced anchor's pattern: range-inference (inference=rdfs) can add
+# an rdf:type edge but cannot forge a matching IRI literal nor a second distinct grounding, so the teeth
+# cannot be defanged, and NO regex literal ever appears in this file (grep-checked by the review probe).
+# PROBE OF RECORD: (a) a second aob:witnessAnchor aob:ccoGroundingIri "cco:ont00000001" (two distinct
+# CCO IRIs -> card-1..1 branch fires); (b) aob:ccoGroundingIri "cco:BOGUS" (fails the referenced pattern
+# -> pattern branch fires); each caught (conforms=True->False).
+# =====================================================================================
+
+aob:UpperAnchorShape a sh:NodeShape ;
+    rdfs:label "UpperAnchorShape" ;
+    rdfs:comment "The load-bearing CCO/BFO upper-anchor law with teeth, lifted verbatim from the Layer-0 universal_anchors law (helios/01_data_src_specs/universal_anchors.spec.yaml, algebra_role: pure_seed, layer: 0). A sh:sparql node shape targeting aob:AOBAtom that flags: (1) any node atom (aob:ConcreteAnchor) lacking a aob:ccoGroundingIri whose value REGEX-matches the pattern read from its referenced aob:patternAnchorUrn anchor node (aob:anchorPattern) — the pattern-by-anchor discipline, never an inline sh:pattern; (2) any node carrying TWO distinct aob:ccoGroundingIri values (card-1..1 breach); (3) any arrow atom (aob:YonedaHomLeg) lacking a aob:cpoProcessIri REGEX-matching its referenced anchor pattern; (4) any arrow carrying two distinct aob:cpoProcessIri values. The regex is READ from the anchor node with SPARQL REGEX and never written as an sh:pattern literal in this file (MD6: the pattern lives once, on the lifted anchor node; the shape only references it), so a review grep of aob.shapes.ttl for any cco/cceo regex literal must return zero. Range-inference can add an rdf:type edge but cannot forge a matching IRI literal nor a second distinct grounding, so the teeth still bite for a mis-grounded or double-grounded atom. Live external resolution of the IRI against MergedAllCoreOntology.ttl (SIL_CCO_TTL_FILE, CCO 2.x under BFO; the cco-merged/cco.ttl spelling is the honest divergence) is a deferred, re-runnable W5 gate (MD6); the v1 tooth is cardinality-1..1 + pattern-via-anchor only. On this floor aob:witnessAnchor (cco:ont00000958 via aob:anchor_cco_grounding_iri) and aob:witnessLeg (cceo:ModelingProcess via aob:anchor_cpo_process_iri) satisfy it; the two-CCO probe and the cco:BOGUS probe are each caught (conforms=True->False)." ;
+    sh:targetClass aob:AOBAtom ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "upper anchor (CCO/BFO, pattern-by-anchor): this aob:AOBAtom breaches the load-bearing upper-anchor law — a node must carry EXACTLY ONE aob:ccoGroundingIri REGEX-matching its referenced aob:patternAnchorUrn -> aob:anchorPattern, an arrow EXACTLY ONE aob:cpoProcessIri matching its referenced anchor pattern (card 1..1, no inline regex); either the grounding is missing/mis-patterned or two distinct groundings are present." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#ConcreteAnchor> .
+                FILTER NOT EXISTS {
+                  $this <urn:silmaril:aob:#ccoGroundingIri> ?i ;
+                        <urn:silmaril:aob:#patternAnchorUrn> ?anc .
+                  ?anc <urn:silmaril:aob:#anchorPattern> ?pat .
+                  FILTER(REGEX(?i, ?pat))
+                }
+              } UNION {
+                $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#ConcreteAnchor> ;
+                      <urn:silmaril:aob:#ccoGroundingIri> ?i1 , ?i2 .
+                FILTER(?i1 != ?i2)
+              } UNION {
+                $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#YonedaHomLeg> .
+                FILTER NOT EXISTS {
+                  $this <urn:silmaril:aob:#cpoProcessIri> ?p ;
+                        <urn:silmaril:aob:#patternAnchorUrn> ?anc2 .
+                  ?anc2 <urn:silmaril:aob:#anchorPattern> ?pat2 .
+                  FILTER(REGEX(?p, ?pat2))
+                }
+              } UNION {
+                $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#YonedaHomLeg> ;
+                      <urn:silmaril:aob:#cpoProcessIri> ?p1 , ?p2 .
+                FILTER(?p1 != ?p2)
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# OctetDescentShape (Task 4) - the source_sha256 identity is subatomic to the octet + z-seed.
+# Targets aob:HashDigest. Flags a digest that is NOT a prim:ByteVector of EXACTLY 32 prim:Octets
+# (each ordinal 0..255 via prim:ordinalMin 0 / prim:ordinalMax 255), or that lacks an aob:zSeed
+# typed prim:Uint16, or whose ByteVector carrier does not byte-descend (prim:byteDescendsTo+) to the
+# width-1 prim:Bit floor. The check is a sh:sparql over a COUNT subquery + property/ordinal existence
+# + a property-path descent: range-inference (inference=rdfs) can add an rdf:type edge but cannot
+# forge a 32nd octet, a correct 0..255 ordinal bound, nor a matching prim:Uint16 z-seed, so the teeth
+# cannot be defanged. NO bare sh:class (an rdfs:range would make it vacuous); every clause is explicit.
+# PROBE OF RECORD: add a 33rd aob:digestOctet (count 32->33 -> count branch fires) OR set one octet's
+# prim:ordinalMax to 256 (out of 0..255 -> ordinal branch fires); each caught (conforms=True->False).
+# =====================================================================================
+
+aob:OctetDescentShape a sh:NodeShape ;
+    rdfs:label "OctetDescentShape" ;
+    rdfs:comment "The octet-descent law with teeth on the source_sha256 atom identity (octet_descent.ttl), the AtomCommon content-hash identity Helios names but the papers facet omits - the delta SP2 adds on lift. A sh:sparql node shape targeting aob:HashDigest: it flags any digest that is not a prim:ByteVector of EXACTLY 32 prim:Octets (a sha256 is 256 bits = 32 octets), any constituent octet whose ordinal range is not 0..255 (prim:ordinalMin 0 / prim:ordinalMax 255), any digest lacking an aob:zSeed typed prim:Uint16 (the little-endian z-coordinate seed SP3 consumes), or any digest whose ByteVector carrier does not byte-descend via SP1's prim:byteDescendsTo+ to the width-1 prim:Bit floor. The 32-count is enforced by a COUNT subquery (grouped on the focus node); the ordinal bounds, the z-seed type and the descent path are enforced by explicit existence clauses reading rdf:type membership, prim:ordinalMin/Max literals and the prim:byteDescendsTo property path directly - never a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang). Range-inference can add an rdf:type edge but cannot forge a 32nd octet, a correct 0..255 bound, nor a matching prim:Uint16 seed, so the walk still fails for a mis-sized or mis-bounded digest. On this floor aob:witnessDigest (32 illustrative octets, ordinal 0..255, aob:zSeed aob:witnessZSeed a prim:Uint16) satisfies it; the 33rd-octet probe (count 32->33) and the ordinalMax-256 probe are each caught (conforms=True->False), proving the teeth bite on the cases that matter." ;
+    sh:targetClass aob:HashDigest ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "octet descent (source_sha256 identity): this aob:HashDigest is not a prim:ByteVector of EXACTLY 32 prim:Octets each ordinal 0..255 byte-descending to prim:Bit, or it lacks an aob:zSeed typed prim:Uint16 - the atom identity must be a navigable 32-octet carrier grounded in the SP1 byte substrate, not an opaque literal." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                { SELECT $this (COUNT(?o) AS ?n) WHERE { $this <urn:silmaril:aob:#digestOctet> ?o } GROUP BY $this }
+                FILTER(?n != 32)
+              } UNION {
+                $this <urn:silmaril:aob:#digestOctet> ?ox .
+                FILTER NOT EXISTS { ?ox <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:prim:#Octet> }
+              } UNION {
+                $this <urn:silmaril:aob:#digestOctet> ?ox2 .
+                FILTER NOT EXISTS { ?ox2 <urn:silmaril:prim:#ordinalMin> 0 }
+              } UNION {
+                $this <urn:silmaril:aob:#digestOctet> ?ox3 .
+                FILTER NOT EXISTS { ?ox3 <urn:silmaril:prim:#ordinalMax> 255 }
+              } UNION {
+                FILTER NOT EXISTS {
+                  $this <urn:silmaril:aob:#zSeed> ?z .
+                  ?z <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:prim:#Uint16> .
+                }
+              } UNION {
+                FILTER NOT EXISTS {
+                  $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:prim:#ByteVector> .
+                  <urn:silmaril:prim:#ByteVector> <urn:silmaril:prim:#byteDescendsTo>+ <urn:silmaril:prim:#Bit> .
+                }
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# TensorByteOrderShape (Task 5) - the three-axis tensor block grounds into SP1 physical carriers +
+# the byte_order agnostic progenitor. Targets aob:TensorBlock. Flags any block whose time.byte_order is
+# NOT a child of aob:ByteOrderProgenitor that aob:groundsInByteOrder a prim:ByteOrder individual, OR
+# whose space.bit_width (aob:tsBitWidth) aob:groundsInEncoding an encoding that is not a
+# prim:PhysicalEncoding carrying that exact prim:bitWidth. The check is a sh:sparql over an
+# rdfs:subClassOf* property path + property existence + a bit_width equality join: range-inference
+# (inference=rdfs) can add an rdf:type edge but cannot forge a progenitor-descended byte_order grounded
+# in a prim:ByteOrder, nor a SP1 encoding of a matching width, so the teeth cannot be defanged. NO bare
+# sh:class (an rdfs:range would make it vacuous). The byte_order pattern lives on the lifted progenitor
+# children, never inline in this shape.
+# DEFECT-4 HARDENING: aob:ttByteOrder is now guarded by EXISTENCE + CARDINALITY (design-single-valued,
+# maxCount 1) + UNIVERSAL well-formedness (every byte order must be progenitor-grounded, not merely one),
+# so a rogue byte order can no longer hide behind a conforming sibling.
+# PROBE OF RECORD: (a) point the witness block's aob:ttByteOrder at a fresh node NOT descended from
+# aob:ByteOrderProgenitor (well-formedness branch fires); (b) set aob:tsBitWidth 7 with aob:groundsInEncoding
+# prim:StringUtf8 (no 7-bit encoding in the graph -> bit_width branch fires); (c) add a SECOND rogue
+# aob:ttByteOrder (a node not descended from the progenitor) alongside aob:byteOrderNone (cardinality AND
+# well-formedness branches fire); each caught (conforms=True->False).
+# =====================================================================================
+
+aob:TensorByteOrderShape a sh:NodeShape ;
+    rdfs:label "TensorByteOrderShape" ;
+    rdfs:comment "The tensor-block grounding law with teeth on the three-axis block (tensor_block.ttl), lifted verbatim from the wave8 tensor: block (helios/00_src_specs/types/silmaril_wave8/yoneda_hom_leg.spec.yaml). A sh:sparql node shape targeting aob:TensorBlock: it flags any block whose time.byte_order (aob:ttByteOrder) is NOT a child of the byte_order agnostic progenitor aob:ByteOrderProgenitor (rdfs:subClassOf* to the progenitor) that aob:groundsInByteOrder a SP1 prim:ByteOrder individual, and any block whose space.bit_width (aob:tsBitWidth) aob:groundsInEncoding an encoding that is not a prim:PhysicalEncoding carrying that EXACT prim:bitWidth. So the tensor's byte field is a coordinate pinned to the floor's endianness family + physical ladder, never a free integer. The byte-order pattern lives on the lifted progenitor children (aob:byteOrderLittle/Big/Host/None), never as an inline literal in this shape; the check reads rdf:type membership, the rdfs:subClassOf* path, the aob:groundsInByteOrder / aob:groundsInEncoding edges and the prim:bitWidth equality directly, never a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang). Range-inference can add an rdf:type edge but cannot forge a progenitor-descended byte_order grounded in a prim:ByteOrder nor a SP1 encoding of a matching width, so the walk still fails for an ungrounded byte_order or an unmatched bit_width. The Defect-4 hardening guards aob:ttByteOrder with EXISTENCE + CARDINALITY (design-single-valued, maxCount 1, so two distinct byte orders fail) + UNIVERSAL well-formedness (every byte order must be progenitor-grounded), so a rogue byte order can no longer hide behind a conforming sibling. On this floor aob:witnessTensorBlock (single aob:ttByteOrder aob:byteOrderNone -> prim:EndianNeutral; aob:tsBitWidth 8 -> prim:StringUtf8 prim:bitWidth 8) satisfies it; the off-progenitor byte_order probe, the bit_width-7 probe, and the second-rogue-byte-order probe are each caught (conforms=True->False), proving the teeth bite on the cases that matter." ;
+    sh:targetClass aob:TensorBlock ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "tensor block grounding: this aob:TensorBlock breaches the physical grounding law - it carries no aob:ttByteOrder, or two distinct aob:ttByteOrder (single-valued, maxCount 1), or a byte order that is not a child of aob:ByteOrderProgenitor grounding a prim:ByteOrder, or its space.bit_width (aob:tsBitWidth) grounds into an encoding that is not a prim:PhysicalEncoding of that exact prim:bitWidth; the tensor byte field must be a single coordinate pinned to the SP1 floor's endianness family + physical ladder, with no rogue sibling." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                # EXISTENCE: the block carries no aob:ttByteOrder at all.
+                FILTER NOT EXISTS { $this <urn:silmaril:aob:#ttByteOrder> ?boX }
+              } UNION {
+                # CARDINALITY (Defect-4): aob:ttByteOrder is design-single-valued (maxCount 1) - a block
+                # carrying two distinct byte orders fails, so a rogue byte order cannot hide behind a good one.
+                $this <urn:silmaril:aob:#ttByteOrder> ?bo1 , ?bo2 .
+                FILTER(?bo1 != ?bo2)
+              } UNION {
+                # WELL-FORMEDNESS (Defect-4, UNIVERSAL): SOME aob:ttByteOrder is not a child of
+                # aob:ByteOrderProgenitor grounding a prim:ByteOrder individual. Universal semantics: every
+                # byte order must be progenitor-grounded, not merely one.
+                $this <urn:silmaril:aob:#ttByteOrder> ?bo .
+                FILTER NOT EXISTS {
+                  ?bo <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:aob:#ByteOrderProgenitor> .
+                  ?bo <urn:silmaril:aob:#groundsInByteOrder> ?pbo .
+                  ?pbo <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:prim:#ByteOrder> .
+                }
+              } UNION {
+                $this <urn:silmaril:aob:#tsBitWidth> ?bw ;
+                      <urn:silmaril:aob:#groundsInEncoding> ?e .
+                FILTER NOT EXISTS {
+                  ?e <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:prim:#PhysicalEncoding> ;
+                     <urn:silmaril:prim:#bitWidth> ?bw .
+                }
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# InterpretAsBridgeShape (Task 6) - the tensor block's value.interpret_as bridges to the atom's formal
+# facet (the yang<->yin bridge). Targets aob:TensorBlock. For every block whose OWNING atom (via
+# aob:hasTensorBlock) carries an aob:aobValue with a prim:formalFacet, EVERY aob:interpretBridge of the
+# block must pin a prim:PhysicalEncoding whose prim:interpretAs is a superclass-or-equal of that formal
+# facet (prim:formalFacet rdfs:subClassOf* prim:interpretAs, transitive so a subtype text facet still
+# bridges). The check is a sh:sparql over the hasTensorBlock/aobValue join + the interpretBridge edge +
+# the subClassOf* path: range-inference (inference=rdfs) can add an rdf:type edge but cannot forge a
+# prim:interpretAs that covers a mismatched formalFacet, so the teeth cannot be defanged; NO bare sh:class.
+# JOINT Task6<->Task7 TOOTH (plan Task 6 GREEN): the shape fires only once an atom carries an aob:aobValue
+# (Task 7). In the Task-6-only steady state (no aob:aobValue yet) the join yields no rows, so the shape is
+# silently satisfied (floor stays green) while the bridge (aob:interpretBridge) and its non-vacuity anchor
+# are authored; the coverage acquires live teeth the instant Task 7 supplies aob:aobValue -> prim:formalFacet.
+# PROBE OF RECORD: with an atom carrying an aob:aobValue whose prim:formalFacet is prim:String (the Task-7
+# witness / probe context), add aob:witnessTensorBlock aob:interpretBridge prim:Int32 (prim:interpretAs
+# prim:Integer, NOT the text facet) -> this shape fires (conforms=True->False).
+# =====================================================================================
+
+aob:InterpretAsBridgeShape a sh:NodeShape ;
+    rdfs:label "InterpretAsBridgeShape" ;
+    rdfs:comment "The value.interpret_as bridge law with teeth on the tensor block's VALUE axis (tensor_block.ttl), lifted from the wave8 tensor block's value.interpret_as node. A sh:sparql node shape targeting aob:TensorBlock: for every block whose owning atom (reached via aob:hasTensorBlock) carries an aob:aobValue with a prim:formalFacet, it flags any aob:interpretBridge of the block whose pinned prim:PhysicalEncoding has a prim:interpretAs that does NOT cover the atom's formal facet - i.e. NOT(prim:formalFacet rdfs:subClassOf* prim:interpretAs), read transitively so a subtype text facet still bridges. This is the tensor's physical yang (how the octets read) held by the atom's formal yin (what type it IS). The check reads the hasTensorBlock/aobValue join, the aob:interpretBridge edge, the prim:interpretAs edge and the rdfs:subClassOf* path directly, never a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot forge a prim:interpretAs that covers a mismatched formalFacet, so a mis-bridged block still fails the walk. This is the joint Task6<->Task7 tooth: it fires only once an atom carries an aob:aobValue (authored by Task 7), so the Task-6-only steady state (bridge present, no value yet) is silently satisfied and the SP2 floor stays green while the bridge + its non-vacuity anchor are laid down; the coverage acquires live teeth the instant Task 7 supplies aob:aobValue -> prim:formalFacet. On this floor the witness bridge is prim:StringUtf8 (prim:interpretAs prim:String), which closes reflexively against a text/String formalFacet; the probe of record - with an atom whose formalFacet is prim:String, add aob:interpretBridge prim:Int32 (interpretAs prim:Integer, not the text facet) - is caught (conforms=True->False), proving the teeth bite on the case that matters." ;
+    sh:targetClass aob:TensorBlock ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "interpret_as bridge (yang<->yin): this aob:TensorBlock has an aob:interpretBridge whose prim:PhysicalEncoding prim:interpretAs does NOT cover the owning atom's formal facet (prim:formalFacet rdfs:subClassOf* prim:interpretAs fails) - the tensor's value axis must bridge the physical encoding to the atom's formal type, the physical yang held by the formal yin." ;
+        sh:select """
+            SELECT $this WHERE {
+              ?a <urn:silmaril:aob:#hasTensorBlock> $this ;
+                 <urn:silmaril:aob:#aobValue> ?v .
+              ?v <urn:silmaril:prim:#formalFacet> ?f .
+              $this <urn:silmaril:aob:#interpretBridge> ?e .
+              FILTER NOT EXISTS {
+                ?e <urn:silmaril:prim:#interpretAs> ?g .
+                ?f <http://www.w3.org/2000/01/rdf-schema#subClassOf>* ?g .
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# AtomValueShape (Task 7) - the atom's VALUE is an SP1 colimit-taiji prim:Primitive. Targets aob:AOBAtom.
+# Flags any atom whose aob:aobValue is NOT a node carrying the full defang-proof structural signature of
+# a colimit-taiji prim:Primitive: prim:formalFacet ?f (the formal yin, on the FormalType tower via
+# rdfs:subClassOf* prim:FormalType), prim:physicalFacet ?pe where ?pe a prim:PhysicalEncoding carrying a
+# prim:bitWidth (the physical yang, a real byte carrier), AND prim:gluedBy ?g where ?g a prim:Realization
+# carrying a prim:frameOutput (the gluing rho Frame). Never a bare sh:class prim:Primitive (which an
+# rdfs:range would make vacuous under inference=rdfs): the whole signature is read as explicit property /
+# rdf:type existence, so range-inference can add an rdf:type edge but cannot forge a physicalFacet with a
+# bitWidth nor a gluedBy realization with a frameOutput, and the teeth still bite for a value missing any
+# facet of the gluing.
+# DEFECT-4 HARDENING: the check is now EXISTENCE + CARDINALITY + UNIVERSAL well-formedness, not a single
+# existential. aob:aobValue is design-single-valued, so an atom with TWO distinct values fails (maxCount 1),
+# and EVERY value must carry the full signature (universal NOT-EXISTS-malformed) - a malformed sibling can
+# no longer hide behind one conforming value.
+# PROBE OF RECORD: (a) point aob:witnessAnchor aob:aobValue at a node lacking prim:physicalFacet -> the
+# well-formedness clause fires; (b) add a SECOND malformed aob:witnessAnchor aob:aobValue (a bare node with
+# no facets) alongside the good prim:prim_String -> the cardinality AND well-formedness clauses fire; each
+# caught (conforms=True->False, q_aob_value_is_taiji True->False).
+# =====================================================================================
+
+aob:AtomValueShape a sh:NodeShape ;
+    rdfs:label "AtomValueShape" ;
+    rdfs:comment "The atom-value law with teeth on aob:aobValue (value_colimit.ttl), the meta-functor AOBAtom -> prim:Primitive that grounds every AOB atom onto an EXISTING SP1 colimit-taiji primitive (SP2 selects, never mints a new prim:Realization / prim:Effect, keeping SP1's RealizationShape sh:in intact). A sh:sparql node shape targeting aob:AOBAtom: it flags any atom whose aob:aobValue is not a node carrying the full colimit-taiji signature - prim:formalFacet ?f on the FormalType tower (rdfs:subClassOf* prim:FormalType, the formal yin), prim:physicalFacet ?pe where ?pe a prim:PhysicalEncoding with a prim:bitWidth (the physical yang, a real byte carrier), and prim:gluedBy ?g where ?g a prim:Realization with a prim:frameOutput (the gluing rho Frame). This is the structural proof that the value IS an SP1 taiji atom (ologs-of-ologs, turtles all the way) rather than a loose association: the AOB olog object is itself a glued prim:Primitive whose yin is bound to its yang by SP1's realization. The check reads property / rdf:type existence directly, never a bare sh:class prim:Primitive over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot forge a physicalFacet-with-bitWidth nor a gluedBy-realization-with-frameOutput, so a value missing any facet of the gluing still fails the walk. The Defect-4 hardening replaces the single existential with EXISTENCE + CARDINALITY (aob:aobValue is design-single-valued, maxCount 1, so two distinct values fail) + UNIVERSAL well-formedness (every value must carry the full signature, NOT-EXISTS-malformed), so a malformed value can no longer be masked by one conforming sibling. On this floor both witnesses (aob:witnessAnchor / aob:witnessLeg) carry exactly one aob:aobValue prim:prim_String (formalFacet prim:String, physicalFacet prim:StringUtf8ByteVector bitWidth 8, gluedBy prim:realize_String_Utf8ByteVector frameOutput prim:StringUtf8ByteVector) satisfying it; the probes of record - pointing aob:witnessAnchor aob:aobValue at a node lacking prim:physicalFacet, and adding a SECOND malformed aob:aobValue alongside the good one - are each caught (conforms=True->False), proving the teeth bite on the cases that matter." ;
+    sh:targetClass aob:AOBAtom ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "atom value (colimit-taiji): this aob:AOBAtom breaches the value law - it carries NO aob:aobValue, or TWO distinct aob:aobValue values (the value is single-valued, maxCount 1), or SOME aob:aobValue lacks the full colimit-taiji signature (a prim:formalFacet on the FormalType tower, a prim:physicalFacet that is a prim:PhysicalEncoding with a prim:bitWidth, AND a prim:gluedBy that is a prim:Realization with a prim:frameOutput); every value must BE an SP1 taiji prim:Primitive glued yin-to-yang, so a malformed value cannot hide behind a good one." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                # EXISTENCE: the atom carries no aob:aobValue at all.
+                FILTER NOT EXISTS { $this <urn:silmaril:aob:#aobValue> ?v0 }
+              } UNION {
+                # CARDINALITY (Defect-4): aob:aobValue is design-single-valued (maxCount 1) - an atom
+                # carrying two distinct values fails, so a malformed value cannot hide behind a good one.
+                $this <urn:silmaril:aob:#aobValue> ?v1 , ?v2 .
+                FILTER(?v1 != ?v2)
+              } UNION {
+                # WELL-FORMEDNESS (Defect-4, UNIVERSAL): SOME aob:aobValue lacks the full colimit-taiji
+                # signature (formalFacet on the FormalType tower + physicalFacet a prim:PhysicalEncoding
+                # with a prim:bitWidth + gluedBy a prim:Realization with a prim:frameOutput). Universal
+                # NOT-EXISTS-malformed semantics: every value must be well-formed, not merely one.
+                $this <urn:silmaril:aob:#aobValue> ?v .
+                FILTER NOT EXISTS {
+                  ?v <urn:silmaril:prim:#formalFacet> ?f ;
+                     <urn:silmaril:prim:#physicalFacet> ?pe ;
+                     <urn:silmaril:prim:#gluedBy> ?g .
+                  ?f <http://www.w3.org/2000/01/rdf-schema#subClassOf>* <urn:silmaril:prim:#FormalType> .
+                  ?pe <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:prim:#PhysicalEncoding> ;
+                      <urn:silmaril:prim:#bitWidth> ?bw .
+                  ?g <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:prim:#Realization> ;
+                     <urn:silmaril:prim:#frameOutput> ?fo .
+                }
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# GroupLawShape (Task 8 + Defect-2 hardening) - the sealed group of an atom + its companions is a group
+# with a GENUINE inverse. Targets aob:SealedGroup. Flags: (1) any companion (aob:companionAtom) that does
+# NOT aob:composesOnto the group identity (aob:groupIdentity) - i.e. it composes onto a non-identity
+# companion; (2) any group whose aob:groupIdentity does not EQUAL its aob:colimitApex (the apex is not the
+# base atom); (3) any aob:retracts arrow whose target is not an aob:AOBAtom (a dangling inverse); (4) any
+# SELF-retract ?r aob:retracts ?r (an atom cannot be its own inverse here); (5) any retract whose target
+# does NOT aob:composesOnto some base (a retract that inverts no real composition is not a genuine inverse).
+# Clauses (4)-(5) close the Defect-2 gap where aob:retracts was asserted but unenforced: a self-retract or
+# a retract of something that never composed used to pass. The check is a sh:sparql over property existence
+# + node equality/inequality + rdf:type membership, never a bare sh:class an rdfs:range would defang:
+# range-inference can add an rdf:type edge but cannot forge a composesOnto edge, cannot equate/inequate two
+# nodes, and cannot forge a retract target, so the teeth still bite. ASSOCIATIVITY of the composition is a
+# separate tooth (aob:GroupAssociativityShape).
+# PROBE OF RECORD: (a) rewire aob:witnessExample aob:composesOnto aob:witnessDescription (composing onto a
+# non-identity) -> clause (1) fires; (b) add aob:witnessReplacement aob:retracts aob:witnessReplacement
+# (a self-retract) -> clauses (4) and (5) fire; each caught (conforms=True->False, q_group_law True->False).
+# =====================================================================================
+
+aob:GroupLawShape a sh:NodeShape ;
+    rdfs:label "GroupLawShape" ;
+    rdfs:comment "The sealed-group law with teeth on the monoid/group object (group_law.ttl), lifted from the Helios PaperSection apex carrying companion_atoms[] (helios/.../02_cocone_compatibility_inventory.spec.yaml) and the Replacement arrow (helios/00_src_specs/types/papers/relational/replacement.spec.yaml). A sh:sparql node shape targeting aob:SealedGroup: it flags (1) any aob:companionAtom of the group that does NOT aob:composesOnto the group's aob:groupIdentity (the associativity/identity law demands every companion cocone leg compose onto the base atom, never onto another companion); (2) any group whose aob:groupIdentity does not equal its aob:colimitApex (the apex must BE the base atom, one atom); (3) any aob:retracts arrow in the graph whose target is not an aob:AOBAtom (the group inverse must point at a real atom, no dangling retract). The check reads the aob:companionAtom / aob:groupIdentity / aob:composesOnto / aob:colimitApex edges, node equality, and the aob:retracts target's rdf:type directly, never a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot forge a composesOnto edge onto the identity, cannot collapse two distinct apex/identity nodes into equality, and cannot forge a retract target, so the walk still fails for a mis-composed companion, a split apex/identity, or a dangling inverse. The Defect-2 hardening adds two genuine-inverse clauses: (4) a SELF-retract (?r aob:retracts ?r) is rejected — an atom cannot be its own inverse — and (5) a retract whose target does NOT aob:composesOnto any base is rejected — a retract that inverts no real composition is not a genuine inverse (closing the gap where aob:retracts was asserted but unenforced). On this floor aob:witnessGroup (identity = apex = aob:witnessAnchor; companions aob:witnessDescription + aob:witnessExample each composesOnto aob:witnessAnchor; aob:witnessReplacement retracts aob:witnessDescription, and aob:witnessDescription composesOnto aob:witnessAnchor so the retract genuinely inverts a composition) satisfies it; the probes of record - rewiring aob:witnessExample to composeOnto the non-identity companion aob:witnessDescription, and adding the self-retract aob:witnessReplacement aob:retracts aob:witnessReplacement - are each caught (conforms=True->False), proving the teeth bite on the cases that matter. ASSOCIATIVITY of the composition is a separate tooth (aob:GroupAssociativityShape)." ;
+    sh:targetClass aob:SealedGroup ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "group law (sealed-group colimit): this aob:SealedGroup breaches the group law - a companion does not aob:composesOnto the aob:groupIdentity (it composes onto a non-identity), or the aob:groupIdentity does not equal the aob:colimitApex (the apex is not the one base atom), or an aob:retracts inverse has no aob:AOBAtom target, or an atom self-retracts (?r retracts ?r), or a retract's target does not aob:composesOnto any base (it inverts no real composition); identity=base=apex, associative compose, and retract=genuine inverse must all hold." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                $this <urn:silmaril:aob:#companionAtom> ?c ;
+                      <urn:silmaril:aob:#groupIdentity> ?b .
+                FILTER NOT EXISTS { ?c <urn:silmaril:aob:#composesOnto> ?b }
+              } UNION {
+                $this <urn:silmaril:aob:#groupIdentity> ?b ;
+                      <urn:silmaril:aob:#colimitApex> ?apex .
+                FILTER(?b != ?apex)
+              } UNION {
+                $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#SealedGroup> .
+                ?r <urn:silmaril:aob:#retracts> ?x .
+                FILTER NOT EXISTS { ?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#AOBAtom> }
+              } UNION {
+                # (4) genuine INVERSE: no self-retract (an atom cannot be its own inverse here).
+                $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#SealedGroup> .
+                ?rs <urn:silmaril:aob:#retracts> ?xs .
+                FILTER(?rs = ?xs)
+              } UNION {
+                # (5) genuine INVERSE: a retract must UNDO a real composition - its target must be a
+                # companion that aob:composesOnto some base (a retract of something never composed inverts
+                # no composition).
+                $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#SealedGroup> .
+                ?ri <urn:silmaril:aob:#retracts> ?xi .
+                FILTER NOT EXISTS { ?xi <urn:silmaril:aob:#composesOnto> ?bb }
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# GroupAssociativityShape (Defect-2 hardening) - the sealed-group composition is ASSOCIATIVE. Targets
+# aob:SealedGroup. The group operation is modelled as a reified composite (aob:Composition: aob:compLeft
+# composed with aob:compRight -> aob:compResult). This shape forms both bracketings of a triple (a,b,c):
+# (a . b) . c and a . (b . c), and flags any triple whose two bracketing results DISAGREE (conforms=True
+# ->False). It closes the Defect-2 gap where associativity was asserted (aob:composesOnto called
+# "associative") but never tested. The check is a sh:sparql over the composition table joins + a result
+# inequality, never a bare sh:class an rdfs:range would defang: range-inference can add an rdf:type edge
+# but cannot forge a matching compResult, so a non-associative triple still fails the walk.
+# PROBE OF RECORD: change aob:comp_a_bc aob:compResult from aob:witnessAnchor to aob:witnessDescription
+# (so a . (b.c) = witnessDescription while (a.b).c = witnessAnchor) -> this shape fires (conforms=True
+# ->False, q_group_associativity True->False).
+# =====================================================================================
+
+aob:GroupAssociativityShape a sh:NodeShape ;
+    rdfs:label "GroupAssociativityShape" ;
+    rdfs:comment "The associativity law with teeth on the sealed-group composition (group_law.ttl, Defect-2 hardening). The group operation is reified as aob:Composition (aob:compLeft composed with aob:compRight yields aob:compResult); this sh:sparql node shape targeting aob:SealedGroup forms both bracketings of a triple (a,b,c) from the composition table — (a . b) . c and a . (b . c) — and flags any triple whose two bracketing results DISAGREE. It closes the gap where associativity was merely asserted (aob:composesOnto was called the associative composition) but never tested: without this tooth a non-associative composition table passed silently. The check reads the aob:compLeft / aob:compRight / aob:compResult edges of four composition rows and compares the two final results directly, never a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot forge a matching aob:compResult, so a perturbed result still fails the walk. On this floor the witness composition table (a.b=e, e.c=e, b.c=e, a.e=e over identity e=aob:witnessAnchor and companions a=aob:witnessDescription, b=aob:witnessExample, c=aob:witnessReplacement) makes both bracketings of (a,b,c) evaluate to e, satisfying it; the probe of record — changing aob:comp_a_bc aob:compResult to aob:witnessDescription so a.(b.c) != (a.b).c — is caught (conforms=True->False), proving the tooth bites on the case that matters." ;
+    sh:targetClass aob:SealedGroup ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "group associativity: this aob:SealedGroup's reified composition is NOT associative - there is a triple (a,b,c) whose two bracketings disagree, i.e. (a . b) . c != a . (b . c) over the aob:Composition table; the sealed-group composition must be associative." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:silmaril:aob:#SealedGroup> .
+              ?ab  <urn:silmaril:aob:#compLeft> ?a ; <urn:silmaril:aob:#compRight> ?b ; <urn:silmaril:aob:#compResult> ?abr .
+              ?lhs <urn:silmaril:aob:#compLeft> ?abr ; <urn:silmaril:aob:#compRight> ?c ; <urn:silmaril:aob:#compResult> ?lhsr .
+              ?bc  <urn:silmaril:aob:#compLeft> ?b ; <urn:silmaril:aob:#compRight> ?c ; <urn:silmaril:aob:#compResult> ?bcr .
+              ?rhs <urn:silmaril:aob:#compLeft> ?a ; <urn:silmaril:aob:#compRight> ?bcr ; <urn:silmaril:aob:#compResult> ?rhsr .
+              FILTER(?lhsr != ?rhsr)
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# ColimitUniversalShape (Task 8 + Defect-1 hardening) - the sealed-group apex satisfies the GENUINE
+# LOCAL-sense colimit universal property (Directive 16). Targets aob:SealedGroup. Flags: (1) any group
+# lacking an aob:colimitApex or an aob:colimitGlossaryScope (a bare "colimit", referenced outside the SP6
+# glossary layer); (2) any group carrying TWO distinct aob:colimitApex values (the apex must be unique);
+# (3) any aob:companionAtom of a group that lacks an aob:universalFactor onto that group's aob:colimitApex
+# (the injection/cocone-leg edge is present). Clauses (1)-(3) are the base cocone shape; the GENUINE
+# universal property is clauses (4)-(6), which quantify over a competing TEST COCONE (aob:TestCocone T
+# with a compatible leg from each companion, aob:testsGroup the group): (4) EXISTENCE - a test cocone
+# with no mediating morphism u : apex -> T (aob:mediatedBy / aob:medFrom apex / aob:medTarget T) fires;
+# (5) UNIQUENESS - a test cocone with two distinct aob:mediatedBy morphisms fires (the functional /
+# maxCount-1 discipline: at most one mediating map per test cocone); (6) FACTORING - a mediating morphism
+# whose aob:medTarget differs from a cocone leg's aob:legTarget fires (the triangle u . iota_c = f_c does
+# not commute). R1 HARDENING (Directive 16, unconditional earning) closes the conditional/vacuous residual:
+# clauses (4)-(6) only ENGAGED when a test cocone happened to exist and carry legs, so a bare SealedGroup
+# (colimitApex + colimitGlossaryScope, no TestCocone) and a legless TestCocone each earned "colimit" for
+# free. Three requiring clauses make the word UNCONDITIONALLY earned: (7) NON-VACUITY - a colimit-claiming
+# group (carrying an aob:colimitApex) with NO aob:TestCocone testing it fires; (8) LEG EXISTENCE - a
+# aob:TestCocone testing the group with NO aob:coconeLeg fires (a legless competitor factors vacuously);
+# (9) NON-DEGENERACY - a aob:companionAtom of the group with no compatible aob:coconeLeg (aob:legFrom that
+# companion) in a test cocone testing it fires, so FACTORING quantifies over EVERY companion. This is what
+# makes the sealed-group apex a REAL colimit rather than a decorative one: the word "colimit" is EARNED BY
+# THIS TOOTH (a genuine, NON-VACUOUS universal property over an arbitrary competing cocone that must carry a
+# leg per companion), never a bare assertion, and referenced through SP6. The check is a sh:sparql over
+# property existence + node inequality + apex/vertex/leg joins, never a bare sh:class an rdfs:range would
+# defang: range-inference can add an rdf:type edge but cannot forge a mediating morphism, cannot merge two
+# distinct ones, cannot equate a mismatched target, and cannot forge a missing test cocone / leg, so the
+# teeth still bite.
+# C1 HARDENING (Directive 16 crux — the WHOLE degenerate/empty-diagram class closed in one pass): R1's
+# clauses (3) and (9) both quantify over aob:companionAtom, so a colimit-claiming group with ZERO
+# companions satisfied them VACUOUSLY, and clause (8) accepted ANY leg regardless of aob:legFrom — so a
+# bare-apex group with no companions plus a TestCocone whose leg came from a NON-companion still earned
+# "colimit". Three more clauses close it: (10) NON-EMPTY DIAGRAM - a colimit-claiming group (carrying an
+# aob:colimitApex) with NO aob:companionAtom fires (a colimit over an empty diagram is rejected); (11) NO
+# SPURIOUS LEG - a test cocone leg whose aob:legFrom is not an aob:companionAtom of the tested group fires;
+# (12) AT MOST ONE LEG PER COMPANION - two distinct legs from the same companion fire. With (9)+(11)+(12)
+# the companion<->leg coverage is BIJECTIVE (one leg per genuine companion, no missing, no spurious). C1c
+# FACTORING CLOSURE — clause 6 reads "?leg legTarget ?lt . FILTER(?lt != ?mt)", so a covered leg (legFrom a
+# genuine companion) with NO aob:legTarget never binds ?lt and is SILENTLY SKIPPED by factoring while
+# coverage (9/11/12, which read only legFrom) still counts it; deleting only aob:witnessLegEx aob:legTarget
+# used to leave SHACL conforms=True AND q_colimit_universal=True. Clause (13) COVERED LEG MUST FACTOR flags
+# any aob:coconeLeg of a testing cocone lacking aob:legTarget, so FACTORING (clause 6) ranges over EXACTLY
+# the covered legs and no covered leg escapes it — the last member of the degenerate class closed.
+# PROBE OF RECORD: (b) add a second aob:witnessGroup aob:colimitApex aob:witnessExample (two apexes) ->
+# clause (2) fires; (c) delete aob:witnessGroup aob:colimitGlossaryScope (bare colimit) -> clause (1) fires;
+# (d) delete aob:witnessTestCocone aob:mediatedBy aob:witnessMediating (no mediating map) -> clause (4)
+# fires; (e) add a second aob:witnessTestCocone aob:mediatedBy <other> (contradictory mediating map) ->
+# clause (5) fires; (f) set aob:witnessMediating aob:medTarget to a node other than the legs' target
+# (non-factoring) -> clause (6) fires; (g) a bare SealedGroup (colimitApex + colimitGlossaryScope, no
+# aob:TestCocone) -> clause (7) fires; (h) a legless aob:TestCocone testing the group -> clauses (8) and (9)
+# fire; (C1-i) a companion-LESS colimit-claiming group (zero aob:companionAtom, + a TestCocone whose leg is
+# from a non-companion) -> clauses (10) and (11) fire; (C1-ii) add a spurious aob:coconeLeg from a
+# non-companion to the real witness cocone -> clause (11) fires; (C1-iii) delete only aob:witnessLegEx
+# aob:legTarget (a covered leg — legFrom the genuine companion aob:witnessExample — with no target, which
+# clause 6 silently skipped so it escaped factoring while coverage still counted it) -> clause (13) fires;
+# each caught (conforms=True->False, q_colimit_universal True->False).
+# =====================================================================================
+
+aob:ColimitUniversalShape a sh:NodeShape ;
+    rdfs:label "ColimitUniversalShape" ;
+    rdfs:comment "The colimit universal-property law with teeth on the sealed-group apex (group_law.ttl), the LOCAL / per-primitive glossary sense of the polysemous word colimit (Directive 16, design s2): the finite companion-cocone whose universal property is PROVABLE, so the word is earned by THIS tooth (mirroring SP1's per-primitive taiji universality ASK), never a bare assertion. A sh:sparql node shape targeting aob:SealedGroup: it flags (1) any group lacking an aob:colimitApex or an aob:colimitGlossaryScope - a bare colimit referenced outside the SP6 glossary layer; (2) any group carrying two distinct aob:colimitApex values - the apex must be exactly one atom; (3) any aob:companionAtom of the group lacking an aob:universalFactor onto that group's aob:colimitApex - every cocone leg must factor through the apex via a unique mediating morphism or the universal property fails. The check reads the aob:colimitApex / aob:colimitGlossaryScope / aob:companionAtom / aob:universalFactor edges and node inequality directly, never a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot forge a glossary scope, cannot merge two distinct apex nodes, and cannot forge a universalFactor onto the apex, so the walk still fails for a bare colimit, a split apex, or an unfactored companion. The word colimit is thus referenced through the SP6 glossary layer (aob:colimitGlossaryScope), never bare; SP6 holds this LOCAL sense and SP9's CORPUS sense of the one lexeme simultaneously. Beyond the base cocone shape, the GENUINE universal property is enforced over a competing TEST COCONE (aob:TestCocone aob:testsGroup the group, with a compatible aob:coconeLeg from each companion): clause (4) requires a mediating morphism u : apex -> vertex to EXIST (aob:mediatedBy / aob:medFrom apex / aob:medTarget vertex), clause (5) requires it to be UNIQUE (no two distinct aob:mediatedBy morphisms — the maxCount-1 discipline), and clause (6) requires it to FACTOR every leg (aob:medTarget equals each leg's aob:legTarget, so the triangle u . iota_c = f_c commutes). The R1 hardening closes the conditional/vacuous residual (Directive 16, unconditional earning): clauses (4)-(6) engaged only when a test cocone happened to exist and carry legs, so a bare SealedGroup (colimitApex + colimitGlossaryScope, no TestCocone) and a legless TestCocone earned the word colimit for free. Three requiring clauses make it UNCONDITIONALLY earned: (7) a colimit-claiming group (carrying an aob:colimitApex) with NO aob:TestCocone testing it fires (non-vacuity of the universal property); (8) a aob:TestCocone testing the group with NO aob:coconeLeg fires (a legless competitor factors vacuously); (9) a aob:companionAtom of the group with no compatible aob:coconeLeg (aob:legFrom that companion) in a test cocone testing it fires (non-degeneracy), so FACTORING now quantifies over EVERY companion, not whatever incomplete set of legs a cocone declared. This is what earns the word colimit: a genuine, NON-VACUOUS universal property over an arbitrary competing cocone that must carry a leg per companion, not a decorative existence edge identical to aob:composesOnto. The C1 hardening (Directive 16 crux) closes the WHOLE remaining degenerate/empty-diagram class in one pass: R1's clauses (3) and (9) both quantified over aob:companionAtom, so a colimit-claiming group with ZERO companions satisfied them vacuously, and clause (8) accepted any leg regardless of aob:legFrom — a bare-apex companion-less group plus a TestCocone whose leg came from a non-companion still earned the word. Clause (10) NON-EMPTY DIAGRAM rejects any colimit-claiming group (carrying an aob:colimitApex) with no aob:companionAtom (a colimit over an empty diagram is forbidden); clause (11) NO SPURIOUS LEG rejects any test-cocone leg whose aob:legFrom is not an aob:companionAtom of the tested group; clause (12) AT MOST ONE LEG PER COMPANION rejects two distinct legs from the same companion — so with (9)+(11)+(12) the companion<->leg coverage is a genuine BIJECTION (exactly one leg per companion, none missing, none spurious). Clause (13) COVERED LEG MUST FACTOR (C1c factoring closure) closes the last member of the class: clause (6) reads ?leg aob:legTarget ?lt . FILTER(?lt != ?mt), so a covered leg (aob:legFrom a genuine companion) with NO aob:legTarget never binds ?lt and is SILENTLY SKIPPED by factoring while coverage clauses (9)/(11)/(12) — which read only aob:legFrom — still count it (deleting only aob:witnessLegEx aob:legTarget used to leave SHACL conforms=True AND q_colimit_universal=True); clause (13) flags any aob:coconeLeg of a testing cocone lacking aob:legTarget, so FACTORING (clause 6) ranges over EXACTLY the covered legs and no covered leg escapes it. On this floor aob:witnessGroup (single apex aob:witnessAnchor; colimitGlossaryScope urn:silmaril:glossary:local:colimit; companions aob:witnessDescription + aob:witnessExample) with the test cocone aob:witnessTestCocone (legs aob:witnessLegDesc/aob:witnessLegEx, one per companion, mediated by the unique aob:witnessMediating whose target is the test vertex) satisfies it; the two-apex, deleted-glossary-scope, no-mediating-morphism, second-mediating-morphism, non-factoring-target, bare-group-no-test-cocone, legless-test-cocone, companion-less-empty-diagram (clauses 10+11), spurious-non-companion-leg (clause 11), and covered-leg-with-no-legTarget (delete only aob:witnessLegEx aob:legTarget — clause 13) probes are each caught (conforms=True->False), proving the teeth bite on the cases that matter." ;
+    sh:targetClass aob:SealedGroup ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "colimit universal property (LOCAL glossary sense): this aob:SealedGroup breaches the universal property - it lacks an aob:colimitApex or an aob:colimitGlossaryScope (a bare colimit outside the SP6 glossary layer), or it carries two distinct aob:colimitApex values (the apex must be one atom), or a aob:companionAtom lacks an aob:universalFactor onto the apex, or a competing test cocone (aob:TestCocone) has NO mediating morphism apex->vertex (existence), has TWO distinct mediating morphisms (uniqueness), or has a mediating morphism whose target does not match a cocone leg's target (factoring: the triangle does not commute), or the colimit claim is VACUOUS - the group carries NO test cocone at all (a bare colimit claim), or a test cocone carries NO cocone leg (a legless competitor that factors vacuously), or a companion of the group has no compatible leg in a test cocone (non-degeneracy), or (C1) the colimit-claiming group has ZERO aob:companionAtom (an empty-diagram colimit is forbidden), or a test cocone carries a leg whose aob:legFrom is not a companion of the group (a spurious leg), or two distinct legs share one companion (coverage must be a bijection), or a covered leg of a test cocone lacks an aob:legTarget (so factoring — clause 6 — silently skips it and it escapes the triangle); the word colimit must be earned UNCONDITIONALLY by a genuine, non-vacuous, non-empty universal property over legs that ALL factor, never asserted bare." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                FILTER NOT EXISTS {
+                  $this <urn:silmaril:aob:#colimitApex> ?apex ;
+                        <urn:silmaril:aob:#colimitGlossaryScope> ?scope .
+                }
+              } UNION {
+                $this <urn:silmaril:aob:#colimitApex> ?a1 , ?a2 .
+                FILTER(?a1 != ?a2)
+              } UNION {
+                $this <urn:silmaril:aob:#companionAtom> ?c ;
+                      <urn:silmaril:aob:#colimitApex> ?apex .
+                FILTER NOT EXISTS { ?c <urn:silmaril:aob:#universalFactor> ?apex }
+              } UNION {
+                # (4) EXISTENCE: a competing test cocone with no mediating morphism apex -> vertex.
+                $this <urn:silmaril:aob:#colimitApex> ?apex .
+                ?tc <urn:silmaril:aob:#testsGroup> $this .
+                FILTER NOT EXISTS {
+                  ?tc <urn:silmaril:aob:#mediatedBy> ?m .
+                  ?m <urn:silmaril:aob:#medFrom> ?apex ;
+                     <urn:silmaril:aob:#medTarget> ?tc .
+                }
+              } UNION {
+                # (5) UNIQUENESS: a test cocone with two distinct mediating morphisms (maxCount 1).
+                ?tc2 <urn:silmaril:aob:#testsGroup> $this ;
+                     <urn:silmaril:aob:#mediatedBy> ?m1 , ?m2 .
+                FILTER(?m1 != ?m2)
+              } UNION {
+                # (6) FACTORING: a mediating morphism whose target differs from a cocone leg's target
+                # (the triangle u . iota_c = f_c does not commute).
+                ?tc3 <urn:silmaril:aob:#testsGroup> $this ;
+                     <urn:silmaril:aob:#mediatedBy> ?m3 ;
+                     <urn:silmaril:aob:#coconeLeg> ?leg .
+                ?m3 <urn:silmaril:aob:#medTarget> ?mt .
+                ?leg <urn:silmaril:aob:#legTarget> ?lt .
+                FILTER(?lt != ?mt)
+              } UNION {
+                # (7) NON-VACUITY OF THE UNIVERSAL PROPERTY (R1a): a colimit-claiming group (one carrying an
+                # aob:colimitApex) MUST carry at least one competing aob:TestCocone that aob:testsGroup it.
+                # Without this, a bare SealedGroup (colimitApex + colimitGlossaryScope, no test cocone) earns
+                # the word "colimit" VACUOUSLY — clauses (4)-(6) only engage once a test cocone exists — so a
+                # test-cocone-less colimit claim is flagged here (conforms=True->False), making the word
+                # UNCONDITIONALLY earned rather than conditional on a cocone happening to be present.
+                $this <urn:silmaril:aob:#colimitApex> ?apex7 .
+                FILTER NOT EXISTS { ?tc7 <urn:silmaril:aob:#testsGroup> $this }
+              } UNION {
+                # (8) EVERY TEST COCONE MUST CARRY >=1 LEG (R1b): a legless aob:TestCocone passes FACTORING
+                # (clause 6) vacuously (nothing to factor), so a test cocone testing this group that carries
+                # NO aob:coconeLeg is flagged (conforms=True->False) — a competing cocone with no legs is not
+                # a genuine competitor and cannot witness the universal property.
+                ?tc8 <urn:silmaril:aob:#testsGroup> $this .
+                FILTER NOT EXISTS { ?tc8 <urn:silmaril:aob:#coconeLeg> ?anyleg8 }
+              } UNION {
+                # (9) NON-DEGENERACY (R1b): at least one aob:coconeLeg per aob:companionAtom of the group
+                # under test. A companion of this group with NO compatible leg (aob:coconeLeg whose
+                # aob:legFrom is that companion) in a test cocone that aob:testsGroup it is flagged, so
+                # FACTORING (clause 6) is no longer vacuous: every companion is a leg the mediating morphism
+                # must reproduce (aob:medTarget = that leg's aob:legTarget), i.e. the triangle commutes for
+                # EACH companion, not just for whatever incomplete set of legs a cocone happened to declare.
+                $this <urn:silmaril:aob:#companionAtom> ?c9 .
+                ?tc9 <urn:silmaril:aob:#testsGroup> $this .
+                FILTER NOT EXISTS {
+                  ?tc9 <urn:silmaril:aob:#coconeLeg> ?leg9 .
+                  ?leg9 <urn:silmaril:aob:#legFrom> ?c9 .
+                }
+              } UNION {
+                # (10) NON-EMPTY DIAGRAM (C1a, Directive 16 crux): a colimit-claiming group (one carrying an
+                # aob:colimitApex) MUST have at least one aob:companionAtom — a colimit over an EMPTY diagram
+                # is rejected. Without this, a zero-companion group earned "colimit" vacuously: clause (3)
+                # (companion lacks universalFactor) and clause (9) (companion lacks a leg) both quantify over
+                # aob:companionAtom, so with ZERO companions they are vacuously satisfied, and a bare apex +
+                # glossary scope + any legless-of-real-companion test cocone slipped through. This branch fires
+                # for any apex-bearing SealedGroup with no companion, so the empty-diagram colimit is closed.
+                $this <urn:silmaril:aob:#colimitApex> ?apex10 .
+                FILTER NOT EXISTS { $this <urn:silmaril:aob:#companionAtom> ?anyc10 }
+              } UNION {
+                # (11) NO SPURIOUS LEG (C1b, bijective coverage): every aob:coconeLeg of a test cocone that
+                # aob:testsGroup this group MUST have an aob:legFrom that is an aob:companionAtom of this group
+                # — a leg originating from a NON-companion is a spurious leg that lets a cocone factor over a
+                # diagram other than the group's own. Together with clause (9) (every companion has a leg, no
+                # missing legs) and clause (12) (at most one leg per companion), this makes the companion<->leg
+                # coverage BIJECTIVE: the factoring tooth (clause 6) ranges over exactly the covered legs, one
+                # per genuine companion. This branch fires for any leg whose legFrom is not a companion here.
+                ?tc11 <urn:silmaril:aob:#testsGroup> $this ;
+                      <urn:silmaril:aob:#coconeLeg> ?leg11 .
+                ?leg11 <urn:silmaril:aob:#legFrom> ?from11 .
+                FILTER NOT EXISTS { $this <urn:silmaril:aob:#companionAtom> ?from11 }
+              } UNION {
+                # (12) AT MOST ONE LEG PER COMPANION (C1b, bijective coverage): a test cocone that
+                # aob:testsGroup this group carries at most ONE aob:coconeLeg per aob:companionAtom — two
+                # distinct legs from the SAME companion is not the "exactly one leg per companion" a genuine
+                # competing cocone supplies. With clause (9) (>=1 leg per companion) and clause (11) (no leg
+                # from a non-companion) this closes the coverage to a genuine bijection companion<->leg.
+                ?tc12 <urn:silmaril:aob:#testsGroup> $this ;
+                      <urn:silmaril:aob:#coconeLeg> ?l12a , ?l12b .
+                ?l12a <urn:silmaril:aob:#legFrom> ?cc12 .
+                ?l12b <urn:silmaril:aob:#legFrom> ?cc12 .
+                FILTER(?l12a != ?l12b)
+              } UNION {
+                # (13) COVERED LEG MUST FACTOR (C1c factoring closure): every aob:coconeLeg of a test cocone
+                # that aob:testsGroup this group MUST carry an aob:legTarget, so the FACTORING tooth (clause 6)
+                # genuinely ranges over it. Clause (6) reads "?leg aob:legTarget ?lt . FILTER(?lt != ?mt)":
+                # a covered leg (aob:legFrom a genuine companion, per clauses 9/11/12) with NO aob:legTarget
+                # never binds ?lt, so clause (6) silently SKIPS it and it is never verified to factor through
+                # the mediating morphism — while coverage clauses (9)/(11)/(12) (which read only aob:legFrom)
+                # still count it. No shape targets aob:CoconeLeg to mandate aob:legTarget, so a covered leg
+                # lacking a target used to escape factoring (deleting only aob:witnessLegEx aob:legTarget left
+                # SHACL conforms=True and q_colimit_universal=True). This branch fires for any leg of a testing
+                # cocone lacking aob:legTarget, so FACTORING ranges over EXACTLY the covered legs and no covered
+                # leg escapes it — the last member of the degenerate class closed.
+                ?tc13 <urn:silmaril:aob:#testsGroup> $this ;
+                      <urn:silmaril:aob:#coconeLeg> ?leg13 .
+                FILTER NOT EXISTS { ?leg13 <urn:silmaril:aob:#legTarget> ?lt13 }
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# SealHonestyShape (Task 9 + Defect-3 hardening) — the Praeriehund seal-honesty spine on BOTH seal lanes.
+# Targets aob:AOBAtom. Flags: (staged branch) any atom whose aob:sealState is aob:staged (ungraduated)
+# that does NOT also carry silm:isProvisional true — a staged atom is not conformant-green and must be
+# honestly flagged provisional; and (gated branch, Defect-3) any atom whose aob:sealState is aob:gated
+# (graduated) that lacks GRADUATION EVIDENCE — i.e. is missing aob:graduationTarget OR
+# aob:contentShaAtGraduation. This closes the escape where an atom could self-declare aob:sealState
+# aob:gated with NO graduation evidence and be counted green: a gated atom must name WHERE it graduated to
+# (aob:graduationTarget) AND carry its content-sha-at-graduation coordinate (aob:contentShaAtGraduation,
+# an honest deferral sentinel — the real hash is a deferred W5 gate). The check is a sh:sparql over the
+# aob:sealState edge + silm:isProvisional-true / graduation-evidence existence, never a bare sh:class an
+# rdfs:range would defang: range-inference can add an rdf:type edge but cannot forge a silm:isProvisional
+# true triple nor a graduation coordinate, so a staged-asserted-green atom and a gated-without-evidence
+# atom each still fail the walk.
+# PROBE OF RECORD: (a) remove aob:witnessStaged silm:isProvisional true (a staged atom asserted green) ->
+# staged branch fires; (b) remove aob:witnessAnchor aob:graduationTarget + aob:contentShaAtGraduation (a
+# full-envelope gated atom with no graduation evidence) -> gated branch fires; each caught (conforms=True
+# ->False, q_seal_honesty True->False).
+# =====================================================================================
+
+aob:SealHonestyShape a sh:NodeShape ;
+    rdfs:label "SealHonestyShape" ;
+    rdfs:comment "The Praeriehund seal-honesty law with teeth on the graduation seal state (group_law.ttl, Task 9), lifted from the Helios staged/gated graduation discipline (the _aob_* coordinate swe_as_dag_accounting.graduation_target and the srcy 'staged lanes'/'gated promotion' lanes). A sh:sparql node shape targeting aob:AOBAtom: it flags any atom whose aob:sealState is aob:staged (an ungraduated atom, not yet promoted through its aob:graduationTarget and whose invariants are not yet gate-preserved) that does NOT also carry silm:isProvisional true. The honesty spine: a staged atom is NOT conformant-green and must be honestly flagged provisional, never counted green; a gated (graduated) atom is exempt because it is not staged. The check reads the aob:sealState edge (an object property whose value is the individual aob:staged) and the existence of silm:isProvisional true directly, never a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot forge a silm:isProvisional true triple, so a staged atom asserted green still fails the walk. The Defect-3 hardening adds a GATED branch: any atom whose aob:sealState is aob:gated (graduated) that lacks graduation evidence — missing aob:graduationTarget OR aob:contentShaAtGraduation — is flagged, closing the escape where an atom could self-declare gated with no evidence and be counted green (a gated atom must name where it graduated to AND carry its content-sha-at-graduation coordinate, an honest deferral sentinel since the real hash is a deferred W5 gate). On this floor aob:witnessStaged (aob:sealState aob:staged ; silm:isProvisional true) satisfies the staged branch and the gated base atom aob:witnessAnchor (aob:sealState aob:gated ; aob:graduationTarget ... ; aob:contentShaAtGraduation urn:silmaril:content-sha256:deferred-until-w5-graduation-gate) satisfies the gated branch; the probes of record — removing aob:witnessStaged silm:isProvisional true (staged asserted green), and removing aob:witnessAnchor's graduation evidence (a gated atom with no evidence) — are each caught (conforms=True->False), proving the teeth bite on both lanes." ;
+    sh:targetClass aob:AOBAtom ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "seal honesty (Praeriehund spine): this aob:AOBAtom breaches a seal lane — either it carries aob:sealState aob:staged (ungraduated) but no silm:isProvisional true (a staged atom must be honestly flagged provisional, never counted green), or it carries aob:sealState aob:gated (graduated) but lacks graduation evidence (aob:graduationTarget AND aob:contentShaAtGraduation); a self-declared gated atom with no graduation evidence cannot be counted conformant-green." ;
+        sh:select """
+            SELECT $this WHERE {
+              {
+                $this <urn:silmaril:aob:#sealState> <urn:silmaril:aob:#staged> .
+                FILTER NOT EXISTS { $this <urn:silmaril:entity#isProvisional> true }
+              } UNION {
+                # A GATED (graduated) atom must carry GRADUATION EVIDENCE (aob:graduationTarget +
+                # aob:contentShaAtGraduation); a bare self-declared gated atom with no evidence cannot be
+                # counted conformant-green.
+                $this <urn:silmaril:aob:#sealState> <urn:silmaril:aob:#gated> .
+                FILTER( NOT EXISTS { $this <urn:silmaril:aob:#graduationTarget> ?gt }
+                        || NOT EXISTS { $this <urn:silmaril:aob:#contentShaAtGraduation> ?cs } )
+              }
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# GlossarySeamShape (Task 10) — the Synonym+Antonym simultaneity seam: no same-scope collapse.
+# Targets aob:GlossaryTerm. Flags any term held as BOTH a synonym-hold AND an antonym-hold under the
+# SAME aob:glossaryScope — the identity-collapse that forces a contradiction (structured==unstructured
+# collapsed into one epistemology). Holding a term as synonym under glossary A AND antonym under a
+# DISTINCT glossary B is LAWFUL and required (the mole of glossaries: distinct epistemologies license
+# opposite senses of one lexeme; polysemy is literal, OSSIE mime is the anchor). The check is a sh:sparql
+# over the two hold edges + a shared glossaryScope, never a bare sh:class an rdfs:range would defang:
+# range-inference can add an rdf:type edge but cannot forge a shared-scope collapse, so a lawful
+# distinct-scope term never trips and only the collapse fires.
+# PROBE OF RECORD: collapse aob:witnessTerm's antonym-hold aob:glossaryScope to aob:glossaryA (both senses
+# under one glossary) -> clause fires, conforms=True->False, q_synonym_antonym_dual True->False.
+# =====================================================================================
+
+aob:GlossarySeamShape a sh:NodeShape ;
+    rdfs:label "GlossarySeamShape" ;
+    rdfs:comment "The Synonym+Antonym simultaneity law with teeth on the mole of glossaries (evidence_glossary.ttl, Task 10), lifted from the Helios Synonym (Atlas col 10, cceo:SemanticComparing) / Antonym (Atlas col 17, cceo:IsomorphicComparing) relational atoms and Directive 1/3 ('structured AND unstructured types held as synonyms AND antonyms simultaneously, reconciled only through the mole of glossaries wherein we encapsulate distinct epistemologies; collisions are intentional; polysemy is literal; OSSIE mime is the anchor'). A sh:sparql node shape targeting aob:GlossaryTerm: it flags any term held as BOTH a synonym-hold (aob:heldAsSynonym) AND an antonym-hold (aob:heldAsAntonym) under the SAME aob:glossaryScope — the identity-collapse that forces a contradiction by cramming both opposite senses into one epistemology. It does NOT flag the lawful case of a term held as a synonym under one glossary AND an antonym under a DISTINCT glossary: distinct epistemologies license opposite senses of one lexeme, which is the literal polysemy the seam exists to express. The check reads the two hold edges and their shared aob:glossaryScope directly, never a bare sh:class over an rdfs:range (which inference=rdfs would materialise and thereby defang): range-inference can add an rdf:type edge but cannot forge a shared-scope collapse, so a lawful distinct-scope term never trips the walk. On this floor aob:witnessTerm (synonym under aob:glossaryA, antonym under aob:glossaryB) satisfies it; the probe of record — collapsing the antonym-hold's scope onto aob:glossaryA so both senses share one glossary — is caught (conforms=True->False), proving the teeth bite on the collapse that matters. SP2 declares the seam only; the mole-of-glossaries collision-resolution mechanism is SP6's." ;
+    sh:targetClass aob:GlossaryTerm ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "glossary seam (mole of glossaries): this aob:GlossaryTerm is held as BOTH a synonym and an antonym under the SAME aob:glossaryScope — that collapse forces a contradiction (structured==unstructured in one epistemology). A term may be held as synonym under one glossary AND antonym under a DISTINCT glossary (literal polysemy), but never both senses under one scope; separate the two senses into distinct glossaries." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <urn:silmaril:aob:#heldAsSynonym> ?syn .
+              $this <urn:silmaril:aob:#heldAsAntonym> ?ant .
+              ?syn <urn:silmaril:aob:#glossaryScope> ?g .
+              ?ant <urn:silmaril:aob:#glossaryScope> ?g .
+            }
+        """ ;
+    ] .
+
+
+# =====================================================================================
+# aob:TelephoneSeamShape — the byte/substrate <-> telephone twin seam law (Task 11, MD5). PROVEN TO BITE.
+# =====================================================================================
+aob:TelephoneSeamShape a sh:NodeShape ;
+    rdfs:label "TelephoneSeamShape" ;
+    rdfs:comment "The PROVISIONAL, Yoneda-pinned telephone-twin seam law with teeth (evidence_glossary.ttl, Task 11), lifted from the Helios telephone twin (helios/01_data_src_specs/telephone_events.spec.yaml <-> telephone_supervision_tree.spec.yaml) per MD5 / design Q5 / Directive 6. A sh:sparql node shape targeting aob:TelephoneSeam: it flags any seam that fails to carry ALL THREE of (i) an aob:telephoneTwinUrn (the paired supervision-tree twin), (ii) at least one aob:tensorSpaceUrn field-to-Layer-0-anchor pin (the literal Yoneda-point tightness Directive 6 requires — without it the twin is a scalar mention, not a representable-presheaf point), and (iii) silm:isProvisional true (the honest Praeriehund declaration that SP2 lands the seam only, deferring the gossip/supervision render mechanism to a later sub-project). The check reads the three edges directly (never a bare sh:class an rdfs:range would materialise and thereby defang under inference=rdfs): range-inference can add an rdf:type edge but cannot forge a missing twin URN, a missing tensor-space pin, or a missing provisional flag, so the walk cannot be defanged. On this floor aob:witnessTelephone (twin -> urn:silmaril:telephone:supervision_tree; three tensor-space pins; silm:isProvisional true) satisfies it; the two probes of record — removing silm:isProvisional true (seam asserted non-provisional) and removing the aob:tensorSpaceUrn pin (no Yoneda tightness) — are each caught (conforms=True->False), proving the teeth bite. SP2 declares the seam only; the mechanism is a later sub-project (MD5)." ;
+    sh:targetClass aob:TelephoneSeam ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:severity sh:Violation ;
+        sh:message "telephone twin seam (MD5, Directive 6): this aob:TelephoneSeam is missing one of its three mandatory coordinates — aob:telephoneTwinUrn (the paired supervision-tree twin), at least one aob:tensorSpaceUrn field-to-Layer-0-anchor pin (Yoneda-point tightness), or silm:isProvisional true (the honest declaration that only the seam, not the render mechanism, lands in SP2). Add the missing coordinate; the seam must be twin-named, Yoneda-pinned, and honestly provisional." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this a <urn:silmaril:aob:#TelephoneSeam> .
+              FILTER (
+                NOT EXISTS { $this <urn:silmaril:aob:#telephoneTwinUrn> ?tw } ||
+                NOT EXISTS { $this <urn:silmaril:aob:#tensorSpaceUrn> ?ts } ||
+                NOT EXISTS { $this <urn:silmaril:entity#isProvisional> true }
+              )
+            }
+        """ ;
+    ] .

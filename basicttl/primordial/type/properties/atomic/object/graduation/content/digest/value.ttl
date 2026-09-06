@@ -1,0 +1,27 @@
+@prefix atomic: <urn:silmaril:aob:#> .
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:silmaril:primordial:type:class:atomic:object:AtomicObjectAtom> model:field <urn:silmaril:primordial:type:property:GraduationContentDigest> .
+
+<urn:silmaril:primordial:type:class:property:GraduationContentDigestValue> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "The independently named value type of urn:silmaril:aob:#contentShaAtGraduation. Its semantic parent is urn:silmaril:prim:#String; the role remains distinct from other fields sharing that parent. The source range is retained separately for an explicit conversion gate. This nominal declaration does not admit a host literal or provide conversion or physical byte-closure evidence." ;
+    schema1:subClassOf primitive:String ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/properties/atomic/object/graduation/content/digest/value.ttl" ;
+    model:propertyRole <urn:silmaril:primordial:type:property:GraduationContentDigest> .
+
+<urn:silmaril:primordial:type:property:GraduationContentDigest> a model:Field ;
+    model:cardinalityAuthority model:ProposedClassContract ;
+    model:multiplicity model:Optional ;
+    model:mutability model:Immutable ;
+    model:owner <urn:silmaril:primordial:type:class:atomic:object:AtomicObjectAtom> ;
+    model:range <urn:silmaril:primordial:type:class:property:GraduationContentDigestValue> ;
+    model:referenceKind model:ValueReference ;
+    model:requiresConversionGate model:Pending ;
+    model:sourcePredicate atomic:contentShaAtGraduation ;
+    model:sourceRange xsd:string .

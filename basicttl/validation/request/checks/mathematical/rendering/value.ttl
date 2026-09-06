@@ -1,0 +1,10 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:MathematicalRendering a validation:Check ;
+    schema:comment "Render mathematical notation in page and embedded-document contexts using the declared local assets; reject unresolved expressions and asset failures." ;
+    validation:declarationPath "basicttl/validation/request/checks/mathematical/rendering/value.ttl" ;
+    validation:dependsOn validation:RootBuild, validation:ProjectBuild .

@@ -1,0 +1,10 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:NarrativeContent a validation:Check ;
+    schema:comment "Review the generated story and prose for clarity, faithful ontology grounding and usable transitions between reading and exploration." ;
+    validation:declarationPath "basicttl/validation/request/checks/narrative/content/value.ttl" ;
+    validation:dependsOn validation:RootBuild, validation:ProjectBuild .

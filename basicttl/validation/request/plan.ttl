@@ -1,0 +1,9 @@
+@prefix validation: <urn:silmaril:validation:request:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix constraint: <http://www.w3.org/ns/shacl#> .
+@prefix datatype: <http://www.w3.org/2001/XMLSchema#> .
+
+validation:FullRequest a validation:Plan ;
+    validation:requires validation:SigningIdentity, validation:CommitSignatures, validation:SignedPublication, validation:SourceParsing, validation:OntologyAssembly, validation:OntologyFloors, validation:AlgebraCounterexamples, validation:LiteralReadback, validation:CoordinateTransfer, validation:CitationSources, validation:PolymorphicModel, validation:PhysicalClasses, validation:UnaryContracts, validation:ImportAdmission, validation:RuntimeAdmission, validation:OntologyProjection, validation:RootBuild, validation:ProjectBuild, validation:EmbeddedDocuments, validation:OntologyNavigation, validation:VectorRendering, validation:MathematicalRendering, validation:Accessibility, validation:NarrativeContent, validation:ContinuousIntegration, validation:DeploymentDependency ;
+    schema:comment "This plan covers the full requested audit, typed realization and generated-site work. Structural model validation is one criterion among the required checks. The completeness query reports recorded success only; runtime admission stays governed by its separate physical contracts." .

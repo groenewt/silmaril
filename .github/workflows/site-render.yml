@@ -1,0 +1,47 @@
+name: Site Render Verification
+on:
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        baseurl: ['', '/silmaril']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install declared dependencies
+        run: |
+          pip install -r scripts/python/pylib/requirements-user-interface.txt
+          bundle install --gemfile docs/Gemfile
+          npm install --no-save --package-lock=false --prefix scripts/site
+          node scripts/site/vendor.cjs
+          scripts/site/node_modules/.bin/playwright install --with-deps chromium
+      - name: Validate and generate specifications
+        run: make -C scripts/python/pylib morphism-user-interface-constructor-check morphism-user-interface-constructor-install SILMARIL_PYTHON=python3
+      - name: Build Jekyll
+        working-directory: docs
+        run: bundle exec jekyll build --baseurl '${{ matrix.baseurl }}' --destination ../_site
+      - name: Verify rendered pages in Chromium
+        run: node scripts/site/verify-render.cjs _site '${{ matrix.baseurl }}'
+      - name: Preserve rendered evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-render-${{ strategy.job-index }}
+          path: |
+            render-evidence/
+            _site/

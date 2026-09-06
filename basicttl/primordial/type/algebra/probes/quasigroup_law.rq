@@ -1,0 +1,57 @@
+# =====================================================================================
+# quasigroup_law.rq — RED->GREEN probe for T-QGRP (the LATIN-DIVISION / unique-division tooth,
+# W2 · SP0, Stage 2a). The added-law tooth of the quasigroup rung: the sole law quasigroup
+# adds over magma is LATIN-DIVISION — for all a,b in S there exist UNIQUE x,y in S with
+# a·x = b and y·a = b, equivalently the Cayley table is a LATIN SQUARE (algebra_spine.ttl
+# fnd:lawLatinDivision; design §1.5, plan T-QGRP).
+# =====================================================================================
+# UNIQUE DIVISION as a graph fact over the reified Cayley table. The Latin-square property
+# fails exactly when division is NOT unique — i.e. two DISTINCT cells of the SAME model
+# collide on a division:
+#   (i) LEFT-division collision  : same first operand a and same result b, different second
+#       operands (a·x1 = a·x2 = b with x1 != x2) -> a\b is not unique -> the element b occurs
+#       TWICE in row a of the table (a Latin-square row violation);
+#   (ii) RIGHT-division collision : same second operand a and same result b, different first
+#       operands (x1·a = x2·a = b with x1 != x2) -> b/a is not unique -> b occurs TWICE in
+#       column a (a Latin-square column violation).
+# This SELECT returns every such collision — the model and the two offending cells.
+#
+#   GREEN (a genuine quasigroup, e.g. fixtures/quasigroup_pos.ttl — Z/3 under +, a Latin square
+#         over carrier {e,a,b}): 0 rows — every row and every column is a permutation of the
+#         carrier, so division is total and unique.
+#   RED   (a broken quasigroup, e.g. fixtures/quasigroup_neg.ttl — the cell e·a is changed from
+#         a to b, so row e reads e·e=e, e·a=b, e·b=b: b occurs twice, a is missing):
+#         >= 1 row — e·a and e·b share first operand e and result b with distinct second
+#         operands, a left-division collision, so the Latin-division tooth bites.
+#
+# Run over the fixture under test (optionally merged with the algebra data graph), inference=none.
+# The SAME single injection (e·a -> b) that this probe catches ALSO flips the committed
+# shapes/algebra.shapes.ttl ModelShape True->False: the collision is placed on the e-row and the
+# witness declares @rel:identity:element e (a quasigroup may HAVE an identity — that makes it a
+# loop, a legitimate quasigroup witness, just as fixtures/magma_pos.ttl is a magma that is also a
+# monoid), so the left-unit tooth e·x = x reads e·a = b != a and ModelShape reddens too — so the
+# runner's fixture-polarity gate catches the negative even though the dedicated QuasigroupShape is
+# a Stage-2 T-SHAPES deliverable and shapes/algebra.shapes.ttl is out of this rung's write scope
+# (design §1.5, §2c; the latin-division axiom is spine/quasigroup.ttl kingdom:axiom:…:class:
+# division:…:family:quasigroup:genus:latin:species:unique:…).
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+# One top-level FILTER (NOT a bare-FILTER-under-UNION group): a bare FILTER inside a
+# { } UNION branch scopes only to that branch's own bindings, so operand variables bound in
+# the enclosing group are not visible there and the tooth would never bite. The two collision
+# cases are therefore expressed as a single disjunction over ?r1 = ?r2 (same result):
+#   (i)  LEFT-division  collision : ?f1 = ?f2 && ?s1 != ?s2  (same first operand, different second)
+#   (ii) RIGHT-division collision : ?s1 = ?s2 && ?f1 != ?f2  (same second operand, different first)
+SELECT ?model ?cell1 ?cell2 WHERE {
+  ?cell1 rel:structure ?model ;
+         rel:category:first  ?f1 ;
+         rel:category:second ?s1 ;
+         rel:category:result ?r1 .
+  ?cell2 rel:structure ?model ;
+         rel:category:first  ?f2 ;
+         rel:category:second ?s2 ;
+         rel:category:result ?r2 .
+  FILTER( ?cell1 != ?cell2 && ?r1 = ?r2 &&
+          ( ( ?f1 = ?f2 && ?s1 != ?s2 ) || ( ?s1 = ?s2 && ?f1 != ?f2 ) ) )
+}

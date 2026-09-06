@@ -1,0 +1,24 @@
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix ontology: <http://www.w3.org/2002/07/owl#> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:silmaril:primordial:type:class:primitive:Composition> model:field <urn:silmaril:primordial:type:property:primitive:ComposeFirst> .
+
+<urn:silmaril:primordial:type:class:property:primitive:ComposeFirstValue> a ontology:Class,
+        model:ClassDeclaration ;
+    schema1:comment "The independently named value type of urn:silmaril:prim:#composeFirst. Its semantic parent is urn:silmaril:prim:#KleisliArrow; the role remains distinct from other fields sharing that parent. The source range is retained separately for an explicit conversion gate. This nominal declaration does not admit a host literal or provide conversion or physical byte-closure evidence." ;
+    schema1:subClassOf primitive:KleisliArrow ;
+    model:admissionState model:Pending ;
+    model:declarationPath "basicttl/primordial/type/properties/primitive/compose/first/value.ttl" ;
+    model:propertyRole <urn:silmaril:primordial:type:property:primitive:ComposeFirst> .
+
+<urn:silmaril:primordial:type:property:primitive:ComposeFirst> a model:Field ;
+    model:cardinalityAuthority model:ProposedClassContract ;
+    model:multiplicity model:ExactlyOne ;
+    model:mutability model:Immutable ;
+    model:owner <urn:silmaril:primordial:type:class:primitive:Composition> ;
+    model:range <urn:silmaril:primordial:type:class:property:primitive:ComposeFirstValue> ;
+    model:referenceKind model:ValueReference ;
+    model:sourcePredicate primitive:composeFirst ;
+    model:sourceRange primitive:KleisliArrow .

@@ -1,0 +1,377 @@
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix prim: <urn:silmaril:prim:#> .
+@prefix aob:  <urn:silmaril:aob:#> .
+@prefix crs:  <urn:silmaril:crs:#> .
+@prefix silm: <urn:silmaril:entity#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================================
+# set_theory.ttl — Pillar 1: the structural (ETCS-flavored) Set floor (W2 · SP0, Task T3; design s2).
+# =====================================================================================
+# The DEEPEST carrier of the four-pillar taiji (design s2; ledger/W2/algebra_foundation/03_set_theory.md).
+# Set theory carries the CARRIERS; the algebra tower (T4/T5) carries the OBJECTS/OPERATIONS, functionality
+# (T7) the ARROWS, spaces (T6) the topology/geometry. The floor is STRUCTURAL (ETCS-flavored), NOT material
+# (ZFC): an object fnd:Set = the codomain of every presheaf, with elements-as-global-elements, functions-
+# as-morphisms, universal product/coproduct, the topos subobject classifier Omega, and finite counting
+# cardinality. Material/ZFC set theory (first-class extensionality/pairing/union, 2^X as a power set,
+# transfinite ordinals/cardinals, universe objects) is an explicit honest-red DEFERRAL (design s9), NOT a
+# silent build.
+#
+# HONESTY LEDGER (design s0), tagged on EVERY atom via fnd:authority:
+#   - fnd:Set is LIFTED (DS): Helios takes Set as the AMBIENT codomain of every presheaf P:C^op->Set but
+#     never CONSTRUCTS it - that descent is the foundation's job (helios/srcy/papers/18_presheaf_semantics/
+#     sections/01_thesis.tex:24-31,59-68; 03_set_theory.md s1.1-1.2). fnd:Presheaf and fnd:PowerObject
+#     (Omega) are LIFTED (DS) verbatim from paper 18. fnd:Unit / fnd:Void are SYN: the terminal / initial
+#     objects are the universal-object gap-fill (standard CT), matching their SYN siblings fnd:Product /
+#     fnd:Coproduct - Helios USES them as the data unit/void (formal.ttl:216-222) but authors no
+#     first-class terminal/initial-object-in-Set primitive, so they are cited synthesis, NOT a paper lift.
+#   - fnd:Function, fnd:GlobalElement (membership 1->A), fnd:Relation (subobject of a product), the
+#     UNIVERSAL fnd:Product / fnd:Coproduct (held DISTINCT from the DATA prim:Tuple / prim:Sum - SP6
+#     polysemy, D-SET-5), fnd:Cardinality, and the fnd:groundsInSet forgetful-grounding edge are SYN,
+#     cited to standard structural (ETCS) set theory and to the LIFTED usage they reify: they FILL the
+#     three flagged SP1 gaps (first-class membership edge, function-as-morphism object, universal-
+#     construction product/coproduct - 03_set_theory.md s4, D-SET-2) plus the cardinality-as-object and
+#     the forgetful grounding (the two-step forgetful descent of engine.ttl: R:GovAlg->Graph, DS, THEN the
+#     underlying-vertex-set Graph->Set bridge fnd:graphUnderlyingSet, SYN - reified together as a fnd:groundsInSet edge).
+#
+# PIN GUARD (design s2 / D-SET-6, LOAD-BEARING): the set floor is the CARRIER beneath the category layer,
+# it does NOT flatten it. "The presheaf P is the same as the set of elements P(c)" is the corpus's
+# named "forbidden collapse" (18/sections/01_thesis.tex:65-68); X = Hom(-,X) is shorthand, not identity
+# (14/sections/01_thesis.tex:90-102). fnd:PresheafNotSetShape / q_presheaf_not_set enforce this with teeth.
+#
+# Namespace fnd: <urn:silmaril:fnd:#>. Corpus-agnostic v1 (Directive 13): zero corpus instances - every
+# individual below is a foundation-internal worked example (witness) that keeps the four T3 teeth non-
+# vacuous and provably biting. Consumed by T4/T5 (carriers are Sets), T6 (Presheaf grows into Site/Sheaf),
+# T10 (the fnd:groundsInSet re-anchor edges from SP1/SP2/SP3 carriers).
+# =====================================================================================
+
+
+# =====================================================================================
+# The Set object + the presheaf codomain + the topos power object (LIFTED, DS).
+# =====================================================================================
+
+fnd:Set a owl:Class ;
+    rdfs:label "Set" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "An object of the (ambient) category of sets - the fixed codomain of every presheaf P:C^op->Set, in which assertion populations, hom-sets and restriction functions live. LIFTED (DS): Helios takes Set as an ambient, assumed background (complete, cocomplete, locally small) and USES it everywhere but never CONSTRUCTS it (helios/srcy/papers/18_presheaf_semantics/sections/01_thesis.tex:24-31 'the assertional interpretation is a presheaf P:C^op->Set'; 01_thesis.tex:59-68 the presheaf concept card; ledger/W2/algebra_foundation/03_set_theory.md s1.1-1.2). Descending INTO Set is exactly this foundation floor's job (Directive 18: 'set theory is the deepest anchor'). This floor is STRUCTURAL (ETCS-flavored): a fnd:Set is known by its elements (global elements 1->A, fnd:elementOf), its functions (fnd:Function morphisms with dom/cod/graph), its universal products/coproducts (fnd:Product/fnd:Coproduct), the terminal fnd:Unit (1) and initial fnd:Void (0), the power object fnd:PowerObject (Omega), and its finite counting fnd:Cardinality - NOT by a material membership relation, extensionality/pairing/union axioms, a 2^X power set, or transfinite cardinals (all honest-red deferrals, design s9). Every foundation carrier (a fnd:FreeAlgebra produced by the engine) grounds into a fnd:Set via the engine's two-step forgetful descent - R:GovAlg->Graph (DS) THEN the underlying-vertex-set Graph->Set bridge fnd:graphUnderlyingSet (SYN, standard math, NOT a paper-26 lift) - reified as fnd:groundsInSet (fnd:SetCarrierShape / q_set_carrier)." .
+
+fnd:Presheaf a owl:Class ;
+    rdfs:label "Presheaf" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "A presheaf P:C^op->Set - a functor from the opposite of a (locally small) schema category into Set, assigning to each schema object A the set P(A) of assertional elements of type A and to each schema arrow f:A->B the contravariant lookup P(f):P(B)->P(A). LIFTED (DS) verbatim from paper 18 (helios/srcy/papers/18_presheaf_semantics/sections/01_thesis.tex:24-31,59-68; 03_set_theory.md s1.1). A presheaf is admitted as a functor-category object in [C^op,Set], NOT as a static set. THE LOAD-BEARING SET-FLOOR LAW (design s2 PIN guard / D-SET-6): a presheaf P is NOT the same object as its element-set P(c). Identifying them - 'the presheaf P is the same as the set of elements P(c)' - 'drops the contravariant action and collapses functoriality into static labelling, which is the cheese-trap face this volume is most exposed to' (18/sections/01_thesis.tex:65-68). The set floor is the CARRIER beneath the category layer; it does NOT flatten it (X = Hom(-,X) is shorthand, not identity - 14/sections/01_thesis.tex:90-102). fnd:presheafElementSet reifies P(c); fnd:PresheafNotSetShape / q_presheaf_not_set make the non-collapse a graph fact (a presheaf owl:sameAs its element-set is RED). T6 (spaces.ttl) grows this class into the Site/Sheaf apparatus (fnd:Sheaf, fnd:sheafCondition)." .
+
+fnd:PowerObject a owl:Class ;
+    rdfs:label "PowerObject" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The topos subobject classifier Omega - the presheaf Omega(C) = { sieves on C } with pullback action u*S = { f:X->C | u.f in S }, classifying every monomorphism Q >-> P by a sieve-valued characteristic map (helios/srcy/papers/18_presheaf_semantics/chapters/05_sieves_and_kan_restriction/sections/02_subobject_classifier.tex:7-32). LIFTED (DS). This is the corpus's ONLY power-object analogue, and it is SIEVE-VALUED (many-valued / intuitionistic): 'Omega(C) is generally a set of many sieves, not one Boolean truth value' (02_subobject_classifier.tex:50-52), so subobjects are classified by sieve-valued truth, NOT by the classical 2-element Boolean whose Sub(X) is 2^X (03_set_theory.md s2.6). The CLASSICAL power set 2^X is a DIFFERENT (Boolean) object and is an explicit honest-red GAP / DEFERRAL (design s9) - it is NOT silently minted here, because in a presheaf topos it would contradict the sieve-valued Omega the corpus authors. fnd:PowerObject reifies Omega as a first-class set-floor object; the witness fnd:Omega instantiates it. No T3 tooth targets it (Omega is authored for completeness of the structural floor and for the T6/later sheaf/subobject machinery to reference)." .
+
+
+# =====================================================================================
+# Function-as-morphism, membership-as-global-element, relation-as-subobject (SYN gap-fills).
+# =====================================================================================
+
+fnd:Function a owl:Class ;
+    rdfs:label "Function" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A Set-morphism as a first-class object: a function f:A->B carrying a domain (fnd:hasDomain, a fnd:Set A), a codomain (fnd:hasCodomain, a fnd:Set B) and a graph (fnd:hasGraph, a fnd:Relation, the functional subobject of A x B). SYN, cited to standard structural (ETCS) set theory: it FILLS the flagged SP1 gap (03_set_theory.md s2.2, D-SET-2) - Helios has functions categorically (the presheaf actions P(f):P(B)->P(A), 18/sections/01_thesis.tex:93-103) and a data map (prim:Map, a partial function as a dictionary, basicttl/primitives/formal.ttl:192-196), but NO first-class function-as-morphism object with dom/cod/graph. This class IS the set-level face of Pillar 4's arrow F(A,B) (design s5): fnd:Function = Curry's F at the Set level; the functionality pillar (T7) recognizes it. Its subclass fnd:GlobalElement (a function 1->A from the terminal fnd:Unit) is the structural reading of membership. Projections, injections and universal factorisers of products/coproducts are all fnd:Function individuals." .
+
+fnd:GlobalElement a owl:Class ;
+    rdfs:label "GlobalElement" ;
+    rdfs:subClassOf fnd:Function ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A global element of a set A - a function 1->A from the terminal object fnd:Unit into A - which is the STRUCTURAL (ETCS) reading of an element x in A. A subclass of fnd:Function whose fnd:hasDomain is pinned to fnd:Unit (the terminal 1); its fnd:hasCodomain is the set it is an element of, and it carries the membership edge fnd:elementOf to that same set. SYN, cited to standard structural set theory: it FILLS the flagged SP1 gap (03_set_theory.md s2.1, D-SET-2) - Helios USES membership operationally (an assertional element x in P(A); the category of elements Ob(int P) = {(c,x) | c in Ob(C), x in P(c)}, 18/chapters/04/sections/01_category_of_elements.tex:10-20) but authors NO first-class typed membership primitive (no prim:membership edge, no prim:Element class). Modeling an element as a global element 1->A is what makes membership TYPED rather than a bare untyped link: fnd:MembershipTypedShape / q_membership_typed require every fnd:elementOf subject to be exactly the arrow 1->A (fnd:hasDomain fnd:Unit and fnd:hasCodomain the set), so an element not so typed is RED." .
+
+fnd:Relation a owl:Class ;
+    rdfs:label "Relation" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A relation R between sets A and B as a SUBOBJECT of the product - a monomorphism R >-> A x B (equivalently a jointly-monic span). SYN, cited to standard structural (ETCS) set theory. In Helios the classical 'relation as a subset of A x B' is DELIBERATELY ABSENT: the Node-or-Arrow admission discipline REPLACES relations-as-subsets with typed arrows (an ownership relation is the typed arrow owns:Person->DomesticCat plus its induced lookup P(owns), never a scalar glued directly on, 18/sections/03_olog_node_arrow_law.tex:19-30; 03_set_theory.md s2.3). This class reifies the subobject-of-a-product reading for the structural set floor precisely so a function's GRAPH has a first-class home (fnd:hasGraph: fnd:Function -> fnd:Relation) - the functional, single-valued, total subobject of dom x cod. It is tagged SYN and cited because synthesizing a relation-as-subset primitive runs alongside (not against) the authored typed-arrow discipline: the graph of a fnd:Function is the structural bridge between the two readings." .
+
+
+# =====================================================================================
+# Universal product + coproduct (SYN; the universal-construction reification, distinct from data).
+# =====================================================================================
+
+fnd:Product a owl:Class ;
+    rdfs:label "Product" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The UNIVERSAL categorical product A x B of two sets - the limit object equipped with its two projection morphisms pi_1:A x B->A and pi_2:A x B->B (fnd:hasProjection) and, for every cone (f:C->A, g:C->B), a UNIQUE mediating morphism <f,g>:C->A x B (fnd:hasFactoriser) through which both legs factor. SYN, cited to standard structural set theory, reifying the UNIVERSAL PROPERTY as a first-class object the same way basicttl/aob/group_law.ttl reifies the colimit (apex + legs + unique aob:universalFactor). Products are well covered in Helios as USAGE - the data product prim:Tuple + terminal prim:Unit (formal.ttl:168-171,218-222), the ordered pairs (c,x) of the category of elements (18/chapters/04/sections/01_category_of_elements.tex:11-16), the SP3 five-factor product K with its pi_j joint-faithfulness seal (basicttl/crs/README.md:37-38) - but the universal-construction OBJECT is the SYN gap-fill (03_set_theory.md s2.4). HELD DISTINCT (SP6 polysemy, D-SET-5) from the DATA product prim:Tuple: this is the universal construction, prim:Tuple is the tagged data shape - one lexeme, two glossary senses, referenced through the SP6 glossary layer, never conflated. fnd:UniversalProductShape / q_universal_product make 'a product carries its two projections and its universal factoriser' a graph fact: a fnd:Product missing a projection or the factoriser is RED." .
+
+fnd:Coproduct a owl:Class ;
+    rdfs:label "Coproduct" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The UNIVERSAL categorical coproduct (disjoint union) A + B of two sets - the colimit object equipped with its two injection morphisms iota_1:A->A + B and iota_2:B->A + B (fnd:hasInjection) and, for every cocone (f:A->C, g:B->C), a UNIQUE mediating morphism [f,g]:A + B->C (fnd:hasCofactoriser) through which both legs co-factor - the exact dual of fnd:Product. SYN, cited to standard structural set theory. HELD DISTINCT in TWO ways (SP6 polysemy, D-SET-5): (1) from the DATA coproduct prim:Sum (the tagged union / sum type, formal.ttl:198-201) with initial prim:Void (the empty coproduct, formal.ttl:216-217) - this is the universal construction, prim:Sum is the data shape; and (2) from a GENERAL colimit (pushout/coequalizer that glues overlaps) - 'colimit != disjoint union' is authored explicitly (paper 19 mereology-as-colimit; 09/chapters/04/sections/04_colimit_worked_example.tex:57-62 the universal claim requires a coproduct construction it does not supply; 03_set_theory.md s2.5). SP1's representable hom-set is 'the disjoint union over all objects X of Hom(X,A)' (formal.ttl:381). Referenced through the SP6 glossary layer, never bare. No T3 tooth targets it directly (it is authored symmetric to fnd:Product per Directive 17 - no privilege between limit and colimit); its witness carries the full injection+cofactoriser envelope." .
+
+
+# =====================================================================================
+# Cardinality-as-object (SYN-FROM the SP1 carrier comments).
+# =====================================================================================
+
+fnd:Cardinality a owl:Class ;
+    rdfs:label "Cardinality" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A finite / counting cardinal as a first-class OBJECT - the size of a finite fnd:Set, carried by fnd:hasCardinality (fnd:Set -> fnd:Cardinality) with the count in fnd:cardinalityCount (a xsd:nonNegativeInteger). SYN-FROM the implicit SP1 carrier comments (05_reanchor_surface.md s1.3; basicttl/primitives/physical.ttl:148,156,453-465): the 8-bit code space has cardinality 256, RGB has cardinality 3, Bit has cardinality 2 - facts stated in comments that this class makes first-class objects (those three re-anchor onto fnd:Cardinality at T10; here the witnesses are corpus-agnostic finite examples). v1 cardinality = FINITE counting cardinality only, anchored on the unary-law Count authority (Count 256 / ordinal 255 / bit-width 128 kept as three DISTINCT coordinates, docs/unary-byte-frame-law.md:721-729; 03_set_theory.md D-SET-3). TRANSFINITE cardinals (aleph, cardinal-as-set, universe objects) and local-smallness-as-a-modeled-universe are explicit honest-red DEFERRALS (design s9): local smallness stays an honest HYPOTHESIS marker (as papers 14/18 keep it), never a built object. The terminal fnd:Unit has cardinality 1, the initial fnd:Void cardinality 0." .
+
+
+# =====================================================================================
+# The set-floor edges (SYN reifications; the forgetful grounding, membership, dom/cod/graph,
+# universal-property legs, cardinality, the P(c) element-set).
+# =====================================================================================
+
+fnd:groundsInSet a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ; rdfs:range owl:Thing ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "groundsInSet" ;
+    rdfs:comment "Relates a carrier to the fnd:Set it grounds into under a FORGETFUL grounding - a carrier IS a Set under the forgetful functor, NOT a subtype (design s7 edge mechanism; reserving rdfs:subClassOf for genuine is-a). SYN, reifying as a graph edge the two-step forgetful descent of the minting engine - the LIFTED right adjoint R:GovAlg->Graph (engine.ttl fnd:rightAdjoint, DS, helios/srcy/papers/26_adjunctions_free_graphs_governed_algebras/sections/01_thesis.tex:93-101) THEN the underlying-vertex-set Graph->Set bridge (engine.ttl fnd:graphUnderlyingSet, SYN, standard math, NOT a paper-26 lift) - and mirroring SP3's crs:ForgetfulTagFrame surjection and SP1's prim:DualGroundingShape realizes-edge discipline. This is the set-grounding pole of the design s7 additive re-anchor: T10 adds fnd:groundsInSet edges from the SP1/SP2/SP3 carriers (prim:Octet/RGB/Bit -> finite Set, etc.); in T3 the ONE witness edge (fnd:witnessCarrier fnd:groundsInSet fnd:witnessUnderlyingSet) keeps q_set_carrier non-vacuous. This property DELIBERATELY declares the permissive rdfs:range owl:Thing rather than the precise fnd:Set (both domain and range are owl:Thing, satisfying the depth gate's domain+range requirement): the target set is instead typed HONESTLY and EXPLICITLY by asserting rdf:type fnd:Set on the actual set individual (Praeriehund - name the thing as what it is), because a schema-level rdfs:range fnd:Set would force inference=rdfs to materialise rdf:type fnd:Set onto EVERY target - even a wrong-typed one - and so DEFANG the fnd:ReanchorLandingParityShape landing-type tooth, whose POSITIVE test (a fnd:groundsInSet edge whose object is NOT rdf:type fnd:Set -> RED) is exactly at parity with the fnd:hasSignature / space-structure / fnd:recognizesFrameCarrier positive landing tests of its three sibling grounding predicates (fnd:groundsInAlgebra / fnd:groundsInSpace / fnd:functionalityOf, whose own honest precise ranges never defang them because their teeth read a structural EDGE, not the range-inferred type). Every genuine grounding target IS a fnd:Set (the finite carriers fnd:setOctet256/RGB3/Bit2, the SP2 fnd:setOctet32Power/setByteOrderCoproduct, the SP3 fnd:setCarrierProduct, every algebra-rung underlying set fnd:setMagma..fnd:setVectorSpace, and the free-algebra underlying set fnd:witnessUnderlyingSet - a countably infinite set is STILL a fnd:Set), each typed rdf:type fnd:Set at its own declaration; the fnd:SetCarrierShape tooth reads only EDGE EXISTENCE on the carrier, and the fnd:ReanchorLandingParityShape landing tooth reads the target's EXPLICIT rdf:type fnd:Set - neither is a range-inference-vacuous check." .
+
+fnd:elementOf a owl:ObjectProperty ;
+    rdfs:domain fnd:GlobalElement ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "elementOf" ;
+    rdfs:comment "Relates a global element (fnd:GlobalElement, a function 1->A) to the fnd:Set A it is an element of - the STRUCTURAL (ETCS) membership edge x in A. SYN gap-fill (03_set_theory.md s2.1): Helios uses membership operationally but authors no first-class typed membership primitive. A fnd:elementOf edge is well typed exactly when its subject is the arrow 1->A: fnd:MembershipTypedShape / q_membership_typed require the subject to carry fnd:hasDomain fnd:Unit and fnd:hasCodomain the SAME set, so a bare untyped membership (an element that is not a global element 1->A) is RED. Domain fnd:GlobalElement, range fnd:Set." .
+
+fnd:hasDomain a owl:ObjectProperty ;
+    rdfs:domain fnd:Function ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasDomain" ;
+    rdfs:comment "Relates a function (fnd:Function) to its domain set (fnd:Set) - the source A of a morphism f:A->B. SYN, part of the function-as-morphism gap-fill (03_set_theory.md s2.2). For a fnd:GlobalElement (a function 1->A) the domain is pinned to the terminal object fnd:Unit, which is exactly the typing fnd:MembershipTypedShape checks. Domain fnd:Function, range fnd:Set." .
+
+fnd:hasCodomain a owl:ObjectProperty ;
+    rdfs:domain fnd:Function ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasCodomain" ;
+    rdfs:comment "Relates a function (fnd:Function) to its codomain set (fnd:Set) - the target B of a morphism f:A->B. SYN, part of the function-as-morphism gap-fill (03_set_theory.md s2.2). For a fnd:GlobalElement 1->A the codomain is the set the element belongs to, so fnd:MembershipTypedShape requires fnd:hasCodomain to equal the fnd:elementOf target. Domain fnd:Function, range fnd:Set." .
+
+fnd:hasGraph a owl:ObjectProperty ;
+    rdfs:domain fnd:Function ; rdfs:range fnd:Relation ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasGraph" ;
+    rdfs:comment "Relates a function (fnd:Function) to its GRAPH (fnd:Relation) - the functional, single-valued, total subobject of dom x cod that IS the function set-theoretically. SYN, completing the function-as-morphism gap-fill (03_set_theory.md s2.2) and giving fnd:Relation a first-class use: the graph of a fnd:Function is the structural bridge between the typed-arrow discipline and the relation-as-subobject reading. Domain fnd:Function, range fnd:Relation." .
+
+fnd:hasProjection a owl:ObjectProperty ;
+    rdfs:domain fnd:Product ; rdfs:range fnd:Function ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasProjection" ;
+    rdfs:comment "Relates a universal product (fnd:Product) to one of its projection morphisms (fnd:Function) - pi_1:A x B->A or pi_2:A x B->B. SYN, part of the universal-product reification (03_set_theory.md s2.4). A genuine categorical product carries TWO distinct projections; fnd:UniversalProductShape / q_universal_product require two distinct fnd:hasProjection (plus a fnd:hasFactoriser), so a product missing a projection is RED. Domain fnd:Product, range fnd:Function." .
+
+fnd:hasFactoriser a owl:ObjectProperty ;
+    rdfs:domain fnd:Product ; rdfs:range fnd:Function ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasFactoriser" ;
+    rdfs:comment "Relates a universal product (fnd:Product) to its UNIQUE mediating morphism (fnd:Function) - the universal factoriser <f,g>:C->A x B through which every cone (f:C->A, g:C->B) factors, the arrow that makes A x B genuinely universal (the categorical product's defining property, dual to aob:universalFactor for the colimit). SYN, part of the universal-product reification (03_set_theory.md s2.4). fnd:UniversalProductShape / q_universal_product require a fnd:Product to carry it, so a product with projections but no universal factoriser (a mere span, not a product) is RED. Domain fnd:Product, range fnd:Function." .
+
+fnd:hasInjection a owl:ObjectProperty ;
+    rdfs:domain fnd:Coproduct ; rdfs:range fnd:Function ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasInjection" ;
+    rdfs:comment "Relates a universal coproduct (fnd:Coproduct) to one of its injection morphisms (fnd:Function) - iota_1:A->A + B or iota_2:B->A + B - the exact dual of fnd:hasProjection. SYN, part of the universal-coproduct reification (03_set_theory.md s2.5). Authored symmetric to the product per Directive 17 (no privilege between limit and colimit). Domain fnd:Coproduct, range fnd:Function." .
+
+fnd:hasCofactoriser a owl:ObjectProperty ;
+    rdfs:domain fnd:Coproduct ; rdfs:range fnd:Function ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasCofactoriser" ;
+    rdfs:comment "Relates a universal coproduct (fnd:Coproduct) to its UNIQUE mediating morphism (fnd:Function) - the universal co-factoriser [f,g]:A + B->C through which every cocone (f:A->C, g:B->C) co-factors, the arrow that makes A + B genuinely universal (dual to fnd:hasFactoriser). SYN, part of the universal-coproduct reification (03_set_theory.md s2.5), symmetric to the product per Directive 17. Domain fnd:Coproduct, range fnd:Function." .
+
+fnd:hasCardinality a owl:ObjectProperty ;
+    rdfs:domain fnd:Set ; rdfs:range fnd:Cardinality ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "hasCardinality" ;
+    rdfs:comment "Relates a finite fnd:Set to its finite counting cardinal (fnd:Cardinality) - the size-as-object edge. SYN-FROM the implicit SP1 carrier comments (05_reanchor_surface.md s1.3): Octet has cardinality 256, RGB 3, Bit 2, the terminal fnd:Unit 1, the initial fnd:Void 0. Transfinite cardinality is an honest-red deferral (design s9). Domain fnd:Set, range fnd:Cardinality." .
+
+fnd:presheafElementSet a owl:ObjectProperty ;
+    rdfs:domain fnd:Presheaf ; rdfs:range fnd:Set ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "presheafElementSet" ;
+    rdfs:comment "Relates a presheaf (fnd:Presheaf) to one of its element-sets P(c) (a fnd:Set) - the population at a schema object. SYN, reifying the DS fact that P(c) is a set (18/sections/01_thesis.tex:59-68). THE POINT of the edge is the PIN GUARD: a presheaf and its element-set are DISTINCT objects, so a presheaf must NEVER be owl:sameAs its own fnd:presheafElementSet (the corpus's named forbidden collapse, 18/sections/01_thesis.tex:65-68). fnd:PresheafNotSetShape / q_presheaf_not_set walk exactly this edge and flag the collapse as RED. Domain fnd:Presheaf, range fnd:Set." .
+
+fnd:cardinalityCount a owl:DatatypeProperty ;
+    rdfs:domain fnd:Cardinality ; rdfs:range xsd:nonNegativeInteger ;
+    fnd:authority fnd:SYN ;
+    rdfs:label "cardinalityCount" ;
+    rdfs:comment "The finite counting value of a fnd:Cardinality, carried as a xsd:nonNegativeInteger (e.g. 1 for the terminal fnd:Unit, 0 for the initial fnd:Void, 3 for a three-element witness set). SYN-FROM the SP1 carrier comments (05_reanchor_surface.md s1.3). Only FINITE counting cardinals are modeled in v1 (transfinite deferred, design s9). Domain fnd:Cardinality, range xsd:nonNegativeInteger." .
+
+
+# =====================================================================================
+# The terminal + initial objects (LIFTED, DS) and the sieve-valued classifier witness (LIFTED, DS).
+# =====================================================================================
+
+fnd:Unit a fnd:Set ;
+    rdfs:label "Unit" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The terminal object 1 of the category of sets - the one-element (singleton) set through which global elements 1->A pick out members of A. SYN, cited to standard structural (ETCS) category theory: the terminal object is the UNIVERSAL-object gap-fill (the empty product), authored here symmetric to its dual fnd:Void (the initial object) and matching its honest SYN siblings fnd:Product / fnd:Coproduct - it is NOT a Helios-paper lift. Helios USES the terminal object operationally as the data unit ('the empty product, the nullary Tuple', basicttl/primitives/formal.ttl:218-222) but authors no first-class terminal-object-in-Set primitive; this reifies the universal construction (03_set_theory.md s2.4). Its cardinality is 1 (fnd:hasCardinality fnd:cardOne). It is the fixed domain of every fnd:GlobalElement, and hence the anchor of the structural membership reading enforced by fnd:MembershipTypedShape." ;
+    fnd:hasCardinality fnd:cardOne .
+
+fnd:Void a fnd:Set ;
+    rdfs:label "Void" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The initial object 0 of the category of sets - the empty set, uninhabited. SYN, cited to standard structural (ETCS) category theory: the initial object is the UNIVERSAL-object gap-fill (the empty coproduct), authored symmetric to its dual fnd:Unit (the terminal object) and matching its honest SYN siblings fnd:Product / fnd:Coproduct - it is NOT a Helios-paper lift. Helios USES the initial object operationally as the data void ('the empty coproduct, the nullary Sum', dual-grounded to a genuinely uninhabited 0-byte encoding, basicttl/primitives/formal.ttl:216-217) but authors no first-class initial-object-in-Set primitive; this reifies the universal construction (03_set_theory.md s2.5). Its cardinality is 0 (fnd:hasCardinality fnd:cardZero). It has no global elements (there is no arrow 1->0), which is exactly why it is the initial, not the terminal, object." ;
+    fnd:hasCardinality fnd:cardZero .
+
+fnd:Omega a fnd:PowerObject ;
+    rdfs:label "Omega" ;
+    fnd:authority fnd:DS ;
+    rdfs:comment "The witness sieve-valued subobject classifier Omega:C^op->Set, C |-> { sieves on C } (helios/srcy/papers/18_presheaf_semantics/chapters/05_sieves_and_kan_restriction/sections/02_subobject_classifier.tex:7-32). LIFTED (DS). It instantiates fnd:PowerObject non-vacuously: Omega(C) is generally a set of many sieves, not one Boolean truth value (02_subobject_classifier.tex:50-52), so it is the intuitionistic / many-valued classifier the corpus authors - distinct from the classical Boolean 2^X (a deferred GAP)." .
+
+
+# =====================================================================================
+# Cardinality witnesses (SYN worked examples): finite counting cardinals.
+# =====================================================================================
+
+fnd:cardOne a fnd:Cardinality ;
+    rdfs:label "cardOne" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The finite counting cardinal 1 - the cardinality of the terminal object fnd:Unit (the singleton). SYN worked example (finite counting cardinality only; 03_set_theory.md D-SET-3)." ;
+    fnd:cardinalityCount 1 .
+
+fnd:cardZero a fnd:Cardinality ;
+    rdfs:label "cardZero" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The finite counting cardinal 0 - the cardinality of the initial object fnd:Void (the empty set). SYN worked example (finite counting cardinality only; 03_set_theory.md D-SET-3)." ;
+    fnd:cardinalityCount 0 .
+
+fnd:cardThree a fnd:Cardinality ;
+    rdfs:label "cardThree" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The finite counting cardinal 3 - the cardinality of the three-element witness set fnd:witnessSetA. SYN worked example (a corpus-agnostic finite cardinal; the SP1 RGB=3 carrier re-anchors here at T10, 05_reanchor_surface.md s1.3)." ;
+    fnd:cardinalityCount 3 .
+
+
+# =====================================================================================
+# The witness sets (SYN worked examples; non-vacuity anchors for the four T3 teeth).
+# =====================================================================================
+
+fnd:witnessUnderlyingSet a fnd:Set ;
+    rdfs:label "witnessUnderlyingSet" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set of the engine's free-algebra carrier fnd:witnessCarrier (engine.ttl) - the image of that carrier under the engine's two-step forgetful descent (R:GovAlg->Graph, DS, THEN the underlying-vertex-set Graph->Set bridge fnd:graphUnderlyingSet, SYN). SYN worked example. It is the grounding TARGET of the one T3 witness fnd:groundsInSet edge (fnd:witnessCarrier fnd:groundsInSet fnd:witnessUnderlyingSet), which keeps q_set_carrier / fnd:SetCarrierShape non-vacuous: every foundation carrier grounds into a fnd:Set. Being a free (associative) carrier its set is countably infinite, so it carries no finite fnd:hasCardinality (transfinite/countable cardinality is a deferred honest-red, design s9)." .
+
+fnd:witnessSetA a fnd:Set ;
+    rdfs:label "witnessSetA" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A three-element witness set (a factor of the witness product). SYN worked example. It carries a finite counting cardinality (fnd:hasCardinality fnd:cardThree = 3) and hosts the witness global element fnd:witnessElement (the 1->A membership witness for q_membership_typed); it is also the first projection's codomain and the factoriser's domain in the witness product." ;
+    fnd:hasCardinality fnd:cardThree .
+
+fnd:witnessSetB a fnd:Set ;
+    rdfs:label "witnessSetB" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "A second witness set (the other factor of the witness product / summand of the witness coproduct). SYN worked example. It is the second projection's codomain in fnd:witnessProduct and the second injection's domain in fnd:witnessCoproduct, so both universal constructions have two genuine legs." .
+
+fnd:witnessProductSet a fnd:Set ;
+    rdfs:label "witnessProductSet" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set A x B of the witness universal product fnd:witnessProduct. SYN worked example. It is the common domain of the two projection morphisms fnd:witnessProj1 / fnd:witnessProj2 and the codomain of the universal factoriser fnd:witnessFactoriser - the set-level carrier of the product object." .
+
+fnd:witnessCoproductSet a fnd:Set ;
+    rdfs:label "witnessCoproductSet" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The underlying set A + B of the witness universal coproduct fnd:witnessCoproduct. SYN worked example. It is the common codomain of the two injection morphisms fnd:witnessInj1 / fnd:witnessInj2 and the domain of the universal co-factoriser fnd:witnessCofactoriser - the set-level carrier of the coproduct object, dual to fnd:witnessProductSet." .
+
+fnd:witnessPresheafElemSet a fnd:Set ;
+    rdfs:label "witnessPresheafElemSet" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The element-set P(c) of the witness presheaf fnd:witnessPresheaf - the population at a schema object, a genuine fnd:Set. SYN worked example. It is the TARGET of fnd:witnessPresheaf fnd:presheafElementSet, and it is deliberately kept DISTINCT from the presheaf itself (no owl:sameAs between them on the happy path): identifying the two is the corpus's forbidden collapse, which q_presheaf_not_set / fnd:PresheafNotSetShape flag as RED." .
+
+
+# =====================================================================================
+# The membership witness (SYN): the global element 1 -> A (q_membership_typed anchor).
+# =====================================================================================
+
+fnd:witnessElement a fnd:GlobalElement ;
+    rdfs:label "witnessElement" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness global element - a function 1->A from the terminal fnd:Unit into fnd:witnessSetA - which IS the structural (ETCS) reading of an element x in A. SYN worked example. It carries fnd:hasDomain fnd:Unit, fnd:hasCodomain fnd:witnessSetA and fnd:elementOf fnd:witnessSetA, so it satisfies q_membership_typed / fnd:MembershipTypedShape (the membership edge is the typed arrow 1->A). The probe of record injects a membership whose subject is NOT so typed, flipping the tooth True->False." ;
+    fnd:hasDomain fnd:Unit ;
+    fnd:hasCodomain fnd:witnessSetA ;
+    fnd:elementOf fnd:witnessSetA .
+
+
+# =====================================================================================
+# The universal-product witness (SYN): two projections + a universal factoriser (q_universal_product).
+# =====================================================================================
+
+fnd:witnessProj1 a fnd:Function ;
+    rdfs:label "witnessProj1" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The first projection pi_1:A x B->A of the witness universal product - a fnd:Function from fnd:witnessProductSet to fnd:witnessSetA. SYN worked example. It also carries fnd:hasGraph fnd:witnessRelation (its functional subobject of dom x cod), giving fnd:Relation a first-class use." ;
+    fnd:hasDomain fnd:witnessProductSet ;
+    fnd:hasCodomain fnd:witnessSetA ;
+    fnd:hasGraph fnd:witnessRelation .
+
+fnd:witnessProj2 a fnd:Function ;
+    rdfs:label "witnessProj2" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The second projection pi_2:A x B->B of the witness universal product - a fnd:Function from fnd:witnessProductSet to fnd:witnessSetB. SYN worked example. Together with fnd:witnessProj1 it gives fnd:witnessProduct its two distinct projections required by q_universal_product." ;
+    fnd:hasDomain fnd:witnessProductSet ;
+    fnd:hasCodomain fnd:witnessSetB .
+
+fnd:witnessFactoriser a fnd:Function ;
+    rdfs:label "witnessFactoriser" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The universal factoriser <f,g>:C->A x B of the witness universal product - the unique mediating morphism through which every cone factors, here modeled as a fnd:Function into fnd:witnessProductSet. SYN worked example. Its presence is what makes fnd:witnessProduct a genuine categorical product (not a mere span); removing it is one of the q_universal_product probes of record." ;
+    fnd:hasDomain fnd:witnessSetA ;
+    fnd:hasCodomain fnd:witnessProductSet .
+
+fnd:witnessRelation a fnd:Relation ;
+    rdfs:label "witnessRelation" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The graph of the first projection fnd:witnessProj1 - a fnd:Relation, the functional single-valued total subobject of fnd:witnessProductSet x fnd:witnessSetA. SYN worked example. It instantiates fnd:Relation non-vacuously and is the target of fnd:witnessProj1 fnd:hasGraph, the structural bridge between the typed-arrow discipline and the relation-as-subobject reading." .
+
+fnd:witnessProduct a fnd:Product ;
+    rdfs:label "witnessProduct" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness universal product A x B = fnd:witnessSetA x fnd:witnessSetB (non-vacuity anchor for q_universal_product / fnd:UniversalProductShape). SYN worked example. It carries its two DISTINCT projections (fnd:hasProjection fnd:witnessProj1, fnd:witnessProj2) and its unique universal factoriser (fnd:hasFactoriser fnd:witnessFactoriser), so it satisfies the full universal-property tooth. It is HELD DISTINCT from the data product prim:Tuple (SP6 polysemy). The probes of record - a fnd:Product with a missing projection or no factoriser (fnd:probeBadProduct) - flip the tooth True->False." ;
+    fnd:hasProjection fnd:witnessProj1 , fnd:witnessProj2 ;
+    fnd:hasFactoriser fnd:witnessFactoriser .
+
+
+# =====================================================================================
+# The universal-coproduct witness (SYN; symmetric to the product per Directive 17, no privilege).
+# =====================================================================================
+
+fnd:witnessInj1 a fnd:Function ;
+    rdfs:label "witnessInj1" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The first injection iota_1:A->A + B of the witness universal coproduct - a fnd:Function from fnd:witnessSetA to fnd:witnessCoproductSet, dual to fnd:witnessProj1. SYN worked example." ;
+    fnd:hasDomain fnd:witnessSetA ;
+    fnd:hasCodomain fnd:witnessCoproductSet .
+
+fnd:witnessInj2 a fnd:Function ;
+    rdfs:label "witnessInj2" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The second injection iota_2:B->A + B of the witness universal coproduct - a fnd:Function from fnd:witnessSetB to fnd:witnessCoproductSet, dual to fnd:witnessProj2. SYN worked example." ;
+    fnd:hasDomain fnd:witnessSetB ;
+    fnd:hasCodomain fnd:witnessCoproductSet .
+
+fnd:witnessCofactoriser a fnd:Function ;
+    rdfs:label "witnessCofactoriser" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The universal co-factoriser [f,g]:A + B->C of the witness universal coproduct - the unique mediating morphism through which every cocone co-factors, modeled as a fnd:Function out of fnd:witnessCoproductSet, dual to fnd:witnessFactoriser. SYN worked example." ;
+    fnd:hasDomain fnd:witnessCoproductSet ;
+    fnd:hasCodomain fnd:witnessSetA .
+
+fnd:witnessCoproduct a fnd:Coproduct ;
+    rdfs:label "witnessCoproduct" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness universal coproduct A + B = fnd:witnessSetA + fnd:witnessSetB (the exact dual of fnd:witnessProduct, authored symmetric per Directive 17 - no privilege between limit and colimit). SYN worked example. It carries its two injections (fnd:hasInjection fnd:witnessInj1, fnd:witnessInj2) and its unique universal co-factoriser (fnd:hasCofactoriser fnd:witnessCofactoriser). It is HELD DISTINCT from the data coproduct prim:Sum and from a general colimit (SP6 polysemy, D-SET-5). No T3 tooth targets it directly; it is authored for the completeness of the structural floor." ;
+    fnd:hasInjection fnd:witnessInj1 , fnd:witnessInj2 ;
+    fnd:hasCofactoriser fnd:witnessCofactoriser .
+
+
+# =====================================================================================
+# The presheaf witness (SYN): a presheaf distinct from its element-set (q_presheaf_not_set anchor).
+# =====================================================================================
+
+fnd:witnessPresheaf a fnd:Presheaf ;
+    rdfs:label "witnessPresheaf" ;
+    fnd:authority fnd:SYN ;
+    rdfs:comment "The witness presheaf P:C^op->Set (non-vacuity anchor for q_presheaf_not_set / fnd:PresheafNotSetShape). SYN worked example. It carries fnd:presheafElementSet fnd:witnessPresheafElemSet (its element-set P(c)), and on the happy path it is deliberately NOT owl:sameAs that set - the presheaf and its set of elements are DISTINCT objects (the PIN guard, D-SET-6). The probe of record injects fnd:witnessPresheaf owl:sameAs fnd:witnessPresheafElemSet (the corpus's forbidden collapse), flipping the tooth True->False." ;
+    fnd:presheafElementSet fnd:witnessPresheafElemSet .
+
+
+# =====================================================================================
+# The forgetful-grounding witness edge (SYN): the engine carrier grounds into its underlying Set.
+# =====================================================================================
+
+fnd:witnessCarrier fnd:groundsInSet fnd:witnessUnderlyingSet .

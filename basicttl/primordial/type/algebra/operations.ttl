@@ -1,0 +1,126 @@
+# =====================================================================================
+# operations.ttl — the operation-symbol atoms for the folded algebra spine (W2 · SP0, T-SIG-OP).
+# =====================================================================================
+# The five primitive operation SYMBOLS of the one-operation algebra tower, each a first-class
+# atom on the mathematics 12-marker ladder (D26 full runtime Linnaean ladder, VERBATIM head):
+#
+#   HEAD = urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:
+#   tail = <subdomain>:kingdom:operation:phylum:primitive:class:<op>:order:<arity>:family:operation:genus:<role>:species:<op>:component:operation:instance:canonical
+#
+# Attestation (design §1.8; grep-confirmed off refcomp/tar/bash/aob/urn/**). Exact dir-counts are
+# omitted deliberately: leaf-dir path-match counts differ from other counting methods, so only the
+# ATTESTED / UNATTESTED verdict (>=1 vs 0 aob dirs by `find aob -path '*/<seg>'`) is load-bearing.
+#   - kingdom:operation      ATTESTED (>=1 aob dir; e.g. .../subdomain/file:access/kingdom/operation/...)
+#   - phylum:primitive       ATTESTED (>=1 aob dir; e.g. .../kingdom/operation/phylum/primitive/class/read/...)
+#   - component:operation    ATTESTED (>=1 aob dir; the file-read atom's terminal component)
+#   - family:operation       ATTESTED (the [V] group type/axiom atoms carry it)
+#   - genus:composition      ATTESTED (>=1 aob dir)
+# so kingdom:operation / phylum:primitive / component:operation / family:operation / genus:composition
+# are used at their runtime defaults, NOT [S]. The op-symbol placement follows the introduction rung
+# (product introduced at magma, unit at monoid, inverse at group, \ and / at quasigroup) — the same
+# per-rung-subdomain logic the signatures use (design §1.7), so the symbol's home subdomain is where it
+# first enters the tower. Symbols are SHARED across the rungs that extend that signature (records.ttl
+# rec:signature:record; algebra_spine.ttl:180-221 fnd:hasOperationSymbol precedent).
+#
+# [S] TOKENS (Praeriehund honesty; §7.2 sign-off packet, assembled by T-PANEL):
+#   - order:nullary (the unit e) — UNATTESTED in the runtime (0 aob dirs; the runtime carries
+#     order:unary/binary/eight only). Design §1.8 / §7.2 #3: accept order:nullary, fallback order:constant
+#     (also UNATTESTED, 0 dirs) noted. Both flagged for sign-off. Tagged on the unit atom below.
+#   - species:product (the product ·) — UNATTESTED as a species leaf (0 aob dirs; "product" occurs only
+#     mid-descent as .../genus/bounded/species/octet/product/... on the file-read atom). Design §1.8
+#     assigns genus:composition:species:product; flagged.
+#   - class:division (both division symbols \ , /) — UNATTESTED (0 aob dirs; `find aob -path
+#     '*/class/division'` = 0, and "division" occurs 0 times in primordials.yaml). A design-sanctioned
+#     token USE (design §1.8 pattern class:<op>; §1.6 line 159) but with NO runtime precedent, so by
+#     the doctrine ([S] = no runtime precedent -> tag it) it is an [S] token, flagged on both division
+#     atoms below and carried into the §7.2 sign-off packet.
+#   - species:division (both division symbols) — UNATTESTED as a species leaf (0 aob dirs); flagged.
+# The role vocabulary genus:neutral/species:identity, genus:member/species:inverse, genus:left|right/
+# species:division mirrors the [V] group-axiom rank values (identity->genus:neutral:species:member,
+# inverse->genus:member:species:inverse) adapted to the operation plane; flagged as design-default [D]/[S]
+# per design §1.8 and carried into the sign-off packet.
+#
+# Each symbol carries @rel:arity (the operand count), @rel:domain (the operand sort(s), sort = the
+# carrier — omitted for the nullary unit which has an empty domain) and @rel:codomain (the result sort =
+# the carrier). The shared syntactic carrier sort atom is declared in signatures.ttl (rel:sort target);
+# operation domains/codomains reference it (this file parses standalone — an IRI reference needs no local
+# definition; the merged algebra data graph resolves it).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.8).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-SIG-OP).
+# Consistent-with: records.ttl (rel:* relation namespace), signatures.ttl (rel:operation targets,
+# carrier sort). RED->GREEN probe: probes/signature_names_sort.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain: (records.ttl / shapes.ttl idiom):
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39, closure.ttl:411) — rec:specimen:record REUSED
+# as the generic seed-carrier type of the operation-symbol individuals (T-MONOID depth-gate
+# compliance: the ontology-depth-check requires every owl:NamedIndividual to carry a specific
+# type beyond owl:NamedIndividual; a dedicated operation:symbol:record class is a T-SIG-OP /
+# §7.2 sign-off decision, so the minimal honest generic seed-carrier specimen type is used here):
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# -------------------------------------------------------------------------------------
+# product ·  — the binary composition, S,S -> S.  Introduced at magma; shared by every rung.
+# -------------------------------------------------------------------------------------
+alg:magma:kingdom:operation:phylum:primitive:class:product:order:binary:family:operation:genus:composition:species:product:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "product" ;
+    rel:notation "· : S,S -> S" ;
+    rel:arity    "2"^^xsd:nonNegativeInteger ;
+    rel:domain   alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The binary product operation symbol '· : S,S -> S' (arity 2), the single composition of the one-operation tower. Home subdomain 'magma' = the rung where the product first enters (design §1.7-§1.8, algebra_spine.ttl:185 fnd:hasOperationSymbol '. : S,S -> S'); it is SHARED by every rung whose signature extends sigOneBinary (magma, semigroup, monoid, commutative-monoid, group, abelian-group, quasigroup, loop). @rel:arity 2; @rel:domain and @rel:codomain both reference the shared syntactic carrier sort (signatures.ttl) — the domain sort listed once with arity 2 encodes S×S (RDF set semantics forbid a duplicate triple). kingdom:operation / phylum:primitive / component:operation / family:operation / genus:composition are ATTESTED runtime defaults (aob corpus). [S] species:product is UNATTESTED as a species leaf (design §1.8; flagged for §7.2 sign-off)." .
+
+# -------------------------------------------------------------------------------------
+# unit e  — the nullary identity constant, -> S.  Introduced at monoid.
+# -------------------------------------------------------------------------------------
+alg:monoid:kingdom:operation:phylum:primitive:class:unit:order:nullary:family:operation:genus:neutral:species:identity:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "unit" ;
+    rel:notation "e : -> S" ;
+    rel:arity    "0"^^xsd:nonNegativeInteger ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The nullary unit (identity) constant symbol 'e : -> S' (arity 0), the distinguished neutral element introduced at the monoid rung and shared by monoid, commutative-monoid, group, abelian-group and loop (algebra_spine.ttl:192 fnd:hasOperationSymbol 'e : -> S'). A nullary symbol has an EMPTY domain, so it carries @rel:codomain (the carrier sort) but NO @rel:domain; @rel:arity is 0. [S] order:nullary is UNATTESTED in the verified runtime (0 aob dirs; the runtime carries order:unary/binary/eight only) — design §1.8 / §7.2 #3 accepts order:nullary with fallback order:constant (also UNATTESTED, 0 dirs) noted; both flagged for the §7.2 maintainer sign-off packet. genus:neutral:species:identity mirrors the [V] group identity-axiom role vocabulary (genus:neutral:species:member) adapted to the operation plane." .
+
+# -------------------------------------------------------------------------------------
+# inverse inv  — the unary inverse, S -> S.  Introduced at group.
+# -------------------------------------------------------------------------------------
+alg:group:kingdom:operation:phylum:primitive:class:inverse:order:unary:family:operation:genus:member:species:inverse:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "inverse" ;
+    rel:notation "inv : S -> S" ;
+    rel:arity    "1"^^xsd:nonNegativeInteger ;
+    rel:domain   alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The unary inverse operation symbol 'inv : S -> S' (arity 1), introduced at the group rung (algebra_spine.ttl:202 fnd:hasOperationSymbol 'inv : S -> S'); shared by group and abelian-group. It is the syntactic carrier of the one zero-Helios-basis axiom (the inverse law), authored as cited mathematical fact (D20 honesty). @rel:arity 1; @rel:domain and @rel:codomain both the carrier sort. genus:member:species:inverse is quoted VERBATIM from the [V] group inverse-axiom rank values (…:genus:member:species:inverse:…, primordials.yaml / aob group axiom) applied to the operation plane; order:unary and class:inverse are ATTESTED runtime tokens. No [S] token on this atom." .
+
+# -------------------------------------------------------------------------------------
+# left division \  — the binary left division, S,S -> S.  Introduced at quasigroup.
+# -------------------------------------------------------------------------------------
+alg:quasigroup:kingdom:operation:phylum:primitive:class:division:order:binary:family:operation:genus:left:species:division:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "left division" ;
+    rel:notation "\\ : S,S -> S" ;
+    rel:arity    "2"^^xsd:nonNegativeInteger ;
+    rel:domain   alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The binary left-division operation symbol '\\ : S,S -> S' (arity 2), introduced at the quasigroup rung (algebra_spine.ttl:210); with right division it makes division total and unique, the equational presentation of the Latin-square property. Shared by quasigroup and loop. @rel:arity 2; @rel:domain and @rel:codomain the carrier sort. order:binary is ATTESTED (7 aob dirs). [S] class:division is UNATTESTED in the verified runtime (0 aob dirs; `find aob -path '*/class/division'` = 0, `grep division primordials.yaml` = 0) — a design-default token (design §1.8 pattern class:<op>, §1.6 line 159) flagged for the §7.2 sign-off packet exactly as class:signature / class:sort are. [S] the role assignment genus:left:species:division is likewise a design default (§1.8): the LEFT/RIGHT sense is carried in the genus segment (genus:left here, genus:right on '/'), keeping a single shared class:division; species:division is UNATTESTED as a species leaf (0 aob dirs). Both flagged for §7.2 sign-off. This atom and '/' differ ONLY in the genus segment (left vs right), so both are distinct full-ladder IRIs under the same quasigroup subdomain." .
+
+# -------------------------------------------------------------------------------------
+# right division /  — the binary right division, S,S -> S.  Introduced at quasigroup.
+# -------------------------------------------------------------------------------------
+alg:quasigroup:kingdom:operation:phylum:primitive:class:division:order:binary:family:operation:genus:right:species:division:component:operation:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "right division" ;
+    rel:notation "/ : S,S -> S" ;
+    rel:arity    "2"^^xsd:nonNegativeInteger ;
+    rel:domain   alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:codomain alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rdfs:comment "The binary right-division operation symbol '/ : S,S -> S' (arity 2), introduced at the quasigroup rung (algebra_spine.ttl:211); the right-handed twin of left division, together presenting total unique division (the Latin-square property). Shared by quasigroup and loop. @rel:arity 2; @rel:domain and @rel:codomain the carrier sort. order:binary is ATTESTED (7 aob dirs). [S] class:division is UNATTESTED in the verified runtime (0 aob dirs; `find aob -path '*/class/division'` = 0, `grep division primordials.yaml` = 0) — a design-default token (design §1.8 pattern class:<op>, §1.6 line 159) flagged for the §7.2 sign-off packet exactly as class:signature / class:sort are. [S] genus:right:species:division is likewise a design default (§1.8): the RIGHT sense in the genus segment, sharing class:division with '\\' (left) and distinguished only by genus:right; species:division is UNATTESTED as a species leaf (0 aob dirs). Both flagged for §7.2 sign-off." .

@@ -1,0 +1,210 @@
+# =====================================================================================
+# semigroup.ttl — the SEMIGROUP rung END-TO-END (W2 · SP0, T-SEMI). Fans out from monoid.ttl.
+# =====================================================================================
+# The stratified semigroup rung, replicating the maintainer-signed-off monoid exemplar
+# (spine/monoid.ttl, design §2 "MONOID rung assembly") with the rung swapped: parent = magma,
+# the SINGLE added law = ASSOCIATIVITY (ONE equation, not two-sided), signature = sigOneBinary
+# (shared with magma). The D24 A0 stratification (Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥
+# ProofArtifact) is realised as DISTINCT atoms in the D26 full-ladder grammar: a theory record
+# (S,Omega,E), the B4 TWO model planes (a denotatum + a declaration-record model class linked by
+# @rel:denotes), the foundation axiom records (closure restated + the added associativity), THIS
+# rung's associativity equation record INLINE, a theorem + certificate (generalized associativity),
+# the declaration triad envelope and the provenance quartet.
+#
+# WHAT LIVES WHERE. The one reified associativity equation record is INLINE in this file (the rung
+# task's disjoint-file rule: sibling rungs do not edit the shared equations.ttl, which carries the
+# monoid block only). The element / finite-table witnesses (the associative positive + the
+# non-associative negative) are in fixtures/ (D24 four-planes: witnesses are EVIDENCE, outside the
+# ontology data glob). This file mints the theory / denotatum / model-record / axiom / equation /
+# theorem / certificate / gate atoms + the historical bridges + the provenance.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:). The semigroup theory
+# IRI is BYTE-IDENTICAL to the dangling @rel:reduct reference the monoid theory already carries
+# (spine/monoid.ttl:75), and the semigroup denotatum IRI is BYTE-IDENTICAL to bridges.ttl:102
+# (fnd:Semigroup skos:exactMatch target) and the added associativity axiom IRI is BYTE-IDENTICAL to
+# bridges.ttl:172 (fnd:lawAssociativity skos:exactMatch target). Rank values off the [V] group
+# skeleton with family:group -> family:semigroup. [D] = derived; [S] = no runtime precedent ->
+# flagged for the §7.2 sign-off packet (T-PANEL).
+#
+# HONESTY LEDGER (design §5.1, honest-red). Semigroup carries an engine seed:conservativeBridge to
+# the [V] group ASSOCIATIVITY axiom, which ALREADY lives in bridges.ttl:103 (fnd:Semigroup
+# seed:conservativeBridge <group associativity>) and is NOT duplicated here (bridge-never-duplicate,
+# TODO-11). @rel:authority is "PD" — associativity is a PD (public-domain / standard-math) atom in
+# the fnd: tower (bridges.ttl:173; design §7.4 "associativity/identity=PD"), NOT the DS-lifted monoid.
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #1 mint-more-than-runtime : the theory record + the declaration-record model class + the theorem
+#      have NO algebra precedent in the runtime (the runtime shows only the flat subdomain:group
+#      collapse) — minted per D24, PIVOTAL/pre-locked.
+#   theory     : class:theory / genus:presented (kingdom:definition:phylum:algebra) — UNATTESTED.
+#   model rec. : class:model / genus:governed / component:class — UNATTESTED (B4 Plane-1, §7.2 #10).
+#   theorem    : class:associativity theorem / genus:generalized / species:composition — UNATTESTED.
+#   @rel D24   : @rel:validation:mode "rewrite" (4-value) + @rel:proof:status "literature:backed"
+#      (8-value) — the D24 validation-mode / proof-status vocab, no runtime precedent.
+#   @typ       : @typ:declaration / @typ:certificate / @typ:gate — the plane-type tokens (design §2).
+#   LOCKED (no sign-off): B1 adjective-first (n/a for semigroup, no compound token); B4 two-planes;
+#      B3(a) additive Stage 1 (fnd:Semigroup intact, bridges added; T-RETIRE is Stage 2).
+#   ATTESTED (NOT [S]): the added associativity axiom rank values genus:composition:species:equality
+#      are VERBATIM off the [V] group associativity axiom (bridges.ttl:172) — [D], not [S].
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.5, §2, §2b, §2c, §2f, §2g).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-SEMI).
+# Consumes (do not rewrite): records.ttl (rec:* classes), signatures.ttl (sigOneBinary),
+# operations.ttl (product), spine/progenitor.ttl (theory root), bridges.ttl (fnd:Semigroup +
+# engine associativity conservativeBridge). Tooth: shapes/algebra.shapes.ttl
+# TheoryShape / ModelShape / EquationRecordShape + probes/semigroup_law.rq (associativity).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified term / case atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:semigroup:> .
+@prefix case: <urn:silmaril:type:graph:instance:instruction:code:property:relation:case:semigroup:> .
+# seed-carrier record-class ladder (records.ttl:38-39, closure.ttl:1-3) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+# =====================================================================================
+alg:semigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:semigroup:genus:presented:species:semigroup:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "semigroup theory (S,Omega,E)" ;
+    rel:notation   "semigroup" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:semigroup:genus:presented:species:semigroup:component:definition:instance:canonical" ;
+    rel:signature  alg:magma:kingdom:definition:phylum:specification:class:signature:order:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:semigroup:kingdom:axiom:phylum:operation:class:closure:order:binary:family:semigroup:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:semigroup:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:semigroup:genus:composition:species:equality:component:statement:instance:canonical ;
+    rel:reduct     alg:magma:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:magma:genus:presented:species:magma:component:definition:instance:canonical ;
+    rel:denotatum  alg:semigroup:kingdom:type:phylum:algebra:class:semigroup:order:binary:family:operation:genus:axiomatic:species:semigroup:component:type:instance:canonical ;
+    rel:assignment alg:semigroup:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:semigroup:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "rewrite" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "PD" ;
+    rel:historical:identity fnd:Semigroup , <urn:silmaril:ontology:primordial:algebra:structure:semigroup> ;
+    skos:closeMatch fnd:Semigroup ;
+    rdfs:comment "[S] The presented semigroup THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6): S,Omega = @rel:signature sigOneBinary (signatures.ttl, Sigma={·}, SHARED with magma — semigroup and magma differ only in E, not their signature); E = @rel:equation the two members {closure, associativity} — closure inherited from magma and restated at family:semigroup, associativity the SINGLE law semigroup adds over magma (one-law-per-child, algebra_spine.ttl:99-103). Associativity is ONE equation (not two-sided), so it does NOT split into left/right records (unlike the monoid identity, design §1.6). It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 semigroup denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the magma theory (the forgetful theory-morphism semigroup->magma; the magma theory atom is minted by the parallel T-MAGMA sibling — the edge is authored now as a dangling reference, resolved when T-MAGMA lands, exactly as monoid.ttl:75 dangled its reduct to this very semigroup theory). D24 first-class metadata: @rel:validation:mode 'rewrite' (semigroup laws are checked by term rewriting) and @rel:proof:status 'literature:backed'. Provenance quartet (created/modified/version/state) + @rel:authority 'PD' live on this RECORD, never on the denotatum (D24: 'Semigroup was not authored by an executor; the SemigroupTheoryRecord was'); PD because associativity is a public-domain/standard-math atom in the fnd: tower (bridges.ttl:173; design §7.4 associativity=PD), NOT the DS-lifted monoid. Historical-identity BRIDGES: @rel:historical:identity fnd:Semigroup (algebra_spine.ttl) and the seed legacy IRI urn:silmaril:ontology:primordial:algebra:structure:semigroup; skos:closeMatch fnd:Semigroup (Stage-1 ADDITIVE — fnd:Semigroup stays intact; T-RETIRE stubs it in Stage 2). The engine seed:conservativeBridge fnd:Semigroup -> the [V] group associativity axiom already lives in bridges.ttl:103 and is NOT duplicated here (bridge-never-duplicate). Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision). [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object, NO provenance. [D]
+#      BYTE-IDENTICAL to bridges.ttl:102 (fnd:Semigroup skos:exactMatch target).
+# =====================================================================================
+alg:semigroup:kingdom:type:phylum:algebra:class:semigroup:order:binary:family:operation:genus:axiomatic:species:semigroup:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "semigroup" ;
+    rel:notation   "semigroup" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:semigroup:kingdom:type:phylum:algebra:class:semigroup:order:binary:family:operation:genus:axiomatic:species:semigroup:component:type:instance:canonical" ;
+    rdfs:comment "[D] The semigroup DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a semigroup' itself, carrying its canonical @rel:identifier and @rel:notation ONLY — and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes — and is BYTE-IDENTICAL to bridges.ttl:102 (fnd:Semigroup skos:exactMatch this denotatum) so the merged alias map resolves and SP1/SP2/SP3 inbound fnd:Semigroup references stay reachable through the fold. Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. Rank values [D] off the [V] group denotatum skeleton (bridges.ttl:81) with subdomain/family group -> semigroup." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction
+#      bundle + provenance + disjointness teeth). [S] class:model/genus:governed/component:class
+# =====================================================================================
+alg:semigroup:kingdom:class:phylum:algebra:class:model:order:declarative:family:semigroup:genus:governed:species:semigroup:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "semigroup model class" ;
+    rel:notation "semigroup model" ;
+    rel:denotes alg:semigroup:kingdom:type:phylum:algebra:class:semigroup:order:binary:family:operation:genus:axiomatic:species:semigroup:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    owl:disjointWith alg:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "PD" ;
+    rdfs:comment "[S] The semigroup MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness tooth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction, closure.ttl has 13) makes 'a semigroup is a set with exactly one carrier and exactly one associative operation' a graph fact via cardinality-1 owl:Restriction on @rel:carrier and @rel:operation. NOTE it carries NO @rel:identity:element restriction (unlike the monoid model-record, spine/monoid.ttl:111): a semigroup has NO distinguished identity element — that is precisely the law monoid adds over semigroup — so the semigroup model plane is deliberately identity-free. owl:disjointWith the monoid model-record class is the D25 homonym/distinction tooth at the declaration plane (a declaration is a semigroup-model-record OR a monoid-model-record, never both; the monoid model-record IRI resolves against spine/monoid.ttl:104). Provenance quartet + @rel:authority 'PD' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete model can be typed against it) AND a rec:model:record / rec:declaration:record (so the ModelShape sh:targetClass tooth counts it as a data-graph focus node and the runner's 0-focus gate is satisfied) — OWL2 metaclass punning, exactly as spine/progenitor.ttl and spine/monoid.ttl, and DISTINCT from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids. On this focus the ModelShape identity sh:sparql tooth is vacuously satisfied (the class declares no @rel:identity:element / reified cells); the finite associative model witness in fixtures/ is where the associativity probe bites. [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM record — CLOSURE (design §2c — minimal, NO denotatum/gate/provenance, NO
+#     certificate; axiom != theorem is structural). Membership/totality statement, NOT a left=right
+#     equation, so it is a rec:axiom:record only, NOT a rec:equation:record. Rank values VERBATIM off
+#     the [V] group closure axiom with family:group -> family:semigroup. Inherited from magma, restated
+#     at family:semigroup (design §2a) so this rung's theory E is self-contained.
+# =====================================================================================
+alg:semigroup:kingdom:axiom:phylum:operation:class:closure:order:binary:family:semigroup:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "semigroup closure" ;
+    rel:notation "for all x,y in S: x·y in S" ;
+    rdfs:comment "[D] The CLOSURE / totality axiom of the semigroup theory (rec:axiom:record): the binary product · is a total function S,S -> S, so for all x,y in the carrier S the product x·y is defined and lies in S. A membership/totality statement, NOT a left=right equation — so it is an axiom record only, NOT a rec:equation:record (unlike associativity), and carries NO @rel:left/@rel:right. Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (an axiom is asserted, not proved — axiom != theorem is structural, and rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119). Rank values VERBATIM off the [V] group closure axiom (genus:product:species:membership, bridges.ttl:170) with family:group -> family:semigroup. It is inherited from the magma theory and RESTATED at family:semigroup (design §2a) so the semigroup theory's equation set E={closure, associativity} is self-contained; it is a member of that E (this rung's theory @rel:equation)." .
+
+# =====================================================================================
+# (d) EQUATION record — ASSOCIATIVITY, the SINGLE added law: (x·y)·z = x·(y·z). Dual-typed
+#     rec:equation:record + rec:axiom:record (design §1.9: the runtime models each law as ONE
+#     kingdom:axiom…component:statement atom that is simultaneously the equation, avoiding the
+#     unattested component:equation — the §7.2 #7 reuse side, consistent with bridges.ttl:172 and
+#     records.ttl:76-81). ONE equation (single member), not two-sided — mirrors closure.ttl
+#     category:associativity's single member (closure.ttl:180-183). BYTE-IDENTICAL to bridges.ttl:172
+#     (fnd:lawAssociativity skos:exactMatch target). [D]
+# =====================================================================================
+alg:semigroup:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:semigroup:genus:composition:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record , rec:axiom:record ;
+    rdfs:label "semigroup associativity" ;
+    rel:notation "(x·y)·z = x·(y·z)" ;
+    rel:left   term:assoc:left ;
+    rel:right  term:assoc:right ;
+    rel:member case:assoc:zero ;
+    rdfs:comment "[D] The ASSOCIATIVITY law of the semigroup theory — the SINGLE law semigroup adds over magma — as a reified equation record (rec:equation:record): the ordered pair (x·y)·z = x·(y·z), one @rel:left term and one @rel:right term (the EquationRecordShape cardinality-1 tooth). Dual-typed rec:axiom:record too (design §1.9: the runtime models each law as ONE kingdom:axiom…component:statement atom that is simultaneously the equation, avoiding the unattested component:equation — the §7.2 #7 reuse side, consistent with bridges.ttl:172 and records.ttl:76-81). Associativity is a SINGLE equation (not two-sided): it does NOT decompose into member:left/member:right records the way the monoid identity does (design §1.6) — it mirrors closure.ttl category:associativity's single member (closure.ttl:180-183). Rank values VERBATIM off the [V] group associativity axiom (genus:composition:species:equality) with family:group -> family:semigroup, and this IRI is BYTE-IDENTICAL to bridges.ttl:172 (the fnd:lawAssociativity skos:exactMatch target) so the merged alias map resolves. It is the added member of the semigroup theory's equation set E (this rung's theory @rel:equation), and is restated (inherited) at every rung above semigroup (monoid restates it as equations.ttl's monoid associativity). Its added-law status is teeth-proved by probes/semigroup_law.rq (the associativity probe) over the fixtures/ witnesses." .
+
+# per-side reified term/case node (closure.ttl:185-192 case precedent; equations.ttl:97 idiom). Bare
+# subject (no `a`): the datatype:record cardinality-1 left/right on the record above is the enforced
+# tooth; this mirrors the reference's equation->member->case->left/right reification.
+case:assoc:zero rel:left term:assoc:left ; rel:right term:assoc:right .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate,
+#     NEVER an axiom; the closure.ttl Yoneda theorem/certificate idiom, :129-142). The natural
+#     STRUCTURE theorem of a semigroup: generalized associativity (the general associative law).
+# =====================================================================================
+alg:semigroup:kingdom:theorem:phylum:algebra:class:associativity:order:declarative:family:semigroup:genus:generalized:species:composition:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "semigroup generalized associativity" ;
+    rel:notation "any bracketing of a1·…·an gives the same product" ;
+    rel:certificate alg:semigroup:kingdom:certificate:phylum:algebra:class:associativity:order:declarative:family:semigroup:genus:generalized:species:composition:component:statement:instance:canonical ;
+    rel:authority "PD" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "The natural STRUCTURE theorem of a semigroup — generalized associativity (the 'general associative law'), a theorem NOT an additional foundational axiom (design §2f, the closure.ttl Yoneda theorem/certificate idiom, :129-142): in any semigroup (S,·) the product of a finite sequence of elements a1,…,an is INDEPENDENT OF THE BRACKETING, so a1·…·an is unambiguous. It is a DERIVED CONSEQUENCE of the single associativity axiom (proved by induction on n, the base case n=3 being the axiom (x·y)·z = x·(y·z)) — the D24 A0 ProofArtifact plane, not a new axiom — and it is precisely WHY the associativity law is the semigroup's characteristic addition. It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). Provenance quartet + @rel:authority 'PD' on the record (standard mathematical fact). [S] class:associativity theorem / genus:generalized / species:composition are UNATTESTED (§7.2 #1) -> sign-off packet." .
+
+alg:semigroup:kingdom:certificate:phylum:algebra:class:associativity:order:declarative:family:semigroup:genus:generalized:species:composition:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "semigroup generalized associativity certificate" ;
+    rel:digest:value    "38a987c982472aebac2ad179b43b88fcaeffed41233f96dbe174956c053aff9e" ;
+    rel:proof:method    "Explicit general mathematical derivation (induction on the number of factors n; base case n=3 is the associativity axiom); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for semigroup generalized associativity (design §2f; the closure.ttl certificate idiom, :132/137/142): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Semigroup generalized associativity: in any semigroup (S,.) the product of a finite sequence of elements is independent of the bracketing. Proof: by induction on the number of factors n, using the single associativity law (x.y).z = x.(y.z) as the base case n=3; any two bracketings of a1...an are equal because each can be rewritten to the left-nested form. General mathematical derivation; not proof-assistant checked.'), @rel:proof:method (an explicit general derivation by induction, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119). The digest is reproducible: sha256 of the quoted canonical statement equals the recorded value." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:semigroup:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:semigroup:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "semigroup declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:semigroup:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:semigroup:genus:reconciled:species:semigroup:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the semigroup declaration was RECONCILED against its denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the semigroup rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the semigroup declaration is reconciled, not merely asserted." .
+
+# =====================================================================================
+# BRIDGES (design §5, Stage-1 ADDITIVE). The engine seed:conservativeBridge fnd:Semigroup ->
+# group associativity axiom already lives in bridges.ttl:103 and is NOT duplicated here
+# (bridge-never-duplicate, TODO-11). The three edges are on the theory record above:
+# @rel:historical:identity fnd:Semigroup, @rel:historical:identity <seed legacy semigroup IRI>,
+# skos:closeMatch fnd:Semigroup — keeping SP1/SP2/SP3 fnd:Semigroup refs resolvable THROUGH the
+# folded rung while fnd:Semigroup stays byte-intact until Stage-2 T-RETIRE.
+# =====================================================================================

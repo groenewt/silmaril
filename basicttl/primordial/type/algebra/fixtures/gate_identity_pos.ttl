@@ -1,0 +1,18 @@
+# =====================================================================================
+# gate_identity_pos.ttl — the POSITIVE fixture for GateIdentityShape (W2 · SP0, T-GATES).
+# =====================================================================================
+# A fresh gate:specification record with a UNIQUE gate:identifier (no collision with any of the
+# committed V0-V8 gates). Merged onto the algebra data graph the graph MUST still conform:
+# GateIdentityShape's sh:select finds no other gate:specification sharing this identifier, so it
+# returns zero rows and stays GREEN — the positive twin of gate_identity_neg.ttl.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (core:entity:structure:class:gate:specification), never an owl:Class.
+
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix cls:   <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:> .
+@prefix gdata: <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:> .
+
+<urn:silmaril:fixture:algebra:gate:identity:positive>
+    a owl:NamedIndividual , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:fixture:positive:unique" .

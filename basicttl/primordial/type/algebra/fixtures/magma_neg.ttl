@@ -1,0 +1,78 @@
+# =====================================================================================
+# magma_neg.ttl — the FAILING NEGATIVE fixture for the magma closure tooth (W2 · SP0,
+# T-MAGMA). The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a
+# failing negative per shape).
+# =====================================================================================
+# Z/2 under addition {e=0, a=1} with a SINGLE injected violation: the product e·a returns the
+# element c, which is NOT a member of the declared carrier {e,a} — the binary operation ESCAPES
+# the carrier (CLOSURE / totality broken). Every other cell is a correct closed product, so the
+# graph is otherwise a conformant magma witness and the ONE injected escape is what bites.
+#
+# TWO teeth catch the single escape, both flipping True->False under the injection:
+#   (i) probes/magma_law.rq (the closure tooth): the cell e·a has category:result c, and c is
+#       NOT a @rel:carrier:member of the model -> the probe returns >= 1 row (RED).
+#   (ii) the committed shapes/algebra.shapes.ttl ModelShape (sh:targetClass rec:model:record):
+#       the escape is placed at the e-row, and the model declares @rel:identity:element e, so the
+#       left-unit tooth e·x = x reads e·a = c != a and ModelShape flips conforms True->False
+#       (RED). This is what the runner's fixture iteration catches, since the dedicated
+#       MagmaClosureShape is a Stage-2 T-SHAPES deliverable not yet authored and
+#       shapes/algebra.shapes.ttl is out of this rung's write scope (see fixtures/magma_pos.ttl).
+#
+# The model witness lives HERE in fixtures/ (D24 four-planes: element / finite-table witnesses
+# are EVIDENCE, outside the ontology data glob and the CI data graph), typed rec:model:record so
+# it is a focus node of the shape (via sh:targetClass; the reified rows are scoped to it by
+# @rel:structure). Companion positive: fixtures/magma_pos.ttl (identical but e·a = a, closed).
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never a bare
+# NamedIndividual and never an owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/2 with carrier {e,a}, identity e (BROKEN: e·a escapes to c) ---
+<urn:silmaril:fixture:algebra:magma:z2:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/2 under + (BROKEN: e·a yields c, outside the carrier {e,a})" ;
+    rel:carrier:member   <urn:silmaril:fixture:algebra:magma:z2:negative:elem:e> ,
+                         <urn:silmaril:fixture:algebra:magma:z2:negative:elem:a> ;
+    rel:identity:element <urn:silmaril:fixture:algebra:magma:z2:negative:elem:e> .
+
+# --- carrier elements (e, a are members; c is an off-carrier element the escape lands on) ---
+<urn:silmaril:fixture:algebra:magma:z2:negative:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:magma:z2:negative:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:magma:z2:negative:elem:c>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "c (NOT a carrier member — the closure escape target)" .
+
+# --- the reified Cayley cells (e·e=e, e·a=c[BROKEN escape], a·e=a, a·a=e) ---
+<urn:silmaril:fixture:algebra:magma:z2:negative:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:magma:z2:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:magma:z2:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:magma:z2:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:magma:z2:negative:elem:e> .
+<urn:silmaril:fixture:algebra:magma:z2:negative:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:magma:z2:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:magma:z2:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:magma:z2:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:magma:z2:negative:elem:c> .  # INJECTED VIOLATION: c escapes carrier {e,a}; should be :elem:a
+<urn:silmaril:fixture:algebra:magma:z2:negative:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:magma:z2:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:magma:z2:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:magma:z2:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:magma:z2:negative:elem:a> .
+<urn:silmaril:fixture:algebra:magma:z2:negative:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:magma:z2:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:magma:z2:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:magma:z2:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:magma:z2:negative:elem:e> .

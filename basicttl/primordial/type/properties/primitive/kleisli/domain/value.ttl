@@ -1,0 +1,24 @@
+@prefix family: <urn:silmaril:primordial:type:class:> .
+@prefix model: <urn:silmaril:primordial:type:> .
+@prefix primitive: <urn:silmaril:prim:#> .
+@prefix schema1: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:silmaril:primordial:type:class:parameter:KleisliDomain> a model:Parameter ;
+    model:bound family:Primordial ;
+    model:owner <urn:silmaril:primordial:type:class:primitive:KleisliArrow> ;
+    model:propertyRole <urn:silmaril:primordial:type:property:primitive:KleisliDomain> ;
+    model:variance model:Invariant .
+
+<urn:silmaril:primordial:type:class:primitive:KleisliArrow> model:field <urn:silmaril:primordial:type:property:primitive:KleisliDomain> ;
+    model:parameter <urn:silmaril:primordial:type:class:parameter:KleisliDomain> .
+
+<urn:silmaril:primordial:type:property:primitive:KleisliDomain> a model:Field ;
+    schema1:comment "The source Resource range is narrowed to a separately scoped primordial type parameter. Domain and codomain remain independent class-reference coordinates; neither is an untyped host value or a universal object escape." ;
+    model:cardinalityAuthority model:ProposedClassContract ;
+    model:multiplicity model:ExactlyOne ;
+    model:mutability model:Immutable ;
+    model:owner <urn:silmaril:primordial:type:class:primitive:KleisliArrow> ;
+    model:range <urn:silmaril:primordial:type:class:parameter:KleisliDomain> ;
+    model:referenceKind model:ClassReference ;
+    model:sourcePredicate primitive:kDom ;
+    model:sourceRange schema1:Resource .

@@ -1,0 +1,106 @@
+# =====================================================================================
+# commutative_monoid_neg.ttl — the FAILING NEGATIVE fixture for the commutativity tooth
+# (W2 · SP0, T-CMON). The materialized RED (D24: sh:conforms true alone is vacuous — a positive
+# AND a failing negative per shape).
+# =====================================================================================
+# Z/3 under addition {e=0, a=1, b=2} with a SINGLE injected violation: the cell e·b yields a
+# instead of b. Every other cell is the correct Z/3 table, so the graph is otherwise a conformant
+# commutative model and the ONE injected error is what bites. The single corrupted cell makes the
+# table NON-COMMUTATIVE — the characteristic commutative-monoid-rung violation — for the pair (e,b):
+#     e·b = a        [uses the corrupted e·b = a]
+#     b·e = b        [the correct entry]
+#     a != b  =>  x·y != y·x, commutativity FAILS
+# so probes/commutative_monoid_law.rq returns >= 1 row over it (the PRIMARY, characteristic-law tooth).
+#
+# SHACL FLIP (why the runner's fixture iteration catches it). The commutativity-specific SHACL
+# NodeShape is authored later by T-SHAPES; at this rung's stage the shapes graph
+# (shapes/algebra.shapes.ttl) carries no commutativity tooth. The single corrupted cell is
+# therefore chosen to involve the declared identity element e (e·b), so that the SAME one-cell
+# error ALSO trips the existing ModelShape identity tooth (sh:targetClass rec:model:record: for a
+# model with @rel:identity:element e, the left-unit e·x = x must hold — here e·b yields a, not b).
+# Thus base + this negative does NOT conform: ModelShape flips conforms True->False and
+# run-algebra-checks.sh step (b) records a PASS negative. One injected change, both teeth (the
+# commutativity probe AND the identity SHACL tooth) bite. Companion positive:
+# fixtures/commutative_monoid_pos.ttl.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare and never an
+# owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/3 with declared identity e (INVALID: e·b corrupted -> non-commutative) ---
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/3 under + (BROKEN: e·b yields a, not b -> non-commutative)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "b = 2" .
+
+# --- the reified Cayley cells (Z/3 addition table with e·b corrupted from b to a) ---
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:eb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> .  # INJECTED VIOLATION: should be :elem:b
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:ab>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:be>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:ba>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:e> .
+<urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:cell:bb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:commutative:monoid:z3:negative:elem:a> .
