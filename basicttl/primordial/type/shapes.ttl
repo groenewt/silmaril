@@ -177,7 +177,7 @@ model:OctetOrdinalShape a constraint:NodeShape ;
     constraint:property [ constraint:path model:maximum ; constraint:hasValue 255 ; constraint:maxCount 1 ] .
 
 model:FrameShape a constraint:NodeShape ;
-    constraint:targetClass model:Frame ;
+    schema:comment "Reusable constraint on the nominal Frame constructor. CallableShape reaches this shape through its result application's constructor, so deleting a metaclass tag cannot silence the output/effect obligations. Frame remains a single model:Product declaration; this shape does not assert a second structural kind or grant runtime admission." ;
     constraint:property [ constraint:path description:type ; constraint:hasValue model:Product ] ;
     constraint:property [ constraint:path model:field ; constraint:minCount 2 ; constraint:maxCount 2 ] ;
     constraint:property [ constraint:path model:alternative ; constraint:maxCount 0 ] ;
@@ -201,7 +201,7 @@ model:FieldRoleShape a constraint:NodeShape ;
     constraint:property [ constraint:path model:role ; constraint:in (model:Output model:Effect model:Error) ; constraint:maxCount 1 ] .
 
 model:FrameEffectTypeShape a constraint:NodeShape ;
-    constraint:targetClass model:Frame ;
+    schema:comment "Reusable effect-range constraint reached from every CallableShape result constructor alongside FrameShape. It validates the declaration's independently bounded error-or-effect field without retyping the declaration into multiple structural kinds. Removing a legacy Frame metaclass tag cannot remove this obligation from a callable result." ;
     constraint:sparql [ constraint:message "An effect or error slot must retain an Effect-bounded type, independently of output." ; constraint:select """
       SELECT $this WHERE {
         $this <urn:silmaril:primordial:type:field> ?field .
@@ -240,7 +240,9 @@ model:CallableShape a constraint:NodeShape ;
     constraint:targetClass model:Callable ;
     constraint:property [ constraint:path model:input ; constraint:class model:ClassDeclaration ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
     constraint:property [ constraint:path model:result ; constraint:class model:Application ; constraint:minCount 1 ; constraint:maxCount 1 ] ;
-    constraint:property [ constraint:path (model:result model:constructor) ; constraint:class model:Frame ; constraint:minCount 1 ; constraint:maxCount 1 ] .
+    constraint:property [ constraint:path (model:result model:constructor) ;
+        constraint:hasValue family:Frame ; constraint:minCount 1 ; constraint:maxCount 1 ;
+        constraint:node model:FrameShape ; constraint:node model:FrameEffectTypeShape ] .
 
 model:VectorIndexShape a constraint:NodeShape ;
     constraint:targetNode family:ByteVector ;

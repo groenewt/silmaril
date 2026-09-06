@@ -25,12 +25,25 @@ jobs:
         run: pip install rdflib==7.6.0 pyshacl==0.40.1
       - name: Validate every standalone and merged ontology floor
         run: bash basicttl/foundation/checks/run-foundation-checks.sh
+
+  algebra-spine:
+    name: Folded Algebra Spine
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install algebra validation dependencies
+        run: pip install rdflib==7.6.0 pyshacl==0.40.1 PyYAML==6.0.3
       - name: Validate the folded algebra spine
-        # D25 CI-lockstep: the algebra tower folded into basicttl/primordial/type/algebra/** is in NO
-        # runner unless this step + run-foundation-checks.sh's SP0ALG loader move together. The runner
-        # is deliberately non-vacuous (fixture polarity, 0-focus REJECT, empty => REJECT) and keeps the
-        # >=200-char rdfs:comment depth gate over the folded algebra classes. It is RED until the monoid
-        # exemplar rung + its fixtures land (T-FIX/T-MONOID), which is the intended staged RED->GREEN.
+        # Run independently so a foundation citation failure cannot hide algebra results.
+        # Foundation still loads the folded declarations for merged-floor validation.
+        # The runner requires fixture polarity, nonzero shape focus, manifest counts,
+        # and ontology depth; its current receipts do not certify the native runtime.
         run: bash basicttl/primordial/type/algebra/checks/run-algebra-checks.sh
 
   browser-render:
