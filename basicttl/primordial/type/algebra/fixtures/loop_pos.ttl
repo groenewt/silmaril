@@ -1,0 +1,105 @@
+# =====================================================================================
+# loop_pos.ttl — the POSITIVE fixture for the loop two-sided-identity tooth (W2 · SP0, T-LOOP).
+# =====================================================================================
+# Z/3 under addition {e=0, a=1, b=2}, a genuine LOOP: its Cayley table is a Latin square
+# (every row and column is a permutation of {e,a,b}, so left/right division is total and
+# unique — a quasigroup) AND e is a two-sided identity (e·x=x and x·e=x for all x):
+#   e·e=e  e·a=a  e·b=b
+#   a·e=a  a·a=b  a·b=e
+#   b·e=b  b·a=e  b·b=a   (the correct Z/3 Cayley table).
+# It happens to also be a group (Z/3 is abelian) — a legitimate loop witness, exactly as
+# fixtures/monoid_z2.ttl is a monoid that is also a group; a loop witness need only BE a loop.
+#
+# Merged onto the algebra data graph it MUST still conform (run-algebra-checks.sh step (b)
+# positive polarity): probes/loop_law.rq returns 0 rows over it (every e-row yields the other
+# operand, every e-column yields the other operand) and the committed ModelShape's two-sided
+# identity tooth is satisfied. It is the finite:checked / finite:table witness the design demotes
+# to fixtures/ (D24 four-planes: element / finite-table evidence lives OUTSIDE the ontology data
+# glob and the CI data graph). Its single-characteristic-law twin is fixtures/loop_neg.ttl (a
+# genuine quasigroup with NO two-sided identity -> ModelShape / probes/loop_law.rq RED), the
+# True->False injection that proves the identity tooth is genuine (D24: sh:conforms true alone is
+# vacuous). Typed rec:model:record so it is a focus of the ModelShape.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare and never an
+# owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/3 loop with declared two-sided identity e, finite:checked ---
+<urn:silmaril:fixture:algebra:loop:z3:positive>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/3 under + (genuine loop: Latin square with two-sided identity e)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> ;
+    rel:validation:mode  "finite:table" ;
+    rel:proof:status     "finite:checked" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:loop:z3:positive:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:loop:z3:positive:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:loop:z3:positive:elem:b>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "b = 2" .
+
+# --- the reified Cayley cells (a total Latin square with two-sided identity e) ---
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> .
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> .
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:eb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> .
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> .
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> .
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:ab>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> .
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:be>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> .
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:ba>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:e> .
+<urn:silmaril:fixture:algebra:loop:z3:positive:cell:bb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:positive:elem:a> .

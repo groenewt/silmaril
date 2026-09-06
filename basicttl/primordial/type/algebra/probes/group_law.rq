@@ -1,0 +1,46 @@
+# =====================================================================================
+# group_law.rq — RED->GREEN probe for T-GROUP (the two-sided INVERSE tooth, W2 · SP0).
+# Re-homes algebra_spine.ttl q_group_inverse / fnd:GroupInverseShape (the "a retract that
+# does not undo -> RED" pattern, :111-130) into the folded stratified idiom, over the unified
+# @rel:* reified-table vocabulary (bridges.ttl:249-291: relation:structure = fnd:opStructure,
+# relation:category:first/second/result = fnd:opLeft/opRight/opResult).
+# =====================================================================================
+# The GROUP two-sided inverse law: for every model carrying an identity element e
+# (@rel:identity:element e), EVERY carrier element x that appears in the model's reified
+# composition table must have a two-sided inverse y — some element with x·y = e AND y·x = e.
+# This SELECT returns every (model, x) for which NO such y exists — i.e. an element whose
+# inverse is MISSING or INVALID (the group's characteristic-law violation). It is the
+# "exists y: x.y=e AND y.x=e" tooth read as its negation (the offending elements).
+#
+#   GREEN (a genuine group, e.g. fixtures/group_pos.ttl — Z/3 under + with e=0, inverses
+#         0↔0 1↔2 2↔1): 0 rows — every element has a two-sided inverse, the tooth is satisfied.
+#   RED   (a broken group, e.g. fixtures/group_neg.ttl — e·e yields a, so element e has no y
+#         with e·y=e): >= 1 row — the inverse law fails for e and the tooth bites.
+#
+# Run over the algebra data graph merged with the fixture under test, inference=none.
+# Companion SHACL: the negative fixture's single edit (e·e -> a) ALSO flips the ModelShape
+# two-sided identity sh:sparql tooth (shapes/algebra.shapes.ttl, sh:targetClass rec:model:record)
+# conforms True->False, because e·e is the unique cell that is both an identity-law cell and the
+# inverse-defining cell for e — so the runner's fixture iteration catches the negative through an
+# EXISTING shape without a group-specific shape being added.
+# The complementary "abelian" commutativity seam is a Stage-2 sibling rung (T-ABEL), not this tooth.
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT DISTINCT ?model ?x WHERE {
+  ?model rel:identity:element ?e .
+  # x = any carrier element that occurs as a first operand of some composition row of this model
+  ?anycell rel:structure       ?model ;
+           rel:category:first   ?x .
+  # ... for which there is NO two-sided inverse y (x·y = e AND y·x = e)
+  FILTER NOT EXISTS {
+    ?lcell rel:structure       ?model ;
+           rel:category:first   ?x ;
+           rel:category:second  ?y ;
+           rel:category:result  ?e .
+    ?rcell rel:structure       ?model ;
+           rel:category:first   ?y ;
+           rel:category:second  ?x ;
+           rel:category:result  ?e .
+  }
+}

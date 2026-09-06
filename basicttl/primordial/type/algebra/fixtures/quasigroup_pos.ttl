@@ -1,0 +1,121 @@
+# =====================================================================================
+# quasigroup_pos.ttl — the POSITIVE fixture for the quasigroup latin-division tooth
+# (W2 · SP0, Stage 2a, T-QGRP).
+# =====================================================================================
+# Z/3 under addition {e=0, a=1, b=2}, a genuine LATIN SQUARE (a valid quasigroup — and, as it
+# happens, also a group, hence a loop, so it additionally carries a declared identity e):
+#   row e:  e·e=e  e·a=a  e·b=b
+#   row a:  a·e=a  a·a=b  a·b=e
+#   row b:  b·e=b  b·a=e  b·b=a
+# Every ROW and every COLUMN is a permutation of the carrier {e,a,b} — each element occurs
+# exactly once per row and once per column — so left and right division are TOTAL and UNIQUE
+# (the Latin-square property). Merged onto the algebra data graph it MUST still conform
+# (run-algebra-checks.sh step (b) positive polarity) and probes/quasigroup_law.rq returns 0
+# rows over it — no two cells collide on a division. It is the finite:checked / finite:table
+# witness the design demotes to fixtures/ (D24 four-planes: element / finite-table evidence
+# lives OUTSIDE the ontology data glob and the CI data graph). Its single-injected-violation
+# twin is fixtures/quasigroup_neg.ttl (the cell e·a is changed from a to b, so b occurs twice
+# in row e -> the latin-division probe AND the committed ModelShape both bite), which is the
+# True->False injection that proves the latin-division tooth is genuine (D24: sh:conforms true
+# alone is vacuous). Typed rec:model:record so it is a focus of the ModelShape.
+#
+# WHY AN IDENTITY ELEMENT ON A QUASIGROUP WITNESS. A quasigroup does not REQUIRE an identity;
+# Z/3 simply HAS one (it is a quasigroup that is also a group / loop — a legitimate quasigroup
+# witness, exactly as fixtures/magma_pos.ttl is a magma that is also a monoid). The identity is
+# declared, and the negative's Latin-square escape is placed at the e·a cell, so that the ONE
+# injected collision ALSO trips the committed ModelShape left-unit tooth (e·x = x) — the
+# dedicated QuasigroupShape being a Stage-2 T-SHAPES deliverable not yet authored
+# (shapes/algebra.shapes.ttl is committed and out of this rung's write scope). This keeps the
+# runner's fixture-polarity gate honest in Stage 2a: the division collision is caught BOTH by
+# probes/quasigroup_law.rq (two cells share first operand + result) AND by the existing
+# ModelShape (e·a != a). See fixtures/quasigroup_neg.ttl.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare and never an
+# owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/3 with declared carrier {e,a,b} and identity e, finite:checked ---
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/3 under + (genuine Latin-square quasigroup, carrier {e,a,b})" ;
+    rel:carrier:member   <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> ,
+                         <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> ,
+                         <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> ;
+    rel:identity:element <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> ;
+    rel:validation:mode  "finite:table" ;
+    rel:proof:status     "finite:checked" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "b = 2" .
+
+# --- the reified Cayley cells (a total Latin square over {e,a,b}) ---
+# row e: e·e=e  e·a=a  e·b=b
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> .
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> .
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:eb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> .
+# row a: a·e=a  a·a=b  a·b=e
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> .
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> .
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:ab>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> .
+# row b: b·e=b  b·a=e  b·b=a
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:be>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> .
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:ba>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:e> .
+<urn:silmaril:fixture:algebra:quasigroup:z3:positive:cell:bb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:quasigroup:z3:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:quasigroup:z3:positive:elem:a> .

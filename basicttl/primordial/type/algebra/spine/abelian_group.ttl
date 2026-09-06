@@ -1,0 +1,339 @@
+# =====================================================================================
+# abelian_group.ttl — the ABELIAN-GROUP rung END-TO-END (W2 · SP0, T-ABEL). Fans out from group.ttl.
+# =====================================================================================
+# The stratified abelian-group rung, replicating the maintainer-signed-off monoid exemplar
+# (spine/monoid.ttl, design §2 "MONOID rung assembly") with the rung swapped: parent = group, the
+# SINGLE added law = COMMUTATIVITY (ONE equation, not two-sided), signature = sigGroup (shared with
+# group). The D24 A0 stratification (Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥ ProofArtifact) is realised
+# as DISTINCT atoms in the D26 full-ladder grammar: a theory record (S,Omega,E), the B4 TWO model
+# planes (a denotatum + a declaration-record model class linked by @rel:denotes), the foundation axiom
+# records (closure + associativity + the two-sided identity + the two-sided inverse restated) and THIS
+# rung's commutativity/identity/inverse/associativity equation records INLINE, a theorem + certificate
+# (inverse-of-a-product without reversal), the declaration triad envelope and the provenance quartet.
+#
+# B1 LOCKED (§7.2 #9). subdomain / family / species compound token is ADJECTIVE-FIRST:
+# abelian:group (NEVER group:abelian). The commutativity axiom IRI is BYTE-IDENTICAL to
+# bridges.ttl:180 (the fnd:lawCommutativity closeMatch target) and the denotatum IRI is
+# BYTE-IDENTICAL to bridges.ttl:117 (the fnd:AbelianGroup skos:exactMatch target).
+#
+# WHAT LIVES WHERE. This rung's reified equation records (associativity, identity-left, identity-right,
+# inverse-left, inverse-right, commutativity) are INLINE in this file (the rung task's disjoint-file
+# rule: sibling rungs do not edit the shared equations.ttl, which carries the monoid block only, nor
+# any other rung's file). The element / finite-table witnesses (the abelian positive Z/3 + the
+# non-commutative negative) are in fixtures/ (D24 four-planes: witnesses are EVIDENCE, outside the
+# ontology data glob). This file mints the theory / denotatum / model-record / axiom / equation /
+# theorem / certificate / gate atoms + the historical bridges + the provenance.
+#
+# ADDS COMMUTATIVITY as its OWN atom (the one law abelian-group adds over group, algebra_spine.ttl:99-103
+# one-law-per-child). This commutativity atom is DISTINCT from the commutative-monoid commutativity atom
+# (spine/commutative_monoid.ttl): it is minted under subdomain abelian:group / family:abelian:group
+# (NOT reused from the monoid line) — Directive-17 no-cram. The ONE fnd:lawCommutativity accordingly
+# skos:closeMatch-decomposes into BOTH atoms (bridges.ttl:178-181), never a single crammed atom.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:). The abelian-group theory
+# @rel:reduct points at the group theory (spine/group.ttl:91, BYTE-IDENTICAL) so the forgetful
+# theory-morphism abelian-group->group resolves in the merged graph. Rank values off the [V] group
+# skeleton with family:group -> family:abelian:group; the commutativity rank values
+# genus:composition:species:equality are VERBATIM off the [V] group ASSOCIATIVITY axiom (both are
+# left=right equational laws over the binary product, bridges.ttl:172/180). [D] = derived; [S] = no
+# runtime precedent -> flagged for the §7.2 sign-off packet (T-PANEL).
+#
+# HONESTY LEDGER (design §5.1, honest-red — the load-bearing Praeriehund honesty). AbelianGroup has NO
+# ENGINE ANCHOR (the engine carries only the flat subdomain:group collapse; there is no engine
+# abelian-group atom): it is an honest-red BUILD, proof-status "literature:backed", NOT
+# finite:checked-from-engine, and NO seed:conservativeBridge is minted for it (bridges.ttl:116-118
+# deliberately gives fnd:AbelianGroup a skos:exactMatch alias ONLY, no engine edge). @rel:authority is
+# "SYN" — commutativity is a SYN (synthesized cited-standard-math) atom in the fnd: tower (design §7.4
+# "inverse/latin/commutativity=SYN"), and the inverse law it inherits from group is likewise the ONE
+# tower axiom with zero Helios basis (algebra_spine.ttl:41,114). Only the finite Z/3 WITNESS in
+# fixtures/ is finite:checked; the general theory is not finite:checked-from-engine.
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #1 mint-more-than-runtime : the theory record + the declaration-record model class + the theorem
+#      have NO algebra precedent in the runtime (the runtime shows only the flat subdomain:group
+#      collapse) — minted per D24, PIVOTAL/pre-locked.
+#   #2 side-segment placement : the RESTATED identity split species:member:left / species:member:right
+#      AND the RESTATED inverse split species:inverse:left / species:inverse:right — UNATTESTED side
+#      segments; the four two-sided equation records below.
+#   #7 equation-identity      : associativity / commutativity / the split records take the REUSE side
+#      (component:statement axiom IRI as the equation individual), consistent with equations.ttl +
+#      bridges.ttl + spine/commutative_monoid.ttl.
+#   theory     : class:theory / genus:presented (kingdom:definition:phylum:algebra) — UNATTESTED.
+#   model rec. : class:model / genus:governed / component:class — UNATTESTED (B4 Plane-1, §7.2 #10).
+#   theorem    : kingdom:theorem class:inverse / genus:product / species:inverse — UNATTESTED.
+#   @rel D24   : @rel:validation:mode "finite:table" (4-value) + @rel:proof:status "literature:backed"
+#      (8-value) — the D24 validation-mode / proof-status vocab, no runtime precedent.
+#   @typ       : @typ:declaration / @typ:certificate / @typ:gate — the plane-type tokens (design §2).
+#   LOCKED (no sign-off): B1 adjective-first abelian:group (§7.2 #9); B4 two-planes; B3(a) additive
+#      Stage 2a (fnd:AbelianGroup intact, bridges added; T-RETIRE is Stage 2b).
+#   ATTESTED (NOT [S]): the added commutativity axiom rank values genus:composition:species:equality
+#      are VERBATIM off the [V] group associativity axiom (bridges.ttl:172) — [D], not [S].
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.5, §2, §2b, §2c, §2f, §2g).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-ABEL).
+# Consumes (do not rewrite): records.ttl (rec:* classes), signatures.ttl (sigGroup), operations.ttl
+# (product/unit/inverse), spine/progenitor.ttl (theory root), spine/group.ttl (the parent group theory +
+# group model-record, reduct/disjoint targets), bridges.ttl (fnd:AbelianGroup alias + fnd:lawCommutativity
+# closeMatch, no engine edge). Tooth: shapes/algebra.shapes.ttl TheoryShape / ModelShape /
+# EquationRecordShape + probes/abelian_group_law.rq (commutativity).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified term / case atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:abelian:group:> .
+@prefix case: <urn:silmaril:type:graph:instance:instruction:code:property:relation:case:abelian:group:> .
+# seed-carrier record-class ladder (records.ttl:38-39, closure.ttl:1-3) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+# =====================================================================================
+alg:abelian:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:abelian:group:genus:presented:species:abelian:group:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "abelian group theory (S,Omega,E)" ;
+    rel:notation   "abelian group" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:abelian:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:abelian:group:genus:presented:species:abelian:group:component:definition:instance:canonical" ;
+    rel:signature  alg:group:kingdom:definition:phylum:specification:class:signature:order:invertible:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:abelian:group:kingdom:axiom:phylum:operation:class:closure:order:binary:family:abelian:group:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:abelian:group:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:abelian:group:genus:composition:species:equality:component:statement:instance:canonical ,
+                   alg:abelian:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:abelian:group:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                   alg:abelian:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:abelian:group:genus:neutral:species:member:right:component:statement:instance:canonical ,
+                   alg:abelian:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:abelian:group:genus:member:species:inverse:left:component:statement:instance:canonical ,
+                   alg:abelian:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:abelian:group:genus:member:species:inverse:right:component:statement:instance:canonical ,
+                   alg:abelian:group:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:abelian:group:genus:composition:species:equality:component:statement:instance:canonical ;
+    rel:reduct     alg:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:group:genus:presented:species:group:component:definition:instance:canonical ;
+    rel:denotatum  alg:abelian:group:kingdom:type:phylum:algebra:class:abelian:group:order:binary:family:operation:genus:axiomatic:species:abelian:group:component:type:instance:canonical ;
+    rel:assignment alg:abelian:group:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:abelian:group:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:AbelianGroup , <urn:silmaril:ontology:primordial:algebra:structure:abelian:group> ;
+    skos:closeMatch fnd:AbelianGroup ;
+    rdfs:comment "[S] The presented abelian-group THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6): S,Omega = @rel:signature sigGroup (signatures.ttl, Sigma={·,e,inv}, SHARED with group — abelian-group and group differ only in E, not their signature); E = @rel:equation the seven members {closure, associativity, identity-left, identity-right, inverse-left, inverse-right, commutativity} — the two-sided identity and the two-sided inverse inherited from group each split into TWO equation records (design §1.6) and COMMUTATIVITY the SINGLE law abelian-group adds over group (one-law-per-child, algebra_spine.ttl:99-103,226). Commutativity is ONE equation (not two-sided), so it does NOT split into left/right records. It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 abelian-group denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the group theory (the forgetful theory-morphism abelian-group->group; the group theory atom lives in spine/group.ttl:91, BYTE-IDENTICAL, so this reduct resolves in the merged graph; the obligation-count-1 extension morphism over the reduct is minted by T-REDUCT, Stage 2). D24 first-class metadata: @rel:validation:mode 'finite:table' (abelian-group models are validated by finite Cayley table, matching the group parent and the Z/3 fixture) and @rel:proof:status 'literature:backed'. HONEST-RED (design §5.1): abelian-group has NO engine anchor (the engine carries only the flat subdomain:group collapse), so proof-status is literature:backed NOT finite:checked-from-engine and NO seed:conservativeBridge is minted (bridges.ttl:116-118 gives fnd:AbelianGroup a skos:exactMatch alias only, no engine edge). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24: 'the abelian group was not authored by an executor; the AbelianGroupTheoryRecord was'); SYN because commutativity is a synthesized cited-standard-math atom in the fnd: tower (design §7.4 commutativity=SYN) and the inherited inverse law is the ONE tower axiom with zero Helios basis (algebra_spine.ttl:114). Historical-identity BRIDGES: @rel:historical:identity fnd:AbelianGroup and the seed legacy IRI urn:silmaril:ontology:primordial:algebra:structure:abelian:group; skos:closeMatch fnd:AbelianGroup (Stage-2a ADDITIVE — fnd:AbelianGroup stays intact; T-RETIRE stubs it in Stage 2b). The denotatum's skos:exactMatch fnd:AbelianGroup lives in bridges.ttl:116-118 and is NOT re-added here (bridge-never-duplicate, TODO-11). Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision). [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; B1 adjective-first abelian:group is LOCKED (§7.2 #9); all [S] flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object, NO provenance. [D]
+#      BYTE-IDENTICAL to bridges.ttl:117 (fnd:AbelianGroup skos:exactMatch target).
+# =====================================================================================
+alg:abelian:group:kingdom:type:phylum:algebra:class:abelian:group:order:binary:family:operation:genus:axiomatic:species:abelian:group:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "abelian group" ;
+    rel:notation   "abelian group" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:abelian:group:kingdom:type:phylum:algebra:class:abelian:group:order:binary:family:operation:genus:axiomatic:species:abelian:group:component:type:instance:canonical" ;
+    rdfs:comment "[D] The abelian-group DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'an abelian group' itself, carrying its canonical @rel:identifier and @rel:notation ONLY — and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes — and is BYTE-IDENTICAL to bridges.ttl:117 (fnd:AbelianGroup skos:exactMatch this denotatum) so the merged alias map resolves and SP1/SP2/SP3 inbound fnd:AbelianGroup references stay reachable through the fold. The subdomain / class / family / species compound token is ADJECTIVE-FIRST abelian:group (B1 LOCKED §7.2 #9). Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. Rank values [D] off the [V] group denotatum skeleton (bridges.ttl:81) with subdomain/family group -> abelian:group." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction
+#      bundle + provenance + disjointness teeth). [S] class:model/genus:governed/component:class
+# =====================================================================================
+alg:abelian:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:abelian:group:genus:governed:species:abelian:group:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "abelian group model class" ;
+    rel:notation "abelian group model" ;
+    rel:denotes alg:abelian:group:kingdom:type:phylum:algebra:class:abelian:group:order:binary:family:operation:genus:axiomatic:species:abelian:group:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:identity:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    owl:disjointWith alg:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:group:genus:governed:species:group:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The abelian-group MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the denotatum atom's kingdom:type:…:component:type IRI (the two B4 planes), ADJECTIVE-FIRST abelian:group (B1 LOCKED §7.2 #9). The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction, closure.ttl has 13) makes 'an abelian group is a set with exactly one carrier, exactly one identity element and exactly one binary operation' a graph fact via cardinality-1 owl:Restriction on @rel:carrier, @rel:identity:element and @rel:operation (it retains the group model-record's cardinality bundle, spine/group.ttl:137-140 — an abelian group IS a group; commutativity is a law on the operation, adding no new carrier/element cardinality, and the characteristic INVERSE is a THEORY/signature-plane addition — sigGroup's unary inv symbol, operations.ttl — not a model cardinality). owl:disjointWith the group model-record class (spine/group.ttl:132, which symmetrically declares owl:disjointWith this abelian-group model, task T-ABEL: 'Model-record owl:disjointWith the group model-record') — the D25 homonym/distinction tooth: an abelian group is not (declared as) a plain group model, they are distinct declaration classes. (The commutative-monoid model-record ALSO declares owl:disjointWith this class, spine/commutative_monoid.ttl:140, so the abelian!=commutative-monoid pair is already established symmetrically and is not re-asserted here.) Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum; SYN because commutativity and the inherited inverse law are SYN (algebra_spine.ttl:114). It is punned a owl:Class (so a concrete model can be typed against it) AND a rec:model:record / rec:declaration:record (so the ModelShape sh:targetClass tooth counts it as a data-graph focus node and the runner's 0-focus gate is satisfied) — OWL2 metaclass punning, exactly as spine/progenitor.ttl / spine/monoid.ttl / spine/group.ttl / spine/commutative_monoid.ttl, and DISTINCT from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids. On this focus the ModelShape identity sh:sparql tooth is vacuously satisfied (the class declares no @rel:identity:element / reified cells); the finite Z/3 abelian model witness in fixtures/ is where the commutativity probe bites and the identity tooth is genuinely satisfied. [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM record — CLOSURE (design §2c — minimal, NO denotatum/gate/provenance, NO
+#     certificate; axiom != theorem is structural). Membership/totality statement, NOT a left=right
+#     equation, so it is a rec:axiom:record only, NOT a rec:equation:record. Rank values VERBATIM off
+#     the [V] group closure axiom with family:group -> family:abelian:group. Inherited from group,
+#     restated at family:abelian:group (design §2a) so this rung's theory E is self-contained.
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:closure:order:binary:family:abelian:group:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "abelian group closure" ;
+    rel:notation "for all x,y in S: x·y in S" ;
+    rdfs:comment "[D] The CLOSURE / totality axiom of the abelian-group theory (rec:axiom:record): the binary product · is a total function S,S -> S, so for all x,y in the carrier S the product x·y is defined and lies in S. A membership/totality statement, NOT a left=right equation — so it is an axiom record only, NOT a rec:equation:record (unlike associativity/identity/inverse/commutativity), and carries NO @rel:left/@rel:right. Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (an axiom is asserted, not proved — axiom != theorem is structural, and rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119). Rank values VERBATIM off the [V] group closure axiom (genus:product:species:membership, bridges.ttl:170) with family:group -> family:abelian:group. It is inherited (via group, from magma) and RESTATED at family:abelian:group (design §2a) so the abelian-group theory's equation set E={closure, associativity, identity-left, identity-right, inverse-left, inverse-right, commutativity} is self-contained; it is a member of that E (this rung's theory @rel:equation)." .
+
+# =====================================================================================
+# (d1) EQUATION record — ASSOCIATIVITY (inherited, restated): (x·y)·z = x·(y·z). Dual-typed
+#      rec:equation:record + rec:axiom:record (design §1.9 reuse side, §7.2 #7). ONE equation (single
+#      member), not two-sided — mirrors closure.ttl category:associativity (closure.ttl:180-183). [D]
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:abelian:group:genus:composition:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record , rec:axiom:record ;
+    rdfs:label "abelian group associativity" ;
+    rel:notation "(x·y)·z = x·(y·z)" ;
+    rel:left   term:assoc:left ;
+    rel:right  term:assoc:right ;
+    rel:member case:assoc:zero ;
+    rdfs:comment "[D] The ASSOCIATIVITY law of the abelian-group theory — INHERITED from group (via semigroup) and restated at family:abelian:group so this rung's theory E is self-contained (design §2a) — as a reified equation record (rec:equation:record): the ordered pair (x·y)·z = x·(y·z), one @rel:left term and one @rel:right term (the EquationRecordShape cardinality-1 tooth). Dual-typed rec:axiom:record too (design §1.9: the runtime models each law as ONE kingdom:axiom…component:statement atom that is simultaneously the equation, avoiding the unattested component:equation — the §7.2 #7 reuse side, consistent with bridges.ttl and records.ttl:76-81). Associativity is a SINGLE equation (not two-sided): it does NOT decompose into member:left/member:right records the way the identity and inverse do (design §1.6) — it mirrors closure.ttl category:associativity's single member (closure.ttl:180-183). Rank values VERBATIM off the [V] group associativity axiom (genus:composition:species:equality) with family:group -> family:abelian:group. It is a member of the abelian-group theory's equation set E (this rung's theory @rel:equation). Its term IRIs live in the abelian:group-scoped term: namespace so they never collide with the group- or commutative:monoid-scoped associativity terms (EquationRecordShape identity-collision tooth)." .
+
+# per-side reified term/case node (closure.ttl:185-192 case precedent; equations.ttl:97 idiom). Bare
+# subject (no `a`): the datatype:record cardinality-1 left/right on the record above is the enforced tooth.
+case:assoc:zero rel:left term:assoc:left ; rel:right term:assoc:right .
+
+# =====================================================================================
+# (d2) FOUNDATION AXIOM record — IDENTITY (inherited two-sided parent, restated). rec:axiom:record
+#      only (the named parent law, no side segment); it @rel:equation-decomposes into the two reified
+#      equation records (d3/d4). Rank values off the [V] group identity axiom with family:group ->
+#      family:abelian:group. [D]
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:abelian:group:genus:neutral:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "abelian group identity (two-sided)" ;
+    rel:notation "exists e: e·x = x and x·e = x" ;
+    rel:equation alg:abelian:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:abelian:group:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                 alg:abelian:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:abelian:group:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rdfs:comment "[D] The two-sided IDENTITY axiom of the abelian-group theory (rec:axiom:record, the named parent law, no side segment) — INHERITED from group (via monoid) and restated at family:abelian:group (design §2a): there exists a neutral element e with e·x = x AND x·e = x for all x. As a TWO-SIDED law it @rel:equation-decomposes into the TWO reified equation records identity-left (e·x=x) and identity-right (x·e=x) below (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent). Minimal per design §2c: no denotatum / gate / provenance, no certificate. It is inherited (NOT the law this rung adds — abelian-group adds COMMUTATIVITY over group, one-law-per-child, algebra_spine.ttl:99-103). Rank values off the [V] group identity axiom (genus:neutral:species:member, bridges.ttl:104) with family:group -> family:abelian:group. [S] the two-sided split's species:member:left/right side segment is UNATTESTED (§7.2 #2), carried at the design default." .
+
+# =====================================================================================
+# (d3) EQUATION record — identity-LEFT (inherited, restated): e·x = x. rec:equation:record. [S] side seg
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:abelian:group:genus:neutral:species:member:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "abelian group identity (left unit)" ;
+    rel:notation "e·x = x" ;
+    rel:left   term:identity:left ;
+    rel:right  term:identity:x ;
+    rel:member case:identity:zero ;
+    rdfs:comment "[S] The LEFT unit law e·x = x — side 1 of the abelian-group two-sided identity, INHERITED from group and restated at family:abelian:group, reified as an equation record (rec:equation:record) with one @rel:left term (e·x) and one @rel:right term (x). A two-sided law mints TWO equation records, one per side (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent). [S] the species:member:left SIDE SEGMENT is UNATTESTED in the runtime (design §7.2 #2, side-segment placement) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group identity axiom (genus:neutral:species:member, bridges.ttl:104) with family:group -> family:abelian:group, plus the :left side segment. Its term IRIs are in the abelian:group-scoped term: namespace so they never collide with the group / commutative:monoid identity-left terms (EquationRecordShape identity-collision tooth)." .
+
+# =====================================================================================
+# (d4) EQUATION record — identity-RIGHT (inherited, restated): x·e = x. rec:equation:record. [S] side seg
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:abelian:group:genus:neutral:species:member:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "abelian group identity (right unit)" ;
+    rel:notation "x·e = x" ;
+    rel:left   term:identity:right ;
+    rel:right  term:identity:x ;
+    rel:member case:identity:one ;
+    rdfs:comment "[S] The RIGHT unit law x·e = x — side 2 of the abelian-group two-sided identity, INHERITED from group and restated at family:abelian:group, reified as an equation record (rec:equation:record) with one @rel:left term (x·e) and one @rel:right term (x). Its twin is the identity-LEFT record above; together they are the TWO equation records the ONE two-sided identity law decomposes into (design §1.6, §3). NOTE that although an abelian group's operation commutes (so the left and right unit laws are provably equivalent, as are the left and right inverse laws), the two equation records are still minted DISTINCTLY at the syntactic/theory plane — the equivalence is a THEOREM about models, not a syntactic collapse of the presentation. [S] the species:member:right SIDE SEGMENT is UNATTESTED (design §7.2 #2) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group identity axiom (genus:neutral:species:member) with family:group -> family:abelian:group, plus the :right side segment. Its term IRIs are in the abelian:group-scoped term: namespace (no collision with the group / commutative:monoid identity-right terms)." .
+
+# per-side reified case nodes for the identity split (closure.ttl:185-192 case precedent).
+case:identity:zero rel:left term:identity:left  ; rel:right term:identity:x .
+case:identity:one  rel:left term:identity:right ; rel:right term:identity:x .
+
+# =====================================================================================
+# (d5) FOUNDATION AXIOM record — INVERSE (inherited two-sided parent, restated). rec:axiom:record
+#      only (the named parent law, no side segment); it @rel:equation-decomposes into the two reified
+#      equation records (d6/d7). Rank values off the [V] group inverse axiom with family:group ->
+#      family:abelian:group. [D]
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:abelian:group:genus:member:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "abelian group inverse (two-sided)" ;
+    rel:notation "for all x exists inv(x): x·inv(x) = e and inv(x)·x = e" ;
+    rel:equation alg:abelian:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:abelian:group:genus:member:species:inverse:left:component:statement:instance:canonical ,
+                 alg:abelian:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:abelian:group:genus:member:species:inverse:right:component:statement:instance:canonical ;
+    rdfs:comment "[D] The two-sided INVERSE axiom of the abelian-group theory (rec:axiom:record, the named parent law, no side segment) — INHERITED from group and restated at family:abelian:group (design §2a): for every x in S there exists a two-sided inverse inv(x) with x·inv(x) = e AND inv(x)·x = e. As a TWO-SIDED law it @rel:equation-decomposes into the TWO reified equation records inverse-left (x·inv(x)=e) and inverse-right (inv(x)·x=e) below (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent). Minimal per design §2c: no denotatum / gate / provenance, no certificate. It is inherited (NOT the law this rung adds — abelian-group adds COMMUTATIVITY over group, one-law-per-child, algebra_spine.ttl:99-103). Rank values off the [V] group inverse axiom (genus:member:species:inverse, bridges.ttl:192) with family:group -> family:abelian:group. HONESTY (algebra_spine.ttl:41,114): the inverse law is the ONE tower axiom with ZERO Helios basis, cited standard group theory — it is SYN, and the abelian-group rung inherits both it and the SYN commutativity it adds. [S] the two-sided split's species:inverse:left/right side segment is UNATTESTED (§7.2 #2), carried at the design default." .
+
+# =====================================================================================
+# (d6) EQUATION record — inverse-LEFT (inherited, restated): x·inv(x) = e. rec:equation:record. [S] side seg
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:abelian:group:genus:member:species:inverse:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "abelian group inverse (left: x·inv(x) = e)" ;
+    rel:notation "x·inv(x) = e" ;
+    rel:left   term:inverse:left ;
+    rel:right  term:inverse:e ;
+    rel:member case:inverse:zero ;
+    rdfs:comment "[S] The LEFT inverse law x·inv(x) = e — side 1 of the abelian-group two-sided inverse, INHERITED from group and restated at family:abelian:group, reified as an equation record (rec:equation:record) with one @rel:left term (x·inv(x)) and one @rel:right term (e). A two-sided law mints TWO equation records, one per side (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent). [S] the species:inverse:left SIDE SEGMENT is UNATTESTED in the runtime (design §7.2 #2, side-segment placement) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group inverse axiom (genus:member:species:inverse, bridges.ttl:192) with family:group -> family:abelian:group, plus the :left side segment. Its term IRIs are in the abelian:group-scoped term: namespace so they never collide with the group inverse-left terms (EquationRecordShape identity-collision tooth)." .
+
+# =====================================================================================
+# (d7) EQUATION record — inverse-RIGHT (inherited, restated): inv(x)·x = e. rec:equation:record. [S] side seg
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:abelian:group:genus:member:species:inverse:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "abelian group inverse (right: inv(x)·x = e)" ;
+    rel:notation "inv(x)·x = e" ;
+    rel:left   term:inverse:right ;
+    rel:right  term:inverse:e ;
+    rel:member case:inverse:one ;
+    rdfs:comment "[S] The RIGHT inverse law inv(x)·x = e — side 2 of the abelian-group two-sided inverse, INHERITED from group and restated at family:abelian:group, reified as an equation record (rec:equation:record) with one @rel:left term (inv(x)·x) and one @rel:right term (e). Its twin is the inverse-LEFT record above; together they are the TWO equation records the ONE two-sided inverse law decomposes into (design §1.6, §3). [S] the species:inverse:right SIDE SEGMENT is UNATTESTED (design §7.2 #2) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group inverse axiom (genus:member:species:inverse) with family:group -> family:abelian:group, plus the :right side segment. Distinct @rel:left term (term:inverse:right) from inverse-left (term:inverse:left), so the EquationRecordShape identity-collision sh:sparql does not fire between the twins; and abelian:group-scoped so no collision with the group inverse-right terms." .
+
+# per-side reified case nodes for the inverse split (closure.ttl:185-192 case precedent).
+case:inverse:zero rel:left term:inverse:left  ; rel:right term:inverse:e .
+case:inverse:one  rel:left term:inverse:right ; rel:right term:inverse:e .
+
+# =====================================================================================
+# (d8) EQUATION record — COMMUTATIVITY, the SINGLE ADDED LAW: x·y = y·x. Dual-typed
+#      rec:equation:record + rec:axiom:record (design §1.9 reuse side). ONE equation (single member),
+#      not two-sided. Its OWN atom under subdomain/family abelian:group (Directive-17 no-cram, NOT
+#      reusing the commutative-monoid commutativity atom). BYTE-IDENTICAL to bridges.ttl:180 (the
+#      fnd:lawCommutativity closeMatch target). [D]
+# =====================================================================================
+alg:abelian:group:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:abelian:group:genus:composition:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record , rec:axiom:record ;
+    rdfs:label "abelian group commutativity" ;
+    rel:notation "x·y = y·x" ;
+    rel:left   term:comm:left ;
+    rel:right  term:comm:right ;
+    rel:member case:comm:zero ;
+    rdfs:comment "[D] The COMMUTATIVITY law of the abelian-group theory — the SINGLE law abelian-group adds over group (one-law-per-child, algebra_spine.ttl:99-103,226) — as a reified equation record (rec:equation:record): the ordered pair x·y = y·x, one @rel:left term (x·y) and one @rel:right term (y·x) (the EquationRecordShape cardinality-1 tooth). It is minted as its OWN atom under subdomain abelian:group / family:abelian:group — DISTINCT from the commutative-monoid commutativity atom (spine/commutative_monoid.ttl:226, family:commutative:monoid): commutativity enters the tower at TWO independent spine points (over monoid -> commutative-monoid, and over group -> abelian-group), and Directive-17 no-cram mints a separate atom at each, never a single crammed shared atom. Dual-typed rec:axiom:record too (design §1.9: the runtime models each law as ONE kingdom:axiom…component:statement atom that is simultaneously the equation, avoiding the unattested component:equation — the §7.2 #7 reuse side, consistent with bridges.ttl:180 and records.ttl:76-81). Commutativity is a SINGLE equation (not two-sided): it does NOT decompose into member:left/member:right records the way the identity and inverse do (design §1.6). Rank values VERBATIM off the [V] group ASSOCIATIVITY axiom (genus:composition:species:equality — both are left=right equational laws over the binary product) with family:group -> family:abelian:group; this IRI is BYTE-IDENTICAL to bridges.ttl:180 (the fnd:lawCommutativity closeMatch target — the ONE fnd:lawCommutativity closeMatch-decomposes into this abelian:group atom AND the commutative:monoid commutativity atom, Directive-17 no-cram) so the merged alias map resolves. Its term IRIs live in the abelian:group-scoped term: namespace so they never collide with the commutative:monoid commutativity terms (EquationRecordShape identity-collision tooth). Its added-law status is teeth-proved by probes/abelian_group_law.rq (the commutativity probe) over the fixtures/ Z/3 witnesses (the non-commutative negative flips it RED, and — its single corrupted cell involving e — also flips the ModelShape identity tooth so the runner's fixture iteration catches it)." .
+
+# per-side reified case node for commutativity (single member; closure.ttl:180-183 single-member idiom).
+case:comm:zero rel:left term:comm:left ; rel:right term:comm:right .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate, NEVER an
+#     axiom; the closure.ttl Yoneda theorem/certificate idiom, :129-142). The natural STRUCTURE theorem
+#     of an abelian group: the inverse of a product is the product of the inverses WITHOUT reversal.
+# =====================================================================================
+alg:abelian:group:kingdom:theorem:phylum:algebra:class:inverse:order:declarative:family:abelian:group:genus:product:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "abelian group inverse-of-product" ;
+    rel:notation "(x·y)^-1 = x^-1·y^-1 (no order reversal)" ;
+    rel:certificate alg:abelian:group:kingdom:certificate:phylum:algebra:class:inverse:order:declarative:family:abelian:group:genus:product:species:inverse:component:statement:instance:canonical ;
+    rel:authority "SYN" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "The natural STRUCTURE theorem of an abelian group — the inverse of a product is the product of the inverses WITHOUT order reversal, a theorem NOT an additional foundational axiom (design §2f, the closure.ttl Yoneda theorem/certificate idiom, :129-142): in any abelian group (S,·,e) the inverse of a product equals the product of the inverses, (x·y)^-1 = x^-1·y^-1 for all x,y — WHEREAS in a general (possibly non-commutative) group only the reversed law (x·y)^-1 = y^-1·x^-1 holds. It is a DERIVED CONSEQUENCE of the single commutativity axiom together with the group axioms and the group inverse-uniqueness theorem (spine/group.ttl): (x·y)·(x^-1·y^-1) = x·(y·x^-1)·y^-1 = x·(x^-1·y)·y^-1 (commutativity swaps y·x^-1 = x^-1·y) = (x·x^-1)·(y·y^-1) = e·e = e, and symmetrically (x^-1·y^-1)·(x·y) = e, so x^-1·y^-1 is the two-sided inverse of x·y and by inverse uniqueness (x·y)^-1 = x^-1·y^-1 — the D24 A0 ProofArtifact plane, not a new axiom, and precisely WHY commutativity is the abelian-group's characteristic addition (it collapses the reversal). It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). Provenance quartet + @rel:authority 'SYN' on the record (synthesized cited-standard-math; it derives from the SYN commutativity and inverse laws). [S] kingdom:theorem class:inverse / genus:product / species:inverse are UNATTESTED (§7.2 #1) -> sign-off packet." .
+
+alg:abelian:group:kingdom:certificate:phylum:algebra:class:inverse:order:declarative:family:abelian:group:genus:product:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "abelian group inverse-of-product certificate" ;
+    rel:digest:value    "6a361e7b4e93065c9a4872a40bc2c19164101c0bd627f6d8e2cd05fb52512de0" ;
+    rel:proof:method    "Explicit general mathematical derivation ((x.y).(x^-1.y^-1) = (x.x^-1).(y.y^-1) = e via commutativity, symmetrically on the other side, then inverse uniqueness); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for abelian-group inverse-of-product (design §2f; the closure.ttl certificate idiom, :132/137/142): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Abelian group inverse-of-product: in any abelian group (S,.,e) the inverse of a product equals the product of the inverses without reversal, (x.y)^-1 = x^-1.y^-1 for all x,y. Proof: (x.y).(x^-1.y^-1) = x.(y.x^-1).y^-1 = x.(x^-1.y).y^-1 = (x.x^-1).(y.y^-1) = e.e = e, using commutativity to swap y.x^-1 = x^-1.y, and symmetrically (x^-1.y^-1).(x.y) = e; so x^-1.y^-1 is the two-sided inverse of x.y, and by inverse uniqueness (x.y)^-1 = x^-1.y^-1. General mathematical derivation; not proof-assistant checked.'), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119). The digest is reproducible: sha256 of the quoted canonical statement equals the recorded value." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:abelian:group:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:abelian:group:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "abelian group declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:abelian:group:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:abelian:group:genus:reconciled:species:abelian:group:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the abelian-group declaration was RECONCILED against its denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the abelian-group rung, adjective-first B1). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the abelian-group declaration is reconciled, not merely asserted." .
+
+# =====================================================================================
+# BRIDGES (design §5, Stage-2a ADDITIVE). AbelianGroup has NO ENGINE ANCHOR (honest-red BUILD, design
+# §5.1): bridges.ttl:116-118 gives fnd:AbelianGroup a skos:exactMatch alias to the denotatum ONLY, with
+# NO seed:conservativeBridge — and that alias is NOT duplicated here (bridge-never-duplicate, TODO-11).
+# The commutativity atom's fnd:lawCommutativity closeMatch likewise lives in bridges.ttl:178-181 and is
+# NOT re-added here. The three edges on the theory record above are the rung's historical bridges:
+# @rel:historical:identity fnd:AbelianGroup, @rel:historical:identity <seed legacy abelian:group IRI>,
+# skos:closeMatch fnd:AbelianGroup — keeping SP1/SP2/SP3 fnd:AbelianGroup refs resolvable THROUGH the
+# folded rung while fnd:AbelianGroup stays byte-intact until Stage-2b T-RETIRE.
+# =====================================================================================

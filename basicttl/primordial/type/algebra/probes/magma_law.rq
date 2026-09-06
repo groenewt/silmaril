@@ -1,0 +1,35 @@
+# =====================================================================================
+# magma_law.rq — RED->GREEN probe for T-MAGMA (the CLOSURE / totality tooth, W2 · SP0).
+# The added-law tooth of the magma rung: the sole law magma adds over the agnostic
+# progenitor is CLOSURE — the binary operation · is total on the carrier S, so for all
+# x,y in S the product x·y is DEFINED and lies in S (algebra_spine.ttl:139-143 fnd:lawClosure).
+# =====================================================================================
+# CLOSURE as a graph fact over the reified Cayley table: for every model, no reified
+# composition cell (scoped to the model by @rel:structure) may carry an OPERAND
+# (@rel:category:first / @rel:category:second) or a RESULT (@rel:category:result) that is NOT
+# a declared carrier member (@rel:carrier:member) of that model. This SELECT returns every
+# ESCAPE — the model, the offending cell, and the escapee element that lies outside the carrier.
+#
+#   GREEN (a genuine closed magma, e.g. fixtures/magma_pos.ttl — Z/2 under + over carrier {e,a}):
+#         0 rows — every operand and every result is a carrier member, the operation is closed.
+#   RED   (a broken magma, e.g. fixtures/magma_neg.ttl — the cell e·a returns c, c outside {e,a}):
+#         >= 1 row — the product escapes the carrier and the closure tooth bites.
+#
+# Run over the fixture under test (optionally merged with the algebra data graph), inference=none.
+# The SAME single injection (e·a -> c) that this probe catches ALSO flips the committed
+# shapes/algebra.shapes.ttl ModelShape True->False (the escape is placed at the e-row, so the
+# left-unit tooth e·x = x reads e·a = c != a), so the runner's fixture-polarity gate catches the
+# negative even though the dedicated MagmaClosureShape is a Stage-2 T-SHAPES deliverable (design
+# §1.5, §2c; the closure axiom is spine/magma.ttl kingdom:axiom:…:class:closure:…:family:magma:…).
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?model ?cell ?escapee WHERE {
+  ?cell rel:structure ?model .
+  {   ?cell rel:category:first  ?escapee }
+  UNION
+  {   ?cell rel:category:second ?escapee }
+  UNION
+  {   ?cell rel:category:result ?escapee }
+  FILTER NOT EXISTS { ?model rel:carrier:member ?escapee }   # the element escapes the carrier S
+}

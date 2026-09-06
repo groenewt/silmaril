@@ -1,0 +1,51 @@
+# =====================================================================================
+# semigroup_law.rq — RED->GREEN probe for T-SEMI (the ASSOCIATIVITY tooth, W2 · SP0).
+# The characteristic law of the semigroup rung, over the unified @rel:* reified-table
+# vocabulary (bridges.ttl:249-291: relation:structure = fnd:opStructure,
+# relation:category:first/second/result = fnd:opLeft/opRight/opResult).
+# =====================================================================================
+# The SEMIGROUP associativity law: for a model's reified Cayley table (cells scoped to the
+# model by @rel:structure), the product must be ASSOCIATIVE — for every triple x,y,z the
+# left-nested product (x·y)·z must equal the right-nested product x·(y·z). This SELECT walks
+# the table twice:
+#   ?c1 : x·y = xy        ?c2 : xy·z = lhs   (the left-nested (x·y)·z)
+#   ?c3 : y·z = yz        ?c4 : x·yz = rhs   (the right-nested x·(y·z))
+# and returns every triple whose two nestings DISAGREE (lhs != rhs) — the model, the three
+# operands and the two disagreeing products. It is the folded stratified re-homing of the
+# magma-tower associativity obligation (algebra_spine.ttl composition map :99-103).
+#
+#   GREEN (a genuine associative structure, e.g. fixtures/semigroup_pos.ttl — Z/3 under +):
+#         0 rows — every bracketing agrees, the tooth is satisfied.
+#   RED   (a non-associative table, e.g. fixtures/semigroup_neg.ttl — one cell corrupted so
+#         (x·y)·z != x·(y·z) for some triple): >= 1 row — associativity fails and the tooth bites.
+#
+# Run over the algebra data graph merged with the fixture under test, inference=none. The
+# associativity-specific SHACL NodeShape is authored later by T-SHAPES; until then the negative
+# fixture's single corrupted cell is chosen to ALSO trip the existing ModelShape identity tooth
+# (shapes/algebra.shapes.ttl, sh:targetClass rec:model:record) so the runner's fixture iteration
+# (run-algebra-checks.sh step (b)) catches it as a non-conforming negative. This probe is the
+# PRIMARY, characteristic-law tooth: it detects the non-associativity directly.
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?model ?x ?y ?z ?lhs ?rhs WHERE {
+  # left-nested  (x·y)·z = lhs
+  ?c1 rel:structure       ?model ;
+      rel:category:first  ?x ;
+      rel:category:second ?y ;
+      rel:category:result ?xy .
+  ?c2 rel:structure       ?model ;
+      rel:category:first  ?xy ;
+      rel:category:second ?z ;
+      rel:category:result ?lhs .
+  # right-nested x·(y·z) = rhs
+  ?c3 rel:structure       ?model ;
+      rel:category:first  ?y ;
+      rel:category:second ?z ;
+      rel:category:result ?yz .
+  ?c4 rel:structure       ?model ;
+      rel:category:first  ?x ;
+      rel:category:second ?yz ;
+      rel:category:result ?rhs .
+  FILTER(?lhs != ?rhs)   # (x·y)·z != x·(y·z)  =>  associativity violated
+}

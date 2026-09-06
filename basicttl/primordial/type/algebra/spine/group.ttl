@@ -1,0 +1,261 @@
+# =====================================================================================
+# group.ttl — the GROUP rung END-TO-END, the engine exactMatch anchor (W2 · SP0, T-GROUP).
+# =====================================================================================
+# The fully-worked stratified group rung, fanned out from the maintainer-signed-off monoid
+# exemplar (spine/monoid.ttl): the D24 A0 stratification (Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥
+# ProofArtifact) realised as DISTINCT atoms in the D26 full-ladder grammar — a theory record
+# (S,Omega,E), the B4 TWO model planes (a [V] denotatum + a declaration-record model class
+# linked by @rel:denotes), the four [V] group axiom records, the two-sided INVERSE decomposed
+# into TWO equation records, a theorem + certificate, the declaration triad envelope and the
+# provenance quartet.
+#
+# THE ENGINE exactMatch ANCHOR. Group is the ONE rung whose denotatum + four axioms are
+# byte-VERBATIM [V] the engine corpus (config/algebra/primordials.yaml:459/470/475/480/485,
+# aob/urn/**). The group denotatum is skos:exactMatch fnd:Group ALREADY in bridges.ttl:81-83
+# (the edge SP2 aob:SealedGroup rdfs:subClassOf fnd:Group resolves through) — NOT re-added here.
+# The theory's equation set E quotes the four [V] group axioms VERBATIM (closure / associativity
+# / identity / inverse — the byte-exact engine atoms), which is what makes this rung the anchor.
+#
+# WHAT LIVES WHERE. Group's OWN equation records — the two-sided inverse split (inverse-left
+# x·inv(x)=e, inverse-right inv(x)·x=e) — are inline in THIS file (T-GROUP writes only its own
+# disjoint files, never equations.ttl, which is the monoid block). The element / finite-table
+# witnesses (Z/3 positive + broken negative) are in fixtures/ (D24 four-planes: witnesses are
+# EVIDENCE, outside the ontology data glob). This file mints the theory / denotatum /
+# model-record / axiom / equation / theorem / certificate / gate atoms + the provenance.
+#
+# ADDS INVERSE (the one law group adds over monoid, algebra_spine.ttl:99-103 one-law-per-child).
+# The two-sided inverse (x·inv(x)=e AND inv(x)·x=e) mints TWO equation records, one per side
+# (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent) — the same split the monoid
+# identity uses. The obligation-count-2 extension morphism over the group->monoid reduct is minted
+# by T-REDUCT (Stage 2); the @rel:reduct edge to the monoid theory is authored here.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:). The group denotatum
+# + the four axioms are byte-VERBATIM [V] off primordials.yaml (grep-confirmed); the inverse
+# left/right IRIs are BYTE-IDENTICAL to bridges.ttl:192-193 (the fnd:lawInverse closeMatch
+# targets) so the merged alias map resolves. [D] = derived from the group skeleton; [S] = no
+# runtime precedent -> flagged for the §7.2 sign-off packet (T-PANEL).
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #1 mint-more-than-runtime : the theory record + the declaration-record model class have NO
+#      algebra precedent in the runtime (the runtime shows only the flat subdomain:group collapse
+#      = the four [V] axioms this file quotes) — minted per D24, PIVOTAL/pre-locked.
+#   #2 side-segment placement : species:inverse:left / species:inverse:right (the two-sided
+#      inverse split) — UNATTESTED side segment; the two inverse equation records below.
+#   #7 equation-identity      : the inverse-left/right records take the REUSE side (component:statement
+#      axiom IRI as the equation individual), consistent with equations.ttl + bridges.ttl.
+#   theory     : class:theory / genus:presented (kingdom:definition:phylum:algebra) — UNATTESTED.
+#   model rec. : class:model / genus:governed / component:class — UNATTESTED (B4 Plane-1, §7.2 #10).
+#   theorem    : class:inverse / genus:uniqueness / species:inverse (kingdom:theorem) — UNATTESTED.
+#   @rel D24   : @rel:validation:mode "finite:table" (4-value) + @rel:proof:status "literature:backed"
+#      (8-value) — the D24 validation-mode / proof-status vocab, no runtime precedent.
+#   @typ       : @typ:declaration / @typ:certificate / @typ:gate — the plane-type tokens (design §2).
+#   LOCKED (no sign-off): B1 adjective-first (n/a for group, no compound token); B4 two-planes;
+#      B3(a) additive Stage 2a (fnd:Group intact, bridges added; T-RETIRE is Stage 2b).
+#   HONESTY (Praeriehund; algebra_spine.ttl:41): fnd:Group and fnd:lawInverse are SYN — the group
+#      inverse law is the ONE tower axiom with ZERO Helios basis, cited standard group theory; so
+#      @rel:authority "SYN" here, and the theory is proof-status "literature:backed", NOT
+#      finite:checked-from-engine (only the finite Z/3 witness in fixtures/ is finite:checked).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.5, §2, §2b, §2f, §2g, §7.4).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-GROUP).
+# Consumes (do not rewrite): records.ttl (rec:* classes), signatures.ttl (sigGroup),
+# operations.ttl (product/unit/inverse), spine/progenitor.ttl (theory root), spine/monoid.ttl
+# (parent theory + monoid model-record for the disjointWith tooth), bridges.ttl (fnd:Group
+# skos:exactMatch the denotatum; fnd:lawInverse closeMatch the inverse left/right). Tooth:
+# shapes/algebra.shapes.ttl TheoryShape / ModelShape / EquationRecordShape + probes/group_law.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified inverse term / case atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:group:> .
+@prefix case: <urn:silmaril:type:graph:instance:instruction:code:property:relation:case:group:> .
+# seed-carrier record-class ladder (records.ttl:38-39, closure.ttl:1-3) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+#     E = the FOUR [V] group axioms VERBATIM (closure/associativity/identity/inverse) — the byte-exact
+#     engine atoms that make this rung the engine exactMatch anchor.
+# =====================================================================================
+alg:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:group:genus:presented:species:group:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "group theory (S,Omega,E)" ;
+    rel:notation   "group" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:group:genus:presented:species:group:component:definition:instance:canonical" ;
+    rel:signature  alg:group:kingdom:definition:phylum:specification:class:signature:order:invertible:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:group:kingdom:axiom:phylum:operation:class:closure:order:binary:family:group:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:group:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:group:genus:composition:species:equality:component:statement:instance:canonical ,
+                   alg:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:group:genus:neutral:species:member:component:statement:instance:canonical ,
+                   alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:component:statement:instance:canonical ;
+    rel:reduct     alg:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical ;
+    rel:denotatum  alg:group:kingdom:type:phylum:algebra:class:group:order:binary:family:operation:genus:axiomatic:species:group:component:type:instance:canonical ;
+    rel:assignment alg:group:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:group:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:Group , <urn:silmaril:ontology:primordial:algebra:structure:group> ;
+    skos:closeMatch fnd:Group ;
+    rdfs:comment "[S] The presented group THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6): S,Omega = @rel:signature sigGroup (signatures.ttl, Sigma={·,e,inv}); E = @rel:equation the FOUR [V] group axioms quoted VERBATIM off the engine corpus (config/algebra/primordials.yaml:470/475/480/485, byte-exact) — closure, associativity, identity and inverse. Quoting the four byte-exact engine atoms as E is what makes GROUP the engine exactMatch ANCHOR of the whole tower: the group denotatum is skos:exactMatch fnd:Group in bridges.ttl:81-83 (the edge SP2 aob:SealedGroup rdfs:subClassOf fnd:Group resolves through), so E is literally the runtime's flat subdomain:group collapse re-mounted in the stratified idiom. The single law group ADDS over monoid is the two-sided INVERSE (x·inv(x)=e AND inv(x)·x=e), which @rel:equation-decomposes into the TWO inverse equation records below (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent); the obligation-count-2 extension morphism over the reduct is minted by T-REDUCT (Stage 2). It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 [V] group denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the monoid theory (the forgetful theory-morphism group->monoid). D24 first-class metadata: @rel:validation:mode 'finite:table' (the 4-value law-witness mode — group models are validated by finite Cayley table, matching the engine group::validate and the Z/3 fixture) and @rel:proof:status 'literature:backed' (the 8-value status — the UNIVERSAL group theory is literature-backed / cited standard group theory; only the finite Z/3 WITNESS in fixtures/ is finite:checked, honest per Praeriehund — the general theory is not finite:checked-from-engine). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24). @rel:authority 'SYN': fnd:Group and fnd:lawInverse are SYN — the group inverse law is the ONE tower axiom with ZERO Helios basis, cited standard group theory (algebra_spine.ttl:41,114). Historical-identity BRIDGES: @rel:historical:identity fnd:Group and the seed legacy IRI urn:silmaril:ontology:primordial:algebra:structure:group; skos:closeMatch fnd:Group (Stage-2a ADDITIVE — fnd:Group stays intact; T-RETIRE stubs it in Stage 2b). The denotatum's skos:exactMatch fnd:Group lives in bridges.ttl:81-83 and is NOT re-added here (bridge-never-duplicate, TODO-11). Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision). [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object, NO provenance. [V]
+#      BYTE-IDENTICAL to bridges.ttl:81 (fnd:Group skos:exactMatch target) AND to the engine
+#      GROUP type atom (config/algebra/primordials.yaml:459). The skos:exactMatch fnd:Group is
+#      NOT re-asserted here — it already lives in bridges.ttl (bridge-never-duplicate).
+# =====================================================================================
+alg:group:kingdom:type:phylum:algebra:class:group:order:binary:family:operation:genus:axiomatic:species:group:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "group" ;
+    rel:notation   "group" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:group:kingdom:type:phylum:algebra:class:group:order:binary:family:operation:genus:axiomatic:species:group:component:type:instance:canonical" ;
+    rdfs:comment "[V] The group DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a group' itself, carrying its canonical @rel:identifier and @rel:notation ONLY — and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes — and is byte-VERBATIM [V] the engine GROUP type atom (config/algebra/primordials.yaml:459, grep-confirmed) AND BYTE-IDENTICAL to bridges.ttl:81 where it is skos:exactMatch fnd:Group. That exactMatch — the edge SP2 aob:SealedGroup rdfs:subClassOf fnd:Group resolves through — is NOT re-asserted here (bridge-never-duplicate, TODO-11); it is the single engine anchor that makes GROUP the tower's exactMatch atom. Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction
+#      bundle + provenance + disjointness teeth). [S] class:model/genus:governed/component:class
+# =====================================================================================
+alg:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:group:genus:governed:species:group:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "group model class" ;
+    rel:notation "group model" ;
+    rel:denotes alg:group:kingdom:type:phylum:algebra:class:group:order:binary:family:operation:genus:axiomatic:species:group:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:identity:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    owl:disjointWith alg:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical ,
+                     alg:abelian:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:abelian:group:genus:governed:species:abelian:group:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The group MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the [V] denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction, closure.ttl has 13) makes 'a group is a set with exactly one carrier, exactly one identity element and exactly one binary operation' a graph fact via cardinality-1 owl:Restriction on @rel:carrier, @rel:identity:element and @rel:operation (the closure.ttl datatype:record cardinality idiom, :153-169); a group's characteristic INVERSE is a THEORY/signature-plane addition (sigGroup's unary inv symbol, operations.ttl; the four-axiom E of the theory record), not a model cardinality — one @rel:operation names the binary product, and the unary inverse is a derived total map, so no separate model cardinality is minted here. owl:disjointWith BOTH the monoid model-record class (spine/monoid.ttl, which symmetrically declares owl:disjointWith this group model, algebra_spine.ttl homonym/distinction tooth) AND the (Stage-2) abelian:group model-record class (a forward reference — T-ABEL mints it; the disjointness triple stands regardless) — the D25 homonym/distinction teeth: a group is not a monoid and not an abelian group. Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum; SYN because the inverse law group adds is SYN (algebra_spine.ttl:114). It is punned a owl:Class (so a concrete model can be typed against it) AND a rec:model:record / rec:declaration:record (so the ModelShape sh:targetClass tooth counts it as a data-graph focus node and the runner's 0-focus gate is satisfied) — OWL2 metaclass punning, exactly as spine/progenitor.ttl and spine/monoid.ttl and DISTINCT from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids. On this focus the ModelShape identity sh:sparql tooth is vacuously satisfied (the class declares no @rel:identity:element / reified cells); the finite Z/3 model witnesses in fixtures/ are where the identity tooth bites and probes/group_law.rq is where the inverse tooth bites. [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM records (design §2c — minimal, NO denotatum/gate/provenance, NO
+#     certificate; axiom != theorem is structural). Rank values byte-VERBATIM [V] off the engine
+#     group axioms (config/algebra/primordials.yaml:470/475/480/485). closure + identity + the
+#     inverse PARENT here; associativity is the fourth [V] member of E, also an axiom record here.
+#     Together = 4 axiom records = the byte-exact engine atoms that are the theory's equation set E.
+# =====================================================================================
+alg:group:kingdom:axiom:phylum:operation:class:closure:order:binary:family:group:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "group closure" ;
+    rel:notation "for all x,y in S: x·y in S" ;
+    rdfs:comment "[V] The CLOSURE / totality axiom of the group theory (rec:axiom:record), byte-VERBATIM the engine group closure atom (config/algebra/primordials.yaml:470, genus:product:species:membership): the binary product · is a total function S,S -> S, so for all x,y in the carrier S the product x·y is defined and lies in S. A membership/totality statement, NOT a left=right equation — so it is an axiom record only, NOT a rec:equation:record (unlike the inverse split), and carries NO @rel:left/@rel:right. Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (an axiom is asserted, not proved — axiom != theorem is structural, rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119). It is a member of the group theory's equation set E (this file's theory @rel:equation), inherited from magma and restated at the group level with family:group as the byte-exact engine atom." .
+
+alg:group:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:group:genus:composition:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "group associativity" ;
+    rel:notation "(x·y)·z = x·(y·z)" ;
+    rdfs:comment "[V] The ASSOCIATIVITY axiom of the group theory (rec:axiom:record), byte-VERBATIM the engine group associativity atom (config/algebra/primordials.yaml:475, genus:composition:species:equality): the binary product · is associative, (x·y)·z = x·(y·z) for all x,y,z in S. A member of the group theory's equation set E (this file's theory @rel:equation), inherited from semigroup and restated at the group level with family:group as the byte-exact engine atom. Held here as an axiom record (a single-equation associativity law) rather than a decomposed pair — only the two-sided INVERSE decomposes into left/right equation records (design §1.6); associativity, like closure, is a single law. Minimal per design §2c: no denotatum / gate / provenance, no certificate (axiom != theorem, records.ttl:119)." .
+
+alg:group:kingdom:axiom:phylum:operation:class:identity:order:binary:family:group:genus:neutral:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "group identity (two-sided)" ;
+    rel:notation "exists e: e·x = x and x·e = x" ;
+    rdfs:comment "[V] The two-sided IDENTITY axiom of the group theory (rec:axiom:record), byte-VERBATIM the engine group identity atom (config/algebra/primordials.yaml:480, genus:neutral:species:member): there exists a neutral element e with e·x = x AND x·e = x for all x. A member of the group theory's equation set E (this file's theory @rel:equation), INHERITED from monoid and restated at the group level with family:group as the byte-exact engine atom. Its two-sided decomposition into identity-left / identity-right is already realised at the monoid level (equations.ttl:70-90, the rung that ADDS identity); here it is quoted as the parent axiom member of E to keep the group theory's E byte-identical to the four engine atoms (the engine exactMatch anchor requirement, task T-GROUP), not re-decomposed — group's OWN added law is the inverse, whose split is minted below. Minimal per design §2c: no denotatum / gate / provenance, no certificate (axiom != theorem, records.ttl:119)." .
+
+alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "group inverse (two-sided)" ;
+    rel:notation "for all x exists inv(x): x·inv(x) = e and inv(x)·x = e" ;
+    rel:equation alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:left:component:statement:instance:canonical ,
+                 alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:right:component:statement:instance:canonical ;
+    rdfs:comment "[V] The two-sided INVERSE axiom of the group theory (rec:axiom:record, the named parent law, no side segment), byte-VERBATIM the engine group inverse atom (config/algebra/primordials.yaml:485, genus:member:species:inverse): for every x in S there exists a two-sided inverse inv(x) with x·inv(x) = e AND inv(x)·x = e. This is the SINGLE law group ADDS over monoid (one-law-per-child, algebra_spine.ttl:99-103). As a TWO-SIDED law it @rel:equation-decomposes into the TWO reified equation records inverse-left (x·inv(x)=e) and inverse-right (inv(x)·x=e) below (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent) — the obligation-count-2 extension morphism over the group->monoid reduct is minted by T-REDUCT (Stage 2). It is the fourth [V] member of the theory's equation set E (this file's theory @rel:equation). Minimal per design §2c: no denotatum / gate / provenance, no certificate. HONESTY (algebra_spine.ttl:41,114): fnd:lawInverse is SYN — the inverse law is the ONE tower axiom with ZERO Helios basis, cited standard group theory. Its added-law status is teeth-proved by probes/group_law.rq (exists y: x·y=e AND y·x=e) over the fixtures/ Z/3 witnesses." .
+
+# =====================================================================================
+# (d) EQUATION records — the two-sided INVERSE split (design §2d, §1.6). The one law group adds.
+#     inverse-left (x·inv(x)=e) + inverse-right (inv(x)·x=e), the closure.ttl:185-192 case:zero/
+#     case:one two-member reification precedent. BYTE-IDENTICAL to bridges.ttl:192-193 (the
+#     fnd:lawInverse closeMatch targets) so the merged alias map resolves. [S] side segment (§7.2 #2).
+#     Inline here (T-GROUP writes its own files; equations.ttl is the monoid block, not edited).
+# =====================================================================================
+alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "group inverse (left: x·inv(x) = e)" ;
+    rel:notation "x·inv(x) = e" ;
+    rel:left   term:inverse:left ;
+    rel:right  term:inverse:e ;
+    rel:member case:inverse:zero ;
+    rdfs:comment "[S] The LEFT inverse law x·inv(x) = e — side 1 of the group two-sided inverse, reified as an equation record (rec:equation:record) with one @rel:left term (x·inv(x)) and one @rel:right term (e). A two-sided law mints TWO equation records, one per side (design §1.6, §3; closure.ttl:185-192 category:identity case:zero/case:one precedent), whose obligation-count-2 extension morphism is minted by T-REDUCT (Stage 2). This IRI is BYTE-IDENTICAL to bridges.ttl:192 (the fnd:lawInverse closeMatch target) so the merged alias map resolves. [S] the species:inverse:left SIDE SEGMENT is UNATTESTED in the runtime (design §7.2 #2, side-segment placement) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group inverse axiom (genus:member:species:inverse, primordials.yaml:485) with the :left side segment. It is the EquationRecordShape cardinality-1 left/right focus and a member the inverse parent axiom @rel:equation-decomposes into." .
+
+alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "group inverse (right: inv(x)·x = e)" ;
+    rel:notation "inv(x)·x = e" ;
+    rel:left   term:inverse:right ;
+    rel:right  term:inverse:e ;
+    rel:member case:inverse:one ;
+    rdfs:comment "[S] The RIGHT inverse law inv(x)·x = e — side 2 of the group two-sided inverse, reified as an equation record (rec:equation:record) with one @rel:left term (inv(x)·x) and one @rel:right term (e). Its twin is the inverse-LEFT record above; together they are the TWO equation records the ONE two-sided inverse law decomposes into (design §1.6, §3), the obligation-count-2 extension morphism minted by T-REDUCT (Stage 2). This IRI is BYTE-IDENTICAL to bridges.ttl:193 (the fnd:lawInverse closeMatch target). [S] the species:inverse:right SIDE SEGMENT is UNATTESTED (design §7.2 #2) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group inverse axiom (genus:member:species:inverse) with the :right side segment. Distinct @rel:left term from inverse-left, so the EquationRecordShape identity-collision sh:sparql does not fire between the twins." .
+
+# -------------------------------------------------------------------------------------
+# Per-side reified case nodes (closure.ttl:185-192 case:zero/case:one precedent). Bare
+# subjects (no `a`): the datatype:record cardinality-1 left/right on the records above is the
+# enforced tooth; these mirror the reference's equation->member->case->left/right reification and
+# are not rec:equation:record foci (so the EquationRecordShape collision sh:sparql skips them).
+# -------------------------------------------------------------------------------------
+case:inverse:zero rel:left term:inverse:left  ; rel:right term:inverse:e .
+case:inverse:one  rel:left term:inverse:right ; rel:right term:inverse:e .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate,
+#     NEVER an axiom; the closure.ttl Yoneda theorem/certificate idiom, :129-142). Group's
+#     natural structure theorem: two-sided inverses are UNIQUE.
+# =====================================================================================
+alg:group:kingdom:theorem:phylum:algebra:class:inverse:order:declarative:family:group:genus:uniqueness:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "group inverse uniqueness" ;
+    rel:notation "each element's two-sided inverse is unique" ;
+    rel:certificate alg:group:kingdom:certificate:phylum:algebra:class:inverse:order:declarative:family:group:genus:uniqueness:species:inverse:component:statement:instance:canonical ;
+    rel:authority "SYN" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "Theorem, not an additional foundational axiom (design §2f, the closure.ttl Yoneda theorem/certificate idiom, :129-142): in any group (S,·,e) each element x has a UNIQUE two-sided inverse — if y and y' are both two-sided inverses of x then y = y·e = y·(x·y') = (y·x)·y' = e·y' = y' (associativity + the identity and inverse laws). It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). This is the D24 A0 ProofArtifact plane: a derived consequence of the four axioms, not a new axiom. It is the group analogue of the monoid identity-uniqueness theorem (spine/monoid.ttl), the natural structure theorem the inverse law licenses. Provenance quartet + @rel:authority 'SYN' on the record (the inverse law it derives from is SYN, algebra_spine.ttl:114)." .
+
+alg:group:kingdom:certificate:phylum:algebra:class:inverse:order:declarative:family:group:genus:uniqueness:species:inverse:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "group inverse uniqueness certificate" ;
+    rel:digest:value    "2d6efa483d05d9773b52ce414bd3c808aa006016417b202687a9bbef194671de" ;
+    rel:proof:method    "Explicit general mathematical derivation (y = y·e = y·(x·y') = (y·x)·y' = e·y' = y'); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for group inverse uniqueness (design §2f; the closure.ttl certificate idiom, :132/137/142): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Group inverse uniqueness: in any group (S,.,e) each element x has a UNIQUE two-sided inverse. Proof: if y and y' are both two-sided inverses of x (x.y=y.x=e and x.y'=y'.x=e) then y = y.e = y.(x.y') = (y.x).y' = e.y' = y'. General mathematical derivation; not proof-assistant checked'), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119)." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:group:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:group:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "group declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:group:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:group:genus:reconciled:species:group:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the group declaration was RECONCILED against its [V] denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the group rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the group declaration is reconciled, not merely asserted — the more so as GROUP is the engine exactMatch anchor whose denotatum is byte-identical to the engine atom." .
+
+# =====================================================================================
+# BRIDGES (design §5, Stage-2a ADDITIVE). The engine skos:exactMatch group denotatum -> fnd:Group
+# already lives in bridges.ttl:81-83 and is NOT duplicated here (bridge-never-duplicate, TODO-11) —
+# it is the edge SP2 aob:SealedGroup rdfs:subClassOf fnd:Group resolves through. fnd:Group
+# seed:conservativeBridge / fnd:lawInverse closeMatch the inverse left/right also live in bridges.ttl
+# (:108,192-194). The rung-local edges are on the theory record above: @rel:historical:identity
+# fnd:Group, @rel:historical:identity <seed legacy group IRI>, skos:closeMatch fnd:Group — keeping
+# SP1/SP2/SP3 fnd:Group refs resolvable THROUGH the folded rung while fnd:Group stays byte-intact
+# until Stage-2b T-RETIRE.
+# =====================================================================================

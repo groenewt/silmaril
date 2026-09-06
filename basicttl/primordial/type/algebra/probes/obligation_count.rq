@@ -1,0 +1,32 @@
+# =====================================================================================
+# obligation_count.rq — the two-sided-law obligation tooth (W2 · SP0, T-REDUCT).
+# =====================================================================================
+# A rung declaring only ONE side of a two-sided law is RED (design §1.6, §3). The two-sided
+# laws (monoid identity, group inverse, loop identity) each carry an obligation-counting
+# EXTENSION MORPHISM (reducts.ttl §2) that declares @rel:obligation:count 2 and reifies the two
+# obligation slots as @rel:left (the left-side equation record) and @rel:right (the right-side
+# equation record). This probe returns every count-two obligation that is MISSING a side.
+#
+# The extension morphisms are the ONLY rec:equation:record atoms that carry @rel:obligation:count
+# (the reduct records carry @rel:obligation:count too but are rec:reduct:record, not equation
+# records, so this type guard excludes them; the ordinary side equation records carry no count).
+# So `?ext a rec:equation:record ; rel:obligation:count 2` selects exactly the extension morphisms.
+#
+# GREEN over reducts.ttl: every extension morphism carries BOTH @rel:left and @rel:right -> 0 rows.
+# RED demonstration (task RED-FIRST): a draft where the monoid extension declares only
+# identity-left (drop its @rel:right) -> that morphism is returned (>=1 row); restore @rel:right
+# -> GREEN. The SAME one-sided injection also flips the GENERIC EquationRecordShape
+# (shapes/algebra.shapes.ttl:119-135, cardinality-1 @rel:right) conforms True->False, so the
+# runner's fixture iteration catches fixtures/reduct_neg.ttl too. Runs via rdflib over the raw
+# graph (explicit types; no inference needed).
+
+PREFIX rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:>
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?ext ?count WHERE {
+  ?ext a rec:equation:record ;
+       rel:obligation:count ?count .
+  FILTER( ?count = 2 )
+  FILTER( NOT EXISTS { ?ext rel:left  ?l . }
+       || NOT EXISTS { ?ext rel:right ?r . } )
+}

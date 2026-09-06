@@ -1,0 +1,214 @@
+# =====================================================================================
+# quasigroup.ttl — the QUASIGROUP rung END-TO-END (W2 · SP0, Stage 2a, T-QGRP). Replicates
+# the signed-off monoid/magma exemplar (spine/monoid.ttl, spine/magma.ttl) with the rung
+# swapped -> quasigroup (the DIVISION sub-family off MAGMA).
+# =====================================================================================
+# The base rung of the DIVISION sub-family of the one-operation algebra tower: a magma whose
+# binary operation admits TOTAL, UNIQUE left and right division — equivalently, a set whose
+# Cayley table is a LATIN SQUARE (every element occurs exactly once in each row and each
+# column). Quasigroup's PARENT is MAGMA (design §1.9-1.10, plan T-QGRP: "division sub-family
+# off magma (parent = magma, NOT monoid)") — reached by the forgetful theory-morphism
+# @rel:reduct quasigroup -> magma theory (the magma theory atom lives in spine/magma.ttl:86,
+# already on disk). Quasigroup adds the SINGLE law LATIN-DIVISION over magma
+# (algebra_spine.ttl:99-103 one-law-per-child); closure is inherited from magma and restated
+# at family:quasigroup so this rung's theory E is self-contained (design §2a).
+#
+# This file mints, replicating the exemplar end-to-end: the theory record (S,Omega,E), the B4
+# TWO model planes (a denotatum + a declaration-record model class linked by @rel:denotes),
+# the closure axiom record, the LATIN-DIVISION axiom record, the declaration-triad gate, and
+# the provenance quartet + bridges. It OMITS the theorem+certificate plane (see below).
+#
+# SIGNATURE sigQuasigroup Σ={·,\,/} (signatures.ttl:110, operations.ttl left/right division):
+# the quasigroup theory names the divisible signature (product + left division \ + right
+# division /) — the two division symbols are the equational carriers that make division total
+# and unique (the Latin-square property, design §1.7).
+#
+# NO THEOREM/CERTIFICATE PLANE (D20 honesty, plan T-QGRP "theorem+certificate IF the rung has
+# a natural uniqueness/structure theorem else omit"). Quasigroup's characteristic property —
+# the UNIQUENESS of left/right division — is its DEFINING AXIOM (the latin-division axiom
+# below), NOT a derived consequence to certify: unlike the monoid, whose identity-uniqueness is
+# a genuine theorem derived from the identity axiom (spine/monoid.ttl:145), a quasigroup's
+# division-uniqueness is asserted, not proved. So per the T-QGRP directive that plane is OMITTED
+# rather than manufactured (matching spine/magma.ttl, whose bare-closure rung likewise has no
+# natural uniqueness theorem). Cancellation (a·x=a·y => x=y) is a downstream consequence but is
+# a restatement of unique left division, not an independent structure theorem — so it too is not
+# faked here.
+#
+# LATIN-DIVISION IS NOT A left=right EQUATION (design §1.5-1.9, mirroring magma closure). Both
+# of this rung's laws — closure (membership/totality) and latin-division (a total-and-unique
+# division / Latin-square statement over the whole table) — are STRUCTURAL axioms, not single
+# reified t_left=t_right pairs, so both are typed rec:axiom:record ONLY (never rec:equation:record)
+# and carry NO @rel:left/@rel:right. Consequently this file mints ZERO rec:equation:record
+# individuals (like magma, unlike monoid). Both axioms are members of the theory's equation SET E
+# (the theory record's @rel:equation), exactly as magma's closure axiom is (spine/magma.ttl:92).
+#
+# WHAT LIVES WHERE. The finite Cayley witnesses (a Latin-square positive + a single-cell
+# Latin-square-violating negative) are in fixtures/quasigroup_pos.ttl / fixtures/quasigroup_neg.ttl
+# (D24 four-planes: element / finite-table witnesses are EVIDENCE, outside the ontology data glob
+# and the CI data graph). The added-law LATIN-DIVISION tooth is probes/quasigroup_law.rq.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:). The quasigroup
+# denotatum IRI is BYTE-IDENTICAL to bridges.ttl:121 (fnd:Quasigroup skos:exactMatch target) and
+# the latin-division axiom IRI is BYTE-IDENTICAL to bridges.ttl:174 (fnd:lawLatinDivision
+# skos:exactMatch target). Closure rank values are [D] derived off the [V] group closure axiom
+# skeleton with family:group -> family:quasigroup (task NAMING GROUND TRUTH). [D] = derived;
+# [S] = no runtime precedent -> §7.2 sign-off packet.
+#
+# ENGINE BRIDGE (design §5.1, honesty ledger). Quasigroup has NO engine anchor — the engine
+# carries only the flat subdomain:group collapse, and quasigroup's latin-division law has no
+# group-axiom realisation (commutative-monoid/abelian-group/quasigroup/loop are the honest-red
+# rungs, design §5.1). So NO seed:conservativeBridge/seed:exactMatch to the engine is minted;
+# proof-status is literature:backed, NOT finite:checked-from-engine. The additive alias edge
+# fnd:Quasigroup skos:exactMatch <this denotatum> already lives in bridges.ttl:120-122 and is NOT
+# duplicated here (bridge-never-duplicate, TODO-11). This file adds, on the theory record, only
+# the ADDITIVE historical/alias edges: @rel:historical:identity fnd:Quasigroup (+ the seed legacy
+# quasigroup IRI) and skos:closeMatch fnd:Quasigroup (Stage-2a additive; fnd:Quasigroup stays
+# byte-intact until the Stage-2b T-RETIRE).
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #1 mint-more-than-runtime : the theory record + the declaration-record model class have NO
+#      algebra precedent in the runtime (the runtime shows only the flat subdomain:group
+#      collapse) — minted per D24, PIVOTAL/pre-locked.
+#   theory     : class:theory / genus:presented (kingdom:definition:phylum:algebra) — UNATTESTED.
+#   model rec. : class:model / genus:governed / component:class — UNATTESTED (B4 Plane-1, §7.2 #10).
+#   #5 latin-division : class:division / genus:latin / species:unique on the latin-division axiom —
+#      genus:latin and species:unique are UNATTESTED in the runtime (design §1.5, §7.2 #5); the
+#      class:division token is likewise UNATTESTED (operations.ttl §7.2 note). TAGGED on the axiom.
+#   @rel D24   : @rel:validation:mode "finite:table" (4-value) + @rel:proof:status
+#      "literature:backed" (8-value) — the D24 validation-mode / proof-status vocab, no runtime
+#      precedent. Quasigroup's Latin-square law is a finite-table check (finite:table), not term
+#      rewriting.
+#   @typ       : @typ:declaration / @typ:gate — the plane-type tokens (design §2).
+#   authority  : "SYN" — quasigroup / lawLatinDivision are fnd:SYN (algebra_spine.ttl; design §7.4
+#      "latin=SYN"), synthesized cited standard universal algebra; quasigroup is NOT the DS-lifted
+#      rung (that is monoid alone).
+#   LOCKED (no sign-off): B1 adjective-first (n/a for quasigroup, no compound token); B4 two-planes;
+#      B3(a) additive Stage 2a (fnd:Quasigroup intact, bridges added; T-RETIRE is Stage 2b).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.4-1.10, §2, §5).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-QGRP).
+# Consumes (do not rewrite): records.ttl (rec:* classes), signatures.ttl (sigQuasigroup),
+# operations.ttl (product ·, left \, right /), spine/magma.ttl (magma theory, reduct parent),
+# bridges.ttl (fnd:Quasigroup, fnd:lawLatinDivision). Tooth: shapes/algebra.shapes.ttl
+# TheoryShape / ModelShape + probes/quasigroup_law.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+# =====================================================================================
+alg:quasigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:quasigroup:genus:presented:species:quasigroup:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "quasigroup theory (S,Omega,E)" ;
+    rel:notation   "quasigroup" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:quasigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:quasigroup:genus:presented:species:quasigroup:component:definition:instance:canonical" ;
+    rel:signature  alg:quasigroup:kingdom:definition:phylum:specification:class:signature:order:divisible:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:quasigroup:kingdom:axiom:phylum:operation:class:closure:order:binary:family:quasigroup:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:quasigroup:kingdom:axiom:phylum:operation:class:division:order:binary:family:quasigroup:genus:latin:species:unique:component:statement:instance:canonical ;
+    rel:reduct     alg:magma:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:magma:genus:presented:species:magma:component:definition:instance:canonical ;
+    rel:denotatum  alg:quasigroup:kingdom:type:phylum:algebra:class:quasigroup:order:binary:family:operation:genus:axiomatic:species:quasigroup:component:type:instance:canonical ;
+    rel:assignment alg:quasigroup:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:quasigroup:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:Quasigroup , <urn:silmaril:ontology:primordial:algebra:structure:quasigroup> ;
+    skos:closeMatch fnd:Quasigroup ;
+    rdfs:comment "[S] The presented quasigroup THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6): S,Omega = @rel:signature sigQuasigroup (signatures.ttl:110, Sigma={·,\\,/} — the divisible signature: product plus left division \\ and right division / , the equational carriers of total unique division); E = @rel:equation the TWO members {closure, latin-division} — closure inherited from magma and restated at family:quasigroup, latin-division the SINGLE law quasigroup adds over magma (one-law-per-child, algebra_spine.ttl:99-103). BOTH laws are STRUCTURAL axioms (membership/totality; total-and-unique-division/Latin-square), NOT single left=right equations, so neither splits into reified equation records (contrast the monoid two-sided identity, design §1.6) and this rung mints ZERO rec:equation:record individuals (like magma). It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 quasigroup denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the MAGMA theory (the forgetful theory-morphism quasigroup->magma, design §1.9-1.10: the division sub-family branches off MAGMA, NOT monoid; the magma theory atom lives on disk at spine/magma.ttl:86 and this edge resolves against it). D24 first-class metadata: @rel:validation:mode 'finite:table' (the 4-value law-witness mode — the Latin-square / unique-division law is witnessed by a finite Cayley table where each row and column is a permutation, fixtures/quasigroup_pos.ttl, NOT by term rewriting; the same mode magma's closure carries) and @rel:proof:status 'literature:backed' (the 8-value status — quasigroup has NO engine anchor, so it is honest-red BUILD: cited standard universal algebra, NOT finite:checked-from-engine, design §5.1). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24: 'Quasigroup was not authored by an executor; the QuasigroupTheoryRecord was'). @rel:authority 'SYN' because fnd:Quasigroup and fnd:lawLatinDivision are fnd:SYN (synthesized cited standard universal algebra, design §7.4 'latin=SYN') — quasigroup is NOT the DS-lifted rung (that is monoid alone, algebra_spine.ttl:36). Historical-identity BRIDGES: @rel:historical:identity fnd:Quasigroup and the seed legacy IRI urn:silmaril:ontology:primordial:algebra:structure:quasigroup; skos:closeMatch fnd:Quasigroup (Stage-2a ADDITIVE — fnd:Quasigroup stays intact; the additive alias fnd:Quasigroup skos:exactMatch this denotatum already lives in bridges.ttl:120-122 and is NOT duplicated; quasigroup has NO engine seed:conservativeBridge, honest-red BUILD; T-RETIRE stubs fnd:Quasigroup in Stage 2b). NO theorem/certificate plane: division-uniqueness is quasigroup's defining axiom, not a derived theorem to certify (D20 honesty, matching spine/magma.ttl). Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision). [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object, NO provenance. [D]
+#      BYTE-IDENTICAL to bridges.ttl:121 (fnd:Quasigroup skos:exactMatch target).
+# =====================================================================================
+alg:quasigroup:kingdom:type:phylum:algebra:class:quasigroup:order:binary:family:operation:genus:axiomatic:species:quasigroup:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "quasigroup" ;
+    rel:notation   "quasigroup" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:quasigroup:kingdom:type:phylum:algebra:class:quasigroup:order:binary:family:operation:genus:axiomatic:species:quasigroup:component:type:instance:canonical" ;
+    rdfs:comment "[D] The quasigroup DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a quasigroup' itself — a magma whose binary operation admits total unique left and right division (equivalently, a set whose Cayley table is a Latin square) — carrying its canonical @rel:identifier and @rel:notation ONLY, and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes — and is BYTE-IDENTICAL to bridges.ttl:121 (fnd:Quasigroup skos:exactMatch this denotatum) so the merged alias map resolves and SP1/SP2/SP3 inbound fnd:Quasigroup references stay reachable through the fold. Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. Rank values [D] off the [V] group denotatum skeleton (bridges.ttl:81) with subdomain/family group -> quasigroup; class:quasigroup / species:quasigroup track the rung." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction
+#      bundle + provenance + disjointness teeth). [S] class:model/genus:governed/component:class
+# =====================================================================================
+alg:quasigroup:kingdom:class:phylum:algebra:class:model:order:declarative:family:quasigroup:genus:governed:species:quasigroup:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "quasigroup model class" ;
+    rel:notation "quasigroup model" ;
+    rel:denotes alg:quasigroup:kingdom:type:phylum:algebra:class:quasigroup:order:binary:family:operation:genus:axiomatic:species:quasigroup:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    owl:disjointWith alg:loop:kingdom:class:phylum:algebra:class:model:order:declarative:family:loop:genus:governed:species:loop:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The quasigroup MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness tooth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction, closure.ttl has 13) makes 'a quasigroup is a set with exactly one carrier and exactly one binary operation admitting unique division' a graph fact via cardinality-1 owl:Restriction on @rel:carrier and @rel:operation (the closure.ttl datatype:record cardinality idiom). NOTE it carries NO @rel:identity:element restriction (unlike the monoid/loop model-records): a quasigroup has NO distinguished identity element — a two-sided identity is precisely the law LOOP adds over quasigroup — so the quasigroup model plane is deliberately identity-free (matching the magma/semigroup model-records, spine/magma.ttl:122, spine/semigroup.ttl:116). owl:disjointWith the (Stage-2b) LOOP model-record class is the D25 homonym/distinction tooth at the DECLARATION-RECORD plane: the canonical quasigroup declaration record and the canonical loop declaration record are DISTINCT records (not an extensional-structure disjointness claim — extensionally every loop IS a quasigroup; on the record plane no single declaration record is both), authored now as a forward reference to the loop model IRI (T-LOOP mints the class in Stage 2b; the disjointness triple stands regardless — mirrors magma.ttl:131 forward-referencing the semigroup model and monoid.ttl:113 the group model). Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete model can be typed against it) AND a rec:model:record / rec:declaration:record (so the ModelShape sh:targetClass tooth counts it as a data-graph focus node and the runner's 0-focus gate is satisfied) — OWL2 metaclass punning, exactly as spine/progenitor.ttl and spine/magma.ttl, and DISTINCT from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids. On this focus the ModelShape identity sh:sparql tooth is vacuously satisfied (the class declares no @rel:identity:element / reified cells); the finite Latin-square model witnesses in fixtures/ are where the latin-division probe bites. [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM record — CLOSURE (design §2c, §1.5 — minimal, NO denotatum/gate/
+#     provenance, NO certificate). Closure is a membership/totality axiom, NOT a left=right
+#     equation, so it is rec:axiom:record ONLY (never rec:equation:record) and carries NO
+#     @rel:left/@rel:right. Rank values VERBATIM off the [V] group closure axiom with
+#     family:group -> family:quasigroup. Inherited from magma, restated at family:quasigroup
+#     (design §2a) so this rung's theory E is self-contained.
+# =====================================================================================
+alg:quasigroup:kingdom:axiom:phylum:operation:class:closure:order:binary:family:quasigroup:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "quasigroup closure" ;
+    rel:notation "for all x,y in S: x·y in S" ;
+    rdfs:comment "[D] The CLOSURE / totality axiom of the quasigroup theory (rec:axiom:record) — inherited from magma and restated at family:quasigroup, one of the two members of this rung's equation set E (this file's theory @rel:equation): the binary product · is a total function S,S -> S, so for all x,y in the carrier S the product x·y is defined and lies in S. A membership/totality statement, NOT a left=right equation — so it is an axiom record only, NOT a rec:equation:record (unlike monoid's associativity/identity), and carries NO @rel:left/@rel:right; consequently this rung mints ZERO reified equation records. Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (an axiom is asserted, not proved — axiom != theorem is structural, and rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119). Rank values VERBATIM off the [V] group closure axiom (HEAD+group:kingdom:axiom:phylum:operation:class:closure:order:binary:family:group:genus:product:species:membership:component:statement:instance:canonical, genus:product:species:membership, task NAMING GROUND TRUTH / bridges.ttl:98,170) with family:group -> family:quasigroup. Closure is teeth-proved together with latin-division by probes/quasigroup_law.rq over the fixtures/ finite-table witnesses; a Latin square is necessarily closed, so the positive Latin-square table returns 0 rows and the single-cell violation reddens." .
+
+# =====================================================================================
+# (c') ADDED-LAW AXIOM record — LATIN-DIVISION (design §1.5, §2c; the SINGLE law quasigroup adds
+#      over magma). A total-and-unique-division / Latin-square STRUCTURAL statement over the whole
+#      table, NOT a single left=right equation, so it is rec:axiom:record ONLY (never
+#      rec:equation:record) and carries NO @rel:left/@rel:right. [S] genus:latin / species:unique /
+#      class:division are UNATTESTED (§7.2 #5) — TAGGED. BYTE-IDENTICAL to bridges.ttl:174
+#      (fnd:lawLatinDivision skos:exactMatch target).
+# =====================================================================================
+alg:quasigroup:kingdom:axiom:phylum:operation:class:division:order:binary:family:quasigroup:genus:latin:species:unique:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "quasigroup latin-division" ;
+    rel:notation "for all a,b in S: exist UNIQUE x,y in S with a·x = b and y·a = b" ;
+    rdfs:comment "[S] The LATIN-DIVISION axiom of the quasigroup theory (rec:axiom:record) — the SINGLE law quasigroup adds over magma (one-law-per-child, algebra_spine.ttl:99-103) and the second member of the theory's equation set E: for all a,b in the carrier S there exist UNIQUE x,y in S with a·x = b (unique LEFT division, x = a\\b) and y·a = b (unique RIGHT division, y = b/a). Equivalently the Cayley table is a LATIN SQUARE — every element of S occurs exactly once in each row and exactly once in each column — which is why the divisible signature sigQuasigroup carries the two division symbols \\ and / (signatures.ttl:110, operations.ttl left/right division) as the equational carriers of total unique division. It is a total-and-unique-division / uniqueness statement over the WHOLE table, NOT a single left=right equality, so it is typed rec:axiom:record ONLY (never rec:equation:record) and carries NO @rel:left/@rel:right — this rung mints ZERO reified equation records (like magma closure, design §1.5). Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (the uniqueness IS asserted here as the defining axiom, not derived — so quasigroup has no theorem/certificate plane, D20 honesty). This IRI is BYTE-IDENTICAL to bridges.ttl:174 (fnd:lawLatinDivision skos:exactMatch this axiom) so the merged alias map resolves. [S] TOKENS: genus:latin and species:unique are UNATTESTED in the verified runtime (0 aob dirs; design §1.5 / §7.2 #5); the class:division token is likewise UNATTESTED (0 aob dirs; operations.ttl §7.2 note). All three are design-default tokens carried at the design value and flagged for the maintainer §7.2 sign-off packet (T-PANEL). Its added-law status is teeth-proved by probes/quasigroup_law.rq (the unique-division / Latin-square tooth) over the fixtures/ finite-table witnesses: the positive Latin square returns 0 rows, the single-cell division-collision negative returns >=1 row." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:quasigroup:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:quasigroup:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "quasigroup declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:quasigroup:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:quasigroup:genus:reconciled:species:quasigroup:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the quasigroup declaration was RECONCILED against its denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the quasigroup rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the quasigroup declaration is reconciled, not merely asserted." .
+
+# =====================================================================================
+# BRIDGES (design §5, the quasigroup-rung historical/alias edges — Stage-2a ADDITIVE). The
+# additive alias fnd:Quasigroup skos:exactMatch <quasigroup denotatum> and fnd:lawLatinDivision
+# skos:exactMatch <latin-division axiom> already live in bridges.ttl:120-122,174 and are NOT
+# duplicated here (bridge-never-duplicate, TODO-11). Quasigroup has NO engine anchor (honest-red
+# BUILD, design §5.1), so NO seed:conservativeBridge is minted. The edges on the theory record
+# above are: @rel:historical:identity fnd:Quasigroup, @rel:historical:identity <seed legacy
+# quasigroup IRI>, skos:closeMatch fnd:Quasigroup — keeping SP1/SP2/SP3 fnd:Quasigroup refs
+# resolvable THROUGH the folded rung while fnd:Quasigroup stays byte-intact until Stage-2b T-RETIRE.
+# =====================================================================================
