@@ -123,10 +123,18 @@ primordials.yaml:395-402` (ABSTRACT VALUE `true`). This is exactly `fnd:Algebrai
 | quasigroup | `quasigroup` | `quasigroup:kingdom:type:phylum:algebra:class:quasigroup:order:binary:family:operation:genus:axiomatic:species:quasigroup:component:type:instance:canonical` | `[D]` |
 | loop | `loop` | `loop:kingdom:type:phylum:algebra:class:loop:order:binary:family:operation:genus:axiomatic:species:loop:component:type:instance:canonical` | `[D]` |
 
-Compound order `monoid:commutative` / `group:abelian` follows the reference (`monoid:commutative`
-2 occ, `commutative:monoid` 0; `group:abelian` 4 occ, `abelian:group` 0 — `R1_naming_grammar.md §4`,
-`design_constraints.md:524-530`). The multi-segment subdomain value is consistent with the runtime's
-own `subdomain:bit:width` / `subdomain:open:set` idiom but has no algebra precedent to copy — §7.
+Compound-token ORDER is **OPEN (§7.2 #9) — the two named authorities disagree and it is D26-locked +
+re-mint-expensive.** Honest disclosure of both corpora (B1): the doctrine file
+`silmaril.final.consolidated.ttl` has `group:abelian` 4 / `abelian:group` 0 and `monoid:commutative` 2 /
+`commutative:monoid` 0 (→ the adjective-LAST order shown in the table); BUT the **verified runtime**
+(`refcomp/zip/silmaril/ontology/consolidated.ttl`, which D26's header calls *canonical*) has
+`group:abelian` 0 / `abelian:group` 47 and `monoid:commutative` 0, and across all of `refcomp/`
+`abelian:group` occurs 1156 times (→ adjective-FIRST). D26's own natural-language principle
+(`natural:transformation` = adjective→noun, `design_constraints.md:524-527`) ALSO points to
+`abelian:group` / `commutative:monoid`. The task-prompt's D26 gloss lists `group:abelian`, so the
+doctrine reading is defensible. The table below tentatively shows the doctrine-file order; a maintainer
+ruling (§7.2 #9) settles it before minting. The multi-segment subdomain value itself is consistent with
+the runtime's `subdomain:bit:width` / `subdomain:open:set` idiom but has no algebra precedent to copy.
 
 ### 1.5 Added-law axiom atoms — descent `kingdom:axiom:phylum:operation:class:<law>:order:binary:family:<theory>:genus:<role>:species:<leaf>:component:statement:instance:canonical`
 
@@ -316,8 +324,11 @@ the denotatum ("Group was not authored by an executor; the GroupTermRecord was")
 **Intensional record CLASSES (the OWL the consolidated stubs lack).** Mint `<…seed:species:theory:
 record> a owl:Class ; rdfs:subClassOf [owl:Restriction; owl:cardinality 1; owl:onProperty
 <@rel:signature>], [owl:Restriction; owl:minCardinality 1; owl:onProperty <@rel:equation>],
-<…specimen:record>`. Equation record class = cardinality-1 on `<@rel:left>` AND `<@rel:right>`
-(`closure.ttl:153-169`). `axiom:record owl:disjointWith theorem:record` (`closure.ttl:431-433`).
+<…specimen:record>`. The equation record class applies the **`datatype:record` cardinality-restriction
+idiom** (`closure.ttl:153-169` is the `datatype:record` class — cardinality on facets/lexical/value;
+the reference has NO `equation:record` `owl:Class`, and `left`/`right` appear only as instance triples
+`:182-211`) as the PATTERN: cardinality-1 on `<@rel:left>` AND `<@rel:right>`.
+`axiom:record owl:disjointWith theorem:record` (`closure.ttl:431-433`).
 
 **MONOID rung assembly (the complete atom set).** 1 theory record + 1 signature record (sigMonoid,
 `@rel:operation:symbol "· : S,S→S"`, `"e : →S"`, mirrors `algebra_spine.ttl:187-193`) + 3 axiom
@@ -391,7 +402,8 @@ the *mathematics* 12-marker ladder; gate/clause specs mint the *core:entity* gat
 verbatim from the reference (§7).
 
 **SHACL pair per class (the tooth shape).** Every rung/theory/model gets a NodeShape with
-`sh:targetClass` (**NEVER `sh:targetNode`** — reference: 33 targetClass / 0 targetNode; the existing
+`sh:targetClass` (**NEVER `sh:targetNode`** — reference: `closure.ttl` 4 targetClass / 0 targetNode,
+`consolidated.shacl.ttl` 33 targetClass / 0 targetNode; the existing
 primordial `ByteWidthShape`/`OctetOrdinalShape` at `shapes.ttl:169-177` use targetNode and are the
 anti-pattern the algebra subtree must NOT copy) carrying (i) property shapes min1/max1 coordinate
 separation (like `ClassDeclarationShape`, `shapes.ttl:11-17`) and (ii) a `sh:sparql` non-vacuity +
@@ -399,19 +411,30 @@ identity-collision probe (`IdentitySeparationShape` idiom, `shapes.ttl:276-282`)
 shapes each with a fixture pair: TheoryShape (names S/Ω/E), ModelShape, ReductShape, EquationRecordShape
 (two-sided = 2 records), CarrierGroundingShape, ProofStatusShape (8-value), ValidationModeShape
 (4-value), ProvenanceShape, BridgeShape, DifferentFromWitnessShape. Theorem/axiom collapse = a SHACL
-violation.
+violation. **Prefix gotcha (executor):** the fold tree labels the SHACL namespace `constraint:` and
+`model:` = `urn:silmaril:primordial:type:` (`shapes.ttl:1-3`) while `closure.ttl` labels it `sh:` — same
+IRIs, so pyshacl is unaffected, but author against the fold-tree's actual prefix labels, not a spurious
+`sh:` mismatch.
 
 **CI lockstep (the vacuity trap — highest risk).** The committed
-`basicttl/foundation/checks/run-foundation-checks.sh` globs ONLY `basicttl/foundation/*.ttl` (line 76);
+`basicttl/foundation/checks/run-foundation-checks.sh` globs ONLY `basicttl/foundation/*.ttl` (line 70)
+for the SP0 slice AND builds the merged SP0+SP1+SP2+SP3 graph the alias map must stay green in;
 `ci.yml:13-27` drives it; `basicttl/primordial/type/**` is in NO runner. PLAN:
+0. **Extend `run-foundation-checks.sh`'s SP0 discovery** (B2 fix — the folded tower must live in the
+   SAME merged graph the alias map is validated in, else the `aob:SealedGroup -> fnd:Group -> new IRI`
+   promise is tested in no single graph). Add `basicttl/primordial/type/algebra/**/*.ttl` (except
+   `*.shapes.ttl`, except `fixtures/**`) to the SP0 loader so the merged graph CONTAINS the folded
+   algebra spine. `run-foundation-checks.sh` is therefore IN the write scope (a lockstep file), alongside
+   the new runner, `ci.yml`, and `dag_instances.ttl`.
 1. Author `basicttl/primordial/type/algebra/checks/run-algebra-checks.sh` that (a) auto-discovers
-   `basicttl/primordial/type/algebra/**/*.ttl` (except `*.shapes.ttl`) as the data graph and validates
-   it against the algebra shapes graph with pyshacl; (b) **explicitly iterates `fixtures/`** — asserts
-   every positive conforms, every negative does NOT conform (else RED), and the empty control REJECTs —
-   so witnesses outside the data glob cannot go silent; (c) **FAILs any declared shape with zero focus
-   nodes** (invert `run-foundation-checks.sh:90-102`'s skip-when-no-shapes logic: 0-focus =
-   unexercised, not passing); (d) recomputes every algebra count from disk and asserts
-   `== manifest N_manifest` (V6).
+   `basicttl/primordial/type/algebra/**/*.ttl` (except `*.shapes.ttl`, except `fixtures/**`) as the data
+   graph and validates it against the algebra shapes graph with pyshacl; (b) **explicitly iterates
+   `fixtures/`** — asserts every positive conforms, every negative does NOT conform (else RED), and the
+   empty control REJECTs — so witnesses outside the data glob cannot go silent; (c) **FAILs any declared
+   shape with zero focus nodes** (invert `run-foundation-checks.sh:90-102`'s skip-when-no-shapes logic:
+   0-focus = unexercised, not passing); (d) recomputes every algebra count from disk and asserts
+   `== manifest N_manifest` (V6). This runner owns the algebra-specific shapes/fixtures/gates; step 0's
+   extension owns the merged-graph coherence.
 2. Extend `ci.yml`: add the runner as a step in `ontology-floors` (or a sibling job gated identically),
    keep the ≥200-char `rdfs:comment` depth gate (`run-foundation-checks.sh:148-149`) over the folded
    algebra classes.
@@ -532,6 +555,19 @@ locked up front):
    equation` records.
 8. **Two-ladder split** — algebra rungs on the *mathematics* 12-marker ladder, gate/clause specs on the
    *core:entity* gate ladder (both verbatim from the reference) — confirm per layer.
+9. **Compound-token order (B1) — `abelian:group` vs `group:abelian` / `commutative:monoid` vs
+   `monoid:commutative`.** The two named authorities DISAGREE: the doctrine file
+   `silmaril.final.consolidated.ttl` → adjective-LAST (`group:abelian`, 4 occ); the verified runtime
+   (`refcomp/zip/silmaril/ontology/consolidated.ttl`, 1156 `abelian:group` across `refcomp/`) + D26's
+   natural-language `natural:transformation` principle → adjective-FIRST (`abelian:group`). D26-locked,
+   re-mint-expensive, threads through the comm-monoid + abelian rungs' subdomain/family/species/axiom
+   values everywhere. *Pivotal naming lock.*
+10. **Model-class plane (B4) — one IRI or two.** §1.4 names each model class as the runtime's
+    `kingdom:type:…:component:type` atom (group `[V]`); §2b mints the monoid model class as a DIFFERENT
+    `kingdom:class:…:model:…:component:class` IRI `[S]`. Decide: (a) the runtime `kingdom:type` atom IS
+    the model denotatum (one IRI; §2b's form dropped), or (b) `kingdom:type` = the denotatum plane and
+    `kingdom:class:…:model` = a distinct declaration-record plane (two IRIs, named consistently). Re-mint-
+    expensive.
 
 Plus two build obligations the plan flags but cannot discharge: **V7 provenance closure**
 (executor≥1 AND shadow≥1) must be BUILT from scratch (reference `governance/` empty), and **the
@@ -545,3 +581,38 @@ every shape has ≥1 focus node; every negative fixture flips RED under injectio
 `N_manifest == N_materialized` recomputed from disk; `aob:SealedGroup rdfs:subClassOf fnd:Group` still
 resolves through the alias map; the provenance job green under a signed reshape commit. Only then does
 the template fan out.
+
+### 7.4 Shadow-blocker resolutions (B1–B4)
+
+The planner/validator shadow returned FAIL(conditional) on four blocking issues. Dispositions:
+
+- **B1 (naming corpus conflict) — RESOLVED to honest disclosure + escalation.** §1.4 now discloses BOTH
+  corpora truthfully and no longer asserts a uniform "abelian:group 0". The order is routed to §7.2 #9
+  for a maintainer ruling; nothing is minted until it is locked.
+- **B2 (fold validated in isolation) — RESOLVED in design.** §4 step 0 extends
+  `run-foundation-checks.sh`'s SP0 loader to include `basicttl/primordial/type/algebra/**/*.ttl`, so the
+  folded tower lives in the SAME merged SP0+SP1+SP2+SP3 graph the alias map is validated in;
+  `run-foundation-checks.sh` is added to the write scope. `run-algebra-checks.sh` keeps the
+  algebra-specific shapes/fixtures/gates. The `aob:SealedGroup → fnd:Group → new IRI` promise is now
+  exercised in one graph.
+- **B3 (retire-vs-duplicate) — DISPOSITION PROPOSED, maintainer-gated.** TODO-11 (bridge-never-duplicate)
+  forbids two towers asserting the same math content at once. Three Pass-1 options: **(c) additive-
+  authoritative-bridge [RECOMMENDED]** — the folded tower is authoritative; `algebra_spine.ttl` is edited
+  so its `fnd:` rungs become thin bridge STUBS (`owl:equivalentClass`/`skos:exactMatch` to the new IRIs,
+  math content stripped), keeping SP1/SP2/SP3's `subClassOf fnd:*` edges resolvable while content lives in
+  ONE place; scope expands to `algebra_spine.ttl` (already an SP0 file) + `run-foundation-checks.sh` (B2).
+  **(b) additive keep-both, retire deferred** — mint the new tower, leave `algebra_spine.ttl` intact;
+  transient TODO-11 duplication during Pass 1, retire in Pass 2. **(a) true full retire** — like (c) but
+  also redirect every inbound edge now (largest Pass-1 blast). Recommendation (c) fixes B3 + B2 together
+  and is doctrinally clean; the choice is §7.2-gated because it sets the Pass-1 blast radius.
+- **B4 (model-class IRI inconsistency) — ESCALATED.** Routed to §7.2 #10; the two "model class" IRIs are
+  reconciled to one plane-choice before minting.
+
+**Non-blocking notes folded in:** §4 glob cite corrected 76→70; §4 targetClass counts split
+(`closure.ttl` 4 / `consolidated.shacl.ttl` 33); §2 equation-record class re-cited as the `datatype:record`
+restriction idiom (no `equation:record` class exists in the reference); SHACL prefix-label gotcha flagged
+for the executor. Continuity: the `q_monoid_is_endo` "monoid = one-object category" tooth
+(`algebra_spine.ttl:445`) is **explicitly DEFERRED** to the category fan-out (it is a Pillar-4 seam,
+outside the one-operation spine) — recorded so it is not silently dropped. Authority granularity: the
+per-atom DS/PD/SYN tags (`algebra_spine.ttl`, 151 tags — associativity/identity=PD, inverse/latin/
+commutativity=SYN) carry onto the folded `@rel:authority` per record.

@@ -24,7 +24,10 @@
   the fixed head `urn:silmaril:type:graph:instance:instruction:code:property:` — verified verbatim in the
   aob corpus, e.g. group closure axiom on disk at
   `refcomp/tar/bash/aob/urn/silmaril/type/graph/instance/instruction/code/property/domain/mathematics/realm/algebra/subdomain/group/kingdom/axiom/phylum/operation/class/closure/order/binary/family/group/genus/product/species/membership/component/statement/instance/canonical/atom.spec.yaml`.
-  Segment order = natural-language (`monoid:commutative`, `group:abelian`); final marker pair =
+  Segment order = natural-language; the compound-token ORDER (`abelian:group` vs `group:abelian` /
+  `commutative:monoid` vs `monoid:commutative`) is **OPEN — §7.2 #9, B1**: the doctrine file →
+  adjective-last, the verified runtime (1156 occ) + D26's natural-language principle → adjective-first;
+  a maintainer ruling precedes minting. Final marker pair =
   `component:instance` (NOT the drop's `specimen:instance`). Directory PLACEMENT is under
   `basicttl/primordial/type/algebra/**`; the short primordial root `urn:silmaril:primordial:type:` is
   **bridged to, never minted under** (placement ≠ IRI root).
@@ -44,9 +47,14 @@
   no runtime precedent are `[S]` and routed to §7.2 sign-off (see design §7.2, carried in T-BRIDGE + the
   PANEL task).
 - **CI lockstep is mandatory (D25; verified).** `.github/workflows/ci.yml:27` runs
-  `basicttl/foundation/checks/run-foundation-checks.sh`, whose data glob is `basicttl/foundation/*.ttl`
-  ONLY (`run-foundation-checks.sh:70`). `basicttl/primordial/type/**` is in NO runner. Folding here +
-  moving witnesses to `fixtures/` goes VACUOUS unless a runner + CI discovery + gates move in lockstep.
+  `basicttl/foundation/checks/run-foundation-checks.sh`, whose SP0 data glob is `basicttl/foundation/*.ttl`
+  ONLY (`run-foundation-checks.sh:70`) — and which ALSO builds the merged SP0+SP1+SP2+SP3 graph.
+  `basicttl/primordial/type/**` is in NO runner. Folding here + moving witnesses to `fixtures/` goes
+  VACUOUS unless a runner + CI discovery + gates move in lockstep. **B2 fix:** T-INFRA extends
+  `run-foundation-checks.sh`'s SP0 loader to also discover `basicttl/primordial/type/algebra/**/*.ttl`
+  (excl. `*.shapes.ttl`, `fixtures/**`), so the folded tower lives in the SAME merged graph the alias map
+  is validated in — otherwise the `aob:SealedGroup → fnd:Group → new IRI` promise is tested in no single
+  graph. That makes `run-foundation-checks.sh` a lockstep file (in write scope).
 - **Notation.** `HEAD` = `urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:`.
   Every algebra IRI = `HEAD` + a tail. `[V]`=grep-confirmed verbatim; `[D]`=derived from the group
   skeleton; `[S]`=no runtime precedent → §7.2 sign-off. `@P`=`urn:silmaril:type:graph:instance:instruction:code:property`;
@@ -84,8 +92,11 @@ Dependency order: **T-INFRA → T-CLASSES → {T-BRIDGE, T-SIG-OP} → T-PROG �
 GATE) → {T-MAGMA, T-SEMI, T-CMON, T-GROUP, T-ABEL, T-QGRP, T-LOOP} (parallel) → T-REDUCT → T-SHAPES →
 T-FIX → T-GATES → T-MANIFEST → T-PROV → T-INTEGRATION → T-PANEL.** Each task = one executor E# + one
 tandem shadow S# (parallel executors listed run only with their own shadow). All executors write ONLY
-under `basicttl/primordial/type/algebra/**` (+ the three lockstep files named in T-INFRA); no other
-ontology floor is edited; the merged SP0+SP1+SP2+SP3 graph must stay green (design §5.2).
+under `basicttl/primordial/type/algebra/**` (+ the lockstep files named in T-INFRA:
+`run-algebra-checks.sh`, `ci.yml`, `dag_instances.ttl`, and — B2 — `run-foundation-checks.sh` whose SP0
+loader is extended to discover the folded tree); if B3 disposition **(c)** is locked (§7.4/§7.2), the SP0
+file `basicttl/foundation/algebra_spine.ttl` also enters scope (its `fnd:` rungs demoted to bridge
+stubs). No SP1/SP2/SP3 floor is edited; the merged SP0+SP1+SP2+SP3 graph must stay green (design §5.2).
 
 ---
 
@@ -97,7 +108,9 @@ self-checks `:157-361`, citation gate `:363-560`); `ci.yml:13-27,109-119`. *Prod
 `basicttl/primordial/type/algebra/checks/run-algebra-checks.sh`; a new step in `ci.yml`; the empty
 scaffold `basicttl/primordial/type/algebra/{shapes/algebra.shapes.ttl,manifests/,fixtures/,probes/}`.
 **Target files.** `basicttl/primordial/type/algebra/checks/run-algebra-checks.sh` (NEW);
-`.github/workflows/ci.yml` (EDIT — add step/job); empty `shapes/algebra.shapes.ttl`.
+`basicttl/foundation/checks/run-foundation-checks.sh` (EDIT — B2: extend the SP0 loader to discover
+`basicttl/primordial/type/algebra/**/*.ttl` excl. `*.shapes.ttl`/`fixtures/**`, so the folded tower is in
+the merged graph); `.github/workflows/ci.yml` (EDIT — add step/job); empty `shapes/algebra.shapes.ttl`.
 **RED (failing-probe-first).** Author the runner to (a) auto-discover `basicttl/primordial/type/algebra/**/*.ttl`
 (except `*.shapes.ttl`, except `fixtures/**`) as the data graph and validate against
 `shapes/algebra.shapes.ttl` with pyshacl; (b) iterate `fixtures/` asserting every `positive.ttl` conforms,
@@ -126,7 +139,9 @@ required `owl:disjointWith` pairs; run it before authoring → 0 rows / fail.
 bridge-never-duplicate), the algebra record classes: `theory:record` (`owl:Restriction` cardinality-1 on
 `@rel:signature` + minCardinality-1 on `@rel:equation` + parent `specimen:record`); `model:record`
 (cardinality-1 on `@rel:carrier`, `@rel:operation`); `signature:record`; `equation:record` (cardinality-1
-on `@rel:left` AND `@rel:right`, per `closure.ttl:153-169`); `reduct:record`; REUSE `closure.ttl`'s
+on `@rel:left` AND `@rel:right`, applying the `datatype:record` cardinality-restriction idiom
+`closure.ttl:153-169` — the reference has NO `equation:record` class; `left`/`right` are instance triples
+`:182-211`); `reduct:record`; REUSE `closure.ttl`'s
 `axiom:record`/`theorem:record`/`certificate` verbatim as `rdf:type` targets. Assert
 `axiom:record owl:disjointWith theorem:record` (theorem/axiom collapse = SHACL violation, design §2f).
 Each class ≥200-char `rdfs:comment`. **Probe:** collapse `equation:record`'s max-1-`left` restriction →
@@ -216,9 +231,13 @@ identity, `family:monoid` off the `[V]` group rank values); the identity split i
 (`…species:member:left`/`…:member:right`[S], `closure.ttl:185-192` precedent) + associativity = ONE equation;
 1 model class (carrier + identity:element cardinality-1, `owl:disjointWith` the group model); 1 theorem
 (identity-uniqueness) + certificate (digest + proof-method, NEVER an axiom); the Declaration/Denotatum/Gate
-triad; `fixtures/monoid_z2.ttl` (positive, `finite:checked`); 3 bridges. **Probe:** remove one identity case
-→ the two-sided (obligation-count 2) tooth (T-REDUCT) will RED; the broken-row negative already REDs. On
-GREEN + sign-off, the pattern is locked. **E6 / S6.**
+triad; `fixtures/monoid_z2.ttl` (positive, `finite:checked`); 3 bridges. **Continuity (no silent drop):**
+the `q_monoid_is_endo` / `fnd:MonoidIsEndoShape` / `fnd:endoMonoidWitness` "monoid = one-object category"
+tooth (`algebra_spine.ttl:445`) is a Pillar-4 category SEAM, outside the one-operation spine — it is
+**explicitly DEFERRED to the category fan-out** (recorded here + in design §7.4 so the exemplar rung does
+not appear to lose it). **Probe:** remove one identity case → the two-sided (obligation-count 2) tooth
+(T-REDUCT) will RED; the broken-row negative already REDs. On GREEN + sign-off, the pattern is locked.
+**E6 / S6.**
 
 ### T-MAGMA — magma rung (after sign-off)
 **Interfaces.** *Consumes:* T-MONOID template, sigOneBinary, closure axiom `[D]`. *Produces:* `spine/magma.ttl`,
@@ -333,8 +352,10 @@ both sides → GREEN. **E14 / S14.**
 **Interfaces.** *Consumes:* `shapes.ttl:11-17` (`ClassDeclarationShape` = the min1/max1 coordinate-separation
 targetClass idiom to COPY) vs `shapes.ttl:169-177` (`ByteWidthShape`/`OctetOrdinalShape` targetNode = the
 anti-pattern the algebra subtree must NOT copy) + `:276-282` (`IdentitySeparationShape` = the `sh:sparql`
-non-vacuity/identity-collision idiom); `closure.ttl` 33 targetClass / 0 targetNode; `consolidated.shacl.ttl`
-gate-uniqueness `sh:select`. *Produces:* the complete `shapes/algebra.shapes.ttl`.
+non-vacuity/identity-collision idiom); `closure.ttl` 4 targetClass / 0 targetNode, `consolidated.shacl.ttl`
+33 targetClass / 0 targetNode + its gate-uniqueness `sh:select`; the fold tree's SHACL prefix labels
+(`constraint:`/`model:` = `urn:silmaril:primordial:type:`, `shapes.ttl:1-3` — same IRIs as `sh:`, author
+against the actual labels). *Produces:* the complete `shapes/algebra.shapes.ttl`.
 **Target files.** `basicttl/primordial/type/algebra/shapes/algebra.shapes.ttl`.
 **RED.** Each shape authored against a purpose-built negative fixture (from the rung tasks + T-FIX) that
 must flip conforms True→False; before the shape is authored the probe is unexercised (0-focus → REJECT under
@@ -421,7 +442,8 @@ step drift → RED.
 every negative fixture flips RED under injection, `empty ⇒ REJECT`; (2) `N_manifest == N_materialized`
 recomputed from disk; (3) `aob:SealedGroup rdfs:subClassOf fnd:Group` STILL resolves through the alias map,
 and every SP1/SP2/SP3 `groundsIn*`/`subClassOf fnd:*` inbound edge re-validates (merged SP0+SP1+SP2+SP3
-graph green via `run-foundation-checks.sh`); (4) `ci.yml` is coherent — the new algebra runner step present,
+graph green via `run-foundation-checks.sh` — now that T-INFRA step 0 extends its SP0 loader to include the
+folded tree, so this is exercised in ONE graph, B2); (4) `ci.yml` is coherent — the new algebra runner step present,
 the depth gate covers the folded classes, the provenance job green; (5) the reshape commit is signed under
 `silm:signing_key_claude_2026` (fp `27044DC503CD3A5EE470CE4E15B79D364040C858`, `silm:trust_policy_agent`) —
 `keys/trust-manifest.txt` is GENERATED from the `.ttl`, regenerated by the executor. **Probe:** unsign the
@@ -451,6 +473,11 @@ The build is re-mint-expensive if any of these 8 change post-materialisation; ea
 [PIVOTAL]; (2) left/right side-segment placement (6 atoms + 2 extension morphisms); (3) `order:nullary`;
 (4) reduct tokens `order:forgetful`+`genus:theory`; (5) quasigroup `genus:latin`+`species:unique`;
 (6) signature `genus:algebraic` + extension `genus:obligation`/`species:count:two`; (7) equation-identity
-(reuse axiom atom vs mint `component:equation`); (8) two-ladder split. Plus two build obligations flagged but
-not discharged by the plan: V7 provenance closure (T-PROV, BUILT from scratch) and predicate-unification
-(`@rel:*` ↔ `closure.ttl` `ns3:*` `owl:equivalentProperty`/`rdfs:subPropertyOf`, T-BRIDGE).
+(reuse axiom atom vs mint `component:equation`); (8) two-ladder split; **(9) compound-token order (B1) —
+`abelian:group`/`commutative:monoid` (runtime-canonical + D26 natural-language) vs `group:abelian`/
+`monoid:commutative` (doctrine file); PIVOTAL naming lock**; **(10) model-class plane (B4) — the runtime
+`kingdom:type` atom IS the model (one IRI) vs a distinct `kingdom:class…:model` declaration plane (two
+IRIs)**. Plus the B3 Pass-1 disposition (additive-authoritative-bridge [rec] vs keep-both-defer vs
+full-retire, design §7.4). Plus two build obligations flagged but not discharged by the plan: V7 provenance
+closure (T-PROV, BUILT from scratch) and predicate-unification (`@rel:*` ↔ `closure.ttl` `ns3:*`
+`owl:equivalentProperty`/`rdfs:subPropertyOf`, T-BRIDGE). **#9, #10, and B3 gate minting.**
