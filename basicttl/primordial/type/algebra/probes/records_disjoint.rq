@@ -1,0 +1,79 @@
+# =====================================================================================
+# records_disjoint.rq — RED->GREEN probe for T-CLASSES (records.ttl, the intensional
+# record-class layer of the folded algebra spine, W2 · SP0).
+# =====================================================================================
+# Asserts that records.ttl mints, on closure.ttl's seed-carrier record ladder
+# (…:family:seed:genus:registry:species:<leaf>:record — the two-ladder ruling, design §4
+# / §7.2 #8), the parallel algebra record CLASSES the fold target lacks, each as an
+# owl:Class carrying the closure.ttl owl:Restriction idiom, PLUS the two disjointness teeth:
+#
+#   theory:record      cardinality-1  @rel:signature  + minCardinality-1 @rel:equation
+#   model:record       cardinality-1  @rel:carrier    + cardinality-1    @rel:operation
+#   signature:record   minCardinality-1 @rel:operation
+#   equation:record    cardinality-1  @rel:left       + cardinality-1    @rel:right
+#                      (datatype:record cardinality idiom, closure.ttl:153-169 — there is
+#                       NO equation:record class in the reference; the idiom is cited)
+#   reduct:record      cardinality-1  @rel:reduct
+#   denotatum:record   cardinality-1  @rel:identifier            (B4 Plane-2)
+#   declaration:record cardinality-1  @rel:denotes               (B4 Plane-1)
+#   axiom:record       owl:disjointWith theorem:record           (closure.ttl:431-433, REUSED)
+#   denotatum:record   owl:disjointWith declaration:record       (B4 two-planes distinction)
+#
+# RED (before records.ttl exists): 0 rows.  GREEN (after T-CLASSES lands): exactly 1 row.
+# Run over the algebra data graph (every basicttl/primordial/type/algebra/**/*.ttl except
+# *.shapes.ttl and fixtures/**), inference=none.
+
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:>
+PREFIX rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?theory ?model ?signature ?equation ?reduct ?denotatum ?declaration WHERE {
+  VALUES (?theory ?model ?signature ?equation ?reduct ?denotatum ?declaration) {
+    ( rec:theory:record rec:model:record rec:signature:record rec:equation:record
+      rec:reduct:record rec:denotatum:record rec:declaration:record )
+  }
+
+  # theory:record — a presented Lawvere theory (S,Ω,E): one signature, at least one equation
+  ?theory a owl:Class ;
+          rdfs:subClassOf rec:specimen:record ,
+                          [ owl:onProperty rel:signature ; owl:cardinality    ?ts ] ,
+                          [ owl:onProperty rel:equation  ; owl:minCardinality ?te ] .
+
+  # model:record — a model of a theory: one carrier, one operation
+  ?model a owl:Class ;
+         rdfs:subClassOf rec:specimen:record ,
+                         [ owl:onProperty rel:carrier   ; owl:cardinality ?mc ] ,
+                         [ owl:onProperty rel:operation ; owl:cardinality ?mo ] .
+
+  # signature:record — Σ names at least one operation symbol
+  ?signature a owl:Class ;
+             rdfs:subClassOf rec:specimen:record ,
+                             [ owl:onProperty rel:operation ; owl:minCardinality ?so ] .
+
+  # equation:record — reified left=right (datatype:record idiom): exactly one left, one right
+  ?equation a owl:Class ;
+            rdfs:subClassOf rec:specimen:record ,
+                            [ owl:onProperty rel:left  ; owl:cardinality ?el ] ,
+                            [ owl:onProperty rel:right ; owl:cardinality ?er ] .
+
+  # reduct:record — a theory-morphism naming exactly one parent theory it forgets to
+  ?reduct a owl:Class ;
+          rdfs:subClassOf rec:specimen:record ,
+                          [ owl:onProperty rel:reduct ; owl:cardinality ?rr ] .
+
+  # denotatum:record — B4 Plane-2: the mathematical object, one canonical identifier
+  ?denotatum a owl:Class ;
+             rdfs:subClassOf rec:specimen:record ,
+                             [ owl:onProperty rel:identifier ; owl:cardinality ?di ] .
+
+  # declaration:record — B4 Plane-1: denotes exactly one denotatum
+  ?declaration a owl:Class ;
+               rdfs:subClassOf rec:specimen:record ,
+                               [ owl:onProperty rel:denotes ; owl:cardinality ?dd ] .
+
+  # teeth
+  rec:axiom:record     owl:disjointWith rec:theorem:record .
+  ?denotatum           owl:disjointWith ?declaration .
+}

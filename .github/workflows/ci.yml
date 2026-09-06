@@ -25,6 +25,13 @@ jobs:
         run: pip install rdflib==7.6.0 pyshacl==0.40.1
       - name: Validate every standalone and merged ontology floor
         run: bash basicttl/foundation/checks/run-foundation-checks.sh
+      - name: Validate the folded algebra spine
+        # D25 CI-lockstep: the algebra tower folded into basicttl/primordial/type/algebra/** is in NO
+        # runner unless this step + run-foundation-checks.sh's SP0ALG loader move together. The runner
+        # is deliberately non-vacuous (fixture polarity, 0-focus REJECT, empty => REJECT) and keeps the
+        # >=200-char rdfs:comment depth gate over the folded algebra classes. It is RED until the monoid
+        # exemplar rung + its fixtures land (T-FIX/T-MONOID), which is the intended staged RED->GREEN.
+        run: bash basicttl/primordial/type/algebra/checks/run-algebra-checks.sh
 
   browser-render:
     name: Root and Project Browser Rendering

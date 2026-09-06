@@ -1,0 +1,135 @@
+# =====================================================================================
+# algebra.shapes.ttl — SHACL tooth set for the folded algebra spine (W2 · SP0, T-INFRA scaffold).
+# =====================================================================================
+# PLACEHOLDER (prefixes only). T-SHAPES / T-MONOID author the NodeShapes here (TheoryShape,
+# ModelShape, ReductShape, EquationRecordShape, CarrierGroundingShape, ProofStatusShape,
+# ValidationModeShape, ProvenanceShape, BridgeShape, DifferentFromWitnessShape,
+# AlgebraProgenitorShape, + the V1 no-punning hygiene shape). Every shape MUST use
+# constraint:targetClass (NEVER constraint:targetNode — design §4 anti-pattern) so
+# run-algebra-checks.sh's 0-focus gate can count focus nodes per shape.
+#
+# Prefix labels follow the fold-tree convention (basicttl/primordial/type/shapes.ttl:1-6):
+# the SHACL namespace is labelled `constraint:` and the primordial short root `model:` — same
+# IRIs as sh:/owl:, so pyshacl is unaffected (design §4 prefix gotcha). The algebra atoms
+# themselves mint the full runtime Linnaean ladder under `algebra:` (HEAD, D26).
+#
+# While this file declares ZERO NodeShapes the runner treats the gate as VACUOUS and exits
+# non-zero ("no NodeShape declared; gate would be vacuous"); that is the RED state of record
+# for the shapes layer until T-SHAPES lands the teeth.
+
+@prefix constraint:  <http://www.w3.org/ns/shacl#> .
+@prefix description: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ontology:    <http://www.w3.org/2002/07/owl#> .
+@prefix datatype:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix model:       <urn:silmaril:primordial:type:> .
+@prefix algebra:     <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+@prefix property:    <urn:silmaril:type:graph:instance:instruction:code:property:> .
+@prefix relation:    <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix seed:        <urn:silmaril:seed:> .
+@prefix skos:        <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:        <http://www.w3.org/ns/prov#> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:progenitor:record / rec:model:record targeted:
+@prefix rec:         <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# AlgebraProgenitorShape (T-PROG) — the "grounds nothing" tooth (design §3, re-homing
+# algebra_spine.ttl:411 constraint A). sh:targetClass rec:progenitor:record (NEVER
+# sh:targetNode, design §4 anti-pattern) so the runner's 0-focus gate counts the progenitor
+# as a focus node. An agnostic progenitor that carries ANY @rel:signature / @rel:adds:law /
+# @rel:carrier => RED (maxCount 0 bites), and one typed as a model-class record => RED.
+# Proven by injection: probes/progenitor_grounds_nothing.rq + fixtures/progenitor_neg.ttl
+# (over-specified progenitor) flip conforms True->False; fixtures/progenitor_pos.ttl stays GREEN.
+# =====================================================================================
+constraint:AlgebraProgenitorShape a constraint:NodeShape ;
+    constraint:targetClass rec:progenitor:record ;
+    constraint:property [
+        constraint:path relation:signature ;
+        constraint:maxCount 0 ;
+        constraint:message "Grounds-nothing violation: an algebra progenitor (rec:progenitor:record) may carry NO @rel:signature — it is the frame-neutral theory-root, not a presented theory (design §3, algebra_spine.ttl:411 constraint A)." ] ;
+    constraint:property [
+        constraint:path relation:adds:law ;
+        constraint:maxCount 0 ;
+        constraint:message "Grounds-nothing violation: an algebra progenitor may carry NO @rel:adds:law — the progenitor adds no law; only concrete rungs add exactly one law each (design §3)." ] ;
+    constraint:property [
+        constraint:path relation:carrier ;
+        constraint:maxCount 0 ;
+        constraint:message "Grounds-nothing violation: an algebra progenitor may carry NO @rel:carrier — it is abstract and grounds nothing; only models carry a carrier (design §3, B4)." ] ;
+    constraint:not [ constraint:class rec:model:record ] ;
+    schema:comment "The AlgebraProgenitorShape makes 'grounds nothing' a graph fact (design §3): the agnostic algebra progenitor carries no signature, no added law and no carrier, and is not a model. It targets rec:progenitor:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) so the tooth focuses on progenitors alone and the runner counts the progenitor as a focus node. The three maxCount-0 property shapes re-home algebra_spine.ttl:411 constraint A; the constraint:not rec:model:record clause re-homes 'NOT a PresentedAlgebra'. The tooth is proven by injection (probes/progenitor_grounds_nothing.rq + fixtures/progenitor_neg.ttl give a progenitor a @rel:signature -> conforms True->False), with fixtures/progenitor_pos.ttl the passing positive." .
+
+# =====================================================================================
+# TheoryShape (T-MONOID) — a presented Lawvere theory names exactly one signature and a
+# non-empty equation set, and no two theories collide on their identifier. sh:targetClass
+# rec:theory:record (NEVER sh:targetNode) so the run-algebra-checks.sh 0-focus gate counts
+# the monoid theory record as a focus node. (i) min1/max1 @rel:signature + min1 @rel:equation
+# coordinate-separation property shapes (the ClassDeclarationShape idiom, shapes.ttl:11-17);
+# (ii) a sh:sparql identity-collision clause (the IdentitySeparationShape idiom,
+# shapes.ttl:276-282). Design §2a / §4 "SHACL pair per class".
+# =====================================================================================
+constraint:TheoryShape a constraint:NodeShape ;
+    constraint:targetClass rec:theory:record ;
+    constraint:property [
+        constraint:path relation:signature ;
+        constraint:minCount 1 ;
+        constraint:maxCount 1 ;
+        constraint:message "Theory-shape violation: a presented theory record (rec:theory:record) MUST name EXACTLY ONE @rel:signature (the shared Sigma = (S,Omega); design §1.7, D24 A6). Zero signatures -> the theory has no syntax; two -> it is not a single presented theory." ] ;
+    constraint:property [
+        constraint:path relation:equation ;
+        constraint:minCount 1 ;
+        constraint:message "Theory-shape violation: a presented theory record MUST name AT LEAST ONE @rel:equation — the law set E of a Lawvere theory is never empty (a signature with no equations is a bare signature, not a theory; design §1.9, records.ttl:46-50)." ] ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Theory-identity collision: two DISTINCT theory records share one @rel:identifier — theory identity must separate (the IdentitySeparationShape idiom, shapes.ttl:276-282; gate-identity uniqueness, consolidated.shacl.ttl:1317-1327)." ;
+        constraint:select """SELECT $this ?other WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:identifier> ?id . ?other <urn:silmaril:type:graph:instance:instruction:code:property:relation:identifier> ?id . FILTER($this != ?other) }""" ] ;
+    schema:comment "The TheoryShape is the SHACL tooth for a presented Lawvere theory record (D24 A6): it targets rec:theory:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the run-algebra-checks.sh 0-focus gate detects) so the monoid theory record is a counted focus node. It carries the design §4 'SHACL pair per class': (i) the min1/max1 @rel:signature coordinate-separation property shape plus the min1 @rel:equation lower bound (the ClassDeclarationShape min1/max1 idiom, shapes.ttl:11-17, mirroring records.ttl:46-50 rec:theory:record cardinality-1 signature + minCardinality-1 equation restrictions in the SHACL plane, since pyshacl does not enforce owl:Restriction), and (ii) a sh:sparql identity-collision clause (the IdentitySeparationShape idiom, shapes.ttl:276-282; the consolidated gate-identity uniqueness sh:select, consolidated.shacl.ttl:1317-1327) that reddens when two distinct theory records share a @rel:identifier. The monoid theory record (spine/monoid.ttl) is its worked focus: it names sigMonoid and the four members of E={closure, associativity, identity-left, identity-right} and holds a unique identifier, so it conforms; a theory stripped of its signature or its equation set, or colliding on an identifier, reddens." .
+
+# =====================================================================================
+# ModelShape (T-MONOID) — a model record is a labelled model whose two-sided IDENTITY law
+# holds over its reified Cayley table. sh:targetClass rec:model:record (NEVER sh:targetNode).
+# (i) a min1 @rel:notation property shape (a model record must be labelled — satisfied by
+# both the Plane-1 monoid model-record class atom and the finite model witnesses); (ii) the
+# biting sh:sparql two-sided identity tooth (re-homing algebra_spine.ttl q_monoid_identity /
+# fnd:MonoidIdentityShape :631-653 over the unified @rel:* reified-table vocab): for every
+# model carrying @rel:identity:element e, no reified composition cell scoped to it by
+# @rel:structure with e as first operand may yield result != second, and none with e as
+# second may yield result != first. Proven by injection: fixtures/monoid_z2_negative.ttl
+# (e·a yields e) flips conforms True->False; fixtures/monoid_z2.ttl stays GREEN.
+# =====================================================================================
+constraint:ModelShape a constraint:NodeShape ;
+    constraint:targetClass rec:model:record ;
+    constraint:property [
+        constraint:path relation:notation ;
+        constraint:minCount 1 ;
+        constraint:message "Model-shape violation: a model record (rec:model:record) MUST carry at least one @rel:notation label (design §2b, B4 Plane-1 declaration-record / the finite model witness)." ] ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Monoid two-sided identity law violated: a reified composition row scoped to this model has the identity element e as an operand but does NOT return the other operand (left-unit e·x = x or right-unit x·e = x fails). Re-homes algebra_spine.ttl q_monoid_identity / fnd:MonoidIdentityShape (:631-653)." ;
+        constraint:select """SELECT $this ?first ?second ?result WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:identity:element> ?e . ?cell <urn:silmaril:type:graph:instance:instruction:code:property:relation:structure> $this ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:first> ?first ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:second> ?second ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:category:result> ?result . FILTER( ( ?first = ?e && ?result != ?second ) || ( ?second = ?e && ?result != ?first ) ) }""" ] ;
+    schema:comment "The ModelShape is the SHACL tooth for a model record of a declared theory (D24 A0 Model plane): it targets rec:model:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the 0-focus gate detects) so the Plane-1 monoid model-record class atom (spine/monoid.ttl, punned a owl:Class + a rec:model:record so it is a counted data-graph focus) and the finite model witnesses (fixtures/) are foci. It carries the design §4 'SHACL pair per class': (i) a min1 @rel:notation property shape (every model record is labelled — the model-record class atom and the Z/2 witnesses all satisfy it, so the positive graph conforms), and (ii) the biting sh:sparql two-sided IDENTITY tooth that re-homes algebra_spine.ttl q_monoid_identity / fnd:MonoidIdentityShape (:631-653, whose probe of record is 'change E·A result from A to E') over the unified @rel:* reified-table vocabulary (relation:structure = fnd:opStructure, relation:category:first/second/result = fnd:opLeft/opRight/opResult, bridges.ttl:249-291): for every model with @rel:identity:element e, no reified composition cell scoped to it by @rel:structure may break the left-unit e·x=x or right-unit x·e=x law. The tooth is vacuously satisfied on the model-record class atom (it declares no @rel:identity:element / cells) and genuinely satisfied on fixtures/monoid_z2.ttl, but bites (conforms True->False) on fixtures/monoid_z2_negative.ttl where e·a returns e instead of a. The complementary q_monoid_is_endo 'monoid = one-object category' seam (algebra_spine.ttl:445) is a Pillar-4 category seam OUTSIDE the one-operation spine, EXPLICITLY DEFERRED to the category fan-out (design §7.4), not dropped." .
+
+# =====================================================================================
+# EquationRecordShape (T-MONOID) — a reified law is an ordered pair with exactly one left
+# term and exactly one right term (the datatype:record cardinality-restriction idiom,
+# closure.ttl:153-169, applied to left AND right; a two-sided law => TWO such records).
+# sh:targetClass rec:equation:record (NEVER sh:targetNode). (i) min1/max1 @rel:left +
+# min1/max1 @rel:right property shapes; (ii) a sh:sparql identity-collision clause (no two
+# distinct equation records share the same left AND right term = a duplicated law).
+# =====================================================================================
+constraint:EquationRecordShape a constraint:NodeShape ;
+    constraint:targetClass rec:equation:record ;
+    constraint:property [
+        constraint:path relation:left ;
+        constraint:minCount 1 ;
+        constraint:maxCount 1 ;
+        constraint:message "Equation-record violation: a reified equation record (rec:equation:record) MUST carry EXACTLY ONE @rel:left term (t_left = t_right; the datatype:record cardinality-1 idiom, closure.ttl:153-169, records.ttl:76-81)." ] ;
+    constraint:property [
+        constraint:path relation:right ;
+        constraint:minCount 1 ;
+        constraint:maxCount 1 ;
+        constraint:message "Equation-record violation: a reified equation record MUST carry EXACTLY ONE @rel:right term (t_left = t_right; the datatype:record cardinality-1 idiom, closure.ttl:153-169, records.ttl:76-81)." ] ;
+    constraint:sparql [
+        a constraint:SPARQLConstraint ;
+        constraint:message "Equation-record collision: two DISTINCT equation records share the same @rel:left AND @rel:right term pair — a law duplicated under two IRIs (non-vacuity/identity separation, shapes.ttl:276-282)." ;
+        constraint:select """SELECT $this ?other WHERE { $this <urn:silmaril:type:graph:instance:instruction:code:property:relation:left> ?l ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:right> ?r . ?other a <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:equation:record> ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:left> ?l ; <urn:silmaril:type:graph:instance:instruction:code:property:relation:right> ?r . FILTER($this != ?other) }""" ] ;
+    schema:comment "The EquationRecordShape is the SHACL tooth for a reified equation record — one law of E as an ordered pair t_left = t_right (D24 A0 Theory plane, design §2d). It targets rec:equation:record by sh:targetClass (never sh:targetNode, the design §4 anti-pattern the 0-focus gate detects) so the three monoid equation records (associativity, identity-left, identity-right in equations.ttl) are counted foci. It carries the design §4 'SHACL pair per class': (i) min1/max1 @rel:left AND min1/max1 @rel:right property shapes — the datatype:record cardinality-restriction idiom (closure.ttl:153-169, cited as the PATTERN because the reference has NO equation:record owl:Class; records.ttl:76-81 mirrors it in the class layer, this shape mirrors it in the SHACL plane since pyshacl does not enforce owl:Restriction) — so an equation record missing either side, or carrying two of a side, reddens; and (ii) a sh:sparql identity-collision clause (the IdentitySeparationShape idiom, shapes.ttl:276-282) reddening when two distinct equation records duplicate one (left,right) pair. A TWO-SIDED law (monoid identity e·x=x AND x·e=x) is realised as TWO equation records, member:left and member:right (design §1.6, closure.ttl:185-192 case:zero/case:one precedent), each conforming with its single left/right pair." .

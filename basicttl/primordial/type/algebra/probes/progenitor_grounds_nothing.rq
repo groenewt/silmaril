@@ -1,0 +1,34 @@
+# =====================================================================================
+# progenitor_grounds_nothing.rq — RED->GREEN probe for T-PROG (spine/progenitor.ttl + the
+# AlgebraProgenitorShape, W2 · SP0). Re-homes algebra_spine.ttl:411 constraint A.
+# =====================================================================================
+# The agnostic algebra progenitor GROUNDS NOTHING: it may carry NO @rel:signature, NO
+# @rel:adds:law and NO @rel:carrier (design §3). This probe SELECTs any progenitor
+# (rec:progenitor:record) that VIOLATES that — i.e. carries one of the forbidden edges —
+# returning the offending progenitor and the edge that bit.
+#
+#   GREEN (clean progenitor, e.g. the base spine/progenitor.ttl or fixtures/progenitor_pos.ttl):
+#         0 rows — nothing grounds anything, the tooth is satisfied.
+#   RED   (over-specified progenitor, e.g. fixtures/progenitor_neg.ttl or an over-specified
+#         draft that gives the progenitor a @rel:signature): >= 1 row — the tooth bites.
+#
+# Run over the algebra data graph (every basicttl/primordial/type/algebra/**/*.ttl except
+# *.shapes.ttl; merge the fixture under test), inference=none. Companion SHACL tooth:
+# shapes/algebra.shapes.ttl AlgebraProgenitorShape (conforms True->False under the same injection).
+
+PREFIX rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:>
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?progenitor ?offendingProperty ?groundedValue WHERE {
+  ?progenitor a rec:progenitor:record .
+  {
+    ?progenitor rel:signature ?groundedValue .
+    BIND(rel:signature AS ?offendingProperty)
+  } UNION {
+    ?progenitor rel:adds:law ?groundedValue .
+    BIND(rel:adds:law AS ?offendingProperty)
+  } UNION {
+    ?progenitor rel:carrier ?groundedValue .
+    BIND(rel:carrier AS ?offendingProperty)
+  }
+}
