@@ -506,3 +506,32 @@ maintainer in the W2 brainstorming gate before any authoring.
       (outside that glob) goes VACUOUS unless the runner + CI discovery + gates V0–V8 move IN LOCKSTEP.
       The reshape MUST extend the committed runner and `ci.yml`, and honor `commit_signing_trust.ttl`
       (sign reshape commits under it).
+
+26. **Naming law reconciliation — the verified-runtime full Linnaean ladder is canonical**
+    (maintainer design-gate 2026-09-06, resolving the refmap's two naming forks; OVERRIDES D24 §10b's
+    genus-first examples and D25's "adopt primordial's short IRI root").
+    - **IRI grammar = the FULL runtime Linnaean ladder, VERBATIM** (maintainer: "Full runtime ladder
+      verbatim"). Every minted typed IRI carries the complete marker ladder as realized in the verified
+      runtime (`bash aob/urn/**`, 293/293 markers) + `silmaril.final.consolidated.ttl` — the 12-marker
+      descent `domain:realm:subdomain:kingdom:phylum:class:order:family:genus:species:component:instance`
+      under the leading path `urn:silmaril:type:graph:instance:instruction:code:property:…` with REAL
+      per-rank values (use the runtime's `component:instance`, NOT the drop's collapsed
+      `specimen:instance` anti-pattern grammar-B). The short primordial root
+      (`urn:silmaril:primordial:type:`) is NOT the IRI grammar; it is bridged to. NB: D25's directory
+      PLACEMENT (files under `basicttl/primordial/type/algebra/**`) still stands — placement ≠ IRI root;
+      folded files live in the primordial tree but mint full-ladder IRIs + bridge edges to the
+      primordial short-root / engine / seed counterparts.
+    - **Segment order = the reference's natural-language order** (maintainer: "Match the reference
+      order"). Follow the verified runtime + consolidated corpus verbatim: `natural:transformation`,
+      `category:of:elements` (adjective/natural-language order, stop-words KEPT) — NOT D24 §10b's
+      genus-first `transformation:natural`/`category:elements` (0 occurrences in the reference).
+      **D24 §10b is amended:** the reference corpus is the canonical authority for segment order and
+      rank vocabulary; where a distilled directive disagrees with the maintainer's reference artifact,
+      the REFERENCE governs.
+    - **Surface law retained:** all lowercase; colon-descent; no `-`/`_` in any typed IRI (file names
+      keep the repo underscore convention); markers are reserved delimiters; differentia may span
+      multiple segments. Retire `fnd:` local names into full-ladder IRIs with an exhaustive alias/bridge
+      map (SP1/SP2/SP3 inbound `groundsIn*`/`subClassOf fnd:*` refs stay resolvable).
+    - **Consequence:** the spine-fold planner + build mint the algebra tower in the full runtime ladder,
+      matching the reference exactly; the reference (`silmaril.final.consolidated.ttl`, the verified
+      runtime, the bash-engine algebra `.skills`) is the pattern to MATCH, not reinvent.
