@@ -1,0 +1,103 @@
+# =====================================================================================
+# aliases_resolve.rq — RED->GREEN probe for T-BRIDGE (bridges.ttl, the ADDITIVE alias/bridge
+# map of the folded algebra spine, W2 · SP0).
+# =====================================================================================
+# Asserts that bridges.ttl mints, for EVERY fnd: local name of the one-operation algebra tower
+# (algebra_spine.ttl), a bridge edge to the corresponding NEW full-ladder IRI (design §5.1-5.2),
+# AND that SP2's aob:SealedGroup rdfs:subClassOf-reaches the [V] group denotatum atom THROUGH the
+# map (aob:SealedGroup rdfs:subClassOf fnd:Group, reanchor.ttl:163; group denotatum skos:exactMatch
+# fnd:Group, bridges.ttl). A bridge edge is any of skos:exactMatch / skos:closeMatch /
+# rdfs:subClassOf / owl:equivalentProperty / rdfs:subPropertyOf / seed:conservativeBridge /
+# seed:implementationBridge / rdfs:seeAlso, in EITHER direction (the fnd: name may be subject or
+# object — e.g. Group is bridged as <group denotatum> skos:exactMatch fnd:Group).
+#
+#   rungs        AlgebraicStructure Magma Semigroup Monoid CommutativeMonoid Group AbelianGroup
+#                Quasigroup Loop                                              (9, design §1.4)
+#   signatures   sigOneBinary sigMonoid sigGroup sigQuasigroup sigLoop        (5, design §1.7)
+#   equation-set eqsMagma..eqsLoop                                            (8, design §1.9)
+#   laws         lawClosure lawAssociativity lawIdentity lawCommutativity
+#                lawInverse lawLatinDivision                                  (6, design §1.5-1.6)
+#   carriers     carrierMagma..carrierLoop                                    (8, design §5.2)
+#   predicates   opStructure opLeft opRight opResult addsLaw hasSignature
+#                hasEquationSet hasCarrier satisfiesLaw hasIdentityElement
+#                pairingModel pairingElement pairingInverse                   (13, §7.2 obligation 2)
+#   + the aob:SealedGroup -> fnd:Group -> [V] group denotatum resolution chain.
+#
+# RED (before bridges.ttl exists): 0 rows. GREEN (after T-BRIDGE lands): >= 1 row.
+# Run over the merged graph {algebra_spine.ttl (fnd: names) + reanchor.ttl (SealedGroup edge) +
+# bridges.ttl (the map)}, inference=none — the SealedGroup edge lives in the SP0 foundation floor,
+# not the algebra subtree, so the map is exercised in the same merged graph run-foundation-checks.sh
+# validates (design §5.2 / plan B2).
+
+PREFIX fnd:      <urn:silmaril:fnd:#>
+PREFIX aob:      <urn:silmaril:aob:#>
+PREFIX owl:      <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:     <http://www.w3.org/2004/02/skos/core#>
+PREFIX seed:     <urn:silmaril:seed:>
+PREFIX algebra:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:>
+
+SELECT ?groupDenotatum WHERE {
+  # --- the bridge property path (any bridge predicate, either direction) ---
+  # rungs (9)
+  fnd:AlgebraicStructure (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bAlgebraicStructure .
+  fnd:Magma             (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bMagma .
+  fnd:Semigroup         (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bSemigroup .
+  fnd:Monoid            (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bMonoid .
+  fnd:CommutativeMonoid (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCommutativeMonoid .
+  fnd:Group             (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bGroup .
+  fnd:AbelianGroup      (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bAbelianGroup .
+  fnd:Quasigroup        (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bQuasigroup .
+  fnd:Loop              (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bLoop .
+  # signatures (5)
+  fnd:sigOneBinary      (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bSigOneBinary .
+  fnd:sigMonoid         (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bSigMonoid .
+  fnd:sigGroup          (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bSigGroup .
+  fnd:sigQuasigroup     (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bSigQuasigroup .
+  fnd:sigLoop           (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bSigLoop .
+  # equation-sets (8)
+  fnd:eqsMagma          (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bEqsMagma .
+  fnd:eqsSemigroup      (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bEqsSemigroup .
+  fnd:eqsMonoid         (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bEqsMonoid .
+  fnd:eqsCommMonoid     (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bEqsCommMonoid .
+  fnd:eqsGroup          (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bEqsGroup .
+  fnd:eqsAbelian        (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bEqsAbelian .
+  fnd:eqsQuasigroup     (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bEqsQuasigroup .
+  fnd:eqsLoop           (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bEqsLoop .
+  # laws (6)
+  fnd:lawClosure        (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bLawClosure .
+  fnd:lawAssociativity  (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bLawAssociativity .
+  fnd:lawIdentity       (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bLawIdentity .
+  fnd:lawCommutativity  (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bLawCommutativity .
+  fnd:lawInverse        (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bLawInverse .
+  fnd:lawLatinDivision  (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bLawLatinDivision .
+  # carriers (8)
+  fnd:carrierMagma      (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCarrierMagma .
+  fnd:carrierSemigroup  (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCarrierSemigroup .
+  fnd:carrierMonoid     (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCarrierMonoid .
+  fnd:carrierCommMonoid (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCarrierCommMonoid .
+  fnd:carrierGroup      (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCarrierGroup .
+  fnd:carrierAbelian    (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCarrierAbelian .
+  fnd:carrierQuasigroup (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCarrierQuasigroup .
+  fnd:carrierLoop       (skos:exactMatch|^skos:exactMatch|skos:closeMatch|^skos:closeMatch|rdfs:subClassOf|owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf|seed:conservativeBridge|^seed:conservativeBridge|seed:implementationBridge|^seed:implementationBridge|rdfs:seeAlso|^rdfs:seeAlso) ?bCarrierLoop .
+  # reified-table + rung-machinery predicates (13) — predicate-unification (§7.2 obligation 2)
+  fnd:opStructure       (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bOpStructure .
+  fnd:opLeft            (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bOpLeft .
+  fnd:opRight           (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bOpRight .
+  fnd:opResult          (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bOpResult .
+  fnd:addsLaw           (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bAddsLaw .
+  fnd:hasSignature      (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bHasSignature .
+  fnd:hasEquationSet    (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bHasEquationSet .
+  fnd:hasCarrier        (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bHasCarrier .
+  fnd:satisfiesLaw      (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bSatisfiesLaw .
+  fnd:hasIdentityElement (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bHasIdentityElement .
+  fnd:pairingModel      (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bPairingModel .
+  fnd:pairingElement    (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bPairingElement .
+  fnd:pairingInverse    (owl:equivalentProperty|^owl:equivalentProperty|rdfs:subPropertyOf|^rdfs:subPropertyOf) ?bPairingInverse .
+
+  # --- the SP2 SealedGroup resolution chain: aob:SealedGroup -> fnd:Group -> [V] group denotatum ---
+  # (rdfs:subClassOf+ up to fnd:Group, then inverse-skos:exactMatch down to the group denotatum atom)
+  aob:SealedGroup rdfs:subClassOf+ fnd:Group .
+  ?groupDenotatum skos:exactMatch fnd:Group .
+  FILTER(?groupDenotatum = algebra:group:kingdom:type:phylum:algebra:class:group:order:binary:family:operation:genus:axiomatic:species:group:component:type:instance:canonical)
+}

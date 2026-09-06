@@ -1,0 +1,77 @@
+# =====================================================================================
+# magma_pos.ttl — the POSITIVE fixture for the magma closure tooth (W2 · SP0, T-MAGMA).
+# =====================================================================================
+# Z/2 under addition {e=0, a=1}, a genuine CLOSED binary table (a valid magma — and, as it
+# happens, also a monoid, so it additionally carries a declared identity e):
+#   e·e=e   e·a=a   a·e=a   a·a=e   (a total table, every product lands in the carrier {e,a}).
+# Merged onto the algebra data graph it MUST still conform (run-algebra-checks.sh step (b)
+# positive polarity) and probes/magma_law.rq returns 0 rows over it — no operand or result
+# escapes the declared carrier. It is the finite:checked / finite:table witness the design
+# demotes to fixtures/ (D24 four-planes: element / finite-table evidence lives OUTSIDE the
+# ontology data glob and the CI data graph). Its single-injected-violation twin is
+# fixtures/magma_neg.ttl (the cell e·a returns an element OUTSIDE the carrier -> the closure
+# probe AND the committed ModelShape both bite), which is the True->False injection that proves
+# the closure tooth is genuine (D24: sh:conforms true alone is vacuous). Typed rec:model:record
+# so it is a focus of the ModelShape.
+#
+# WHY AN IDENTITY ELEMENT ON A MAGMA WITNESS. A magma does not REQUIRE an identity; Z/2 simply
+# HAS one (it is a magma that is also a monoid — a legitimate magma witness). The identity is
+# declared, and the negative's closure escape is placed at the e·a cell, so that the ONE
+# injected escape ALSO trips the committed ModelShape left-unit tooth (e·x = x) — the dedicated
+# MagmaClosureShape being a Stage-2 T-SHAPES deliverable not yet authored (shapes/algebra.shapes.ttl
+# is committed and out of this rung's write scope). This keeps the runner's fixture-polarity gate
+# honest in Stage 2a: the closure escape is caught BOTH by probes/magma_law.rq (result not in
+# carrier) AND by the existing ModelShape (e·a != a). See fixtures/magma_neg.ttl.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare and never an
+# owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/2 with declared carrier {e,a} and identity e, finite:checked ---
+<urn:silmaril:fixture:algebra:magma:z2:positive>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/2 under + (genuine closed magma, carrier {e,a})" ;
+    rel:carrier:member   <urn:silmaril:fixture:algebra:magma:z2:positive:elem:e> ,
+                         <urn:silmaril:fixture:algebra:magma:z2:positive:elem:a> ;
+    rel:identity:element <urn:silmaril:fixture:algebra:magma:z2:positive:elem:e> ;
+    rel:validation:mode  "finite:table" ;
+    rel:proof:status     "finite:checked" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:magma:z2:positive:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:magma:z2:positive:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+
+# --- the reified Cayley cells (e·e=e, e·a=a, a·e=a, a·a=e) — a total, closed table ---
+<urn:silmaril:fixture:algebra:magma:z2:positive:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:magma:z2:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:magma:z2:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:magma:z2:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:magma:z2:positive:elem:e> .
+<urn:silmaril:fixture:algebra:magma:z2:positive:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:magma:z2:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:magma:z2:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:magma:z2:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:magma:z2:positive:elem:a> .
+<urn:silmaril:fixture:algebra:magma:z2:positive:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:magma:z2:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:magma:z2:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:magma:z2:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:magma:z2:positive:elem:a> .
+<urn:silmaril:fixture:algebra:magma:z2:positive:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:magma:z2:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:magma:z2:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:magma:z2:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:magma:z2:positive:elem:e> .

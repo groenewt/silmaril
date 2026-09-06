@@ -1,0 +1,132 @@
+# =====================================================================================
+# signatures.ttl — the shared signature atoms for the folded algebra spine (W2 · SP0, T-SIG-OP).
+# =====================================================================================
+# The five shared signatures Sigma of the one-operation algebra tower, each a first-class atom on the
+# mathematics 12-marker ladder (D26 full runtime Linnaean ladder, VERBATIM head), typed against the
+# T-CLASSES intensional signature class (records.ttl:67-71, rec:signature:record — min-cardinality-1 on
+# rel:operation):
+#
+#   HEAD = urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:
+#   tail = <subdomain>:kingdom:definition:phylum:specification:class:signature:order:<profile>:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical
+#
+# A signature is the (S, Omega) half of a Lawvere theory (design §1.7, D24 A6): the carrier SORT S plus
+# the operation SYMBOLS Omega. It carries NO equations (those are the theory's E, minted by T-MONOID /
+# the rung tasks into equations.ttl). Signatures are SHARED across the rungs that differ only in their
+# equation set (algebra_spine.ttl:177-221): sigOneBinary by magma+semigroup, sigMonoid by
+# monoid+commutative-monoid, sigGroup by group+abelian-group, sigQuasigroup by quasigroup, sigLoop by
+# loop. Home subdomain = the rung where the signature first enters the tower (same logic as the operation
+# symbols, operations.ttl).
+#
+# Attestation (grep-confirmed off refcomp/tar/bash/aob/urn/**). Exact dir-counts are omitted
+# deliberately: leaf-dir path-match counts differ from other counting methods, so only the ATTESTED /
+# UNATTESTED verdict (>=1 vs 0 aob dirs by `find aob -path '*/<seg>'`) is load-bearing.
+#   - kingdom:definition   ATTESTED (>=1 aob dir)
+#   - phylum:specification ATTESTED (>=1 aob dir)
+#   - component:definition ATTESTED (>=1 aob dir)
+#   - family:operation     ATTESTED (the [V] group atoms)
+# so those four are runtime defaults, NOT [S].
+#
+# [S] TOKENS (Praeriehund honesty; §7.2 sign-off packet, assembled by T-PANEL):
+#   - class:signature — UNATTESTED (0 aob dirs). Design §1.7 fixes it for the signature plane; flagged.
+#   - genus:algebraic — UNATTESTED (0 aob dirs; design §1.7 / §7.2 #6). The generic algebraic-theory
+#     genus for signatures/definitions; flagged.
+#   - species:signature — UNATTESTED as a species leaf (0 aob dirs); design §1.7; flagged.
+#   - order:<profile> — the arity-profile descriptor distinguishing the five signatures. order:binary is
+#     ATTESTED (the [V] group atoms); order:unital / order:invertible / order:divisible /
+#     order:divisible:unital are UNATTESTED design-default profile tokens (§1.7, §7.2 open); flagged.
+#     Chosen to name each signature's presentation strength (unital = adds unit e; invertible = adds
+#     inverse inv; divisible = adds total unique division \ , / ; divisible:unital = loop). The
+#     subdomain segment already uniquely distinguishes the five IRIs; the profile carries the arity story.
+#
+# The shared syntactic carrier SORT atom is declared here (rel:sort target; the operation symbols'
+# rel:domain/rel:codomain reference it). It is the SORT SYMBOL S of the signature (syntactic), DISTINCT
+# from the model CARRIER SET that interprets S (the model plane's rel:carrier, T-MONOID). Its own ladder
+# tokens class:sort / order:carrier / species:sort are [S] (all 0 aob dirs), flagged.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.7).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-SIG-OP).
+# Consistent-with: records.ttl (rec:signature:record, rel:* relation namespace), operations.ttl
+# (rel:operation targets). RED->GREEN probe: probes/signature_names_sort.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39, closure.ttl:1-3) — rec:signature:record REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# -------------------------------------------------------------------------------------
+# The shared syntactic carrier SORT S — the (S) half of every signature Sigma = (S, Omega).
+# -------------------------------------------------------------------------------------
+alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:specimen:record ;
+    rdfs:label "carrier sort S" ;
+    rel:notation "S" ;
+    rdfs:comment "The single shared carrier SORT symbol S of the one-operation algebra tower — the syntactic sort over which every operation symbol's domain and codomain range (operations.ttl rel:domain / rel:codomain). Placed under the agnostic subdomain 'primordial' (the progenitor subdomain, design §1.3) because the sort is shared by all rungs, privileging none. CRITICAL DISTINCTION (D24 A0 Syntax vs Model): this is the SORT SYMBOL S that belongs to the signature (the Syntax/Theory plane), NOT the model's carrier SET that interprets S (the Model plane's rel:carrier, minted by T-MONOID and the rung tasks). A single sort suffices because the whole spine is one-sorted (one carrier). [S] TOKENS: class:sort, order:carrier, species:sort, genus:algebraic are all UNATTESTED (0 aob dirs); minted as design defaults for the signature/sort plane under the §7.2 #1 mint-more-than-runtime ruling and flagged for the maintainer sign-off packet. kingdom:definition / phylum:specification / family:operation / component:definition are ATTESTED runtime defaults." .
+
+# -------------------------------------------------------------------------------------
+# sigOneBinary  Sigma = {·}     — magma + semigroup (differ only in E).
+# -------------------------------------------------------------------------------------
+alg:magma:kingdom:definition:phylum:specification:class:signature:order:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical
+    a owl:NamedIndividual, rec:signature:record ;
+    rdfs:label "sigOneBinary" ;
+    rel:notation "Sigma = { · : S,S -> S }" ;
+    rel:sort      alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:operation alg:magma:kingdom:operation:phylum:primitive:class:product:order:binary:family:operation:genus:composition:species:product:component:operation:instance:canonical ;
+    rdfs:comment "The one-binary-operation signature Sigma = { · } : the carrier sort S and the single binary product symbol '· : S,S -> S' (operations.ttl). Shared by magma (E = {closure}) and semigroup (E adds associativity) — the two rungs that differ only in their equation set, not their signature (algebra_spine.ttl:180-185 fnd:sigOneBinary). Typed rec:signature:record (records.ttl:67-71): the min-cardinality-1 rel:operation tooth is satisfied by naming the product symbol. Home subdomain 'magma' = where the signature first enters. [S] TOKENS: class:signature, genus:algebraic, species:signature UNATTESTED (0 aob dirs); order:binary is the ATTESTED profile here (the [V] group atoms carry order:binary). All [S] uses flagged for the §7.2 sign-off packet (T-PANEL)." .
+
+# -------------------------------------------------------------------------------------
+# sigMonoid  Sigma = {·, e}     — monoid + commutative-monoid (differ only in E).
+# -------------------------------------------------------------------------------------
+alg:monoid:kingdom:definition:phylum:specification:class:signature:order:unital:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical
+    a owl:NamedIndividual, rec:signature:record ;
+    rdfs:label "sigMonoid" ;
+    rel:notation "Sigma = { · : S,S -> S ; e : -> S }" ;
+    rel:sort      alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:operation alg:magma:kingdom:operation:phylum:primitive:class:product:order:binary:family:operation:genus:composition:species:product:component:operation:instance:canonical ,
+                  alg:monoid:kingdom:operation:phylum:primitive:class:unit:order:nullary:family:operation:genus:neutral:species:identity:component:operation:instance:canonical ;
+    rdfs:comment "The monoid signature Sigma = { ·, e } : the carrier sort S, the binary product '· : S,S -> S' and the nullary unit 'e : -> S' (operations.ttl). Shared by monoid and commutative-monoid, which differ only by the commutativity equation (algebra_spine.ttl:187-193 fnd:sigMonoid). Typed rec:signature:record; names TWO operation symbols. [S] TOKENS: class:signature, genus:algebraic, species:signature UNATTESTED; order:unital is an UNATTESTED design-default profile token (§1.7) naming this signature's presentation strength (adds a unit e over sigOneBinary). The unit symbol it names is itself [S] on order:nullary (operations.ttl). All [S] uses flagged for the §7.2 sign-off packet." .
+
+# -------------------------------------------------------------------------------------
+# sigGroup  Sigma = {·, e, inv} — group + abelian-group (differ only in E).
+# -------------------------------------------------------------------------------------
+alg:group:kingdom:definition:phylum:specification:class:signature:order:invertible:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical
+    a owl:NamedIndividual, rec:signature:record ;
+    rdfs:label "sigGroup" ;
+    rel:notation "Sigma = { · : S,S -> S ; e : -> S ; inv : S -> S }" ;
+    rel:sort      alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:operation alg:magma:kingdom:operation:phylum:primitive:class:product:order:binary:family:operation:genus:composition:species:product:component:operation:instance:canonical ,
+                  alg:monoid:kingdom:operation:phylum:primitive:class:unit:order:nullary:family:operation:genus:neutral:species:identity:component:operation:instance:canonical ,
+                  alg:group:kingdom:operation:phylum:primitive:class:inverse:order:unary:family:operation:genus:member:species:inverse:component:operation:instance:canonical ;
+    rdfs:comment "The group signature Sigma = { ·, e, inv } : the carrier sort S, the binary product '· : S,S -> S', the nullary unit 'e : -> S' and the unary inverse 'inv : S -> S' (operations.ttl). Shared by group and abelian-group, which differ only by the commutativity equation (algebra_spine.ttl:195-202 fnd:sigGroup). The unary inverse symbol is the syntactic carrier of the one zero-Helios-basis axiom (the inverse law). Typed rec:signature:record; names THREE operation symbols. [S] TOKENS: class:signature, genus:algebraic, species:signature UNATTESTED; order:invertible is an UNATTESTED design-default profile token (§1.7) naming this signature's presentation strength (adds an inverse inv over sigMonoid). All [S] uses flagged for the §7.2 sign-off packet." .
+
+# -------------------------------------------------------------------------------------
+# sigQuasigroup  Sigma = {·, \, /} — quasigroup (Latin-square division).
+# -------------------------------------------------------------------------------------
+alg:quasigroup:kingdom:definition:phylum:specification:class:signature:order:divisible:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical
+    a owl:NamedIndividual, rec:signature:record ;
+    rdfs:label "sigQuasigroup" ;
+    rel:notation "Sigma = { · : S,S -> S ; \\ : S,S -> S ; / : S,S -> S }" ;
+    rel:sort      alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:operation alg:magma:kingdom:operation:phylum:primitive:class:product:order:binary:family:operation:genus:composition:species:product:component:operation:instance:canonical ,
+                  alg:quasigroup:kingdom:operation:phylum:primitive:class:division:order:binary:family:operation:genus:left:species:division:component:operation:instance:canonical ,
+                  alg:quasigroup:kingdom:operation:phylum:primitive:class:division:order:binary:family:operation:genus:right:species:division:component:operation:instance:canonical ;
+    rdfs:comment "The quasigroup signature Sigma = { ·, \\, / } : the carrier sort S, the binary product '· : S,S -> S', and the two division symbols left '\\ : S,S -> S' and right '/ : S,S -> S' that make division total and unique — the equational presentation of the Latin-square property (algebra_spine.ttl:204-211 fnd:sigQuasigroup). Used by quasigroup (E = {closure, Latin division}). Typed rec:signature:record; names THREE operation symbols (product + both divisions). [S] TOKENS: class:signature, genus:algebraic, species:signature UNATTESTED; order:divisible is an UNATTESTED design-default profile token (§1.7) naming this signature's presentation strength (adds total unique division over sigOneBinary). All [S] uses flagged for the §7.2 sign-off packet." .
+
+# -------------------------------------------------------------------------------------
+# sigLoop  Sigma = {·, \, /, e} — loop (quasigroup + two-sided identity).
+# -------------------------------------------------------------------------------------
+alg:loop:kingdom:definition:phylum:specification:class:signature:order:divisible:unital:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical
+    a owl:NamedIndividual, rec:signature:record ;
+    rdfs:label "sigLoop" ;
+    rel:notation "Sigma = { · : S,S -> S ; \\ : S,S -> S ; / : S,S -> S ; e : -> S }" ;
+    rel:sort      alg:primordial:kingdom:definition:phylum:specification:class:sort:order:carrier:family:operation:genus:algebraic:species:sort:component:definition:instance:canonical ;
+    rel:operation alg:magma:kingdom:operation:phylum:primitive:class:product:order:binary:family:operation:genus:composition:species:product:component:operation:instance:canonical ,
+                  alg:quasigroup:kingdom:operation:phylum:primitive:class:division:order:binary:family:operation:genus:left:species:division:component:operation:instance:canonical ,
+                  alg:quasigroup:kingdom:operation:phylum:primitive:class:division:order:binary:family:operation:genus:right:species:division:component:operation:instance:canonical ,
+                  alg:monoid:kingdom:operation:phylum:primitive:class:unit:order:nullary:family:operation:genus:neutral:species:identity:component:operation:instance:canonical ;
+    rdfs:comment "The loop signature Sigma = { ·, \\, /, e } : the quasigroup signature plus the nullary unit 'e : -> S' — a quasigroup with a two-sided identity (algebra_spine.ttl:213-221 fnd:sigLoop, E = {closure, Latin division, identity}). Typed rec:signature:record; names FOUR operation symbols (product, both divisions, unit). [S] TOKENS: class:signature, genus:algebraic, species:signature UNATTESTED; order:divisible:unital is an UNATTESTED design-default COMPOUND profile token (§1.7) naming this signature's presentation strength (divisible base + unital addition, matching the quasigroup->loop construction order; both segments are adjectives modifying the signature). The unit symbol it names is itself [S] on order:nullary (operations.ttl). All [S] uses flagged for the §7.2 sign-off packet." .

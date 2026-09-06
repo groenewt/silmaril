@@ -1,0 +1,45 @@
+# =====================================================================================
+# commutative_monoid_law.rq — RED->GREEN probe for T-CMON (the COMMUTATIVITY tooth, W2 · SP0).
+# The characteristic law of the commutative-monoid rung, over the unified @rel:* reified-table
+# vocabulary (bridges.ttl:249-291: relation:structure = fnd:opStructure,
+# relation:category:first/second/result = fnd:opLeft/opRight/opResult).
+# =====================================================================================
+# The COMMUTATIVE-MONOID commutativity law: for a model's reified Cayley table (cells scoped to
+# the model by @rel:structure), the product must COMMUTE — for every ordered pair x,y the
+# product x·y must equal the swapped product y·x. This SELECT walks the table twice:
+#   ?c1 : x·y = p        ?c2 : y·x = q
+# and returns every pair whose two orders DISAGREE (p != q) — the model, the two operands and
+# the two disagreeing products. It is the folded stratified re-homing of the ONE law the
+# commutative-monoid rung adds over the monoid (algebra_spine.ttl composition map :99-103,224;
+# design §1.5 commutativity axiom). commutative-monoid = monoid + commutativity; the underlying
+# identity / associativity / closure laws are inherited from the monoid theory and are policed by
+# probes/monoid_identity.rq and probes/semigroup_law.rq — this probe is the PRIMARY,
+# characteristic-law tooth for THIS rung: it detects non-commutativity directly.
+#
+#   GREEN (a genuine commutative monoid, e.g. fixtures/commutative_monoid_pos.ttl — Z/3 under +):
+#         0 rows — every pair commutes, the tooth is satisfied.
+#   RED   (a non-commutative table, e.g. fixtures/commutative_monoid_neg.ttl — one cell corrupted
+#         so x·y != y·x for some pair): >= 1 row — commutativity fails and the tooth bites.
+#
+# Run over the algebra data graph merged with the fixture under test, inference=none. The
+# commutativity-specific SHACL NodeShape is authored later by T-SHAPES; until then the negative
+# fixture's single corrupted cell is chosen to involve the identity element e (e·b), so that the
+# SAME one-cell error ALSO trips the existing ModelShape identity tooth (shapes/algebra.shapes.ttl,
+# sh:targetClass rec:model:record) — so the runner's fixture iteration (run-algebra-checks.sh
+# step (b)) catches it as a non-conforming negative. This probe is the direct commutativity tooth.
+
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?model ?x ?y ?p ?q WHERE {
+  # x·y = p
+  ?c1 rel:structure       ?model ;
+      rel:category:first  ?x ;
+      rel:category:second ?y ;
+      rel:category:result ?p .
+  # y·x = q  (the swapped order)
+  ?c2 rel:structure       ?model ;
+      rel:category:first  ?y ;
+      rel:category:second ?x ;
+      rel:category:result ?q .
+  FILTER(?p != ?q)   # x·y != y·x  =>  commutativity violated
+}

@@ -1,0 +1,26 @@
+# =====================================================================================
+# provenance_closure_pos.ttl — the POSITIVE fixture for ProvenanceClosureShape (W2 · SP0, T-PROV).
+# =====================================================================================
+# ProvenanceClosureShape (shapes/algebra.shapes.ttl) targets the reshaped-record scope marker
+# gprov:class:reshaped:record:scope and demands the V7 dual attribution: >= 1 executor AND >= 1
+# shadow (prov:wasAttributedTo) plus a prov:wasGeneratedBy. This positive is a lone marker-typed
+# record carrying BOTH attributions + a generation edge, so it CONFORMS. It is typed ONLY the scope
+# marker (a class no OTHER algebra shape targets), so it is a focus of ProvenanceClosureShape alone
+# and cannot be reddened by an unrelated tooth. Its single-injected-violation twin is
+# fixtures/provenance_closure_neg.ttl (the shadow attribution stripped). The executor/shadow agents
+# it points at are the real lane agents (reviews/{executor,shadow}/*.ttl), resolved in the merged
+# graph.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type (the scope
+# marker + prov:Entity), never an owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix gprov: <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:> .
+
+# --- a reshaped record carrying BOTH executor + shadow attribution + wasGeneratedBy (CONFORMS) ---
+<urn:silmaril:fixture:algebra:provenance:closure:positive>
+    a owl:NamedIndividual , prov:Entity , gprov:class:reshaped:record:scope ;
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> ,
+                         <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:shadow:sp0:spine:fold> ;
+    prov:wasGeneratedBy  <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:activity:lifecycle:draft:sp0:spine:fold> .

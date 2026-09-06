@@ -1,0 +1,295 @@
+# =====================================================================================
+# loop.ttl — the LOOP rung END-TO-END (W2 · SP0, Stage 2a, T-LOOP). Replicates the
+# signed-off monoid exemplar (spine/monoid.ttl) with the rung swapped -> loop (a
+# QUASIGROUP with a two-sided IDENTITY — the top of the DIVISION sub-family).
+# =====================================================================================
+# A loop is a QUASIGROUP (a magma whose binary operation admits total, unique left and
+# right division — a Latin square) equipped with a two-sided IDENTITY element e. Its
+# PARENT is QUASIGROUP (design §1.9-1.10, plan T-LOOP: "loop rung (quasigroup + identity)
+# … reduct edge loop->quasigroup") — reached by the forgetful theory-morphism @rel:reduct
+# loop -> quasigroup theory (the quasigroup theory atom lives on disk at
+# spine/quasigroup.ttl:114). Loop adds the SINGLE law two-sided IDENTITY over quasigroup
+# (algebra_spine.ttl:99-103 one-law-per-child); closure and latin-division are inherited
+# from quasigroup and restated at family:loop so this rung's theory E is self-contained
+# (design §2a). E = {closure, latin-division, identity}. Loop is NOT associative in general
+# (an associative loop is a group) — so it carries NO associativity axiom.
+#
+# This file mints, replicating the exemplar end-to-end: the theory record (S,Omega,E), the
+# B4 TWO model planes (a denotatum + a declaration-record model class linked by @rel:denotes),
+# the closure axiom record, the latin-division axiom record, the two-sided IDENTITY parent
+# axiom record + its TWO reified equation records inline (identity-left e·x=x, identity-right
+# x·e=x), a theorem (identity uniqueness) + certificate, the declaration-triad gate, and the
+# provenance quartet + bridges.
+#
+# IDENTITY IS LOOP'S OWN ATOM, TWO-SIDED -> TWO equation records (design §1.6, §3; task
+# T-LOOP "Adds IDENTITY as its OWN atom split into TWO equation records (family:loop … genus:
+# neutral:species:member:left / :right [S])"). Unlike monoid, whose identity rides family:
+# monoid off semigroup, loop's identity is minted at family:loop off the division sub-family
+# (quasigroup) — a DISTINCT atom (no-cram, Directive-17): its two sides are the two equation
+# records below, whose IRIs are BYTE-IDENTICAL to bridges.ttl:187-188 (the fnd:lawIdentity
+# skos:closeMatch targets) so the merged alias map resolves. closure and latin-division are
+# membership/totality + Latin-square STRUCTURAL statements, NOT single left=right equations, so
+# both are typed rec:axiom:record ONLY (never rec:equation:record) and carry NO @rel:left/
+# @rel:right (matching spine/quasigroup.ttl); the identity is the only two-sided equational law.
+#
+# THEOREM/CERTIFICATE PLANE PRESENT (design §2f; task T-LOOP "theorem+certificate IF the rung
+# has a natural uniqueness/structure theorem else omit"). A loop HAS a two-sided identity, and
+# — exactly as in a monoid — that identity is UNIQUE (if e and e' are both two-sided identities
+# then e = e·e' = e'). This uniqueness is a genuine DERIVED consequence of the identity axiom,
+# NOT the defining axiom, so it is a real theorem to certify (contrast quasigroup, whose
+# division-UNIQUENESS is its defining axiom and therefore has no theorem plane, spine/
+# quasigroup.ttl:26-35). So this rung carries the theorem+certificate plane, mirroring monoid.
+#
+# WHAT LIVES WHERE. The finite Cayley witnesses (a genuine loop = Latin square WITH two-sided
+# identity, positive + a genuine quasigroup = Latin square with NO two-sided identity, negative)
+# are in fixtures/loop_pos.ttl / fixtures/loop_neg.ttl (D24 four-planes: element / finite-table
+# witnesses are EVIDENCE, outside the ontology data glob and the CI data graph). The added-law
+# two-sided IDENTITY tooth is probes/loop_law.rq.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:). The loop denotatum
+# IRI is BYTE-IDENTICAL to bridges.ttl:125 (fnd:Loop skos:exactMatch target); the identity-left/
+# right equation IRIs are BYTE-IDENTICAL to bridges.ttl:187-188 (fnd:lawIdentity skos:closeMatch
+# targets); the loop model-record class IRI is BYTE-IDENTICAL to spine/quasigroup.ttl:159 (the
+# quasigroup model-record's owl:disjointWith forward reference). Closure / latin-division rank
+# values are [D] derived off the [V] group closure axiom + the quasigroup latin-division axiom
+# with family -> family:loop (task NAMING GROUND TRUTH). Identity rank values [S] off the [V]
+# group identity axiom (genus:neutral:species:member) with family:group -> family:loop plus the
+# :left/:right side segment. [D] = derived; [S] = no runtime precedent -> §7.2 sign-off packet.
+#
+# ENGINE BRIDGE (design §5.1, honesty ledger). Loop has NO engine anchor — the engine carries
+# only the flat subdomain:group collapse (commutative-monoid / abelian-group / quasigroup / loop
+# are the honest-red rungs, design §5.1). So NO seed:conservativeBridge/skos:exactMatch to the
+# engine is minted; proof-status is literature:backed, NOT finite:checked-from-engine. The
+# additive alias fnd:Loop skos:exactMatch <this denotatum> already lives in bridges.ttl:124-126
+# and the fnd:lawIdentity skos:closeMatch <loop identity-left/right> in bridges.ttl:184-189, both
+# NOT duplicated here (bridge-never-duplicate, TODO-11). This file adds, on the theory record,
+# only the ADDITIVE historical/alias edges: @rel:historical:identity fnd:Loop (+ the seed legacy
+# loop IRI) and skos:closeMatch fnd:Loop (Stage-2a additive; fnd:Loop stays byte-intact until the
+# Stage-2b T-RETIRE).
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #1 mint-more-than-runtime : the theory record + the declaration-record model class have NO
+#      algebra precedent in the runtime (the runtime shows only the flat subdomain:group
+#      collapse) — minted per D24, PIVOTAL/pre-locked.
+#   theory     : class:theory / genus:presented (kingdom:definition:phylum:algebra) — UNATTESTED.
+#   model rec. : class:model / genus:governed / component:class — UNATTESTED (B4 Plane-1, §7.2 #10).
+#   #2 side-segment placement : species:member:left / species:member:right on the loop identity —
+#      UNATTESTED side segment (design §1.6, §7.2 #2); TAGGED on the two identity equation records.
+#   #5 latin-division : class:division / genus:latin / species:unique on the inherited latin-division
+#      axiom — UNATTESTED (design §1.5, §7.2 #5); TAGGED on that axiom.
+#   @rel D24   : @rel:validation:mode "finite:table" (4-value) + @rel:proof:status
+#      "literature:backed" (8-value) — the D24 validation-mode / proof-status vocab, no runtime
+#      precedent. A loop is witnessed by a finite Cayley table (Latin square + two-sided identity),
+#      not term rewriting, so validation-mode is finite:table (matching the quasigroup parent).
+#   @typ       : @typ:declaration / @typ:certificate / @typ:gate — the plane-type tokens (design §2).
+#   authority  : "SYN" — loop is honest-red synthesized cited standard universal algebra; it is NOT
+#      the DS-lifted rung (that is monoid alone, algebra_spine.ttl:36).
+#   LOCKED (no sign-off): B1 adjective-first (n/a for loop, no compound token); B4 two-planes;
+#      B3(a) additive Stage 2a (fnd:Loop intact, bridges added; T-RETIRE is Stage 2b).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.4-1.10, §2, §5).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-LOOP).
+# Consumes (do not rewrite): records.ttl (rec:* classes), signatures.ttl (sigLoop), operations.ttl
+# (product ·, left \, right /, unit e), spine/quasigroup.ttl (quasigroup theory, reduct parent;
+# quasigroup model, disjointness twin), bridges.ttl (fnd:Loop, fnd:lawIdentity). Tooth:
+# shapes/algebra.shapes.ttl TheoryShape / ModelShape / EquationRecordShape + probes/loop_law.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# reified term / case atoms (objects only; loop-scoped so no collision with the monoid terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:loop:> .
+@prefix case: <urn:silmaril:type:graph:instance:instruction:code:property:relation:case:loop:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+# =====================================================================================
+alg:loop:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:loop:genus:presented:species:loop:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "loop theory (S,Omega,E)" ;
+    rel:notation   "loop" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:loop:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:loop:genus:presented:species:loop:component:definition:instance:canonical" ;
+    rel:signature  alg:loop:kingdom:definition:phylum:specification:class:signature:order:divisible:unital:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:loop:kingdom:axiom:phylum:operation:class:closure:order:binary:family:loop:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:loop:kingdom:axiom:phylum:operation:class:division:order:binary:family:loop:genus:latin:species:unique:component:statement:instance:canonical ,
+                   alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                   alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rel:reduct     alg:quasigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:quasigroup:genus:presented:species:quasigroup:component:definition:instance:canonical ;
+    rel:denotatum  alg:loop:kingdom:type:phylum:algebra:class:loop:order:binary:family:operation:genus:axiomatic:species:loop:component:type:instance:canonical ;
+    rel:assignment alg:loop:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:loop:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:Loop , <urn:silmaril:ontology:primordial:algebra:structure:loop> ;
+    skos:closeMatch fnd:Loop ;
+    rdfs:comment "[S] The presented loop THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6): S,Omega = @rel:signature sigLoop (signatures.ttl:123, Sigma={·,\\,/,e} — the divisible:unital signature: product plus left division \\, right division / and the nullary unit e); E = @rel:equation the FOUR members {closure, latin-division, identity-left, identity-right} — closure and latin-division inherited from quasigroup and restated at family:loop, and the two-sided IDENTITY the SINGLE law loop adds over quasigroup (one-law-per-child, algebra_spine.ttl:99-103), decomposed into its TWO reified equation records identity-left (e·x=x) and identity-right (x·e=x) (design §1.6, §3). closure and latin-division are STRUCTURAL axioms (membership/totality; total-and-unique-division / Latin-square), NOT single left=right equations, so neither splits into equation records (matching spine/quasigroup.ttl); the two-sided identity is loop's ONLY equational law and is loop's OWN atom at family:loop (no-cram, Directive-17: distinct from monoid's family:monoid identity). Loop is NOT associative in general (an associative loop is a group), so it carries NO associativity axiom. It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 loop denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the QUASIGROUP theory (the forgetful theory-morphism loop->quasigroup, design §1.9-1.10: loop is quasigroup + identity; the quasigroup theory atom lives on disk at spine/quasigroup.ttl:114 and this edge resolves against it; the obligation-count-2 extension morphism over the reduct — the two-sided identity discharges two equations — is minted by T-REDUCT, Stage 2b). D24 first-class metadata: @rel:validation:mode 'finite:table' (the 4-value law-witness mode — a loop is witnessed by a finite Cayley table that is a Latin square WITH a two-sided identity row/column, fixtures/loop_pos.ttl, NOT by term rewriting; the same mode the quasigroup parent carries) and @rel:proof:status 'literature:backed' (the 8-value status — loop has NO engine anchor, so it is honest-red BUILD: cited standard universal algebra, NOT finite:checked-from-engine, design §5.1). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24: 'Loop was not authored by an executor; the LoopTheoryRecord was'). @rel:authority 'SYN' because loop is synthesized cited standard universal algebra — the top of the division sub-family, NOT the DS-lifted rung (that is monoid alone, algebra_spine.ttl:36). Historical-identity BRIDGES: @rel:historical:identity fnd:Loop and the seed legacy IRI urn:silmaril:ontology:primordial:algebra:structure:loop; skos:closeMatch fnd:Loop (Stage-2a ADDITIVE — fnd:Loop stays intact; the additive alias fnd:Loop skos:exactMatch this denotatum lives in bridges.ttl:124-126 and the fnd:lawIdentity skos:closeMatch loop identity-left/right in bridges.ttl:184-189, NOT duplicated; loop has NO engine seed:conservativeBridge, honest-red BUILD; T-RETIRE stubs fnd:Loop in Stage 2b). Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision). [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object, NO provenance. [D]
+#      BYTE-IDENTICAL to bridges.ttl:125 (fnd:Loop skos:exactMatch target).
+# =====================================================================================
+alg:loop:kingdom:type:phylum:algebra:class:loop:order:binary:family:operation:genus:axiomatic:species:loop:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "loop" ;
+    rel:notation   "loop" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:loop:kingdom:type:phylum:algebra:class:loop:order:binary:family:operation:genus:axiomatic:species:loop:component:type:instance:canonical" ;
+    rdfs:comment "[D] The loop DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a loop' itself — a quasigroup (a set whose Cayley table is a Latin square, admitting total unique left and right division) equipped with a two-sided IDENTITY element e — carrying its canonical @rel:identifier and @rel:notation ONLY, and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes — and is BYTE-IDENTICAL to bridges.ttl:125 (fnd:Loop skos:exactMatch this denotatum) so the merged alias map resolves and SP1/SP2/SP3 inbound fnd:Loop references stay reachable through the fold. Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. Rank values [D] off the [V] group denotatum skeleton (bridges.ttl:81) with subdomain/family group -> loop; class:loop / species:loop track the rung." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction
+#      bundle + provenance + disjointness teeth). [S] class:model/genus:governed/component:class
+# =====================================================================================
+alg:loop:kingdom:class:phylum:algebra:class:model:order:declarative:family:loop:genus:governed:species:loop:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "loop model class" ;
+    rel:notation "loop model" ;
+    rel:denotes alg:loop:kingdom:type:phylum:algebra:class:loop:order:binary:family:operation:genus:axiomatic:species:loop:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:identity:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    owl:disjointWith alg:quasigroup:kingdom:class:phylum:algebra:class:model:order:declarative:family:quasigroup:genus:governed:species:quasigroup:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The loop MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness tooth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction, closure.ttl has 13) makes 'a loop is a set with exactly one carrier, exactly one identity element and exactly one operation' a graph fact via cardinality-1 owl:Restriction on @rel:carrier, @rel:identity:element and @rel:operation. NOTE it DOES carry the @rel:identity:element restriction (unlike the quasigroup/magma/semigroup model-records, spine/quasigroup.ttl:157): a loop, precisely because it adds a two-sided identity over quasigroup, HAS a distinguished identity element — so it retains the monoid model-record's identity:element restriction (spine/monoid.ttl:111), the graph-fact form of loop's added law. owl:disjointWith the QUASIGROUP model-record class (spine/quasigroup.ttl:151, which already forward-references this loop model as its own disjoint twin, bridges.ttl-symmetric) is the D25 homonym/distinction tooth at the DECLARATION-RECORD plane: the canonical loop declaration record and the canonical quasigroup declaration record are DISTINCT records (not an extensional-structure disjointness claim — extensionally every loop IS a quasigroup; on the record plane no single declaration record is both), exactly as abelian-group's model-record is disjointWith its group parent's (spine/abelian_group.ttl:153). Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete model can be typed against it) AND a rec:model:record / rec:declaration:record (so the ModelShape sh:targetClass tooth counts it as a data-graph focus node and the runner's 0-focus gate is satisfied) — OWL2 metaclass punning, exactly as spine/progenitor.ttl / spine/monoid.ttl / spine/quasigroup.ttl, and DISTINCT from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids. On this focus the ModelShape identity sh:sparql tooth is vacuously satisfied (the class declares no @rel:identity:element / reified cells); the finite Latin-square-with-identity model witness in fixtures/loop_pos.ttl is where the two-sided identity probe (probes/loop_law.rq) bites. [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM record — CLOSURE (design §2c, §1.5 — minimal, NO denotatum/gate/
+#     provenance, NO certificate). Closure is a membership/totality axiom, NOT a left=right
+#     equation, so it is rec:axiom:record ONLY (never rec:equation:record) and carries NO
+#     @rel:left/@rel:right. Rank values VERBATIM off the [V] group closure axiom with
+#     family:group -> family:loop. Inherited from quasigroup, restated at family:loop.
+# =====================================================================================
+alg:loop:kingdom:axiom:phylum:operation:class:closure:order:binary:family:loop:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "loop closure" ;
+    rel:notation "for all x,y in S: x·y in S" ;
+    rdfs:comment "[D] The CLOSURE / totality axiom of the loop theory (rec:axiom:record) — inherited from quasigroup (ultimately magma) and restated at family:loop, one of the four members of this rung's equation set E (this file's theory @rel:equation): the binary product · is a total function S,S -> S, so for all x,y in the carrier S the product x·y is defined and lies in S. A membership/totality statement, NOT a left=right equation — so it is an axiom record only, NOT a rec:equation:record (unlike loop's two-sided identity), and carries NO @rel:left/@rel:right. Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (an axiom is asserted, not proved — axiom != theorem is structural, and rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119). Rank values VERBATIM off the [V] group closure axiom (HEAD+group:kingdom:axiom:phylum:operation:class:closure:order:binary:family:group:genus:product:species:membership:component:statement:instance:canonical, genus:product:species:membership, task NAMING GROUND TRUTH / bridges.ttl:98,170) with family:group -> family:loop. Closure is teeth-proved together with the Latin-square and identity laws over the fixtures/ finite-table witnesses; a Latin square is necessarily closed, so the positive loop table (fixtures/loop_pos.ttl) is closed and the identity probe returns 0 rows." .
+
+# =====================================================================================
+# (c') INHERITED AXIOM record — LATIN-DIVISION (design §1.5, §2c; inherited from quasigroup and
+#      restated at family:loop so this rung's E is self-contained). A total-and-unique-division /
+#      Latin-square STRUCTURAL statement over the whole table, NOT a single left=right equation,
+#      so it is rec:axiom:record ONLY (never rec:equation:record) and carries NO @rel:left/@rel:right.
+#      [S] genus:latin / species:unique / class:division are UNATTESTED (§7.2 #5) — TAGGED.
+# =====================================================================================
+alg:loop:kingdom:axiom:phylum:operation:class:division:order:binary:family:loop:genus:latin:species:unique:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "loop latin-division" ;
+    rel:notation "for all a,b in S: exist UNIQUE x,y in S with a·x = b and y·a = b" ;
+    rdfs:comment "[S] The LATIN-DIVISION axiom of the loop theory (rec:axiom:record) — inherited from quasigroup (loop's parent, design §1.9-1.10) and restated at family:loop, a member of the theory's equation set E: for all a,b in the carrier S there exist UNIQUE x,y in S with a·x = b (unique LEFT division, x = a\\b) and y·a = b (unique RIGHT division, y = b/a). Equivalently the Cayley table is a LATIN SQUARE — every element of S occurs exactly once in each row and exactly once in each column — which is why the divisible:unital signature sigLoop carries the two division symbols \\ and / (signatures.ttl:123, operations.ttl left/right division). It is a total-and-unique-division / uniqueness statement over the WHOLE table, NOT a single left=right equality, so it is typed rec:axiom:record ONLY (never rec:equation:record) and carries NO @rel:left/@rel:right (matching spine/quasigroup.ttl:189, design §1.5). Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (the division-uniqueness IS asserted as an axiom, not derived — its home theorem-free rung is quasigroup, spine/quasigroup.ttl:26-35; loop's OWN theorem plane is instead the identity-uniqueness below). This axiom's IRI restates the quasigroup latin-division axiom (BYTE-IDENTICAL to bridges.ttl:174 modulo family:quasigroup -> family:loop). [S] TOKENS: genus:latin and species:unique are UNATTESTED in the verified runtime (0 aob dirs; design §1.5 / §7.2 #5); the class:division token is likewise UNATTESTED (0 aob dirs; operations.ttl §7.2 note). All three are design-default tokens carried at the design value and flagged for the maintainer §7.2 sign-off packet (T-PANEL). Its Latin-square property is a precondition of the loop; the ADDED-law (two-sided identity) tooth is probes/loop_law.rq." .
+
+# =====================================================================================
+# (c'') ADDED-LAW AXIOM record — the two-sided IDENTITY (design §2c, §1.6; the SINGLE law loop
+#      adds over quasigroup). The named PARENT law (no side segment): it @rel:equation-decomposes
+#      into the TWO reified equation records identity-LEFT (e·x=x) and identity-RIGHT (x·e=x) below.
+#      Rank values [S] off the [V] group identity axiom (genus:neutral:species:member) with
+#      family:group -> family:loop.
+# =====================================================================================
+alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "loop identity (two-sided)" ;
+    rel:notation "exists e: e·x = x and x·e = x" ;
+    rel:equation alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                 alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] The two-sided IDENTITY axiom of the loop theory (rec:axiom:record, the named parent law, no side segment): there exists a neutral element e with e·x = x AND x·e = x for all x. It is the SINGLE law loop ADDS over quasigroup (one-law-per-child, algebra_spine.ttl:99-103) and loop's OWN atom at family:loop (no-cram, Directive-17: DISTINCT from monoid's family:monoid identity, though the two are historically the same fnd:lawIdentity, bridged in bridges.ttl:184-189). As a TWO-SIDED law it @rel:equation-decomposes into the TWO reified equation records identity-left (e·x=x) and identity-right (x·e=x) (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent) — the obligation-count-2 extension morphism over the loop->quasigroup reduct is minted by T-REDUCT (Stage 2b). Minimal per design §2c: no denotatum / gate / provenance, no certificate (the axiom is asserted; its derived consequence — identity UNIQUENESS — is the separate theorem+certificate plane below). Rank values off the [V] group identity axiom (genus:neutral:species:member, task NAMING GROUND TRUTH / bridges.ttl:108) with family:group -> family:loop. Its added-law status is teeth-proved by probes/loop_law.rq (the two-sided identity tooth) over the fixtures/ finite-table witnesses: the genuine loop (Latin square WITH two-sided identity, fixtures/loop_pos.ttl) returns 0 rows, the quasigroup with NO two-sided identity (fixtures/loop_neg.ttl, whose declared identity element fails the unit law) returns >=1 row." .
+
+# =====================================================================================
+# (d) EQUATION records — the TWO sides of the two-sided identity, minted INLINE (task T-LOOP:
+#     "THIS rung's equation records inline"). Each is rec:equation:record with EXACTLY ONE
+#     @rel:left term and ONE @rel:right term (the EquationRecordShape cardinality-1 tooth,
+#     records.ttl:76-81, closure.ttl:153-169 datatype:record idiom). [S] side segment (§7.2 #2).
+#     BYTE-IDENTICAL to bridges.ttl:187-188 (fnd:lawIdentity skos:closeMatch targets).
+# =====================================================================================
+# identity-LEFT — side 1 of the two-sided identity, e·x = x. [S] side segment (§7.2 #2)
+alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "loop identity (left unit)" ;
+    rel:notation "e·x = x" ;
+    rel:left   term:identity:left ;
+    rel:right  term:identity:x ;
+    rel:member case:identity:zero ;
+    rdfs:comment "[S] The LEFT unit law e·x = x — side 1 of the loop two-sided identity, reified as an equation record (rec:equation:record) with one @rel:left term (e·x) and one @rel:right term (x). A two-sided law mints TWO equation records, one per side (design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent), whose obligation-count-2 extension morphism over the loop->quasigroup reduct is minted by T-REDUCT (Stage 2b). It is loop's OWN atom at family:loop (no-cram: DISTINCT from the monoid identity-left at family:monoid, equations.ttl:70). This IRI is BYTE-IDENTICAL to bridges.ttl:187 (one of the fnd:lawIdentity skos:closeMatch targets) so the merged alias map resolves. [S] the species:member:left SIDE SEGMENT is UNATTESTED in the runtime (design §7.2 #2, side-segment placement) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group identity axiom (genus:neutral:species:member, bridges.ttl:108) with family:group -> family:loop, plus the :left side segment. Its @rel:left/@rel:right terms are loop-scoped (term:loop:*) so the EquationRecordShape identity-collision clause never conflates it with the monoid identity-left equation record." .
+
+# identity-RIGHT — side 2 of the two-sided identity, x·e = x. [S] side segment (§7.2 #2)
+alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "loop identity (right unit)" ;
+    rel:notation "x·e = x" ;
+    rel:left   term:identity:right ;
+    rel:right  term:identity:x ;
+    rel:member case:identity:one ;
+    rdfs:comment "[S] The RIGHT unit law x·e = x — side 2 of the loop two-sided identity, reified as an equation record (rec:equation:record) with one @rel:left term (x·e) and one @rel:right term (x). Its twin is the identity-LEFT record above; together they are the TWO equation records the ONE two-sided identity law decomposes into (design §1.6, §3), the obligation-count-2 extension morphism over the loop->quasigroup reduct minted by T-REDUCT (Stage 2b). It is loop's OWN atom at family:loop (no-cram: DISTINCT from the monoid identity-right at family:monoid, equations.ttl:83). This IRI is BYTE-IDENTICAL to bridges.ttl:188 (one of the fnd:lawIdentity skos:closeMatch targets). [S] the species:member:right SIDE SEGMENT is UNATTESTED (design §7.2 #2) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group identity axiom (genus:neutral:species:member) with family:group -> family:loop, plus the :right side segment. Its @rel:left/@rel:right terms are loop-scoped (term:loop:*) so the EquationRecordShape identity-collision clause never conflates it with the monoid identity-right equation record or with its own identity-left twin (distinct @rel:left)." .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate,
+#     NEVER an axiom; the closure.ttl Yoneda theorem/certificate idiom, :129-142, exactly as
+#     spine/monoid.ttl:145-163). Loop's identity is two-sided, hence UNIQUE — a derived theorem.
+# =====================================================================================
+alg:loop:kingdom:theorem:phylum:algebra:class:identity:order:declarative:family:loop:genus:uniqueness:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "loop identity uniqueness" ;
+    rel:notation "the two-sided identity e is unique" ;
+    rel:certificate alg:loop:kingdom:certificate:phylum:algebra:class:identity:order:declarative:family:loop:genus:uniqueness:species:member:component:statement:instance:canonical ;
+    rel:authority "SYN" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "Theorem, not an additional foundational axiom (design §2f, the closure.ttl Yoneda theorem/certificate idiom, :129-142; exactly the monoid identity-uniqueness theorem, spine/monoid.ttl:145): in any loop (S,·,\\,/,e) the two-sided identity element e is UNIQUE — if e and e' are both two-sided identities then e = e·e' = e' (e' as right identity applied to e, then e as left identity applied to e'). The proof depends ONLY on e and e' being two-sided identities (not on associativity or division), so it holds in every loop just as in every monoid. It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). This is the D24 A0 ProofArtifact plane: a derived consequence of the identity axiom, not a new axiom. Loop HAS this theorem plane (unlike quasigroup, whose defining division-uniqueness is an axiom, not a derived theorem, spine/quasigroup.ttl:26-35) precisely because loop's characteristic identity is a genuine added axiom whose uniqueness is derived. Provenance quartet + @rel:authority 'SYN' on the record." .
+
+alg:loop:kingdom:certificate:phylum:algebra:class:identity:order:declarative:family:loop:genus:uniqueness:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "loop identity uniqueness certificate" ;
+    rel:digest:value    "d0619356c89b12ea101ec8765d9958a8e32974427143a2aefae0d9b53d198f85" ;
+    rel:proof:method    "Explicit general mathematical derivation (e = e·e' = e'); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for loop identity uniqueness (design §2f; the closure.ttl certificate idiom, :132/137/142; twin of the monoid certificate, spine/monoid.ttl:157): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Loop identity uniqueness: in any loop (S,.,\\,/,e) the two-sided identity e is unique. Proof: if e and e' are both two-sided identities then e = e.e' = e' (e' as right identity applied to e, then e as left identity applied to e'). General mathematical derivation; not proof-assistant checked', computed byte-exact with sha256sum), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119)." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:loop:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:loop:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "loop declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:loop:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:loop:genus:reconciled:species:loop:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the loop declaration was RECONCILED against its denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the loop rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the loop declaration is reconciled, not merely asserted." .
+
+# =====================================================================================
+# Per-side reified case nodes (closure.ttl:185-192 case:zero/case:one precedent, equations.ttl:97-99).
+# Bare subjects (no `a`): the datatype:record cardinality-1 left/right on the equation records above
+# is the enforced tooth; these mirror the reference's equation->member->case->left/right reification.
+# =====================================================================================
+case:identity:zero rel:left term:identity:left  ; rel:right term:identity:x .
+case:identity:one  rel:left term:identity:right ; rel:right term:identity:x .
+
+# =====================================================================================
+# BRIDGES (design §5, the loop-rung historical/alias edges — Stage-2a ADDITIVE). The additive
+# alias fnd:Loop skos:exactMatch <loop denotatum> (bridges.ttl:124-126) and fnd:lawIdentity
+# skos:closeMatch <loop identity-left/right> (bridges.ttl:184-189) already live in bridges.ttl and
+# are NOT duplicated here (bridge-never-duplicate, TODO-11). Loop has NO engine anchor (honest-red
+# BUILD, design §5.1), so NO seed:conservativeBridge is minted. The edges on the theory record
+# above are: @rel:historical:identity fnd:Loop, @rel:historical:identity <seed legacy loop IRI>,
+# skos:closeMatch fnd:Loop — keeping SP1/SP2/SP3 fnd:Loop refs resolvable THROUGH the folded rung
+# while fnd:Loop stays byte-intact until Stage-2b T-RETIRE.
+# =====================================================================================

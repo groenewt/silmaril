@@ -1,0 +1,99 @@
+# =====================================================================================
+# equations.ttl — the reified equation records of the folded algebra spine (W2 · SP0).
+# MONOID BLOCK (T-MONOID). Later rung blocks (magma…loop) append here in Stage 2.
+# =====================================================================================
+# A law of a theory's equation set E, reified as an ordered pair t_left = t_right, is an
+# EQUATION RECORD (rec:equation:record, records.ttl:76-81 — the datatype:record
+# cardinality-restriction idiom, closure.ttl:153-169, applied cardinality-1 on @rel:left
+# AND @rel:right). A TWO-SIDED law mints TWO equation records, one per side (design §1.6,
+# §3; closure.ttl:185-192 category:identity case:zero/case:one precedent). This file mints
+# the monoid theory's three reified equation records:
+#   - associativity  (one equation)  : (x·y)·z = x·(y·z)
+#   - identity-left   (side 1 of 2)  : e·x = x
+#   - identity-right  (side 2 of 2)  : x·e = x
+# The associativity atom is dual-typed rec:axiom:record + rec:equation:record: the runtime
+# models each law as ONE kingdom:axiom…component:statement atom that is SIMULTANEOUSLY the
+# equation (design §1.9, §7.2 #7 — the reuse-the-axiom-atom side of the open equation-identity
+# decision, realised consistently with bridges.ttl:166-190). closure is a membership/totality
+# statement, not a left=right equation, so it is an axiom record only (spine/monoid.ttl), NOT a
+# rec:equation:record. Terms and per-side case nodes are referenced as bare IRIs (objects /
+# type-free subjects) so the naming ladder is not over-committed and the depth gate (which
+# checks only subjects carrying `a`) does not require them to be typed.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder; the identity-left / identity-right
+# IRIs are BYTE-IDENTICAL to bridges.ttl:181-182 (the fnd:lawIdentity closeMatch targets) so
+# the merged graph's alias map resolves. Rank values VERBATIM off the [V] group axioms with
+# family:group -> family:monoid (bridges.ttl:104,168). [D] = derived from the group skeleton;
+# [S] = no runtime precedent -> flagged for the §7.2 sign-off packet.
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #2 side-segment placement : species:member:left / species:member:right (the two-sided
+#      identity split) — UNATTESTED side segment; the two identity equation records below.
+#   #7 equation-identity      : this file takes the REUSE side (component:statement axiom atom
+#      IS the equation individual; the alternative component:equation is avoided) — consistent
+#      with records.ttl:76-81 (which mints a distinct equation:record CLASS) and bridges.ttl.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.6, §2d, §3).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-MONOID).
+# Consumes (do not rewrite): records.ttl (rec:equation:record + rec:axiom:record), bridges.ttl
+# (identity-left/right IRIs). Tooth: shapes/algebra.shapes.ttl EquationRecordShape
+# (cardinality-1 left AND right) + probes/monoid_identity.rq (the identity law over the table).
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# reified term / case atoms (objects only; no runtime ladder committed for finite worked terms):
+@prefix term: <urn:silmaril:type:graph:instance:instruction:code:property:relation:term:monoid:> .
+@prefix case: <urn:silmaril:type:graph:instance:instruction:code:property:relation:case:monoid:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:equation:record / rec:axiom:record REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# -------------------------------------------------------------------------------------
+# associativity — ONE equation, (x·y)·z = x·(y·z). Dual-typed axiom+equation (design §1.9). [D]
+# -------------------------------------------------------------------------------------
+alg:monoid:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:monoid:genus:composition:species:equality:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record , rec:axiom:record ;
+    rdfs:label "monoid associativity" ;
+    rel:notation "(x·y)·z = x·(y·z)" ;
+    rel:left   term:assoc:left ;
+    rel:right  term:assoc:right ;
+    rel:member case:assoc:zero ;
+    rdfs:comment "[D] The associativity law of the monoid theory as a reified equation record (rec:equation:record): the ordered pair (x·y)·z = x·(y·z), one @rel:left term and one @rel:right term (the EquationRecordShape cardinality-1 tooth). Dual-typed rec:axiom:record too (design §1.9: the runtime models each law as ONE kingdom:axiom…component:statement atom that is simultaneously the equation, avoiding the unattested component:equation — the §7.2 #7 reuse side, consistent with bridges.ttl and records.ttl:76-81). Associativity is a SINGLE equation (not two-sided), mirroring closure.ttl category:associativity's single member (closure.ttl:180-183). Rank values VERBATIM off the [V] group associativity axiom (genus:composition:species:equality) with family:group -> family:monoid (bridges.ttl:168). It is a member of the monoid theory's equation set E (spine/monoid.ttl @rel:equation) — inherited from semigroup and restated at the monoid level (design §2a)." .
+
+# -------------------------------------------------------------------------------------
+# identity-LEFT — side 1 of the two-sided identity, e·x = x. [S] side segment (§7.2 #2)
+# BYTE-IDENTICAL to bridges.ttl:181 (fnd:lawIdentity closeMatch target).
+# -------------------------------------------------------------------------------------
+alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:left:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "monoid identity (left unit)" ;
+    rel:notation "e·x = x" ;
+    rel:left   term:identity:left ;
+    rel:right  term:identity:x ;
+    rel:member case:identity:zero ;
+    rdfs:comment "[S] The LEFT unit law e·x = x — side 1 of the monoid two-sided identity, reified as an equation record (rec:equation:record) with one @rel:left term (e·x) and one @rel:right term (x). A two-sided law mints TWO equation records, one per side (design §1.6, §3; closure.ttl:185-192 category:identity case:zero/case:one precedent), whose obligation-count-2 extension morphism is minted by T-REDUCT (Stage 2). This IRI is BYTE-IDENTICAL to bridges.ttl:181 (the fnd:lawIdentity closeMatch target) so the merged alias map resolves. [S] the species:member:left SIDE SEGMENT is UNATTESTED in the runtime (design §7.2 #2, side-segment placement) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group identity axiom (genus:neutral:species:member, bridges.ttl:104) with family:group -> family:monoid, plus the :left side segment." .
+
+# -------------------------------------------------------------------------------------
+# identity-RIGHT — side 2 of the two-sided identity, x·e = x. [S] side segment (§7.2 #2)
+# BYTE-IDENTICAL to bridges.ttl:182 (fnd:lawIdentity closeMatch target).
+# -------------------------------------------------------------------------------------
+alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:right:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "monoid identity (right unit)" ;
+    rel:notation "x·e = x" ;
+    rel:left   term:identity:right ;
+    rel:right  term:identity:x ;
+    rel:member case:identity:one ;
+    rdfs:comment "[S] The RIGHT unit law x·e = x — side 2 of the monoid two-sided identity, reified as an equation record (rec:equation:record) with one @rel:left term (x·e) and one @rel:right term (x). Its twin is the identity-LEFT record above; together they are the TWO equation records the ONE two-sided identity law decomposes into (design §1.6, §3), the obligation-count-2 extension morphism minted by T-REDUCT (Stage 2). This IRI is BYTE-IDENTICAL to bridges.ttl:182 (the fnd:lawIdentity closeMatch target). [S] the species:member:right SIDE SEGMENT is UNATTESTED (design §7.2 #2) — carried at the design default and flagged for the maintainer sign-off packet. Rank values off the [V] group identity axiom (genus:neutral:species:member) with family:group -> family:monoid, plus the :right side segment." .
+
+# -------------------------------------------------------------------------------------
+# Per-side reified case nodes (closure.ttl:185-192 case:zero/case:one precedent). Bare
+# subjects (no `a`): the datatype:record cardinality-1 left/right on the record above is the
+# enforced tooth; these mirror the reference's equation->member->case->left/right reification.
+# -------------------------------------------------------------------------------------
+case:assoc:zero    rel:left term:assoc:left    ; rel:right term:assoc:right .
+case:identity:zero rel:left term:identity:left ; rel:right term:identity:x .
+case:identity:one  rel:left term:identity:right; rel:right term:identity:x .

@@ -1,0 +1,48 @@
+# =====================================================================================
+# signature_names_sort.rq — RED->GREEN probe for T-SIG-OP (signatures.ttl + operations.ttl,
+# the shared signature + operation-symbol atoms of the folded algebra spine, W2 · SP0).
+# =====================================================================================
+# Doctrine (design §1.7-§1.8, plan T-SIG-OP): every shared signature Sigma names its operation
+# SYMBOLS, and every named operation symbol declares its ARITY and its domain/codomain SORT
+# (sort = the carrier). This probe certifies exactly that, per signature:
+#
+#   - ?sig is a rec:signature:record (the T-CLASSES intensional signature class, records.ttl:67-71,
+#     min-cardinality-1 on rel:operation — a signature that names no operation symbol is vacuous);
+#   - ?sig rel:operation ?op names >= 1 operation symbol;
+#   - EVERY operation symbol ?sig names carries a declared rel:arity AND a domain/codomain sort
+#     (rel:domain for operands, rel:codomain for the result; a nullary symbol like the unit e has
+#     only rel:codomain — matched by the rel:domain|rel:codomain alternation).
+#
+# The FILTER NOT EXISTS excludes any signature that names an operation symbol LACKING a declared
+# arity: such a signature is NOT certified and drops from the result. That is the biting tooth.
+#
+# RED  (before signatures.ttl/operations.ttl exist, i.e. no rec:signature:record individuals):
+#      0 rows.
+# GREEN (after T-SIG-OP lands the 5 signatures + 5 operation symbols):
+#      exactly 5 rows (sigOneBinary, sigMonoid, sigGroup, sigQuasigroup, sigLoop), each with its
+#      operation-symbol count.
+# INJECTION (the tooth bites): remove sigMonoid's unit symbol arity (rel:arity on the unit) ->
+#      sigMonoid is excluded by the FILTER NOT EXISTS -> 5 rows drop to 4, "RED for the monoid theory".
+#
+# Run over the algebra data graph (every basicttl/primordial/type/algebra/**/*.ttl except
+# *.shapes.ttl and fixtures/**), inference=none.
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:>
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?signature (COUNT(DISTINCT ?op) AS ?symbols) WHERE {
+  ?signature a rec:signature:record ;
+             rel:operation ?op .
+  # every named operation symbol declares its arity and its domain/codomain sort (sort = carrier)
+  ?op rel:arity ?arity .
+  ?op rel:domain|rel:codomain ?sort .
+  # exclude any signature naming an operation symbol that lacks a declared arity (the tooth)
+  FILTER NOT EXISTS {
+    ?signature rel:operation ?bad .
+    FILTER NOT EXISTS { ?bad rel:arity ?anyArity }
+  }
+}
+GROUP BY ?signature
+ORDER BY ?signature

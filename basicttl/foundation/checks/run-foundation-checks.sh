@@ -13,8 +13,9 @@
 #      (run-aob-checks.sh) standalone AND the merged SP1 + SP2 + SP3 graph (crs.shapes + the SP1
 #      dual-grounding tooth + SP2 aob.shapes + all 10 crs / 21 SP1 / 13 SP2 ASKs + crs depth). This
 #      single call IS the SP1 + SP2 + SP3 invariant (the plan's "re-run SP1/SP2/SP3 invariants").
-#   2. SP0 + SP1 + SP2 + SP3 parsed into ONE merged graph conforms to foundation.shapes.ttl
-#      (the SP0 law — skipped while it declares no shape, e.g. at T1).
+#   2. SP0 (+ SP0ALG, the folded algebra spine under basicttl/primordial/type/algebra/**, B2) + SP1 +
+#      SP2 + SP3 parsed into ONE merged graph conforms to foundation.shapes.ttl (the SP0 law — skipped
+#      while it declares no shape, e.g. at T1).
 #   3. The prior-floor laws STILL conform once SP0 is mixed in: primitives.shapes.ttl and
 #      crs.shapes.ttl re-run OVER the SP0-augmented merged graph (catches an SP0 atom that would
 #      regress a prior tooth — e.g. an ungrounded re-anchor edge), and aob.shapes.ttl fully
@@ -48,8 +49,8 @@ cd "$(git rev-parse --show-toplevel)"
 echo "== SP1 + SP2 + SP3 prior floors (untouched + green; run-crs-checks re-runs all three) =="
 bash basicttl/crs/checks/run-crs-checks.sh
 
-# ---- (2)+(3)+(4) the merged SP0 + SP1 + SP2 + SP3 graph: foundation law + prior laws + every ASK --
-echo "== merged graph (SP0 + SP1 + SP2 + SP3): pyshacl + every EXPECT-TRUE ASK =="
+# ---- (2)+(3)+(4) the merged SP0 + SP0ALG + SP1 + SP2 + SP3 graph: foundation law + prior laws + every ASK --
+echo "== merged graph (SP0 + SP0ALG + SP1 + SP2 + SP3): pyshacl + every EXPECT-TRUE ASK =="
 python3 - <<'PY'
 import glob, os.path, re, sys, time
 from rdflib import Graph, URIRef
@@ -68,16 +69,44 @@ SP2 = [f"basicttl/aob/{f}" for f in
 SP3 = sorted(f for f in glob.glob("basicttl/crs/*.ttl") if not f.endswith(".shapes.ttl"))
 # SP0 data = every basicttl/foundation/*.ttl EXCEPT its shapes graph (shapes never enter data).
 SP0 = sorted(f for f in glob.glob("basicttl/foundation/*.ttl") if not f.endswith(".shapes.ttl"))
+# SP0ALG data = the folded algebra spine under basicttl/primordial/type/algebra/** (D25 placement; B2).
+# Every *.ttl EXCEPT its shapes graph (*.shapes.ttl) AND EXCEPT fixtures/** (the evidence plane, D24
+# four-planes). Folding the algebra tower here + moving its witnesses to fixtures/ goes VACUOUS unless
+# the folded tower lives in the SAME merged SP0+SP1+SP2+SP3 graph the alias map is validated in — so the
+# aob:SealedGroup -> fnd:Group -> new-full-ladder-IRI promise is tested in ONE graph, not in isolation.
+# run-algebra-checks.sh owns the algebra-specific shapes/fixtures/gates; this loader owns merged-graph
+# coherence. New folded files (spine/*.ttl, records.ttl, bridges.ttl, …) wire in with no edit here.
+#
+# EXCLUSION (T-INFRA fix round, remedy §7.2(b) — merged-graph green is the hard gate, design §5.2): the
+# PRE-EXISTING sum/** + product/** scaffolding is NOT the D26 full-ladder algebra spine. Those files use
+# the older `urn:silmaril:primordial:type:class:` grammar and declare `schema:subClassOf primitive:Sum`
+# / `primitive:PhysicalCarrier` (sum/admission.ttl:8, sum/byte/vector.ttl:8, product/frame.ttl:7). Under
+# inference=rdfs those chain rdfs:subClassOf* to prim:FormalType, becoming focus nodes of prim:YonedaShape
+# (primitives.shapes.ttl:455) and prim:DualGroundingShape WITHOUT the required prim:yonedaObject / rho /
+# prim:Realization grounding — so merging them REGRESSES the previously-green primitives law (verified:
+# primitives.shapes conforms True over the 15541-triple baseline, False over 15720 with them mixed in,
+# 6 YonedaShape violations on family:Accepted/Admission/Rejected/…). They were never in this merged graph
+# before the fold and are not part of it now; they are DEFERRED here until a later task grounds them (the
+# frame.ttl:7 V1 punning fix + Yoneda grounding are T-SHAPES/T-FIX). Excluding the /sum/ and /product/
+# subtrees keeps the merged graph green while the ACTUAL folded spine (spine/*.ttl, records.ttl,
+# bridges.ttl, signatures.ttl, operations.ttl, reducts.ttl, equations.ttl, gates/**) still auto-wires in
+# with no edit here — those are authored conformant against algebra.shapes in run-algebra-checks.sh.
+def _folded_spine(p):
+    q = p.replace(os.sep, "/")
+    return not q.endswith(".shapes.ttl") and "/fixtures/" not in q \
+        and "/sum/" not in q and "/product/" not in q
+SP0ALG = sorted(f for f in glob.glob("basicttl/primordial/type/algebra/**/*.ttl", recursive=True)
+                if _folded_spine(f))
 
 t0 = time.time()
 data = Graph()
-for f in SP0 + SP1 + SP2 + SP3:
+for f in SP0 + SP0ALG + SP1 + SP2 + SP3:
     if not os.path.exists(f):
         print(f"  LOAD FAIL: {f} missing (a floor load path is broken)")
         sys.exit(1)
     data.parse(f)
-print(f"  [{time.time()-t0:5.1f}s] parse OK: SP0={len(SP0)} + SP1={len(SP1)} + SP2={len(SP2)} + "
-      f"SP3={len(SP3)} data ttl -> {len(data)} triples")
+print(f"  [{time.time()-t0:5.1f}s] parse OK: SP0={len(SP0)} + SP0ALG={len(SP0ALG)} + SP1={len(SP1)} + "
+      f"SP2={len(SP2)} + SP3={len(SP3)} data ttl -> {len(data)} triples")
 
 problems = 0
 

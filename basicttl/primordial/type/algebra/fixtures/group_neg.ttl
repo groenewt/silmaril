@@ -1,0 +1,110 @@
+# =====================================================================================
+# group_neg.ttl — the FAILING NEGATIVE fixture for the group inverse tooth
+# (W2 · SP0, T-GROUP). The materialized RED (D24: sh:conforms true alone is vacuous — a
+# positive AND a failing negative per shape).
+# =====================================================================================
+# Z/3 under addition {e=0, a=1, b=2} with a SINGLE injected violation: the cell e·e yields a
+# instead of e. Because e·e=e is the UNIQUE cell that is simultaneously (i) an identity-law
+# cell (e as both operands) and (ii) the inverse-defining cell for e (e is its own inverse,
+# e·e=e), the one edit makes element e lose its two-sided inverse — the group's characteristic
+# INVERSE-law violation for one element (task T-GROUP "Z/3 with a missing/invalid inverse for
+# one element") — and, being an e-row cell, it simultaneously breaks the left-unit law e·e=e.
+# Every other cell is correct, so the graph is otherwise a conformant group model and the ONE
+# injected error is what bites two ways. Merged onto the algebra data graph the graph MUST NOT
+# conform:
+#   - probes/group_law.rq (exists y: x·y=e AND y·x=e) returns >= 1 row: element e has no y with
+#     e·y=e (0·0=a, 0·1=a, 0·2=b), so e's inverse is missing — the group inverse tooth RED.
+#   - ModelShape (shapes/algebra.shapes.ttl, sh:targetClass rec:model:record) flips conforms
+#     True->False: the two-sided identity sh:sparql tooth sees e·e with e as first operand and
+#     result != second (a != e) — mirroring how monoid_z2_negative flips the same shape — so the
+#     runner's fixture iteration (run-algebra-checks.sh step (b)) catches the negative.
+# The unique cell that is BOTH an identity cell and an inverse-defining cell is e·e (any inverse
+# cell x·y=e with x=e forces y=e; any e-operand cell with result e forces the other operand e),
+# so corrupting e·e is the single edit that makes the injected inverse violation ALSO flip an
+# EXISTING SHACL shape without adding a group-specific shape.
+#
+# The model witness lives HERE in fixtures/ (D24 four-planes: element / finite-table witnesses
+# are EVIDENCE, outside the ontology data glob and the CI data graph), typed rec:model:record
+# so it is a focus node of the shape. Companion positive: fixtures/group_pos.ttl.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never a bare
+# NamedIndividual and never an owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/3 with declared two-sided identity e (INVALID table: e·e -> a) ---
+<urn:silmaril:fixture:algebra:group:z3:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/3 under + (BROKEN: e·e yields a, not e — element e has no inverse)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:group:z3:negative:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:group:z3:negative:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:group:z3:negative:elem:b>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "b = 2" .
+
+# --- the reified Cayley cells (addition mod 3, with e·e INJECTED as a) ---
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> .  # INJECTED VIOLATION: should be :elem:e
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> .
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:eb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> .
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> .
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> .
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:ab>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> .
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:be>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> .
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:ba>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:e> .
+<urn:silmaril:fixture:algebra:group:z3:negative:cell:bb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:negative:elem:a> .

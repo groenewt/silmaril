@@ -1,0 +1,43 @@
+# =====================================================================================
+# reduct_pos.ttl — the POSITIVE fixture for the T-REDUCT obligation tooth (W2 · SP0).
+# =====================================================================================
+# A conformant witness of a two-sided reduct: a forgetful reduct record (rec:reduct:record)
+# that adds EXACTLY ONE law over its parent (@rel:adds:law count 1) and carries a WELL-FORMED
+# obligation-counting extension morphism whose count-two two-sided law names BOTH obligation
+# slots (@rel:left AND @rel:right). Merged onto the algebra data graph it MUST still conform
+# (run-algebra-checks.sh step (b) positive polarity): the extension morphism, dual-typed
+# rec:equation:record, satisfies EquationRecordShape's cardinality-1 @rel:left AND @rel:right;
+# probes/one_law_per_rung.rq returns 0 rows (exactly one @rel:adds:law) and
+# probes/obligation_count.rq returns 0 rows (both sides present).
+#
+# The @rel:left / @rel:right objects are FIXTURE-LOCAL IRIs (not the real monoid/group/loop side
+# equation records) so the extension morphism's (left,right) pair is UNIQUE and does NOT collide
+# with the base extension morphisms under EquationRecordShape's identity-collision clause. Its
+# single injected-violation twin is fixtures/reduct_neg.ttl (the right slot dropped).
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:reduct:record / rec:equation:record), never bare and never an owl:Class (no 200-char
+# comment obligation in a fixture). The left/right slots are bare objects (untyped), like the
+# reified term/case objects of equations.ttl.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a well-formed two-sided reduct: adds exactly one law, obligation-count 2, both sides ---
+<urn:silmaril:fixture:algebra:reduct:positive>
+    a owl:NamedIndividual , rec:reduct:record ;
+    rel:notation "reduct witness (well-formed two-sided obligation)" ;
+    rel:reduct    <urn:silmaril:fixture:algebra:reduct:positive:parent> ;
+    rel:adds:law  <urn:silmaril:fixture:algebra:reduct:positive:law> ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:extension <urn:silmaril:fixture:algebra:reduct:positive:extension> .
+
+# --- the obligation-counting extension morphism: BOTH obligation slots filled (count 2) ---
+<urn:silmaril:fixture:algebra:reduct:positive:extension>
+    a owl:NamedIndividual , rec:equation:record ;
+    rel:notation "count-two obligation, both sides declared" ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:left  <urn:silmaril:fixture:algebra:reduct:positive:side:left> ;
+    rel:right <urn:silmaril:fixture:algebra:reduct:positive:side:right> .

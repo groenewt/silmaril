@@ -1,0 +1,111 @@
+# =====================================================================================
+# loop_neg.ttl — the FAILING NEGATIVE fixture for the loop two-sided-identity tooth
+# (W2 · SP0, T-LOOP). The materialized RED (D24: sh:conforms true alone is vacuous — a
+# positive AND a failing negative per shape). NEG = "a quasigroup table with no two-sided
+# identity" (task T-LOOP).
+# =====================================================================================
+# A genuine QUASIGROUP over {e=0, a=1, b=2} — its Cayley table IS a Latin square (every row
+# and column is a permutation of {e,a,b}, so left/right division is total and unique) — that
+# has NO two-sided identity element:
+#   e·e=e  e·a=b  e·b=a
+#   a·e=b  a·a=a  a·b=e
+#   b·e=a  b·a=e  b·b=b
+# Latin square check: rows e,b,a / b,a,e / a,e,b and columns e,b,a / b,a,e / a,e,b are all
+# permutations -> a valid quasigroup, so probes/quasigroup_law.rq stays GREEN over it (no
+# left/right division collision). Identity check: e·a=b!=a, a·e=b!=e, b·b=b but b·e=a!=e — NO
+# element is a two-sided (or even one-sided) identity. This is loop's CHARACTERISTIC-LAW
+# violation: every inherited law (closure, latin-division) holds; ONLY loop's added two-sided
+# identity fails, cleanly isolating the one law loop adds over quasigroup.
+#
+# As every loop-model witness must, it DECLARES an @rel:identity:element e — but here that claim
+# is false (e is not actually a two-sided identity), which is exactly what makes the added-law
+# tooth bite. Merged onto the algebra data graph the graph MUST NOT conform: the committed
+# ModelShape (shapes/algebra.shapes.ttl:99-109, sh:targetClass rec:model:record) two-sided
+# identity sh:sparql tooth flips conforms True->False on the e·a=b!=a cell, and probes/loop_law.rq
+# returns >= 1 row. Companion positive: fixtures/loop_pos.ttl.
+#
+# The model witness lives HERE in fixtures/ (D24 four-planes: element / finite-table witnesses are
+# EVIDENCE, outside the ontology data glob and the CI data graph), typed rec:model:record so it is
+# a focus node of the shape (the reified rows are scoped to it by @rel:structure).
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never a bare NamedIndividual
+# and never an owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: a quasigroup (Latin square) with NO two-sided identity, declaring e ---
+<urn:silmaril:fixture:algebra:loop:z3:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "quasigroup over {e,a,b} (BROKEN as a loop: a Latin square with NO two-sided identity; declared e is not actually an identity, e·a yields b, not a)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:loop:z3:negative:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:loop:z3:negative:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:loop:z3:negative:elem:b>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "b = 2" .
+
+# --- the reified Cayley cells (a total Latin square, but e·a=b so e is not the identity) ---
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> .
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> .  # e·a=b (not a): e is NOT a two-sided identity
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:eb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> .
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> .
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> .
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:ab>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> .
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:be>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> .
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:ba>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:e> .
+<urn:silmaril:fixture:algebra:loop:z3:negative:cell:bb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:loop:z3:negative> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:loop:z3:negative:elem:b> .

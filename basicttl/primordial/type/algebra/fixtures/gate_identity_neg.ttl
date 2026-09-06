@@ -1,0 +1,25 @@
+# =====================================================================================
+# gate_identity_neg.ttl — the FAILING NEGATIVE fixture for GateIdentityShape (W2 · SP0, T-GATES).
+# The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a failing negative
+# per shape).
+# =====================================================================================
+# A SECOND gate:specification record whose gate:identifier COLLIDES with the committed V0 syntax
+# gate (gates/gates.ttl gdata:gate:identifier "algebra:gate:V0:syntax" — the SINGLE injected
+# violation). Merged onto the algebra data graph the graph MUST NOT conform: GateIdentityShape's
+# sh:select (shapes/algebra.shapes.ttl) returns both this node and the real V0 gate sharing one
+# gate:identifier, so it flips conforms True->False. It is the reference gate-identity uniqueness
+# tooth biting (consolidated.shacl.ttl:1317-1327 'gateIdentifier must identify at most one
+# GateSpecification'). It carries only its type + colliding identifier, so no other shape fires.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (core:entity:structure:class:gate:specification), never an owl:Class — so no ≥200-char
+# rdfs:comment is required on a fixture node.
+
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix cls:   <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:> .
+@prefix gdata: <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:> .
+
+<urn:silmaril:fixture:algebra:gate:identity:negative>
+    a owl:NamedIndividual , cls:gate:specification ;
+    gdata:gate:identifier "algebra:gate:V0:syntax" .
+    # INJECTED VIOLATION: reuses the committed V0 gate:identifier -> GateIdentityShape RED

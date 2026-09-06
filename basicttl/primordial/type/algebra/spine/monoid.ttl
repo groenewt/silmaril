@@ -1,0 +1,182 @@
+# =====================================================================================
+# monoid.ttl — the MONOID rung END-TO-END, the maintainer sign-off exemplar (W2 · SP0, T-MONOID).
+# =====================================================================================
+# The fully-worked stratified monoid rung (design §2 "MONOID rung assembly"): the D24 A0
+# stratification (Syntax ⊥ Theory ⊥ Model ⊥ Element ⊥ ProofArtifact) realised as DISTINCT
+# atoms in the D26 full-ladder grammar — a theory record (S,Omega,E), the B4 TWO model
+# planes (a denotatum + a declaration-record model class linked by @rel:denotes), the
+# foundation axiom records, a theorem + certificate, the declaration triad envelope and the
+# provenance quartet — the pattern the seven sibling rungs fan out from after sign-off.
+#
+# WHAT LIVES WHERE. The three reified equation records (associativity, identity-left,
+# identity-right) are in equations.ttl (the monoid block); the element / finite-table
+# witnesses (Z/2 positive + broken negative) are in fixtures/ (D24 four-planes: witnesses
+# are EVIDENCE, outside the ontology data glob). This file mints the theory / denotatum /
+# model-record / axiom / theorem / certificate / gate atoms + the bridges + the provenance.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:). The monoid
+# denotatum IRI is BYTE-IDENTICAL to bridges.ttl:103 (fnd:Monoid skos:exactMatch target).
+# Rank values off the [V] group skeleton with family:group -> family:monoid. [D] = derived;
+# [S] = no runtime precedent -> flagged for the §7.2 sign-off packet (T-PANEL).
+#
+# CONTINUITY (no silent drop, design §7.4). The q_monoid_is_endo / fnd:MonoidIsEndoShape /
+# fnd:endoMonoidWitness "monoid = one-object category" tooth (algebra_spine.ttl:445) is a
+# Pillar-4 category SEAM outside the one-operation spine; it is EXPLICITLY DEFERRED to the
+# category fan-out (it re-homes there), NOT dropped from the exemplar rung.
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #1 mint-more-than-runtime : the theory record + the declaration-record model class have
+#      NO algebra precedent in the runtime (the runtime shows only the flat subdomain:group
+#      collapse) — minted per D24, PIVOTAL/pre-locked.
+#   theory     : class:theory / genus:presented (kingdom:definition:phylum:algebra) — UNATTESTED.
+#   model rec. : class:model / genus:governed / component:class — UNATTESTED (B4 Plane-1, §7.2 #10).
+#   @rel D24   : @rel:validation:mode "rewrite" (4-value) + @rel:proof:status "literature:backed"
+#      (8-value) — the D24 validation-mode / proof-status vocab, no runtime precedent.
+#   @typ       : @typ:declaration / @typ:certificate / @typ:gate — the plane-type tokens (design §2).
+#   LOCKED (no sign-off): B1 adjective-first (n/a for monoid, no compound token); B4 two-planes;
+#      B3(a) additive Stage 1 (fnd:Monoid intact, bridges added; T-RETIRE is Stage 2).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§2, §2b, §2c, §2f, §2g, §7.4).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-MONOID).
+# Consumes (do not rewrite): records.ttl (rec:* classes), signatures.ttl (sigMonoid),
+# operations.ttl (product/unit), spine/progenitor.ttl (theory root), bridges.ttl (fnd:Monoid),
+# equations.ttl (the 3 equation records). Tooth: shapes/algebra.shapes.ttl
+# TheoryShape / ModelShape / EquationRecordShape + probes/monoid_identity.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# seed-carrier record-class ladder (records.ttl:38-39, closure.ttl:1-3) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+# =====================================================================================
+alg:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "monoid theory (S,Omega,E)" ;
+    rel:notation   "monoid" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical" ;
+    rel:signature  alg:monoid:kingdom:definition:phylum:specification:class:signature:order:unital:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:monoid:kingdom:axiom:phylum:operation:class:closure:order:binary:family:monoid:genus:product:species:membership:component:statement:instance:canonical ,
+                   alg:monoid:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:monoid:genus:composition:species:equality:component:statement:instance:canonical ,
+                   alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                   alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rel:reduct     alg:semigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:semigroup:genus:presented:species:semigroup:component:definition:instance:canonical ;
+    rel:denotatum  alg:monoid:kingdom:type:phylum:algebra:class:monoid:order:binary:family:operation:genus:axiomatic:species:monoid:component:type:instance:canonical ;
+    rel:assignment alg:monoid:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:monoid:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "rewrite" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "DS" ;
+    rel:historical:identity fnd:Monoid , <urn:silmaril:ontology:primordial:algebra:structure:monoid> ;
+    skos:closeMatch fnd:Monoid ;
+    rdfs:comment "[S] The presented monoid THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6): S,Omega = @rel:signature sigMonoid (signatures.ttl, Sigma={·,e}); E = @rel:equation the four members {closure, associativity, identity-left, identity-right} — the two-sided identity split into TWO equation records (equations.ttl, design §1.6). It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 monoid denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. @rel:reduct -> the semigroup theory (the forgetful theory-morphism monoid->semigroup; the semigroup theory atom is minted in Stage 2 — the edge is authored now as a dangling reference, resolved when T-SEMI lands). D24 first-class metadata: @rel:validation:mode 'rewrite' (the 4-value law-witness mode — monoid laws are checked by term rewriting) and @rel:proof:status 'literature:backed' (the 8-value status — monoid is the ONE DS-lifted rung, algebra_spine.ttl:444). Provenance quartet (created/modified/version/state) + @rel:authority 'DS' live on this RECORD, never on the denotatum (D24: 'Monoid was not authored by an executor; the MonoidTheoryRecord was'). Historical-identity BRIDGES: @rel:historical:identity fnd:Monoid (algebra_spine.ttl:444) and the seed legacy IRI urn:silmaril:ontology:primordial:algebra:structure:monoid; skos:closeMatch fnd:Monoid (Stage-1 ADDITIVE — fnd:Monoid stays intact; T-RETIRE stubs it in Stage 2). Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision). [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; all flagged for the sign-off packet. The q_monoid_is_endo 'monoid=one-object-category' seam (algebra_spine.ttl:445) is EXPLICITLY DEFERRED to the category fan-out (design §7.4), not dropped." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object, NO provenance. [D]
+#      BYTE-IDENTICAL to bridges.ttl:103 (fnd:Monoid skos:exactMatch target).
+# =====================================================================================
+alg:monoid:kingdom:type:phylum:algebra:class:monoid:order:binary:family:operation:genus:axiomatic:species:monoid:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "monoid" ;
+    rel:notation   "monoid" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:monoid:kingdom:type:phylum:algebra:class:monoid:order:binary:family:operation:genus:axiomatic:species:monoid:component:type:instance:canonical" ;
+    rdfs:comment "[D] The monoid DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a monoid' itself, carrying its canonical @rel:identifier and @rel:notation ONLY — and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes — and is BYTE-IDENTICAL to bridges.ttl:103 (fnd:Monoid skos:exactMatch this denotatum) so the merged alias map resolves. Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. Rank values [D] off the [V] group denotatum skeleton (bridges.ttl:77) with subdomain/family group -> monoid." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction
+#      bundle + provenance + disjointness teeth). [S] class:model/genus:governed/component:class
+# =====================================================================================
+alg:monoid:kingdom:class:phylum:algebra:class:model:order:declarative:family:monoid:genus:governed:species:monoid:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "monoid model class" ;
+    rel:notation "monoid model" ;
+    rel:denotes alg:monoid:kingdom:type:phylum:algebra:class:monoid:order:binary:family:operation:genus:axiomatic:species:monoid:component:type:instance:canonical ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:identity:element ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    owl:disjointWith alg:group:kingdom:class:phylum:algebra:class:model:order:declarative:family:group:genus:governed:species:group:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "DS" ;
+    rdfs:comment "[S] The monoid MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the denotatum atom's kingdom:type:…:component:type IRI. The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction, closure.ttl has 13) makes 'a monoid is a set with exactly one carrier, exactly one identity element and exactly one operation' a graph fact via cardinality-1 owl:Restriction on @rel:carrier, @rel:identity:element and @rel:operation (the closure.ttl datatype:record cardinality idiom, :153-169). owl:disjointWith the (Stage-2) group model-record class is the D25 homonym/distinction tooth — authored now as a forward reference to the group model IRI (T-GROUP mints the class in Stage 2; the disjointness triple stands regardless). Provenance quartet + @rel:authority 'DS' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete model can be typed against it) AND a rec:model:record / rec:declaration:record (so the ModelShape sh:targetClass tooth counts it as a data-graph focus node and the runner's 0-focus gate is satisfied) — OWL2 metaclass punning, exactly as spine/progenitor.ttl and DISTINCT from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids. On this focus the ModelShape identity sh:sparql tooth is vacuously satisfied (the class declares no @rel:identity:element / reified cells); the finite Z/2 model witnesses in fixtures/ are where it bites. [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM records (design §2c — minimal, NO denotatum/gate/provenance, NO
+#     certificate; axiom != theorem is structural). Rank values VERBATIM off the [V] group
+#     axioms with family:group -> family:monoid. closure + identity here; associativity is the
+#     dual-typed axiom+equation record in equations.ttl (design §1.9). Together = 3 axiom records.
+# =====================================================================================
+alg:monoid:kingdom:axiom:phylum:operation:class:closure:order:binary:family:monoid:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "monoid closure" ;
+    rel:notation "for all x,y in S: x·y in S" ;
+    rdfs:comment "[D] The CLOSURE / totality axiom of the monoid theory (rec:axiom:record): the binary product · is a total function S,S -> S, so for all x,y in the carrier S the product x·y is defined and lies in S. A membership/totality statement, NOT a left=right equation — so it is an axiom record only, NOT a rec:equation:record (unlike associativity/identity), and carries NO @rel:left/@rel:right. Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (an axiom is asserted, not proved — axiom != theorem is structural, and rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119). Rank values VERBATIM off the [V] group closure axiom (genus:product:species:membership, bridges.ttl:94/166) with family:group -> family:monoid; it is a member of the monoid theory's equation set E (this file's theory @rel:equation)." .
+
+alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "monoid identity (two-sided)" ;
+    rel:notation "exists e: e·x = x and x·e = x" ;
+    rel:equation alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:left:component:statement:instance:canonical ,
+                 alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rdfs:comment "[D] The two-sided IDENTITY axiom of the monoid theory (rec:axiom:record, the named parent law, no side segment): there exists a neutral element e with e·x = x AND x·e = x for all x. As a TWO-SIDED law it @rel:equation-decomposes into the TWO reified equation records identity-left (e·x=x) and identity-right (x·e=x) (equations.ttl, design §1.6, §3; closure.ttl:185-192 case:zero/case:one precedent) — the obligation-count-2 extension morphism over the monoid->semigroup reduct is minted by T-REDUCT (Stage 2). Minimal per design §2c: no denotatum / gate / provenance, no certificate. It is the SINGLE law monoid adds over semigroup (one-law-per-child, algebra_spine.ttl:99-103). Rank values off the [V] group identity axiom (genus:neutral:species:member, bridges.ttl:104) with family:group -> family:monoid. Its added-law status is teeth-proved by the ModelShape identity tooth + probes/monoid_identity.rq over the fixtures/ Z/2 witnesses." .
+
+# =====================================================================================
+# (f) THEOREM + CERTIFICATE (design §2f — a theorem with a digest+proof-method certificate,
+#     NEVER an axiom; the closure.ttl Yoneda theorem/certificate idiom, :129-142).
+# =====================================================================================
+alg:monoid:kingdom:theorem:phylum:algebra:class:identity:order:declarative:family:monoid:genus:uniqueness:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:theorem:record ;
+    rdfs:label "monoid identity uniqueness" ;
+    rel:notation "the two-sided identity e is unique" ;
+    rel:certificate alg:monoid:kingdom:certificate:phylum:algebra:class:identity:order:declarative:family:monoid:genus:uniqueness:species:member:component:statement:instance:canonical ;
+    rel:authority "DS" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rdfs:comment "Theorem, not an additional foundational axiom (design §2f, the closure.ttl Yoneda theorem/certificate idiom, :129-142): in any monoid (S,·,e) the two-sided identity element e is UNIQUE — if e and e' are both two-sided identities then e = e·e' = e' (e' as right identity applied to e, then e as left identity applied to e'). It is a rec:theorem:record carrying a @rel:certificate (a proof artifact with a digest + proof-method), NEVER a rec:axiom:record — the theorem/axiom collapse is forbidden (rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119; design §2f). This is the D24 A0 ProofArtifact plane: a derived consequence of the axioms, not a new axiom. Provenance quartet + @rel:authority 'DS' on the record. Yoneda itself remains a theorem-with-certificate in the category fan-out (D24)." .
+
+alg:monoid:kingdom:certificate:phylum:algebra:class:identity:order:declarative:family:monoid:genus:uniqueness:species:member:component:statement:instance:canonical
+    a owl:NamedIndividual , typ:certificate ;
+    rdfs:label "monoid identity uniqueness certificate" ;
+    rel:digest:value    "43e546f719c5c2a561dbdcc7700e7eb3abc4577f095a85114681a089abb41c38" ;
+    rel:proof:method    "Explicit general mathematical derivation (e = e·e' = e'); not proof-assistant checked" ;
+    rel:source:location "docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md#2f" ;
+    rdfs:comment "The proof CERTIFICATE for monoid identity uniqueness (design §2f; the closure.ttl certificate idiom, :132/137/142): a proof artifact carrying @rel:digest:value (the SHA-256 of the canonical proof statement 'Monoid identity uniqueness: in any monoid (S,.,e) the two-sided identity e is unique. Proof: if e and e' are both two-sided identities then e = e.e' = e' … General mathematical derivation; not proof-assistant checked'), @rel:proof:method (an explicit general derivation, honestly NOT a proof-assistant certificate — D20 honesty) and @rel:source:location. It is typed @typ:certificate, NEVER an axiom — an axiom is asserted, a certificate records a derivation. This is the ProofArtifact plane made concrete: the theorem points at it via @rel:certificate, so a theorem stripped of its certificate is detectable, and an axiom masquerading as a proved theorem is caught by the axiom/theorem disjointness (records.ttl:119)." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:monoid:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:monoid:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "monoid declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:monoid:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:monoid:genus:reconciled:species:monoid:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the monoid declaration was RECONCILED against its denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the monoid rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the monoid declaration is reconciled, not merely asserted." .
+
+# =====================================================================================
+# BRIDGES (design §5, the 3 monoid-rung historical/alias edges — Stage-1 ADDITIVE). The
+# engine seed:conservativeBridge fnd:Monoid -> group identity axiom already lives in
+# bridges.ttl:104 and is NOT duplicated here (bridge-never-duplicate, TODO-11). The three
+# edges are on the theory record above: @rel:historical:identity fnd:Monoid, @rel:historical:identity
+# <seed legacy monoid IRI>, skos:closeMatch fnd:Monoid — keeping SP1/SP2/SP3 fnd:Monoid refs
+# resolvable THROUGH the folded rung while fnd:Monoid stays byte-intact until Stage-2 T-RETIRE.
+# =====================================================================================

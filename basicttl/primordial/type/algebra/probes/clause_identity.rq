@@ -1,0 +1,13 @@
+# probes/clause_identity.rq (W2 · SP0, T-GATES) — the executable clause-identity uniqueness probe.
+# Returns any pair of DISTINCT gate:clause:specification records that share one clause:identifier
+# (the reference clause-identity twin tooth, consolidated.shacl.ttl:1301-1311). On the clean folded
+# tree (gates/gates.ttl, nine V0-V8 clauses with distinct identifiers) it returns ZERO rows (GREEN);
+# merged with fixtures/clause_identity_neg.ttl (a second clause reusing algebra:clause:V0:turtle:parse)
+# it returns >= 1 row (RED). The SHACL companion is ClauseIdentityShape (shapes/algebra.shapes.ttl).
+SELECT ?clause ?other ?id WHERE {
+  ?clause a <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:clause:specification> ;
+          <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:clause:identifier> ?id .
+  ?other  a <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:clause:specification> ;
+          <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:clause:identifier> ?id .
+  FILTER(STR(?clause) < STR(?other))
+}

@@ -1,0 +1,64 @@
+# =====================================================================================
+# monoid_z2.ttl — the POSITIVE fixture for the monoid identity tooth (W2 · SP0, T-MONOID).
+# =====================================================================================
+# Z/2 under addition {e=0, a=1}, a genuine monoid with two-sided identity e:
+#   e·e=e   e·a=a   a·e=a   a·a=e   (the correct Cayley table).
+# Merged onto the algebra data graph it MUST still conform (run-algebra-checks.sh step (b)
+# positive polarity) and probes/monoid_identity.rq returns 0 rows over it — every identity
+# row yields the other operand. It is the finite:checked / finite:table witness the design
+# demotes to fixtures/ (D24 four-planes: element / finite-table evidence lives OUTSIDE the
+# ontology data glob and the CI data graph). Its single injected-violation twin is
+# fixtures/monoid_z2_negative.ttl (e·a yields e -> ModelShape / the probe RED), which is
+# the True->False injection that proves the identity tooth is genuine (D24: sh:conforms
+# true alone is vacuous). Typed rec:model:record so it is a focus of the ModelShape.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare and never
+# an owl:Class (no 200-char comment obligation in a fixture).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the model witness: Z/2 with declared two-sided identity e, finite:checked ---
+<urn:silmaril:fixture:algebra:monoid:z2:positive>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/2 under + (genuine monoid, identity e)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:e> ;
+    rel:validation:mode  "finite:table" ;
+    rel:proof:status     "finite:checked" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:monoid:z2:positive:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:monoid:z2:positive:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+
+# --- the reified Cayley cells (e·e=e, e·a=a, a·e=a, a·a=e) — a total, correct table ---
+<urn:silmaril:fixture:algebra:monoid:z2:positive:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:e> .
+<urn:silmaril:fixture:algebra:monoid:z2:positive:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:a> .
+<urn:silmaril:fixture:algebra:monoid:z2:positive:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:a> .
+<urn:silmaril:fixture:algebra:monoid:z2:positive:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:monoid:z2:positive> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:monoid:z2:positive:elem:e> .

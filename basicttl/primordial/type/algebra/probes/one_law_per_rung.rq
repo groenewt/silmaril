@@ -1,0 +1,27 @@
+# =====================================================================================
+# one_law_per_rung.rq — the one-law-per-child tooth (W2 · SP0, T-REDUCT).
+# =====================================================================================
+# Re-homes algebra_spine.ttl:99-103 constraints B (no-cram, <=1) + C (at-least-one, >=1)
+# into the folded stratified idiom (design §3, §1.9): every concrete rung adds EXACTLY ONE
+# law over its parent, made a graph fact on the reduct records (reducts.ttl) via @rel:adds:law.
+#
+# A reduct record (rec:reduct:record) is the forgetful morphism child|->parent; @rel:adds:law
+# names the SINGLE law the child adds over that parent. This probe returns every reduct whose
+# @rel:adds:law count != 1 — a reduct with TWO distinct @rel:adds:law CRAMS two laws (constraint B
+# RED) and one with ZERO is a rung stripped of its added law (constraint C RED). The OPTIONAL +
+# GROUP BY + HAVING catches BOTH bounds in one query (count 0 and count >=2 both != 1).
+#
+# GREEN over reducts.ttl: all seven reducts carry exactly one @rel:adds:law -> 0 rows.
+# RED demonstration: give any reduct a second @rel:adds:law (cram) or strip its @rel:adds:law
+# (starve) -> that reduct is returned. Runs via rdflib over the raw graph (no inference needed;
+# the reduct types + @rel:adds:law edges are explicit in reducts.ttl).
+
+PREFIX rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:>
+PREFIX rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+
+SELECT ?reduct (COUNT(?law) AS ?laws) WHERE {
+  ?reduct a rec:reduct:record .
+  OPTIONAL { ?reduct rel:adds:law ?law . }
+}
+GROUP BY ?reduct
+HAVING (COUNT(?law) != 1)

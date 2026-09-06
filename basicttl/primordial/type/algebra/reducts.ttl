@@ -1,0 +1,243 @@
+# =====================================================================================
+# reducts.ttl — the forgetful reduct / theory-morphism edges + obligation-counting
+# extension morphisms of the folded algebra spine (W2 · SP0, T-REDUCT). Stage 2.
+# =====================================================================================
+# D24 A6: the tower is theories + model-classes + REDUCTS (forgetful theory-morphisms),
+# NOT a subclass ladder of witness-defined classes. This file mints the seven forgetful
+# reduct edges child->parent as rec:reduct:record individuals (records.ttl:86-90, one
+# cardinality-1 @rel:reduct restriction each) and the THREE obligation-counting extension
+# morphisms for the two-sided laws (monoid identity, group inverse, loop identity) so a
+# rung declaring only ONE side of a two-sided law is RED (design §1.6, §1.9, §3).
+#
+# THE SEVEN REDUCT EDGES (design §1.9; child forgets structure -> parent theory):
+#   semigroup->magma       (forgets associativity)      obligation-count 1
+#   monoid->semigroup      (forgets the two-sided identity)   obligation-count 2  [ext]
+#   commutative:monoid->monoid (forgets commutativity)  obligation-count 1
+#   group->monoid          (forgets the two-sided inverse)    obligation-count 2  [ext]
+#   abelian:group->group   (forgets commutativity)      obligation-count 1
+#   quasigroup->magma      (forgets latin-division)      obligation-count 1
+#   loop->quasigroup       (forgets the two-sided identity)   obligation-count 2  [ext]
+# magma->progenitor is rdfs:subClassOf (spine/magma.ttl), NOT a reduct — the progenitor
+# grounds nothing, so there is no theory to forget TO (design §1.9, §3).
+#
+# ONE LAW = ONE OBLIGATION-COUNT-BEARING EDGE. Each reduct carries @rel:adds:law -> the
+# SINGLE law the child adds over its parent (re-homing fnd:addsLaw, algebra_spine.ttl:99-103
+# — Directive-17 one-law-per-child, constraint B no-cram + constraint C at-least-one) plus
+# an @rel:obligation:count. probes/one_law_per_rung.rq reddens any reduct whose @rel:adds:law
+# count != 1 (both bounds together). A single LAW may discharge TWO OBLIGATIONS: the two-sided
+# identity/inverse is ONE added law but TWO equation records (left + right, design §1.6, §3),
+# so its reduct carries obligation-count 2 and an EXTENSION MORPHISM.
+#
+# THE THREE EXTENSION MORPHISMS (design §1.6). Each two-sided reduct @rel:extension -> an
+# obligation-counting extension morphism (kingdom:mapping…class:extension…genus:obligation:
+# species:count:two) that reifies the two obligation slots of the two-sided law as an ordered
+# pair: @rel:left -> the left-side equation record, @rel:right -> the right-side equation record,
+# @rel:obligation:count 2. It is dual-typed rec:equation:record — the SAME dual-typing precedent
+# equations.ttl:57-58 uses for associativity (rec:axiom:record + rec:equation:record) — so the
+# GENERIC EquationRecordShape (shapes/algebra.shapes.ttl:119-135, cardinality-1 @rel:left AND
+# @rel:right; the design earmarks it "two-sided = 2 records", plan T-SHAPES) is REUSED as the
+# biting SHACL tooth: an extension morphism that carries only ONE side (a rung declaring only
+# identity-left, say) drops below minCount-1 on the missing side and EquationRecordShape flips
+# conforms True->False, WITHOUT a new shape. probes/obligation_count.rq is the parallel probe
+# tooth (a count-two obligation missing a side -> >=1 row).
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:); reduct edges
+# kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:
+# species:<child>:to:<parent>:component:definition:instance:canonical; extension morphisms
+# kingdom:mapping:phylum:composition:class:extension:order:declarative:family:<rung>:genus:
+# obligation:species:count:two:component:definition:instance:canonical. Compound children are
+# adjective-FIRST (B1 LOCKED §7.2 #9): commutative:monoid / abelian:group. [S] = no runtime
+# precedent -> §7.2 sign-off packet (block at the foot).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.6, §1.9, §3, §7.2 #4).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-REDUCT).
+# Consumes (do not rewrite): records.ttl (rec:reduct:record, rec:equation:record), the 8 rung
+# theory atoms (spine/*.ttl, the @rel:reduct parent targets + the two-sided side equation records),
+# equations.ttl (monoid identity-left/right). Tooth: shapes/algebra.shapes.ttl EquationRecordShape
+# (over the extension morphisms) + probes/one_law_per_rung.rq + probes/obligation_count.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain: (records.ttl / spine idiom):
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:reduct:record / rec:equation:record REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# 1. THE SEVEN FORGETFUL REDUCT EDGES (rec:reduct:record; design §1.9). @rel:reduct -> the
+#    parent THEORY the morphism forgets to (byte-identical to the child theory's own @rel:reduct,
+#    spine/*.ttl); @rel:adds:law -> the SINGLE law the child adds over the parent (one-law-per-child);
+#    @rel:obligation:count -> the number of equation-record obligations that law discharges (1, or 2
+#    for a two-sided law). Provenance quartet + @rel:authority "SYN" on every RECORD (honesty ledger:
+#    the reduct/extension-morphism machinery is synthesized tower structure, exactly as fnd:addsLaw was
+#    SYN, algebra_spine.ttl:101) — never on a mathematical denotatum.
+# =====================================================================================
+
+# --- semigroup -> magma (forgets associativity; 1 obligation) ---
+alg:semigroup:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:semigroup:to:magma:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:record ;
+    rdfs:label "reduct semigroup -> magma" ;
+    rel:notation "forgetful reduct: semigroup |-> magma (forgets associativity)" ;
+    rel:reduct   alg:magma:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:magma:genus:presented:species:magma:component:definition:instance:canonical ;
+    rel:adds:law alg:semigroup:kingdom:axiom:phylum:operation:class:associativity:order:binary:family:semigroup:genus:composition:species:equality:component:statement:instance:canonical ;
+    rel:obligation:count "1"^^xsd:nonNegativeInteger ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The forgetful theory-morphism semigroup |-> magma (D24 A6, design §1.9): the reduct that FORGETS associativity, leaving the bare magma theory (Sigma={·}, E={closure}). Typed rec:reduct:record (records.ttl:86-90, cardinality-1 @rel:reduct restriction); @rel:reduct points at the magma theory atom (byte-identical to spine/semigroup.ttl:87's own @rel:reduct). @rel:adds:law -> the SINGLE law semigroup adds over magma (associativity; re-homing fnd:addsLaw, algebra_spine.ttl:99-103 one-law-per-child, constraints B no-cram + C at-least-one, made a graph fact by probes/one_law_per_rung.rq). @rel:obligation:count 1: associativity is ONE equation (not two-sided, design §1.6), so it discharges exactly one equation-record obligation and needs NO extension morphism. [S] order:forgetful (§7.2 #4) and genus:theory (§7.2 #4) are UNATTESTED in the runtime -> maintainer sign-off packet. Provenance quartet + @rel:authority SYN on this RECORD (synthesized tower machinery), never on a denotatum." .
+
+# --- monoid -> semigroup (forgets the two-sided identity; 2 obligations -> extension morphism) ---
+alg:monoid:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:monoid:to:semigroup:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:record ;
+    rdfs:label "reduct monoid -> semigroup" ;
+    rel:notation "forgetful reduct: monoid |-> semigroup (forgets the two-sided identity)" ;
+    rel:reduct    alg:semigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:semigroup:genus:presented:species:semigroup:component:definition:instance:canonical ;
+    rel:adds:law  alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:component:statement:instance:canonical ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:extension alg:monoid:kingdom:mapping:phylum:composition:class:extension:order:declarative:family:monoid:genus:obligation:species:count:two:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The forgetful theory-morphism monoid |-> semigroup (design §1.9): the reduct that FORGETS the two-sided identity, leaving the semigroup theory. @rel:reduct -> the semigroup theory (byte-identical to spine/monoid.ttl:75). @rel:adds:law -> the ONE law monoid adds over semigroup (the two-sided identity parent axiom, monoid.ttl:133 — a SINGLE added law, one-law-per-child). @rel:obligation:count 2: that ONE two-sided law discharges TWO equation-record obligations (identity-left e·x=x AND identity-right x·e=x, equations.ttl:70-90, design §1.6 §3), so @rel:extension -> the obligation-counting extension morphism below, and probes/obligation_count.rq + the EquationRecordShape over that morphism redden a monoid that declares only ONE side. [S] order:forgetful / genus:theory UNATTESTED -> §7.2 #4 sign-off. Provenance + @rel:authority SYN on the record." .
+
+# --- commutative:monoid -> monoid (forgets commutativity; 1 obligation) ---
+alg:commutative:monoid:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:commutative:monoid:to:monoid:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:record ;
+    rdfs:label "reduct commutative:monoid -> monoid" ;
+    rel:notation "forgetful reduct: commutative monoid |-> monoid (forgets commutativity)" ;
+    rel:reduct   alg:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical ;
+    rel:adds:law alg:commutative:monoid:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:commutative:monoid:genus:composition:species:equality:component:statement:instance:canonical ;
+    rel:obligation:count "1"^^xsd:nonNegativeInteger ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The forgetful theory-morphism commutative:monoid |-> monoid (design §1.9; compound child adjective-FIRST, B1 LOCKED §7.2 #9): the reduct that FORGETS commutativity, leaving the plain monoid theory. @rel:reduct -> the monoid theory (byte-identical to spine/commutative_monoid.ttl:101). @rel:adds:law -> the SINGLE law commutative:monoid adds over monoid (commutativity, its OWN atom off the compound subdomain — Directive-17 no-cram, distinct from the abelian:group commutativity atom, bridges.ttl:178-181). @rel:obligation:count 1: commutativity is ONE equation (not two-sided), no extension morphism. [S] order:forgetful / genus:theory UNATTESTED -> §7.2 #4. Provenance + SYN on the record." .
+
+# --- group -> monoid (forgets the two-sided inverse; 2 obligations -> extension morphism) ---
+alg:group:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:group:to:monoid:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:record ;
+    rdfs:label "reduct group -> monoid" ;
+    rel:notation "forgetful reduct: group |-> monoid (forgets the two-sided inverse)" ;
+    rel:reduct    alg:monoid:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:monoid:genus:presented:species:monoid:component:definition:instance:canonical ;
+    rel:adds:law  alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:component:statement:instance:canonical ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:extension alg:group:kingdom:mapping:phylum:composition:class:extension:order:declarative:family:group:genus:obligation:species:count:two:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The forgetful theory-morphism group |-> monoid (design §1.9): the reduct that FORGETS the two-sided inverse, leaving the monoid theory (the group descends from monoid, NOT from commutative:monoid — the spine forks here). @rel:reduct -> the monoid theory (byte-identical to spine/group.ttl:101). @rel:adds:law -> the ONE law group adds over monoid (the two-sided inverse parent axiom, group.ttl — a SINGLE added law). @rel:obligation:count 2: the two-sided inverse discharges TWO equation-record obligations (inverse-left x·inv(x)=e AND inverse-right inv(x)·x=e, spine/group.ttl:190-199, design §1.6), so @rel:extension -> the group inverse extension morphism below; a group declaring only one inverse side reddens. [S] order:forgetful / genus:theory UNATTESTED -> §7.2 #4. Provenance + SYN on the record." .
+
+# --- abelian:group -> group (forgets commutativity; 1 obligation) ---
+alg:abelian:group:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:abelian:group:to:group:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:record ;
+    rdfs:label "reduct abelian:group -> group" ;
+    rel:notation "forgetful reduct: abelian group |-> group (forgets commutativity)" ;
+    rel:reduct   alg:group:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:group:genus:presented:species:group:component:definition:instance:canonical ;
+    rel:adds:law alg:abelian:group:kingdom:axiom:phylum:operation:class:commutativity:order:binary:family:abelian:group:genus:composition:species:equality:component:statement:instance:canonical ;
+    rel:obligation:count "1"^^xsd:nonNegativeInteger ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The forgetful theory-morphism abelian:group |-> group (design §1.9; compound child adjective-FIRST, B1 LOCKED §7.2 #9): the reduct that FORGETS commutativity, leaving the plain group theory. @rel:reduct -> the group theory (byte-identical to spine/abelian_group.ttl:115). @rel:adds:law -> the SINGLE law abelian:group adds over group (commutativity, its OWN atom off the compound subdomain — the SAME law added at TWO spine points, commutative:monoid and abelian:group, each its own atom, no-cram, bridges.ttl:178-181). @rel:obligation:count 1: commutativity is ONE equation, no extension morphism. [S] order:forgetful / genus:theory UNATTESTED -> §7.2 #4. Provenance + SYN on the record." .
+
+# --- quasigroup -> magma (forgets latin-division; 1 obligation) ---
+alg:quasigroup:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:quasigroup:to:magma:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:record ;
+    rdfs:label "reduct quasigroup -> magma" ;
+    rel:notation "forgetful reduct: quasigroup |-> magma (forgets latin-division)" ;
+    rel:reduct   alg:magma:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:magma:genus:presented:species:magma:component:definition:instance:canonical ;
+    rel:adds:law alg:quasigroup:kingdom:axiom:phylum:operation:class:division:order:binary:family:quasigroup:genus:latin:species:unique:component:statement:instance:canonical ;
+    rel:obligation:count "1"^^xsd:nonNegativeInteger ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The forgetful theory-morphism quasigroup |-> magma (design §1.9): the reduct that FORGETS unique latin-division, leaving the bare magma theory (the division sub-family descends from magma, NOT from semigroup — a quasigroup need not be associative). @rel:reduct -> the magma theory (byte-identical to spine/quasigroup.ttl:122). @rel:adds:law -> the SINGLE law quasigroup adds over magma (unique latin left/right division, ONE law of the quasigroup theory, spine/quasigroup.ttl). @rel:obligation:count 1: modelled as ONE equation record (the unique-division law is a single latin-square membership statement, design §1.9 / bridges.ttl:174), so no extension morphism. [S] order:forgetful / genus:theory UNATTESTED -> §7.2 #4; the added law's genus:latin / species:unique are likewise [S] (§7.2 #5, flagged at bridges.ttl:174-175). Provenance + SYN on the record." .
+
+# --- loop -> quasigroup (forgets the two-sided identity; 2 obligations -> extension morphism) ---
+alg:loop:kingdom:mapping:phylum:composition:class:reduct:order:forgetful:family:morphism:genus:theory:species:loop:to:quasigroup:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:reduct:record ;
+    rdfs:label "reduct loop -> quasigroup" ;
+    rel:notation "forgetful reduct: loop |-> quasigroup (forgets the two-sided identity)" ;
+    rel:reduct    alg:quasigroup:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:quasigroup:genus:presented:species:quasigroup:component:definition:instance:canonical ;
+    rel:adds:law  alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:component:statement:instance:canonical ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:extension alg:loop:kingdom:mapping:phylum:composition:class:extension:order:declarative:family:loop:genus:obligation:species:count:two:component:definition:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The forgetful theory-morphism loop |-> quasigroup (design §1.9): the reduct that FORGETS the two-sided identity, leaving the quasigroup theory. @rel:reduct -> the quasigroup theory (byte-identical to spine/loop.ttl:129). @rel:adds:law -> the ONE law loop adds over quasigroup (the two-sided identity, loop's OWN atom off the division sub-family — the SAME shape of law monoid adds, but a distinct atom, no-cram). @rel:obligation:count 2: the two-sided identity discharges TWO equation-record obligations (loop identity-left AND identity-right, spine/loop.ttl:224-234, design §1.6), so @rel:extension -> the loop identity extension morphism below; a loop declaring only one identity side reddens. [S] order:forgetful / genus:theory UNATTESTED -> §7.2 #4. Provenance + SYN on the record." .
+
+# =====================================================================================
+# 2. THE THREE OBLIGATION-COUNTING EXTENSION MORPHISMS (design §1.6, §3). One per two-sided
+#    law (monoid identity, group inverse, loop identity). Each reifies the TWO obligation slots
+#    of its two-sided law as an ordered pair: @rel:left -> the left-side equation record,
+#    @rel:right -> the right-side equation record, @rel:obligation:count 2. DUAL-TYPED
+#    rec:equation:record (the equations.ttl:57-58 associativity dual-typing precedent) so the
+#    GENERIC EquationRecordShape (shapes/algebra.shapes.ttl:119-135; cardinality-1 @rel:left AND
+#    @rel:right) is REUSED as the biting tooth — an extension morphism missing a side flips
+#    conforms True->False, WITHOUT a new shape (design earmarks EquationRecordShape "two-sided =
+#    2 records", plan T-SHAPES). probes/obligation_count.rq is the parallel probe tooth.
+# =====================================================================================
+
+# --- monoid identity extension morphism (e·x=x AND x·e=x -> 2 obligations) ---
+alg:monoid:kingdom:mapping:phylum:composition:class:extension:order:declarative:family:monoid:genus:obligation:species:count:two:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "monoid two-sided identity obligation (count 2)" ;
+    rel:notation "monoid identity discharges 2 obligations: e·x=x (left) AND x·e=x (right)" ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:left  alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:left:component:statement:instance:canonical ;
+    rel:right alg:monoid:kingdom:axiom:phylum:operation:class:identity:order:binary:family:monoid:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] The obligation-counting EXTENSION MORPHISM of the monoid->semigroup reduct (design §1.6, §3): the two-sided identity is ONE added law but discharges TWO equation-record obligations, and this morphism COUNTS them (@rel:obligation:count 2) by naming both slots — @rel:left -> the identity-LEFT equation record (e·x=x, equations.ttl:70) and @rel:right -> the identity-RIGHT equation record (x·e=x, equations.ttl:83). It is dual-typed rec:equation:record (the SAME dual-typing precedent equations.ttl:57-58 uses for associativity = rec:axiom:record + rec:equation:record) so the GENERIC EquationRecordShape's cardinality-1 @rel:left AND @rel:right teeth (shapes/algebra.shapes.ttl:119-135) apply to it directly: a monoid that declares only ONE side leaves this morphism missing a slot, EquationRecordShape flips conforms True->False, and probes/obligation_count.rq returns a row — WITHOUT authoring a new shape. [S] genus:obligation and species:count:two are UNATTESTED in the runtime (§7.2 #6), as is the mapping-atom / rec:equation:record dual-typing choice -> maintainer sign-off packet. The IRI rides kingdom:mapping (a morphism), the type rides rec:equation:record (the pair-shaped obligation it reifies)." .
+
+# --- group inverse extension morphism (x·inv(x)=e AND inv(x)·x=e -> 2 obligations) ---
+alg:group:kingdom:mapping:phylum:composition:class:extension:order:declarative:family:group:genus:obligation:species:count:two:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "group two-sided inverse obligation (count 2)" ;
+    rel:notation "group inverse discharges 2 obligations: x·inv(x)=e (left) AND inv(x)·x=e (right)" ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:left  alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:left:component:statement:instance:canonical ;
+    rel:right alg:group:kingdom:axiom:phylum:operation:class:inverse:order:binary:family:group:genus:member:species:inverse:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] The obligation-counting EXTENSION MORPHISM of the group->monoid reduct (design §1.6, §3): the two-sided inverse is ONE added law discharging TWO equation-record obligations, counted here (@rel:obligation:count 2) by naming both slots — @rel:left -> the inverse-LEFT equation record (x·inv(x)=e, spine/group.ttl:190) and @rel:right -> the inverse-RIGHT equation record (inv(x)·x=e, spine/group.ttl:199). Dual-typed rec:equation:record (the equations.ttl:57-58 precedent) so the GENERIC EquationRecordShape cardinality-1 @rel:left AND @rel:right teeth bite: a group declaring only one inverse side leaves a slot empty, EquationRecordShape flips True->False, obligation_count.rq returns a row. [S] genus:obligation / species:count:two + the mapping / rec:equation:record dual-typing UNATTESTED -> §7.2 #6 sign-off." .
+
+# --- loop identity extension morphism (e·x=x AND x·e=x -> 2 obligations) ---
+alg:loop:kingdom:mapping:phylum:composition:class:extension:order:declarative:family:loop:genus:obligation:species:count:two:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:equation:record ;
+    rdfs:label "loop two-sided identity obligation (count 2)" ;
+    rel:notation "loop identity discharges 2 obligations: e·x=x (left) AND x·e=x (right)" ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:left  alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:left:component:statement:instance:canonical ;
+    rel:right alg:loop:kingdom:axiom:phylum:operation:class:identity:order:binary:family:loop:genus:neutral:species:member:right:component:statement:instance:canonical ;
+    rdfs:comment "[S] The obligation-counting EXTENSION MORPHISM of the loop->quasigroup reduct (design §1.6, §3): loop's two-sided identity is ONE added law discharging TWO equation-record obligations, counted here (@rel:obligation:count 2) by naming both slots — @rel:left -> the loop identity-LEFT equation record (e·x=x, spine/loop.ttl:224) and @rel:right -> the loop identity-RIGHT equation record (x·e=x, spine/loop.ttl:234). Dual-typed rec:equation:record (the equations.ttl:57-58 precedent) so the GENERIC EquationRecordShape cardinality-1 @rel:left AND @rel:right teeth bite: a loop declaring only one identity side leaves a slot empty, EquationRecordShape flips True->False, obligation_count.rq returns a row. [S] genus:obligation / species:count:two + the mapping / rec:equation:record dual-typing UNATTESTED -> §7.2 #6 sign-off." .
+
+# =====================================================================================
+# [S] SIGN-OFF PACKET (design §7.2 — the executor surfaces every [S] use for T-PANEL to assemble).
+# T-REDUCT's [S] tokens, each carried at the design default and flagged above in-line:
+#   #4 reduct tokens : order:forgetful + genus:theory (class:reduct + family:morphism) — the 7 reduct
+#      edge IRIs; unattested in the runtime, minted under §7.2 #1 mint-more-than-runtime.
+#   #6 extension     : genus:obligation + species:count:two (class:extension) — the 3 extension morphisms;
+#      unattested. PLUS the dual-typing choice (a kingdom:mapping extension-morphism IRI typed
+#      rec:equation:record so the generic EquationRecordShape is reused as the two-sided tooth) — a
+#      design realization off the equations.ttl:57-58 associativity dual-typing precedent, flagged here.
+#   (own [S]) @rel:obligation:count + @rel:extension predicates : no runtime/closure counterpart.
+#   @rel:adds:law re-homes fnd:addsLaw (bridges.ttl:278 relation:adds:law) — the one-law-per-child
+#      predicate, made a graph fact by probes/one_law_per_rung.rq.
+# LOCKED (no sign-off): B1 adjective-first commutative:monoid / abelian:group (§7.2 #9). The @rel:reduct
+#   parent targets are byte-identical to the child theories' own @rel:reduct edges (spine/*.ttl).
+# =====================================================================================

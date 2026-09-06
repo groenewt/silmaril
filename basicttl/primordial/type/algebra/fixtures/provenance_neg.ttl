@@ -1,0 +1,30 @@
+# =====================================================================================
+# provenance_neg.ttl — the FAILING NEGATIVE fixture for ProvenanceShape (W2 · SP0, T-FIX).
+# The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a failing
+# negative per shape).
+# =====================================================================================
+# A rec:declaration:record that carries the provenance quartet (@rel:created / @rel:modified /
+# @rel:version / @rel:state) but is MISSING the @rel:authority tag — the SINGLE injected
+# violation (the positive twin fixtures/provenance_pos.ttl carries authority "SYN"). Merged onto
+# the algebra data graph the graph MUST NOT conform: ProvenanceShape's min1 @rel:authority
+# property shape (shapes/algebra.shapes.ttl:234-235) returns >= 1 result on this focus. The
+# node is typed ONLY rec:declaration:record, a plane no other algebra shape targets, so exactly
+# ProvenanceShape flips conforms True->False.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:declaration:record), never an owl:Class.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a declaration record MISSING @rel:authority (INVALID: provenance incomplete) ---
+<urn:silmaril:fixture:algebra:provenance:negative>
+    a owl:NamedIndividual , rec:declaration:record ;
+    rel:notation "declaration record MISSING @rel:authority (INJECTED VIOLATION)" ;
+    rel:denotes  <urn:silmaril:fixture:algebra:provenance:negative:denotatum> ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" .  # INJECTED VIOLATION: no @rel:authority tag -> ProvenanceShape RED

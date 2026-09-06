@@ -1,0 +1,34 @@
+# =====================================================================================
+# validation_mode_pos.ttl — the POSITIVE fixture for ValidationModeShape (W2 · SP0, T-FIX).
+# =====================================================================================
+# ValidationModeShape (shapes/algebra.shapes.ttl:205-212) targets rec:theory:record and demands
+# EXACTLY ONE @rel:validation:mode drawn from the D24 4-value enum {finite:table, rewrite,
+# external:certificate, bounded:diagnostic}. Because a rec:theory:record is ALSO a focus of
+# TheoryShape, ProofStatusShape and ProvenanceShape, this positive is a COMPLETE conformant
+# theory record — it satisfies all four theory-targeting shapes and declares
+# validation:mode "finite:table" (a valid enum value), so it CONFORMS. Its @rel:identifier is
+# its own IRI (unique — no TheoryShape identity collision). Its single-injected-violation twin is
+# fixtures/validation_mode_neg.ttl (an off-enum mode), which flips ONLY ValidationModeShape.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:theory:record), never an owl:Class; the signature/equation objects are bare nodes.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a complete theory record with a VALID 4-value validation:mode (CONFORMS) ---
+<urn:silmaril:fixture:algebra:validation:mode:positive>
+    a owl:NamedIndividual , rec:theory:record ;
+    rel:notation   "theory record with a valid D24 4-value validation:mode" ;
+    rel:identifier "urn:silmaril:fixture:algebra:validation:mode:positive" ;
+    rel:signature  <urn:silmaril:fixture:algebra:validation:mode:positive:sig> ;
+    rel:equation   <urn:silmaril:fixture:algebra:validation:mode:positive:eq> ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" .

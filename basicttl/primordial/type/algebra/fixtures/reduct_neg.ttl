@@ -1,0 +1,40 @@
+# =====================================================================================
+# reduct_neg.ttl — the FAILING NEGATIVE fixture for the T-REDUCT obligation tooth (W2 · SP0).
+# =====================================================================================
+# The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a failing
+# negative per tooth). A reduct declaring only ONE side of its two-sided law: the
+# obligation-counting extension morphism declares @rel:obligation:count 2 but carries only the
+# LEFT obligation slot — its @rel:right is DROPPED (the SINGLE injected violation; every other
+# edge matches the positive twin fixtures/reduct_pos.ttl).
+#
+# Merged onto the algebra data graph the graph MUST NOT conform: the extension morphism is
+# dual-typed rec:equation:record, so the GENERIC EquationRecordShape (shapes/algebra.shapes.ttl:
+# 119-135) requires cardinality-1 @rel:right and, with the right slot missing, flips conforms
+# True->False (minCount 1 on @rel:right). In parallel probes/obligation_count.rq returns >= 1
+# row (a count-two obligation missing a side). This is the "a rung declaring only one side of a
+# two-sided law -> RED" tooth of design §1.6 / §3, made a materialized failing witness.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:reduct:record / rec:equation:record), never bare and never an owl:Class. The left slot
+# is a bare object (untyped), like the reified term/case objects of equations.ttl.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a one-sided reduct: obligation-count 2 but only the LEFT slot declared (INVALID) ---
+<urn:silmaril:fixture:algebra:reduct:negative>
+    a owl:NamedIndividual , rec:reduct:record ;
+    rel:notation "reduct witness (BROKEN: two-sided law declares only the left side)" ;
+    rel:reduct    <urn:silmaril:fixture:algebra:reduct:negative:parent> ;
+    rel:adds:law  <urn:silmaril:fixture:algebra:reduct:negative:law> ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:extension <urn:silmaril:fixture:algebra:reduct:negative:extension> .
+
+# --- the obligation-counting extension morphism: count 2 but @rel:right DROPPED (violation) ---
+<urn:silmaril:fixture:algebra:reduct:negative:extension>
+    a owl:NamedIndividual , rec:equation:record ;
+    rel:notation "count-two obligation, ONLY the left side declared" ;
+    rel:obligation:count "2"^^xsd:nonNegativeInteger ;
+    rel:left <urn:silmaril:fixture:algebra:reduct:negative:side:left> .  # INJECTED VIOLATION: @rel:right missing (only one side declared)

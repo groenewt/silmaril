@@ -1,0 +1,23 @@
+# =====================================================================================
+# v1_class_pun_neg.ttl — the FAILING NEGATIVE fixture for V1ClassDeclarationPunShape (W2 · SP0,
+# T-SHAPES; V1 REFINED, design §4/§7.5, maintainer lock). The materialized RED that proves the
+# frame.ttl:7 fix is teeth-guarded (D24: sh:conforms true alone is vacuous).
+# =====================================================================================
+# A primordial ClassDeclaration RE-INJECTING the exact frame.ttl:7 anti-pattern that was fixed in this
+# task: a node typed model:ClassDeclaration AND model:Product AND model:Frame — i.e. punned into TWO
+# domain classes (Product AND Frame) at once, conflating the denotatum planes (design §4 V1 'a
+# domain/denotatum class being several model-type classes at once'). Merged onto the algebra data
+# graph the graph MUST NOT conform: V1ClassDeclarationPunShape (sh:targetClass model:ClassDeclaration)
+# finds the node typed as >= 2 primordial domain classes beyond ClassDeclaration and returns >= 1 row.
+# The fixed product/frame.ttl (a ontology:Class, model:ClassDeclaration, model:Product — ClassDeclaration
+# + ONE structural kind) is the conformant counterpart in the base data graph.
+#
+# Depth-gate compliance: the subject is NOT typed owl:Class or owl:NamedIndividual (so no 200-char
+# comment / specific-type obligation), only the primordial model: domain classes that make it a
+# V1ClassDeclarationPunShape focus — exactly the shape of the forbidden pun.
+
+@prefix model: <urn:silmaril:primordial:type:> .
+
+# --- a ClassDeclaration punned into two domain classes (INVALID: model:Product AND model:Frame) ---
+<urn:silmaril:fixture:algebra:v1:classpun:negative>
+    a model:ClassDeclaration , model:Product , model:Frame .  # INJECTED VIOLATION: two domain classes at once (the frame.ttl:7 pun)

@@ -1,0 +1,24 @@
+# =====================================================================================
+# clause_identity_neg.ttl — the FAILING NEGATIVE fixture for ClauseIdentityShape (W2 · SP0, T-GATES).
+# The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a failing negative
+# per shape).
+# =====================================================================================
+# A SECOND gate:clause:specification record whose clause:identifier COLLIDES with the committed V0
+# turtle-parse clause (gates/gates.ttl gdata:clause:identifier "algebra:clause:V0:turtle:parse" —
+# the SINGLE injected violation). Merged onto the algebra data graph the graph MUST NOT conform:
+# ClauseIdentityShape's sh:select (shapes/algebra.shapes.ttl) returns both this node and the real V0
+# clause sharing one clause:identifier, so it flips conforms True->False — the reference
+# clause-identity twin tooth biting (consolidated.shacl.ttl:1301-1311 'clauseIdentifier must
+# identify at most one GateClauseSpecification'). It carries only its type + colliding identifier.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (core:entity:structure:class:gate:clause:specification), never an owl:Class.
+
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix cls:   <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:> .
+@prefix gdata: <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:> .
+
+<urn:silmaril:fixture:algebra:clause:identity:negative>
+    a owl:NamedIndividual , cls:gate:clause:specification ;
+    gdata:clause:identifier "algebra:clause:V0:turtle:parse" .
+    # INJECTED VIOLATION: reuses the committed V0 clause:identifier -> ClauseIdentityShape RED

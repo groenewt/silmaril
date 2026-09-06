@@ -1,0 +1,25 @@
+# =====================================================================================
+# provenance_closure_neg.ttl — the FAILING NEGATIVE fixture for ProvenanceClosureShape (T-PROV).
+# The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a failing negative
+# per shape).
+# =====================================================================================
+# A reshaped-record scope-marker node carrying an EXECUTOR attribution + a prov:wasGeneratedBy but
+# MISSING the SHADOW attribution — the SINGLE injected violation (the positive twin
+# fixtures/provenance_closure_pos.ttl carries both). Merged onto the algebra data graph the graph
+# MUST NOT conform: ProvenanceClosureShape's dual-count sh:sparql returns this focus (executor
+# present, shadow absent). The node is typed ONLY gprov:class:reshaped:record:scope (+ prov:Entity),
+# a class no other algebra shape targets, so exactly ProvenanceClosureShape flips conforms
+# True->False. This is the design §4 V7 probe of record: 'remove a shadow attribution -> V7 RED'.
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type, never an owl:Class.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix gprov: <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:> .
+
+# --- a reshaped record with EXECUTOR + wasGeneratedBy but NO SHADOW (INVALID: dual attribution incomplete) ---
+<urn:silmaril:fixture:algebra:provenance:closure:negative>
+    a owl:NamedIndividual , prov:Entity , gprov:class:reshaped:record:scope ;
+    prov:wasAttributedTo <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:agent:executor:sp0:spine:fold> ;
+    prov:wasGeneratedBy  <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:activity:lifecycle:draft:sp0:spine:fold> .
+    # INJECTED VIOLATION: no prov:wasAttributedTo a gprov:class:agent:shadow -> ProvenanceClosureShape RED

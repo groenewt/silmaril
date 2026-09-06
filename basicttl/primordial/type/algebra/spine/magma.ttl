@@ -1,0 +1,169 @@
+# =====================================================================================
+# magma.ttl — the MAGMA rung END-TO-END (W2 · SP0, Stage 2a, T-MAGMA). Replicates the
+# signed-off monoid exemplar (spine/monoid.ttl) with the rung swapped monoid -> magma.
+# =====================================================================================
+# The base concrete rung of the one-operation algebra tower: a set with a single binary
+# operation that is CLOSED (total: · : S,S -> S). Magma's PARENT is the agnostic
+# progenitor (spine/progenitor.ttl) — reached by rdfs:subClassOf on the magma MODEL-RECORD
+# class, NOT by a reduct edge (design §1.9: "magma->AlgebraicStructure is an rdfs:subClassOf
+# to the progenitor (NOT a reduct — the progenitor grounds nothing)"). Magma adds the SINGLE
+# law CLOSURE over the progenitor (algebra_spine.ttl:99-103 one-law-per-child).
+#
+# This file mints, replicating monoid.ttl end-to-end: the theory record (S,Omega,E), the B4
+# TWO model planes (a denotatum + a declaration-record model class linked by @rel:denotes),
+# the closure axiom record, the declaration-triad gate, and the provenance quartet + bridges.
+# It omits the theorem+certificate plane: a bare magma (closure alone) has NO natural
+# uniqueness/structure theorem to certify (monoid had identity-uniqueness; magma has none),
+# so per the T-MAGMA directive that plane is omitted rather than faked (D20 honesty).
+#
+# CLOSURE IS NOT AN EQUATION (design §1.5, T-MAGMA directive). Closure is a membership /
+# totality statement ("for all x,y in S: x·y in S"), NOT a left=right equality — so the
+# closure axiom carries NO @rel:left / @rel:right and is typed rec:axiom:record ONLY, never
+# rec:equation:record. It is the rung's SOLE equation-set member (the theory's @rel:equation).
+# Consequently this file mints ZERO rec:equation:record individuals (unlike monoid, whose
+# associativity/identity ARE reified equations in equations.ttl).
+#
+# WHAT LIVES WHERE. The finite Cayley witnesses (a closed positive table + a closure-escape
+# negative) are in fixtures/magma_pos.ttl / fixtures/magma_neg.ttl (D24 four-planes: witnesses
+# are EVIDENCE, outside the ontology data glob). The added-law CLOSURE tooth is probes/magma_law.rq.
+#
+# NAMING (D26 LOCKED). Full mathematics 12-marker ladder under HEAD (alg:). The magma
+# denotatum IRI is BYTE-IDENTICAL to bridges.ttl:97 (fnd:Magma skos:exactMatch target) and the
+# closure axiom IRI is BYTE-IDENTICAL to bridges.ttl:170 (fnd:lawClosure skos:exactMatch target).
+# Rank values are [D] derived off the [V] group skeleton with family:group -> family:magma
+# (the [V] group closure axiom = HEAD+group:kingdom:axiom:phylum:operation:class:closure:order:
+# binary:family:group:genus:product:species:membership:component:statement:instance:canonical,
+# task NAMING GROUND TRUTH). [D] = derived; [S] = no runtime precedent -> §7.2 sign-off packet.
+#
+# ENGINE BRIDGE (design §5.1, honesty ledger). The engine anchor for magma —
+# seed:conservativeBridge fnd:Magma -> the [V] group CLOSURE axiom — already lives in
+# bridges.ttl:96-99 and is NOT re-added here (bridge-never-duplicate, TODO-11). This file adds,
+# on the theory record, only the ADDITIVE historical/alias edges: @rel:historical:identity
+# fnd:Magma (+ the seed legacy magma IRI) and skos:closeMatch fnd:Magma (Stage-1 additive;
+# fnd:Magma stays byte-intact until the Stage-2b T-RETIRE).
+#
+# [S] SIGN-OFF PACKET (design §7.2, surfaced for T-PANEL):
+#   #1 mint-more-than-runtime : the theory record + the declaration-record model class have NO
+#      algebra precedent in the runtime (the runtime shows only the flat subdomain:group
+#      collapse) — minted per D24, PIVOTAL/pre-locked.
+#   theory     : class:theory / genus:presented (kingdom:definition:phylum:algebra) — UNATTESTED.
+#   model rec. : class:model / genus:governed / component:class — UNATTESTED (B4 Plane-1, §7.2 #10).
+#   @rel D24   : @rel:validation:mode "finite:table" (4-value) + @rel:proof:status
+#      "literature:backed" (8-value) — the D24 validation-mode / proof-status vocab, no runtime
+#      precedent. Magma's closure is a finite-table totality check (finite:table), not term
+#      rewriting (contrast monoid's equational laws -> "rewrite").
+#   @typ       : @typ:declaration / @typ:gate — the plane-type tokens (design §2).
+#   authority  : "SYN" — magma / lawClosure are fnd:SYN (algebra_spine.ttl:61,141), synthesized
+#      cited standard universal algebra; magma is NOT the DS-lifted rung (that is monoid alone).
+#   LOCKED (no sign-off): B1 adjective-first (n/a for magma, no compound token); B4 two-planes;
+#      B3(a) additive Stage 2a (fnd:Magma intact, bridges added; T-RETIRE is Stage 2b).
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§1.4-1.10, §2, §5).
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (T-MAGMA).
+# Consumes (do not rewrite): records.ttl (rec:* classes), signatures.ttl (sigOneBinary),
+# operations.ttl (product ·), spine/progenitor.ttl (theory-root parent), bridges.ttl (fnd:Magma).
+# Tooth: shapes/algebra.shapes.ttl TheoryShape / ModelShape + probes/magma_law.rq.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+# mathematics 12-marker ladder head (D26), ending at subdomain::
+@prefix alg:  <urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:> .
+# consolidated relation namespace (@rel = @P:relation; records.ttl:41):
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+# plane-type namespace (@typ = @P:type; design §2):
+@prefix typ:  <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+# seed-carrier record-class ladder (records.ttl:38-39) — rec:* REUSED:
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# =====================================================================================
+# (a) THEORY record — the presented Lawvere theory T=(S,Omega,E) (D24 A6). [S] class:theory/genus:presented
+#     Also the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g).
+# =====================================================================================
+alg:magma:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:magma:genus:presented:species:magma:component:definition:instance:canonical
+    a owl:NamedIndividual , rec:theory:record , typ:declaration ;
+    rdfs:label "magma theory (S,Omega,E)" ;
+    rel:notation   "magma" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:magma:kingdom:definition:phylum:algebra:class:theory:order:declarative:family:magma:genus:presented:species:magma:component:definition:instance:canonical" ;
+    rel:signature  alg:magma:kingdom:definition:phylum:specification:class:signature:order:binary:family:operation:genus:algebraic:species:signature:component:definition:instance:canonical ;
+    rel:equation   alg:magma:kingdom:axiom:phylum:operation:class:closure:order:binary:family:magma:genus:product:species:membership:component:statement:instance:canonical ;
+    rel:denotatum  alg:magma:kingdom:type:phylum:algebra:class:magma:order:binary:family:operation:genus:axiomatic:species:magma:component:type:instance:canonical ;
+    rel:assignment alg:magma:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:magma:genus:reconciled:species:declaration:component:assignment:instance:canonical ;
+    rel:validation:mode "finite:table" ;
+    rel:proof:status    "literature:backed" ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rel:historical:identity fnd:Magma , <urn:silmaril:ontology:primordial:algebra:structure:magma> ;
+    skos:closeMatch fnd:Magma ;
+    rdfs:comment "[S] The presented magma THEORY record T=(S,Omega,E) (D24 A0 Theory plane, A6): S,Omega = @rel:signature sigOneBinary (signatures.ttl:74, Sigma={·}); E = @rel:equation the SINGLE member {closure} (the magma closure axiom below — magma's one added law over the progenitor, algebra_spine.ttl:99-103 one-law-per-child). It is simultaneously the Plane-1 DeclarationRecord of the triad envelope (@typ:declaration, design §2g): @rel:denotatum -> the Plane-2 magma denotatum (the mathematical object), @rel:assignment -> the Plane-3 reconciliation gate. There is deliberately NO @rel:reduct: magma's parent is the agnostic progenitor, reached by rdfs:subClassOf on the magma MODEL-RECORD class (design §1.9 'magma->AlgebraicStructure is an rdfs:subClassOf ... NOT a reduct'), because the progenitor grounds nothing and a reduct forgets a law that the progenitor never had. D24 first-class metadata: @rel:validation:mode 'finite:table' (the 4-value law-witness mode — magma's closure/totality law is witnessed by a finite Cayley table, fixtures/magma_pos.ttl, NOT by term rewriting; contrast monoid's equational laws -> 'rewrite') and @rel:proof:status 'literature:backed' (the 8-value status — closure is cited standard universal algebra, conservatively engine-anchored to the group closure axiom, not itself finite:checked-from-engine). Provenance quartet (created/modified/version/state) + @rel:authority 'SYN' live on this RECORD, never on the denotatum (D24: 'Magma was not authored by an executor; the MagmaTheoryRecord was'). @rel:authority 'SYN' because fnd:Magma and fnd:lawClosure are fnd:SYN (algebra_spine.ttl:61,141), synthesized cited standard universal algebra — magma is NOT the DS-lifted rung (that is monoid alone, algebra_spine.ttl:36). Historical-identity BRIDGES: @rel:historical:identity fnd:Magma (algebra_spine.ttl:20) and the seed legacy IRI urn:silmaril:ontology:primordial:algebra:structure:magma; skos:closeMatch fnd:Magma (Stage-2a ADDITIVE — fnd:Magma stays intact; the engine seed:conservativeBridge fnd:Magma -> the [V] group closure axiom already lives in bridges.ttl:96-99 and is NOT duplicated; T-RETIRE stubs fnd:Magma in Stage 2b). Tooth: TheoryShape (min1/max1 signature + min1 equation + identity-collision). [S] class:theory / genus:presented UNATTESTED (§7.2 #1 mint-more-than-runtime, PIVOTAL); @rel:validation:mode / @rel:proof:status are D24 vocab; all flagged for the sign-off packet." .
+
+# =====================================================================================
+# (b1) DENOTATUM — B4 Plane-2: the mathematical object, NO provenance. [D]
+#      BYTE-IDENTICAL to bridges.ttl:97 (fnd:Magma skos:exactMatch target).
+# =====================================================================================
+alg:magma:kingdom:type:phylum:algebra:class:magma:order:binary:family:operation:genus:axiomatic:species:magma:component:type:instance:canonical
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rdfs:label "magma" ;
+    rel:notation   "magma" ;
+    rel:identifier "urn:silmaril:type:graph:instance:instruction:code:property:domain:mathematics:realm:algebra:subdomain:magma:kingdom:type:phylum:algebra:class:magma:order:binary:family:operation:genus:axiomatic:species:magma:component:type:instance:canonical" ;
+    rdfs:comment "[D] The magma DENOTATUM (B4 LOCKED Plane-2, §7.2 #10): the mathematical object 'a magma' itself — a set with a single closed binary operation — carrying its canonical @rel:identifier and @rel:notation ONLY, and, critically, NO provenance (D24: provenance lives on the RECORD that declares it, never on the denoted object). It is pointed to by the theory record's @rel:denotatum and the model-record class's @rel:denotes. This IRI (kingdom:type…component:type) is DISTINCT from the model-record class IRI (kingdom:class…component:class) — the two B4 planes — and is BYTE-IDENTICAL to bridges.ttl:97 (fnd:Magma skos:exactMatch this denotatum) so the merged alias map resolves. Typed rec:denotatum:record (records.ttl:95-100, cardinality-1 @rel:identifier), which owl:disjointWith rec:declaration:record — one individual is never both the object and the record that declares it. Rank values [D] off the [V] group denotatum skeleton (bridges.ttl:81) with subdomain/family group -> magma; class:magma / species:magma track the rung." .
+
+# =====================================================================================
+# (b2) MODEL-RECORD class — B4 Plane-1: the declaration-record model class (owl:Restriction
+#      bundle + provenance + disjointness teeth), rdfs:subClassOf the progenitor denotatum.
+#      [S] class:model/genus:governed/component:class
+# =====================================================================================
+alg:magma:kingdom:class:phylum:algebra:class:model:order:declarative:family:magma:genus:governed:species:magma:component:class:instance:canonical
+    a owl:Class , rec:model:record , rec:declaration:record ;
+    rdfs:label "magma model class" ;
+    rel:notation "magma model" ;
+    rel:denotes alg:magma:kingdom:type:phylum:algebra:class:magma:order:binary:family:operation:genus:axiomatic:species:magma:component:type:instance:canonical ;
+    rdfs:subClassOf
+        alg:primordial:kingdom:type:phylum:algebra:class:structure:order:axiomatic:family:primordial:genus:algebra:species:root:component:type:instance:canonical ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:carrier ] ,
+        [ a owl:Restriction ; owl:cardinality "1"^^xsd:nonNegativeInteger ; owl:onProperty rel:operation ] ;
+    owl:disjointWith alg:semigroup:kingdom:class:phylum:algebra:class:model:order:declarative:family:semigroup:genus:governed:species:semigroup:component:class:instance:canonical ;
+    rel:created  "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:modified "2026-09-06T00:00:00Z"^^xsd:dateTime ;
+    rel:version  "1"^^xsd:nonNegativeInteger ;
+    rel:state    "accepted" ;
+    rel:authority "SYN" ;
+    rdfs:comment "[S] The magma MODEL-RECORD class (B4 LOCKED Plane-1, §7.2 #10, design §2b): the declaration-record that carries the owl:Restriction bundle, the provenance quartet and the disjointness teeth, and @rel:denotes exactly one Plane-2 denotatum. It mints kingdom:class:…:model:…:component:class — DISTINCT from the denotatum atom's kingdom:type:…:component:type IRI. PARENT EDGE: rdfs:subClassOf the progenitor denotatum (spine/progenitor.ttl) — this is the magma->AlgebraicStructure descent (design §1.9), an rdfs:subClassOf and NOT a reduct, because the progenitor grounds nothing; every other rung reaches the progenitor transitively through magma via the T-REDUCT reduct edges (Stage 2b). The INTENSIONAL owl:Restriction bundle (the fix for the D23 extensional flaw — basicttl/foundation/*.ttl has ZERO owl:Restriction, closure.ttl has 13) makes 'a magma is a set with exactly one carrier and exactly one operation' a graph fact via cardinality-1 owl:Restriction on @rel:carrier and @rel:operation (the closure.ttl datatype:record cardinality idiom); magma adds NO @rel:identity:element restriction (a magma has no identity — that first appears at the monoid rung). owl:disjointWith the (Stage-2) semigroup model-record class is the D25 homonym/distinction tooth on the DECLARATION-RECORD plane: the canonical magma declaration record and the canonical semigroup declaration record are DISTINCT records (not an extensional-structure disjointness claim — extensionally every semigroup IS a magma; on the record plane no single declaration record is both), authored now as a forward reference to the semigroup model IRI (T-SEMI mints the class in Stage 2; the disjointness triple stands regardless — mirrors monoid.ttl:113 forward-referencing the group model). Provenance quartet + @rel:authority 'SYN' live here (the RECORD plane), never on the denotatum. It is punned a owl:Class (so a concrete model can be typed against it, and so it can rdfs:subClassOf the progenitor) AND a rec:model:record / rec:declaration:record (so the ModelShape sh:targetClass tooth counts it as a data-graph focus node and the runner's 0-focus gate is satisfied) — OWL2 metaclass punning, exactly as spine/progenitor.ttl and DISTINCT from the frame.ttl:7 domain-class-punning anti-pattern V1 forbids. On this focus the ModelShape identity sh:sparql tooth is vacuously satisfied (the class declares no @rel:identity:element / reified cells); the finite magma model witnesses in fixtures/ are where the closure tooth bites. [S] class:model / genus:governed / component:class UNATTESTED (§7.2 #1/#10) -> sign-off packet." .
+
+# =====================================================================================
+# (c) FOUNDATION AXIOM record — CLOSURE (design §2c, §1.5 — minimal, NO denotatum/gate/
+#     provenance, NO certificate). Closure is a membership/totality axiom, NOT a left=right
+#     equation, so it is rec:axiom:record ONLY (never rec:equation:record) and carries NO
+#     @rel:left/@rel:right. Rank values VERBATIM off the [V] group closure axiom with
+#     family:group -> family:magma. It is the rung's SOLE equation-set member.
+# =====================================================================================
+alg:magma:kingdom:axiom:phylum:operation:class:closure:order:binary:family:magma:genus:product:species:membership:component:statement:instance:canonical
+    a owl:NamedIndividual , rec:axiom:record ;
+    rdfs:label "magma closure" ;
+    rel:notation "for all x,y in S: x·y in S" ;
+    rdfs:comment "[D] The CLOSURE / totality axiom of the magma theory (rec:axiom:record) — magma's SOLE added law and the sole member of its equation set E (this file's theory @rel:equation): the binary product · is a total function S,S -> S, so for all x,y in the carrier S the product x·y is defined and lies in S. A membership/totality statement, NOT a left=right equation — so it is an axiom record only, NOT a rec:equation:record (unlike monoid's associativity/identity), and carries NO @rel:left/@rel:right; consequently this rung mints ZERO reified equation records. Minimal per design §2c: no denotatum / gate / provenance, and NO @rel:certificate (an axiom is asserted, not proved — axiom != theorem is structural, and rec:axiom:record owl:disjointWith rec:theorem:record, records.ttl:119). Rank values VERBATIM off the [V] group closure axiom (HEAD+group:kingdom:axiom:phylum:operation:class:closure:order:binary:family:group:genus:product:species:membership:component:statement:instance:canonical, genus:product:species:membership, task NAMING GROUND TRUTH / bridges.ttl:98,170) with family:group -> family:magma. This IRI is BYTE-IDENTICAL to bridges.ttl:170 (fnd:lawClosure skos:exactMatch this axiom). Its added-law status is teeth-proved by probes/magma_law.rq (the closure/totality tooth) over the fixtures/ finite-table witnesses: the positive closed table returns 0 rows, the closure-escape negative returns >=1 row." .
+
+# =====================================================================================
+# (g) GATE — the Plane-3 reconciliation gate of the triad envelope (design §2g, @typ:gate).
+# =====================================================================================
+alg:magma:kingdom:assignment:phylum:reconciliation:class:gate:order:declarative:family:magma:genus:reconciled:species:declaration:component:assignment:instance:canonical
+    a owl:NamedIndividual , typ:gate ;
+    rdfs:label "magma declaration reconciliation gate" ;
+    rel:check:status   "declaration reconciled; not a generic semantic proof" ;
+    rel:interpreted:by alg:magma:kingdom:interpretation:phylum:reconciliation:class:declaration:order:declarative:family:magma:genus:reconciled:species:magma:component:interpretation:instance:canonical ;
+    rdfs:comment "The Plane-3 reconciliation GATE of the declaration triad envelope (design §2g): the theory record (@typ:declaration) @rel:assignment-points at this gate, which records that the magma declaration was RECONCILED against its denotatum — @rel:check:status 'declaration reconciled; not a generic semantic proof' (the honest scope: the gate reconciles the declaration to the denoted object, it does not claim a universal semantic proof) — and @rel:interpreted:by an interpretation atom. Typed @typ:gate. This is the per-record triad-envelope gate INSTANCE (Plane-3), NOT a gate SPECIFICATION class (the two-ladder ruling, design §4 / §7.2 #8: gate/clause SPECS mint the core:entity gate ladder; this per-record gate instance rides the mathematics ladder scoped to the magma rung). It closes the Denotatum/DeclarationRecord/Gate triad (D24 four planes) so the magma declaration is reconciled, not merely asserted." .
+
+# =====================================================================================
+# BRIDGES (design §5, the magma-rung historical/alias edges — Stage-2a ADDITIVE). The engine
+# seed:conservativeBridge fnd:Magma -> the [V] group closure axiom already lives in
+# bridges.ttl:96-99 and is NOT duplicated here (bridge-never-duplicate, TODO-11). The edges on
+# the theory record above are: @rel:historical:identity fnd:Magma, @rel:historical:identity
+# <seed legacy magma IRI>, skos:closeMatch fnd:Magma — keeping SP1/SP2/SP3 fnd:Magma refs
+# resolvable THROUGH the folded rung while fnd:Magma stays byte-intact until Stage-2b T-RETIRE.
+# =====================================================================================

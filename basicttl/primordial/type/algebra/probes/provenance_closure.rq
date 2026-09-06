@@ -1,0 +1,29 @@
+# =====================================================================================
+# provenance_closure.rq — the V7 PROVENANCE-CLOSURE probe (W2 · SP0, T-PROV).
+# =====================================================================================
+# Gate V7 (design §4; D24: 'provenance closure — executor >= 1 AND shadow >= 1'). Returns one row
+# per RESHAPED record (a subject carrying the D24 provenance quartet @rel:authority — the 8 theory
+# + 8 model/declaration + 7 reduct + 6 theorem records of the folded spine) that FAILS the dual
+# attribution: it lacks an executor attribution, OR lacks a shadow attribution, OR lacks a
+# prov:wasGeneratedBy generation edge. On the clean tree this returns ZERO rows (GREEN); removing a
+# shadow attribution (or an executor attribution, or the wasGeneratedBy) makes it return rows (RED)
+# — the T-PROV probe of record ('Probe: remove a shadow attribution -> V7 RED'). Denotata (Plane-2)
+# are OUT of scope by construction: they carry no @rel:authority, so they never match (V1: no
+# provenance on a denotatum). This is the executable twin of the runner's block-(f) V7 dual-count
+# assertion and the shapes-graph ProvenanceClosureShape.
+#
+# Design: docs/superpowers/specs/2026-09-06-w2-sp0-primordial-fold-design.md (§4 V7)
+# Plan:   docs/superpowers/plans/2026-09-06-w2-sp0-spine-fold-plan.md (Task T-PROV)
+
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:>
+PREFIX gprov: <urn:silmaril:type:graph:instance:instruction:code:property:governance:provenance:>
+
+SELECT ?record WHERE {
+  ?record rel:authority ?authority .
+  FILTER(
+       NOT EXISTS { ?record prov:wasAttributedTo ?e . ?e a gprov:class:agent:executor }
+    || NOT EXISTS { ?record prov:wasAttributedTo ?s . ?s a gprov:class:agent:shadow }
+    || NOT EXISTS { ?record prov:wasGeneratedBy ?g }
+  )
+}

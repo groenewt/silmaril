@@ -1,0 +1,25 @@
+# =====================================================================================
+# carrier_grounding_neg.ttl — the FAILING NEGATIVE fixture for CarrierGroundingShape (W2 · SP0,
+# T-SHAPES). The materialized RED (D24: sh:conforms true alone is vacuous — a positive AND a failing
+# negative per shape).
+# =====================================================================================
+# A model that NAMES a @rel:carrier which is NOT grounded — the carrier has NEITHER a @rel:grounds:in
+# edge to the set floor NOR a seed:implementationBridge to an engine carrier atom (the SINGLE injected
+# violation; the positive twin fixtures/carrier_grounding_pos.ttl grounds it via @rel:grounds:in).
+# Merged onto the algebra data graph the graph MUST NOT conform: CarrierGroundingShape's sh:sparql
+# finds the named @rel:carrier ungrounded and returns >= 1 row (design §4 V5 / §5.1 — a carrier must
+# ground in the set-theory floor or the physical engine carrier, never dangle).
+#
+# Depth-gate compliance: the model subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record); the carrier node is a bare object (untyped, and deliberately carries no
+# grounding edge).
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a model naming a carrier that is NOT grounded (INVALID: the carrier dangles) ---
+<urn:silmaril:fixture:algebra:carrier:grounding:negative>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "model naming an UNGROUNDED carrier (no grounds:in, no implementationBridge)" ;
+    rel:carrier <urn:silmaril:fixture:algebra:carrier:grounding:negative:carrier> .  # INJECTED VIOLATION: this carrier has no grounding edge

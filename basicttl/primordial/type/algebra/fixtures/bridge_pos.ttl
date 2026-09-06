@@ -1,0 +1,28 @@
+# =====================================================================================
+# bridge_pos.ttl — the POSITIVE fixture for BridgeShape (W2 · SP0, T-FIX).
+# =====================================================================================
+# BridgeShape (shapes/algebra.shapes.ttl:245-251) targets rec:denotatum:record and reddens a
+# rung denotatum that carries NO skos:exactMatch / skos:closeMatch edge (either direction) to a
+# urn:silmaril:fnd: legacy name — the retire-map invariant that keeps inbound SP1/SP2/SP3 fnd:*
+# references resolvable through the fold (design §5.2). This positive is a rec:denotatum:record
+# bridged by a skos:exactMatch to a urn:silmaril:fnd: name, so BridgeShape's sh:sparql finds the
+# bridge (0 rows) and it CONFORMS. It carries identifier/notation ONLY (NO provenance) and a
+# single record-ladder type, so V1DenotatumHygieneShape (the other shape targeting
+# rec:denotatum:record) is also satisfied. Its single-injected-violation twin is
+# fixtures/bridge_neg.ttl (the fnd: bridge omitted).
+#
+# Depth-gate compliance: the subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:denotatum:record), never an owl:Class.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fnd:  <urn:silmaril:fnd:#> .
+@prefix rel:  <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix rec:  <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- a denotatum bridged back to a retired fnd: name via skos:exactMatch (CONFORMS) ---
+<urn:silmaril:fixture:algebra:bridge:positive>
+    a owl:NamedIndividual , rec:denotatum:record ;
+    rel:notation   "denotatum carrying its fnd: retire bridge" ;
+    rel:identifier "urn:silmaril:fixture:algebra:bridge:positive" ;
+    skos:exactMatch fnd:BridgeWitness .

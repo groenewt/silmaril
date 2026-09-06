@@ -1,0 +1,13 @@
+# probes/gate_identity.rq (W2 · SP0, T-GATES) — the executable gate-identity uniqueness probe.
+# Returns any pair of DISTINCT gate:specification records that share one gate:identifier (the
+# reference gate-identity uniqueness tooth, consolidated.shacl.ttl:1317-1327). On the clean folded
+# tree (gates/gates.ttl, nine V0-V8 gates with distinct identifiers) it returns ZERO rows (GREEN);
+# merged with fixtures/gate_identity_neg.ttl (a second gate reusing algebra:gate:V0:syntax) it
+# returns >= 1 row (RED). The SHACL companion is GateIdentityShape (shapes/algebra.shapes.ttl).
+SELECT ?gate ?other ?id WHERE {
+  ?gate  a <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:specification> ;
+         <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:gate:identifier> ?id .
+  ?other a <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:structure:class:gate:specification> ;
+         <urn:silmaril:type:graph:instance:instruction:code:property:core:entity:property:data:gate:identifier> ?id .
+  FILTER(STR(?gate) < STR(?other))
+}

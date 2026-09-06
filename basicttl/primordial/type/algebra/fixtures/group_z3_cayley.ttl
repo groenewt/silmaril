@@ -1,0 +1,101 @@
+# =====================================================================================
+# group_z3_cayley.ttl — the finite-table CERTIFICATE fixture (POSITIVE) for the group rung
+# (W2 · SP0, T-FIX; design §4 "the reified engine Cayley tables become finite:checked certificate
+# fixtures", the Z/3 table matching the engine group::validate).
+# =====================================================================================
+# Z/3 under addition {e=0, a=1, b=2}, the complete reified Cayley table (addition mod 3):
+#   0·0=0 0·1=1 0·2=2 / 1·0=1 1·1=2 1·2=0 / 2·0=2 2·1=0 2·2=1
+# A genuine group: two-sided identity e and a two-sided inverse for every element (0<->0, 1<->2,
+# 2<->1). Stamped with the D24 finite-table CERTIFICATE metadata @rel:proof:status "finite:checked"
+# (the table was exhaustively checked) + @rel:validation:mode "finite:table" (finite Cayley-table
+# matching, the same mode the group theory record declares, mirroring the engine group::validate).
+# Typed rec:model:record so it is a ModelShape focus. Merged onto the algebra data graph it MUST
+# still conform (run-algebra-checks.sh step (b) positive polarity): the ModelShape two-sided
+# identity tooth, SemigroupAssociativityShape, GroupInverseShape, the commutativity shapes and
+# LoopIdentityShape all pass over this correct, total, associative, commutative group table;
+# MagmaClosureShape / CarrierGroundingShape are vacuous. Its matching ASSOCIATIVITY-VIOLATING
+# negative is fixtures/group_z3_cayley_negative.ttl. D24 four-planes: finite-table evidence UNDER
+# fixtures/, outside the ontology data glob and the CI data graph.
+#
+# Depth-gate compliance: every subject is an owl:NamedIndividual with a SPECIFIC type
+# (rec:model:record / @typ:finite:element / @typ:finite:composition), never bare, never an owl:Class.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rel: <urn:silmaril:type:graph:instance:instruction:code:property:relation:> .
+@prefix typ: <urn:silmaril:type:graph:instance:instruction:code:property:type:> .
+@prefix rec: <urn:silmaril:type:graph:instance:instruction:code:property:grounding:ontology:basic:formal:domain:knowledge:representation:kingdom:specification:phylum:formal:contract:class:class:order:declared:family:seed:genus:registry:species:> .
+
+# --- the finite:checked / finite:table certificate model: Z/3 group with identity e ---
+<urn:silmaril:fixture:algebra:group:z3:cayley>
+    a owl:NamedIndividual , rec:model:record ;
+    rel:notation "Z/3 under + — finite Cayley-table certificate (genuine group, identity e, inverses 0<->0 1<->2 2<->1)" ;
+    rel:identity:element <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> ;
+    rel:validation:mode  "finite:table" ;
+    rel:proof:status     "finite:checked" .
+
+# --- carrier elements ---
+<urn:silmaril:fixture:algebra:group:z3:cayley:elem:e>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "e = 0" .
+<urn:silmaril:fixture:algebra:group:z3:cayley:elem:a>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "a = 1" .
+<urn:silmaril:fixture:algebra:group:z3:cayley:elem:b>
+    a owl:NamedIndividual , typ:finite:element ;
+    rel:notation "b = 2" .
+
+# --- the reified Cayley cells (addition mod 3) — a total, correct group table ---
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:ee>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:ea>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:eb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:ae>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:aa>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:ab>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:be>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:ba>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:e> .
+<urn:silmaril:fixture:algebra:group:z3:cayley:cell:bb>
+    a owl:NamedIndividual , typ:finite:composition ;
+    rel:structure       <urn:silmaril:fixture:algebra:group:z3:cayley> ;
+    rel:category:first  <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> ;
+    rel:category:second <urn:silmaril:fixture:algebra:group:z3:cayley:elem:b> ;
+    rel:category:result <urn:silmaril:fixture:algebra:group:z3:cayley:elem:a> .
