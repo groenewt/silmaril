@@ -299,6 +299,11 @@ portal:BrowserBehavior a portal:Artifact,
       } else if (sections.length) sections.at(-1).disclosure.append(node);
     });
     document.querySelectorAll('[data-fold]').forEach(control => control.addEventListener('click', () => documentContent.querySelectorAll('details').forEach(section => { section.open = control.dataset.fold === 'open'; })));
+    contents.addEventListener('click', event => {
+      const anchor = event.target.closest('a[href^="#"]');
+      const target = anchor && document.getElementById(decodeURIComponent(anchor.hash.slice(1)));
+      if (target) { unfold(target); target.scrollIntoView({block: 'start'}); }
+    });
     // Keep links between repository Markdown documents inside the reading surface.
     fetch(local('/assets/data/documents.json')).then(response => response.json()).then(documents => {
       const paths = new Map(documents.map(item => [item.source, item.identity]));
